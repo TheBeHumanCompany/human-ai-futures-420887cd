@@ -44,8 +44,8 @@ function Home() {
 
           <div className="relative min-h-[320px] lg:min-h-[640px]">
             <img
-              src={heroImage}
-              alt="A woman working late at a workbench, a humanoid robot standing in the far background"
+              src={heroImage.url}
+              alt="A woman carefully adjusts a humanoid robot's hand in a workshop"
               width={1600}
               height={1200}
               className="absolute inset-0 h-full w-full object-cover"
