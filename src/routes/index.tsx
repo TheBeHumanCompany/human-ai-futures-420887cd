@@ -54,18 +54,6 @@ function Home() {
           </div>
         </div>
 
-        {/* credential strip */}
-        <div className="border-t border-border">
-          <div className="mx-auto flex max-w-[1400px] flex-wrap items-center gap-x-8 gap-y-3 px-5 py-5 sm:px-8">
-            {["AI readiness", "Governance & security", "AI agents", "Leadership & literacy"].map(
-              (c) => (
-                <span key={c} className="eyebrow text-muted-foreground">
-                  {c}
-                </span>
-              ),
-            )}
-          </div>
-        </div>
       </section>
 
       {/* ---------- BE HUMAN AI ---------- */}
