@@ -31,10 +31,7 @@ function Home() {
       <section className="section-ink grain overflow-hidden border-b border-border">
         <div className="mx-auto grid max-w-[1400px] items-stretch lg:grid-cols-[1.05fr_1fr]">
           <div className="fade-up flex flex-col justify-center px-5 py-16 sm:px-8 lg:py-28">
-            <p className="eyebrow flex items-center gap-3 text-lime">
-              <span className="h-px w-8 bg-lime" />A cultural movement · An AI company
-            </p>
-            <h1 className="display mt-8 text-[clamp(3.5rem,11vw,8.5rem)]">
+            <h1 className="display text-[clamp(3.5rem,11vw,8.5rem)]">
               The future
               <br />
               is <span className="text-lime">human.</span>
@@ -43,26 +40,6 @@ function Home() {
               We help leaders and organizations become AI-ready without losing what makes them
               human.
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link
-                to="/be-human-ai"
-                className="eyebrow inline-flex items-center gap-2 rounded-full bg-lime px-7 py-4 text-ink transition-transform hover:-translate-y-0.5"
-              >
-                Explore Be Human AI <span aria-hidden>→</span>
-              </Link>
-              <Link
-                to="/about"
-                className="eyebrow inline-flex items-center gap-3 rounded-full border border-border px-7 py-4 text-foreground transition-colors hover:border-foreground"
-              >
-                <span
-                  aria-hidden
-                  className="grid h-5 w-5 place-items-center rounded-full border border-current text-[0.5rem]"
-                >
-                  ▶
-                </span>
-                Watch Our Manifesto
-              </Link>
-            </div>
           </div>
 
           <div className="relative min-h-[320px] lg:min-h-[640px]">
@@ -74,11 +51,6 @@ function Home() {
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/25 to-transparent" />
-            <p className="eyebrow absolute bottom-5 right-5 text-right text-foreground/70">
-              Human + AI
-              <br />
-              Better together
-            </p>
           </div>
         </div>
 

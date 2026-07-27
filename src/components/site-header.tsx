@@ -45,12 +45,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link
-            to="/contact"
-            className="eyebrow hidden shrink-0 rounded-full border border-lime px-5 py-2.5 text-lime transition-colors hover:bg-lime hover:text-ink sm:inline-flex"
-          >
-            Work With Us
-          </Link>
           <button
             type="button"
             aria-label="Toggle menu"
@@ -82,13 +76,6 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link
-            to="/contact"
-            onClick={() => setOpen(false)}
-            className="eyebrow mt-6 inline-flex rounded-full border border-lime px-5 py-2.5 text-lime"
-          >
-            Work With Us
-          </Link>
         </nav>
       )}
     </header>
