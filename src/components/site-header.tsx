@@ -76,13 +76,6 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link
-            to="/contact"
-            onClick={() => setOpen(false)}
-            className="eyebrow mt-6 inline-flex rounded-full border border-lime px-5 py-2.5 text-lime"
-          >
-            Work With Us
-          </Link>
         </nav>
       )}
     </header>
