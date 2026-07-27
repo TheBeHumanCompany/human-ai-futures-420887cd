@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as BeHumanAiRouteImport } from './routes/be-human-ai'
 import { Route as IndexRouteImport } from './routes/index'
 
+const BeHumanAiRoute = BeHumanAiRouteImport.update({
+  id: '/be-human-ai',
+  path: '/be-human-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/be-human-ai': typeof BeHumanAiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/be-human-ai': typeof BeHumanAiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/be-human-ai': typeof BeHumanAiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/be-human-ai'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/be-human-ai'
+  id: '__root__' | '/' | '/be-human-ai'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BeHumanAiRoute: typeof BeHumanAiRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/be-human-ai': {
+      id: '/be-human-ai'
+      path: '/be-human-ai'
+      fullPath: '/be-human-ai'
+      preLoaderRoute: typeof BeHumanAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BeHumanAiRoute: BeHumanAiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
