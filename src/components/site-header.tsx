@@ -16,13 +16,8 @@ export function Wordmark({ tone = "light" }: { tone?: "light" | "dark" }) {
       <span
         className={`display text-2xl tracking-wide ${tone === "dark" ? "text-ink" : "text-foreground"}`}
       >
-        Be Human
+        the be human company
         <span className="text-lime align-super text-[0.5em]">®</span>
-      </span>
-      <span
-        className={`eyebrow mt-1 text-[0.5rem] ${tone === "dark" ? "text-ink/60" : "text-muted-foreground"}`}
-      >
-        Company
       </span>
     </Link>
   );
