@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImage from "@/assets/hero.jpg";
+import heroImage from "@/assets/hero.png.asset.json";
 import manifestoImage from "@/assets/manifesto.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import { ARCHIVE, EPISODES, PRINCIPLES, SERVICES } from "@/lib/content";
