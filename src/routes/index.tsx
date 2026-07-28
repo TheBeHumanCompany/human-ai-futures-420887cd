@@ -221,28 +221,23 @@ function Home() {
         <div className="mx-auto max-w-[1400px] px-6 pt-12 pb-10 sm:px-8 sm:pt-14 sm:pb-12 lg:pt-16 lg:pb-14">
           {/* Intro */}
           <div className="max-w-2xl">
-            <p className="font-display text-xl font-extrabold uppercase tracking-[0.08em] text-ink sm:text-2xl">
-              WHAT WE BELIEVE
-            </p>
-            <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
-
-            <h2 className="display mt-5 text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-ink">
+            <h2 className="display text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-ink">
               THE NEW HUMAN <span className="text-lime">ERA.</span>
             </h2>
 
             <div className="mt-4 max-w-md space-y-2 text-base leading-relaxed text-ink/75 sm:text-lg">
-              <p>In every generation, status changes.</p>
-              <p>In the New Human Era, status shifts from what you own to who you become.</p>
+              <p>Every era redefines status.</p>
+              <p>In the New Human Era, it shifts from what you own to who you become.</p>
             </div>
 
             <Link
               to="/the-new-human-era"
-              className="group mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-ink/30 px-5 py-2.5 font-display text-xs font-bold uppercase tracking-[0.16em] text-ink transition-colors duration-300 hover:border-lime hover:bg-lime"
+              className="group mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-ink px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:border-lime hover:bg-lime hover:text-ink sm:mt-6 sm:px-6 sm:py-3 sm:text-sm"
             >
-              Learn more
+              LEARN MORE
               <span
                 aria-hidden
-                className="text-lime transition-all duration-300 group-hover:translate-x-1 group-hover:text-ink"
+                className="text-base text-ink transition-all duration-300 group-hover:translate-x-1 group-hover:text-lime"
               >
                 →
               </span>
