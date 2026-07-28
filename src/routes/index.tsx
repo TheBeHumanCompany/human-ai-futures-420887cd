@@ -269,12 +269,13 @@ function Home() {
 
           {/* Six principles */}
           <div className="mt-20 border-t border-ink/15 lg:mt-28">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-px bg-ink/15 sm:grid-cols-2 lg:grid-cols-3">
               {PRINCIPLES.map((p) => (
                 <article
                   key={p.n}
-                  className="group border-b border-ink/15 py-10 pr-0 sm:pr-10 lg:py-12 [&:not(:last-child)]:sm:border-r [&:not(:last-child)]:sm:border-ink/15 sm:[&:nth-child(2n)]:pr-0 sm:[&:nth-child(2n)]:border-r-0 sm:[&:nth-child(2n+1)]:pl-0 sm:[&:nth-child(2n)]:pl-10 lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(3n)]:pr-0 lg:[&:nth-child(3n+1)]:pl-0 lg:[&:nth-child(2)]:pl-10 lg:[&:nth-child(3)]:pl-10 lg:[&:nth-child(5)]:pl-10 lg:[&:nth-child(6)]:pl-10 lg:[&:nth-child(3n+1)]:pr-10 lg:[&:nth-child(3n+2)]:pr-10 lg:[&:nth-child(3n+2)]:border-r lg:[&:nth-child(3n+2)]:border-ink/15"
+                  className="group bg-cream py-10 pr-0 sm:px-8 lg:py-12"
                 >
+
                   <div className="flex items-center gap-3">
                     <span className="font-display text-lg font-bold tracking-[0.06em] text-lime">
                       {p.n}
