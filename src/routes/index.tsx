@@ -222,19 +222,33 @@ function Home() {
           {/* Intro */}
           <div className="max-w-2xl">
             <p className="font-display text-xl font-extrabold uppercase tracking-[0.08em] text-ink sm:text-2xl">
-              THE NEW HUMAN ERA
+              WHAT WE BELIEVE
             </p>
             <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
 
             <h2 className="display mt-5 text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-ink">
-              THE NEW <span className="text-lime">STATUS.</span>
+              THE NEW HUMAN <span className="text-lime">ERA.</span>
             </h2>
 
             <div className="mt-4 max-w-md space-y-2 text-base leading-relaxed text-ink/75 sm:text-lg">
               <p>In every generation, status changes.</p>
               <p>In the New Human Era, status shifts from what you own to who you become.</p>
             </div>
+
+            <Link
+              to="/the-new-human-era"
+              className="group mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-ink/30 px-5 py-2.5 font-display text-xs font-bold uppercase tracking-[0.16em] text-ink transition-colors duration-300 hover:border-lime hover:bg-lime"
+            >
+              Learn more
+              <span
+                aria-hidden
+                className="text-lime transition-all duration-300 group-hover:translate-x-1 group-hover:text-ink"
+              >
+                →
+              </span>
+            </Link>
           </div>
+
 
           {/* Six principles */}
           <div className="mt-8 border-t border-ink/15">
