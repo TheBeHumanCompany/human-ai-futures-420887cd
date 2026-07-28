@@ -217,29 +217,30 @@ function Home() {
 
       {/* ---------- THE NEW HUMAN ERA ---------- */}
       <section className="section-cream relative overflow-hidden border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-8 lg:py-28">
+        <div className="mx-auto max-w-[1400px] px-6 pt-14 pb-12 sm:px-8 lg:pt-16 lg:pb-16">
           {/* Top manifesto spread */}
-          <div className="grid items-start gap-12 lg:grid-cols-[1.45fr_0.8fr] lg:gap-16">
+          <div className="grid items-start gap-8 lg:grid-cols-[1.5fr_0.7fr] lg:gap-12">
             <div className="min-w-0">
-              <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-lime">
+              <p className="font-display text-xl sm:text-2xl font-extrabold uppercase tracking-[0.08em] text-ink">
                 THE NEW HUMAN ERA
               </p>
+              <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
 
-              <h2 className="display mt-8 text-[clamp(3rem,11vw,6.5rem)] font-extrabold text-ink">
+              <h2 className="display mt-5 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold leading-[0.95] text-ink">
                 The new <span className="text-lime">status.</span>
               </h2>
 
-              <div className="mt-8 max-w-md space-y-4 text-base leading-relaxed text-ink/75 sm:text-lg">
+              <div className="mt-5 max-w-md space-y-2 text-base leading-relaxed text-ink/75 sm:text-lg">
                 <p>In every generation, status changes.</p>
-                <p>In the New Human Era, status shifts from what you own to who you become.</p>
+                <p>In the New Human Era, status is measured differently.</p>
                 <p className="text-ink/60">
-                  <br />
+                  Six ideas we return to in every room we walk into.
                 </p>
               </div>
             </div>
 
             {/* Editorial image — smaller and supportive */}
-            <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:mt-10">
+            <div className="relative mx-auto w-full max-w-sm lg:mx-0 lg:mt-2">
               <div className="relative overflow-hidden bg-cream-deep p-2 shadow-[0_14px_40px_-20px_oklch(0.16_0.005_90/0.45)]">
                 <img
                   src={newHumanEraImage}
@@ -258,7 +259,7 @@ function Home() {
           </div>
 
           {/* Six principles */}
-          <div className="mt-20 border-t border-ink/15 lg:mt-28">
+          <div className="mt-10 border-t border-ink/15 lg:mt-12">
             <div className="grid gap-px bg-ink/15 sm:grid-cols-2 lg:grid-cols-3">
               {PRINCIPLES.map((p) => (
                 <article
