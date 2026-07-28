@@ -258,7 +258,7 @@ function Home() {
                   className="group bg-cream px-5 py-5 sm:px-6 lg:py-6"
                 >
                   <div className="flex items-center gap-4">
-                    <span className="font-display text-xl font-black tracking-[0.04em] text-[hsl(var(--lime-ink,0_0%_0%))] text-lime [text-shadow:0_0_0.6px_currentColor] sm:text-2xl">
+                    <span className="font-display text-xl font-black tracking-[0.04em] text-lime [text-shadow:0_0_0.6px_currentColor] sm:text-2xl">
                       {p.n}
                     </span>
                     <span
