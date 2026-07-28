@@ -2,7 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImage from "@/assets/hero.png.asset.json";
 import manifestoImage from "@/assets/manifesto.jpg";
 import podcastImage from "@/assets/podcast.jpg";
-import { ARCHIVE, EPISODES, PRINCIPLES, SERVICES } from "@/lib/content";
+import humanAiProfile from "@/assets/human-ai-profile.jpg";
+import { Users, Shield, Target } from "lucide-react";
+import { ARCHIVE, EPISODES, PRINCIPLES } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
