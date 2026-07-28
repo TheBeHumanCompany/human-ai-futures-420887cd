@@ -5,6 +5,7 @@ import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
 import newHumanEraImage from "@/assets/new-human-era.jpg";
 import { Users, Shield, Target } from "lucide-react";
+import { SocialSection } from "@/components/social-section";
 import { ARCHIVE, EPISODES, PRINCIPLES } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
@@ -286,6 +287,11 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* ---------- STAY CONNECTED ---------- */}
+      <SocialSection />
+
+
 
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
