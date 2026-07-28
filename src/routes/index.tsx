@@ -67,16 +67,16 @@ function Home() {
       </section>
 
       {/* ---------- WHY WE EXIST ---------- */}
-      <section className="section-cream border-b border-border">
+      <section className="section-cream border-b border-ink/10">
         <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-6 pt-14 pb-8 sm:px-8 sm:pb-14 lg:grid-cols-[2fr_3fr] lg:gap-12 lg:py-20">
           <div className="min-w-0">
-            <p className="font-display text-xl sm:text-2xl font-extrabold uppercase tracking-[0.08em] text-ink">
+            <p className="font-display text-xl sm:text-2xl font-black uppercase tracking-[0.06em] text-ink">
               WHY WE EXIST
             </p>
-            <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
-            <p className="mt-8 w-full max-w-none font-display text-[clamp(2rem,9.75vw,2.45rem)] font-bold uppercase leading-[0.92] tracking-[0.01em] text-ink sm:text-[clamp(2.75rem,8vw,3.5rem)] lg:text-[clamp(1.875rem,3.8vw,3.25rem)]">
+            <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
+            <p className="mt-8 w-full max-w-none font-display text-[clamp(2rem,9.75vw,2.45rem)] font-black uppercase leading-[0.92] tracking-[0.01em] text-ink sm:text-[clamp(2.75rem,8vw,3.5rem)] lg:text-[clamp(1.875rem,3.8vw,3.25rem)]">
               <span className="sm:hidden">
-                Being <span className="text-lime">human</span> is
+                Being <span className="font-black text-lime">human</span> is
                 <br />
                 what we are
                 <br />
@@ -86,11 +86,11 @@ function Home() {
                   <br />
                   what we
                   <br />
-                  <span className="text-lime">practice</span>.
+                  <span className="font-black text-lime">practice</span>.
                 </span>
               </span>
               <span className="hidden sm:block">
-                Being <span className="text-lime">human</span> is
+                Being <span className="font-black text-lime">human</span> is
                 <br />
                 what we are
                 <br />
@@ -98,13 +98,13 @@ function Home() {
                 <span className="mt-5 block">
                   Humanity is
                   <br />
-                  what we <span className="text-lime">practice</span>.
+                  what we <span className="font-black text-lime">practice</span>.
                 </span>
               </span>
             </p>
           </div>
 
-          <figure className="group relative aspect-[2/1] overflow-hidden">
+          <figure className="group relative aspect-[2/1] overflow-hidden shadow-[0_28px_70px_-22px_rgba(0,0,0,0.22)] ring-1 ring-ink/[0.07]">
             <img
               src={manifestoImage}
               alt="Friends talking together on a rooftop at sunset"
@@ -114,7 +114,7 @@ function Home() {
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
             <div className="absolute inset-0 grid place-items-center bg-ink/20">
-              <span className="grid h-16 w-16 place-items-center rounded-full border border-cream/70 text-cream backdrop-blur-sm transition-colors group-hover:bg-lime group-hover:text-ink">
+              <span className="grid h-16 w-16 place-items-center rounded-full border border-cream/80 text-cream shadow-[0_12px_30px_-10px_rgba(0,0,0,0.35)] backdrop-blur-sm transition-colors group-hover:bg-lime group-hover:text-ink">
                 ▶
               </span>
             </div>
