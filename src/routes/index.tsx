@@ -287,6 +287,11 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------- STAY CONNECTED ---------- */}
+      <SocialSection />
+
+
+
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <section className="section-cream border-t border-border">
