@@ -264,7 +264,7 @@ function Home() {
               {PRINCIPLES.map((p) => (
                 <article
                   key={p.n}
-                  className="group bg-cream py-10 pr-0 sm:px-8 lg:py-12"
+                  className="group bg-cream py-8 pr-0 sm:px-8 lg:py-10"
                 >
 
                   <div className="flex items-center gap-3">
