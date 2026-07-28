@@ -72,16 +72,32 @@ function Home() {
               WHY WE EXIST
             </p>
             <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
-            <p className="mt-8 w-full max-w-none font-display text-[clamp(2.125rem,10.5vw,2.625rem)] font-bold uppercase leading-[0.92] tracking-[0.01em] text-ink sm:text-[clamp(2.75rem,8vw,3.5rem)] lg:text-[clamp(1.875rem,3.8vw,3.25rem)]">
-              Being <span className="text-lime">human</span> is
-              <br />
-              what we are
-              <br />
-              born with.
-              <span className="mt-5 block">
-                Humanity is
+            <p className="mt-8 w-full max-w-none font-display text-[clamp(2rem,9.75vw,2.45rem)] font-bold uppercase leading-[0.92] tracking-[0.01em] text-ink sm:text-[clamp(2.75rem,8vw,3.5rem)] lg:text-[clamp(1.875rem,3.8vw,3.25rem)]">
+              <span className="sm:hidden">
+                Being <span className="text-lime">human</span> is
                 <br />
-                what we <span className="text-lime">practice</span>.
+                what we are
+                <br />
+                born with.
+                <span className="mt-7 block">
+                  Humanity is
+                  <br />
+                  what we
+                  <br />
+                  <span className="text-lime">practice</span>.
+                </span>
+              </span>
+              <span className="hidden sm:block">
+                Being <span className="text-lime">human</span> is
+                <br />
+                what we are
+                <br />
+                born with.
+                <span className="mt-5 block">
+                  Humanity is
+                  <br />
+                  what we <span className="text-lime">practice</span>.
+                </span>
               </span>
             </p>
           </div>
