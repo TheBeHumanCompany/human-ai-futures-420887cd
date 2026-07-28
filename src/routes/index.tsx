@@ -239,9 +239,9 @@ function Home() {
               </span>
               <span
                 aria-hidden
-                className="flex aspect-square items-center justify-center border-l border-ink bg-lime text-sm text-ink transition-transform duration-300 sm:text-base"
+                className="flex h-full w-10 items-center justify-center border-l border-ink bg-lime text-base text-ink transition-transform duration-300 sm:w-12 sm:text-lg"
               >
-                <span className="inline-block px-3 transition-transform duration-300 group-hover:translate-x-1 sm:px-4">
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                   →
                 </span>
               </span>
