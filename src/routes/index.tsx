@@ -232,12 +232,12 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-ink px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:border-lime hover:bg-lime hover:text-ink sm:mt-6 sm:px-6 sm:py-3 sm:text-sm"
+              className="group mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-ink px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:border-lime sm:mt-6 sm:px-6 sm:py-3 sm:text-sm"
             >
               LEARN MORE
               <span
                 aria-hidden
-                className="text-base text-ink transition-all duration-300 group-hover:translate-x-1 group-hover:text-lime"
+                className="text-sm text-ink transition-all duration-300 group-hover:translate-x-1 group-hover:text-lime"
               >
                 →
               </span>
