@@ -14,10 +14,10 @@ export function Wordmark({ tone = "light" }: { tone?: "light" | "dark" }) {
   return (
     <Link to="/" className="group inline-flex flex-col leading-none">
       <span
-        className={`display text-2xl tracking-wide ${tone === "dark" ? "text-ink" : "text-foreground"}`}
+        className={`display text-xl font-bold uppercase tracking-tight sm:text-2xl ${tone === "dark" ? "text-ink" : "text-foreground"}`}
       >
-        the be human company
-        <span className="text-lime align-super text-[0.5em]">™</span>
+        THE BE HUMAN COMPANY
+        <span className="text-lime align-super text-[0.45em] font-normal">™</span>
       </span>
     </Link>
   );
