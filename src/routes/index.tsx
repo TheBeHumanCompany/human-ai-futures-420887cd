@@ -34,7 +34,7 @@ function Home() {
           alt="A woman carefully adjusts a humanoid robot's hand in a workshop"
           width={1600}
           height={1200}
-          className="absolute inset-0 -z-20 h-full w-full origin-center object-cover object-[56%_22%] sm:scale-[1.2] sm:translate-x-[12%] sm:object-[45%_28%] lg:scale-[1.18] lg:translate-x-[13%] lg:object-[42%_30%]"
+          className="absolute inset-0 -z-20 h-full w-full origin-center object-cover object-[49%_22%] sm:scale-[1.2] sm:translate-x-[12%] sm:object-[45%_28%] lg:scale-[1.18] lg:translate-x-[13%] lg:object-[42%_30%]"
         />
         {/* localized left gradient for headline legibility */}
         <div
