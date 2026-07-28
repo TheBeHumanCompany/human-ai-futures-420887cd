@@ -3,6 +3,7 @@ import heroImage from "@/assets/hero.png.asset.json";
 import manifestoImage from "@/assets/manifesto.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
+import archiveFeatured from "@/assets/archive-featured.jpg";
 
 import { Users, Shield, Target } from "lucide-react";
 import { SocialSection } from "@/components/social-section";
