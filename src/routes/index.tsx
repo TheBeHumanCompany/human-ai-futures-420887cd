@@ -3,7 +3,7 @@ import heroImage from "@/assets/hero.png.asset.json";
 import manifestoImage from "@/assets/manifesto.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
-import newHumanEraImage from "@/assets/new-human-era.jpg";
+
 import { Users, Shield, Target } from "lucide-react";
 import { SocialSection } from "@/components/social-section";
 import { ARCHIVE, EPISODES, PRINCIPLES } from "@/lib/content";
@@ -217,59 +217,35 @@ function Home() {
       </section>
 
       {/* ---------- THE NEW HUMAN ERA ---------- */}
-      <section className="section-cream relative overflow-hidden border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 pt-14 pb-12 sm:px-8 lg:pt-16 lg:pb-16">
-          {/* Top manifesto spread */}
-          <div className="grid items-start gap-8 lg:grid-cols-[1.5fr_0.7fr] lg:gap-12">
-            <div className="min-w-0">
-              <p className="font-display text-xl sm:text-2xl font-extrabold uppercase tracking-[0.08em] text-ink">
-                THE NEW HUMAN ERA
-              </p>
-              <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
+      <section className="section-cream border-t border-border">
+        <div className="mx-auto max-w-[1400px] px-6 pt-12 pb-10 sm:px-8 sm:pt-14 sm:pb-12 lg:pt-16 lg:pb-14">
+          {/* Intro */}
+          <div className="max-w-2xl">
+            <p className="font-display text-xl font-extrabold uppercase tracking-[0.08em] text-ink sm:text-2xl">
+              THE NEW HUMAN ERA
+            </p>
+            <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
 
-              <h2 className="display mt-5 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold leading-[0.95] text-ink">
-                The new <span className="text-lime">status.</span>
-              </h2>
+            <h2 className="display mt-5 text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-ink">
+              THE NEW <span className="text-lime">STATUS.</span>
+            </h2>
 
-              <div className="mt-5 max-w-md space-y-2 text-base leading-relaxed text-ink/75 sm:text-lg">
-                <p>In every generation, status changes.</p>
-                <p>In the New Human Era, status is measured differently.</p>
-                <p className="text-ink/60">
-                  Six ideas we return to in every room we walk into.
-                </p>
-              </div>
-            </div>
-
-            {/* Editorial image — smaller and supportive */}
-            <div className="relative mx-auto w-full max-w-sm lg:mx-0 lg:mt-2">
-              <div className="relative overflow-hidden bg-cream-deep p-2 shadow-[0_14px_40px_-20px_oklch(0.16_0.005_90/0.45)]">
-                <img
-                  src={newHumanEraImage}
-                  alt="Three people walking together in conversation through a park"
-                  width={1408}
-                  height={912}
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <span
-                aria-hidden
-                className="absolute -bottom-2 left-4 h-[3px] w-16 bg-lime"
-              />
+            <div className="mt-4 max-w-md space-y-2 text-base leading-relaxed text-ink/75 sm:text-lg">
+              <p>In every generation, status changes.</p>
+              <p>In the New Human Era, status shifts from what you own to who you become.</p>
             </div>
           </div>
 
           {/* Six principles */}
-          <div className="mt-10 border-t border-ink/15 lg:mt-12">
+          <div className="mt-8 border-t border-ink/15">
             <div className="grid gap-px bg-ink/15 sm:grid-cols-2 lg:grid-cols-3">
               {PRINCIPLES.map((p) => (
                 <article
                   key={p.n}
-                  className="group bg-cream py-8 pr-0 sm:px-8 lg:py-10"
+                  className="group bg-cream px-5 py-6 sm:px-6 lg:py-7"
                 >
-
                   <div className="flex items-center gap-3">
-                    <span className="font-display text-lg font-bold tracking-[0.06em] text-lime">
+                    <span className="font-display text-base font-bold tracking-[0.06em] text-lime">
                       {p.n}
                     </span>
                     <span
@@ -277,10 +253,10 @@ function Home() {
                       className="h-px w-8 bg-lime transition-all duration-300 group-hover:w-14"
                     />
                   </div>
-                  <h3 className="display mt-5 text-[clamp(1.6rem,4.5vw,2rem)] font-extrabold text-ink">
+                  <h3 className="display mt-3 text-[clamp(1.25rem,3vw,1.5rem)] font-extrabold leading-tight text-ink">
                     {p.title}
                   </h3>
-                  <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink/65">{p.body}</p>
+                  <p className="mt-2 max-w-sm text-sm leading-snug text-ink/65">{p.body}</p>
                 </article>
               ))}
             </div>
