@@ -62,6 +62,40 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------- WHY WE EXIST ---------- */}
+      <section className="section-cream border-b border-border">
+        <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-16 lg:py-24">
+          <div className="min-w-0">
+            <p className="eyebrow text-ink/50">Why we exist</p>
+            <p className="mt-8 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold uppercase leading-[0.92] tracking-[0.02em] text-ink">
+              Being human is what
+              <br />
+              we are born with.
+            </p>
+            <p className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold uppercase leading-[0.92] tracking-[0.02em] text-ink">
+              Humanity is what
+              <br />
+              we <span className="text-lime">practice</span>.
+            </p>
+          </div>
+
+          <figure className="group relative aspect-[4/3] overflow-hidden">
+            <img
+              src={manifestoImage}
+              alt="Friends talking together on a rooftop at sunset"
+              loading="lazy"
+              width={1408}
+              height={912}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 grid place-items-center bg-ink/20">
+              <span className="grid h-16 w-16 place-items-center rounded-full border border-cream/70 text-cream backdrop-blur-sm transition-colors group-hover:bg-lime group-hover:text-ink">
+                ▶
+              </span>
+            </div>
+          </figure>
+        </div>
+      </section>
 
       {/* ---------- BE HUMAN AI ---------- */}
       <section id="be-human-ai" className="section-cream">
@@ -119,56 +153,6 @@ function Home() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ---------- WHY WE EXIST ---------- */}
-      <section className="section-cream border-t border-border">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:py-28">
-          <div className="min-w-0">
-            <p className="eyebrow text-ink/50">Why we exist</p>
-            <p className="display mt-8 text-[clamp(2.25rem,5vw,4rem)] text-ink">
-              Being human is what
-              <br />
-              we're born with.
-            </p>
-            <p className="display mt-6 text-[clamp(2.25rem,5vw,4rem)] text-ink">
-              Humanity is what
-              <br />
-              we <span className="underline decoration-lime decoration-4 underline-offset-8">
-                practise
-              </span>
-              .
-            </p>
-            <p className="mt-8 max-w-sm text-base leading-relaxed text-ink/70">
-              As technology becomes more powerful, humanity must become more intentional.
-            </p>
-            <Link
-              to="/about"
-              className="eyebrow link-underline mt-8 inline-flex items-center gap-2 text-ink"
-            >
-              Read the manifesto <span aria-hidden>→</span>
-            </Link>
-          </div>
-
-          <figure className="group relative aspect-[4/3] overflow-hidden">
-            <img
-              src={manifestoImage}
-              alt="Friends talking together on a rooftop at sunset"
-              loading="lazy"
-              width={1408}
-              height={912}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-            />
-            <div className="absolute inset-0 grid place-items-center bg-ink/20">
-              <span className="grid h-16 w-16 place-items-center rounded-full border border-cream/70 text-cream backdrop-blur-sm transition-colors group-hover:bg-lime group-hover:text-ink">
-                ▶
-              </span>
-            </div>
-            <figcaption className="eyebrow absolute bottom-4 left-4 text-cream/85">
-              Watch the film · 4:12
-            </figcaption>
-          </figure>
         </div>
       </section>
 
