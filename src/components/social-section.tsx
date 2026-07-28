@@ -152,7 +152,7 @@ export function SocialSection() {
         {/* Sign-off */}
         <div className="mt-12 border-t border-border pt-8 text-center">
           <p className="font-display text-xs font-bold uppercase tracking-[0.28em] text-foreground sm:text-sm">
-            Real Recognizes Real.
+            Real Recognizes Real
           </p>
           <div className="mx-auto mt-3 h-1 w-16 bg-lime" aria-hidden />
         </div>
