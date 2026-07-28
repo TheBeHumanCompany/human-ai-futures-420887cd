@@ -3,6 +3,7 @@ import heroImage from "@/assets/hero.png.asset.json";
 import manifestoImage from "@/assets/manifesto.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
+import newHumanEraImage from "@/assets/new-human-era.jpg";
 import { Users, Shield, Target } from "lucide-react";
 import { ARCHIVE, EPISODES, PRINCIPLES } from "@/lib/content";
 
