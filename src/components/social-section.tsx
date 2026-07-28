@@ -109,51 +109,23 @@ export function SocialSection() {
     <section className="section-ink border-t border-border">
       <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 lg:py-20">
         {/* Intro */}
-        <div className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr] lg:items-start">
-          <div className="min-w-0">
-            <p className="font-display text-xl font-extrabold uppercase tracking-[0.08em] text-foreground sm:text-2xl">
-              Stay Connected
-            </p>
-            <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
+        <div className="min-w-0">
+          <p className="font-display text-xl font-extrabold uppercase tracking-[0.08em] text-foreground sm:text-2xl">
+            Stay Connected
+          </p>
+          <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
 
-            <h2 className="display mt-5 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
-              Follow the journey.
-            </h2>
+          <h2 className="display mt-4 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
+            Follow the journey.
+          </h2>
 
-            <div className="mt-5 max-w-md space-y-2 text-base leading-relaxed text-foreground/70 sm:text-lg">
-              <p>Ideas. Conversations. Human stories.</p>
-              <p className="text-foreground/55">
-                Join us on the channels where the New Human Era is being built.
-              </p>
-            </div>
-          </div>
-
-          {/* Handwritten accent */}
-          <div className="hidden lg:flex lg:justify-end lg:pt-6">
-            <div className="relative inline-block">
-              <p className="font-hand text-3xl leading-none text-lime">
-                What&rsquo;s your Human Rep today?
-              </p>
-              <svg
-                aria-hidden
-                viewBox="0 0 200 8"
-                preserveAspectRatio="none"
-                className="mt-2 h-2 w-full text-lime"
-              >
-                <path
-                  d="M2 5 C 40 1, 80 7, 120 3 S 180 6, 198 2"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-          </div>
+          <p className="mt-4 max-w-md text-base leading-relaxed text-foreground/70 sm:text-lg">
+            Ideas. Conversations. Human stories.
+          </p>
         </div>
 
         {/* Platform grid */}
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:mt-12 lg:grid-cols-7 lg:gap-4">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:mt-10 lg:grid-cols-7 lg:gap-4">
           {PLATFORMS.map(({ name, Icon, href }) => (
             <a
               key={name}
