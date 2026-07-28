@@ -232,14 +232,14 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group mt-6 inline-flex w-fit items-center overflow-hidden rounded-full border border-ink bg-cream text-ink transition-shadow duration-300 hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.5)]"
+              className="group mt-6 inline-flex w-fit items-stretch overflow-hidden rounded-full border border-ink bg-cream text-ink transition-shadow duration-300 hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.5)]"
             >
-              <span className="px-5 py-2.5 text-xs font-medium uppercase tracking-widest sm:px-6 sm:py-3 sm:text-sm">
+              <span className="flex items-center px-5 py-2.5 text-xs font-medium uppercase tracking-widest sm:px-6 sm:py-3 sm:text-sm">
                 Learn More
               </span>
               <span
                 aria-hidden
-                className="flex h-full self-stretch items-center border-l border-ink bg-lime px-4 text-sm text-ink transition-transform duration-300 sm:px-5"
+                className="flex h-full w-10 items-center justify-center border-l border-ink bg-lime text-base text-ink transition-transform duration-300 sm:w-12 sm:text-lg"
               >
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                   →
@@ -263,7 +263,7 @@ function Home() {
                     </span>
                     <span
                       aria-hidden
-                      className="h-px w-7 bg-lime/70 transition-all duration-300 group-hover:w-12"
+                      className="h-[2px] w-8 bg-lime transition-all duration-300 group-hover:w-12"
                     />
                   </div>
                   <h3 className="display mt-2.5 text-[clamp(1.25rem,3vw,1.5rem)] font-extrabold leading-tight text-ink">
