@@ -231,9 +231,9 @@ function Home() {
 
               <div className="mt-8 max-w-md space-y-4 text-base leading-relaxed text-ink/75 sm:text-lg">
                 <p>In every generation, status changes.</p>
-                <p>In the New Human Era, status shifts.</p>
+                <p>In the New Human Era, status shifts from what you own to who you become.</p>
                 <p className="text-ink/60">
-                  Six ideas we return to in every room we walk into.
+                  <br />
                 </p>
               </div>
             </div>
