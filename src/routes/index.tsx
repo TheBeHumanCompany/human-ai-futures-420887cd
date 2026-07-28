@@ -339,29 +339,6 @@ function Home() {
         </div>
       </section>
 
-      {/* ---------- FINAL CTA ---------- */}
-      <section className="section-cream grain border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-5 py-24 text-center sm:px-8 lg:py-32">
-          <p className="eyebrow text-ink/50">Work with us</p>
-          <h2 className="display mx-auto mt-8 max-w-4xl text-[clamp(2.5rem,7vw,6rem)] text-ink">
-            Prepare your organization for the New Human Era.
-          </h2>
-          <div className="mt-12 flex flex-wrap justify-center gap-3">
-            <Link
-              to="/contact"
-              className="eyebrow inline-flex items-center gap-2 rounded-full bg-ink px-8 py-4 text-cream transition-transform hover:-translate-y-0.5"
-            >
-              Work With Be Human AI <span aria-hidden>→</span>
-            </Link>
-            <Link
-              to="/the-new-human-era"
-              className="eyebrow inline-flex items-center gap-2 rounded-full border border-ink/30 px-8 py-4 text-ink transition-colors hover:border-ink"
-            >
-              Join the Movement
-            </Link>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
