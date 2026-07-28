@@ -28,33 +28,34 @@ function Home() {
   return (
     <>
       {/* ---------- HERO ---------- */}
-      <section className="section-ink grain overflow-hidden border-b border-border">
-        <div className="mx-auto grid max-w-[1400px] items-stretch lg:grid-cols-[1.05fr_1fr]">
-          <div className="fade-up flex flex-col justify-center px-5 py-16 sm:px-8 lg:py-28">
+      <section className="section-ink grain relative isolate overflow-hidden border-b border-border">
+        <img
+          src={heroImage.url}
+          alt="A woman carefully adjusts a humanoid robot's hand in a workshop"
+          width={1600}
+          height={1200}
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[72%_center] sm:object-[65%_center] lg:object-[60%_center]"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-background/90 via-background/55 to-background/85 lg:bg-gradient-to-r lg:from-background/95 lg:via-background/55 lg:to-transparent"
+        />
+
+        <div className="mx-auto flex min-h-[88svh] max-w-[1400px] items-end px-5 pb-16 pt-28 sm:px-8 lg:min-h-[80vh] lg:items-center lg:py-32">
+          <div className="fade-up max-w-2xl">
             <h1 className="display text-[clamp(3.5rem,11vw,8.5rem)]">
               The future
               <br />
               is <span className="text-lime">human.</span>
             </h1>
-            <p className="mt-8 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-              We help leaders and organizations become AI-ready without losing what makes them
-              human.
+            <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg">
+              We help people and organizations practice what keeps us human in a world becoming
+              more artificial.
             </p>
           </div>
-
-          <div className="relative min-h-[320px] lg:min-h-[640px]">
-            <img
-              src={heroImage.url}
-              alt="A woman carefully adjusts a humanoid robot's hand in a workshop"
-              width={1600}
-              height={1200}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/25 to-transparent" />
-          </div>
         </div>
-
       </section>
+
 
       {/* ---------- BE HUMAN AI ---------- */}
       <section id="be-human-ai" className="section-cream">
