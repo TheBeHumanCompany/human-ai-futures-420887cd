@@ -66,7 +66,7 @@ function Home() {
 
       {/* ---------- WHY WE EXIST ---------- */}
       <section className="section-cream border-b border-border">
-        <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-6 py-14 sm:px-8 lg:grid-cols-[2fr_3fr] lg:gap-12 lg:py-20">
+        <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-6 pt-14 pb-8 sm:px-8 sm:pb-14 lg:grid-cols-[2fr_3fr] lg:gap-12 lg:py-20">
           <div className="min-w-0">
             <p className="font-display text-xl sm:text-2xl font-extrabold uppercase tracking-[0.08em] text-ink">
               WHY WE EXIST
