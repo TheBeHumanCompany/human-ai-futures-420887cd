@@ -132,13 +132,13 @@ function Home() {
             <h2 className="display mt-5 text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.92]">
               BE HUMAN <span className="text-lime">AI</span>
             </h2>
-            <p className="mt-6 max-w-sm text-base leading-relaxed text-foreground/80">
+            <p className="mt-6 max-w-[17.5rem] text-base leading-relaxed text-foreground/80 sm:max-w-sm">
               We help organizations prepare for the AI era by strengthening their people, protecting
               what matters, and transforming how work gets done.
             </p>
             <Link
               to="/be-human-ai"
-              className="group mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-sm font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink"
+              className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink sm:mt-8 sm:px-6 sm:py-3 sm:text-sm"
             >
               EXPLORE BE HUMAN AI <span aria-hidden className="text-lime transition-colors group-hover:text-ink">→</span>
             </Link>
@@ -148,7 +148,8 @@ function Home() {
           <div className="hidden lg:block" aria-hidden />
 
           {/* RIGHT COLUMN — CAPABILITIES */}
-          <div className="mt-24 flex flex-col justify-center sm:mt-40 lg:mt-0">
+          <div className="mt-56 flex flex-col justify-center sm:mt-40 lg:mt-0">
+
 
             <div className="border-t border-border">
               <div className="flex gap-5 py-7">
