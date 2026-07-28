@@ -66,11 +66,11 @@ function Home() {
       <section className="section-cream border-b border-border">
         <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-6 py-14 sm:px-8 lg:grid-cols-[2fr_3fr] lg:gap-12 lg:py-20">
           <div className="min-w-0">
-            <p className="font-display text-lg sm:text-xl font-bold uppercase tracking-[0.1em] text-lime">
+            <p className="font-display text-xl sm:text-2xl font-extrabold uppercase tracking-[0.08em] text-ink">
               WHY WE EXIST
             </p>
-            <div className="mt-3 h-[3px] w-20 bg-lime" aria-hidden />
-            <p className="mt-8 w-full font-display text-[clamp(1.875rem,3.8vw,3.25rem)] font-bold uppercase leading-[0.92] tracking-[0.01em] text-ink">
+            <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
+            <p className="mt-8 w-full max-w-none font-display text-[clamp(2.125rem,10.5vw,2.625rem)] font-bold uppercase leading-[0.92] tracking-[0.01em] text-ink sm:text-[clamp(2.75rem,8vw,3.5rem)] lg:text-[clamp(1.875rem,3.8vw,3.25rem)]">
               Being human is
               <br />
               what we are
