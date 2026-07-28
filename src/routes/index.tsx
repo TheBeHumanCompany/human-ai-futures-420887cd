@@ -34,7 +34,7 @@ function Home() {
           alt="A woman carefully adjusts a humanoid robot's hand in a workshop"
           width={1600}
           height={1200}
-          className="absolute inset-0 -z-20 h-full w-full scale-[1.35] object-cover object-[42%_38%] sm:scale-100 sm:object-[65%_center] lg:object-[60%_center]"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[58%_30%] sm:object-[65%_center] lg:object-[60%_center]"
         />
         <div
           aria-hidden
