@@ -115,7 +115,7 @@ function Home() {
             className="absolute right-[-14%] top-[2%] h-[62%] w-auto max-w-none object-contain opacity-[0.55] [mask-image:radial-gradient(ellipse_58%_58%_at_52%_45%,#000_38%,transparent_78%)] [-webkit-mask-image:radial-gradient(ellipse_58%_58%_at_52%_45%,#000_38%,transparent_78%)] sm:right-[-6%] sm:top-[6%] sm:h-[70%] sm:opacity-60 lg:left-1/2 lg:right-auto lg:top-1/2 lg:h-[118%] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:opacity-90"
           />
           {/* localized dark gradients keeping copy legible */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--tw-gradient-from,#000)_0%,transparent_100%)] from-ink/95 lg:hidden" />
+          <div className="absolute inset-y-0 left-0 w-[78%] bg-gradient-to-r from-ink via-ink/85 to-transparent lg:hidden" />
           <div className="absolute inset-y-0 left-0 hidden w-1/2 bg-gradient-to-r from-ink via-ink/85 to-transparent lg:block" />
           <div className="absolute inset-y-0 right-0 hidden w-[52%] bg-gradient-to-l from-ink via-ink/85 to-transparent lg:block" />
           <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink to-transparent" />
