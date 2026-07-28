@@ -215,37 +215,85 @@ function Home() {
       </section>
 
       {/* ---------- THE NEW HUMAN ERA ---------- */}
-      <section className="section-ink grain border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <div className="grid gap-8 border-b border-border pb-12 lg:grid-cols-[1fr_1fr] lg:items-end">
+      <section className="section-cream relative overflow-hidden border-t border-border">
+        <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-8 lg:py-28">
+          {/* Top manifesto spread */}
+          <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.95fr] lg:gap-20">
             <div className="min-w-0">
-              <p className="eyebrow text-lime">The New Human Era</p>
-              <h2 className="display mt-6 text-[clamp(2.5rem,6vw,5rem)]">The new status.</h2>
+              <p className="eyebrow font-semibold text-ink">The New Human Era</p>
+              <div aria-hidden className="mt-3 h-[3px] w-20 bg-lime" />
+
+              <h2 className="display mt-8 text-[clamp(3rem,11vw,6.5rem)] font-extrabold text-ink">
+                The new <span className="text-lime">status.</span>
+              </h2>
+
+              <div className="mt-8 max-w-md space-y-4 text-base leading-relaxed text-ink/75 sm:text-lg">
+                <p>In every generation, status changes.</p>
+                <p>
+                  In the New Human Era, it shifts from what you own to who you become.
+                </p>
+                <p className="text-ink/60">
+                  Six ideas we return to in every room we walk into.
+                </p>
+              </div>
             </div>
-            <p className="max-w-md text-base leading-relaxed text-muted-foreground">
-              In every generation, status changes. In the New Human Era, it shifts from what you own
-              to who you become. Six ideas we return to in every room we walk into.
-            </p>
+
+            {/* Editorial image with subtle collage details */}
+            <div className="relative mx-auto w-full max-w-lg lg:mx-0">
+              <div className="relative rotate-[-1.2deg]">
+                <span
+                  aria-hidden
+                  className="absolute -top-4 left-1/2 z-10 h-8 w-28 -translate-x-1/2 rotate-[-3deg] bg-ink/10 backdrop-blur-[1px]"
+                />
+                <div className="relative overflow-hidden bg-cream-deep p-2 shadow-[0_18px_50px_-24px_oklch(0.16_0.005_90/0.55)]">
+                  <img
+                    src={newHumanEraImage}
+                    alt="A woman sitting quietly by a window in warm natural light"
+                    width={1024}
+                    height={1280}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <span
+                  aria-hidden
+                  className="absolute -bottom-3 left-6 h-[3px] w-24 rotate-[-2deg] bg-lime"
+                />
+              </div>
+              <p className="mt-8 rotate-[-1.5deg] pl-6 font-hand text-2xl text-ink/70">
+                who you become
+              </p>
+            </div>
           </div>
 
-          <div className="grid gap-px bg-hairline sm:grid-cols-2 lg:grid-cols-3">
-            {PRINCIPLES.map((p) => (
-              <article key={p.n} className="bg-background p-8 lg:p-10">
-                <span className="eyebrow text-lime">{p.n}</span>
-                <h3 className="display mt-6 text-3xl">{p.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-              </article>
-            ))}
+          {/* Six principles */}
+          <div className="mt-20 border-t border-ink/15 lg:mt-28">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3">
+              {PRINCIPLES.map((p) => (
+                <article
+                  key={p.n}
+                  className="group border-b border-ink/15 py-10 pr-0 sm:pr-10 lg:py-12 [&:not(:last-child)]:sm:border-r [&:not(:last-child)]:sm:border-ink/15 sm:[&:nth-child(2n)]:pr-0 sm:[&:nth-child(2n)]:border-r-0 sm:[&:nth-child(2n+1)]:pl-0 sm:[&:nth-child(2n)]:pl-10 lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(3n)]:pr-0 lg:[&:nth-child(3n+1)]:pl-0 lg:[&:nth-child(2)]:pl-10 lg:[&:nth-child(3)]:pl-10 lg:[&:nth-child(5)]:pl-10 lg:[&:nth-child(6)]:pl-10 lg:[&:nth-child(3n+1)]:pr-10 lg:[&:nth-child(3n+2)]:pr-10 lg:[&:nth-child(3n+2)]:border-r lg:[&:nth-child(3n+2)]:border-ink/15"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="font-display text-lg font-bold tracking-[0.06em] text-lime">
+                      {p.n}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="h-px w-8 bg-lime transition-all duration-300 group-hover:w-14"
+                    />
+                  </div>
+                  <h3 className="display mt-5 text-[clamp(1.6rem,4.5vw,2rem)] font-extrabold text-ink">
+                    {p.title}
+                  </h3>
+                  <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink/65">{p.body}</p>
+                </article>
+              ))}
+            </div>
           </div>
-
-          <Link
-            to="/the-new-human-era"
-            className="eyebrow link-underline mt-12 inline-flex items-center gap-2"
-          >
-            Explore the New Human Era <span aria-hidden>→</span>
-          </Link>
         </div>
       </section>
+
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <section className="section-cream border-t border-border">
