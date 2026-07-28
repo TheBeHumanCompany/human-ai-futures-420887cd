@@ -219,10 +219,11 @@ function Home() {
       <section className="section-cream relative overflow-hidden border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-8 lg:py-28">
           {/* Top manifesto spread */}
-          <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.95fr] lg:gap-20">
+          <div className="grid items-start gap-12 lg:grid-cols-[1.45fr_0.8fr] lg:gap-16">
             <div className="min-w-0">
-              <p className="eyebrow font-semibold text-ink">The New Human Era</p>
-              <div aria-hidden className="mt-3 h-[3px] w-20 bg-lime" />
+              <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-lime">
+                THE NEW HUMAN ERA
+              </p>
 
               <h2 className="display mt-8 text-[clamp(3rem,11vw,6.5rem)] font-extrabold text-ink">
                 The new <span className="text-lime">status.</span>
@@ -230,40 +231,29 @@ function Home() {
 
               <div className="mt-8 max-w-md space-y-4 text-base leading-relaxed text-ink/75 sm:text-lg">
                 <p>In every generation, status changes.</p>
-                <p>
-                  In the New Human Era, it shifts from what you own to who you become.
-                </p>
+                <p>In the New Human Era, status shifts.</p>
                 <p className="text-ink/60">
                   Six ideas we return to in every room we walk into.
                 </p>
               </div>
             </div>
 
-            {/* Editorial image with subtle collage details */}
-            <div className="relative mx-auto w-full max-w-lg lg:mx-0">
-              <div className="relative rotate-[-1.2deg]">
-                <span
-                  aria-hidden
-                  className="absolute -top-4 left-1/2 z-10 h-8 w-28 -translate-x-1/2 rotate-[-3deg] bg-ink/10 backdrop-blur-[1px]"
-                />
-                <div className="relative overflow-hidden bg-cream-deep p-2 shadow-[0_18px_50px_-24px_oklch(0.16_0.005_90/0.55)]">
-                  <img
-                    src={newHumanEraImage}
-                    alt="A woman sitting quietly by a window in warm natural light"
-                    width={1024}
-                    height={1280}
-                    loading="lazy"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <span
-                  aria-hidden
-                  className="absolute -bottom-3 left-6 h-[3px] w-24 rotate-[-2deg] bg-lime"
+            {/* Editorial image — smaller and supportive */}
+            <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:mt-10">
+              <div className="relative overflow-hidden bg-cream-deep p-2 shadow-[0_14px_40px_-20px_oklch(0.16_0.005_90/0.45)]">
+                <img
+                  src={newHumanEraImage}
+                  alt="Three people walking together in conversation through a park"
+                  width={1408}
+                  height={912}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
                 />
               </div>
-              <p className="mt-8 rotate-[-1.5deg] pl-6 font-hand text-2xl text-ink/70">
-                who you become
-              </p>
+              <span
+                aria-hidden
+                className="absolute -bottom-2 left-4 h-[3px] w-16 bg-lime"
+              />
             </div>
           </div>
 
