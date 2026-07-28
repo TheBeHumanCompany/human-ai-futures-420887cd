@@ -34,12 +34,18 @@ function Home() {
           alt="A woman carefully adjusts a humanoid robot's hand in a workshop"
           width={1600}
           height={1200}
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[58%_30%] sm:object-[65%_center] lg:object-[60%_center]"
+          className="absolute inset-0 -z-20 h-full w-full origin-center object-cover object-[49%_22%] sm:scale-[1.2] sm:translate-x-[12%] sm:object-[45%_28%] lg:scale-[1.18] lg:translate-x-[13%] lg:object-[42%_30%]"
+        />
+        {/* localized left gradient for headline legibility */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-background/95 via-background/25 to-transparent lg:bg-gradient-to-r lg:from-background/95 lg:via-background/20 lg:to-transparent lg:[--tw-gradient-via-position:38%]"
         />
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-background/90 via-background/55 to-background/85 lg:bg-gradient-to-r lg:from-background/95 lg:via-background/55 lg:to-transparent"
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-background/80 via-transparent to-transparent [--tw-gradient-via-position:32%] lg:hidden"
         />
+
 
         <div className="mx-auto flex min-h-[88svh] max-w-[1400px] items-end px-5 pb-16 pt-28 sm:px-8 lg:min-h-[80vh] lg:items-center lg:py-32">
           <div className="fade-up max-w-2xl">
