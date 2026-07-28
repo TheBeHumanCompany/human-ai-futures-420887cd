@@ -64,22 +64,24 @@ function Home() {
 
       {/* ---------- WHY WE EXIST ---------- */}
       <section className="section-cream border-b border-border">
-        <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-16 lg:py-24">
+        <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[2fr_3fr] lg:gap-12 lg:py-20">
           <div className="min-w-0">
-            <p className="eyebrow text-ink/50">Why we exist</p>
-            <p className="mt-8 font-display text-[clamp(2.25rem,5vw,4rem)] font-extrabold uppercase leading-[0.88] tracking-[0.01em] text-ink">
-              Being human is what
-              <br />
-              we are born with.
+            <p className="font-display text-sm font-bold uppercase tracking-[0.16em] text-lime">
+              Why we exist
             </p>
-            <p className="mt-3 font-display text-[clamp(2.25rem,5vw,4rem)] font-extrabold uppercase leading-[0.88] tracking-[0.01em] text-ink">
-              Humanity is what
-              <br />
-              we <span className="text-lime">practise</span>.
+            <div className="mt-3 h-px w-16 bg-lime" aria-hidden />
+            <p className="mt-8 font-display text-[clamp(1.875rem,3.8vw,3.25rem)] font-bold uppercase leading-[0.92] tracking-[0.01em] text-ink">
+              <span className="block whitespace-nowrap">Being human is</span>
+              <span className="block whitespace-nowrap">what we are</span>
+              <span className="block whitespace-nowrap">born with.</span>
+              <span className="mt-5 block whitespace-nowrap">Humanity is</span>
+              <span className="block whitespace-nowrap">
+                what we <span className="text-lime">practice</span>.
+              </span>
             </p>
           </div>
 
-          <figure className="group relative aspect-[4/3] overflow-hidden">
+          <figure className="group relative aspect-[2/1] overflow-hidden">
             <img
               src={manifestoImage}
               alt="Friends talking together on a rooftop at sunset"
