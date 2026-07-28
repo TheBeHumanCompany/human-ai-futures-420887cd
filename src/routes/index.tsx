@@ -3,7 +3,6 @@ import heroImage from "@/assets/hero.png.asset.json";
 import manifestoImage from "@/assets/manifesto.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
-import archiveFeatured from "@/assets/archive-featured.jpg";
 
 import { Users, Shield, Target } from "lucide-react";
 import { SocialSection } from "@/components/social-section";
@@ -233,21 +232,19 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group mt-6 inline-flex w-fit flex-col gap-2 text-ink"
+              className="group mt-6 inline-flex w-fit items-center overflow-hidden rounded-full border border-ink bg-cream text-ink transition-shadow duration-300 hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.5)]"
             >
-              <span className="flex items-center gap-4 font-display text-sm font-bold uppercase tracking-[0.12em] sm:text-base">
+              <span className="px-5 py-2.5 text-xs font-medium uppercase tracking-widest sm:px-6 sm:py-3 sm:text-sm">
                 Learn More
-                <span
-                  aria-hidden
-                  className="text-lg text-lime transition-transform duration-300 group-hover:translate-x-1"
-                >
-                  →
-                </span>
               </span>
               <span
                 aria-hidden
-                className="h-[3px] w-16 bg-lime transition-all duration-300 group-hover:w-24"
-              />
+                className="flex h-full self-stretch items-center border-l border-ink bg-lime px-4 text-sm text-ink transition-transform duration-300 sm:px-5"
+              >
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </span>
             </Link>
           </div>
 
@@ -266,7 +263,7 @@ function Home() {
                     </span>
                     <span
                       aria-hidden
-                      className="h-[2px] w-8 bg-lime transition-all duration-300 group-hover:w-12"
+                      className="h-px w-7 bg-lime/70 transition-all duration-300 group-hover:w-12"
                     />
                   </div>
                   <h3 className="display mt-2.5 text-[clamp(1.25rem,3vw,1.5rem)] font-extrabold leading-tight text-ink">
@@ -287,163 +284,114 @@ function Home() {
 
 
 
-      {/* ---------- HUMAN ARCHIVE + PODCAST BAND ---------- */}
+      {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-14">
-            {/* ---- THE HUMAN ARCHIVE ---- */}
+        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+          <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
             <div className="min-w-0">
-              <p className="font-display text-xl font-black uppercase tracking-[0.06em] text-ink sm:text-2xl">
-                The Human Archive
-              </p>
-              <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
-
-              <h2 className="display mt-6 text-[clamp(2rem,5vw,3.25rem)] font-extrabold leading-[0.95] text-ink">
-                One question.
+              <p className="eyebrow text-ink/50">The Human Archive</p>
+              <h2 className="display mt-6 text-[clamp(2.5rem,6vw,4.5rem)] text-ink">
+                Real stories.
                 <br />
-                Thousands of answers.
+                Real humans.
               </h2>
-
-              <p className="mt-4 max-w-md text-base leading-relaxed text-ink/70">
-                We ask one question to people around the world:
-                <br />
-                “What does it mean to be human?”
-              </p>
-
-              <Link
-                to="/the-human-archive"
-                className="group mt-6 inline-flex w-fit flex-col gap-2 text-ink"
-              >
-                <span className="flex items-center gap-3 font-display text-xs font-bold uppercase tracking-[0.12em] sm:text-sm">
-                  Explore the Human Archive
-                  <span
-                    aria-hidden
-                    className="text-base text-lime transition-transform duration-300 group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
-                </span>
-                <span
-                  aria-hidden
-                  className="h-[3px] w-16 bg-lime transition-all duration-300 group-hover:w-24"
-                />
-              </Link>
-
-              <figure className="group relative mt-8 aspect-[16/10] overflow-hidden shadow-[0_28px_70px_-22px_rgba(0,0,0,0.22)] ring-1 ring-ink/[0.07]">
-                <img
-                  src={archiveFeatured}
-                  alt="An older woman and a young man in conversation in warm window light"
-                  loading="lazy"
-                  width={1400}
-                  height={1050}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 grid place-items-center bg-ink/15">
-                  <span className="grid h-14 w-14 place-items-center rounded-full border border-cream/80 text-cream backdrop-blur-sm transition-colors group-hover:bg-lime group-hover:text-ink">
-                    ▶
-                  </span>
-                </div>
-              </figure>
-
-              {/* secondary story thumbnails */}
-              <div className="mt-5 grid grid-cols-4 gap-3">
-                {ARCHIVE.map((person) => (
-                  <figure key={person.name} className="min-w-0">
-                    <img
-                      src={person.image}
-                      alt={`Portrait of ${person.name} from ${person.location}`}
-                      loading="lazy"
-                      width={800}
-                      height={1000}
-                      className="aspect-[4/5] w-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
-                    />
-                    <figcaption className="mt-2 truncate font-display text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink/70">
-                      {person.name}
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
             </div>
-
-            {/* ---- THE PEOPLE-DRIVEN CEO PODCAST ---- */}
-            <div className="min-w-0 border-t border-ink/15 pt-10 lg:border-l lg:border-t-0 lg:pl-14 lg:pt-0">
-              <p className="font-display text-xl font-black uppercase tracking-[0.06em] text-ink sm:text-2xl">
-                The People-Driven CEO Podcast
-              </p>
-              <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
-
-              <h2 className="display mt-6 text-[clamp(2rem,5vw,3.25rem)] font-extrabold leading-[0.95] text-ink">
-                Where CEOs prepare for the New Human Era.
-              </h2>
-
-              <p className="mt-4 max-w-md text-base leading-relaxed text-ink/70">
-                Conversations on leadership, AI, culture, and building organizations where humanity
-                becomes the competitive advantage.
-              </p>
-
-              <Link
-                to="/podcast"
-                className="group mt-6 inline-flex w-fit flex-col gap-2 text-ink"
-              >
-                <span className="flex items-center gap-3 font-display text-xs font-bold uppercase tracking-[0.12em] sm:text-sm">
-                  Listen to the Podcast
-                  <span
-                    aria-hidden
-                    className="text-base text-lime transition-transform duration-300 group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
-                </span>
-                <span
-                  aria-hidden
-                  className="h-[3px] w-16 bg-lime transition-all duration-300 group-hover:w-24"
-                />
-              </Link>
-
-              <div className="mt-8 overflow-hidden shadow-[0_28px_70px_-22px_rgba(0,0,0,0.22)] ring-1 ring-ink/[0.07]">
-                <img
-                  src={podcastImage}
-                  alt="Studio condenser microphone lit in a dark recording room"
-                  loading="lazy"
-                  width={1200}
-                  height={900}
-                  className="aspect-[16/10] w-full object-cover"
-                />
-                {/* subtle waveform accent */}
-                <div className="flex items-end gap-1 bg-ink px-5 py-4" aria-hidden>
-                  {[6, 14, 9, 20, 12, 26, 16, 10, 22, 8, 18, 12, 24, 9, 15, 7, 19, 11].map(
-                    (h, i) => (
-                      <span
-                        key={i}
-                        className="w-1 shrink-0 bg-lime/80"
-                        style={{ height: `${h}px` }}
-                      />
-                    ),
-                  )}
-                </div>
-              </div>
-
-              <ul className="mt-6 border-t border-ink/15">
-                {EPISODES.map((e) => (
-                  <li
-                    key={e.n}
-                    className="flex items-baseline justify-between gap-4 border-b border-ink/15 py-3"
-                  >
-                    <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-ink/50">
-                      {e.n}
-                    </span>
-                    <span className="min-w-0 flex-1 truncate text-sm text-ink/80">{e.title}</span>
-                    <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-ink/50">
-                      {e.length}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p className="max-w-md text-base leading-relaxed text-ink/70">
+              A growing archive of conversations, experiences and perspectives exploring what it
+              means to be human.
+            </p>
           </div>
+
+          <div className="-mx-5 mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8">
+            {ARCHIVE.map((person) => (
+              <figure key={person.name} className="w-[70vw] shrink-0 snap-start sm:w-72">
+                <div className="relative aspect-[4/5] overflow-hidden bg-ink">
+                  <img
+                    src={person.image}
+                    alt={`Portrait of ${person.name} from ${person.location}`}
+                    loading="lazy"
+                    width={800}
+                    height={1000}
+                    className="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
+                  />
+                </div>
+                <figcaption className="mt-4">
+                  <p className="eyebrow text-ink/45">{person.location}</p>
+                  <p className="display mt-2 text-2xl text-ink">{person.name}'s story</p>
+                  <p className="mt-1 text-sm text-ink/65">{person.story}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <Link
+            to="/the-human-archive"
+            className="eyebrow link-underline mt-10 inline-flex items-center gap-2 text-ink"
+          >
+            Explore the Human Archive <span aria-hidden>→</span>
+          </Link>
         </div>
       </section>
 
+      {/* ---------- PODCAST ---------- */}
+      <section className="section-ink border-t border-border">
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:py-28">
+          <div className="min-w-0">
+            <p className="eyebrow text-lime">The People-Driven CEO Podcast</p>
+            <h2 className="display mt-6 text-[clamp(2.25rem,5vw,4rem)]">
+              Where leaders prepare
+              <br />
+              for the New Human Era.
+            </h2>
+            <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+              Conversations on leadership, AI, culture and building organizations where humanity
+              becomes the competitive advantage.
+            </p>
+
+            <div className="mt-10 border-t border-border pt-6">
+              <p className="eyebrow text-muted-foreground">Featured episode · 013</p>
+              <h3 className="display mt-3 text-3xl">
+                What your people already know about AI
+              </h3>
+              <p className="mt-3 text-sm text-muted-foreground">
+                With Amara Chen, COO — 56 min
+              </p>
+              <Link
+                to="/podcast"
+                className="eyebrow mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3.5 text-ink"
+              >
+                Listen now <span aria-hidden>→</span>
+              </Link>
+            </div>
+
+            <ul className="mt-10 border-t border-border">
+              {EPISODES.map((e) => (
+                <li
+                  key={e.n}
+                  className="flex items-baseline justify-between gap-4 border-b border-border py-4"
+                >
+                  <span className="eyebrow shrink-0 text-muted-foreground">{e.n}</span>
+                  <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
+                    {e.title}
+                  </span>
+                  <span className="eyebrow shrink-0 text-muted-foreground">{e.length}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="relative min-h-[280px] overflow-hidden">
+            <img
+              src={podcastImage}
+              alt="Studio condenser microphone lit in a dark recording room"
+              loading="lazy"
+              width={1200}
+              height={900}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
 
     </>
   );
