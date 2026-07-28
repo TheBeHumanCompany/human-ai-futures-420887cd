@@ -226,20 +226,24 @@ function Home() {
             </h2>
 
             <div className="mt-4 max-w-md space-y-2 text-base leading-relaxed text-ink/75 sm:text-lg">
-              <p>Every era redefines status.</p>
-              <p>In the New Human Era, it shifts from what you own to who you become.</p>
+              <p>Status is measured by what you have.</p>
+              <p>In the New Human Era, it is measured by who you are.</p>
             </div>
 
             <Link
               to="/the-new-human-era"
-              className="group mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-ink px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:border-lime sm:mt-6 sm:px-6 sm:py-3 sm:text-sm"
+              className="group mt-6 inline-flex w-fit items-center overflow-hidden rounded-full border border-ink bg-cream text-ink transition-shadow duration-300 hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.5)]"
             >
-              LEARN MORE
+              <span className="px-5 py-2.5 text-xs font-medium uppercase tracking-widest sm:px-6 sm:py-3 sm:text-sm">
+                Learn More
+              </span>
               <span
                 aria-hidden
-                className="text-sm text-ink transition-all duration-300 group-hover:translate-x-1 group-hover:text-lime"
+                className="flex h-full self-stretch items-center border-l border-ink bg-lime px-4 text-sm text-ink transition-transform duration-300 sm:px-5"
               >
-                →
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </span>
             </Link>
           </div>
@@ -251,27 +255,28 @@ function Home() {
               {PRINCIPLES.map((p) => (
                 <article
                   key={p.n}
-                  className="group bg-cream px-5 py-6 sm:px-6 lg:py-7"
+                  className="group bg-cream px-5 py-5 sm:px-6 lg:py-6"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="font-display text-base font-bold tracking-[0.06em] text-lime">
+                  <div className="flex items-center gap-4">
+                    <span className="font-display text-xl font-black tracking-[0.04em] text-[hsl(var(--lime-ink,0_0%_0%))] text-lime [text-shadow:0_0_0.6px_currentColor] sm:text-2xl">
                       {p.n}
                     </span>
                     <span
                       aria-hidden
-                      className="h-px w-8 bg-lime transition-all duration-300 group-hover:w-14"
+                      className="h-px w-7 bg-lime/70 transition-all duration-300 group-hover:w-12"
                     />
                   </div>
-                  <h3 className="display mt-3 text-[clamp(1.25rem,3vw,1.5rem)] font-extrabold leading-tight text-ink">
+                  <h3 className="display mt-2.5 text-[clamp(1.25rem,3vw,1.5rem)] font-extrabold leading-tight text-ink">
                     {p.title}
                   </h3>
-                  <p className="mt-2 max-w-sm text-sm leading-snug text-ink/65">{p.body}</p>
+                  <p className="mt-1.5 max-w-sm text-sm leading-snug text-ink/65">{p.body}</p>
                 </article>
               ))}
             </div>
           </div>
         </div>
       </section>
+
 
       {/* ---------- STAY CONNECTED ---------- */}
       <SocialSection />
