@@ -105,10 +105,26 @@ function Home() {
       </section>
 
       {/* ---------- BE HUMAN AI ---------- */}
-      <section id="be-human-ai" className="section-ink border-t border-border">
-        <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[31%_24%_45%] lg:items-center lg:gap-8 lg:py-24">
+      <section id="be-human-ai" className="section-ink relative isolate overflow-hidden border-t border-border">
+        {/* INTEGRATED PORTRAIT LAYER */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+          <img
+            src={humanAiProfile}
+            alt=""
+            loading="lazy"
+            className="absolute right-[-14%] top-[2%] h-[62%] w-auto max-w-none object-contain opacity-[0.55] [mask-image:radial-gradient(ellipse_58%_58%_at_52%_45%,#000_38%,transparent_78%)] [-webkit-mask-image:radial-gradient(ellipse_58%_58%_at_52%_45%,#000_38%,transparent_78%)] sm:right-[-6%] sm:top-[6%] sm:h-[70%] sm:opacity-60 lg:left-1/2 lg:right-auto lg:top-1/2 lg:h-[118%] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:opacity-90"
+          />
+          {/* localized dark gradients keeping copy legible */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--tw-gradient-from,#000)_0%,transparent_100%)] from-ink/95 lg:hidden" />
+          <div className="absolute inset-y-0 left-0 hidden w-1/2 bg-gradient-to-r from-ink via-ink/85 to-transparent lg:block" />
+          <div className="absolute inset-y-0 right-0 hidden w-[52%] bg-gradient-to-l from-ink via-ink/85 to-transparent lg:block" />
+          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink to-transparent" />
+        </div>
+
+        <div className="relative z-10 mx-auto grid max-w-[1400px] gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[34%_22%_44%] lg:items-center lg:gap-8 lg:py-28">
           {/* LEFT COLUMN */}
-          <div className="flex flex-col justify-center">
+          <div className="flex max-w-xl flex-col justify-center">
             <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-lime">
               OUR SOLUTION
             </p>
@@ -127,20 +143,12 @@ function Home() {
             </Link>
           </div>
 
-          {/* CENTRE IMAGE */}
-          <figure className="relative mx-auto w-full max-w-xs lg:max-w-none">
-            <img
-              src={humanAiProfile}
-              alt="Side profile of a human face overlaid with a delicate lime neural network"
-              loading="lazy"
-              width={1024}
-              height={1280}
-              className="h-auto w-full object-contain"
-            />
-          </figure>
+          {/* centre spacer reserved for the portrait layer */}
+          <div className="hidden lg:block" aria-hidden />
 
           {/* RIGHT COLUMN — CAPABILITIES */}
-          <div className="flex flex-col justify-center">
+          <div className="mt-24 flex flex-col justify-center sm:mt-40 lg:mt-0">
+
             <div className="border-t border-border">
               <div className="flex gap-5 py-7">
                 <Users className="mt-0.5 h-6 w-6 shrink-0 text-lime" strokeWidth={1.5} />
