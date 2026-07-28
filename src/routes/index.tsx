@@ -1,13 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImage from "@/assets/hero.png.asset.json";
 import manifestoImage from "@/assets/manifesto.jpg";
-import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
 import archiveFeature from "@/assets/archive-feature.jpg";
 
 import { Users, Shield, Target, Mic } from "lucide-react";
 import { SocialSection } from "@/components/social-section";
-import { ARCHIVE, EPISODES, PRINCIPLES } from "@/lib/content";
+import { PRINCIPLES } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
