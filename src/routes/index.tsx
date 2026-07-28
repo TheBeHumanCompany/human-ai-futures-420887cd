@@ -232,16 +232,16 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group mt-6 inline-flex w-fit items-center overflow-hidden rounded-full border border-ink bg-cream text-ink transition-shadow duration-300 hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.5)]"
+              className="group mt-6 inline-flex w-fit items-stretch overflow-hidden rounded-full border border-ink bg-cream text-ink transition-shadow duration-300 hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.5)]"
             >
-              <span className="px-5 py-2.5 text-xs font-medium uppercase tracking-widest sm:px-6 sm:py-3 sm:text-sm">
+              <span className="flex items-center px-5 py-2.5 text-xs font-medium uppercase tracking-widest sm:px-6 sm:py-3 sm:text-sm">
                 Learn More
               </span>
               <span
                 aria-hidden
-                className="flex h-full self-stretch items-center border-l border-ink bg-lime px-4 text-sm text-ink transition-transform duration-300 sm:px-5"
+                className="flex aspect-square items-center justify-center border-l border-ink bg-lime text-sm text-ink transition-transform duration-300 sm:text-base"
               >
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                <span className="inline-block px-3 transition-transform duration-300 group-hover:translate-x-1 sm:px-4">
                   →
                 </span>
               </span>
