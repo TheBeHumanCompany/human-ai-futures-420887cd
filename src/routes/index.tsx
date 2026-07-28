@@ -105,60 +105,84 @@ function Home() {
       </section>
 
       {/* ---------- BE HUMAN AI ---------- */}
-      <section id="be-human-ai" className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <div className="grid gap-10 border-b border-border pb-14 lg:grid-cols-[1.1fr_1fr] lg:items-end">
-            <div className="min-w-0">
-              <p className="eyebrow text-ink/50">Be Human AI · Our practice</p>
-              <h2 className="display mt-6 text-[clamp(2.5rem,6vw,5rem)] text-ink">
-                Build an organization
-                <br />
-                ready for the AI era.
-              </h2>
-            </div>
-            <div>
-              <p className="max-w-md text-base leading-relaxed text-ink/70">
-                We help organizations strengthen their people, protect what matters and transform
-                how work gets done.
-              </p>
-              <Link
-                to="/be-human-ai"
-                className="eyebrow link-underline mt-7 inline-flex items-center gap-2 text-ink"
-              >
-                Explore Be Human AI <span aria-hidden>→</span>
-              </Link>
-            </div>
+      <section id="be-human-ai" className="section-ink border-t border-border">
+        <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[31%_24%_45%] lg:items-center lg:gap-8 lg:py-24">
+          {/* LEFT COLUMN */}
+          <div className="flex flex-col justify-center">
+            <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-lime">
+              OUR SOLUTION
+            </p>
+            <h2 className="display mt-5 text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.92]">
+              BE HUMAN <span className="text-lime">AI</span>
+            </h2>
+            <p className="mt-6 max-w-sm text-base leading-relaxed text-foreground/80">
+              We help organizations prepare for the AI era by strengthening their people, protecting
+              what matters, and transforming how work gets done.
+            </p>
+            <Link
+              to="/be-human-ai"
+              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-sm font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink"
+            >
+              EXPLORE BE HUMAN AI <span aria-hidden className="text-lime group-hover:text-ink">→</span>
+            </Link>
           </div>
 
-          <div className="grid gap-px bg-hairline-dark sm:grid-cols-2">
-            {SERVICES.map((s) => (
-              <article
-                key={s.n}
-                className="group bg-cream p-8 transition-colors hover:bg-cream-deep lg:p-12"
-              >
-                <div className="flex items-baseline justify-between gap-4">
-                  <span className="eyebrow text-ink/40">{s.n}</span>
-                  <span
-                    aria-hidden
-                    className="text-ink/30 transition-transform group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
+          {/* CENTRE IMAGE */}
+          <figure className="relative mx-auto w-full max-w-xs lg:max-w-none">
+            <img
+              src={humanAiProfile}
+              alt="Side profile of a human face overlaid with a delicate lime neural network"
+              loading="lazy"
+              width={1024}
+              height={1280}
+              className="h-auto w-full object-contain"
+            />
+          </figure>
+
+          {/* RIGHT COLUMN — CAPABILITIES */}
+          <div className="flex flex-col justify-center">
+            <div className="border-t border-border">
+              <div className="flex gap-5 py-7">
+                <Users className="mt-0.5 h-6 w-6 shrink-0 text-lime" strokeWidth={1.5} />
+                <div>
+                  <h3 className="font-display text-base font-semibold uppercase tracking-[0.04em] text-lime">
+                    HUMAN READINESS
+                  </h3>
+                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/75">
+                    Prepare your team with the skills, mindset, and confidence to thrive alongside AI.
+                  </p>
                 </div>
-                <h3 className="display mt-8 text-3xl text-ink lg:text-4xl">{s.title}</h3>
-                <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink/70">{s.body}</p>
-                <ul className="mt-7 space-y-2">
-                  {s.points.map((p) => (
-                    <li
-                      key={p}
-                      className="border-t border-hairline-dark pt-2 text-xs uppercase tracking-widest text-ink/55"
-                    >
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+              </div>
+            </div>
+            <div className="border-t border-border">
+              <div className="flex gap-5 py-7">
+                <Shield className="mt-0.5 h-6 w-6 shrink-0 text-lime" strokeWidth={1.5} />
+                <div>
+                  <h3 className="font-display text-base font-semibold uppercase tracking-[0.04em] text-lime">
+                    SECURITY, GOVERNANCE
+                    <br />
+                    & SOVEREIGNTY
+                  </h3>
+                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/75">
+                    Protect your data, reduce risk, and build AI on a foundation of trust.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-border">
+              <div className="flex gap-5 py-7">
+                <Target className="mt-0.5 h-6 w-6 shrink-0 text-lime" strokeWidth={1.5} />
+                <div>
+                  <h3 className="font-display text-base font-semibold uppercase tracking-[0.04em] text-lime">
+                    AI STRATEGY & TRANSFORMATION
+                  </h3>
+                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/75">
+                    Identify opportunities, redesign workflows, and implement AI that delivers
+                    measurable business results.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
