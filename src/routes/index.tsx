@@ -64,15 +64,15 @@ function Home() {
 
       {/* ---------- WHY WE EXIST ---------- */}
       <section className="section-cream border-b border-border">
-        <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-16 lg:py-24">
+        <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-16 lg:py-24">
           <div className="min-w-0">
             <p className="eyebrow text-ink/50">Why we exist</p>
-            <p className="mt-8 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[0.02em] text-ink">
+            <p className="mt-8 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold uppercase leading-[0.92] tracking-[0.02em] text-ink">
               Being human is what
               <br />
               we are born with.
             </p>
-            <p className="mt-4 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[0.02em] text-ink">
+            <p className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold uppercase leading-[0.92] tracking-[0.02em] text-ink">
               Humanity is what
               <br />
               we <span className="text-lime">practice</span>.
