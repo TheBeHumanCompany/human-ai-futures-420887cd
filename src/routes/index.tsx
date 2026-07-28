@@ -64,18 +64,21 @@ function Home() {
 
       {/* ---------- WHY WE EXIST ---------- */}
       <section className="section-cream border-b border-border">
-        <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[2fr_3fr] lg:gap-12 lg:py-20">
+        <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-6 py-14 sm:px-8 lg:grid-cols-[2fr_3fr] lg:gap-12 lg:py-20">
           <div className="min-w-0">
-            <p className="font-display text-sm font-bold uppercase tracking-[0.16em] text-lime">
-              Why we exist
+            <p className="font-display text-lg sm:text-xl font-bold uppercase tracking-[0.1em] text-lime">
+              WHY WE EXIST
             </p>
-            <div className="mt-3 h-px w-16 bg-lime" aria-hidden />
-            <p className="mt-8 font-display text-[clamp(1.875rem,3.8vw,3.25rem)] font-bold uppercase leading-[0.92] tracking-[0.01em] text-ink">
-              <span className="block whitespace-nowrap">Being human is</span>
-              <span className="block whitespace-nowrap">what we are</span>
-              <span className="block whitespace-nowrap">born with.</span>
-              <span className="mt-5 block whitespace-nowrap">Humanity is</span>
-              <span className="block whitespace-nowrap">
+            <div className="mt-3 h-[3px] w-20 bg-lime" aria-hidden />
+            <p className="mt-8 w-full font-display text-[clamp(1.875rem,3.8vw,3.25rem)] font-bold uppercase leading-[0.92] tracking-[0.01em] text-ink">
+              Being human is
+              <br />
+              what we are
+              <br />
+              born with.
+              <span className="mt-5 block">
+                Humanity is
+                <br />
                 what we <span className="text-lime">practice</span>.
               </span>
             </p>
