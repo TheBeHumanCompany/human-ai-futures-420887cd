@@ -41,7 +41,7 @@
   --color-lime: var(--lime);
   --color-hairline: var(--hairline);
   --color-hairline-dark: var(--hairline-dark);
-  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
   --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
   --font-hand: "Caveat", cursive;
 }
@@ -105,9 +105,9 @@
 
 @utility display {
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 0.88;
-  letter-spacing: 0.005em;
+  font-weight: 200;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
