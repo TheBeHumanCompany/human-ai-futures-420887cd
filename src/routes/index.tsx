@@ -367,7 +367,7 @@ function Home() {
                       <span
                         key={i}
                         style={{ height: `${h}%` }}
-                        className={`w-[3px] rounded-full ${i % 3 === 0 ? "bg-lime" : "bg-ink/25"}`}
+                        className={`w-full flex-1 rounded-full ${i % 3 === 0 ? "bg-lime" : "bg-ink/25"}`}
                       />
                     ),
                   )}
