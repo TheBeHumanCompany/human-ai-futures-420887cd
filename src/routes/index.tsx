@@ -121,9 +121,9 @@ function Home() {
             </p>
             <Link
               to="/be-human-ai"
-              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-sm font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink"
+              className="group mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-sm font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink"
             >
-              EXPLORE BE HUMAN AI <span aria-hidden className="text-lime group-hover:text-ink">→</span>
+              EXPLORE BE HUMAN AI <span aria-hidden className="text-lime transition-colors group-hover:text-ink">→</span>
             </Link>
           </div>
 
