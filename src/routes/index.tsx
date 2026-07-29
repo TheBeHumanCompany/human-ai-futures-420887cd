@@ -313,22 +313,25 @@ function Home() {
 
             <Link
               to="/the-human-archive"
-              className="group mt-5 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:text-lime"
+              className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:px-8 sm:py-3.5 sm:text-sm lg:mt-8"
             >
               EXPLORE THE HUMAN ARCHIVE
               <span
                 aria-hidden
-                className="text-base text-lime transition-transform duration-300 group-hover:translate-x-1"
+                className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
               >
                 →
               </span>
             </Link>
           </div>
 
-          {/* Portrait grid */}
-          <div className="-mx-5 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:mt-14">
+          {/* Portrait grid — swipeable on mobile, centered row on desktop */}
+          <div className="-mx-6 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-[15vw] pb-4 sm:-mx-8 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-8 lg:mt-14 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {ARCHIVE.map((person) => (
-              <figure key={person.name} className="w-[70vw] shrink-0 snap-start sm:w-72">
+              <figure
+                key={person.name}
+                className="w-[70vw] shrink-0 snap-center sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-3.75rem)/4)]"
+              >
                 <div className="relative aspect-[4/5] overflow-hidden bg-ink">
                   <img
                     src={person.image}
@@ -346,6 +349,7 @@ function Home() {
               </figure>
             ))}
           </div>
+
         </div>
       </section>
 
