@@ -220,10 +220,25 @@ function Home() {
       <section className="section-cream border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 pt-12 pb-10 sm:px-8 sm:pt-14 sm:pb-12 lg:pt-16 lg:pb-14">
           {/* Intro */}
-          <div className="max-w-2xl">
-            <h2 className="display text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-ink">
-              THE NEW HUMAN <span className="text-lime">ERA</span>
-            </h2>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-2xl">
+              <h2 className="display text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-ink">
+                THE NEW HUMAN <span className="text-lime">ERA</span>
+              </h2>
+            </div>
+
+            <Link
+              to="/the-new-human-era"
+              className="group inline-flex w-fit shrink-0 items-center gap-2 self-start rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:px-6 sm:py-3 sm:text-sm lg:self-center"
+            >
+              LEARN MORE
+              <span
+                aria-hidden
+                className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
+              >
+                →
+              </span>
+            </Link>
           </div>
 
           <div className="mt-6 max-w-3xl lg:mt-7 lg:max-w-[50rem]">
@@ -235,19 +250,6 @@ function Home() {
                 In the New Human Era, it is measured by <span className="font-semibold text-ink">who&nbsp;you&nbsp;are</span>.
               </p>
             </div>
-
-            <Link
-              to="/the-new-human-era"
-              className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:px-6 sm:py-3 sm:text-sm lg:mt-8"
-            >
-              LEARN MORE
-              <span
-                aria-hidden
-                className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
-              >
-                →
-              </span>
-            </Link>
           </div>
 
           {/* Six principles */}
