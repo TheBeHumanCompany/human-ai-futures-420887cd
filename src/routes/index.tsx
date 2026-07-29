@@ -291,38 +291,43 @@ function Home() {
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <section className="section-cream border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 pt-12 pb-12 sm:px-8 sm:pt-16 sm:pb-14 lg:py-20">
-          {/* Section label matching WHY WE EXIST */}
-          <p className="font-display text-xl font-black uppercase tracking-[0.06em] text-ink sm:text-2xl">
-            THE HUMAN ARCHIVE
-          </p>
-          <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
+          {/* Editorial header — split on desktop */}
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            {/* Left side */}
+            <div>
+              <p className="font-display text-xl font-black uppercase tracking-[0.06em] text-ink sm:text-2xl">
+                THE HUMAN ARCHIVE
+              </p>
+              <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
+              <h2 className="display mt-5 text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[0.92] text-ink lg:mt-8">
+                WHAT DOES IT MEAN
+                <br />
+                TO BE HUMAN?
+              </h2>
+            </div>
 
-          {/* Editorial text block */}
-          <div className="mt-5 max-w-4xl">
-            <h2 className="display text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[0.92] text-ink">
-              WHAT DOES IT MEAN
-              <br />
-              TO BE HUMAN?
-            </h2>
-            <p className="font-display mt-3 text-base font-bold uppercase tracking-[0.05em] text-ink sm:text-lg">
-              WE’RE ASKING EVERYONE
-            </p>
-            <p className="mt-3 max-w-xl text-base leading-relaxed text-ink/70">
-              A living, growing archive of human perspective.
-            </p>
+            {/* Right side */}
+            <div className="flex flex-col items-start lg:pt-16">
+              <p className="font-display text-base font-bold uppercase tracking-[0.05em] text-ink sm:text-lg">
+                WE’RE ASKING <span className="text-lime">EVERYONE</span>
+              </p>
+              <p className="mt-3 max-w-md text-base leading-relaxed text-ink/70">
+                A living, growing archive of human perspective.
+              </p>
 
-            <Link
-              to="/the-human-archive"
-              className="group mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-4 py-2 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:mt-6 sm:px-5 sm:py-2.5"
-            >
-              EXPLORE THE HUMAN ARCHIVE
-              <span
-                aria-hidden
-                className="text-sm font-black text-lime transition-colors group-hover:text-ink"
+              <Link
+                to="/the-human-archive"
+                className="group mt-5 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full border border-lime px-4 py-2 text-[11px] font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:mt-6 sm:px-5 sm:py-2.5 sm:text-xs"
               >
-                →
-              </span>
-            </Link>
+                EXPLORE THE HUMAN ARCHIVE
+                <span
+                  aria-hidden
+                  className="text-sm font-black text-lime transition-colors group-hover:text-ink"
+                >
+                  →
+                </span>
+              </Link>
+            </div>
           </div>
 
           {/* Portrait grid — swipeable on mobile, centered row on desktop */}
