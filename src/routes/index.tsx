@@ -404,14 +404,14 @@ function Home() {
             </ul>
           </div>
 
-          <div className="relative min-h-[280px] overflow-hidden">
+          <div className="relative min-h-[280px] overflow-hidden md:min-h-[160px] md:max-h-[220px] lg:min-h-[280px] lg:max-h-none">
             <img
               src={podcastImage}
               alt="Studio condenser microphone lit in a dark recording room"
               loading="lazy"
               width={1200}
               height={900}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover md:object-[center_30%]"
             />
           </div>
         </div>
