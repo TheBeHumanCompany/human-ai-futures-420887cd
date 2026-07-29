@@ -232,18 +232,18 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group relative mt-6 inline-flex w-fit items-baseline gap-5 px-2 py-1.5 font-display text-sm font-medium uppercase tracking-[0.12em] text-ink sm:text-base"
+              className="group relative mt-6 inline-flex w-fit items-baseline gap-4 px-2 py-1.5 font-display text-sm font-medium uppercase tracking-[0.12em] text-ink sm:text-base"
             >
               <span>LEARN MORE</span>
               <span
                 aria-hidden
-                className="inline-block text-lime transition-transform duration-300 group-hover:translate-x-1"
+                className="inline-block self-center text-xl font-black leading-none text-[oklch(0.79_0.22_118)] transition-transform duration-300 group-hover:translate-x-1"
               >
                 →
               </span>
               <span
                 aria-hidden
-                className="absolute bottom-[-6px] left-2 h-[2px] w-[48%] bg-lime transition-all duration-300 group-hover:w-[58%]"
+                className="absolute bottom-[-7px] left-2 h-[2.5px] w-[55%] bg-[oklch(0.79_0.22_118)] transition-all duration-300 group-hover:w-[68%]"
               />
             </Link>
           </div>
