@@ -20,6 +20,12 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Vercel
+.vercel
+
+# OMC agent runtime state
+.omc
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
