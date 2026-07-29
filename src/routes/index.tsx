@@ -263,7 +263,7 @@ function Home() {
                     </span>
                     <span
                       aria-hidden
-                      className="h-px w-7 bg-lime/70 transition-all duration-300 group-hover:w-12"
+                      className="h-[2px] w-7 bg-lime transition-all duration-300 group-hover:w-12"
                     />
                   </div>
                   <h3 className="display mt-2.5 text-[clamp(1.25rem,3vw,1.5rem)] font-extrabold leading-tight text-ink">
