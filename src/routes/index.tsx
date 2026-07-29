@@ -359,7 +359,7 @@ function Home() {
 
       {/* ---------- PODCAST ---------- */}
       <section className="section-ink border-t border-border">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:py-28">
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 md:gap-8 md:py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-12 lg:py-28">
           <div className="min-w-0">
             <p className="eyebrow text-lime">The People-Driven CEO Podcast</p>
             <h2 className="display mt-6 text-[clamp(2.25rem,5vw,4rem)]">
