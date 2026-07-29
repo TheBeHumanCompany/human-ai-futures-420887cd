@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImage from "@/assets/hero.png.asset.json";
+import heroImage from "@/assets/hero.png";
 import manifestoImage from "@/assets/manifesto.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
@@ -34,7 +34,7 @@ function Home() {
       {/* ---------- HERO ---------- */}
       <section className="section-ink grain relative isolate overflow-hidden border-b border-border">
         <img
-          src={heroImage.url}
+          src={heroImage}
           alt="A woman carefully adjusts a humanoid robot's hand in a workshop"
           width={1600}
           height={1200}
