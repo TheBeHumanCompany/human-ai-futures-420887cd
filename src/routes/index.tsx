@@ -361,13 +361,24 @@ function Home() {
       <section className="section-ink border-t border-border">
         <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 md:gap-8 md:py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-12 lg:py-28">
           <div className="min-w-0">
-            <p className="eyebrow text-lime">The People-Driven CEO Podcast</p>
-            <h2 className="display mt-6 text-[clamp(2.25rem,5vw,4rem)]">
-              Where leaders prepare
-              <br />
-              for the New Human Era
+            <p className="eyebrow text-lime max-sm:!text-[0.65rem] max-sm:!font-normal max-sm:!tracking-[0.28em]">
+              The People-Driven CEO Podcast
+            </p>
+            <h2 className="display mt-6 text-[clamp(2.25rem,5vw,4rem)] max-sm:mt-8 max-sm:leading-[0.95]">
+              <span className="hidden sm:inline">
+                Where leaders prepare
+                <br />
+                for the New Human Era
+              </span>
+              <span className="sm:hidden">
+                Where leaders
+                <br />
+                prepare for the
+                <br />
+                New Human Era
+              </span>
             </h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground max-sm:mt-4 max-sm:text-sm max-sm:max-w-none">
               Conversations on leadership, AI, culture and building organizations where humanity
               becomes the competitive advantage.
             </p>
