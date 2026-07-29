@@ -222,7 +222,7 @@ function Home() {
           {/* Intro */}
           <div className="max-w-2xl">
             <h2 className="display text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-ink">
-              THE NEW HUMAN <span className="text-lime">ERA.</span>
+              THE NEW HUMAN <span className="text-lime">ERA</span>
             </h2>
 
             <div className="mt-4 max-w-md space-y-2 text-base leading-relaxed text-ink/75 sm:text-lg">
@@ -291,9 +291,9 @@ function Home() {
             <div className="min-w-0">
               <p className="eyebrow text-ink/50">The Human Archive</p>
               <h2 className="display mt-6 text-[clamp(2.5rem,6vw,4.5rem)] text-ink">
-                Real stories.
+                Real stories
                 <br />
-                Real humans.
+                Real humans
               </h2>
             </div>
             <p className="max-w-md text-base leading-relaxed text-ink/70">
@@ -341,7 +341,7 @@ function Home() {
             <h2 className="display mt-6 text-[clamp(2.25rem,5vw,4rem)]">
               Where leaders prepare
               <br />
-              for the New Human Era.
+              for the New Human Era
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
               Conversations on leadership, AI, culture and building organizations where humanity
