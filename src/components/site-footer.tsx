@@ -52,13 +52,13 @@ export function SiteFooter() {
           <h3 className="eyebrow text-muted-foreground">Contact</h3>
           <ul className="mt-5 space-y-3 text-sm text-foreground/80">
             <li>
-              <a href="mailto:hello@behuman.company" className="hover:text-lime">
-                hello@behuman.company
+              <a href="mailto:hello@thebehumancompany.ca" className="hover:text-lime">
+                hello@thebehumancompany.ca
               </a>
             </li>
             <li>
-              <a href="mailto:ai@behuman.company" className="hover:text-lime">
-                ai@behuman.company
+              <a href="mailto:ai@thebehumancompany.ca" className="hover:text-lime">
+                ai@thebehumancompany.ca
               </a>
             </li>
             <li className="text-muted-foreground">Sydney · London · New York</li>

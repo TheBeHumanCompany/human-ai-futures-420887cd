@@ -35,11 +35,11 @@ function Contact() {
           <dl className="mt-12 space-y-4 border-t border-hairline-dark pt-6 text-sm text-ink/70">
             <div>
               <dt className="eyebrow text-ink/45">New business</dt>
-              <dd className="mt-1">ai@behuman.company</dd>
+              <dd className="mt-1">ai@thebehumancompany.ca</dd>
             </div>
             <div>
               <dt className="eyebrow text-ink/45">Everything else</dt>
-              <dd className="mt-1">hello@behuman.company</dd>
+              <dd className="mt-1">hello@thebehumancompany.ca</dd>
             </div>
             <div>
               <dt className="eyebrow text-ink/45">Studios</dt>
