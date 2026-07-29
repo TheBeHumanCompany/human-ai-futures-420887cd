@@ -5,6 +5,14 @@ import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
 
 import { Users, Shield, Target, Headphones } from "lucide-react";
+import {
+  siApplepodcasts,
+  siSpotify,
+  siIheartradio,
+  siCastbox,
+  siRss,
+  siPocketcasts,
+} from "simple-icons";
 import { SocialSection } from "@/components/social-section";
 import { ARCHIVE, EPISODES, PRINCIPLES } from "@/lib/content";
 
