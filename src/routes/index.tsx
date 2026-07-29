@@ -290,16 +290,16 @@ function Home() {
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 pt-12 pb-12 sm:px-8 sm:pt-16 sm:pb-14 lg:py-20">
+        <div className="mx-auto max-w-[1400px] px-6 pt-14 pb-14 sm:px-8 sm:pt-16 sm:pb-16 lg:py-24">
           {/* Editorial header — split on desktop */}
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
             {/* Left side */}
             <div>
-              <p className="font-display text-xl font-black uppercase tracking-[0.06em] text-ink sm:text-2xl">
+              <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-lime">
                 THE HUMAN ARCHIVE
               </p>
-              <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
-              <h2 className="display mt-5 text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[0.92] text-ink lg:mt-8">
+              <div className="mt-3 h-[4px] w-20 bg-lime" aria-hidden />
+              <h2 className="display mt-6 text-[clamp(2.5rem,6.5vw,5rem)] leading-[0.92] text-ink lg:mt-8">
                 WHAT DOES IT MEAN
                 <br />
                 TO BE HUMAN?
@@ -307,22 +307,22 @@ function Home() {
             </div>
 
             {/* Right side */}
-            <div className="flex flex-col items-start lg:pt-16">
-              <p className="font-display text-base font-bold uppercase tracking-[0.05em] text-ink sm:text-lg">
+            <div className="flex flex-col items-start justify-center lg:pl-4">
+              <p className="font-display text-lg font-bold uppercase tracking-[0.05em] text-ink sm:text-xl lg:text-2xl">
                 WE’RE ASKING <span className="text-lime">EVERYONE</span>
               </p>
-              <p className="mt-3 max-w-md text-base leading-relaxed text-ink/70">
+              <p className="mt-4 max-w-md text-lg leading-relaxed text-ink/70 sm:text-xl/relaxed">
                 A living, growing archive of human perspective.
               </p>
 
               <Link
                 to="/the-human-archive"
-                className="group mt-5 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full border border-lime px-4 py-2 text-[11px] font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:mt-6 sm:px-5 sm:py-2.5 sm:text-xs"
+                className="group mt-6 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:mt-7 sm:px-6 sm:py-3 sm:text-sm"
               >
                 EXPLORE THE HUMAN ARCHIVE
                 <span
                   aria-hidden
-                  className="text-sm font-black text-lime transition-colors group-hover:text-ink"
+                  className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
                 >
                   →
                 </span>
@@ -331,7 +331,7 @@ function Home() {
           </div>
 
           {/* Portrait grid — swipeable on mobile, centered row on desktop */}
-          <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mt-10 sm:grid sm:grid-cols-4 sm:gap-5 sm:overflow-visible lg:mt-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mt-12 sm:grid sm:grid-cols-4 sm:gap-5 sm:overflow-visible lg:mt-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {ARCHIVE.map((person, i) => (
               <figure
                 key={`archive-${i}`}
