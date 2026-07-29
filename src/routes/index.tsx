@@ -220,39 +220,38 @@ function Home() {
       <section className="section-cream border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 pt-12 pb-10 sm:px-8 sm:pt-14 sm:pb-12 lg:pt-16 lg:pb-14">
           {/* Intro */}
-          <div className="flex flex-col gap-6 lg:grid lg:grid-cols-3 lg:items-center lg:gap-8">
-            <div className="lg:col-span-2">
-              <h2 className="display text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-ink">
-                THE NEW HUMAN <span className="text-lime">ERA</span>
-              </h2>
+          <div className="max-w-3xl">
+            <h2 className="display text-[clamp(2.25rem,7vw,4.25rem)] font-extrabold leading-[0.95] tracking-[0.01em] text-ink lg:whitespace-nowrap">
+              THE NEW HUMAN <span className="text-lime">ERA</span>
+            </h2>
+
+            <div className="mt-5 h-[4px] w-20 bg-lime" aria-hidden />
+
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-ink/75 sm:text-lg lg:mt-7 lg:space-y-5">
+              <p>
+                For generations, status was measured by{" "}
+                <span className="font-bold text-ink">what&nbsp;you&nbsp;had</span>.
+              </p>
+              <p>
+                In the New Human Era, it is measured by{" "}
+                <span className="font-bold text-ink">who&nbsp;you&nbsp;become</span>.
+              </p>
             </div>
 
-            <div className="max-w-3xl lg:col-span-2 lg:row-start-2 lg:max-w-[50rem]">
-              <div className="space-y-5 text-base leading-snug text-ink/75 sm:text-lg">
-                <p>
-                  For generations, status was measured by <span className="font-bold text-ink">what&nbsp;you&nbsp;had</span>.
-                </p>
-                <p>
-                  In the New Human Era, it is measured by <span className="font-bold text-ink">who&nbsp;you&nbsp;become</span>.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex lg:col-span-1 lg:row-start-1 lg:col-start-3 lg:justify-start">
-              <Link
-                to="/the-new-human-era"
-                className="group inline-flex w-fit shrink-0 items-center gap-2 self-start rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:px-6 sm:py-3 sm:text-sm lg:self-center"
+            <Link
+              to="/the-new-human-era"
+              className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:px-8 sm:py-3.5 sm:text-sm lg:mt-8"
+            >
+              LEARN MORE
+              <span
+                aria-hidden
+                className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
               >
-                LEARN MORE
-                <span
-                  aria-hidden
-                  className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
-                >
-                  →
-                </span>
-              </Link>
-            </div>
+                →
+              </span>
+            </Link>
           </div>
+
 
           {/* Six principles */}
           <div className="mt-8 border-t border-ink/15 lg:mt-10">
