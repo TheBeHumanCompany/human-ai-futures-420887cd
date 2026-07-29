@@ -359,80 +359,68 @@ function Home() {
 
       {/* ---------- PODCAST ---------- */}
       <section className="section-ink border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 md:py-14 lg:py-24">
-          {/* Intro + featured + image */}
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
-            <div className="min-w-0">
-              <p className="eyebrow text-lime">The People-Driven CEO Podcast</p>
-              <h2 className="display mt-5 text-[clamp(2.5rem,8vw,4.75rem)] leading-[0.92] tracking-[0.01em]">
-                Where leaders prepare
-                <br />
-                for the New Human Era
-              </h2>
-              <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
-                Conversations on leadership, AI, culture and building organizations where humanity
-                becomes the competitive advantage.
-              </p>
+        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 md:py-16 lg:py-24">
+          {/* Compact intro */}
+          <div className="max-w-2xl">
+            <p className="eyebrow text-lime">The People-Driven CEO Podcast</p>
+            <h2 className="display mt-4 text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.02] tracking-[0.01em]">
+              Leadership for the New Human Era
+            </h2>
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">
+              Conversations on leadership, AI and culture — where humanity becomes the competitive
+              advantage.
+            </p>
+          </div>
 
-              {/* Featured episode card */}
-              <div className="mt-10 border-t border-border pt-8">
-                <p className="eyebrow text-muted-foreground">Featured episode</p>
-                <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-start">
-                  <div className="relative aspect-square w-full max-w-[140px] shrink-0 overflow-hidden bg-ink ring-1 ring-border">
-                    <img
-                      src={podcastImage}
-                      alt="Podcast episode thumbnail showing a studio microphone"
-                      loading="lazy"
-                      width={300}
-                      height={300}
-                      className="h-full w-full object-cover object-[center_40%]"
-                    />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="display text-2xl leading-[1.05] sm:text-3xl">
-                      What your people already know about AI
-                    </h3>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      With Amara Chen, COO — 56 min
-                    </p>
-                    <Link
-                      to="/podcast"
-                      className="group mt-5 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-lime/90"
-                    >
-                      Listen now <span aria-hidden className="text-base transition-transform group-hover:translate-x-0.5">→</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              {/* Episode list */}
-              <ul className="mt-10 border-t border-border">
-                {EPISODES.map((e) => (
-                  <li
-                    key={e.n}
-                    className="flex items-baseline justify-between gap-4 border-b border-border py-4"
-                  >
-                    <span className="eyebrow shrink-0 text-muted-foreground">{e.n}</span>
-                    <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
-                      {e.title}
-                    </span>
-                    <span className="eyebrow shrink-0 text-muted-foreground">{e.length}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="relative min-h-[320px] overflow-hidden md:min-h-[200px] md:max-h-[260px] lg:min-h-[320px] lg:max-h-none">
+          {/* Featured episode — hero of the section */}
+          <article className="mt-10 grid overflow-hidden border border-border bg-foreground/[0.03] lg:mt-12 lg:grid-cols-[0.9fr_1fr]">
+            <div className="relative min-h-[240px] sm:min-h-[300px] lg:min-h-[380px]">
               <img
                 src={podcastImage}
                 alt="Studio condenser microphone lit in a dark recording room"
                 loading="lazy"
                 width={1200}
                 height={900}
-                className="h-full w-full object-cover md:object-[center_30%]"
+                className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
               />
             </div>
-          </div>
+            <div className="flex flex-col justify-center gap-4 p-6 sm:p-9 lg:p-12">
+              <p className="eyebrow text-lime">Featured episode</p>
+              <h3 className="display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.05]">
+                What your people already know about AI
+              </h3>
+              <p className="text-sm text-muted-foreground">With Amara Chen, COO — 56 min</p>
+              <Link
+                to="/podcast"
+                className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-lime/90"
+              >
+                Listen now{" "}
+                <span aria-hidden className="text-base transition-transform group-hover:translate-x-0.5">
+                  →
+                </span>
+              </Link>
+            </div>
+          </article>
+
+          {/* Episode list */}
+          <ul className="mt-10 border-t border-border lg:mt-12">
+            {EPISODES.map((e) => (
+              <li
+                key={e.n}
+                className="flex items-baseline gap-4 border-b border-border py-4 sm:gap-8"
+              >
+                <span className="eyebrow w-8 shrink-0 text-muted-foreground">{e.n}</span>
+                <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">{e.title}</span>
+                <span className="eyebrow hidden shrink-0 text-muted-foreground sm:block">
+                  {e.guest}
+                </span>
+                <span className="eyebrow w-14 shrink-0 text-right text-muted-foreground">
+                  {e.length}
+                </span>
+              </li>
+            ))}
+          </ul>
+
 
           {/* Platform availability block */}
           <div className="mt-12 bg-cream px-6 py-5 sm:px-8 sm:py-6 lg:mt-16">
