@@ -80,13 +80,13 @@ function Home() {
                 <br />
                 what we are
                 <br />
-                born with.
+                born with
                 <span className="mt-7 block">
                   Humanity is
                   <br />
                   what we
                   <br />
-                  <span className="font-black text-lime">practice<span className="text-lime">.</span></span>
+                  <span className="font-black text-lime">practice</span>
                 </span>
               </span>
               <span className="hidden sm:block">
@@ -94,11 +94,11 @@ function Home() {
                 <br />
                 what we are
                 <br />
-                born with.
+                born with
                 <span className="mt-5 block">
                   Humanity is
                   <br />
-                  what we <span className="font-black text-lime">practice<span className="text-lime">.</span></span>
+                  what we <span className="font-black text-lime">practice</span>
                 </span>
               </span>
             </p>
