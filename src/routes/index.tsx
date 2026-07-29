@@ -226,8 +226,8 @@ function Home() {
             </h2>
           </div>
 
-          <div className="mt-5 max-w-3xl">
-            <div className="space-y-5 text-base leading-snug text-ink/75 sm:space-y-6 sm:text-lg">
+          <div className="mt-6 max-w-3xl lg:mt-7 lg:max-w-[50rem]">
+            <div className="space-y-5 text-base leading-snug text-ink/75 sm:text-lg">
               <p>
                 Status is measured by <span className="font-semibold text-ink">what&nbsp;you&nbsp;have</span>.
               </p>
@@ -238,7 +238,7 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:mt-9 sm:px-6 sm:py-3 sm:text-sm"
+              className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:px-6 sm:py-3 sm:text-sm lg:mt-8"
             >
               LEARN MORE
               <span
@@ -250,9 +250,8 @@ function Home() {
             </Link>
           </div>
 
-
           {/* Six principles */}
-          <div className="mt-8 border-t border-ink/15">
+          <div className="mt-8 border-t border-ink/15 lg:mt-10">
             <div className="grid gap-px bg-ink/15 sm:grid-cols-2 lg:grid-cols-3">
               {PRINCIPLES.map((p) => (
                 <article
