@@ -308,7 +308,7 @@ function Home() {
               WE’RE ASKING EVERYONE
             </p>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-ink/70">
-              A living archive of human perspective
+              A living, growing archive of human perspective.
             </p>
 
             <Link
