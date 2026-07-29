@@ -86,7 +86,7 @@ function Home() {
                   <br />
                   what we
                   <br />
-                  <span className="font-black text-lime">practice</span>.
+                  <span className="font-black text-lime">practice<span className="text-lime">.</span></span>
                 </span>
               </span>
               <span className="hidden sm:block">
@@ -98,7 +98,7 @@ function Home() {
                 <span className="mt-5 block">
                   Humanity is
                   <br />
-                  what we <span className="font-black text-lime">practice</span>.
+                  what we <span className="font-black text-lime">practice<span className="text-lime">.</span></span>
                 </span>
               </span>
             </p>
@@ -232,19 +232,19 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group mt-6 inline-flex w-fit items-center overflow-hidden rounded-full border border-ink bg-cream text-ink transition-shadow duration-300 hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.5)]"
+              className="group relative mt-5 inline-flex w-fit items-baseline gap-4 font-display text-xs font-medium uppercase tracking-[0.14em] text-ink sm:text-sm"
             >
-              <span className="px-5 py-2.5 text-xs font-medium uppercase tracking-widest sm:px-6 sm:py-3 sm:text-sm">
-                Learn More
+              <span>LEARN MORE</span>
+              <span
+                aria-hidden
+                className="inline-block text-lime transition-transform duration-300 group-hover:translate-x-1"
+              >
+                →
               </span>
               <span
                 aria-hidden
-                className="flex h-full self-stretch items-center border-l border-ink bg-lime px-4 text-sm text-ink transition-transform duration-300 sm:px-5"
-              >
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </span>
+                className="absolute bottom-[-7px] left-0 h-[2px] w-[48%] bg-lime transition-all duration-300 group-hover:w-[58%]"
+              />
             </Link>
           </div>
 
