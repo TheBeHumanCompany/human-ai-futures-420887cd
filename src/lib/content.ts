@@ -66,27 +66,23 @@ export const PRINCIPLES = [
 export const ARCHIVE = [
   {
     image: portrait1,
-    name: "Rashid",
-    location: "New York, USA",
-    story: "On starting over at forty",
+    name: "NAME",
+    location: "CITY, COUNTRY",
   },
   {
     image: portrait2,
-    name: "Clara",
-    location: "Melbourne, Australia",
-    story: "On the year she stopped performing",
+    name: "NAME",
+    location: "CITY, COUNTRY",
   },
   {
     image: portrait3,
-    name: "Joan",
-    location: "Nairobi, Kenya",
-    story: "On raising a village, twice",
+    name: "NAME",
+    location: "CITY, COUNTRY",
   },
   {
     image: portrait4,
-    name: "Lukas",
-    location: "Berlin, Germany",
-    story: "On what work took from him",
+    name: "NAME",
+    location: "CITY, COUNTRY",
   },
 ] as const;
 

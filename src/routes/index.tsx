@@ -298,45 +298,36 @@ function Home() {
           </p>
           <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
 
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-12">
-            {/* Left: headline */}
-            <div className="min-w-0">
-              <h2 className="display text-[clamp(2.5rem,6vw,4.5rem)] text-ink">
-                ONE QUESTION
-                <br />
-                THOUSANDS OF ANSWERS
-              </h2>
-            </div>
+          {/* Editorial text block */}
+          <div className="mt-6 max-w-4xl">
+            <h2 className="display text-[clamp(2.5rem,7vw,5rem)] leading-[0.92] text-ink">
+              WHAT DOES IT MEAN
+              <br />
+              TO BE HUMAN?
+            </h2>
+            <p className="font-display mt-4 text-xl font-black uppercase tracking-[0.04em] text-ink sm:text-2xl">
+              WE’RE ASKING EVERYONE
+            </p>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-ink/70">
+              A living archive of human perspective
+            </p>
 
-            {/* Right: copy + CTA */}
-            <div className="min-w-0">
-              <p className="text-base leading-relaxed text-ink/75">
-                We ask one question to people around the world:
-              </p>
-              <p className="mt-3 text-xl font-medium leading-snug text-lime sm:text-2xl">
-                “What does it mean to be human?”
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-ink/60">
-                A living archive of real stories, lived experience, and human perspective.
-              </p>
-
-              <Link
-                to="/the-human-archive"
-                className="group mt-6 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:text-lime"
+            <Link
+              to="/the-human-archive"
+              className="group mt-5 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:text-lime"
+            >
+              EXPLORE THE HUMAN ARCHIVE
+              <span
+                aria-hidden
+                className="text-base text-lime transition-transform duration-300 group-hover:translate-x-1"
               >
-                EXPLORE THE HUMAN ARCHIVE
-                <span
-                  aria-hidden
-                  className="text-base text-lime transition-transform duration-300 group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </Link>
-            </div>
+                →
+              </span>
+            </Link>
           </div>
 
           {/* Portrait grid */}
-          <div className="-mx-5 mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:mt-16">
+          <div className="-mx-5 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:mt-14">
             {ARCHIVE.map((person) => (
               <figure key={person.name} className="w-[70vw] shrink-0 snap-start sm:w-72">
                 <div className="relative aspect-[4/5] overflow-hidden bg-ink">
@@ -350,9 +341,8 @@ function Home() {
                   />
                 </div>
                 <figcaption className="mt-4">
-                  <p className="eyebrow text-ink/45">{person.location}</p>
-                  <p className="display mt-2 text-2xl text-ink">{person.name}'s story</p>
-                  <p className="mt-1 text-sm text-ink/65">{person.story}</p>
+                  <p className="display text-2xl text-ink">{person.name}</p>
+                  <p className="eyebrow mt-1 text-ink/60">{person.location}</p>
                 </figcaption>
               </figure>
             ))}
