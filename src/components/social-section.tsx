@@ -116,7 +116,7 @@ export function SocialSection() {
           <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
 
           <h2 className="display mt-4 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
-            Follow the journey.
+            Follow the journey
           </h2>
 
           <p className="mt-4 max-w-md text-base leading-relaxed text-foreground/70 sm:text-lg">
