@@ -224,19 +224,21 @@ function Home() {
             <h2 className="display text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-ink">
               THE NEW HUMAN <span className="text-lime">ERA</span>
             </h2>
+          </div>
 
-            <div className="mt-4 max-w-md space-y-2 text-base leading-relaxed text-ink/75 sm:text-lg">
+          <div className="mt-5 max-w-3xl">
+            <div className="space-y-1 text-base leading-snug text-ink/75 sm:text-lg">
               <p>
-                Status is measured by <span className="font-semibold text-ink">what you have</span>.
+                Status is measured by <span className="font-semibold text-ink">what&nbsp;you&nbsp;have</span>.
               </p>
               <p>
-                In the New Human Era, it is measured by <span className="font-semibold text-ink">who you are</span>.
+                In the New Human Era, it is measured by <span className="font-semibold text-ink">who&nbsp;you&nbsp;are</span>.
               </p>
             </div>
 
             <Link
               to="/the-new-human-era"
-              className="group relative mt-6 inline-flex w-fit items-baseline gap-4 px-2 py-1.5 font-display text-sm font-medium uppercase tracking-[0.12em] text-ink sm:text-base"
+              className="group relative mt-4 inline-flex w-fit items-baseline gap-4 px-2 py-1.5 font-display text-sm font-medium uppercase tracking-[0.12em] text-ink sm:text-base"
             >
               <span>LEARN MORE</span>
               <span
