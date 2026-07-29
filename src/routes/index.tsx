@@ -254,7 +254,7 @@ function Home() {
 
 
           {/* Six principles */}
-          <div className="mt-8 border-t border-ink/15 lg:mt-10">
+          <div className="mt-10 border-t border-ink/15 lg:mt-12">
             <div className="grid gap-px bg-ink/15 sm:grid-cols-2 lg:grid-cols-3">
               {PRINCIPLES.map((p) => (
                 <article
