@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="section-ink border-t border-border">
       <div className="border-b border-border bg-lime py-5 text-center">
         <p className="display px-4 text-2xl text-ink sm:text-4xl">
-          The future belongs to the most human.
+          The future belongs to the most human
         </p>
       </div>
 
