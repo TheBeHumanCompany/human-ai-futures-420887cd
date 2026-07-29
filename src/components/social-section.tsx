@@ -132,8 +132,10 @@ export function SocialSection() {
               href={href}
               className="group relative flex h-32 flex-col justify-between border border-border p-4 transition-colors duration-300 hover:border-lime focus-visible:border-lime focus-visible:outline-none sm:h-36 lg:p-5"
             >
-              <Icon className="h-8 w-8 opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-focus-visible:scale-110 group-focus-visible:opacity-100" />
-              <div>
+              <div className="flex flex-1 items-center justify-center">
+                <Icon className="h-12 w-12 opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-focus-visible:scale-110 group-focus-visible:opacity-100 sm:h-14 sm:w-14" />
+              </div>
+              <div className="w-full">
                 <div className="h-px w-full bg-border" aria-hidden />
                 <div className="mt-3 flex items-end justify-between gap-2">
                   <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-foreground">
