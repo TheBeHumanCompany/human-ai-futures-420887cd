@@ -290,7 +290,7 @@ function Home() {
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 pt-14 pb-8 sm:px-8 sm:pb-14 lg:py-20">
+        <div className="mx-auto max-w-[1400px] px-6 pt-20 pb-8 sm:px-8 sm:pt-16 sm:pb-14 lg:py-20">
           {/* Section label matching WHY WE EXIST */}
           <p className="font-display text-xl font-black uppercase tracking-[0.06em] text-ink sm:text-2xl">
             THE HUMAN ARCHIVE
@@ -298,27 +298,27 @@ function Home() {
           <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
 
           {/* Editorial text block */}
-          <div className="mt-6 max-w-4xl">
-            <h2 className="display text-[clamp(2.5rem,7vw,5rem)] leading-[0.92] text-ink">
+          <div className="mt-5 max-w-4xl">
+            <h2 className="display text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[0.92] text-ink">
               WHAT DOES IT MEAN
               <br />
               TO BE HUMAN?
             </h2>
-            <p className="font-display mt-4 text-xl font-black uppercase tracking-[0.04em] text-ink sm:text-2xl">
+            <p className="font-display mt-3 text-base font-bold uppercase tracking-[0.05em] text-ink sm:text-lg">
               WE’RE ASKING EVERYONE
             </p>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-ink/70">
+            <p className="mt-3 max-w-xl text-base leading-relaxed text-ink/70">
               A living, growing archive of human perspective.
             </p>
 
             <Link
               to="/the-human-archive"
-              className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:px-8 sm:py-3.5 sm:text-sm lg:mt-8"
+              className="group mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-4 py-2 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:mt-6 sm:px-5 sm:py-2.5"
             >
               EXPLORE THE HUMAN ARCHIVE
               <span
                 aria-hidden
-                className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
+                className="text-sm font-black text-lime transition-colors group-hover:text-ink"
               >
                 →
               </span>
@@ -326,11 +326,11 @@ function Home() {
           </div>
 
           {/* Portrait grid — swipeable on mobile, centered row on desktop */}
-          <div className="-mx-6 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-[15vw] pb-4 sm:-mx-8 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-8 lg:mt-14 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {ARCHIVE.map((person) => (
+          <div className="-mx-6 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[14vw] pb-2 sm:-mx-8 sm:mt-10 sm:grid sm:grid-cols-4 sm:gap-5 sm:overflow-visible sm:px-8 lg:mt-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {ARCHIVE.map((person, i) => (
               <figure
-                key={person.name}
-                className="w-[70vw] shrink-0 snap-center sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-3.75rem)/4)]"
+                key={`archive-${i}`}
+                className="w-[72vw] shrink-0 snap-center sm:w-auto"
               >
                 <div className="relative aspect-[4/5] overflow-hidden bg-ink">
                   <img
@@ -342,9 +342,13 @@ function Home() {
                     className="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
                   />
                 </div>
-                <figcaption className="mt-4">
-                  <p className="display text-2xl text-ink">{person.name}</p>
-                  <p className="eyebrow mt-1 text-ink/60">{person.location}</p>
+                <figcaption className="mt-3 sm:mt-4">
+                  <p className="font-display text-sm font-bold uppercase tracking-[0.04em] text-ink">
+                    {person.name}
+                  </p>
+                  <p className="mt-0.5 text-xs uppercase tracking-wider text-ink/60">
+                    {person.location}
+                  </p>
                 </figcaption>
               </figure>
             ))}
