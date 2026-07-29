@@ -56,7 +56,7 @@ function Home() {
             <h1 className="display text-[clamp(3.5rem,11vw,8.5rem)]">
               The future
               <br />
-              is <span className="text-lime">human.</span>
+              is <span className="text-lime">human</span>
             </h1>
             <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg">
               We help people and organizations practice what keeps us human in a world becoming

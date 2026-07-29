@@ -33,32 +33,32 @@ export const SERVICES = [
 export const PRINCIPLES = [
   {
     n: "01",
-    title: "Presence is the new luxury.",
+    title: "Presence is the new luxury",
     body: "Attention is the scarcest resource of the decade. In a distracted world, being fully here is a competitive act.",
   },
   {
     n: "02",
-    title: "Wisdom is the new intelligence.",
+    title: "Wisdom is the new intelligence",
     body: "Knowledge is abundant and cheap. Judgment — knowing what matters and what doesn't — is not.",
   },
   {
     n: "03",
-    title: "Humanity is the advantage.",
+    title: "Humanity is the advantage",
     body: "Empathy, courage and compassion are the capabilities machines cannot copy or counterfeit.",
   },
   {
     n: "04",
-    title: "Real is rare.",
+    title: "Real is rare",
     body: "As synthetic content becomes endless, authenticity stops being a value and becomes a currency.",
   },
   {
     n: "05",
-    title: "Trust wins.",
+    title: "Trust wins",
     body: "Trust compounds over time. It is the foundation of every lasting relationship, team and business.",
   },
   {
     n: "06",
-    title: "Character is earned.",
+    title: "Character is earned",
     body: "Character isn't claimed in a statement. It's revealed through the choices you make every day.",
   },
 ] as const;
