@@ -298,16 +298,20 @@ function Home() {
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 pt-14 pb-14 sm:px-8 sm:pt-16 sm:pb-16 lg:py-24">
-          {/* Editorial header — split on desktop */}
+        <div className="mx-auto max-w-[1400px] px-6 pt-10 pb-14 sm:px-8 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-20">
+          {/* Section label */}
+          <div className="mb-6 lg:mb-8">
+            <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-ink">
+              THE HUMAN ARCHIVE
+            </p>
+            <div className="mt-3 h-[4px] w-20 bg-lime" aria-hidden />
+          </div>
+
+          {/* Editorial header — split on desktop, aligned tops */}
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
             {/* Left side */}
             <div>
-              <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-lime">
-                THE HUMAN ARCHIVE
-              </p>
-              <div className="mt-3 h-[4px] w-20 bg-lime" aria-hidden />
-              <h2 className="display mt-6 text-[clamp(2.5rem,6.5vw,5rem)] leading-[0.92] text-ink lg:mt-8">
+              <h2 className="display text-[clamp(2.5rem,6.5vw,5rem)] leading-[0.92] text-ink">
                 WHAT DOES IT MEAN
                 <br />
                 TO BE HUMAN?
@@ -315,7 +319,7 @@ function Home() {
             </div>
 
             {/* Right side */}
-            <div className="flex flex-col items-start justify-center lg:pl-4">
+            <div className="flex flex-col items-start lg:pl-4">
               <p className="font-display text-lg font-bold uppercase tracking-[0.05em] text-ink sm:text-xl lg:text-2xl">
                 WE’RE ASKING <span className="text-lime">EVERYONE</span>
               </p>
