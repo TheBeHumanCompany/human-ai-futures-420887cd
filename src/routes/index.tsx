@@ -232,7 +232,7 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group relative mt-5 inline-flex w-fit items-baseline gap-4 font-display text-xs font-medium uppercase tracking-[0.14em] text-ink sm:text-sm"
+              className="group relative mt-6 inline-flex w-fit items-baseline gap-5 px-2 py-1.5 font-display text-sm font-medium uppercase tracking-[0.12em] text-ink sm:text-base"
             >
               <span>LEARN MORE</span>
               <span
@@ -243,7 +243,7 @@ function Home() {
               </span>
               <span
                 aria-hidden
-                className="absolute bottom-[-7px] left-0 h-[2px] w-[48%] bg-lime transition-all duration-300 group-hover:w-[58%]"
+                className="absolute bottom-[-6px] left-2 h-[2px] w-[48%] bg-lime transition-all duration-300 group-hover:w-[58%]"
               />
             </Link>
           </div>
