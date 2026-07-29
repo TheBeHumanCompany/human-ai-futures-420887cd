@@ -225,7 +225,7 @@ function Home() {
               THE NEW HUMAN <span className="text-lime">ERA</span>
             </h2>
 
-            <div className="mt-5 h-[4px] w-20 bg-lime" aria-hidden />
+            <div className="mt-5 h-[2px] w-16 bg-lime" aria-hidden />
 
             <div className="mt-6 space-y-4 text-base leading-relaxed text-ink/75 sm:text-lg lg:mt-7 lg:space-y-5">
               <p>
