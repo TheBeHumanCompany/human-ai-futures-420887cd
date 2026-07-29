@@ -290,7 +290,7 @@ function Home() {
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 pt-20 pb-8 sm:px-8 sm:pt-16 sm:pb-14 lg:py-20">
+        <div className="mx-auto max-w-[1400px] px-6 pt-12 pb-12 sm:px-8 sm:pt-16 sm:pb-14 lg:py-20">
           {/* Section label matching WHY WE EXIST */}
           <p className="font-display text-xl font-black uppercase tracking-[0.06em] text-ink sm:text-2xl">
             THE HUMAN ARCHIVE
