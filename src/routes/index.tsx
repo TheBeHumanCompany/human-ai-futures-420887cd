@@ -287,23 +287,52 @@ function Home() {
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
+        <div className="mx-auto max-w-[1400px] px-6 pt-14 pb-8 sm:px-8 sm:pb-14 lg:py-20">
+          {/* Section label matching WHY WE EXIST */}
+          <p className="font-display text-xl font-black uppercase tracking-[0.06em] text-ink sm:text-2xl">
+            THE HUMAN ARCHIVE
+          </p>
+          <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
+
+          <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-12">
+            {/* Left: headline */}
             <div className="min-w-0">
-              <p className="eyebrow text-ink/50">The Human Archive</p>
-              <h2 className="display mt-6 text-[clamp(2.5rem,6vw,4.5rem)] text-ink">
-                Real stories
+              <h2 className="display text-[clamp(2.5rem,6vw,4.5rem)] text-ink">
+                ONE QUESTION
                 <br />
-                Real humans
+                THOUSANDS OF ANSWERS
               </h2>
             </div>
-            <p className="max-w-md text-base leading-relaxed text-ink/70">
-              A growing archive of conversations, experiences and perspectives exploring what it
-              means to be human.
-            </p>
+
+            {/* Right: copy + CTA */}
+            <div className="min-w-0">
+              <p className="text-base leading-relaxed text-ink/75">
+                We ask one question to people around the world:
+              </p>
+              <p className="mt-3 text-xl font-medium leading-snug text-lime sm:text-2xl">
+                “What does it mean to be human?”
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-ink/60">
+                A living archive of real stories, lived experience, and human perspective.
+              </p>
+
+              <Link
+                to="/the-human-archive"
+                className="group mt-6 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:text-lime"
+              >
+                EXPLORE THE HUMAN ARCHIVE
+                <span
+                  aria-hidden
+                  className="text-base text-lime transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  →
+                </span>
+              </Link>
+            </div>
           </div>
 
-          <div className="-mx-5 mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8">
+          {/* Portrait grid */}
+          <div className="-mx-5 mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:mt-16">
             {ARCHIVE.map((person) => (
               <figure key={person.name} className="w-[70vw] shrink-0 snap-start sm:w-72">
                 <div className="relative aspect-[4/5] overflow-hidden bg-ink">
@@ -324,13 +353,6 @@ function Home() {
               </figure>
             ))}
           </div>
-
-          <Link
-            to="/the-human-archive"
-            className="eyebrow link-underline mt-10 inline-flex items-center gap-2 text-ink"
-          >
-            Explore the Human Archive <span aria-hidden>→</span>
-          </Link>
         </div>
       </section>
 
