@@ -227,7 +227,7 @@ function Home() {
           </div>
 
           <div className="mt-5 max-w-3xl">
-            <div className="space-y-3 text-base leading-snug text-ink/75 sm:space-y-4 sm:text-lg">
+            <div className="space-y-5 text-base leading-snug text-ink/75 sm:space-y-6 sm:text-lg">
               <p>
                 Status is measured by <span className="font-semibold text-ink">what&nbsp;you&nbsp;have</span>.
               </p>
@@ -238,12 +238,12 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-lime bg-transparent px-4 py-2 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:mt-7 sm:px-5 sm:py-2.5 sm:text-sm"
+              className="group mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:mt-9 sm:px-6 sm:py-3 sm:text-sm"
             >
               LEARN MORE
               <span
                 aria-hidden
-                className="text-base text-lime transition-colors group-hover:text-ink sm:text-lg"
+                className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
               >
                 →
               </span>
