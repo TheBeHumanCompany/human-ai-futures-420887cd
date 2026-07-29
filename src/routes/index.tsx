@@ -326,11 +326,11 @@ function Home() {
           </div>
 
           {/* Portrait grid — swipeable on mobile, centered row on desktop */}
-          <div className="-mx-6 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-[15vw] pb-4 sm:-mx-8 sm:justify-center sm:overflow-visible sm:px-8 lg:mt-14 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="-mx-6 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-[15vw] pb-4 sm:-mx-8 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-8 lg:mt-14 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {ARCHIVE.map((person) => (
               <figure
                 key={person.name}
-                className="w-[70vw] shrink-0 snap-center sm:w-[calc((100%-1.25rem)/2)] sm:snap-align-none lg:w-[calc((100%-3.75rem)/4)]"
+                className="w-[70vw] shrink-0 snap-center sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-3.75rem)/4)]"
               >
                 <div className="relative aspect-[4/5] overflow-hidden bg-ink">
                   <img
