@@ -359,71 +359,109 @@ function Home() {
 
       {/* ---------- PODCAST ---------- */}
       <section className="section-ink border-t border-border">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 md:gap-8 md:py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-12 lg:py-28">
-          <div className="min-w-0">
-            <p className="eyebrow text-lime max-sm:!text-[0.65rem] max-sm:!font-normal max-sm:!tracking-[0.28em]">
-              The People-Driven CEO Podcast
-            </p>
-            <h2 className="display mt-6 text-[clamp(2.25rem,5vw,4rem)] max-sm:mt-8 max-sm:leading-[0.95]">
-              <span className="hidden sm:inline">
+        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 md:py-14 lg:py-24">
+          {/* Intro + featured + image */}
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
+            <div className="min-w-0">
+              <p className="eyebrow text-lime">The People-Driven CEO Podcast</p>
+              <h2 className="display mt-5 text-[clamp(2.5rem,8vw,4.75rem)] leading-[0.92] tracking-[0.01em]">
                 Where leaders prepare
                 <br />
                 for the New Human Era
-              </span>
-              <span className="sm:hidden">
-                Where leaders
-                <br />
-                prepare for the
-                <br />
-                New Human Era
-              </span>
-            </h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground max-sm:mt-4 max-sm:text-sm max-sm:max-w-none">
-              Conversations on leadership, AI, culture and building organizations where humanity
-              becomes the competitive advantage.
-            </p>
-
-            <div className="mt-10 border-t border-border pt-6">
-              <p className="eyebrow text-muted-foreground">Featured episode · 013</p>
-              <h3 className="display mt-3 text-3xl">
-                What your people already know about AI
-              </h3>
-              <p className="mt-3 text-sm text-muted-foreground">
-                With Amara Chen, COO — 56 min
+              </h2>
+              <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+                Conversations on leadership, AI, culture and building organizations where humanity
+                becomes the competitive advantage.
               </p>
-              <Link
-                to="/podcast"
-                className="eyebrow mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3.5 text-ink"
-              >
-                Listen now <span aria-hidden>→</span>
-              </Link>
+
+              {/* Featured episode card */}
+              <div className="mt-10 border-t border-border pt-8">
+                <p className="eyebrow text-muted-foreground">Featured episode</p>
+                <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-start">
+                  <div className="relative aspect-square w-full max-w-[140px] shrink-0 overflow-hidden bg-ink ring-1 ring-border">
+                    <img
+                      src={podcastImage}
+                      alt="Podcast episode thumbnail showing a studio microphone"
+                      loading="lazy"
+                      width={300}
+                      height={300}
+                      className="h-full w-full object-cover object-[center_40%]"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="display text-2xl leading-[1.05] sm:text-3xl">
+                      What your people already know about AI
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      With Amara Chen, COO — 56 min
+                    </p>
+                    <Link
+                      to="/podcast"
+                      className="group mt-5 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-lime/90"
+                    >
+                      Listen now <span aria-hidden className="text-base transition-transform group-hover:translate-x-0.5">→</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Episode list */}
+              <ul className="mt-10 border-t border-border">
+                {EPISODES.map((e) => (
+                  <li
+                    key={e.n}
+                    className="flex items-baseline justify-between gap-4 border-b border-border py-4"
+                  >
+                    <span className="eyebrow shrink-0 text-muted-foreground">{e.n}</span>
+                    <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
+                      {e.title}
+                    </span>
+                    <span className="eyebrow shrink-0 text-muted-foreground">{e.length}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <ul className="mt-10 border-t border-border">
-              {EPISODES.map((e) => (
-                <li
-                  key={e.n}
-                  className="flex items-baseline justify-between gap-4 border-b border-border py-4"
-                >
-                  <span className="eyebrow shrink-0 text-muted-foreground">{e.n}</span>
-                  <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
-                    {e.title}
-                  </span>
-                  <span className="eyebrow shrink-0 text-muted-foreground">{e.length}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="relative min-h-[320px] overflow-hidden md:min-h-[200px] md:max-h-[260px] lg:min-h-[320px] lg:max-h-none">
+              <img
+                src={podcastImage}
+                alt="Studio condenser microphone lit in a dark recording room"
+                loading="lazy"
+                width={1200}
+                height={900}
+                className="h-full w-full object-cover md:object-[center_30%]"
+              />
+            </div>
           </div>
 
-          <div className="relative min-h-[280px] overflow-hidden md:min-h-[160px] md:max-h-[220px] lg:min-h-[280px] lg:max-h-none">
-            <img
-              src={podcastImage}
-              alt="Studio condenser microphone lit in a dark recording room"
-              loading="lazy"
-              width={1200}
-              height={900}
-              className="h-full w-full object-cover md:object-[center_30%]"
-            />
+          {/* Platform availability block */}
+          <div className="mt-12 bg-cream px-6 py-5 sm:px-8 sm:py-6 lg:mt-16">
+            <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+              <div className="flex items-center gap-3">
+                <Headphones className="h-5 w-5 text-ink" strokeWidth={1.5} />
+                <p className="font-display text-sm font-bold uppercase tracking-[0.06em] text-ink">
+                  Available on all major platforms
+                </p>
+              </div>
+              <div className="flex items-center gap-5" aria-label="Podcast platforms">
+                {/* Spotify */}
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-ink" aria-hidden>
+                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                </svg>
+                {/* Apple Podcasts */}
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-ink" aria-hidden>
+                  <path d="M5.34 0A5.328 5.328 0 0 0 0 5.34v13.32A5.328 5.328 0 0 0 5.34 24h13.32A5.328 5.328 0 0 0 24 18.66V5.34A5.328 5.328 0 0 0 18.66 0H5.34zm9.926 5.376c.532 0 .963.43.963.963 0 .532-.43.963-.963.963a.963.963 0 0 1-.963-.963c0-.532.43-.963.963-.963zM12 7.045c2.736 0 4.955 2.218 4.955 4.955 0 2.403-1.718 4.408-3.99 4.85l-.299 2.574c-.05.435-.41.762-.846.762h-.64c-.436 0-.796-.327-.846-.762l-.299-2.574c-2.272-.442-3.99-2.447-3.99-4.85 0-2.737 2.218-4.955 4.955-4.955zm0 1.655c-1.821 0-3.3 1.478-3.3 3.3 0 1.821 1.479 3.3 3.3 3.3s3.3-1.479 3.3-3.3c0-1.822-1.479-3.3-3.3-3.3z" />
+                </svg>
+                {/* YouTube */}
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-ink" aria-hidden>
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                {/* RSS / more platforms */}
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-ink" aria-hidden>
+                  <path d="M6.503 20.5c0 1.38-1.12 2.5-2.5 2.5s-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5zm1.5-6.5c-3.87 0-7-3.13-7-7V4c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v3c0 2.76 2.24 5 5 5h3c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1h-2zm1 6c-5.8 0-10.5-4.7-10.5-10.5V4c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1c0 4.14 3.36 7.5 7.5 7.5h1c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1h-2z" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </section>
