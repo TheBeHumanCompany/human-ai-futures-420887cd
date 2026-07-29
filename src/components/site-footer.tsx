@@ -7,7 +7,7 @@ export function SiteFooter() {
   return (
     <footer className="section-ink border-t border-border">
       <div className="border-b border-border bg-lime py-5 text-center">
-        <p className="display px-4 text-4xl uppercase tracking-normal text-ink max-sm:px-2 max-sm:text-[clamp(0.85rem,4vw,1.2rem)] max-sm:tracking-[-0.02em] sm:tracking-normal">
+        <p className="display px-4 text-4xl uppercase tracking-normal text-ink max-sm:px-1 max-sm:text-[clamp(0.9rem,4.2vw,1.25rem)] max-sm:tracking-[-0.01em] sm:tracking-normal">
           The future belongs to the most human
         </p>
       </div>
