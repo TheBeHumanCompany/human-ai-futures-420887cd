@@ -367,8 +367,10 @@ function Home() {
         <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 md:py-16 lg:py-24">
           {/* Compact intro */}
           <div className="max-w-2xl">
-            <p className="eyebrow text-lime">The People-Driven CEO Podcast</p>
-            <h2 className="display mt-4 text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.02] tracking-[0.01em]">
+            <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-lime">
+              THE PEOPLE-DRIVEN CEO PODCAST
+            </p>
+            <h2 className="display mt-5 whitespace-nowrap text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.02] tracking-[0.01em]">
               Leadership for the New Human Era
             </h2>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">
