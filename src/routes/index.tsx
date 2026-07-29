@@ -226,8 +226,12 @@ function Home() {
             </h2>
 
             <div className="mt-4 max-w-md space-y-2 text-base leading-relaxed text-ink/75 sm:text-lg">
-              <p>Status is measured by what you have.</p>
-              <p>In the New Human Era, it is measured by who you are.</p>
+              <p>
+                Status is measured by <span className="font-semibold text-ink">what you have</span>.
+              </p>
+              <p>
+                In the New Human Era, it is measured by <span className="font-semibold text-ink">who you are</span>.
+              </p>
             </div>
 
             <Link
