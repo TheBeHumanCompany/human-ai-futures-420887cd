@@ -308,7 +308,7 @@ function Home() {
           </div>
 
           {/* Editorial header — split on desktop, aligned tops */}
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="grid gap-10 md:grid-cols-2 md:gap-10 lg:gap-16">
             {/* Left side */}
             <div>
               <h2 className="display text-[clamp(2.5rem,6.5vw,5rem)] leading-[0.92] text-ink">
@@ -320,6 +320,7 @@ function Home() {
 
             {/* Right side */}
             <div className="flex flex-col items-start lg:pl-4">
+
               <p className="font-display text-lg font-bold uppercase tracking-[0.05em] text-ink sm:text-xl lg:text-2xl">
                 WE’RE ASKING <span className="text-lime">EVERYONE</span>
               </p>
