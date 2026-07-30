@@ -300,11 +300,11 @@ function Home() {
       <section className="section-cream border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 pt-10 pb-14 sm:px-8 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-20">
           {/* Section label */}
-          <div className="mb-6 lg:mb-8">
-            <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-ink">
+          <div className="mb-8 lg:mb-10">
+            <p className="font-display text-xl sm:text-2xl font-black uppercase tracking-[0.06em] text-ink">
               THE HUMAN ARCHIVE
             </p>
-            <div className="mt-3 h-[4px] w-20 bg-lime" aria-hidden />
+            <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
           </div>
 
           {/* Editorial header — split on desktop, aligned tops */}
@@ -320,22 +320,23 @@ function Home() {
 
             {/* Right side */}
             <div className="flex flex-col items-start lg:pl-4">
-
-              <p className="font-display text-lg font-bold uppercase tracking-[0.05em] text-ink sm:text-xl lg:text-2xl">
+              <p className="font-display text-[clamp(1.5rem,3vw,2.25rem)] font-black uppercase leading-[0.95] tracking-[0.02em] text-ink">
                 WE’RE ASKING <span className="text-lime">EVERYONE</span>
               </p>
-              <p className="mt-4 max-w-md text-lg leading-relaxed text-ink/70 sm:text-xl/relaxed">
-                A living, growing archive of human perspective.
+              <p className="mt-5 max-w-sm text-lg leading-snug text-ink/75 sm:text-xl lg:text-2xl">
+                A living, growing archive
+                <br />
+                of human perspective.
               </p>
 
               <Link
                 to="/the-human-archive"
-                className="group mt-6 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:mt-7 sm:px-6 sm:py-3 sm:text-sm"
+                className="group mt-7 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full bg-lime px-6 py-3 text-xs font-bold uppercase tracking-widest text-ink transition-colors hover:bg-lime/90 sm:mt-8 sm:px-8 sm:py-4 sm:text-sm"
               >
                 EXPLORE THE HUMAN ARCHIVE
                 <span
                   aria-hidden
-                  className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
+                  className="text-base font-black text-ink sm:text-lg"
                 >
                   →
                 </span>
@@ -371,7 +372,6 @@ function Home() {
               </figure>
             ))}
           </div>
-
         </div>
       </section>
 
