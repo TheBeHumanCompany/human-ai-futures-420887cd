@@ -176,7 +176,7 @@ function Home() {
           <div className="hidden lg:block" aria-hidden />
 
           {/* RIGHT COLUMN — CAPABILITIES */}
-          <div className="mt-64 flex flex-col justify-center sm:mt-40 lg:mt-0">
+          <div className="mt-64 flex flex-col justify-center sm:mt-40 md:mt-20 lg:mt-0">
 
 
             <div className="border-t border-border">
