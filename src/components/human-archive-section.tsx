@@ -62,7 +62,7 @@ export function HumanArchiveSection() {
             <p className="font-display text-2xl font-bold uppercase tracking-[0.02em] text-ink sm:text-3xl md:whitespace-nowrap">
               We’re asking <span className="text-lime">Everyone</span>
             </p>
-            <p className="mt-4 text-base leading-relaxed text-ink/65 sm:text-lg">
+            <p className="mt-8 text-base leading-relaxed text-ink/65 sm:text-lg">
               A living, growing archive
               <br />
               of human perspective.
@@ -105,7 +105,7 @@ export function HumanArchiveSection() {
             <ellipse cx="12" cy="12" rx="4" ry="9" />
             <path d="M3 12h18" />
           </svg>
-          <span className="whitespace-nowrap">A global archive. Infinite perspectives.</span>
+          
           <span className="hidden h-px flex-1 bg-ink/15 sm:block" aria-hidden />
           <span className="ml-auto whitespace-nowrap sm:ml-0">No. 0004</span>
         </div>
