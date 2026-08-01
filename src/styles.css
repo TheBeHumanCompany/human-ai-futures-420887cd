@@ -193,3 +193,27 @@
     transform: none;
   }
 }
+
+/* Standardized section labels */
+@utility section-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@utility section-label-dark {
+  color: var(--lime);
+}
+
+@utility section-label-light {
+  color: var(--ink);
+}
+
+@utility section-label-rule {
+  margin-top: 0.75rem;
+  height: 3px;
+  width: 4rem;
+  background-color: var(--lime);
+}
