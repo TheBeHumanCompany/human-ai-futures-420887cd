@@ -300,48 +300,42 @@ function Home() {
       <section className="section-cream border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 pt-10 pb-14 sm:px-8 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-20">
           {/* Section label */}
-          <div className="mb-8 lg:mb-10">
-            <p className="font-display text-sm font-black uppercase tracking-[0.08em] text-ink">
+          <div className="mb-6 lg:mb-8">
+            <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-ink">
               THE HUMAN ARCHIVE
             </p>
-            <div className="mt-3 h-[4px] w-16 bg-lime" aria-hidden />
+            <div className="mt-3 h-[4px] w-20 bg-lime" aria-hidden />
           </div>
 
           {/* Editorial header — split on desktop, aligned tops */}
-          <div className="grid items-stretch gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
+          <div className="grid gap-10 md:grid-cols-2 md:gap-10 lg:gap-16">
             {/* Left side */}
             <div>
-              <h2 className="display text-[clamp(2.75rem,7.5vw,5.5rem)] font-extrabold leading-[0.9] tracking-[0.01em] text-ink">
-                WHAT DOES IT
+              <h2 className="display text-[clamp(2.5rem,6.5vw,5rem)] leading-[0.92] text-ink">
+                WHAT DOES IT MEAN
                 <br />
-                MEAN TO
-                <br />
-                BE HUMAN?
+                TO BE HUMAN?
               </h2>
             </div>
 
-            {/* Right side — soft panel */}
-            <div className="flex flex-col items-start justify-center bg-ink/[0.04] px-6 py-8 sm:px-10 sm:py-12 lg:px-14">
-              <p className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-black uppercase leading-[0.95] tracking-[0.02em] text-ink">
-                WE’RE ASKING{" "}
-                <span className="text-lime [-webkit-text-fill-color:currentColor] [text-shadow:none]">
-                  EVERYONE
-                </span>
+            {/* Right side */}
+            <div className="flex flex-col items-start lg:pl-4">
+
+              <p className="font-display text-lg font-bold uppercase tracking-[0.05em] text-ink sm:text-xl lg:text-2xl">
+                WE’RE ASKING <span className="text-lime">EVERYONE</span>
               </p>
-              <p className="mt-5 max-w-md text-xl leading-snug text-ink/80 sm:text-2xl lg:text-[1.75rem]">
-                A living, growing archive
-                <br />
-                of human perspective.
+              <p className="mt-4 max-w-md text-lg leading-relaxed text-ink/70 sm:text-xl/relaxed">
+                A living, growing archive of human perspective.
               </p>
 
               <Link
                 to="/the-human-archive"
-                className="group mt-7 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full bg-lime px-7 py-3.5 text-xs font-black uppercase tracking-widest text-ink transition-colors hover:bg-lime/90 sm:mt-8 sm:px-9 sm:py-4 sm:text-sm"
+                className="group mt-6 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:mt-7 sm:px-6 sm:py-3 sm:text-sm"
               >
                 EXPLORE THE HUMAN ARCHIVE
                 <span
                   aria-hidden
-                  className="text-base font-black text-ink transition-transform group-hover:translate-x-0.5 sm:text-lg"
+                  className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
                 >
                   →
                 </span>
@@ -349,9 +343,8 @@ function Home() {
             </div>
           </div>
 
-
           {/* Portrait grid — swipeable on mobile, centered row on desktop */}
-          <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible lg:mt-16 lg:grid-cols-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mt-12 sm:grid sm:grid-cols-4 sm:gap-5 sm:overflow-visible lg:mt-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {ARCHIVE.map((person, i) => (
               <figure
                 key={`archive-${i}`}
@@ -371,14 +364,14 @@ function Home() {
                   <p className="font-display text-sm font-bold uppercase tracking-[0.04em] text-ink">
                     {person.name}
                   </p>
-                  <p className="mt-0.5 text-xs tracking-wider text-ink/60">
+                  <p className="mt-0.5 text-xs uppercase tracking-wider text-ink/60">
                     {person.location}
                   </p>
-                  <div className="mt-3 h-[3px] w-10 bg-lime" aria-hidden />
                 </figcaption>
               </figure>
             ))}
           </div>
+
         </div>
       </section>
 
