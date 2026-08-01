@@ -58,12 +58,9 @@ export function HumanArchiveSection() {
           </div>
 
           {/* Right */}
-          <div className="border-t border-ink/15 pt-8 md:border-l md:border-t-0 md:pl-12 md:pt-1 lg:pl-16">
-            <p className="font-display text-2xl font-bold uppercase tracking-[0.02em] text-ink sm:text-3xl md:whitespace-nowrap">
-              We’re asking <span className="text-lime">Everyone</span>
-            </p>
-            <p className="mt-8 text-base leading-relaxed text-ink/65 sm:text-lg">
-              A living, growing archive
+          <div className="border-t border-ink/15 pt-8 md:border-l md:border-t-0 md:pl-12 md:pt-0 lg:pl-16">
+            <p className="text-base leading-relaxed text-ink/65 sm:text-lg">
+              A growing archive
               <br />
               of human perspective.
             </p>
@@ -92,23 +89,6 @@ export function HumanArchiveSection() {
           ))}
         </div>
 
-        {/* Archive footer */}
-        <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[9px] uppercase tracking-[0.18em] text-ink/50 sm:text-[11px]">
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden
-            className="h-4 w-4 shrink-0 stroke-current"
-            fill="none"
-            strokeWidth="1.25"
-          >
-            <circle cx="12" cy="12" r="9" />
-            <ellipse cx="12" cy="12" rx="4" ry="9" />
-            <path d="M3 12h18" />
-          </svg>
-          
-          <span className="hidden h-px flex-1 bg-ink/15 sm:block" aria-hidden />
-          <span className="ml-auto whitespace-nowrap sm:ml-0">No. 0004</span>
-        </div>
       </div>
     </section>
   );
