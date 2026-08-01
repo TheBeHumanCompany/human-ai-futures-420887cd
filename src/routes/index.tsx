@@ -312,7 +312,9 @@ function Home() {
             {/* Left side */}
             <div>
               <h2 className="display text-[clamp(2.75rem,7.5vw,5.5rem)] font-extrabold leading-[0.9] tracking-[0.01em] text-ink">
-                WHAT DOES IT MEAN
+                WHAT DOES IT
+                <br />
+                MEAN
                 <br />
                 TO BE HUMAN?
               </h2>
@@ -321,7 +323,10 @@ function Home() {
             {/* Right side */}
             <div className="flex flex-col items-start lg:pl-4">
               <p className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-black uppercase leading-[0.95] tracking-[0.02em] text-ink">
-                WE’RE ASKING <span className="text-lime">EVERYONE</span>
+                WE’RE ASKING{" "}
+                <span className="text-lime [-webkit-text-fill-color:currentColor] [text-shadow:none]">
+                  EVERYONE
+                </span>
               </p>
               <p className="mt-5 max-w-md text-xl leading-snug text-ink/80 sm:text-2xl lg:text-[1.75rem]">
                 A living, growing archive
