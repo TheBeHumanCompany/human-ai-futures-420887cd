@@ -66,23 +66,23 @@ export const PRINCIPLES = [
 export const ARCHIVE = [
   {
     image: portrait1,
-    name: "NAME",
-    location: "CITY, COUNTRY",
+    name: "LINA",
+    location: "Toronto, Canada",
   },
   {
     image: portrait2,
-    name: "NAME",
-    location: "CITY, COUNTRY",
+    name: "RAHUL",
+    location: "Mumbai, India",
   },
   {
     image: portrait3,
-    name: "NAME",
-    location: "CITY, COUNTRY",
+    name: "AMARA",
+    location: "Atlanta, USA",
   },
   {
     image: portrait4,
-    name: "NAME",
-    location: "CITY, COUNTRY",
+    name: "JAMES",
+    location: "Sydney, Australia",
   },
 ] as const;
 
