@@ -14,7 +14,8 @@ import {
   siPocketcasts,
 } from "simple-icons";
 import { SocialSection } from "@/components/social-section";
-import { ARCHIVE, EPISODES, PRINCIPLES } from "@/lib/content";
+import { HumanArchiveSection } from "@/components/human-archive-section";
+import { EPISODES, PRINCIPLES } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -297,85 +298,8 @@ function Home() {
 
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
-      <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 pt-10 pb-14 sm:px-8 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-20">
-          {/* Section label */}
-          <div className="mb-6 lg:mb-8">
-            <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-ink">
-              THE HUMAN ARCHIVE
-            </p>
-            <div className="mt-3 h-[4px] w-20 bg-lime" aria-hidden />
-          </div>
+      <HumanArchiveSection />
 
-          {/* Editorial header — split on desktop, aligned tops */}
-          <div className="grid gap-10 md:grid-cols-2 md:gap-10 lg:gap-16">
-            {/* Left side */}
-            <div>
-              <h2 className="display text-[clamp(2.5rem,6.5vw,5rem)] leading-[0.92] text-ink">
-                WHAT DOES IT MEAN
-                <br />
-                TO BE HUMAN?
-              </h2>
-            </div>
-
-            {/* Right side — subtle panel */}
-            <div className="rounded-2xl bg-ink/[0.045] p-6 sm:p-8 lg:p-10">
-              <p className="font-display text-lg font-bold uppercase tracking-[0.05em] text-ink sm:text-xl lg:text-2xl">
-                WE’RE ASKING{" "}
-                <span className="bg-lime px-1.5 py-0.5 text-ink">EVERYONE</span>
-              </p>
-              <p className="mt-4 max-w-md text-lg leading-relaxed text-ink/70 sm:text-xl/relaxed">
-                A living, growing archive of human perspective.
-              </p>
-
-              <Link
-                to="/the-human-archive"
-                className="group mt-6 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full bg-lime px-6 py-3 text-xs font-bold uppercase tracking-widest text-ink transition-colors hover:bg-ink hover:text-lime sm:mt-7 sm:px-8 sm:py-3.5 sm:text-sm"
-              >
-                EXPLORE THE HUMAN ARCHIVE
-                <span aria-hidden className="text-base font-black sm:text-lg">
-                  →
-                </span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Portrait grid — swipeable on mobile, centered row on desktop */}
-          <div className="mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mt-16 sm:grid sm:grid-cols-4 sm:gap-5 sm:overflow-visible lg:mt-20 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {ARCHIVE.map((person, i) => (
-              <figure
-                key={`archive-${i}`}
-                className="w-[82%] shrink-0 snap-start sm:w-auto"
-              >
-                <div className="relative aspect-[4/5] overflow-hidden bg-ink">
-                  <img
-                    src={person.image}
-                    alt={`Portrait of ${person.name} from ${person.location}`}
-                    loading="lazy"
-                    width={800}
-                    height={1000}
-                    className="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
-                  />
-                  <div className="pointer-events-none absolute left-3 top-3 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-cream/80 sm:left-4 sm:top-4">
-                    <div>THE HUMAN ARCHIVE</div>
-                    <div>{person.no}</div>
-                  </div>
-                </div>
-                <figcaption className="mt-3 sm:mt-4">
-                  <p className="font-display text-sm font-bold uppercase tracking-[0.04em] text-ink">
-                    {person.name}
-                  </p>
-                  <p className="mt-0.5 text-xs tracking-wide text-ink/60">
-                    {person.location}
-                  </p>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-
-
-        </div>
-      </section>
 
       {/* ---------- PODCAST ---------- */}
       <section className="section-ink border-t border-border">
