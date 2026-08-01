@@ -79,10 +79,10 @@ function Home() {
       <section className="section-cream border-b border-ink/10">
         <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-6 pt-14 pb-8 sm:px-8 sm:pb-14 lg:grid-cols-[2fr_3fr] lg:gap-12 lg:py-20">
           <div className="min-w-0">
-            <p className="font-display text-xl sm:text-2xl font-black uppercase tracking-[0.06em] text-ink">
+            <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
               WHY WE EXIST
             </p>
-            <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
+            <div className="section-label-rule" aria-hidden />
             <p className="mt-8 w-full max-w-none font-display text-[clamp(2rem,9.75vw,2.45rem)] font-black uppercase leading-[0.92] tracking-[0.01em] text-ink sm:text-[clamp(2.75rem,8vw,3.5rem)] lg:text-[clamp(1.875rem,3.8vw,3.25rem)]">
               <span className="sm:hidden">
                 Being <span className="font-black text-lime">human</span> is
@@ -154,7 +154,7 @@ function Home() {
         <div className="relative z-10 mx-auto grid max-w-[1400px] gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[34%_22%_44%] lg:items-center lg:gap-8 lg:py-28">
           {/* LEFT COLUMN */}
           <div className="flex max-w-xl flex-col justify-center">
-            <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-lime">
+            <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
               OUR SOLUTION
             </p>
             <h2 className="display mt-5 text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.92]">
@@ -306,7 +306,7 @@ function Home() {
         <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 md:py-16 lg:py-24">
           {/* Compact intro */}
           <div className="max-w-2xl">
-            <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-lime">
+            <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
               THE PEOPLE-DRIVEN CEO PODCAST
             </p>
             <h2 className="display mt-5 whitespace-nowrap text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.02] tracking-[0.01em]">

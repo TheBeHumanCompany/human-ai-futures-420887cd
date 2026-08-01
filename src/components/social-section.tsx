@@ -110,12 +110,11 @@ export function SocialSection() {
       <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 lg:py-20">
         {/* Intro */}
         <div className="min-w-0">
-          <p className="font-display text-xl font-extrabold uppercase tracking-[0.08em] text-foreground sm:text-2xl">
-            Stay Connected
+          <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
+            STAY CONNECTED
           </p>
-          <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
 
-          <h2 className="display mt-4 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
+          <h2 className="display mt-5 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
             Follow the journey
           </h2>
 
