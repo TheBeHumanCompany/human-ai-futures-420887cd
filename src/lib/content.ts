@@ -66,25 +66,30 @@ export const PRINCIPLES = [
 export const ARCHIVE = [
   {
     image: portrait1,
-    name: "NAME",
-    location: "CITY, COUNTRY",
+    name: "LINA",
+    location: "Toronto, Canada",
+    no: "No. 046",
   },
   {
     image: portrait2,
-    name: "NAME",
-    location: "CITY, COUNTRY",
+    name: "RAHUL",
+    location: "Mumbai, India",
+    no: "No. 021",
   },
   {
     image: portrait3,
-    name: "NAME",
-    location: "CITY, COUNTRY",
+    name: "AMARA",
+    location: "Nairobi, Kenya",
+    no: "No. 032",
   },
   {
     image: portrait4,
-    name: "NAME",
-    location: "CITY, COUNTRY",
+    name: "JAMES",
+    location: "Sydney, Australia",
+    no: "No. 017",
   },
 ] as const;
+
 
 export const EPISODES = [
   { n: "12", title: "The CEO who fired the roadmap", guest: "Marta Nilsen", length: "48 min" },
