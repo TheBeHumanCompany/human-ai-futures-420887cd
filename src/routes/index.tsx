@@ -370,9 +370,10 @@ function Home() {
                   <p className="font-display text-sm font-bold uppercase tracking-[0.04em] text-ink">
                     {person.name}
                   </p>
-                  <p className="mt-0.5 text-xs uppercase tracking-wider text-ink/60">
+                  <p className="mt-0.5 text-xs tracking-wider text-ink/60">
                     {person.location}
                   </p>
+                  <div className="mt-3 h-[3px] w-10 bg-lime" aria-hidden />
                 </figcaption>
               </figure>
             ))}
