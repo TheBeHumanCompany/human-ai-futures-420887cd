@@ -14,7 +14,8 @@ import {
   siPocketcasts,
 } from "simple-icons";
 import { SocialSection } from "@/components/social-section";
-import { ARCHIVE, EPISODES, PRINCIPLES } from "@/lib/content";
+import { HumanArchiveSection } from "@/components/human-archive-section";
+import { EPISODES, PRINCIPLES } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
