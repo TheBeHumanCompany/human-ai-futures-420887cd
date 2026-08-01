@@ -308,20 +308,20 @@ function Home() {
           </div>
 
           {/* Editorial header — split on desktop, aligned tops */}
-          <div className="grid gap-10 md:grid-cols-2 md:gap-10 lg:gap-16">
+          <div className="grid items-stretch gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
             {/* Left side */}
             <div>
               <h2 className="display text-[clamp(2.75rem,7.5vw,5.5rem)] font-extrabold leading-[0.9] tracking-[0.01em] text-ink">
                 WHAT DOES IT
                 <br />
-                MEAN
+                MEAN TO
                 <br />
-                TO BE HUMAN?
+                BE HUMAN?
               </h2>
             </div>
 
-            {/* Right side */}
-            <div className="flex flex-col items-start lg:pl-4">
+            {/* Right side — soft panel */}
+            <div className="flex flex-col items-start justify-center bg-ink/[0.04] px-6 py-8 sm:px-10 sm:py-12 lg:px-14">
               <p className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-black uppercase leading-[0.95] tracking-[0.02em] text-ink">
                 WE’RE ASKING{" "}
                 <span className="text-lime [-webkit-text-fill-color:currentColor] [text-shadow:none]">
@@ -348,6 +348,7 @@ function Home() {
               </Link>
             </div>
           </div>
+
 
           {/* Portrait grid — swipeable on mobile, centered row on desktop */}
           <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible lg:mt-16 lg:grid-cols-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
