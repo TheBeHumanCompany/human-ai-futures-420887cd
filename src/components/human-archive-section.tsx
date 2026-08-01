@@ -80,7 +80,7 @@ export function HumanArchiveSection() {
         </div>
 
         {/* Portraits */}
-        <div className="-mx-6 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 sm:mx-0 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mx-0 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {ARCHIVE.map((person) => (
             <PortraitCard
               key={person.no}
@@ -93,7 +93,7 @@ export function HumanArchiveSection() {
         </div>
 
         {/* Archive footer */}
-        <div className="mt-8 flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.18em] text-ink/50 sm:text-[11px]">
+        <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[9px] uppercase tracking-[0.18em] text-ink/50 sm:text-[11px]">
           <svg
             viewBox="0 0 24 24"
             aria-hidden
