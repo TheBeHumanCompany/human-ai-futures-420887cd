@@ -46,10 +46,10 @@ export function HumanArchiveSection() {
         <div className="grid gap-8 md:grid-cols-[1.35fr_1fr] md:gap-0">
           {/* Left */}
           <div className="md:pr-12 lg:pr-16">
-            <p className="font-display text-xs font-bold uppercase tracking-[0.2em] text-ink sm:text-sm">
-              The Human Archive
+            <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
+              THE HUMAN ARCHIVE
             </p>
-            <div className="mt-2.5 h-[3px] w-14 bg-lime" aria-hidden />
+            <div className="section-label-rule" aria-hidden />
             <h2 className="archive-question mt-6 text-[clamp(2.1rem,5.4vw,4.25rem)] text-ink">
               What does it mean
               <br />
