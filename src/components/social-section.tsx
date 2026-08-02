@@ -107,20 +107,20 @@ const PLATFORMS: { name: string; Icon: ComponentType<IconProps>; href: string }[
 export function SocialSection() {
   return (
     <section className="section-ink">
-      <div className="mx-auto max-w-[1400px] px-6 pb-16 pt-12 sm:px-8 sm:pt-14 lg:pb-20 lg:pt-16">
+      <div className="mx-auto max-w-[1400px] px-6 pb-20 pt-14 sm:px-8 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
         {/* Intro */}
         <div className="min-w-0">
           <h2 className="display text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
             Follow the journey
           </h2>
 
-          <p className="mt-4 max-w-md text-base leading-relaxed text-foreground/70 sm:text-lg">
+          <p className="mt-6 max-w-md text-base leading-relaxed text-lime sm:mt-7 sm:text-lg lg:mt-8">
             Ideas. Conversations. Human stories.
           </p>
         </div>
 
         {/* Platform list */}
-        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:mt-12 lg:grid-cols-7 lg:gap-x-6 lg:gap-y-12">
+        <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 sm:mt-16 sm:grid-cols-3 md:grid-cols-4 lg:mt-[4.5rem] lg:grid-cols-7 lg:gap-x-6 lg:gap-y-12">
           {PLATFORMS.map(({ name, Icon, href }) => (
             <a
               key={name}
