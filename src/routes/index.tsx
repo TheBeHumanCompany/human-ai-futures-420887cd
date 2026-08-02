@@ -306,10 +306,7 @@ function Home() {
             <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
               THE PEOPLE-DRIVEN CEO PODCAST
             </p>
-            <h2 className="display mt-5 sm:mt-6 lg:mt-8 whitespace-nowrap text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.02] tracking-[0.01em]">
-              Leadership for the New Human Era
-            </h2>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground sm:mt-5 lg:mt-6">
               Conversations on leadership, AI and culture — where humanity becomes the competitive
               advantage.
             </p>
