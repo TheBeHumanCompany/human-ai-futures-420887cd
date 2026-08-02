@@ -3,6 +3,7 @@ import heroImage from "@/assets/hero.png";
 import founderVideoPoster from "@/assets/why-we-exist-video.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
+import newHumanEraImage from "@/assets/new-human-era.jpg";
 
 import { Users, Shield, Target } from "lucide-react";
 import { SocialSection } from "@/components/social-section";
