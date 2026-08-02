@@ -78,17 +78,17 @@ function Home() {
             <div className="section-label-rule mt-5 sm:mt-6" aria-hidden />
 
             <h2 className="font-display mt-10 text-[clamp(2.2rem,8.5vw,3rem)] font-extrabold uppercase leading-[1.06] tracking-[0.01em] text-ink sm:mt-12 sm:text-[clamp(2.9rem,6.1vw,3.8rem)] lg:mt-14 lg:text-[clamp(3rem,4.2vw,4.9rem)] lg:leading-[1.04]">
-              Being human is
+              BEING HUMAN IS
               <br />
-              what we are
+              WHAT WE ARE
               <br />
-              born with
+              BORN WITH
               <span className="mt-10 block sm:mt-12">
-                Humanity is
+                HUMANITY IS
                 <br />
-                what we
+                WHAT WE
                 <br />
-                practice
+                PRACTICE
               </span>
             </h2>
           </div>
