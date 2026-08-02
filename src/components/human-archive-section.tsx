@@ -117,13 +117,12 @@ export function HumanArchiveSection() {
 
           {/* Title */}
           <div className="md:order-1 md:pr-12 lg:pr-16">
-            <h2 className="display text-[clamp(2.1rem,8vw,3rem)] font-extrabold leading-[0.95] tracking-[0.01em] text-ink md:text-[4.4vw] lg:text-[clamp(2.1rem,5.6vw,4.4rem)]">
+            <h2 className="archive-question text-[clamp(2.3rem,9vw,3.5rem)] text-ink md:text-[5vw] lg:text-[clamp(2.3rem,6.4vw,5.4rem)]">
               What does it mean
               <br />
-              to be <span className="text-lime">human</span>?
+              to be human?
             </h2>
           </div>
-
 
           <div className="md:order-2 md:border-l md:border-ink/15 md:pl-12 lg:pl-16">
             <div className="md:pt-4 lg:pt-8">

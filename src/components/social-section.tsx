@@ -110,14 +110,17 @@ export function SocialSection() {
       <div className="mx-auto max-w-[1400px] px-6 py-16 text-center sm:px-8 sm:py-20 lg:py-24">
         {/* Intro */}
         <div className="mx-auto min-w-0 max-w-3xl">
-          <h2 className="archive-question text-[clamp(2.5rem,8vw,4.75rem)] text-foreground">
+          <h2 className="display text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] tracking-tight text-foreground">
             Follow the journey
           </h2>
+
+          <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-lime sm:mt-6 sm:text-lg lg:mt-8">
+            Ideas. Conversations. Human stories.
+          </p>
         </div>
 
         {/* Platform list */}
         <div className="mx-auto mt-12 grid grid-cols-2 place-items-center gap-x-6 gap-y-10 sm:mt-14 sm:grid-cols-4 lg:mt-20 lg:grid-cols-7 lg:gap-x-6 lg:gap-y-12">
-
           {PLATFORMS.map(({ name, Icon, href }) => (
             <a
               key={name}
