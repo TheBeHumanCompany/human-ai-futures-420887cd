@@ -47,12 +47,12 @@ function PortraitCard({
             className="h-full w-full object-cover object-center transition-transform duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] group-focus-within:scale-[1.03]"
           />
           <div className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/10 group-focus-within:bg-ink/10" />
-          <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2">
-            <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-cream/60">
-              Human Archive
+          <div className="pointer-events-none absolute left-3 top-3 flex flex-col gap-0.5">
+            <span className="font-mono text-[9px] uppercase leading-tight tracking-[0.18em] text-cream/75">
+              The Human Archive
             </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-cream/80">
-              {no}
+            <span className="font-mono text-[9px] uppercase leading-tight tracking-[0.18em] text-cream/75">
+              No. {no}
             </span>
           </div>
         </div>
@@ -61,8 +61,8 @@ function PortraitCard({
             {name}
           </p>
           <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-ink/55">{location}</p>
-          <span className="mt-3 block h-px w-[88%] bg-ink/15" aria-hidden />
         </figcaption>
+
       </Link>
     </figure>
   );
