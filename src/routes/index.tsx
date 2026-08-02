@@ -70,14 +70,14 @@ function Home() {
 
       {/* ---------- WHY WE EXIST ---------- */}
       <section className="section-cream border-b border-ink/10">
-        <div className="mx-auto grid max-w-[1360px] items-center gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[38%_62%] lg:gap-16 lg:px-14 lg:py-24">
+        <div className="mx-auto grid max-w-[1360px] items-start gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[42%_58%] lg:gap-16 lg:px-14 lg:py-28">
           <div className="min-w-0">
             <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
               WHY WE EXIST
             </p>
             <div className="section-label-rule mt-5 sm:mt-6" aria-hidden />
 
-            <h2 className="font-display mt-10 text-[clamp(2.2rem,8.5vw,3rem)] font-extrabold uppercase leading-[1.06] tracking-[0.01em] text-ink sm:mt-12 sm:text-[clamp(2.9rem,6.1vw,3.8rem)] lg:mt-14 lg:text-[clamp(3rem,4.2vw,4.9rem)] lg:leading-[1.04]">
+            <h2 className="display mt-10 text-[clamp(2.6rem,10vw,3.4rem)] font-extrabold uppercase leading-[0.98] tracking-[0.01em] text-ink sm:mt-12 sm:text-[clamp(3.2rem,7vw,4.4rem)] lg:mt-14 lg:text-[clamp(3.4rem,4.8vw,5.25rem)] lg:leading-[0.94]">
               BEING HUMAN IS
               <br />
               WHAT WE ARE
@@ -88,12 +88,13 @@ function Home() {
                 <br />
                 WHAT WE
                 <br />
-                PRACTICE
+                <span className="text-lime">PRACTICE</span>
               </span>
             </h2>
           </div>
 
-          <figure className="group relative aspect-[16/9] overflow-hidden rounded-lg">
+          <figure className="group relative aspect-[16/9] overflow-hidden rounded-lg lg:mt-32 lg:self-center">
+
             <img
               src={founderVideoPoster}
               alt="Shane speaking directly to camera in a warmly lit room with BE HUMAN lettering on the wall"
