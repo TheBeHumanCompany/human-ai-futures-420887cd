@@ -17,6 +17,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BeHumanAiRouteImport } from './routes/be-human-ai'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HumanArchiveSlugRouteImport } from './routes/human-archive.$slug'
 
 const TheNewHumanEraRoute = TheNewHumanEraRouteImport.update({
   id: '/the-new-human-era',
@@ -58,6 +59,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HumanArchiveSlugRoute = HumanArchiveSlugRouteImport.update({
+  id: '/human-archive/$slug',
+  path: '/human-archive/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
+  '/human-archive/$slug': typeof HumanArchiveSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
+  '/human-archive/$slug': typeof HumanArchiveSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
+  '/human-archive/$slug': typeof HumanArchiveSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
+    | '/human-archive/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
+    | '/human-archive/$slug'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
+    | '/human-archive/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TheHumanArchiveRoute: typeof TheHumanArchiveRoute
   TheNewHumanEraRoute: typeof TheNewHumanEraRoute
+  HumanArchiveSlugRoute: typeof HumanArchiveSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/human-archive/$slug': {
+      id: '/human-archive/$slug'
+      path: '/human-archive/$slug'
+      fullPath: '/human-archive/$slug'
+      preLoaderRoute: typeof HumanArchiveSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,17 +224,8 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TheHumanArchiveRoute: TheHumanArchiveRoute,
   TheNewHumanEraRoute: TheNewHumanEraRoute,
+  HumanArchiveSlugRoute: HumanArchiveSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

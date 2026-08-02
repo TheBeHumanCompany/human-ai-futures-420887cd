@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { ARCHIVE } from "@/lib/content";
 
@@ -6,39 +7,63 @@ function PortraitCard({
   name,
   location,
   no,
+  slug,
 }: {
   image: string;
   name: string;
   location: string;
   no: string;
+  slug: string;
 }) {
+  const start = useRef<{ x: number; y: number } | null>(null);
+  const swiping = useRef(false);
+
   return (
-    <figure className="w-[74vw] shrink-0 snap-start sm:w-auto">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-ink">
-        <img
-          src={image}
-          alt={`Portrait of ${name} from ${location}`}
-          loading="lazy"
-          width={800}
-          height={1000}
-          className="h-full w-full object-cover object-center"
-        />
-        <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2">
-          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-cream/60">
-            Human Archive
-          </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-cream/80">
-            {no}
-          </span>
+    <figure className="group w-[74vw] shrink-0 snap-start transition-[flex-grow,flex-basis] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:w-auto lg:min-w-0 lg:flex-[1_1_0%] lg:hover:flex-[1.16_1_0%] lg:focus-within:flex-[1.16_1_0%]">
+      <Link
+        to="/human-archive/$slug"
+        params={{ slug }}
+        aria-label={`View ${name}'s Human Archive profile`}
+        onPointerDown={(e) => {
+          start.current = { x: e.clientX, y: e.clientY };
+          swiping.current = false;
+        }}
+        onPointerMove={(e) => {
+          if (!start.current) return;
+          if (Math.abs(e.clientX - start.current.x) > 10) swiping.current = true;
+        }}
+        onClick={(e) => {
+          if (swiping.current) e.preventDefault();
+        }}
+        className="block cursor-pointer rounded-md outline-none transition-transform duration-300 ease-out focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-cream active:scale-[0.99]"
+      >
+        <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-ink">
+          <img
+            src={image}
+            alt={`Portrait of ${name} from ${location}`}
+            loading="lazy"
+            width={800}
+            height={1000}
+            className="h-full w-full object-cover object-center transition-transform duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] group-focus-within:scale-[1.03]"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/10 group-focus-within:bg-ink/10" />
+          <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2">
+            <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-cream/60">
+              Human Archive
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-cream/80">
+              {no}
+            </span>
+          </div>
         </div>
-      </div>
-      <figcaption className="mt-3 text-left">
-        <p className="font-display text-base font-bold uppercase tracking-[0.06em] text-ink">
-          {name}
-        </p>
-        <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-ink/55">{location}</p>
-        <span className="mt-3 block h-px w-[88%] bg-ink/15" aria-hidden />
-      </figcaption>
+        <figcaption className="mt-3 text-left">
+          <p className="font-display text-base font-bold uppercase tracking-[0.06em] text-ink">
+            {name}
+          </p>
+          <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-ink/55">{location}</p>
+          <span className="mt-3 block h-px w-[88%] bg-ink/15" aria-hidden />
+        </figcaption>
+      </Link>
     </figure>
   );
 }
