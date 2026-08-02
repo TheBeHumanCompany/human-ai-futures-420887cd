@@ -107,7 +107,7 @@ export function HumanArchiveSection() {
         </div>
 
         {/* Portraits */}
-        <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mx-0 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mx-0 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:flex lg:snap-none lg:items-start [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {ARCHIVE.map((person) => (
             <PortraitCard
               key={person.no}
@@ -115,6 +115,7 @@ export function HumanArchiveSection() {
               name={person.name}
               location={person.location}
               no={person.no}
+              slug={person.slug}
             />
           ))}
         </div>
