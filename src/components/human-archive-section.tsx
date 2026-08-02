@@ -50,7 +50,7 @@ export function HumanArchiveSection() {
               THE HUMAN ARCHIVE
             </p>
             <div className="section-label-rule" aria-hidden />
-            <h2 className="archive-question mt-6 text-[clamp(2.1rem,5.4vw,4.25rem)] text-ink">
+            <h2 className="archive-question mt-5 sm:mt-6 lg:mt-8 text-[clamp(2.1rem,5.4vw,4.25rem)] text-ink">
               What does it mean
               <br />
               to be human?
