@@ -4,15 +4,7 @@ import manifestoImage from "@/assets/manifesto.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
 
-import { Users, Shield, Target, Headphones } from "lucide-react";
-import {
-  siApplepodcasts,
-  siSpotify,
-  siIheartradio,
-  siCastbox,
-  siRss,
-  siPocketcasts,
-} from "simple-icons";
+import { Users, Shield, Target } from "lucide-react";
 import { SocialSection } from "@/components/social-section";
 import { HumanArchiveSection } from "@/components/human-archive-section";
 import { EPISODES, PRINCIPLES } from "@/lib/content";
@@ -366,58 +358,6 @@ function Home() {
               </li>
             ))}
           </ul>
-
-
-          {/* Platform availability block */}
-          <div className="mt-12 bg-cream px-6 py-6 sm:px-8 sm:py-7 lg:mt-16">
-            <div className="flex flex-col items-center justify-between gap-5 sm:flex-row">
-              <div className="flex items-center gap-3">
-                <Headphones className="h-5 w-5 text-ink" strokeWidth={1.5} />
-                <p className="font-display text-sm font-black uppercase tracking-[0.06em] text-ink">
-                  Available on all major platforms
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-6" aria-label="Podcast platforms">
-                {/* Apple Podcasts */}
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 text-ink" aria-hidden>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 2.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm-1.1 5.3c.04-.27.28-.47.55-.47h1.1c.27 0 .51.2.55.47l.55 4.7c.04.34-.2.65-.53.72l-.36.08c-.34.07-.62-.16-.66-.5l-.25-2.14-.25 2.14c-.04.34-.32.57-.66.5l-.36-.08c-.33-.07-.57-.38-.53-.72l.55-4.7z" />
-                </svg>
-                {/* Broadcast / Radio */}
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 text-ink" aria-hidden>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm0-2.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zm0-4c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5z" />
-                </svg>
-                {/* Spotify */}
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 text-ink" aria-hidden>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.65 14.85c-.18.3-.56.4-.85.22-2.34-1.43-5.29-1.76-8.76-.96-.33.08-.66-.13-.74-.45-.08-.33.13-.66.45-.74 3.82-.9 7.1-.51 9.74 1.11.29.18.38.56.16.82zm1.24-2.75c-.23.36-.7.48-1.06.25-2.68-1.65-6.76-2.13-9.92-1.17-.4.12-.82-.11-.94-.5-.12-.4.11-.82.5-.94 3.6-1.09 8.08-.56 11.17 1.35.36.23.48.7.25 1.01zm.11-2.86c-3.22-1.91-8.53-2.09-11.6-1.15-.47.14-.97-.13-1.11-.6-.14-.47.13-.97.6-1.11 3.5-1.06 9.34-.85 13.05 1.35.45.26.59.84.33 1.28-.26.44-.83.59-1.27.23z" />
-                </svg>
-                {/* Amazon Music */}
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 text-ink" aria-hidden>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.5 14.5c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5v-4.1c0-.55-.45-1-1-1s-1 .45-1 1v4.1c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5v-7c0-.28.22-.5.5-.5h1c.28 0 .5.22.5.5v2.6c.42-.38.97-.6 1.55-.6 1.66 0 2.95 1.45 2.95 3.1v2.4zM9 9.5c0-.28.22-.5.5-.5h1c.28 0 .5.22.5.5v7c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5v-7zm-2.5 0c0-.28.22-.5.5-.5h1c.28 0 .5.22.5.5v7c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5v-7z" />
-                </svg>
-                {/* iHeartRadio */}
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 text-ink" aria-hidden>
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                  <path d="M12 5c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1s1-.45 1-1V6c0-.55-.45-1-1-1zm-3.5 2c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1V8c0-.55-.45-1-1-1zm7 0c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1V8c0-.55-.45-1-1-1z" />
-                </svg>
-                {/* Castbox */}
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 text-ink" aria-hidden>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c3.87 0 7 3.13 7 7s-3.13 7-7 7-7-3.13-7-7 3.13-7 7-7zm0 2c-2.76 0-5 2.24-5 5s2.24 5 5 5c.83 0 1.5-.67 1.5-1.5S12.83 14.5 12 14.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5c2.76 0 5-2.24 5-5s-2.24-5-5-5z" />
-                </svg>
-                {/* RSS */}
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 text-ink" aria-hidden>
-                  <path d="M4.5 17.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5-2.5 1.12-2.5 2.5zM4 11c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1zm0-4c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1V8c0-.55-.45-1-1-1zm2 2c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1zm3 3c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1z" />
-                </svg>
-                {/* Pocket Casts */}
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 text-ink" aria-hidden>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c3.87 0 7 3.13 7 7 0 2.76-1.6 5.15-3.92 6.3-.16-.68-.52-1.28-1.02-1.73.9-.72 1.44-1.82 1.44-3.07 0-2.21-1.79-4-4-4s-4 1.79-4 4c0 1.25.54 2.35 1.44 3.07-.5.45-.86 1.05-1.02 1.73C5.6 17.15 4 14.76 4 12c0-3.87 3.13-7 7-7z" />
-                </svg>
-                {/* Boomplay */}
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 text-ink" aria-hidden>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 14.5h-5c-.28 0-.5-.22-.5-.5v-1c0-.28.22-.5.5-.5h5c.28 0 .5.22.5.5v1c0 .28-.22.5-.5.5zm0-3h-5c-.28 0-.5-.22-.5-.5v-1c0-.28.22-.5.5-.5h5c.28 0 .5.22.5.5v1c0 .28-.22.5-.5.5zm0-3h-5c-.28 0-.5-.22-.5-.5v-1c0-.28.22-.5.5-.5h5c.28 0 .5.22.5.5v1c0 .28-.22.5-.5.5z" />
-                </svg>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
