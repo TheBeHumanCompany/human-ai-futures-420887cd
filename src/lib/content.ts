@@ -54,13 +54,14 @@ export const PRINCIPLES = [
   {
     n: "05",
     title: "Trust wins",
-    body: "Trust compounds over time. It is the foundation of every lasting relationship, team and business.",
+    body: "Trust compounds over time. It is the foundation of every lasting relationship, team and brand.",
   },
   {
     n: "06",
     title: "Character is earned",
-    body: "Character isn't claimed in a statement. It's revealed through the choices you make every day.",
+    body: "Character isn't claimed in a statement. It's revealed in how you show up — every day.",
   },
+
 ] as const;
 
 export const ARCHIVE = [
