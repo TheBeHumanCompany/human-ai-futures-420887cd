@@ -118,9 +118,11 @@ export function HumanArchiveSection() {
           {/* Title */}
           <div className="md:order-1 md:pr-12 lg:pr-16">
             <h2 className="archive-question text-[clamp(2.3rem,9vw,3.5rem)] text-ink md:text-[5vw] lg:text-[clamp(2.3rem,6.4vw,5.4rem)]">
-              What does it mean
+              What does it
               <br />
-              to be human?
+              mean to
+              <br />
+              be <span className="text-lime">human</span>?
             </h2>
           </div>
 
