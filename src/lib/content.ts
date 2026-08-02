@@ -1,7 +1,7 @@
-import portrait1 from "@/assets/portrait-1.jpg";
-import portrait2 from "@/assets/portrait-2.jpg";
-import portrait3 from "@/assets/portrait-3.jpg";
-import portrait4 from "@/assets/portrait-4.jpg";
+import portrait1 from "@/assets/archive-alex.jpg";
+import portrait2 from "@/assets/archive-sofia.jpg";
+import portrait3 from "@/assets/archive-kenji.jpg";
+import portrait4 from "@/assets/archive-amara.jpg";
 
 export const SERVICES = [
   {
@@ -66,31 +66,31 @@ export const PRINCIPLES = [
 export const ARCHIVE = [
   {
     image: portrait1,
-    name: "ADEWOLF",
+    name: "ALEX",
     location: "Vancouver, Canada",
-    no: "001",
-    slug: "adewolf",
+    no: "046",
+    slug: "alex",
   },
   {
     image: portrait2,
-    name: "LAILA",
+    name: "SOFIA",
     location: "Amman, Jordan",
-    no: "002",
-    slug: "laila",
+    no: "032",
+    slug: "sofia",
   },
   {
     image: portrait3,
     name: "KENJI",
     location: "Kyoto, Japan",
-    no: "003",
+    no: "017",
     slug: "kenji",
   },
   {
     image: portrait4,
-    name: "ISABELLA",
-    location: "São Paulo, Brazil",
-    no: "004",
-    slug: "isabella",
+    name: "AMARA",
+    location: "Nairobi, Kenya",
+    no: "081",
+    slug: "amara",
   },
 ] as const;
 
