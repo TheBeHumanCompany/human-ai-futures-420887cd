@@ -107,14 +107,10 @@ const PLATFORMS: { name: string; Icon: ComponentType<IconProps>; href: string }[
 export function SocialSection() {
   return (
     <section className="section-ink">
-      <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 lg:py-20">
+      <div className="mx-auto max-w-[1400px] px-6 pb-16 pt-12 sm:px-8 sm:pt-14 lg:pb-20 lg:pt-16">
         {/* Intro */}
         <div className="min-w-0">
-          <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
-            STAY CONNECTED
-          </p>
-
-          <h2 className="display mt-5 sm:mt-6 lg:mt-8 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
+          <h2 className="display text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
             Follow the journey
           </h2>
 
