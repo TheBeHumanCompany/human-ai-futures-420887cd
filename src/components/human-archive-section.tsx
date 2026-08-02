@@ -82,9 +82,10 @@ function PortraitCard({
           </div>
 
           {/* quote — hover / focus */}
-          <blockquote className="pointer-events-none absolute left-5 top-1/2 max-w-[80%] -translate-y-1/2 translate-y-[calc(-50%+10px)] whitespace-pre-line font-display text-[clamp(1.1rem,2.2vw,1.6rem)] font-light uppercase leading-[1.18] tracking-[0.02em] text-cream opacity-0 transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-[-50%] group-hover:opacity-100 group-focus-within:translate-y-[-50%] group-focus-within:opacity-100">
+          <blockquote className="pointer-events-none absolute left-5 top-[46%] max-w-[80%] whitespace-pre-line font-display text-[clamp(1.1rem,2.2vw,1.6rem)] font-light uppercase leading-[1.18] tracking-[0.02em] text-cream opacity-0 transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
             {quote}
           </blockquote>
+
 
           {/* name / location on image */}
           <figcaption className="pointer-events-none absolute inset-x-5 bottom-5 text-left">
@@ -156,7 +157,9 @@ export function HumanArchiveSection() {
               location={person.location}
               no={person.no}
               slug={person.slug}
+              quote={person.quote}
               featured={i === 1}
+
             />
           ))}
         </div>
