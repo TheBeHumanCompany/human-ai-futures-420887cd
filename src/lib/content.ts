@@ -69,24 +69,28 @@ export const ARCHIVE = [
     name: "ADEWOLF",
     location: "Vancouver, Canada",
     no: "001",
+    slug: "adewolf",
   },
   {
     image: portrait2,
     name: "LAILA",
     location: "Amman, Jordan",
     no: "002",
+    slug: "laila",
   },
   {
     image: portrait3,
     name: "KENJI",
     location: "Kyoto, Japan",
     no: "003",
+    slug: "kenji",
   },
   {
     image: portrait4,
     name: "ISABELLA",
     location: "São Paulo, Brazil",
     no: "004",
+    slug: "isabella",
   },
 ] as const;
 
