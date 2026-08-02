@@ -217,62 +217,68 @@ function Home() {
       </section>
 
       {/* ---------- THE NEW HUMAN ERA ---------- */}
-      <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 sm:py-20 lg:py-28">
-          {/* Top: split intro */}
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16">
-            <div>
-              <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
-                THE NEW HUMAN ERA
+      <section className="nhe-section section-cream border-t border-border">
+        {/* Top: editorial split */}
+        <div className="nhe-split lg:grid lg:grid-cols-[36%_64%] lg:items-stretch">
+          <div className="nhe-panel relative z-10 bg-cream px-6 py-14 sm:px-10 sm:py-16 lg:py-20 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-16">
+            <h2 className="display text-[clamp(3rem,10vw,5.25rem)] font-extrabold leading-[0.92] tracking-[0.01em] text-ink">
+              THE NEW
+              <br />
+              HUMAN
+              <br />
+              <span className="text-lime">ERA</span>
+            </h2>
+            <div className="nhe-accent mt-5 h-[3px] w-16 bg-lime" aria-hidden />
+
+            <div className="mt-8 max-w-md space-y-6 text-base leading-relaxed text-ink/75 sm:text-lg">
+              <p>
+                For generations, status was measured by{" "}
+                <strong className="font-semibold text-ink">what you had</strong>.
               </p>
-              <div className="section-label-rule" aria-hidden />
-
-              <h2 className="display mt-5 text-[clamp(2.5rem,7vw,4.75rem)] font-extrabold leading-[0.95] tracking-[0.01em] text-ink sm:mt-6 lg:mt-8">
-                THE NEW HUMAN <span className="text-lime">ERA</span>
-              </h2>
-
-              <div className="mt-7 max-w-md space-y-4 text-base leading-relaxed text-ink/70 sm:text-lg lg:mt-8 lg:space-y-5">
-                <p>For generations, status was measured by what you had.</p>
-                <p>In the New Human Era, it is measured by who you become.</p>
-              </div>
-
-              <Link
-                to="/the-new-human-era"
-                className="group mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-ink/25 px-7 py-3.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:border-lime hover:bg-lime sm:px-8 sm:text-sm lg:mt-10"
-              >
-                Learn More
-                <span aria-hidden className="text-base transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
+              <p>
+                In the New Human Era, it is measured by{" "}
+                <strong className="font-semibold text-ink">who you become</strong>.
+              </p>
             </div>
 
-            <figure className="relative overflow-hidden">
-              <img
-                src={newHumanEraImage}
-                alt="A woman looking out over the Vancouver skyline and North Shore mountains at dusk"
-                loading="lazy"
-                width={1280}
-                height={1600}
-                className="aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
-              />
-            </figure>
+            <Link
+              to="/the-new-human-era"
+              className="nhe-cta group mt-10 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-7 py-3.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime sm:px-8 sm:text-sm"
+            >
+              Learn More
+              <span aria-hidden className="text-base text-lime transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
           </div>
 
-          {/* Bottom: six principles */}
-          <div className="mt-16 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:mt-24 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-14">
+          <figure className="nhe-media relative overflow-hidden lg:-ml-[8%] lg:w-[108%]">
+            <img
+              src={newHumanEraImage}
+              alt="Vancouver skyline across the harbour at golden hour with the North Shore mountains and a totem pole in the foreground"
+              loading="lazy"
+              width={1920}
+              height={1280}
+              className="h-full w-full object-cover aspect-[16/10] lg:aspect-auto lg:min-h-[560px]"
+            />
+          </figure>
+        </div>
+
+        {/* Bottom: six principles */}
+        <div className="mx-auto max-w-[1400px] px-6 pb-16 pt-16 sm:px-8 sm:pb-20 lg:pb-28 lg:pt-24">
+          <div className="nhe-principles grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-14">
             {PRINCIPLES.map((p) => (
-              <article key={p.n} className="group max-w-sm">
-                <div className="flex items-center gap-4">
-                  <span className="font-display text-xl font-black tracking-[0.04em] text-lime sm:text-2xl">
+              <article key={p.n} className="nhe-principle group max-w-sm border-t border-ink/12 pt-6">
+                <div className="flex items-center gap-3">
+                  <span className="font-display text-lg font-black tracking-[0.06em] text-lime">
                     {p.n}
                   </span>
                   <span
                     aria-hidden
-                    className="h-[2px] w-8 bg-lime transition-all duration-300 group-hover:w-14"
+                    className="h-[2px] w-6 bg-lime transition-all duration-300 group-hover:w-10"
                   />
                 </div>
-                <h3 className="display mt-4 text-[clamp(1.2rem,2.4vw,1.5rem)] font-extrabold leading-tight text-ink">
+                <h3 className="display mt-4 text-[clamp(1.15rem,2.2vw,1.45rem)] font-extrabold leading-tight text-ink">
                   {p.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink/65">{p.body}</p>
@@ -281,6 +287,7 @@ function Home() {
           </div>
         </div>
       </section>
+
 
 
 
