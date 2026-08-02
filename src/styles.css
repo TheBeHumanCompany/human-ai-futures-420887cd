@@ -217,3 +217,13 @@
   width: 4rem;
   background-color: var(--lime);
 }
+
+/* ---- The New Human Era section ---- */
+
+@media (min-width: 1024px) {
+  .nhe-panel {
+    /* sculpted / angled right edge */
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+    padding-right: 8rem;
+  }
+}
