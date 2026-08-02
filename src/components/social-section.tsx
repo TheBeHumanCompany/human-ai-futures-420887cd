@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+
 import type { ComponentType, SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
