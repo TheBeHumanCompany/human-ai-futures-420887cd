@@ -72,29 +72,25 @@ function Home() {
       <section className="section-cream border-b border-ink/10">
         <div className="mx-auto grid max-w-[1360px] items-center gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[38%_62%] lg:gap-16 lg:px-14 lg:py-24">
           <div className="min-w-0">
-            <h2 className="font-display text-[clamp(2.2rem,8.5vw,3rem)] font-extrabold uppercase leading-[1.06] tracking-[0.01em] text-ink sm:text-[clamp(2.9rem,6.1vw,3.8rem)] lg:text-[clamp(3rem,4.2vw,4.9rem)] lg:leading-[1.04]">
-              Being human is
-              <br />
-              what we are
-              <br />
-              born with
-              <span className="mt-10 block sm:mt-12">
-                Humanity is
-                <br />
-                what we
-                <br />
-                practice
-              </span>
-            </h2>
-
-            <p className="section-label section-label-light mt-12 text-[15px] sm:mt-14 sm:text-base lg:text-lg">
+            <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
               WHY WE EXIST
             </p>
             <div className="section-label-rule mt-5 sm:mt-6" aria-hidden />
 
-            <p className="mt-8 max-w-md text-base leading-relaxed text-ink/75 sm:mt-9 sm:text-lg">
-              We exist to help build a future where humanity becomes our greatest strength.
-            </p>
+            <h2 className="font-display mt-10 text-[clamp(2.2rem,8.5vw,3rem)] font-extrabold uppercase leading-[1.06] tracking-[0.01em] text-ink sm:mt-12 sm:text-[clamp(2.9rem,6.1vw,3.8rem)] lg:mt-14 lg:text-[clamp(3rem,4.2vw,4.9rem)] lg:leading-[1.04]">
+              BEING HUMAN IS
+              <br />
+              WHAT WE ARE
+              <br />
+              BORN WITH
+              <span className="mt-10 block sm:mt-12">
+                HUMANITY IS
+                <br />
+                WHAT WE
+                <br />
+                PRACTICE
+              </span>
+            </h2>
           </div>
 
           <figure className="group relative aspect-[16/9] overflow-hidden rounded-lg">
