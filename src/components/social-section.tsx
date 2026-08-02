@@ -114,7 +114,7 @@ export function SocialSection() {
             STAY CONNECTED
           </p>
 
-          <h2 className="display mt-5 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
+          <h2 className="display mt-5 sm:mt-6 lg:mt-8 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
             Follow the journey
           </h2>
 

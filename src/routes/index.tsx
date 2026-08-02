@@ -83,7 +83,7 @@ function Home() {
               WHY WE EXIST
             </p>
             <div className="section-label-rule" aria-hidden />
-            <p className="mt-8 w-full max-w-none font-display text-[clamp(2rem,9.75vw,2.45rem)] font-black uppercase leading-[0.92] tracking-[0.01em] text-ink sm:text-[clamp(2.75rem,8vw,3.5rem)] lg:text-[clamp(1.875rem,3.8vw,3.25rem)]">
+            <p className="mt-5 sm:mt-6 lg:mt-8 w-full max-w-none font-display text-[clamp(2rem,9.75vw,2.45rem)] font-black uppercase leading-[0.92] tracking-[0.01em] text-ink sm:text-[clamp(2.75rem,8vw,3.5rem)] lg:text-[clamp(1.875rem,3.8vw,3.25rem)]">
               <span className="sm:hidden">
                 Being <span className="font-black text-lime">human</span> is
                 <br />
@@ -157,7 +157,7 @@ function Home() {
             <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
               OUR SOLUTION
             </p>
-            <h2 className="display mt-5 text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.92]">
+            <h2 className="display mt-5 sm:mt-6 lg:mt-8 text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.92]">
               BE HUMAN <span className="text-lime">AI</span>
             </h2>
             <p className="mt-6 max-w-[17.5rem] text-base leading-relaxed text-foreground/80 sm:max-w-sm">
@@ -309,7 +309,7 @@ function Home() {
             <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
               THE PEOPLE-DRIVEN CEO PODCAST
             </p>
-            <h2 className="display mt-5 whitespace-nowrap text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.02] tracking-[0.01em]">
+            <h2 className="display mt-5 sm:mt-6 lg:mt-8 whitespace-nowrap text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.02] tracking-[0.01em]">
               Leadership for the New Human Era
             </h2>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">
