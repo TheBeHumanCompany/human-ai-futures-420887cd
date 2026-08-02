@@ -71,6 +71,7 @@ export const ARCHIVE = [
     location: "Vancouver, Canada",
     no: "046",
     slug: "alex",
+    quote: "Love.\nLove everyone.",
   },
   {
     image: portrait2,
@@ -78,6 +79,7 @@ export const ARCHIVE = [
     location: "Amman, Jordan",
     no: "032",
     slug: "sofia",
+    quote: "To stay soft\nin a hard world.",
   },
   {
     image: portrait3,
@@ -85,6 +87,7 @@ export const ARCHIVE = [
     location: "Kyoto, Japan",
     no: "017",
     slug: "kenji",
+    quote: "Presence.\nNothing else lasts.",
   },
   {
     image: portrait4,
@@ -92,8 +95,10 @@ export const ARCHIVE = [
     location: "Nairobi, Kenya",
     no: "081",
     slug: "amara",
+    quote: "We are made\nof each other.",
   },
 ] as const;
+
 
 
 export const EPISODES = [
