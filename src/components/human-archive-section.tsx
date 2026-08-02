@@ -82,15 +82,29 @@ export function HumanArchiveSection() {
     <section className="section-cream border-t border-border">
       <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 sm:py-20 lg:py-28">
         {/* Intro */}
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr] md:gap-0">
-          {/* Mobile-first label sits above the title on small screens */}
+        <div className="grid gap-8 md:grid-cols-[1.5fr_1fr] md:gap-0">
+          {/* Label — mobile only, sits above the title */}
+          <div className="md:hidden">
+            <p className="section-label section-label-light text-[15px]">THE HUMAN ARCHIVE</p>
+            <div className="section-label-rule" aria-hidden />
+          </div>
+
+          {/* Title */}
+          <div className="md:order-1 md:pr-12 lg:pr-16">
+            <h2 className="archive-question text-[clamp(2.3rem,6.4vw,5.4rem)] text-ink">
+              What does it mean
+              <br />
+              to be human?
+            </h2>
+          </div>
+
           <div className="md:order-2 md:border-l md:border-ink/15 md:pl-12 lg:pl-16">
             <div className="md:pt-4 lg:pt-8">
-              <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
+              <p className="section-label section-label-light hidden text-base md:block lg:text-lg">
                 THE HUMAN ARCHIVE
               </p>
-              <div className="section-label-rule" aria-hidden />
-              <p className="mt-7 text-base leading-relaxed text-ink/60 sm:mt-8 lg:mt-9 lg:whitespace-nowrap lg:text-[17px]">
+              <div className="section-label-rule hidden md:block" aria-hidden />
+              <p className="text-base leading-relaxed text-ink/60 md:mt-8 lg:mt-9 lg:whitespace-nowrap lg:text-[17px]">
                 A growing archive of real, human perspective.
               </p>
               <Link
@@ -105,14 +119,6 @@ export function HumanArchiveSection() {
             </div>
           </div>
 
-          {/* Title */}
-          <div className="md:order-1 md:pr-12 lg:pr-16">
-            <h2 className="archive-question text-[clamp(2.3rem,6.4vw,5.4rem)] text-ink">
-              What does it mean
-              <br />
-              to be human?
-            </h2>
-          </div>
         </div>
 
         {/* Portraits */}
