@@ -109,14 +109,18 @@ export function HumanArchiveSection() {
       <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 sm:py-20 lg:py-28">
         {/* Intro */}
         <div className="grid gap-8 md:grid-cols-[1.5fr_1fr] md:gap-0">
-          {/* Left text area */}
-          <div className="md:order-1 md:pr-12 lg:pr-16">
-            <p className="section-label section-label-light text-[15px]">THE HUMAN QUESTION</p>
+          {/* Label — mobile only, sits above the title */}
+          <div className="md:hidden">
+            <p className="section-label section-label-light text-[15px]">THE HUMAN ARCHIVE</p>
             <div className="section-label-rule" aria-hidden />
-            <h2 className="archive-question mt-5 text-[clamp(2.3rem,9vw,3.5rem)] leading-[1.22] text-ink sm:mt-6 md:mt-8 md:text-[5vw] lg:text-[clamp(2.3rem,6.4vw,5.4rem)]">
-              WHAT DOES IT MEAN
+          </div>
+
+          {/* Title */}
+          <div className="md:order-1 md:pr-12 lg:pr-16">
+            <h2 className="archive-question text-[clamp(2.3rem,9vw,3.5rem)] text-ink md:text-[5vw] lg:text-[clamp(2.3rem,6.4vw,5.4rem)]">
+              What does it mean
               <br />
-              TO BE <span className="text-lime">HUMAN</span>?
+              to be human?
             </h2>
           </div>
 
