@@ -106,7 +106,7 @@ const PLATFORMS: { name: string; Icon: ComponentType<IconProps>; href: string }[
 
 export function SocialSection() {
   return (
-    <section className="section-ink border-t border-border">
+    <section className="section-ink">
       <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 lg:py-20">
         {/* Intro */}
         <div className="min-w-0">
@@ -123,33 +123,27 @@ export function SocialSection() {
           </p>
         </div>
 
-        {/* Platform grid */}
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:mt-10 lg:grid-cols-7 lg:gap-4">
+        {/* Platform list */}
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:mt-12 lg:grid-cols-7 lg:gap-x-6 lg:gap-y-10">
           {PLATFORMS.map(({ name, Icon, href }) => (
             <a
               key={name}
               href={href}
-              className="group relative flex h-32 flex-col justify-between border border-border p-4 transition-colors duration-300 hover:border-lime focus-visible:border-lime focus-visible:outline-none sm:h-36 lg:p-5"
+              className="group flex flex-col items-start gap-4 p-2 transition-opacity duration-300 focus-visible:outline-none focus-visible:opacity-100"
             >
-              <div className="flex flex-1 items-center justify-center">
-                <Icon className="h-12 w-12 opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-focus-visible:scale-110 group-focus-visible:opacity-100 sm:h-14 sm:w-14" />
-              </div>
-              <div className="w-full">
-                <div className="h-px w-full bg-border" aria-hidden />
-                <div className="mt-3 flex items-end justify-between gap-2">
-                  <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-foreground">
-                    {name}
-                  </span>
-                  <ArrowUpRight
-                    className="h-4 w-4 shrink-0 text-lime transition-transform duration-300 group-hover:translate-x-1 group-focus-visible:translate-x-1"
-                    strokeWidth={2}
-                  />
-                </div>
+              <Icon className="h-12 w-12 opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-focus-visible:scale-110 group-focus-visible:opacity-100 sm:h-14 sm:w-14" />
+              <div className="flex w-full items-center justify-between gap-3">
+                <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-foreground">
+                  {name}
+                </span>
+                <ArrowUpRight
+                  className="h-4 w-4 shrink-0 text-lime transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5 group-focus-visible:translate-x-1 group-focus-visible:-translate-y-0.5"
+                  strokeWidth={2}
+                />
               </div>
             </a>
           ))}
         </div>
-
       </div>
     </section>
   );
