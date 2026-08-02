@@ -73,30 +73,21 @@ export function HumanArchiveSection() {
     <section className="section-cream border-t border-border">
       <div className="mx-auto max-w-[1400px] px-6 py-12 sm:px-8 sm:py-16 lg:py-20">
         {/* Intro */}
-        <div className="grid gap-8 md:grid-cols-[1.35fr_1fr] md:gap-0">
+        <div className="grid gap-8 md:grid-cols-[1fr_1.35fr] md:gap-0">
           {/* Left */}
           <div className="md:pr-12 lg:pr-16">
             <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
               THE HUMAN ARCHIVE
             </p>
             <div className="section-label-rule" aria-hidden />
-            <h2 className="archive-question mt-5 sm:mt-6 lg:mt-8 text-[clamp(2.1rem,5.4vw,4.25rem)] text-ink">
-              What does it mean
+            <p className="mt-5 text-base leading-relaxed text-ink/65 sm:mt-6 sm:text-lg lg:mt-8">
+              A growing archive of real,
               <br />
-              to be human?
-            </h2>
-          </div>
-
-          {/* Right */}
-          <div className="border-t border-ink/15 pt-8 md:border-l md:border-t-0 md:pl-12 md:pt-0 lg:pl-16">
-            <p className="text-base leading-relaxed text-ink/65 sm:text-lg">
-              A growing archive
-              <br />
-              of human perspective.
+              human perspective.
             </p>
             <Link
               to="/the-human-archive"
-              className="mt-6 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full bg-lime px-5 py-2.5 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-ink transition-opacity hover:opacity-90 sm:text-xs"
+              className="mt-5 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full bg-lime px-5 py-2.5 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-ink transition-opacity hover:opacity-90 sm:text-xs"
             >
               Explore the Human Archive
               <span aria-hidden className="text-sm font-black">
@@ -104,7 +95,17 @@ export function HumanArchiveSection() {
               </span>
             </Link>
           </div>
+
+          {/* Right */}
+          <div className="border-t border-ink/15 pt-8 md:border-l md:border-t-0 md:pl-12 md:pt-0 lg:pl-16">
+            <h2 className="archive-question text-[clamp(2.1rem,5.4vw,4.5rem)] leading-[1.14] text-ink">
+              What does it mean
+              <br />
+              to be human?
+            </h2>
+          </div>
         </div>
+
 
         {/* Portraits */}
         <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mx-0 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:flex lg:snap-none lg:items-start [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
