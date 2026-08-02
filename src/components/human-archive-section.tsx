@@ -23,9 +23,14 @@ function PortraitCard({
           height={1000}
           className="h-full w-full object-cover object-center"
         />
-        <span className="pointer-events-none absolute left-3 top-3 font-mono text-[10px] uppercase tracking-[0.18em] text-cream/80">
-          {no}
-        </span>
+        <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2">
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-cream/60">
+            Human Archive
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-cream/80">
+            {no}
+          </span>
+        </div>
       </div>
       <figcaption className="mt-3 text-left">
         <p className="font-display text-base font-bold uppercase tracking-[0.06em] text-ink">
