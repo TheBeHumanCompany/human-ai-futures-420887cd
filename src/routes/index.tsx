@@ -3,6 +3,7 @@ import heroImage from "@/assets/hero.png";
 import founderVideoPoster from "@/assets/why-we-exist-video.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
+import newHumanEraImage from "@/assets/new-human-era.jpg";
 
 import { Users, Shield, Target } from "lucide-react";
 import { SocialSection } from "@/components/social-section";
@@ -217,68 +218,70 @@ function Home() {
 
       {/* ---------- THE NEW HUMAN ERA ---------- */}
       <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 pt-12 pb-10 sm:px-8 sm:pt-14 sm:pb-12 lg:pt-16 lg:pb-14">
-          {/* Intro */}
-          <div className="max-w-3xl">
-            <h2 className="display text-[clamp(2.25rem,7vw,4.25rem)] font-extrabold leading-[0.95] tracking-[0.01em] text-ink lg:whitespace-nowrap">
-              THE NEW HUMAN <span className="text-lime">ERA</span>
-            </h2>
-
-            <div className="mt-5 h-[2px] w-16 bg-lime" aria-hidden />
-
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-ink/75 sm:text-lg lg:mt-7 lg:space-y-5">
-              <p>
-                For generations, status was measured by{" "}
-                <span className="font-bold text-ink">what&nbsp;you&nbsp;had</span>.
+        <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 sm:py-20 lg:py-28">
+          {/* Top: split intro */}
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16">
+            <div>
+              <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
+                THE NEW HUMAN ERA
               </p>
-              <p>
-                In the New Human Era, it is measured by{" "}
-                <span className="font-bold text-ink">who&nbsp;you&nbsp;become</span>.
-              </p>
+              <div className="section-label-rule" aria-hidden />
+
+              <h2 className="display mt-5 text-[clamp(2.5rem,7vw,4.75rem)] font-extrabold leading-[0.95] tracking-[0.01em] text-ink sm:mt-6 lg:mt-8">
+                THE NEW HUMAN <span className="text-lime">ERA</span>
+              </h2>
+
+              <div className="mt-7 max-w-md space-y-4 text-base leading-relaxed text-ink/70 sm:text-lg lg:mt-8 lg:space-y-5">
+                <p>For generations, status was measured by what you had.</p>
+                <p>In the New Human Era, it is measured by who you become.</p>
+              </div>
+
+              <Link
+                to="/the-new-human-era"
+                className="group mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-ink/25 px-7 py-3.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:border-lime hover:bg-lime sm:px-8 sm:text-sm lg:mt-10"
+              >
+                Learn More
+                <span aria-hidden className="text-base transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
             </div>
 
-            <Link
-              to="/the-new-human-era"
-              className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime hover:text-ink sm:px-8 sm:py-3.5 sm:text-sm lg:mt-8"
-            >
-              LEARN MORE
-              <span
-                aria-hidden
-                className="text-base font-black text-lime transition-colors group-hover:text-ink sm:text-lg"
-              >
-                →
-              </span>
-            </Link>
+            <figure className="relative overflow-hidden">
+              <img
+                src={newHumanEraImage}
+                alt="A woman looking out over the Vancouver skyline and North Shore mountains at dusk"
+                loading="lazy"
+                width={1280}
+                height={1600}
+                className="aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
+              />
+            </figure>
           </div>
 
-
-          {/* Six principles */}
-          <div className="mt-10 border-t border-ink/15 lg:mt-12">
-            <div className="grid gap-px bg-ink/15 sm:grid-cols-2 lg:grid-cols-3">
-              {PRINCIPLES.map((p) => (
-                <article
-                  key={p.n}
-                  className="group bg-cream px-5 py-5 sm:px-6 lg:py-6"
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="font-display text-xl font-black tracking-[0.04em] text-lime [text-shadow:0_0_0.6px_currentColor] sm:text-2xl">
-                      {p.n}
-                    </span>
-                    <span
-                      aria-hidden
-                      className="h-[2px] w-7 bg-lime transition-all duration-300 group-hover:w-12"
-                    />
-                  </div>
-                  <h3 className="display mt-2.5 text-[clamp(1.25rem,3vw,1.5rem)] font-extrabold leading-tight text-ink">
-                    {p.title}
-                  </h3>
-                  <p className="mt-1.5 max-w-sm text-sm leading-snug text-ink/65">{p.body}</p>
-                </article>
-              ))}
-            </div>
+          {/* Bottom: six principles */}
+          <div className="mt-16 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:mt-24 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-14">
+            {PRINCIPLES.map((p) => (
+              <article key={p.n} className="group max-w-sm">
+                <div className="flex items-center gap-4">
+                  <span className="font-display text-xl font-black tracking-[0.04em] text-lime sm:text-2xl">
+                    {p.n}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="h-[2px] w-8 bg-lime transition-all duration-300 group-hover:w-14"
+                  />
+                </div>
+                <h3 className="display mt-4 text-[clamp(1.2rem,2.4vw,1.5rem)] font-extrabold leading-tight text-ink">
+                  {p.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink/65">{p.body}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
+
 
 
       {/* ---------- STAY CONNECTED ---------- */}
