@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImage from "@/assets/hero.png";
-import manifestoImage from "@/assets/manifesto.jpg";
+import founderVideoPoster from "@/assets/why-we-exist-video.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
 
@@ -76,39 +76,49 @@ function Home() {
             </p>
             <div className="section-label-rule mt-5 sm:mt-6" aria-hidden />
 
-            <h2 className="mt-8 font-display text-[clamp(2.25rem,8.5vw,3rem)] font-extrabold uppercase leading-[1.0] tracking-[0.01em] text-ink sm:text-[clamp(3rem,6.5vw,4rem)] sm:mt-10 lg:text-[clamp(3.25rem,4.6vw,5.5rem)] lg:leading-[0.98]">
+            <h2 className="mt-8 font-display text-[clamp(2.1rem,8vw,2.8rem)] font-extrabold uppercase leading-[1.06] tracking-[0.01em] text-ink sm:mt-10 sm:text-[clamp(2.8rem,6.1vw,3.7rem)] lg:text-[clamp(3rem,4.3vw,5.1rem)] lg:leading-[1.04]">
               Being human is
               <br />
               what we are
               <br />
               born with
-              <span className="mt-8 block">
+              <span className="mt-9 block">
                 Humanity is
                 <br />
-                what we <span className="text-lime">practice</span>
+                what we{" "}
+                <span className="relative inline-block">
+                  practice
+                  <span
+                    aria-hidden
+                    className="absolute left-0 -bottom-[0.16em] h-[2px] w-[52%] bg-lime lg:h-[3px]"
+                  />
+                </span>
               </span>
             </h2>
           </div>
 
           <figure className="group relative aspect-[16/9] overflow-hidden rounded-md">
             <img
-              src={manifestoImage}
-              alt="Shane speaking directly to camera"
+              src={founderVideoPoster}
+              alt="Shane speaking directly to camera in a warmly lit room with BE HUMAN lettering on the wall"
               loading="lazy"
-              width={1408}
-              height={912}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              width={1600}
+              height={900}
+              className="h-full w-full object-cover object-[35%_center] transition-transform duration-700 group-hover:scale-[1.02]"
             />
             <button
               type="button"
               aria-label="Play video"
-              className="absolute inset-0 grid place-items-center bg-ink/15 transition-colors hover:bg-ink/25"
+              className="absolute inset-0 grid place-items-center bg-ink/10 transition-colors hover:bg-ink/20"
             >
-              <span className="grid h-16 w-16 place-items-center rounded-full border border-cream/70 pl-1 text-cream backdrop-blur-sm transition-colors group-hover:bg-lime group-hover:text-ink">
-                ▶
+              <span className="grid h-14 w-14 place-items-center rounded-full border border-cream/70 text-cream transition-colors group-hover:border-cream sm:h-16 sm:w-16">
+                <svg viewBox="0 0 24 24" className="ml-[2px] h-5 w-5 fill-current" aria-hidden>
+                  <path d="M8 5v14l11-7z" />
+                </svg>
               </span>
             </button>
           </figure>
+
         </div>
       </section>
 
