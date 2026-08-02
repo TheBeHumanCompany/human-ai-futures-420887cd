@@ -69,59 +69,49 @@ function Home() {
 
       {/* ---------- WHY WE EXIST ---------- */}
       <section className="section-cream border-b border-ink/10">
-        <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-6 pt-14 pb-8 sm:px-8 sm:pb-14 lg:grid-cols-[2fr_3fr] lg:gap-12 lg:py-20">
+        <div className="mx-auto grid max-w-[1340px] items-center gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[42%_58%] lg:gap-[64px] lg:px-14 lg:py-24">
           <div className="min-w-0">
             <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
               WHY WE EXIST
             </p>
-            <div className="section-label-rule" aria-hidden />
-            <p className="mt-5 sm:mt-6 lg:mt-8 w-full max-w-none font-display text-[clamp(2rem,9.75vw,2.45rem)] font-black uppercase leading-[0.92] tracking-[0.01em] text-ink sm:text-[clamp(2.75rem,8vw,3.5rem)] lg:text-[clamp(1.875rem,3.8vw,3.25rem)]">
-              <span className="sm:hidden">
-                Being <span className="font-black text-lime">human</span> is
+            <div className="section-label-rule mt-5 sm:mt-6" aria-hidden />
+
+            <h2 className="mt-8 font-display text-[clamp(2.25rem,8.5vw,3rem)] font-extrabold uppercase leading-[1.0] tracking-[0.01em] text-ink sm:text-[clamp(3rem,6.5vw,4rem)] sm:mt-10 lg:text-[clamp(3.25rem,4.6vw,5.5rem)] lg:leading-[0.98]">
+              Being human is
+              <br />
+              what we are
+              <br />
+              born with
+              <span className="mt-8 block">
+                Humanity is
                 <br />
-                what we are
-                <br />
-                born with
-                <span className="mt-7 block">
-                  Humanity is
-                  <br />
-                  what we
-                  <br />
-                  <span className="font-black text-lime">practice</span>
-                </span>
+                what we <span className="text-lime">practice</span>
               </span>
-              <span className="hidden sm:block">
-                Being <span className="font-black text-lime">human</span> is
-                <br />
-                what we are
-                <br />
-                born with
-                <span className="mt-5 block">
-                  Humanity is
-                  <br />
-                  what we <span className="font-black text-lime">practice</span>
-                </span>
-              </span>
-            </p>
+            </h2>
           </div>
 
-          <figure className="group relative aspect-[2/1] overflow-hidden shadow-[0_28px_70px_-22px_rgba(0,0,0,0.22)] ring-1 ring-ink/[0.07]">
+          <figure className="group relative aspect-[16/9] overflow-hidden rounded-md">
             <img
               src={manifestoImage}
-              alt="Friends talking together on a rooftop at sunset"
+              alt="Shane speaking directly to camera"
               loading="lazy"
               width={1408}
               height={912}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
             />
-            <div className="absolute inset-0 grid place-items-center bg-ink/20">
-              <span className="grid h-16 w-16 place-items-center rounded-full border border-cream/80 text-cream shadow-[0_12px_30px_-10px_rgba(0,0,0,0.35)] backdrop-blur-sm transition-colors group-hover:bg-lime group-hover:text-ink">
+            <button
+              type="button"
+              aria-label="Play video"
+              className="absolute inset-0 grid place-items-center bg-ink/15 transition-colors hover:bg-ink/25"
+            >
+              <span className="grid h-16 w-16 place-items-center rounded-full border border-cream/70 pl-1 text-cream backdrop-blur-sm transition-colors group-hover:bg-lime group-hover:text-ink">
                 ▶
               </span>
-            </div>
+            </button>
           </figure>
         </div>
       </section>
+
 
       {/* ---------- BE HUMAN AI ---------- */}
       <section id="be-human-ai" className="section-ink relative isolate overflow-hidden border-t border-border">
