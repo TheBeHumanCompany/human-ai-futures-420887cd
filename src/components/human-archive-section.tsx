@@ -8,18 +8,28 @@ function PortraitCard({
   location,
   no,
   slug,
+  featured,
 }: {
   image: string;
   name: string;
   location: string;
   no: string;
   slug: string;
+  featured: boolean;
 }) {
   const start = useRef<{ x: number; y: number } | null>(null);
   const swiping = useRef(false);
 
   return (
-    <figure className="group w-[74vw] shrink-0 snap-start transition-[flex-grow,flex-basis] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:w-auto lg:min-w-0 lg:flex-[1_1_0%] lg:hover:flex-[1.16_1_0%] lg:focus-within:flex-[1.16_1_0%]">
+    <figure
+      className={[
+        "group w-[68vw] shrink-0 snap-start transition-[flex-grow,flex-basis] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "sm:w-auto lg:min-w-0",
+        featured ? "lg:flex-[1.34_1_0%]" : "lg:flex-[1_1_0%]",
+        "lg:hover:flex-[1.34_1_0%]! lg:focus-within:flex-[1.34_1_0%]!",
+        featured ? "lg:pt-0" : "lg:pt-8",
+      ].join(" ")}
+    >
       <Link
         to="/human-archive/$slug"
         params={{ slug }}
@@ -35,34 +45,33 @@ function PortraitCard({
         onClick={(e) => {
           if (swiping.current) e.preventDefault();
         }}
-        className="block cursor-pointer rounded-md outline-none transition-transform duration-300 ease-out focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-cream active:scale-[0.99]"
+        className="block cursor-pointer rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
       >
-        <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-ink">
+        <div className="relative aspect-4/5 overflow-hidden rounded-lg bg-ink">
           <img
             src={image}
             alt={`Portrait of ${name} from ${location}`}
             loading="lazy"
             width={800}
             height={1000}
-            className="h-full w-full object-cover object-center transition-transform duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] group-focus-within:scale-[1.03]"
+            className="h-full w-full object-cover object-center transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035] group-focus-within:scale-[1.035]"
           />
-          <div className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/10 group-focus-within:bg-ink/10" />
-          <div className="pointer-events-none absolute left-3 top-3 flex flex-col gap-0.5">
-            <span className="font-mono text-[9px] uppercase leading-tight tracking-[0.18em] text-cream/75">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-linear-to-b from-ink/45 to-transparent" />
+          <div className="pointer-events-none absolute left-4 top-4 flex flex-col gap-1">
+            <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.2em] text-cream/85">
               The Human Archive
             </span>
-            <span className="font-mono text-[9px] uppercase leading-tight tracking-[0.18em] text-cream/75">
+            <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.2em] text-cream/85">
               No. {no}
             </span>
           </div>
         </div>
-        <figcaption className="mt-3 text-left">
-          <p className="font-display text-base font-bold uppercase tracking-[0.06em] text-ink">
+        <figcaption className="mt-4 text-left">
+          <p className="font-display text-[15px] font-bold uppercase tracking-[0.1em] text-ink">
             {name}
           </p>
-          <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-ink/55">{location}</p>
+          <p className="mt-1.5 text-[13px] leading-snug text-ink/55">{location}</p>
         </figcaption>
-
       </Link>
     </figure>
   );
@@ -71,45 +80,50 @@ function PortraitCard({
 export function HumanArchiveSection() {
   return (
     <section className="section-cream border-t border-border">
-      <div className="mx-auto max-w-[1400px] px-6 py-12 sm:px-8 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 sm:py-20 lg:py-28">
         {/* Intro */}
-        <div className="grid gap-8 md:grid-cols-[1fr_1.35fr] md:gap-0">
-          {/* Left */}
-          <div className="md:pr-12 lg:pr-16">
-            <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
-              THE HUMAN ARCHIVE
-            </p>
+        <div className="grid gap-8 md:grid-cols-[1.5fr_1fr] md:gap-0">
+          {/* Label — mobile only, sits above the title */}
+          <div className="md:hidden">
+            <p className="section-label section-label-light text-[15px]">THE HUMAN ARCHIVE</p>
             <div className="section-label-rule" aria-hidden />
-            <p className="mt-5 text-base leading-relaxed text-ink/65 sm:mt-6 sm:text-lg lg:mt-8">
-              A growing archive of real,
-              <br />
-              human perspective.
-            </p>
-            <Link
-              to="/the-human-archive"
-              className="mt-5 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full bg-lime px-5 py-2.5 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-ink transition-opacity hover:opacity-90 sm:text-xs"
-            >
-              Explore the Human Archive
-              <span aria-hidden className="text-sm font-black">
-                →
-              </span>
-            </Link>
           </div>
 
-          {/* Right */}
-          <div className="border-t border-ink/15 pt-8 md:border-l md:border-t-0 md:pl-12 md:pt-0 lg:pl-16">
-            <h2 className="archive-question text-[clamp(2.1rem,5.4vw,4.5rem)] leading-[1.14] text-ink">
+          {/* Title */}
+          <div className="md:order-1 md:pr-12 lg:pr-16">
+            <h2 className="archive-question text-[clamp(2.3rem,9vw,3.5rem)] text-ink md:text-[5vw] lg:text-[clamp(2.3rem,6.4vw,5.4rem)]">
               What does it mean
               <br />
               to be human?
             </h2>
           </div>
+
+          <div className="md:order-2 md:border-l md:border-ink/15 md:pl-12 lg:pl-16">
+            <div className="md:pt-4 lg:pt-8">
+              <p className="section-label section-label-light hidden text-base md:block lg:text-lg">
+                THE HUMAN ARCHIVE
+              </p>
+              <div className="section-label-rule hidden md:block" aria-hidden />
+              <p className="text-base leading-relaxed text-ink/60 md:mt-8 lg:mt-9 lg:whitespace-nowrap lg:text-[17px]">
+                A growing archive of real, human perspective.
+              </p>
+              <Link
+                to="/the-human-archive"
+                className="mt-8 inline-flex w-fit items-center gap-2.5 whitespace-nowrap rounded-full bg-lime px-7 py-3.5 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-ink shadow-[0_1px_0_0_rgba(0,0,0,0.06)] transition-transform duration-300 ease-out hover:-translate-y-0.5 hover:opacity-95 sm:mt-10 sm:text-xs"
+              >
+                Explore the Human Archive
+                <span aria-hidden className="text-sm font-black">
+                  →
+                </span>
+              </Link>
+            </div>
+          </div>
+
         </div>
 
-
         {/* Portraits */}
-        <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mx-0 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:flex lg:snap-none lg:items-start [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {ARCHIVE.map((person) => (
+        <div className="mt-14 flex snap-x snap-mandatory items-start gap-5 overflow-x-auto pb-2 sm:mt-16 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible lg:mt-20 lg:flex lg:snap-none lg:gap-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {ARCHIVE.map((person, i) => (
             <PortraitCard
               key={person.no}
               image={person.image}
@@ -117,10 +131,10 @@ export function HumanArchiveSection() {
               location={person.location}
               no={person.no}
               slug={person.slug}
+              featured={i === 1}
             />
           ))}
         </div>
-
       </div>
     </section>
   );
