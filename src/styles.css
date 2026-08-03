@@ -111,6 +111,16 @@
   text-transform: uppercase;
 }
 
+/* Human Archive main question — bold condensed editorial */
+@utility archive-question {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+
 @utility eyebrow {
   font-size: 0.6875rem;
   letter-spacing: 0.22em;
@@ -181,5 +191,39 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Standardized section labels */
+@utility section-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@utility section-label-dark {
+  color: var(--lime);
+}
+
+@utility section-label-light {
+  color: var(--ink);
+}
+
+@utility section-label-rule {
+  margin-top: 0.75rem;
+  height: 3px;
+  width: 4rem;
+  background-color: var(--lime);
+}
+
+/* ---- The New Human Era section ---- */
+
+@media (min-width: 1024px) {
+  .nhe-panel {
+    /* sculpted / angled right edge */
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+    padding-right: 8rem;
   }
 }

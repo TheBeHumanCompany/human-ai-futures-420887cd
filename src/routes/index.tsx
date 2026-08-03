@@ -1,14 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImage from "@/assets/hero.png";
-import manifestoImage from "@/assets/manifesto.jpg";
+import founderVideoPoster from "@/assets/why-we-exist-video.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
+import newHumanEraImage from "@/assets/new-human-era-vancouver.jpg";
 
 import { Users, Shield, Target } from "lucide-react";
 import { EpisodePlayer } from "@/components/episode-player";
 import { SocialSection } from "@/components/social-section";
+<<<<<<< HEAD
 import { ARCHIVE, PRINCIPLES } from "@/lib/content";
 import { formatDuration, getEpisodes, selectFeatured } from "@/lib/podbean";
+=======
+import { HumanArchiveSection } from "@/components/human-archive-section";
+import { EPISODES, PRINCIPLES } from "@/lib/content";
+>>>>>>> origin/main
 
 export const Route = createFileRoute("/")({
   loader: async () => ({ featured: selectFeatured(await getEpisodes()) }),
@@ -63,9 +69,15 @@ function Home() {
               <br />
               is <span className="text-lime">human</span>
             </h1>
+<<<<<<< HEAD
             <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg">
               We help people and organizations practice what keeps us human in a world becoming more
               artificial.
+=======
+            <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg lg:max-w-xl">
+              We help people and organizations practice what keeps us human in a world becoming
+              more artificial.
+>>>>>>> origin/main
             </p>
           </div>
         </div>
@@ -73,59 +85,54 @@ function Home() {
 
       {/* ---------- WHY WE EXIST ---------- */}
       <section className="section-cream border-b border-ink/10">
-        <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-6 pt-14 pb-8 sm:px-8 sm:pb-14 lg:grid-cols-[2fr_3fr] lg:gap-12 lg:py-20">
+        <div className="mx-auto grid max-w-[1360px] items-start gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[42%_58%] lg:gap-16 lg:px-14 lg:py-28">
           <div className="min-w-0">
-            <p className="font-display text-xl sm:text-2xl font-black uppercase tracking-[0.06em] text-ink">
+            <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
               WHY WE EXIST
             </p>
-            <div className="mt-3 h-[5px] w-24 bg-lime" aria-hidden />
-            <p className="mt-8 w-full max-w-none font-display text-[clamp(2rem,9.75vw,2.45rem)] font-black uppercase leading-[0.92] tracking-[0.01em] text-ink sm:text-[clamp(2.75rem,8vw,3.5rem)] lg:text-[clamp(1.875rem,3.8vw,3.25rem)]">
-              <span className="sm:hidden">
-                Being <span className="font-black text-lime">human</span> is
+            <div className="section-label-rule mt-5 sm:mt-6" aria-hidden />
+
+            <h2 className="display mt-10 text-[clamp(2.6rem,10vw,3.4rem)] font-extrabold uppercase leading-[0.98] tracking-[0.01em] text-ink sm:mt-12 sm:text-[clamp(3.2rem,7vw,4.4rem)] lg:mt-14 lg:text-[clamp(3.4rem,4.8vw,5.25rem)] lg:leading-[0.94]">
+              BEING HUMAN IS
+              <br />
+              WHAT WE ARE
+              <br />
+              BORN WITH
+              <span className="mt-10 block sm:mt-12">
+                HUMANITY IS
                 <br />
-                what we are
+                WHAT WE
                 <br />
-                born with
-                <span className="mt-7 block">
-                  Humanity is
-                  <br />
-                  what we
-                  <br />
-                  <span className="font-black text-lime">practice</span>
-                </span>
+                <span className="text-lime">PRACTICE</span>
               </span>
-              <span className="hidden sm:block">
-                Being <span className="font-black text-lime">human</span> is
-                <br />
-                what we are
-                <br />
-                born with
-                <span className="mt-5 block">
-                  Humanity is
-                  <br />
-                  what we <span className="font-black text-lime">practice</span>
-                </span>
-              </span>
-            </p>
+            </h2>
           </div>
 
-          <figure className="group relative aspect-[2/1] overflow-hidden shadow-[0_28px_70px_-22px_rgba(0,0,0,0.22)] ring-1 ring-ink/[0.07]">
+          <figure className="group relative aspect-[16/9] overflow-hidden rounded-lg lg:mt-32 lg:self-center">
+
             <img
-              src={manifestoImage}
-              alt="Friends talking together on a rooftop at sunset"
+              src={founderVideoPoster}
+              alt="Shane speaking directly to camera in a warmly lit room with BE HUMAN lettering on the wall"
               loading="lazy"
-              width={1408}
+              width={1600}
               height={912}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              className="h-full w-full object-cover object-[38%_center] transition-transform duration-700 group-hover:scale-[1.02] sm:object-center"
             />
-            <div className="absolute inset-0 grid place-items-center bg-ink/20">
-              <span className="grid h-16 w-16 place-items-center rounded-full border border-cream/80 text-cream shadow-[0_12px_30px_-10px_rgba(0,0,0,0.35)] backdrop-blur-sm transition-colors group-hover:bg-lime group-hover:text-ink">
-                ▶
+            <button
+              type="button"
+              aria-label="Play video"
+              className="absolute inset-0 grid place-items-center transition-colors hover:bg-ink/10"
+            >
+              <span className="grid h-14 w-14 place-items-center rounded-full border border-cream/70 text-cream transition-colors group-hover:border-cream sm:h-16 sm:w-16">
+                <svg viewBox="0 0 24 24" className="ml-[2px] h-5 w-5 fill-current" aria-hidden>
+                  <path d="M8 5v14l11-7z" />
+                </svg>
               </span>
-            </div>
+            </button>
           </figure>
         </div>
       </section>
+
 
       {/* ---------- BE HUMAN AI ---------- */}
       <section
@@ -153,10 +160,10 @@ function Home() {
         <div className="relative z-10 mx-auto grid max-w-[1400px] gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[34%_22%_44%] lg:items-center lg:gap-8 lg:py-28">
           {/* LEFT COLUMN */}
           <div className="flex max-w-xl flex-col justify-center">
-            <p className="font-display text-sm font-bold uppercase tracking-[0.08em] text-lime">
+            <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
               OUR SOLUTION
             </p>
-            <h2 className="display mt-5 text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.92]">
+            <h2 className="display mt-5 sm:mt-6 lg:mt-8 text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.92]">
               BE HUMAN <span className="text-lime">AI</span>
             </h2>
             <p className="mt-6 max-w-[17.5rem] text-base leading-relaxed text-foreground/80 sm:max-w-sm">
@@ -165,7 +172,7 @@ function Home() {
             </p>
             <Link
               to="/be-human-ai"
-              className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink sm:mt-8 sm:px-6 sm:py-3 sm:text-sm"
+              className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-xs font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink sm:mt-8 sm:px-8 sm:py-3.5 sm:text-sm"
             >
               EXPLORE BE HUMAN AI{" "}
               <span aria-hidden className="text-lime transition-colors group-hover:text-ink">
@@ -178,7 +185,13 @@ function Home() {
           <div className="hidden lg:block" aria-hidden />
 
           {/* RIGHT COLUMN — CAPABILITIES */}
+<<<<<<< HEAD
           <div className="mt-64 flex flex-col justify-center sm:mt-40 lg:mt-0">
+=======
+          <div className="mt-64 flex flex-col justify-center sm:mt-40 md:mt-20 lg:mt-0">
+
+
+>>>>>>> origin/main
             <div className="border-t border-border">
               <div className="flex gap-5 py-7">
                 <Users className="mt-0.5 h-6 w-6 shrink-0 text-lime" strokeWidth={1.5} />
@@ -226,37 +239,42 @@ function Home() {
       </section>
 
       {/* ---------- THE NEW HUMAN ERA ---------- */}
-      <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 pt-12 pb-10 sm:px-8 sm:pt-14 sm:pb-12 lg:pt-16 lg:pb-14">
-          {/* Intro */}
-          <div className="max-w-2xl">
-            <h2 className="display text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-ink">
-              THE NEW HUMAN <span className="text-lime">ERA</span>
+      <section className="nhe-section section-cream border-t border-border">
+        {/* Top: editorial split */}
+        <div className="nhe-split lg:grid lg:grid-cols-[36%_64%] lg:items-stretch">
+          <div className="nhe-panel relative z-10 bg-cream px-6 py-14 sm:px-10 sm:py-16 lg:py-20 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-16">
+            <h2 className="display text-[clamp(3rem,10vw,5.25rem)] font-extrabold leading-[0.92] tracking-[0.01em] text-ink">
+              THE NEW
+              <br />
+              HUMAN
+              <br />
+              <span className="text-lime">ERA</span>
             </h2>
+            <div className="nhe-accent mt-5 h-[3px] w-16 bg-lime" aria-hidden />
 
-            <div className="mt-4 max-w-md space-y-2 text-base leading-relaxed text-ink/75 sm:text-lg">
-              <p>Status is measured by what you have.</p>
-              <p>In the New Human Era, it is measured by who you are.</p>
+            <div className="mt-8 max-w-md space-y-6 text-base leading-relaxed text-ink/75 sm:text-lg">
+              <p>
+                For generations, status was measured by{" "}
+                <strong className="font-semibold text-ink">what you had</strong>.
+              </p>
+              <p>
+                In the New Human Era, it is measured by{" "}
+                <strong className="font-semibold text-ink">who you become</strong>.
+              </p>
             </div>
 
             <Link
               to="/the-new-human-era"
-              className="group relative mt-6 inline-flex w-fit items-baseline gap-4 px-2 py-1.5 font-display text-sm font-medium uppercase tracking-[0.12em] text-ink sm:text-base"
+              className="nhe-cta group mt-10 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-7 py-3.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime sm:px-8 sm:text-sm"
             >
-              <span>LEARN MORE</span>
-              <span
-                aria-hidden
-                className="inline-block self-center text-xl font-black leading-none text-[oklch(0.79_0.22_118)] transition-transform duration-300 group-hover:translate-x-1"
-              >
+              Learn More
+              <span aria-hidden className="text-base text-lime transition-transform group-hover:translate-x-1">
                 →
               </span>
-              <span
-                aria-hidden
-                className="absolute bottom-[-7px] left-2 h-[2.5px] w-[55%] bg-[oklch(0.79_0.22_118)] transition-all duration-300 group-hover:w-[68%]"
-              />
             </Link>
           </div>
 
+<<<<<<< HEAD
           {/* Six principles */}
           <div className="mt-8 border-t border-ink/15">
             <div className="grid gap-px bg-ink/15 sm:grid-cols-2 lg:grid-cols-3">
@@ -278,77 +296,72 @@ function Home() {
                 </article>
               ))}
             </div>
+=======
+          <figure className="nhe-media relative overflow-hidden lg:-ml-[8%] lg:w-[108%]">
+            <img
+              src={newHumanEraImage}
+              alt="Vancouver skyline across the harbour at golden hour with the North Shore mountains and a totem pole in the foreground"
+              loading="lazy"
+              width={1920}
+              height={1280}
+              className="h-full w-full object-cover aspect-[16/10] lg:aspect-auto lg:min-h-[560px]"
+            />
+          </figure>
+        </div>
+
+        {/* Bottom: six principles */}
+        <div className="mx-auto max-w-[1400px] px-6 pb-16 pt-16 sm:px-8 sm:pb-20 lg:pb-28 lg:pt-24">
+          <div className="nhe-principles grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-14">
+            {PRINCIPLES.map((p) => (
+              <article key={p.n} className="nhe-principle group max-w-sm border-t border-ink/12 pt-6">
+                <div className="flex items-center gap-3">
+                  <span className="font-display text-lg font-black tracking-[0.06em] text-lime">
+                    {p.n}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="h-[2px] w-6 bg-lime transition-all duration-300 group-hover:w-10"
+                  />
+                </div>
+                <h3 className="display mt-4 text-[clamp(1.15rem,2.2vw,1.45rem)] font-extrabold leading-tight text-ink">
+                  {p.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink/65">{p.body}</p>
+              </article>
+            ))}
+>>>>>>> origin/main
           </div>
         </div>
       </section>
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> origin/main
       {/* ---------- STAY CONNECTED ---------- */}
       <SocialSection />
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
-      <section className="section-cream border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
-            <div className="min-w-0">
-              <p className="eyebrow text-ink/50">The Human Archive</p>
-              <h2 className="display mt-6 text-[clamp(2.5rem,6vw,4.5rem)] text-ink">
-                Real stories
-                <br />
-                Real humans
-              </h2>
-            </div>
-            <p className="max-w-md text-base leading-relaxed text-ink/70">
-              A growing archive of conversations, experiences and perspectives exploring what it
-              means to be human.
-            </p>
-          </div>
+      <HumanArchiveSection />
 
-          <div className="-mx-5 mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8">
-            {ARCHIVE.map((person) => (
-              <figure key={person.name} className="w-[70vw] shrink-0 snap-start sm:w-72">
-                <div className="relative aspect-[4/5] overflow-hidden bg-ink">
-                  <img
-                    src={person.image}
-                    alt={`Portrait of ${person.name} from ${person.location}`}
-                    loading="lazy"
-                    width={800}
-                    height={1000}
-                    className="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
-                  />
-                </div>
-                <figcaption className="mt-4">
-                  <p className="eyebrow text-ink/45">{person.location}</p>
-                  <p className="display mt-2 text-2xl text-ink">{person.name}'s story</p>
-                  <p className="mt-1 text-sm text-ink/65">{person.story}</p>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-
-          <Link
-            to="/the-human-archive"
-            className="eyebrow link-underline mt-10 inline-flex items-center gap-2 text-ink"
-          >
-            Explore the Human Archive <span aria-hidden>→</span>
-          </Link>
-        </div>
-      </section>
 
       {/* ---------- PODCAST ---------- */}
       <section className="section-ink border-t border-border">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:py-28">
-          <div className="min-w-0">
-            <p className="eyebrow text-lime">The People-Driven CEO Podcast</p>
-            <h2 className="display mt-6 text-[clamp(2.25rem,5vw,4rem)]">
-              Where leaders prepare
-              <br />
-              for the New Human Era
-            </h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
-              Conversations on leadership, AI, culture and building organizations where humanity
-              becomes the competitive advantage.
+        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 md:py-16 lg:py-24">
+          {/* Compact intro */}
+          <div className="max-w-2xl">
+            <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
+              THE PEOPLE-DRIVEN CEO PODCAST
             </p>
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground sm:mt-5 lg:mt-6">
+              Conversations on leadership, AI and culture — where humanity becomes the competitive
+              advantage.
+            </p>
+          </div>
 
+<<<<<<< HEAD
             {latest && (
               <div className="mt-10 border-t border-border pt-6">
                 <p className="eyebrow text-muted-foreground">
@@ -411,6 +424,56 @@ function Home() {
               className="h-full w-full object-cover"
             />
           </div>
+=======
+          {/* Featured episode — hero of the section */}
+          <article className="mt-10 grid overflow-hidden border border-border bg-foreground/[0.03] lg:mt-12 lg:grid-cols-[0.9fr_1fr]">
+            <div className="relative min-h-[240px] sm:min-h-[300px] lg:min-h-[380px]">
+              <img
+                src={podcastImage}
+                alt="Studio condenser microphone lit in a dark recording room"
+                loading="lazy"
+                width={1200}
+                height={900}
+                className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
+              />
+            </div>
+            <div className="flex flex-col justify-center gap-4 p-6 sm:p-9 lg:p-12">
+              <p className="eyebrow text-lime">Featured episode</p>
+              <h3 className="display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.05]">
+                What your people already know about AI
+              </h3>
+              <p className="text-sm text-muted-foreground">With Amara Chen, COO — 56 min</p>
+              <Link
+                to="/podcast"
+                className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-lime/90"
+              >
+                Listen now{" "}
+                <span aria-hidden className="text-base transition-transform group-hover:translate-x-0.5">
+                  →
+                </span>
+              </Link>
+            </div>
+          </article>
+
+          {/* Episode list */}
+          <ul className="mt-10 border-t border-border lg:mt-12">
+            {EPISODES.map((e) => (
+              <li
+                key={e.n}
+                className="flex items-baseline gap-4 border-b border-border py-4 sm:gap-8"
+              >
+                <span className="eyebrow w-8 shrink-0 text-muted-foreground">{e.n}</span>
+                <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">{e.title}</span>
+                <span className="eyebrow hidden shrink-0 text-muted-foreground sm:block">
+                  {e.guest}
+                </span>
+                <span className="eyebrow w-14 shrink-0 text-right text-muted-foreground">
+                  {e.length}
+                </span>
+              </li>
+            ))}
+          </ul>
+>>>>>>> origin/main
         </div>
       </section>
     </>

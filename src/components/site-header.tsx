@@ -17,7 +17,6 @@ export function Wordmark({ tone = "light" }: { tone?: "light" | "dark" }) {
         className={`display text-xl font-bold uppercase tracking-tight sm:text-2xl ${tone === "dark" ? "text-ink" : "text-foreground"}`}
       >
         THE BE HUMAN COMPANY
-        <span className="text-lime align-super text-[0.45em] font-normal">™</span>
       </span>
     </Link>
   );

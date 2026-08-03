@@ -51,9 +51,8 @@ function Archive() {
                 className="aspect-[4/5] w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
               />
               <figcaption className="mt-4">
-                <p className="eyebrow text-muted-foreground">{person.location}</p>
-                <p className="display mt-2 text-2xl">{person.name}'s story</p>
-                <p className="mt-1 text-sm text-muted-foreground">{person.story}</p>
+                <p className="display text-2xl">{person.name}</p>
+                <p className="eyebrow mt-1 text-muted-foreground">{person.location}</p>
               </figcaption>
             </figure>
           ))}

@@ -1,7 +1,7 @@
-import portrait1 from "@/assets/portrait-1.jpg";
-import portrait2 from "@/assets/portrait-2.jpg";
-import portrait3 from "@/assets/portrait-3.jpg";
-import portrait4 from "@/assets/portrait-4.jpg";
+import portrait1 from "@/assets/archive-alex.jpg";
+import portrait2 from "@/assets/archive-sofia.jpg";
+import portrait3 from "@/assets/archive-kenji.jpg";
+import portrait4 from "@/assets/archive-amara.jpg";
 
 export const SERVICES = [
   {
@@ -54,41 +54,60 @@ export const PRINCIPLES = [
   {
     n: "05",
     title: "Trust wins",
-    body: "Trust compounds over time. It is the foundation of every lasting relationship, team and business.",
+    body: "Trust compounds over time. It is the foundation of every lasting relationship, team and brand.",
   },
   {
     n: "06",
     title: "Character is earned",
-    body: "Character isn't claimed in a statement. It's revealed through the choices you make every day.",
+    body: "Character isn't claimed in a statement. It's revealed in how you show up — every day.",
   },
+
 ] as const;
 
 export const ARCHIVE = [
   {
     image: portrait1,
-    name: "Rashid",
-    location: "New York, USA",
-    story: "On starting over at forty",
+    name: "ALEX",
+    location: "Vancouver, Canada",
+    no: "046",
+    slug: "alex",
+    quote: "Love.\nLove everyone.",
   },
   {
     image: portrait2,
-    name: "Clara",
-    location: "Melbourne, Australia",
-    story: "On the year she stopped performing",
+    name: "SOFIA",
+    location: "Amman, Jordan",
+    no: "032",
+    slug: "sofia",
+    quote: "To stay soft\nin a hard world.",
   },
   {
     image: portrait3,
-    name: "Joan",
-    location: "Nairobi, Kenya",
-    story: "On raising a village, twice",
+    name: "KENJI",
+    location: "Kyoto, Japan",
+    no: "017",
+    slug: "kenji",
+    quote: "Presence.\nNothing else lasts.",
   },
   {
     image: portrait4,
-    name: "Lukas",
-    location: "Berlin, Germany",
-    story: "On what work took from him",
+    name: "AMARA",
+    location: "Nairobi, Kenya",
+    no: "081",
+    slug: "amara",
+    quote: "We are made\nof each other.",
   },
 ] as const;
 
+<<<<<<< HEAD
 // Episodes are no longer hardcoded here. They come live from the PodBean RSS
 // feed — see `src/lib/podbean`.
+=======
+
+
+export const EPISODES = [
+  { n: "12", title: "The CEO who fired the roadmap", guest: "Marta Nilsen", length: "48 min" },
+  { n: "11", title: "Governance is a growth strategy", guest: "Devon Wallace", length: "52 min" },
+  { n: "10", title: "Teaching 8,000 people to use AI", guest: "Priya Ramesh", length: "41 min" },
+] as const;
+>>>>>>> origin/main

@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+
 import type { ComponentType, SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
@@ -105,57 +105,36 @@ const PLATFORMS: { name: string; Icon: ComponentType<IconProps>; href: string }[
 
 export function SocialSection() {
   return (
-    <section className="section-ink border-t border-border">
-      <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 lg:py-20">
+    <section className="section-ink">
+      <div className="mx-auto max-w-[1400px] px-6 py-16 text-center sm:px-8 sm:py-20 lg:py-24">
         {/* Intro */}
-        <div className="min-w-0">
-          <p className="font-display text-xl font-extrabold uppercase tracking-[0.08em] text-foreground sm:text-2xl">
-            Stay Connected
-          </p>
-          <div className="mt-3 h-1 w-20 bg-lime" aria-hidden />
-
-          <h2 className="display mt-4 text-[clamp(2.5rem,8vw,4.75rem)] font-extrabold uppercase leading-[0.95] text-foreground">
+        <div className="mx-auto min-w-0 max-w-3xl">
+          <h2 className="display text-[clamp(2.5rem,8vw,4.75rem)] font-extralight uppercase leading-[0.95] tracking-[0.02em] text-foreground">
             Follow the journey
           </h2>
 
-          <p className="mt-4 max-w-md text-base leading-relaxed text-foreground/70 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-lime sm:mt-6 sm:text-lg lg:mt-8">
             Ideas. Conversations. Human stories.
           </p>
         </div>
 
-        {/* Platform grid */}
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:mt-10 lg:grid-cols-7 lg:gap-4">
+        {/* Platform list */}
+        <div className="mx-auto mt-12 grid grid-cols-2 place-items-center gap-x-6 gap-y-10 sm:mt-14 sm:grid-cols-4 lg:mt-20 lg:grid-cols-7 lg:gap-x-6 lg:gap-y-12">
           {PLATFORMS.map(({ name, Icon, href }) => (
             <a
               key={name}
               href={href}
-              className="group relative flex h-32 flex-col justify-between border border-border p-4 transition-colors duration-300 hover:border-lime focus-visible:border-lime focus-visible:outline-none sm:h-36 lg:p-5"
+              className="group flex flex-col items-center gap-4 p-2 text-center transition-opacity duration-300 focus-visible:outline-none focus-visible:opacity-100"
             >
-              <Icon className="h-8 w-8 opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-focus-visible:scale-110 group-focus-visible:opacity-100" />
-              <div>
-                <div className="h-px w-full bg-border" aria-hidden />
-                <div className="mt-3 flex items-end justify-between gap-2">
-                  <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-foreground">
-                    {name}
-                  </span>
-                  <ArrowUpRight
-                    className="h-4 w-4 shrink-0 text-lime transition-transform duration-300 group-hover:translate-x-1 group-focus-visible:translate-x-1"
-                    strokeWidth={2}
-                  />
-                </div>
-              </div>
+              <Icon className="h-12 w-12 opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-focus-visible:scale-110 group-focus-visible:opacity-100 sm:h-14 sm:w-14" />
+              <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-foreground">
+                {name}
+              </span>
             </a>
           ))}
         </div>
-
-        {/* Sign-off */}
-        <div className="mt-12 border-t border-border pt-8 text-center">
-          <p className="font-display text-xs font-bold uppercase tracking-[0.28em] text-foreground sm:text-sm">
-            Real Recognizes Real
-          </p>
-          <div className="mx-auto mt-3 h-0.5 w-16 bg-lime" aria-hidden />
-        </div>
       </div>
     </section>
+
   );
 }
