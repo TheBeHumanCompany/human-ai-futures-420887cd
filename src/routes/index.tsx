@@ -5,10 +5,13 @@ import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
 
 import { Users, Shield, Target } from "lucide-react";
+import { EpisodePlayer } from "@/components/episode-player";
 import { SocialSection } from "@/components/social-section";
-import { ARCHIVE, EPISODES, PRINCIPLES } from "@/lib/content";
+import { ARCHIVE, PRINCIPLES } from "@/lib/content";
+import { formatDuration, getEpisodes, selectFeatured } from "@/lib/podbean";
 
 export const Route = createFileRoute("/")({
+  loader: async () => ({ featured: selectFeatured(await getEpisodes()) }),
   head: () => ({
     meta: [
       { title: "The Be Human Company — The Future Is Human." },
@@ -29,6 +32,9 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { featured } = Route.useLoaderData();
+  const [latest, ...rest] = featured;
+
   return (
     <>
       {/* ---------- HERO ---------- */}
@@ -50,7 +56,6 @@ function Home() {
           className="absolute inset-0 -z-10 bg-gradient-to-r from-background/80 via-transparent to-transparent [--tw-gradient-via-position:32%] lg:hidden"
         />
 
-
         <div className="mx-auto flex min-h-[88svh] max-w-[1400px] items-end px-5 pb-16 pt-28 sm:px-8 lg:min-h-[80vh] lg:items-center lg:py-32">
           <div className="fade-up max-w-2xl">
             <h1 className="display text-[clamp(3.5rem,11vw,8.5rem)]">
@@ -59,8 +64,8 @@ function Home() {
               is <span className="text-lime">human</span>
             </h1>
             <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg">
-              We help people and organizations practice what keeps us human in a world becoming
-              more artificial.
+              We help people and organizations practice what keeps us human in a world becoming more
+              artificial.
             </p>
           </div>
         </div>
@@ -123,7 +128,10 @@ function Home() {
       </section>
 
       {/* ---------- BE HUMAN AI ---------- */}
-      <section id="be-human-ai" className="section-ink relative isolate overflow-hidden border-t border-border">
+      <section
+        id="be-human-ai"
+        className="section-ink relative isolate overflow-hidden border-t border-border"
+      >
         {/* INTEGRATED PORTRAIT LAYER */}
         <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
           <img
@@ -159,7 +167,10 @@ function Home() {
               to="/be-human-ai"
               className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink sm:mt-8 sm:px-6 sm:py-3 sm:text-sm"
             >
-              EXPLORE BE HUMAN AI <span aria-hidden className="text-lime transition-colors group-hover:text-ink">→</span>
+              EXPLORE BE HUMAN AI{" "}
+              <span aria-hidden className="text-lime transition-colors group-hover:text-ink">
+                →
+              </span>
             </Link>
           </div>
 
@@ -168,8 +179,6 @@ function Home() {
 
           {/* RIGHT COLUMN — CAPABILITIES */}
           <div className="mt-64 flex flex-col justify-center sm:mt-40 lg:mt-0">
-
-
             <div className="border-t border-border">
               <div className="flex gap-5 py-7">
                 <Users className="mt-0.5 h-6 w-6 shrink-0 text-lime" strokeWidth={1.5} />
@@ -178,7 +187,8 @@ function Home() {
                     HUMAN READINESS
                   </h3>
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/75">
-                    Prepare your team with the skills, mindset, and confidence to thrive alongside AI.
+                    Prepare your team with the skills, mindset, and confidence to thrive alongside
+                    AI.
                   </p>
                 </div>
               </div>
@@ -189,8 +199,7 @@ function Home() {
                 <div>
                   <h3 className="font-display text-base font-semibold uppercase tracking-[0.04em] text-lime">
                     SECURITY, GOVERNANCE
-                    <br />
-                    & SOVEREIGNTY
+                    <br />& SOVEREIGNTY
                   </h3>
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/75">
                     Protect your data, reduce risk, and build AI on a foundation of trust.
@@ -248,15 +257,11 @@ function Home() {
             </Link>
           </div>
 
-
           {/* Six principles */}
           <div className="mt-8 border-t border-ink/15">
             <div className="grid gap-px bg-ink/15 sm:grid-cols-2 lg:grid-cols-3">
               {PRINCIPLES.map((p) => (
-                <article
-                  key={p.n}
-                  className="group bg-cream px-5 py-5 sm:px-6 lg:py-6"
-                >
+                <article key={p.n} className="group bg-cream px-5 py-5 sm:px-6 lg:py-6">
                   <div className="flex items-center gap-4">
                     <span className="font-display text-xl font-black tracking-[0.04em] text-lime [text-shadow:0_0_0.6px_currentColor] sm:text-2xl">
                       {p.n}
@@ -277,12 +282,8 @@ function Home() {
         </div>
       </section>
 
-
       {/* ---------- STAY CONNECTED ---------- */}
       <SocialSection />
-
-
-
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <section className="section-cream border-t border-border">
@@ -348,36 +349,56 @@ function Home() {
               becomes the competitive advantage.
             </p>
 
-            <div className="mt-10 border-t border-border pt-6">
-              <p className="eyebrow text-muted-foreground">Featured episode · 013</p>
-              <h3 className="display mt-3 text-3xl">
-                What your people already know about AI
-              </h3>
-              <p className="mt-3 text-sm text-muted-foreground">
-                With Amara Chen, COO — 56 min
-              </p>
-              <Link
-                to="/podcast"
-                className="eyebrow mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3.5 text-ink"
-              >
-                Listen now <span aria-hidden>→</span>
-              </Link>
-            </div>
+            {latest && (
+              <div className="mt-10 border-t border-border pt-6">
+                <p className="eyebrow text-muted-foreground">
+                  Featured episode
+                  {latest.episodeNumber
+                    ? ` · ${String(latest.episodeNumber).padStart(3, "0")}`
+                    : ""}
+                </p>
+                <h3 className="display mt-3 text-3xl">{latest.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  {latest.guest ? `With ${latest.guest} — ` : ""}
+                  {formatDuration(latest.durationSeconds)}
+                </p>
+                <EpisodePlayer
+                  src={latest.audioUrl}
+                  title={latest.title}
+                  durationSeconds={latest.durationSeconds}
+                  tone="ink"
+                  className="mt-6 max-w-md"
+                />
+              </div>
+            )}
 
-            <ul className="mt-10 border-t border-border">
-              {EPISODES.map((e) => (
-                <li
-                  key={e.n}
-                  className="flex items-baseline justify-between gap-4 border-b border-border py-4"
-                >
-                  <span className="eyebrow shrink-0 text-muted-foreground">{e.n}</span>
-                  <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
-                    {e.title}
-                  </span>
-                  <span className="eyebrow shrink-0 text-muted-foreground">{e.length}</span>
-                </li>
-              ))}
-            </ul>
+            {rest.length > 0 && (
+              <ul className="mt-10 border-t border-border">
+                {rest.map((episode) => (
+                  <li
+                    key={episode.guid}
+                    className="flex items-baseline justify-between gap-4 border-b border-border py-4"
+                  >
+                    <span className="eyebrow shrink-0 text-muted-foreground">
+                      {episode.episodeNumber ?? "—"}
+                    </span>
+                    <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
+                      {episode.title}
+                    </span>
+                    <span className="eyebrow shrink-0 text-muted-foreground">
+                      {formatDuration(episode.durationSeconds)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <Link
+              to="/podcast"
+              className="eyebrow mt-10 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3.5 text-ink"
+            >
+              {latest ? "All episodes" : "Listen now"} <span aria-hidden>→</span>
+            </Link>
           </div>
 
           <div className="relative min-h-[280px] overflow-hidden">
@@ -392,7 +413,6 @@ function Home() {
           </div>
         </div>
       </section>
-
     </>
   );
 }

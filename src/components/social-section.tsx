@@ -103,7 +103,6 @@ const PLATFORMS: { name: string; Icon: ComponentType<IconProps>; href: string }[
   { name: "X", Icon: XIcon, href: "#" },
 ];
 
-
 export function SocialSection() {
   return (
     <section className="section-ink border-t border-border">
