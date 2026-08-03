@@ -8,13 +8,9 @@ import newHumanEraImage from "@/assets/new-human-era-vancouver.jpg";
 import { Users, Shield, Target } from "lucide-react";
 import { EpisodePlayer } from "@/components/episode-player";
 import { SocialSection } from "@/components/social-section";
-<<<<<<< HEAD
-import { ARCHIVE, PRINCIPLES } from "@/lib/content";
-import { formatDuration, getEpisodes, selectFeatured } from "@/lib/podbean";
-=======
 import { HumanArchiveSection } from "@/components/human-archive-section";
-import { EPISODES, PRINCIPLES } from "@/lib/content";
->>>>>>> origin/main
+import { PRINCIPLES } from "@/lib/content";
+import { formatDuration, getEpisodes, selectFeatured } from "@/lib/podbean";
 
 export const Route = createFileRoute("/")({
   loader: async () => ({ featured: selectFeatured(await getEpisodes()) }),
@@ -69,15 +65,9 @@ function Home() {
               <br />
               is <span className="text-lime">human</span>
             </h1>
-<<<<<<< HEAD
-            <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg">
-              We help people and organizations practice what keeps us human in a world becoming more
-              artificial.
-=======
             <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg lg:max-w-xl">
               We help people and organizations practice what keeps us human in a world becoming
               more artificial.
->>>>>>> origin/main
             </p>
           </div>
         </div>
@@ -185,13 +175,7 @@ function Home() {
           <div className="hidden lg:block" aria-hidden />
 
           {/* RIGHT COLUMN — CAPABILITIES */}
-<<<<<<< HEAD
-          <div className="mt-64 flex flex-col justify-center sm:mt-40 lg:mt-0">
-=======
           <div className="mt-64 flex flex-col justify-center sm:mt-40 md:mt-20 lg:mt-0">
-
-
->>>>>>> origin/main
             <div className="border-t border-border">
               <div className="flex gap-5 py-7">
                 <Users className="mt-0.5 h-6 w-6 shrink-0 text-lime" strokeWidth={1.5} />
@@ -274,29 +258,6 @@ function Home() {
             </Link>
           </div>
 
-<<<<<<< HEAD
-          {/* Six principles */}
-          <div className="mt-8 border-t border-ink/15">
-            <div className="grid gap-px bg-ink/15 sm:grid-cols-2 lg:grid-cols-3">
-              {PRINCIPLES.map((p) => (
-                <article key={p.n} className="group bg-cream px-5 py-5 sm:px-6 lg:py-6">
-                  <div className="flex items-center gap-4">
-                    <span className="font-display text-xl font-black tracking-[0.04em] text-lime [text-shadow:0_0_0.6px_currentColor] sm:text-2xl">
-                      {p.n}
-                    </span>
-                    <span
-                      aria-hidden
-                      className="h-[2px] w-7 bg-lime transition-all duration-300 group-hover:w-12"
-                    />
-                  </div>
-                  <h3 className="display mt-2.5 text-[clamp(1.25rem,3vw,1.5rem)] font-extrabold leading-tight text-ink">
-                    {p.title}
-                  </h3>
-                  <p className="mt-1.5 max-w-sm text-sm leading-snug text-ink/65">{p.body}</p>
-                </article>
-              ))}
-            </div>
-=======
           <figure className="nhe-media relative overflow-hidden lg:-ml-[8%] lg:w-[108%]">
             <img
               src={newHumanEraImage}
@@ -329,17 +290,11 @@ function Home() {
                 <p className="mt-3 text-sm leading-relaxed text-ink/65">{p.body}</p>
               </article>
             ))}
->>>>>>> origin/main
           </div>
         </div>
       </section>
 
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> origin/main
       {/* ---------- STAY CONNECTED ---------- */}
       <SocialSection />
 
@@ -361,7 +316,7 @@ function Home() {
             </p>
           </div>
 
-<<<<<<< HEAD
+
             {latest && (
               <div className="mt-10 border-t border-border pt-6">
                 <p className="eyebrow text-muted-foreground">
@@ -424,56 +379,6 @@ function Home() {
               className="h-full w-full object-cover"
             />
           </div>
-=======
-          {/* Featured episode — hero of the section */}
-          <article className="mt-10 grid overflow-hidden border border-border bg-foreground/[0.03] lg:mt-12 lg:grid-cols-[0.9fr_1fr]">
-            <div className="relative min-h-[240px] sm:min-h-[300px] lg:min-h-[380px]">
-              <img
-                src={podcastImage}
-                alt="Studio condenser microphone lit in a dark recording room"
-                loading="lazy"
-                width={1200}
-                height={900}
-                className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
-              />
-            </div>
-            <div className="flex flex-col justify-center gap-4 p-6 sm:p-9 lg:p-12">
-              <p className="eyebrow text-lime">Featured episode</p>
-              <h3 className="display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.05]">
-                What your people already know about AI
-              </h3>
-              <p className="text-sm text-muted-foreground">With Amara Chen, COO — 56 min</p>
-              <Link
-                to="/podcast"
-                className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-lime/90"
-              >
-                Listen now{" "}
-                <span aria-hidden className="text-base transition-transform group-hover:translate-x-0.5">
-                  →
-                </span>
-              </Link>
-            </div>
-          </article>
-
-          {/* Episode list */}
-          <ul className="mt-10 border-t border-border lg:mt-12">
-            {EPISODES.map((e) => (
-              <li
-                key={e.n}
-                className="flex items-baseline gap-4 border-b border-border py-4 sm:gap-8"
-              >
-                <span className="eyebrow w-8 shrink-0 text-muted-foreground">{e.n}</span>
-                <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">{e.title}</span>
-                <span className="eyebrow hidden shrink-0 text-muted-foreground sm:block">
-                  {e.guest}
-                </span>
-                <span className="eyebrow w-14 shrink-0 text-right text-muted-foreground">
-                  {e.length}
-                </span>
-              </li>
-            ))}
-          </ul>
->>>>>>> origin/main
         </div>
       </section>
     </>
