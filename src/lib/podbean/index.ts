@@ -6,9 +6,10 @@
  * regeneration of `podcast.tsx` or `index.tsx` can at worst break an import
  * the build will catch — it cannot silently delete the integration.
  */
-export type { Episode } from "./types";
+export type { Episode, EpisodeListItem } from "./types";
 export {
   decodeEntities,
+  forListing,
   formatDuration,
   parseFeed,
   parseGuest,

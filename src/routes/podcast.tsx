@@ -23,9 +23,14 @@ export const Route = createFileRoute("/podcast")({
   component: Podcast,
 });
 
+// timeZone is pinned deliberately. Without it the formatter resolves against
+// the runtime's zone — UTC on the server, the visitor's in the browser — so an
+// episode published between 00:00 and ~08:00 UTC on the 1st of a month renders
+// a different month on each side and trips a hydration mismatch.
 const PUBLISHED = new Intl.DateTimeFormat("en-CA", {
   year: "numeric",
   month: "short",
+  timeZone: "UTC",
 });
 
 function Podcast() {

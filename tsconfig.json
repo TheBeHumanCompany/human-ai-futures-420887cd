@@ -1,5 +1,10 @@
 {
   "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts", "eslint.config.js"],
+  // Tests run under Bun's own runtime, which supplies `bun:test`. Typechecking
+  // them here would need the bun-types package; excluding keeps `tsc --noEmit`
+  // clean for application code without adding a dependency (bunfig.toml
+  // enforces a 24h minimumReleaseAge on new packages).
+  "exclude": ["src/**/*.test.ts"],
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",

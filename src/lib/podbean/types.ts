@@ -20,7 +20,13 @@ export interface Episode {
    * than rendering no guest at all. See `parseGuest`.
    */
   guest?: string;
-  /** Show notes with markup stripped. Safe to render as text. */
+  /**
+   * Show notes reduced to plain text.
+   *
+   * Safe as React text ONLY. `stripHtml` is not a sanitizer — never pass this
+   * to `dangerouslySetInnerHTML`. Stripped from the payload sent to the
+   * browser (see `forListing`) because nothing renders it today.
+   */
   description: string;
   /** ISO 8601. */
   pubDate: string;
@@ -28,6 +34,7 @@ export interface Episode {
   durationSeconds: number;
   /** Direct https URL on PodBean's CDN. Playable in an `<audio>` element. */
   audioUrl: string;
-  /** Enclosure MIME type, e.g. `audio/mpeg`. */
-  audioType: string;
 }
+
+/** An `Episode` as sent to the browser — show notes stripped. */
+export type EpisodeListItem = Omit<Episode, "description">;

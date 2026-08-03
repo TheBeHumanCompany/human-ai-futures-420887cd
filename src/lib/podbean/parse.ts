@@ -1,4 +1,4 @@
-import type { Episode } from "./types";
+import type { Episode, EpisodeListItem } from "./types";
 
 /* ------------------------------------------------------------------ *
  * Text helpers
@@ -20,27 +20,47 @@ const NAMED_ENTITIES: Record<string, string> = {
   ndash: "–",
 };
 
+/**
+ * A code point that `String.fromCodePoint` will accept.
+ *
+ * It throws `RangeError` above U+10FFFF, and the feed is third-party input, so
+ * an out-of-range entity anywhere in any one item would otherwise escape
+ * `parseFeed`'s per-item guards and take down the entire catalogue.
+ */
+function codePointOrNull(value: number): string | null {
+  if (!Number.isInteger(value) || value < 0 || value > 0x10ffff) return null;
+  // Lone surrogates are valid to construct but produce unpaired garbage.
+  if (value >= 0xd800 && value <= 0xdfff) return null;
+  return String.fromCodePoint(value);
+}
+
 /** Decodes the named and numeric entities that appear in this feed. */
 export function decodeEntities(input: string): string {
   return input
-    .replace(/&#x([0-9a-f]+);/gi, (_, hex: string) =>
-      String.fromCodePoint(Number.parseInt(hex, 16)),
+    .replace(
+      /&#x([0-9a-f]+);/gi,
+      (match, hex: string) => codePointOrNull(Number.parseInt(hex, 16)) ?? match,
     )
-    .replace(/&#(\d+);/g, (_, dec: string) => String.fromCodePoint(Number.parseInt(dec, 10)))
+    .replace(
+      /&#(\d+);/g,
+      (match, dec: string) => codePointOrNull(Number.parseInt(dec, 10)) ?? match,
+    )
     .replace(/&([a-z]+);/gi, (match, name: string) => NAMED_ENTITIES[name.toLowerCase()] ?? match);
 }
 
 /**
- * Strips markup and collapses whitespace.
+ * Reduces markup to plain text and collapses whitespace.
  *
- * The feed's descriptions are ~1.9kB of HTML carrying leaked utility classes
- * (`<p class="whitespace-normal break-words">`), so this output is used as
- * text — it is never injected as HTML.
+ * NOT a sanitizer, and must never be trusted as one — regex tag-stripping
+ * cannot be made safe. Entities are decoded *before* tags are stripped, so
+ * escaped markup (`&lt;script&gt;`) is neutralised rather than resurrected as
+ * live markup, but the only safe destination for this output is React text.
+ * Never pass it to `dangerouslySetInnerHTML`.
  */
 export function stripHtml(input: string): string {
-  return decodeEntities(
-    input.replace(/<\s*(script|style)[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi, "").replace(/<[^>]*>/g, " "),
-  )
+  return decodeEntities(input)
+    .replace(/<\s*(script|style)[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi, "")
+    .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -167,7 +187,10 @@ const GUEST_PATTERNS: RegExp[] = [
   new RegExp(String.raw`\bConversation with\s+(${NAME})`, "u"),
   // "The Creative Journey of Mia Fiona Kut", "The Leadership Journey of Cathline James"
   new RegExp(String.raw`\b(?:Story|Journey) of\s+(${NAME})`, "u"),
-  // "How Glyn Lewis Creates", "How Linda Biggs and Joni Are" -> stops at "and"
+  // "How Glyn Lewis Creates", "How Linda Biggs and Joni Are" -> stops at "and".
+  // NAME ends in `{1,3}`, so the trailing `?` makes that quantifier LAZY — it
+  // is not an "optional name". Laziness is exactly what stops the capture at
+  // "and" instead of swallowing the co-named brand.
   new RegExp(
     String.raw`\bHow\s+(${NAME}?)\s+(?:and|is|Is|are|Are|Built|Grew|Turned|Creates|Made|Went)\b`,
     "u",
@@ -182,8 +205,10 @@ const GUEST_PATTERNS: RegExp[] = [
  * Extracts the interview guest from an episode title.
  *
  * Returns `undefined` rather than a wrong answer. Measured against all 39 live
- * episodes: resolves 35, and correctly declines episodes 1, 4, 6 and 15, whose
- * titles name a brand or no person at all.
+ * episodes: resolves 37, declining only episodes 6 and 1, whose titles name no
+ * person at all. Episodes 4 and 15 *do* resolve — to "Elizabeth Fisher" and
+ * "Joao Ribeiro" — because the possessive pattern runs before the generic
+ * `with <X>` pattern and so beats the trailing brand name.
  */
 export function parseGuest(title: string): string | undefined {
   const clean = decodeEntities(title).replace(/^Episode\s+\d+\s*[:\-—]\s*/i, "");
@@ -240,6 +265,11 @@ export function parseFeed(xml: string): Episode[] {
     const parsedDate = new Date(pubDateRaw);
     if (Number.isNaN(parsedDate.getTime())) continue;
 
+    // Strict digits-only: this feed stores plain seconds, but the iTunes spec
+    // also permits HH:MM:SS, and `parseInt("46:31")` would quietly yield 46 —
+    // rendering a 46-minute episode as "1 min" with a 46-second seek bar.
+    // Better to skip the item and let the evaluator fail loudly.
+    if (!/^\d+$/.test(durationRaw)) continue;
     const durationSeconds = Number.parseInt(durationRaw, 10);
     if (!Number.isFinite(durationSeconds) || durationSeconds <= 0) continue;
 
@@ -256,7 +286,6 @@ export function parseFeed(xml: string): Episode[] {
       pubDate: parsedDate.toISOString(),
       durationSeconds,
       audioUrl: decodeEntities(audioUrl),
-      audioType: attr(chunk, "enclosure", "type") ?? "audio/mpeg",
     });
   }
 
@@ -265,7 +294,25 @@ export function parseFeed(xml: string): Episode[] {
   return episodes.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 }
 
-/** The three most recent episodes, for the homepage. */
-export function selectFeatured(episodes: Episode[], count = 3): Episode[] {
+/**
+ * The three most recent episodes, for the homepage.
+ *
+ * Generic so it works on both the full `Episode` and the trimmed
+ * `EpisodeListItem` the loaders actually receive.
+ */
+export function selectFeatured<T>(episodes: readonly T[], count = 3): T[] {
   return episodes.slice(0, count);
+}
+
+/**
+ * Drops show notes before an episode list crosses the wire.
+ *
+ * Nothing renders `description`, but it is ~1.05 kB per episode — across 39
+ * items it was 41 kB of the 57 kB dehydrated payload on every `/podcast`
+ * response, and again on every client-side navigation back to the route.
+ * Parsing it stays worthwhile (it is the natural source for an excerpt later);
+ * shipping it to the browser unrendered is not.
+ */
+export function forListing(episodes: Episode[]): EpisodeListItem[] {
+  return episodes.map(({ description: _description, ...rest }) => rest);
 }

@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import {
   decodeEntities,
+  forListing,
   formatDuration,
   parseFeed,
   parseGuest,
@@ -40,6 +41,26 @@ describe("decodeEntities / stripHtml", () => {
 
   test("drops script content entirely", () => {
     expect(stripHtml("<script>alert(1)</script>safe")).toBe("safe");
+  });
+
+  test("does not resurrect escaped markup as live markup", () => {
+    // Decoding must happen BEFORE tag-stripping, or "&lt;script&gt;" survives
+    // the strip and then decodes into a real tag.
+    expect(stripHtml("&lt;script&gt;alert(1)&lt;/script&gt;")).toBe("");
+    expect(stripHtml("&lt;b&gt;bold&lt;/b&gt;")).toBe("bold");
+  });
+
+  test("survives out-of-range numeric entities instead of throwing", () => {
+    // String.fromCodePoint throws RangeError above U+10FFFF. The feed is
+    // third-party input, and one bad entity used to take down all 39 episodes.
+    expect(() => decodeEntities("&#x110000;")).not.toThrow();
+    expect(() => decodeEntities("&#99999999;")).not.toThrow();
+    expect(decodeEntities("&#x110000;")).toBe("&#x110000;");
+    expect(decodeEntities("ok &#99999999; still here")).toBe("ok &#99999999; still here");
+  });
+
+  test("leaves lone surrogates alone", () => {
+    expect(decodeEntities("&#xD800;")).toBe("&#xD800;");
   });
 });
 
@@ -148,7 +169,6 @@ describe("parseFeed", () => {
     expect(two.guest).toBe("Alexandra Dean");
     expect(two.description).toBe("Notes two");
     expect(two.audioUrl).toBe("https://mcdn.podbean.com/mf/web/aaa/two.mp3");
-    expect(two.audioType).toBe("audio/mpeg");
     expect(two.durationSeconds).toBe(2773);
     expect(two.guid).toBe("show.podbean.com/abc-123");
     expect(two.pubDate).toBe(new Date("Tue, 01 Jul 2025 12:34:39 -0300").toISOString());
@@ -157,6 +177,54 @@ describe("parseFeed", () => {
   test("returns empty for junk input rather than throwing", () => {
     expect(parseFeed("")).toEqual([]);
     expect(parseFeed("<html>not a feed</html>")).toEqual([]);
+  });
+
+  test("one bad entity does not destroy the whole catalogue", () => {
+    // Regression: an out-of-range entity in ANY item used to throw out of the
+    // loop, losing every episode — including the well-formed ones.
+    const poisoned = FIXTURE.replace("Third: Tyler McCombs", "Third &#x110000; Tyler McCombs");
+    let result: ReturnType<typeof parseFeed> = [];
+    expect(() => {
+      result = parseFeed(poisoned);
+    }).not.toThrow();
+    expect(result).toHaveLength(2);
+    expect(result.some((e) => e.episodeNumber === 2)).toBe(true);
+  });
+
+  test("skips HH:MM:SS durations rather than silently misreading them", () => {
+    // parseInt("46:31") is 46 — a 46-minute episode would render "1 min" with a
+    // 46-second seek bar. Skipping makes the evaluator fail loudly instead.
+    const colonised = FIXTURE.replace(
+      "<itunes:duration>2773</itunes:duration>",
+      "<itunes:duration>46:13</itunes:duration>",
+    );
+    const result = parseFeed(colonised);
+    expect(result).toHaveLength(1);
+    expect(result[0]!.episodeNumber).toBe(3);
+  });
+});
+
+describe("forListing", () => {
+  test("drops show notes from the wire payload", () => {
+    const episodes = parseFeed(FIXTURE);
+    expect(episodes[0]).toHaveProperty("description");
+
+    const listed = forListing(episodes);
+    expect(listed).toHaveLength(episodes.length);
+    for (const item of listed) expect(item).not.toHaveProperty("description");
+  });
+
+  test("preserves everything the UI actually renders", () => {
+    const [first] = forListing(parseFeed(FIXTURE));
+    expect(first).toMatchObject({
+      episodeNumber: 3,
+      guest: "Tyler McCombs",
+      durationSeconds: 600,
+      audioUrl: "https://mcdn.podbean.com/mf/web/bbb/three.mp3",
+    });
+    expect(first!.title.length).toBeGreaterThan(0);
+    expect(first!.pubDate.length).toBeGreaterThan(0);
+    expect(first!.guid.length).toBeGreaterThan(0);
   });
 });
 

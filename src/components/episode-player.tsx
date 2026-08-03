@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
 
-import { formatDuration } from "@/lib/podbean";
+// Imported from the module rather than the barrel: the barrel re-exports
+// `feed.ts`, and pulling the whole graph client-side just for a formatter
+// leaves inert parser regexes in the browser bundle.
+import { formatDuration } from "@/lib/podbean/parse";
 import { cn } from "@/lib/utils";
 
 /**
@@ -49,8 +52,12 @@ export function EpisodePlayer({
   const [total, setTotal] = useState(durationSeconds);
 
   useEffect(() => {
+    // Captured at mount. React detaches refs during the mutation phase, before
+    // passive cleanups for a deleted subtree run, so reading `audioRef.current`
+    // inside the cleanup would always see null and never clear anything.
+    const element = audioRef.current;
     return () => {
-      if (activeAudio === audioRef.current) activeAudio = null;
+      if (activeAudio === element) activeAudio = null;
     };
   }, []);
 
@@ -78,11 +85,18 @@ export function EpisodePlayer({
   const onInk = tone === "ink";
 
   return (
-    <div className={cn("flex items-center gap-4", className)}>
+    // Grouped so the episode is announced once, letting the controls inside
+    // carry short labels instead of repeating a 100-character title twice per
+    // row across 39 rows.
+    <div
+      role="group"
+      aria-label={`Audio player — ${title}`}
+      className={cn("flex items-center gap-4", className)}
+    >
       <button
         type="button"
         onClick={toggle}
-        aria-label={`${isPlaying ? "Pause" : "Play"} — ${title}`}
+        aria-label={isPlaying ? "Pause" : "Play"}
         className={cn(
           "flex size-11 shrink-0 items-center justify-center rounded-full transition-opacity hover:opacity-80",
           "focus-visible:outline-2 focus-visible:outline-offset-2",
@@ -106,7 +120,10 @@ export function EpisodePlayer({
           step={1}
           value={Math.min(elapsed, total || 0)}
           onChange={seek}
-          aria-label={`Seek within ${title}`}
+          aria-label="Seek"
+          // Without this a screen reader announces the raw second count
+          // ("1523"), which tells a listener nothing about where they are.
+          aria-valuetext={`${clock(elapsed)} of ${clock(total)}`}
           className={cn(
             "h-1 min-w-0 flex-1 cursor-pointer appearance-none rounded-full",
             "[&::-webkit-slider-thumb]:size-3 [&::-webkit-slider-thumb]:appearance-none",
