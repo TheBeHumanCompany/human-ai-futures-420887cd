@@ -1,7 +1,12 @@
-import portrait1 from "@/assets/archive-alex.jpg";
-import portrait2 from "@/assets/archive-sofia.jpg";
-import portrait3 from "@/assets/archive-kenji.jpg";
-import portrait4 from "@/assets/archive-amara.jpg";
+import portrait1Asset from "@/assets/archive-adewolf.png.asset.json";
+import portrait2Asset from "@/assets/archive-bella.png.asset.json";
+import portrait3Asset from "@/assets/archive-anton.png.asset.json";
+import portrait4Asset from "@/assets/archive-arlina.png.asset.json";
+
+const portrait1 = portrait1Asset.url;
+const portrait2 = portrait2Asset.url;
+const portrait3 = portrait3Asset.url;
+const portrait4 = portrait4Asset.url;
 
 export const SERVICES = [
   {
