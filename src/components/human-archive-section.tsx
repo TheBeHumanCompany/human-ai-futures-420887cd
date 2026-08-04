@@ -117,7 +117,7 @@ function PortraitCard({
 
 
 export function HumanArchiveSection() {
-  const DEFAULT_ACTIVE = 3;
+  const DEFAULT_ACTIVE = 1;
   const [hovered, setHovered] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState<number | null>(null);
   const active = hovered ?? scrolled ?? DEFAULT_ACTIVE;
