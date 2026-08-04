@@ -188,6 +188,7 @@ export function HumanArchiveSection() {
               active={active === i}
               onActivate={() => setHovered(i)}
               onDeactivate={() => setHovered(null)}
+              onInView={() => handleInView(i)}
             />
           ))}
         </div>
