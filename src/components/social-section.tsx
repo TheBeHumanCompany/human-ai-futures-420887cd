@@ -1,4 +1,3 @@
-
 import type { ComponentType, SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
@@ -135,6 +134,5 @@ export function SocialSection() {
         </div>
       </div>
     </section>
-
   );
 }

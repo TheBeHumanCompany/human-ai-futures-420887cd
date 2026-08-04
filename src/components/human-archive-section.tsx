@@ -86,7 +86,6 @@ function PortraitCard({
             {quote}
           </blockquote>
 
-
           {/* name / location on image */}
           <figcaption className="pointer-events-none absolute inset-x-5 bottom-5 text-left">
             <p className="font-display text-[clamp(1rem,1.5vw,1.25rem)] font-bold uppercase leading-none tracking-[0.12em] text-cream">
@@ -101,7 +100,6 @@ function PortraitCard({
     </figure>
   );
 }
-
 
 export function HumanArchiveSection() {
   return (
@@ -146,7 +144,6 @@ export function HumanArchiveSection() {
               </Link>
             </div>
           </div>
-
         </div>
 
         {/* Portraits */}
@@ -161,7 +158,6 @@ export function HumanArchiveSection() {
               slug={person.slug}
               quote={person.quote}
               featured={i === 1}
-
             />
           ))}
         </div>

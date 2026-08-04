@@ -61,7 +61,6 @@ export const PRINCIPLES = [
     title: "Character is earned",
     body: "Character isn't claimed in a statement. It's revealed in how you show up — every day.",
   },
-
 ] as const;
 
 export const ARCHIVE = [

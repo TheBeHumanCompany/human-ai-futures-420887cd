@@ -66,8 +66,8 @@ function Home() {
               is <span className="text-lime">human</span>
             </h1>
             <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg lg:max-w-xl">
-              We help people and organizations practice what keeps us human in a world becoming
-              more artificial.
+              We help people and organizations practice what keeps us human in a world becoming more
+              artificial.
             </p>
           </div>
         </div>
@@ -99,7 +99,6 @@ function Home() {
           </div>
 
           <figure className="group relative aspect-[16/9] overflow-hidden rounded-lg lg:mt-32 lg:self-center">
-
             <img
               src={founderVideoPoster}
               alt="Shane speaking directly to camera in a warmly lit room with BE HUMAN lettering on the wall"
@@ -122,7 +121,6 @@ function Home() {
           </figure>
         </div>
       </section>
-
 
       {/* ---------- BE HUMAN AI ---------- */}
       <section
@@ -252,7 +250,10 @@ function Home() {
               className="nhe-cta group mt-10 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-7 py-3.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime sm:px-8 sm:text-sm"
             >
               Learn More
-              <span aria-hidden className="text-base text-lime transition-transform group-hover:translate-x-1">
+              <span
+                aria-hidden
+                className="text-base text-lime transition-transform group-hover:translate-x-1"
+              >
                 →
               </span>
             </Link>
@@ -274,7 +275,10 @@ function Home() {
         <div className="mx-auto max-w-[1400px] px-6 pb-16 pt-16 sm:px-8 sm:pb-20 lg:pb-28 lg:pt-24">
           <div className="nhe-principles grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-14">
             {PRINCIPLES.map((p) => (
-              <article key={p.n} className="nhe-principle group max-w-sm border-t border-ink/12 pt-6">
+              <article
+                key={p.n}
+                className="nhe-principle group max-w-sm border-t border-ink/12 pt-6"
+              >
                 <div className="flex items-center gap-3">
                   <span className="font-display text-lg font-black tracking-[0.06em] text-lime">
                     {p.n}
@@ -294,13 +298,11 @@ function Home() {
         </div>
       </section>
 
-
       {/* ---------- STAY CONNECTED ---------- */}
       <SocialSection />
 
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <HumanArchiveSection />
-
 
       {/* ---------- PODCAST ---------- */}
       <section className="section-ink border-t border-border">
@@ -316,69 +318,80 @@ function Home() {
             </p>
           </div>
 
+          {/* Featured episode — hero of the section */}
+          <article className="mt-10 grid overflow-hidden border border-border bg-foreground/[0.03] lg:mt-12 lg:grid-cols-[0.9fr_1fr]">
+            <div className="relative min-h-[240px] sm:min-h-[300px] lg:min-h-[380px]">
+              <img
+                src={podcastImage}
+                alt="Studio condenser microphone lit in a dark recording room"
+                loading="lazy"
+                width={1200}
+                height={900}
+                className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
+              />
+            </div>
+            <div className="flex flex-col justify-center gap-4 p-6 sm:p-9 lg:p-12">
+              <p className="eyebrow text-lime">
+                Featured episode
+                {latest?.episodeNumber ? ` · ${String(latest.episodeNumber).padStart(3, "0")}` : ""}
+              </p>
+              <h3 className="display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.05]">
+                {latest ? latest.title : "Where leaders prepare for the New Human Era"}
+              </h3>
+              {latest && (
+                <>
+                  <p className="text-sm text-muted-foreground">
+                    {latest.guest ? `With ${latest.guest} — ` : ""}
+                    {formatDuration(latest.durationSeconds)}
+                  </p>
+                  <EpisodePlayer
+                    src={latest.audioUrl}
+                    title={latest.title}
+                    durationSeconds={latest.durationSeconds}
+                    tone="ink"
+                    className="max-w-md"
+                  />
+                </>
+              )}
+              <Link
+                to="/podcast"
+                className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-lime/90"
+              >
+                {latest ? "All episodes" : "Listen now"}{" "}
+                <span
+                  aria-hidden
+                  className="text-base transition-transform group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
+              </Link>
+            </div>
+          </article>
 
-            {latest && (
-              <div className="mt-10 border-t border-border pt-6">
-                <p className="eyebrow text-muted-foreground">
-                  Featured episode
-                  {latest.episodeNumber
-                    ? ` · ${String(latest.episodeNumber).padStart(3, "0")}`
-                    : ""}
-                </p>
-                <h3 className="display mt-3 text-3xl">{latest.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  {latest.guest ? `With ${latest.guest} — ` : ""}
-                  {formatDuration(latest.durationSeconds)}
-                </p>
-                <EpisodePlayer
-                  src={latest.audioUrl}
-                  title={latest.title}
-                  durationSeconds={latest.durationSeconds}
-                  tone="ink"
-                  className="mt-6 max-w-md"
-                />
-              </div>
-            )}
-
-            {rest.length > 0 && (
-              <ul className="mt-10 border-t border-border">
-                {rest.map((episode) => (
-                  <li
-                    key={episode.guid}
-                    className="flex items-baseline justify-between gap-4 border-b border-border py-4"
-                  >
-                    <span className="eyebrow shrink-0 text-muted-foreground">
-                      {episode.episodeNumber ?? "—"}
-                    </span>
-                    <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
-                      {episode.title}
-                    </span>
-                    <span className="eyebrow shrink-0 text-muted-foreground">
-                      {formatDuration(episode.durationSeconds)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            <Link
-              to="/podcast"
-              className="eyebrow mt-10 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3.5 text-ink"
-            >
-              {latest ? "All episodes" : "Listen now"} <span aria-hidden>→</span>
-            </Link>
-          </div>
-
-          <div className="relative min-h-[280px] overflow-hidden">
-            <img
-              src={podcastImage}
-              alt="Studio condenser microphone lit in a dark recording room"
-              loading="lazy"
-              width={1200}
-              height={900}
-              className="h-full w-full object-cover"
-            />
-          </div>
+          {/* Episode list */}
+          {rest.length > 0 && (
+            <ul className="mt-10 border-t border-border lg:mt-12">
+              {rest.map((episode) => (
+                <li
+                  key={episode.guid}
+                  className="flex items-baseline gap-4 border-b border-border py-4 sm:gap-8"
+                >
+                  <span className="eyebrow w-8 shrink-0 text-muted-foreground">
+                    {episode.episodeNumber ?? "—"}
+                  </span>
+                  <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
+                    {episode.title}
+                  </span>
+                  <span className="eyebrow hidden shrink-0 text-muted-foreground sm:block">
+                    {episode.guest ?? ""}
+                  </span>
+                  <span className="eyebrow w-14 shrink-0 text-right text-muted-foreground">
+                    {formatDuration(episode.durationSeconds)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
     </>

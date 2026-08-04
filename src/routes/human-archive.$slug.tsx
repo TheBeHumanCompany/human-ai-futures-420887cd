@@ -67,9 +67,8 @@ function ArchiveProfile() {
             {person.location}
           </p>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg">
-            This archive entry is being prepared. Soon you’ll find {person.name}’s full
-            conversation here — their answer to the question we ask everyone: what does it mean to
-            be human?
+            This archive entry is being prepared. Soon you’ll find {person.name}’s full conversation
+            here — their answer to the question we ask everyone: what does it mean to be human?
           </p>
           <Link
             to="/the-human-archive"
