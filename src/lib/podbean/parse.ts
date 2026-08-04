@@ -65,6 +65,48 @@ export function stripHtml(input: string): string {
     .trim();
 }
 
+/**
+ * Most show notes open with a near-identical host introduction — 10 of the 39
+ * begin with the exact same sentence, and most of the rest with a variant of
+ * "In this episode … Shane Jeremy James sits down with …". Excerpting the raw
+ * opening would make every row read the same, so the lead-in is dropped up to
+ * and including the introducing verb, which lands the excerpt on the guest and
+ * what they actually do.
+ */
+const INTRO_PATTERNS: readonly RegExp[] = [
+  // "In this episode of the podcast, host Shane Jeremy James, known as S1H,
+  // sits down with " — anything up to and including the introducing verb.
+  /^.{0,160}?\b(?:sits? down with|sat down with|speaks? with|spoke with|talks? with|talked with|talks? to|is joined by|chats? with|welcomes)\s+/i,
+  // "In this inspiring episode, " / "In this episode of The People-Driven CEO
+  // Podcast, " — the 16 items that name the guest directly with no verb.
+  /^In this\b[^,.]{0,60}?\bepisode\b(?:\s+of\s+[^,.]{0,60})?,\s*/i,
+  // Whatever "meet " is left over once the clause above is gone.
+  /^(?:we\s+)?meet\s+/i,
+];
+
+/**
+ * A short, display-safe summary of an episode.
+ *
+ * Also the search haystack, which is why it ships to the browser while the
+ * full `description` does not. Episodes whose notes do not use the house
+ * intro pattern (episode 1, for one) are left alone rather than mangled.
+ */
+export function makeExcerpt(description: string, maxChars = 200): string {
+  let body = description.trim();
+  for (const pattern of INTRO_PATTERNS) {
+    const stripped = body.replace(pattern, "").trim();
+    // Never strip away the whole summary — episode 1 opens with real prose and
+    // must survive untouched.
+    if (stripped.length > 0) body = stripped;
+  }
+  if (body.length === 0) body = description.trim();
+  if (body.length <= maxChars) return body;
+
+  const cut = body.slice(0, maxChars);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > maxChars * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:.\-–—]+$/, "")}…`;
+}
+
 /** `2773` -> `"46 min"`. The feed stores duration as an integer of seconds. */
 export function formatDuration(totalSeconds: number): string {
   if (!Number.isFinite(totalSeconds) || totalSeconds <= 0) return "";
@@ -276,13 +318,15 @@ export function parseFeed(xml: string): Episode[] {
     const title = decodeEntities(rawTitle).trim();
     const episodeRaw = tagContent(chunk, "itunes:episode");
     const episodeNumber = episodeRaw ? Number.parseInt(episodeRaw, 10) : NaN;
+    const description = stripHtml(tagContent(chunk, "description") ?? "");
 
     episodes.push({
       guid,
       episodeNumber: Number.isFinite(episodeNumber) ? episodeNumber : null,
       title,
       guest: parseGuest(title),
-      description: stripHtml(tagContent(chunk, "description") ?? ""),
+      description,
+      excerpt: makeExcerpt(description),
       pubDate: parsedDate.toISOString(),
       durationSeconds,
       audioUrl: decodeEntities(audioUrl),

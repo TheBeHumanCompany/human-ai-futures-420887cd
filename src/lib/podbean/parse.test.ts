@@ -4,6 +4,7 @@ import {
   decodeEntities,
   forListing,
   formatDuration,
+  makeExcerpt,
   parseFeed,
   parseGuest,
   selectFeatured,
@@ -61,6 +62,59 @@ describe("decodeEntities / stripHtml", () => {
 
   test("leaves lone surrogates alone", () => {
     expect(decodeEntities("&#xD800;")).toBe("&#xD800;");
+  });
+});
+
+describe("makeExcerpt", () => {
+  test("drops the host lead-in and lands on the guest", () => {
+    expect(
+      makeExcerpt(
+        "In this episode of the podcast, host Shane Jeremy James, known as S1H, sits down with Jill De Chavez, the dynamic owner of Briteweb.",
+      ),
+    ).toBe("Jill De Chavez, the dynamic owner of Briteweb.");
+  });
+
+  test("handles the no-verb variant that names the guest directly", () => {
+    expect(
+      makeExcerpt("In this episode, Maria Porcellato opens up about her journey into wellness."),
+    ).toBe("Maria Porcellato opens up about her journey into wellness.");
+    expect(
+      makeExcerpt("In this inspiring episode, we sit down with Missy MacKintosh, founder."),
+    ).toBe("Missy MacKintosh, founder.");
+    expect(makeExcerpt("In this episode, meet Monica and Robin, founders of Minta.")).toBe(
+      "Monica and Robin, founders of Minta.",
+    );
+  });
+
+  test("leaves notes that use no house pattern completely alone", () => {
+    // Episode 1 opens with real prose and must not be mangled.
+    const prose = "What started as two friends venting about healthcare turned into a clinic.";
+    expect(makeExcerpt(prose)).toBe(prose);
+  });
+
+  test("never strips a summary down to nothing", () => {
+    expect(makeExcerpt("In this episode, ")).not.toBe("");
+    expect(makeExcerpt("Shane Jeremy James sits down with ").length).toBeGreaterThan(0);
+  });
+
+  test("truncates on a word boundary with an ellipsis", () => {
+    const long = `Alpha ${"beta ".repeat(80)}omega`;
+    const out = makeExcerpt(long, 60);
+    expect(out.length).toBeLessThanOrEqual(61);
+    expect(out.endsWith("…")).toBe(true);
+    expect(out).not.toContain("bet…");
+  });
+
+  test("does not add an ellipsis when it already fits", () => {
+    expect(makeExcerpt("Short enough.", 200)).toBe("Short enough.");
+  });
+
+  test("leaves no dangling punctuation before the ellipsis", () => {
+    expect(makeExcerpt("One two three, four five six seven", 18)).not.toMatch(/[,\s]…$/);
+  });
+
+  test("is safe on empty input", () => {
+    expect(makeExcerpt("")).toBe("");
   });
 });
 

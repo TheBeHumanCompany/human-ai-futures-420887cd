@@ -28,6 +28,12 @@ export interface Episode {
    * browser (see `forListing`) because nothing renders it today.
    */
   description: string;
+  /**
+   * Short display summary, derived from `description` with the repeated host
+   * introduction trimmed. Unlike `description` this DOES ship to the browser:
+   * it renders under each title and doubles as the search haystack.
+   */
+  excerpt: string;
   /** ISO 8601. */
   pubDate: string;
   /** `<itunes:duration>` is an integer count of seconds on this feed. */

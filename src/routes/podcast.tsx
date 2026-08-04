@@ -1,7 +1,19 @@
+import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { Search, X } from "lucide-react";
 import podcastImage from "@/assets/podcast.jpg";
 import { EpisodePlayer } from "@/components/episode-player";
-import { formatDuration, getEpisodes } from "@/lib/podbean";
+import {
+  browseEpisodes,
+  DEFAULT_BROWSE_STATE,
+  DURATION_OPTIONS,
+  durationCounts,
+  formatDuration,
+  getEpisodes,
+  isDefaultBrowseState,
+  SORT_OPTIONS,
+} from "@/lib/podbean";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/podcast")({
   loader: async () => ({ episodes: await getEpisodes() }),
@@ -35,6 +47,12 @@ const PUBLISHED = new Intl.DateTimeFormat("en-CA", {
 
 function Podcast() {
   const { episodes } = Route.useLoaderData();
+  const [browse, setBrowse] = useState(DEFAULT_BROWSE_STATE);
+
+  // Filtering is client-side and deliberately so: 39 episodes are already in
+  // memory, so a round-trip per keystroke would be slower and no more correct.
+  const visible = useMemo(() => browseEpisodes(episodes, browse), [episodes, browse]);
+  const counts = useMemo(() => durationCounts(episodes, browse.query), [episodes, browse.query]);
 
   return (
     <>
@@ -72,7 +90,22 @@ function Podcast() {
           <div className="flex flex-wrap items-baseline justify-between gap-4">
             <h2 className="eyebrow text-ink/50">All episodes</h2>
             {episodes.length > 0 && (
-              <span className="eyebrow text-ink/40">{episodes.length} episodes</span>
+              <div className="flex items-baseline gap-4">
+                <span className="eyebrow text-ink/40" aria-live="polite">
+                  {visible.length === episodes.length
+                    ? `${episodes.length} episodes`
+                    : `${visible.length} of ${episodes.length}`}
+                </span>
+                {!isDefaultBrowseState(browse) && (
+                  <button
+                    type="button"
+                    onClick={() => setBrowse(DEFAULT_BROWSE_STATE)}
+                    className="eyebrow link-underline text-ink/60 hover:text-ink"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
             )}
           </div>
 
@@ -82,32 +115,136 @@ function Podcast() {
               app.
             </p>
           ) : (
-            <ul className="mt-8 border-t border-hairline-dark">
-              {episodes.map((episode) => (
-                <li key={episode.guid} className="border-b border-hairline-dark py-6">
-                  <div className="grid gap-3 sm:grid-cols-[auto_1fr_auto] sm:items-baseline sm:gap-8">
-                    <span className="eyebrow text-ink/40">{episode.episodeNumber ?? "—"}</span>
-                    <div className="min-w-0">
-                      <h3 className="display text-2xl text-ink sm:text-3xl">{episode.title}</h3>
-                      <p className="mt-1 text-sm text-ink/60">
-                        {episode.guest ? `With ${episode.guest} · ` : ""}
-                        {PUBLISHED.format(new Date(episode.pubDate))}
-                      </p>
-                    </div>
-                    <span className="eyebrow text-ink/50">
-                      {formatDuration(episode.durationSeconds)}
-                    </span>
-                  </div>
-                  <EpisodePlayer
-                    src={episode.audioUrl}
-                    title={episode.title}
-                    durationSeconds={episode.durationSeconds}
-                    tone="cream"
-                    className="mt-4 max-w-xl"
+            <>
+              <div className="mt-8 flex flex-col gap-5 border-t border-hairline-dark pt-8 lg:flex-row lg:items-center lg:justify-between">
+                <div className="relative w-full lg:max-w-sm">
+                  <Search
+                    aria-hidden
+                    className="pointer-events-none absolute left-0 top-1/2 size-4 -translate-y-1/2 text-ink/40"
                   />
-                </li>
-              ))}
-            </ul>
+                  <input
+                    type="search"
+                    value={browse.query}
+                    onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
+                    placeholder="Search episodes, guests or topics"
+                    aria-label="Search episodes, guests or topics"
+                    className="w-full border-b border-hairline-dark bg-transparent py-2.5 pl-7 pr-8 text-base text-ink outline-none placeholder:text-ink/40 focus-visible:border-ink"
+                  />
+                  {browse.query && (
+                    <button
+                      type="button"
+                      onClick={() => setBrowse((s) => ({ ...s, query: "" }))}
+                      aria-label="Clear search"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 p-1 text-ink/40 hover:text-ink"
+                    >
+                      <X className="size-4" aria-hidden />
+                    </button>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+                  <div
+                    role="group"
+                    aria-label="Filter by episode length"
+                    className="flex flex-wrap items-center gap-2"
+                  >
+                    {DURATION_OPTIONS.map((option) => {
+                      const count = counts[option.value];
+                      const selected = browse.duration === option.value;
+                      return (
+                        <button
+                          key={option.value}
+                          type="button"
+                          aria-pressed={selected}
+                          disabled={count === 0 && !selected}
+                          onClick={() => setBrowse((s) => ({ ...s, duration: option.value }))}
+                          className={cn(
+                            "eyebrow rounded-full border px-3.5 py-2 transition-colors",
+                            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink",
+                            selected
+                              ? "border-ink bg-ink text-cream"
+                              : "border-hairline-dark text-ink/60 hover:border-ink hover:text-ink",
+                            count === 0 &&
+                              !selected &&
+                              "cursor-not-allowed opacity-35 hover:border-hairline-dark hover:text-ink/60",
+                          )}
+                        >
+                          {option.label}
+                          <span className="ml-1.5 tabular-nums opacity-60">{count}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <label className="flex items-center gap-2 text-sm text-ink/60">
+                    <span className="eyebrow">Sort</span>
+                    <select
+                      value={browse.sort}
+                      onChange={(event) =>
+                        setBrowse((s) => ({
+                          ...s,
+                          sort: event.target.value as typeof s.sort,
+                        }))
+                      }
+                      className="border-b border-hairline-dark bg-transparent py-2 pr-6 text-sm text-ink outline-none focus-visible:border-ink"
+                    >
+                      {SORT_OPTIONS.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+              </div>
+
+              {visible.length === 0 ? (
+                <div className="mt-10 border-t border-hairline-dark pt-10">
+                  <p className="max-w-md text-lg leading-relaxed text-ink/60">
+                    No episodes match{browse.query ? ` “${browse.query}”` : " that filter"}.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setBrowse(DEFAULT_BROWSE_STATE)}
+                    className="eyebrow link-underline mt-4 text-ink"
+                  >
+                    Clear filters
+                  </button>
+                </div>
+              ) : (
+                <ul className="mt-6 border-t border-hairline-dark">
+                  {visible.map((episode) => (
+                    <li key={episode.guid} className="border-b border-hairline-dark py-6">
+                      <div className="grid gap-3 sm:grid-cols-[auto_1fr_auto] sm:items-baseline sm:gap-8">
+                        <span className="eyebrow text-ink/40">{episode.episodeNumber ?? "—"}</span>
+                        <div className="min-w-0">
+                          <h3 className="display text-2xl text-ink sm:text-3xl">{episode.title}</h3>
+                          <p className="mt-1 text-sm text-ink/60">
+                            {episode.guest ? `With ${episode.guest} · ` : ""}
+                            {PUBLISHED.format(new Date(episode.pubDate))}
+                          </p>
+                          {episode.excerpt && (
+                            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink/70">
+                              {episode.excerpt}
+                            </p>
+                          )}
+                        </div>
+                        <span className="eyebrow text-ink/50">
+                          {formatDuration(episode.durationSeconds)}
+                        </span>
+                      </div>
+                      <EpisodePlayer
+                        src={episode.audioUrl}
+                        title={episode.title}
+                        durationSeconds={episode.durationSeconds}
+                        tone="cream"
+                        className="mt-4 max-w-xl"
+                      />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
           )}
         </div>
       </section>

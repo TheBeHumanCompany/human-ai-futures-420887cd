@@ -11,9 +11,19 @@ export {
   decodeEntities,
   forListing,
   formatDuration,
+  makeExcerpt,
   parseFeed,
   parseGuest,
   selectFeatured,
   stripHtml,
 } from "./parse";
+export type { Browsable, BrowseState, DurationBucket, SortOrder } from "./filter";
+export {
+  browseEpisodes,
+  DEFAULT_BROWSE_STATE,
+  DURATION_OPTIONS,
+  durationCounts,
+  isDefaultBrowseState,
+  SORT_OPTIONS,
+} from "./filter";
 export { PODBEAN_FEED_URL, clearEpisodeCache, getEpisodes, loadEpisodes } from "./feed";

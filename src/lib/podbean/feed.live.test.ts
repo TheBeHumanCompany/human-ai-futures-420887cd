@@ -1,6 +1,7 @@
 import { beforeAll, describe, expect, test } from "bun:test";
 
 import { PODBEAN_FEED_URL, clearEpisodeCache, loadEpisodes } from "./feed";
+import { browseEpisodes, DEFAULT_BROWSE_STATE } from "./filter";
 import { parseGuest, selectFeatured } from "./parse";
 import type { Episode } from "./types";
 
@@ -75,6 +76,39 @@ describe("live PodBean feed", () => {
 
     const resolved = episodes.filter((e) => e.guest).length;
     expect(resolved).toBeGreaterThanOrEqual(35);
+  });
+
+  test("excerpts are distinct and free of host boilerplate", () => {
+    // The point of trimming the lead-in: 10 of the 39 show notes open with an
+    // identical sentence, so raw excerpts would make every row read the same.
+    for (const episode of episodes) {
+      expect(episode.excerpt.length).toBeGreaterThan(0);
+      expect(episode.excerpt).not.toMatch(/^In this /i);
+      expect(episode.excerpt.slice(0, 60)).not.toMatch(/Shane Jeremy James/i);
+    }
+
+    const openings = new Set(episodes.map((e) => e.excerpt.slice(0, 40)));
+    expect(openings.size).toBe(episodes.length);
+  });
+
+  test("excerpts stay within their payload budget", () => {
+    for (const episode of episodes) expect(episode.excerpt.length).toBeLessThanOrEqual(201);
+    const total = episodes.reduce((n, e) => n + e.excerpt.length, 0);
+    expect(total).toBeLessThan(12_000);
+  });
+
+  test("search finds a topic that appears in no title", () => {
+    const hits = browseEpisodes(episodes, { ...DEFAULT_BROWSE_STATE, query: "healthcare" });
+    expect(hits.length).toBeGreaterThan(0);
+  });
+
+  test("duration buckets partition the whole catalogue", () => {
+    const total = (["short", "medium", "long"] as const).reduce(
+      (sum, duration) =>
+        sum + browseEpisodes(episodes, { ...DEFAULT_BROWSE_STATE, duration }).length,
+      0,
+    );
+    expect(total).toBe(episodes.length);
   });
 
   test("no parsed guest is a known brand string", () => {
