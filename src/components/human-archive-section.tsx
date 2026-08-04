@@ -11,6 +11,7 @@ function PortraitCard({
   active,
   onActivate,
   onDeactivate,
+  onInView,
 }: {
   image: string;
   name: string;
@@ -20,20 +21,23 @@ function PortraitCard({
   active: boolean;
   onActivate: () => void;
   onDeactivate: () => void;
+  onInView: () => void;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
     const io = new IntersectionObserver(
-      ([entry]) => setInView(entry.intersectionRatio > 0.72),
+      ([entry]) => {
+        if (entry.intersectionRatio > 0.72) onInView();
+      },
       { threshold: [0, 0.4, 0.72, 0.95], rootMargin: "-8% 0px -8% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [onInView]);
+
 
   return (
     <figure
@@ -50,7 +54,6 @@ function PortraitCard({
     >
       <div
         ref={ref}
-        data-inview={inView ? "true" : "false"}
         className="relative aspect-4/5 overflow-hidden rounded-lg bg-ink"
       >
         <img
@@ -88,10 +91,10 @@ function PortraitCard({
           </span>
         </div>
 
-        {/* quote — only on the active card (desktop) / in-view card (mobile) */}
+        {/* quote — only on the active card */}
         <blockquote
-          className="pointer-events-none absolute left-5 top-[46%] max-w-[80%] translate-y-3 whitespace-pre-line font-display text-[clamp(1.1rem,2.2vw,1.6rem)] font-light uppercase leading-[1.18] tracking-[0.02em] text-cream opacity-0 drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[show=true]:translate-y-0 data-[show=true]:opacity-100 lg:translate-y-3 lg:opacity-0 lg:data-[active=true]:translate-y-0 lg:data-[active=true]:opacity-100"
-          data-show={inView ? "true" : "false"}
+          aria-hidden={!active}
+          className="pointer-events-none invisible absolute left-5 top-[46%] max-w-[80%] translate-y-3 whitespace-pre-line font-display text-[clamp(1.1rem,2.2vw,1.6rem)] font-light uppercase leading-[1.18] tracking-[0.02em] text-cream opacity-0 drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[active=true]:visible data-[active=true]:translate-y-0 data-[active=true]:opacity-100"
           data-active={active ? "true" : "false"}
         >
           {quote}
@@ -116,7 +119,16 @@ function PortraitCard({
 export function HumanArchiveSection() {
   const DEFAULT_ACTIVE = 1;
   const [hovered, setHovered] = useState<number | null>(null);
-  const active = hovered ?? DEFAULT_ACTIVE;
+  const [scrolled, setScrolled] = useState<number | null>(null);
+  const active = hovered ?? scrolled ?? DEFAULT_ACTIVE;
+
+  const handleInView = (i: number) => {
+    if (typeof window === "undefined") return;
+    // Only the small/tablet carousel drives the active card via scroll position.
+    if (window.matchMedia("(min-width: 1024px)").matches) return;
+    setScrolled(i);
+  };
+
 
   return (
     <section className="section-cream border-t border-border">
@@ -176,6 +188,7 @@ export function HumanArchiveSection() {
               active={active === i}
               onActivate={() => setHovered(i)}
               onDeactivate={() => setHovered(null)}
+              onInView={() => handleInView(i)}
             />
           ))}
         </div>
