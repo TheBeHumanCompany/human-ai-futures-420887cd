@@ -8,14 +8,18 @@ function PortraitCard({
   location,
   no,
   quote,
-  featured,
+  active,
+  onActivate,
+  onDeactivate,
 }: {
   image: string;
   name: string;
   location: string;
   no: string;
   quote: string;
-  featured: boolean;
+  active: boolean;
+  onActivate: () => void;
+  onDeactivate: () => void;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [inView, setInView] = useState(false);
@@ -33,12 +37,15 @@ function PortraitCard({
 
   return (
     <figure
+      onMouseEnter={onActivate}
+      onFocus={onActivate}
+      onMouseLeave={onDeactivate}
+      onBlur={onDeactivate}
       className={[
-        "group w-[86vw] shrink-0 snap-center transition-[flex-grow,flex-basis] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "group w-[86vw] shrink-0 snap-center transition-[flex-grow,flex-basis,padding] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
         "sm:w-auto lg:min-w-0",
-        featured ? "lg:flex-[1.34_1_0%]" : "lg:flex-[1_1_0%]",
-        "lg:hover:flex-[1.34_1_0%]! lg:focus-within:flex-[1.34_1_0%]!",
-        featured ? "lg:pt-0" : "lg:pt-8",
+        active ? "lg:flex-[1.34_1_0%]" : "lg:flex-[1_1_0%]",
+        active ? "lg:pt-0" : "lg:pt-8",
       ].join(" ")}
     >
       <div
@@ -52,34 +59,40 @@ function PortraitCard({
           loading="lazy"
           width={800}
           height={1000}
-          className="h-full w-full object-cover object-center brightness-[0.72] contrast-[1.12] saturate-[0.85] transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035] group-hover:brightness-[0.82] group-focus-within:scale-[1.035] group-focus-within:brightness-[0.82]"
+          className={[
+            "h-full w-full object-cover object-center brightness-[1.04] contrast-[1.08] saturate-[0.95]",
+            "transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+            active ? "lg:scale-[1.03]" : "",
+          ].join(" ")}
         />
-        {/* cinematic vignette + base darkening */}
+        {/* soft cinematic vignette */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(115% 85% at 50% 32%, transparent 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.82) 100%)",
+              "radial-gradient(120% 90% at 50% 34%, transparent 0%, rgba(0,0,0,0.10) 60%, rgba(0,0,0,0.45) 100%)",
           }}
           aria-hidden
         />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-ink via-ink/55 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-linear-to-b from-ink/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-ink/85 via-ink/25 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-linear-to-b from-ink/45 to-transparent" />
 
         {/* archive marker */}
         <div className="pointer-events-none absolute left-5 top-5 flex flex-col gap-2">
-          <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.24em] text-cream/70">
+          <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.24em] text-cream/80">
             The Human Archive
           </span>
-          <span className="h-px w-6 bg-cream/40" aria-hidden />
-          <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.24em] text-cream/70">
+          <span className="h-px w-6 bg-cream/50" aria-hidden />
+          <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.24em] text-cream/80">
             No. {no}
           </span>
         </div>
 
-        {/* quote — in-view on mobile/tablet, hover / focus on desktop */}
-        <blockquote className="pointer-events-none absolute left-5 top-[46%] max-w-[80%] translate-y-3 whitespace-pre-line font-display text-[clamp(1.1rem,2.2vw,1.6rem)] font-light uppercase leading-[1.18] tracking-[0.02em] text-cream opacity-0 transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[show=true]:translate-y-0 data-[show=true]:opacity-100 lg:translate-y-3 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100"
+        {/* quote — only on the active card (desktop) / in-view card (mobile) */}
+        <blockquote
+          className="pointer-events-none absolute left-5 top-[46%] max-w-[80%] translate-y-3 whitespace-pre-line font-display text-[clamp(1.1rem,2.2vw,1.6rem)] font-light uppercase leading-[1.18] tracking-[0.02em] text-cream opacity-0 drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[show=true]:translate-y-0 data-[show=true]:opacity-100 lg:translate-y-3 lg:opacity-0 lg:data-[active=true]:translate-y-0 lg:data-[active=true]:opacity-100"
           data-show={inView ? "true" : "false"}
+          data-active={active ? "true" : "false"}
         >
           {quote}
         </blockquote>
@@ -89,7 +102,7 @@ function PortraitCard({
           <p className="font-display text-[clamp(1rem,1.5vw,1.25rem)] font-bold uppercase leading-none tracking-[0.12em] text-cream">
             {name}
           </p>
-          <p className="mt-2 font-mono text-[9.5px] uppercase leading-none tracking-[0.22em] text-cream/60">
+          <p className="mt-2 font-mono text-[9.5px] uppercase leading-none tracking-[0.22em] text-cream/70">
             {location}
           </p>
         </figcaption>
@@ -101,6 +114,10 @@ function PortraitCard({
 
 
 export function HumanArchiveSection() {
+  const DEFAULT_ACTIVE = 1;
+  const [hovered, setHovered] = useState<number | null>(null);
+  const active = hovered ?? DEFAULT_ACTIVE;
+
   return (
     <section className="section-cream border-t border-border">
       <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 sm:py-20 lg:py-28">
@@ -156,7 +173,9 @@ export function HumanArchiveSection() {
               location={person.location}
               no={person.no}
               quote={person.quote}
-              featured={i === 1}
+              active={active === i}
+              onActivate={() => setHovered(i)}
+              onDeactivate={() => setHovered(null)}
             />
           ))}
         </div>
