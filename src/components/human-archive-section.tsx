@@ -117,9 +117,18 @@ function PortraitCard({
 
 
 export function HumanArchiveSection() {
-  const DEFAULT_ACTIVE = 1;
+  const DEFAULT_ACTIVE = 3;
   const [hovered, setHovered] = useState<number | null>(null);
-  const active = hovered ?? DEFAULT_ACTIVE;
+  const [scrolled, setScrolled] = useState<number | null>(null);
+  const active = hovered ?? scrolled ?? DEFAULT_ACTIVE;
+
+  const handleInView = (i: number) => {
+    if (typeof window === "undefined") return;
+    // Only the small/tablet carousel drives the active card via scroll position.
+    if (window.matchMedia("(min-width: 1024px)").matches) return;
+    setScrolled(i);
+  };
+
 
   return (
     <section className="section-cream border-t border-border">
