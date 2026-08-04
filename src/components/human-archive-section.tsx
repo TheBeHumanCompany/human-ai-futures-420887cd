@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ARCHIVE } from "@/lib/content";
 
@@ -7,7 +7,6 @@ function PortraitCard({
   name,
   location,
   no,
-  slug,
   quote,
   featured,
 }: {
@@ -15,92 +14,90 @@ function PortraitCard({
   name: string;
   location: string;
   no: string;
-  slug: string;
   quote: string;
   featured: boolean;
 }) {
-  const start = useRef<{ x: number; y: number } | null>(null);
-  const swiping = useRef(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.intersectionRatio > 0.72),
+      { threshold: [0, 0.4, 0.72, 0.95], rootMargin: "-8% 0px -8% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <figure
       className={[
-        "group w-[68vw] shrink-0 snap-start transition-[flex-grow,flex-basis] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "group w-[86vw] shrink-0 snap-center transition-[flex-grow,flex-basis] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
         "sm:w-auto lg:min-w-0",
         featured ? "lg:flex-[1.34_1_0%]" : "lg:flex-[1_1_0%]",
         "lg:hover:flex-[1.34_1_0%]! lg:focus-within:flex-[1.34_1_0%]!",
         featured ? "lg:pt-0" : "lg:pt-8",
       ].join(" ")}
     >
-      <Link
-        to="/human-archive/$slug"
-        params={{ slug }}
-        aria-label={`View ${name}'s Human Archive profile`}
-        onPointerDown={(e) => {
-          start.current = { x: e.clientX, y: e.clientY };
-          swiping.current = false;
-        }}
-        onPointerMove={(e) => {
-          if (!start.current) return;
-          if (Math.abs(e.clientX - start.current.x) > 10) swiping.current = true;
-        }}
-        onClick={(e) => {
-          if (swiping.current) e.preventDefault();
-        }}
-        className="block cursor-pointer rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+      <div
+        ref={ref}
+        data-inview={inView ? "true" : "false"}
+        className="relative aspect-4/5 overflow-hidden rounded-lg bg-ink"
       >
-        <div className="relative aspect-4/5 overflow-hidden rounded-lg bg-ink">
-          <img
-            src={image}
-            alt={`Portrait of ${name} from ${location}`}
-            loading="lazy"
-            width={800}
-            height={1000}
-            className="h-full w-full object-cover object-center brightness-[0.72] contrast-[1.12] saturate-[0.85] transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035] group-hover:brightness-[0.82] group-focus-within:scale-[1.035] group-focus-within:brightness-[0.82]"
-          />
-          {/* cinematic vignette + base darkening */}
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(115% 85% at 50% 32%, transparent 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.82) 100%)",
-            }}
-            aria-hidden
-          />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-ink via-ink/55 to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-linear-to-b from-ink/70 to-transparent" />
+        <img
+          src={image}
+          alt={`Portrait of ${name} from ${location}`}
+          loading="lazy"
+          width={800}
+          height={1000}
+          className="h-full w-full object-cover object-center brightness-[0.72] contrast-[1.12] saturate-[0.85] transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035] group-hover:brightness-[0.82] group-focus-within:scale-[1.035] group-focus-within:brightness-[0.82]"
+        />
+        {/* cinematic vignette + base darkening */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(115% 85% at 50% 32%, transparent 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.82) 100%)",
+          }}
+          aria-hidden
+        />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-ink via-ink/55 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-linear-to-b from-ink/70 to-transparent" />
 
-          {/* archive marker */}
-          <div className="pointer-events-none absolute left-5 top-5 flex flex-col gap-2">
-            <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.24em] text-cream/70">
-              The Human Archive
-            </span>
-            <span className="h-px w-6 bg-cream/40" aria-hidden />
-            <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.24em] text-cream/70">
-              No. {no}
-            </span>
-          </div>
-
-          {/* quote — hover / focus */}
-          <blockquote className="pointer-events-none absolute left-5 top-[46%] max-w-[80%] whitespace-pre-line font-display text-[clamp(1.1rem,2.2vw,1.6rem)] font-light uppercase leading-[1.18] tracking-[0.02em] text-cream opacity-0 transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
-            {quote}
-          </blockquote>
-
-
-          {/* name / location on image */}
-          <figcaption className="pointer-events-none absolute inset-x-5 bottom-5 text-left">
-            <p className="font-display text-[clamp(1rem,1.5vw,1.25rem)] font-bold uppercase leading-none tracking-[0.12em] text-cream">
-              {name}
-            </p>
-            <p className="mt-2 font-mono text-[9.5px] uppercase leading-none tracking-[0.22em] text-cream/60">
-              {location}
-            </p>
-          </figcaption>
+        {/* archive marker */}
+        <div className="pointer-events-none absolute left-5 top-5 flex flex-col gap-2">
+          <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.24em] text-cream/70">
+            The Human Archive
+          </span>
+          <span className="h-px w-6 bg-cream/40" aria-hidden />
+          <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.24em] text-cream/70">
+            No. {no}
+          </span>
         </div>
-      </Link>
+
+        {/* quote — in-view on mobile/tablet, hover / focus on desktop */}
+        <blockquote className="pointer-events-none absolute left-5 top-[46%] max-w-[80%] translate-y-3 whitespace-pre-line font-display text-[clamp(1.1rem,2.2vw,1.6rem)] font-light uppercase leading-[1.18] tracking-[0.02em] text-cream opacity-0 transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[show=true]:translate-y-0 data-[show=true]:opacity-100 lg:translate-y-3 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100"
+          data-show={inView ? "true" : "false"}
+        >
+          {quote}
+        </blockquote>
+
+        {/* name / location on image */}
+        <figcaption className="pointer-events-none absolute inset-x-5 bottom-5 text-left">
+          <p className="font-display text-[clamp(1rem,1.5vw,1.25rem)] font-bold uppercase leading-none tracking-[0.12em] text-cream">
+            {name}
+          </p>
+          <p className="mt-2 font-mono text-[9.5px] uppercase leading-none tracking-[0.22em] text-cream/60">
+            {location}
+          </p>
+        </figcaption>
+      </div>
     </figure>
   );
 }
+
 
 
 export function HumanArchiveSection() {
@@ -158,13 +155,21 @@ export function HumanArchiveSection() {
               name={person.name}
               location={person.location}
               no={person.no}
-              slug={person.slug}
               quote={person.quote}
               featured={i === 1}
-
             />
           ))}
         </div>
+
+        {/* Swipe cue — mobile only */}
+        <div className="mt-5 flex items-center gap-3 sm:hidden" aria-hidden>
+          <span className="h-px w-8 bg-ink/25" />
+          <span className="font-mono text-[9.5px] uppercase tracking-[0.24em] text-ink/45">
+            Swipe
+          </span>
+          <span className="text-sm text-ink/40">→</span>
+        </div>
+
       </div>
     </section>
   );

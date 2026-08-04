@@ -1,7 +1,12 @@
-import portrait1 from "@/assets/archive-alex.jpg";
-import portrait2 from "@/assets/archive-sofia.jpg";
-import portrait3 from "@/assets/archive-kenji.jpg";
-import portrait4 from "@/assets/archive-amara.jpg";
+import portrait1Asset from "@/assets/archive-adewolf.png.asset.json";
+import portrait2Asset from "@/assets/archive-bella.png.asset.json";
+import portrait3Asset from "@/assets/archive-anton.png.asset.json";
+import portrait4Asset from "@/assets/archive-arlina.png.asset.json";
+
+const portrait1 = portrait1Asset.url;
+const portrait2 = portrait2Asset.url;
+const portrait3 = portrait3Asset.url;
+const portrait4 = portrait4Asset.url;
 
 export const SERVICES = [
   {
@@ -67,35 +72,35 @@ export const PRINCIPLES = [
 export const ARCHIVE = [
   {
     image: portrait1,
-    name: "ALEX",
+    name: "ADEWOLF",
     location: "Vancouver, Canada",
     no: "046",
-    slug: "alex",
-    quote: "Love.\nLove everyone.",
+    slug: "adewolf",
+    quote: "Love.\nLove each other.",
   },
   {
     image: portrait2,
-    name: "SOFIA",
-    location: "Amman, Jordan",
-    no: "032",
-    slug: "sofia",
-    quote: "To stay soft\nin a hard world.",
+    name: "BELLA",
+    location: "Vancouver, Canada",
+    no: "026",
+    slug: "bella",
+    quote: "Fun.\nEnjoying your life\nto the end.",
   },
   {
     image: portrait3,
-    name: "KENJI",
-    location: "Kyoto, Japan",
-    no: "017",
-    slug: "kenji",
-    quote: "Presence.\nNothing else lasts.",
+    name: "ANTON",
+    location: "Toronto, Canada",
+    no: "010",
+    slug: "anton",
+    quote: "Passion, compassion\nand patience towards\nyour fellow humans.",
   },
   {
     image: portrait4,
-    name: "AMARA",
-    location: "Nairobi, Kenya",
-    no: "081",
-    slug: "amara",
-    quote: "We are made\nof each other.",
+    name: "ARLINA",
+    location: "Chitre, Panama",
+    no: "037",
+    slug: "arlina",
+    quote: "Empathy.\nWith people and\nanything you do in life.",
   },
 ] as const;
 
