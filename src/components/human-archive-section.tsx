@@ -54,7 +54,6 @@ function PortraitCard({
     >
       <div
         ref={ref}
-        data-inview={inView ? "true" : "false"}
         className="relative aspect-4/5 overflow-hidden rounded-lg bg-ink"
       >
         <img
