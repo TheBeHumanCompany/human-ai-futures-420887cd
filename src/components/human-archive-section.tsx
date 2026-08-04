@@ -11,6 +11,7 @@ function PortraitCard({
   active,
   onActivate,
   onDeactivate,
+  onInView,
 }: {
   image: string;
   name: string;
@@ -20,20 +21,23 @@ function PortraitCard({
   active: boolean;
   onActivate: () => void;
   onDeactivate: () => void;
+  onInView: () => void;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
     const io = new IntersectionObserver(
-      ([entry]) => setInView(entry.intersectionRatio > 0.72),
+      ([entry]) => {
+        if (entry.intersectionRatio > 0.72) onInView();
+      },
       { threshold: [0, 0.4, 0.72, 0.95], rootMargin: "-8% 0px -8% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [onInView]);
+
 
   return (
     <figure
