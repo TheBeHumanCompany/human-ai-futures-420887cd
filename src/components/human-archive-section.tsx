@@ -90,8 +90,9 @@ function PortraitCard({
 
         {/* quote — only on the active card (desktop) / in-view card (mobile) */}
         <blockquote
-          className="pointer-events-none absolute left-5 top-[46%] max-w-[80%] translate-y-3 whitespace-pre-line font-display text-[clamp(1.1rem,2.2vw,1.6rem)] font-light uppercase leading-[1.18] tracking-[0.02em] text-cream opacity-0 drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[show=true]:translate-y-0 data-[show=true]:opacity-100"
-          data-show={inView || active ? "true" : "false"}
+          className="pointer-events-none absolute left-5 top-[46%] max-w-[80%] translate-y-3 whitespace-pre-line font-display text-[clamp(1.1rem,2.2vw,1.6rem)] font-light uppercase leading-[1.18] tracking-[0.02em] text-cream opacity-0 drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[show=true]:translate-y-0 data-[show=true]:opacity-100 lg:translate-y-3 lg:opacity-0 lg:data-[active=true]:translate-y-0 lg:data-[active=true]:opacity-100"
+          data-show={inView ? "true" : "false"}
+          data-active={active ? "true" : "false"}
         >
           {quote}
         </blockquote>
