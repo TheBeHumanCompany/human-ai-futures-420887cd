@@ -154,13 +154,21 @@ export function HumanArchiveSection() {
               name={person.name}
               location={person.location}
               no={person.no}
-              slug={person.slug}
               quote={person.quote}
               featured={i === 1}
-
             />
           ))}
         </div>
+
+        {/* Swipe cue — mobile only */}
+        <div className="mt-5 flex items-center gap-3 sm:hidden" aria-hidden>
+          <span className="h-px w-8 bg-ink/25" />
+          <span className="font-mono text-[9.5px] uppercase tracking-[0.24em] text-ink/45">
+            Swipe
+          </span>
+          <span className="text-sm text-ink/40">→</span>
+        </div>
+
       </div>
     </section>
   );
