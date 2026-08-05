@@ -6,7 +6,10 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", ".output", ".vinxi", ".vercel"] },
+  // `studio` is a separate project with its own eslint and prettier config
+  // (single quotes, no semicolons) and its own generated `.sanity/runtime`
+  // output. Linting it from here just makes the two formatters fight.
+  { ignores: ["dist", ".output", ".vinxi", ".vercel", "studio"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
