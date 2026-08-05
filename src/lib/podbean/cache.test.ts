@@ -1,6 +1,6 @@
-import { afterEach, describe, expect, test } from "bun:test";
+import { afterEach, describe, expect, setSystemTime, test } from "bun:test";
 
-import { clearEpisodeCache, loadEpisodes } from "./feed";
+import { CACHE_TTL_MS, clearEpisodeCache, loadEpisodes } from "./feed";
 
 const realFetch = globalThis.fetch;
 
@@ -29,6 +29,8 @@ function stubFetch(body: string, delayMs = 20) {
 afterEach(() => {
   globalThis.fetch = realFetch;
   clearEpisodeCache();
+  // Restore the real clock; the stale-serving test moves it forward.
+  setSystemTime();
 });
 
 describe("loadEpisodes caching", () => {
@@ -83,15 +85,36 @@ describe("loadEpisodes caching", () => {
   test("serves the last good result when a later refresh fails", async () => {
     clearEpisodeCache();
     stubFetch(FEED, 0);
-    const good = await loadEpisodes();
-    expect(good).toHaveLength(1);
+    expect(await loadEpisodes()).toHaveLength(1);
 
-    // Force the TTL open, then break the network.
+    // Genuinely expire the entry. The previous version of this test only said
+    // it was forcing the TTL open — it never moved the clock, so `loadEpisodes`
+    // short-circuited on the still-fresh value and the failing refresh below
+    // was never attempted. It re-tested the warm-cache path and passed while
+    // stale-serving was entirely unexercised.
+    setSystemTime(new Date(Date.now() + CACHE_TTL_MS + 1_000));
+
+    let refreshAttempts = 0;
+    globalThis.fetch = (async () => {
+      refreshAttempts += 1;
+      throw new Error("network down");
+    }) as typeof fetch;
+
+    await expect(loadEpisodes()).resolves.toHaveLength(1);
+    // The assertion that makes this test non-vacuous: the refresh was actually
+    // attempted and failed, and the stale value was served instead of [].
+    expect(refreshAttempts).toBe(1);
+  });
+
+  test("a cold instance has nothing stale to serve", async () => {
+    // The honest bound on the guarantee above: stale-serving is instance-local
+    // and opportunistic. With no prior success in this process there is no last
+    // good value, and the empty state is what renders — not a stale catalogue.
+    clearEpisodeCache();
     globalThis.fetch = (async () => {
       throw new Error("network down");
     }) as typeof fetch;
 
-    // Cache is still within TTL, so this is served from memory.
-    await expect(loadEpisodes()).resolves.toHaveLength(1);
+    await expect(loadEpisodes()).resolves.toEqual([]);
   });
 });

@@ -13,7 +13,8 @@ import type { Episode, EpisodeListItem } from "./types";
  */
 export const PODBEAN_FEED_URL = "https://shanejjamesgroup.podbean.com/feed.xml";
 
-const CACHE_TTL_MS = 15 * 60 * 1000;
+/** Exported so tests expire the entry against the real value, not a copy of it. */
+export const CACHE_TTL_MS = 15 * 60 * 1000;
 const FETCH_TIMEOUT_MS = 8000;
 
 interface CacheEntry {
