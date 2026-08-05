@@ -1,8 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-// TODO: replace with your project URL once a project name or custom domain is set.
-const BASE_URL = "";
+import { SITE_ORIGIN } from "@/lib/sanity/config";
+
+// Canonical origin, confirmed 2026-08-05. Sitemap entries must be absolute;
+// until this was set the sitemap emitted bare paths, which crawlers reject.
+const BASE_URL = SITE_ORIGIN;
 
 interface SitemapEntry {
   path: string;
