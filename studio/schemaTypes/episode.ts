@@ -9,11 +9,18 @@ import {defineType, defineField, defineArrayMember} from 'sanity'
  * still render — otherwise already-shared links break, which is the single
  * failure this project exists to prevent.
  *
- * IDENTITY. `_id` is Sanity-generated, per Sanity's guidance against
- * deterministic and source-derived document IDs. Source identity lives in the
- * queryable `guid` field instead, and the backfill and discovery paths upsert
- * by querying it. (The `slugLock` type is the one narrow exception — see its
- * own note; there the colliding ID is the mechanism, not a modelling shortcut.)
+ * IDENTITY. `_id` is deterministic: `episodeDocId(guid)` (src/lib/podcast/
+ * doc-id.ts), a sanitised form of the PodBean `guid`. This departs from
+ * Sanity's usual guidance against source-derived document IDs on purpose —
+ * `publishEpisode()`'s Decision F (src/lib/sanity/publish.ts) relies on the
+ * `_id` being derivable in advance so a strict Sanity `create` against it acts
+ * as a datastore-level compare-and-set: two publish attempts for the same
+ * episode collide on the same `_id` rather than racing to create two
+ * documents that then have to be reconciled by a query. The `guid` field is
+ * kept anyway, queryable, as the human/debugging-facing source identity — but
+ * matching is done by `_id`, not by querying `guid`. (The `slugLock` type
+ * uses the same deterministic-ID mechanism for its own compare-and-set; see
+ * its own note.)
  *
  * GUEST FIELDS ARE INLINE, not a reference, which is a deliberate departure
  * from the usual "author → reference" pattern. The feed gives guest names only
@@ -41,7 +48,7 @@ export const episode = defineType({
       name: 'guid',
       title: 'PodBean GUID',
       description:
-        'Stable identity from the feed. This is the upsert key — never edit it, or discovery will create a duplicate episode.',
+        'Stable identity from the feed. The document _id is derived from this value (see the IDENTITY note above) — never edit it, or the episode becomes unreachable by its own id.',
       type: 'string',
       group: 'identity',
       readOnly: true,

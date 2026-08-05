@@ -184,6 +184,7 @@ const FIXTURE = `<rss><channel>
   <title><![CDATA[Episode 2: Second &amp; Best with Alexandra Dean]]></title>
   <pubDate>Tue, 01 Jul 2025 12:34:39 -0300</pubDate>
   <guid isPermaLink="false">show.podbean.com/abc-123</guid>
+  <link>https://show.podbean.com/e/two/</link>
   <description><![CDATA[<p class="x">Notes two</p>]]></description>
   <itunes:duration>2773</itunes:duration>
   <itunes:episode>2</itunes:episode>
@@ -193,6 +194,7 @@ const FIXTURE = `<rss><channel>
   <title><![CDATA[Episode 3: Third: Tyler McCombs on Building]]></title>
   <pubDate>Wed, 02 Jul 2025 12:00:00 -0300</pubDate>
   <guid isPermaLink="false">show.podbean.com/def-456</guid>
+  <link>https://show.podbean.com/e/three/</link>
   <description><![CDATA[Notes three]]></description>
   <itunes:duration>600</itunes:duration>
   <itunes:episode>3</itunes:episode>
@@ -213,6 +215,13 @@ describe("parseFeed", () => {
     expect(episodes).toHaveLength(2);
   });
 
+  test("skips an item whose <link> tag is missing", () => {
+    const noLink = FIXTURE.replace("<link>https://show.podbean.com/e/two/</link>\n", "");
+    const result = parseFeed(noLink);
+    expect(result).toHaveLength(1);
+    expect(result[0]!.episodeNumber).toBe(3);
+  });
+
   test("sorts newest first regardless of document order", () => {
     expect(episodes.map((e) => e.episodeNumber)).toEqual([3, 2]);
   });
@@ -223,6 +232,7 @@ describe("parseFeed", () => {
     expect(two.guest).toBe("Alexandra Dean");
     expect(two.description).toBe("Notes two");
     expect(two.audioUrl).toBe("https://mcdn.podbean.com/mf/web/aaa/two.mp3");
+    expect(two.podbeanUrl).toBe("https://show.podbean.com/e/two/");
     expect(two.durationSeconds).toBe(2773);
     expect(two.guid).toBe("show.podbean.com/abc-123");
     expect(two.pubDate).toBe(new Date("Tue, 01 Jul 2025 12:34:39 -0300").toISOString());

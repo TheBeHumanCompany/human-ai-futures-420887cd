@@ -10,12 +10,12 @@ import {defineType, defineField} from 'sanity'
  * That is what makes a slug collision a publish-time error (AC-5) rather than
  * damage discovered afterwards.
  *
- * This is a deliberate, narrow exception to Sanity's "avoid slug-derived IDs"
- * guidance, which is about *content* documents and their relationships. Here
- * the colliding ID is not a modelling shortcut — it is the entire mechanism,
- * and it is closer to a Structure-managed singleton than to a content type.
- * Episode documents follow the guidance and use generated `_id`s, keyed by a
- * queryable `guid` field.
+ * This departs from Sanity's "avoid slug-derived IDs" guidance, which is
+ * about *content* documents and their relationships. Here the colliding ID
+ * is not a modelling shortcut — it is the entire mechanism, and it is closer
+ * to a Structure-managed singleton than to a content type. Episode documents
+ * use the same deterministic-ID compare-and-set mechanism, keyed off `guid`
+ * instead of a slug — see episode.ts's own IDENTITY note.
  *
  * Studio access is closed off in sanity.config.ts: excluded from the structure,
  * removed from `newDocumentOptions`, and `actions` returns `[]`. Note that a

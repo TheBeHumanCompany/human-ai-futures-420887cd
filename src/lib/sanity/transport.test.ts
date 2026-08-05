@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import { SITE_ORIGIN, absoluteUrl, episodeUrl } from "./config";
 import { imageRef, imageUrl, ogImageUrl } from "./image";
-import { methodFor, queryUrlFor } from "./http";
+import { docsUrlFor, methodFor, queryUrlFor } from "./http";
 
 describe("config", () => {
   test("the canonical origin is the confirmed .ca host", () => {
@@ -59,6 +59,24 @@ describe("query transport", () => {
     // 39 episodes, which is why the threshold is pinned here.
     const huge = "x".repeat(11_000);
     expect(methodFor('*[_type == "episode" && searchText match $q]', { q: huge })).toBe("POST");
+  });
+});
+
+describe("doc transport", () => {
+  test("hits the uncached api.sanity.io host, never apicdn", () => {
+    const url = docsUrlFor(["episode-1"]);
+    expect(url).toStartWith("https://5apyl3sk.api.sanity.io/v2026-08-01/data/doc/production/");
+    expect(url).not.toContain("apicdn");
+  });
+
+  test("joins multiple ids with a comma", () => {
+    const url = docsUrlFor(["episode-1", "slug-lock-john-smith"]);
+    expect(url).toEndWith("/data/doc/production/episode-1,slug-lock-john-smith");
+  });
+
+  test("URL-encodes each id before joining, so a literal comma inside an id can't be mistaken for a separator", () => {
+    const url = docsUrlFor(["a,b", "c/d"]);
+    expect(url).toEndWith("/data/doc/production/a%2Cb,c%2Fd");
   });
 });
 

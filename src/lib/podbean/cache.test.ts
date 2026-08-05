@@ -9,6 +9,7 @@ const FEED = `<rss><channel>
   <title><![CDATA[Episode 1: One: Ada Lovelace on Engines]]></title>
   <pubDate>Tue, 01 Jul 2025 12:00:00 -0300</pubDate>
   <guid isPermaLink="false">show.podbean.com/one</guid>
+  <link>https://show.podbean.com/e/one/</link>
   <description>Notes</description>
   <itunes:duration>600</itunes:duration>
   <itunes:episode>1</itunes:episode>

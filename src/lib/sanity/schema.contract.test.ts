@@ -59,10 +59,11 @@ describe("episode schema", () => {
     expect(field(episode, "guestBio")?.type).toBe("text");
   });
 
-  test("guid is readOnly — it is the upsert key", () => {
-    // Sanity generates `_id`; source identity lives here instead, per Sanity's
-    // guidance against source-derived document IDs. An edited guid would make
-    // discovery create a duplicate episode.
+  test("guid is readOnly — the document _id is derived from it", () => {
+    // `_id` is deterministic: `episodeDocId(guid)` (src/lib/podcast/doc-id.ts),
+    // used as a strict-create compare-and-set by publishEpisode() (Decision F).
+    // An edited guid would not rename the existing document — it would make
+    // this episode unreachable by its own id.
     expect(field(episode, "guid")?.readOnly).toBe(true);
   });
 

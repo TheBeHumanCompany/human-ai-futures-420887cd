@@ -301,8 +301,9 @@ export function parseFeed(xml: string): Episode[] {
     const pubDateRaw = tagContent(chunk, "pubDate");
     const durationRaw = tagContent(chunk, "itunes:duration");
     const audioUrl = attr(chunk, "enclosure", "url");
+    const linkRaw = tagContent(chunk, "link");
 
-    if (!guid || !rawTitle || !pubDateRaw || !durationRaw || !audioUrl) continue;
+    if (!guid || !rawTitle || !pubDateRaw || !durationRaw || !audioUrl || !linkRaw) continue;
 
     const parsedDate = new Date(pubDateRaw);
     if (Number.isNaN(parsedDate.getTime())) continue;
@@ -330,6 +331,7 @@ export function parseFeed(xml: string): Episode[] {
       pubDate: parsedDate.toISOString(),
       durationSeconds,
       audioUrl: decodeEntities(audioUrl),
+      podbeanUrl: decodeEntities(linkRaw),
     });
   }
 

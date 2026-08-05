@@ -40,6 +40,8 @@ export interface Episode {
   durationSeconds: number;
   /** Direct https URL on PodBean's CDN. Playable in an `<audio>` element. */
   audioUrl: string;
+  /** PodBean's own episode page URL, from the item's `<link>` tag. */
+  podbeanUrl: string;
 }
 
 /** An `Episode` as sent to the browser — show notes stripped. */

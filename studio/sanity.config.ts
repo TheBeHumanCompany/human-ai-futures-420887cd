@@ -2,6 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
+import {publishEpisodeAction} from './actions/publish-episode'
 
 /** Types that exist to make the system work, not to be authored. */
 const INFRASTRUCTURE_TYPES = ['slugLock']
@@ -41,6 +42,17 @@ export default defineConfig({
 
     // No publish, delete, duplicate or restore on a lock. Locks are written
     // only by publishEpisode(), inside the transaction that arbitrates the slug.
-    actions: (prev, {schemaType}) => (INFRASTRUCTURE_TYPES.includes(schemaType) ? [] : prev),
+    //
+    // Episodes get their built-in `publish` swapped for one that calls
+    // publishEpisode() directly (Decision F's slug/episode compare-and-set)
+    // instead of Sanity's own publish operation. Every other type — and every
+    // other action on episode — passes through unchanged.
+    actions: (prev, {schemaType}) => {
+      if (INFRASTRUCTURE_TYPES.includes(schemaType)) return []
+      if (schemaType === 'episode') {
+        return prev.map((action) => (action.action === 'publish' ? publishEpisodeAction : action))
+      }
+      return prev
+    },
   },
 })

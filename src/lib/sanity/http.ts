@@ -108,6 +108,77 @@ export function queryUrlFor(query: string, params: Record<string, unknown> = {})
   return queryUrl(query, params);
 }
 
+function docsUrl(ids: string[]): string {
+  const path = ids.map(encodeURIComponent).join(",");
+  return `${SANITY_MUTATE_HOST}/v${SANITY_API_VERSION}/data/doc/${SANITY_DATASET}/${path}`;
+}
+
+/** Exposed for tests: the exact URL a `getDocuments` call would use. */
+export function docsUrlFor(ids: string[]): string {
+  return docsUrl(ids);
+}
+
+/**
+ * Fetches full documents by id, uncached.
+ *
+ * Never routed through the CDN — this is the pre-read a publish transaction
+ * takes of the documents it's about to touch (e.g. an episode and its
+ * slug-lock), and a stale CDN read there would defeat the whole point of the
+ * check. The token defaults from the environment the same way `mutate()`'s
+ * does, so this is authenticated by default in the Node script path.
+ *
+ * Sanity's doc endpoint never errors for an id it can't return — it reports
+ * each one in `omitted`, tagged with WHY: `reason: "existence"` for a
+ * genuinely missing document (the normal, expected shape of "this episode
+ * hasn't been published yet") versus `reason: "permission"` for one that
+ * exists but the caller can't read. Those two are not interchangeable: a
+ * `permission` omission silently misread as "does not exist" turns a strict
+ * `create` into a spurious conflict against a document that was there all
+ * along — confirmed empirically against this project's own dataset, where an
+ * authenticated fetch of a real id alongside a fabricated one returned the
+ * fabricated one as `reason: "existence"` and, separately, an unauthenticated
+ * fetch of a real-but-restricted id returned `reason: "permission"`. Only
+ * `permission` is treated as a hard error here; `existence` is left for
+ * callers to handle as the ordinary absence it is.
+ */
+export async function getDocuments(
+  ids: string[],
+  options: { token?: string } = {},
+): Promise<Record<string, unknown>[]> {
+  const url = docsUrl(ids);
+  const token = options.token ?? globalThis.process?.env?.SANITY_WRITE_TOKEN;
+
+  const response = await fetch(url, {
+    headers: {
+      accept: "application/json",
+      ...(token ? { authorization: `Bearer ${token}` } : {}),
+    },
+    signal: AbortSignal.timeout(QUERY_TIMEOUT_MS),
+  });
+
+  if (!response.ok) {
+    throw new SanityHttpError(`[sanity] doc fetch responded ${response.status}`, response.status);
+  }
+
+  const body = (await response.json()) as {
+    documents?: Record<string, unknown>[];
+    omitted?: { id: string; reason: string }[];
+    error?: { description?: string };
+  };
+  if (body.error) {
+    throw new SanityHttpError(`[sanity] ${body.error.description ?? "doc fetch error"}`);
+  }
+
+  const denied = (body.omitted ?? []).filter((entry) => entry.reason === "permission");
+  if (denied.length > 0) {
+    throw new SanityHttpError(
+      `[sanity] permission denied reading ${denied.map((entry) => entry.id).join(", ")} — ` +
+        `the token lacks read access to a document that exists, not that it's absent`,
+    );
+  }
+  return body.documents ?? [];
+}
+
 /**
  * Runs a mutation transaction. Never routed through the CDN, and never
  * imported by a route component — only by the seeding and publish scripts.

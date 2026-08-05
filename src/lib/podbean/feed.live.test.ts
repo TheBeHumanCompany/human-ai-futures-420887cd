@@ -39,6 +39,13 @@ describe("live PodBean feed", () => {
     }
   });
 
+  test("A3b — every episode page URL is a well-formed PodBean link", () => {
+    for (const episode of episodes) {
+      expect(episode.podbeanUrl.length).toBeGreaterThan(0);
+      expect(episode.podbeanUrl).toMatch(/^https:\/\/[^/]+\.podbean\.com\//);
+    }
+  });
+
   test("A4 — enclosures are reachable and are audio", async () => {
     const sample = [episodes[0], episodes[Math.floor(episodes.length / 2)]].filter(Boolean);
     for (const episode of sample) {
