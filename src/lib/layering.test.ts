@@ -202,6 +202,23 @@ describe("AC-36 rule 4 — devDependencies never reach a non-test file", () => {
     expect(offenders).toEqual([]);
   });
 
+  test("nothing under src/ imports the card renderer's Node-only dependencies", () => {
+    // `satori`, `@resvg/resvg-js` and the committed font files exist to render
+    // share cards in a Node script. The rasterizer is a NATIVE module and the
+    // fonts are ~195 kB of binary; either one reaching the deployed bundle
+    // would break a runtime that is deliberately `fetch`-and-nothing-else.
+    //
+    // That split is the entire justification for generating cards ahead of time
+    // rather than per request, so it is enforced rather than trusted. The
+    // content model (`share-card.ts`) lives in src/ and is imported by the
+    // script — data flows outward, dependencies do not flow in.
+    const pattern =
+      /from\s+["'](satori|@resvg\/resvg-js)["']|require\(\s*["'](satori|@resvg\/resvg-js)["']\s*\)|assets\/fonts/;
+    const offenders = srcFiles.filter((file) => pattern.test(read(file)));
+
+    expect(offenders).toEqual([]);
+  });
+
   test("nothing under src/ imports @sanity/client — not even a test", () => {
     // Decision D's split, enforced from the bundle side.
     //
