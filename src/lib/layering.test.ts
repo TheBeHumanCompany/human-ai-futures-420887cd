@@ -146,27 +146,26 @@ describe("AC-36 rule 2 — no GROQ query string in src/routes/", () => {
 
 describe("AC-36 rule 3 — no route imports browseEpisodes or durationCounts", () => {
   /**
-   * The one route that still does, and why this is an exception rather than a
-   * failure.
+   * The one route that does, and why it is permanent rather than pending.
    *
-   * `src/routes/podcast.tsx` is today's client-side directory: it loads the
-   * whole catalogue from the PodBean feed and filters it in the browser with
-   * `browseEpisodes`. Step 10 of the plan replaces that with a server-side
-   * query, and the cleanup PR *after production confirmation* deletes
-   * `filter.ts` and `browseEpisodes` outright. Both are explicitly out of this
-   * change's scope, so AC-36 is not yet satisfiable for this file.
+   * `src/routes/podcast.tsx` filters in the browser on purpose. The directory
+   * fetches the catalogue once and runs the shipped `browseEpisodes` over it, so
+   * search stays instant and accent folding, substring matching and the duration
+   * buckets keep working against the corpus that already proved them — rather
+   * than being reimplemented as GROQ and re-proved against a different engine.
    *
-   * Recorded as a named, single-file exception rather than by loosening the
-   * rule. The rule still fires for every other route, so a NEW violation is
-   * still caught — which is the property worth protecting while Step 10 is
-   * pending.
+   * So this is NOT a transitional exception waiting on a rewrite. It expires
+   * only if the catalogue outgrows fetch-all, which the payload ceiling in
+   * `queries.test.ts` detects. The rule still fires for every other route, which
+   * is the property worth keeping: the browse helpers belong to the directory
+   * and nowhere else.
    */
-  const KNOWN_PRE_STEP_10_EXCEPTION = "src/routes/podcast.tsx";
+  const DIRECTORY_ROUTE = "src/routes/podcast.tsx";
 
   const referencesBrowseHelpers = (file: string) =>
     /\bbrowseEpisodes\b|\bdurationCounts\b/.test(read(file));
 
-  test("no route file other than the pre-Step-10 directory references browseEpisodes or durationCounts", () => {
+  test("no route other than the directory references browseEpisodes or durationCounts", () => {
     // Matched as bare identifiers anywhere in the file, not only inside an
     // `import { ... }` clause — a narrower import-statement regex would miss
     // a renamed import alias (`import { browseEpisodes as filterEpisodes }`)
@@ -175,22 +174,42 @@ describe("AC-36 rule 3 — no route imports browseEpisodes or durationCounts", (
     // shape: browse logic belongs in the library, and routes only call it.
     const offenders = routeFiles
       .filter(referencesBrowseHelpers)
-      .filter((file) => !file.endsWith(KNOWN_PRE_STEP_10_EXCEPTION));
+      .filter((file) => !file.endsWith(DIRECTORY_ROUTE));
 
     expect(offenders).toEqual([]);
   });
 
   test("the exception is still load-bearing, so it cannot rot silently", () => {
-    // An allowlist nobody re-checks is how a temporary exception becomes
-    // permanent. This asserts the exception is still NEEDED: once Step 10 moves
-    // the directory server-side and `browseEpisodes` leaves `podcast.tsx`, this
-    // test goes red and tells the next person to delete both the exception and
-    // this test, then tighten the rule above to cover every route with no
-    // carve-out.
-    const exceptionFile = routeFiles.find((file) => file.endsWith(KNOWN_PRE_STEP_10_EXCEPTION));
+    // An allowlist nobody re-checks is how an exception outlives its reason.
+    // This asserts it is still NEEDED: if the directory ever stops filtering in
+    // the browser, this goes red and tells the next person to delete both the
+    // carve-out and this test rather than leaving a permanent hole.
+    const exceptionFile = routeFiles.find((file) => file.endsWith(DIRECTORY_ROUTE));
 
     expect(exceptionFile).toBeDefined();
     expect(referencesBrowseHelpers(exceptionFile!)).toBe(true);
+  });
+});
+
+describe("AC-2.3 — no route reads episodes from the feed any more", () => {
+  test("no route file imports getEpisodes", () => {
+    // The migration's completion condition, asserted rather than reviewed. Every
+    // surface now reads the Sanity archive; the feed is a discovery mechanism.
+    // While any route still imported `getEpisodes`, that claim was aspirational.
+    const offenders = routeFiles.filter((file) => /\bgetEpisodes\b/.test(read(file)));
+    expect(offenders).toEqual([]);
+  });
+
+  test("no route file imports selectFeatured either", () => {
+    const offenders = routeFiles.filter((file) => /\bselectFeatured\b/.test(read(file)));
+    expect(offenders).toEqual([]);
+  });
+
+  test("the feed module still exists — this is a boundary, not a deletion", () => {
+    // `getEpisodes` and `selectFeatured` remain for the scripts and the tests
+    // that pin them. The rule is about where they may be CALLED from.
+    const combined = srcFiles.map(read).join("\n");
+    expect(combined).toContain("getEpisodes");
   });
 });
 

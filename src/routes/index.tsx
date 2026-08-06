@@ -10,10 +10,25 @@ import { EpisodePlayer } from "@/components/episode-player";
 import { SocialSection } from "@/components/social-section";
 import { HumanArchiveSection } from "@/components/human-archive-section";
 import { PRINCIPLES } from "@/lib/content";
-import { formatDuration, getEpisodes, selectFeatured } from "@/lib/podbean";
+import { formatDuration } from "@/lib/podbean";
+import { loadFeaturedEpisodes } from "@/lib/podcast/featured";
+import { fetchEpisodeList } from "@/lib/podcast/queries";
 
 export const Route = createFileRoute("/")({
-  loader: async () => ({ featured: selectFeatured(await getEpisodes()) }),
+  /**
+   * The one loader in this app that CATCHES, and the asymmetry is deliberate.
+   *
+   * `/podcast` and `/podcast/$slug` throw, so a Sanity outage becomes an honest
+   * 5xx there. Here that would be self-inflicted: a thrown loader errors the
+   * match and takes the ENTIRE front door to 500 because a podcast section
+   * could not load. The rest of this page is static and still true.
+   *
+   * The narrow catch itself lives in `loadFeaturedEpisodes` — a route loader
+   * calling a server function cannot be invoked outside the server runtime, so
+   * keeping the re-throw-versus-absorb branch here would make it untestable.
+   */
+  loader: () => loadFeaturedEpisodes(fetchEpisodeList),
+
   head: () => ({
     meta: [
       { title: "The Be Human Company — The Future Is Human." },
@@ -34,7 +49,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { featured } = Route.useLoaderData();
+  const { featured, podcastUnavailable } = Route.useLoaderData();
   const [latest, ...rest] = featured;
 
   return (
@@ -338,10 +353,31 @@ function Home() {
               <h3 className="display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.05]">
                 {latest ? latest.title : "Where leaders prepare for the New Human Era"}
               </h3>
+              {/*
+                An outage says so, rather than rendering the generic headline
+                above as though nothing were wrong. The rest of this page is
+                static and still true, which is the whole reason this loader
+                catches instead of throwing — but the podcast section must not
+                quietly imply the show has no episodes.
+              */}
+              {podcastUnavailable && (
+                <p className="text-sm text-muted-foreground">
+                  Episodes are temporarily unavailable. They are all on{" "}
+                  <a
+                    className="underline underline-offset-4"
+                    href="https://shanejjamesgroup.podbean.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Podbean
+                  </a>{" "}
+                  in the meantime.
+                </p>
+              )}
               {latest && (
                 <>
                   <p className="text-sm text-muted-foreground">
-                    {latest.guest ? `With ${latest.guest} — ` : ""}
+                    {latest.guestName ? `With ${latest.guestName} — ` : ""}
                     {formatDuration(latest.durationSeconds)}
                   </p>
                   <EpisodePlayer
@@ -372,22 +408,30 @@ function Home() {
           {rest.length > 0 && (
             <ul className="mt-10 border-t border-border lg:mt-12">
               {rest.map((episode) => (
-                <li
-                  key={episode.guid}
-                  className="flex items-baseline gap-4 border-b border-border py-4 sm:gap-8"
-                >
-                  <span className="eyebrow w-8 shrink-0 text-muted-foreground">
-                    {episode.episodeNumber ?? "—"}
-                  </span>
-                  <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
-                    {episode.title}
-                  </span>
-                  <span className="eyebrow hidden shrink-0 text-muted-foreground sm:block">
-                    {episode.guest ?? ""}
-                  </span>
-                  <span className="eyebrow w-14 shrink-0 text-right text-muted-foreground">
-                    {formatDuration(episode.durationSeconds)}
-                  </span>
+                <li key={episode.slug.current} className="border-b border-border">
+                  {/*
+                    Safe to wrap the whole row here, unlike the directory: these
+                    rows carry no player, so there is no interactive content to
+                    nest inside the anchor.
+                  */}
+                  <Link
+                    to="/podcast/$slug"
+                    params={{ slug: episode.slug.current }}
+                    className="flex items-baseline gap-4 py-4 transition hover:opacity-70 sm:gap-8"
+                  >
+                    <span className="eyebrow w-8 shrink-0 text-muted-foreground">
+                      {episode.episodeNumber ?? "—"}
+                    </span>
+                    <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
+                      {episode.title}
+                    </span>
+                    <span className="eyebrow hidden shrink-0 text-muted-foreground sm:block">
+                      {episode.guestName ?? ""}
+                    </span>
+                    <span className="eyebrow w-14 shrink-0 text-right text-muted-foreground">
+                      {formatDuration(episode.durationSeconds)}
+                    </span>
+                  </Link>
                 </li>
               ))}
             </ul>
