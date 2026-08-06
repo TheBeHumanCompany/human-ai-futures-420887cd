@@ -1,22 +1,46 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
 import podcastImage from "@/assets/podcast.jpg";
-import { EpisodePlayer } from "@/components/episode-player";
+import { EpisodeCard } from "@/components/episode-card";
+import { PodcastDegraded } from "@/components/podcast-degraded";
 import {
   browseEpisodes,
   DEFAULT_BROWSE_STATE,
   DURATION_OPTIONS,
   durationCounts,
-  formatDuration,
-  getEpisodes,
   isDefaultBrowseState,
   SORT_OPTIONS,
 } from "@/lib/podbean";
+import {
+  DEGRADED_RETRY_AFTER_SECONDS,
+  DEGRADED_SOURCE_HEADER,
+  DEGRADED_SOURCE_VALUE,
+} from "@/lib/podcast/degraded-status";
+import { toBrowsable } from "@/lib/podcast/episode";
+import { fetchEpisodeList } from "@/lib/podcast/queries";
 import { cn } from "@/lib/utils";
 
+/** Rows rendered before "Show more". */
+const PAGE_SIZE = 12;
+
 export const Route = createFileRoute("/podcast")({
-  loader: async () => ({ episodes: await getEpisodes() }),
+  /**
+   * No catch. A Sanity outage must reach the router as an errored match so the
+   * page says "temporarily unavailable" rather than rendering an empty
+   * catalogue, which would claim this show has no episodes.
+   */
+  loader: async () => ({ episodes: await fetchEpisodeList() }),
+
+  headers: ({ match }): Record<string, string> =>
+    match.status === "error"
+      ? {
+          "retry-after": String(DEGRADED_RETRY_AFTER_SECONDS),
+          [DEGRADED_SOURCE_HEADER]: DEGRADED_SOURCE_VALUE,
+        }
+      : {},
+
+  errorComponent: PodcastDegraded,
   head: () => ({
     meta: [
       { title: "The People-Driven CEO Podcast — The Be Human Company" },
@@ -51,8 +75,21 @@ function Podcast() {
 
   // Filtering is client-side and deliberately so: 39 episodes are already in
   // memory, so a round-trip per keystroke would be slower and no more correct.
-  const visible = useMemo(() => browseEpisodes(episodes, browse), [episodes, browse]);
-  const counts = useMemo(() => durationCounts(episodes, browse.query), [episodes, browse.query]);
+  // The shipped filter is reused unchanged — `toBrowsable` renames two fields
+  // and carries the original along so a filtered row can still be rendered.
+  const browsable = useMemo(() => episodes.map(toBrowsable), [episodes]);
+  const visible = useMemo(() => browseEpisodes(browsable, browse), [browsable, browse]);
+  const counts = useMemo(() => durationCounts(browsable, browse.query), [browsable, browse.query]);
+
+  // Renders a page at a time rather than the whole catalogue. The fetch is
+  // deliberately unbounded — filtering happens in memory so search stays
+  // instant — but rendering all of it is what would actually cost something.
+  const [shown, setShown] = useState(PAGE_SIZE);
+  const rows = visible.slice(0, shown);
+
+  // Reset the window whenever the query changes. Without this, searching after
+  // "Show more" leaves the count reporting against the previous result set.
+  useEffect(() => setShown(PAGE_SIZE), [browse]);
 
   return (
     <>
@@ -212,37 +249,23 @@ function Podcast() {
                   </button>
                 </div>
               ) : (
-                <ul className="mt-6 border-t border-hairline-dark">
-                  {visible.map((episode) => (
-                    <li key={episode.guid} className="border-b border-hairline-dark py-6">
-                      <div className="grid gap-3 sm:grid-cols-[auto_1fr_auto] sm:items-baseline sm:gap-8">
-                        <span className="eyebrow text-ink/40">{episode.episodeNumber ?? "—"}</span>
-                        <div className="min-w-0">
-                          <h3 className="display text-2xl text-ink sm:text-3xl">{episode.title}</h3>
-                          <p className="mt-1 text-sm text-ink/60">
-                            {episode.guest ? `With ${episode.guest} · ` : ""}
-                            {PUBLISHED.format(new Date(episode.pubDate))}
-                          </p>
-                          {episode.excerpt && (
-                            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink/70">
-                              {episode.excerpt}
-                            </p>
-                          )}
-                        </div>
-                        <span className="eyebrow text-ink/50">
-                          {formatDuration(episode.durationSeconds)}
-                        </span>
-                      </div>
-                      <EpisodePlayer
-                        src={episode.audioUrl}
-                        title={episode.title}
-                        durationSeconds={episode.durationSeconds}
-                        tone="cream"
-                        className="mt-4 max-w-xl"
-                      />
-                    </li>
-                  ))}
-                </ul>
+                <>
+                  <ul className="mt-6 border-t border-hairline-dark">
+                    {rows.map((row) => (
+                      <EpisodeCard key={row.source.slug.current} episode={row.source} />
+                    ))}
+                  </ul>
+
+                  {shown < visible.length && (
+                    <button
+                      type="button"
+                      onClick={() => setShown((current) => current + PAGE_SIZE)}
+                      className="eyebrow link-underline mt-8 text-ink"
+                    >
+                      Show more ({visible.length - shown} remaining)
+                    </button>
+                  )}
+                </>
               )}
             </>
           )}

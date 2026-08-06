@@ -31,11 +31,12 @@ const read = (file: string) => readFileSync(path.join(ROUTES_DIR, file), "utf8")
 /**
  * Routes that read Sanity and must fail loudly.
  *
- * `podcast.tsx` and `index.tsx` join this file as their own tasks convert them —
- * `podcast.tsx` into this list, `index.tsx` into the catcher block below. Listed
- * here rather than hard-coded into each test so adding one is a single line.
+ * `index.tsx` joins the catcher side of this contract when its own task
+ * converts it — it must CATCH rather than throw, because a Sanity outage must
+ * not take the front door down. Listed here rather than hard-coded into each
+ * test so adding a route is a single line.
  */
-const MUST_THROW = ["podcast_.$slug.tsx"];
+const MUST_THROW = ["podcast_.$slug.tsx", "podcast.tsx"];
 
 describe("Sanity-backed routes fail loudly", () => {
   test("the list is non-empty — otherwise every row below is vacuous", () => {
