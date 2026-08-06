@@ -195,7 +195,6 @@ const MAXIMAL_VALUES: Record<string, unknown> = {
     name: "Leadership",
   })),
   guestName: "A Guest With A Fairly Long Name",
-  guestPhoto: ASSET_REF,
   coverArtwork: ASSET_REF,
   shareCard: ASSET_REF,
   audioUrl: "https://mcdn.podbean.com/mf/web/abcdefghij/episode-thirty-nine-final-mix.mp3",
@@ -242,26 +241,27 @@ describe("the offline per-episode payload bound", () => {
   });
 
   test("records how much headroom the budget actually has, and where it goes", () => {
-    // Measured, not asserted as a vague margin, because the margin is now
-    // small enough that the next scheduled change spends it.
+    // Measured, not asserted as a vague margin, because this budget is what
+    // decides how the topic taxonomy is allowed to be named.
     //
-    // A maximal episode measures ~1,169 B against the 1,200 B budget: about
-    // 31 B. It was ~105 B before `shareCard` entered this projection; that one
-    // field cost ~74 B, which is most of what there was.
+    // A maximal episode measures ~1,094 B against the 1,200 B bound — about
+    // 106 B. Getting there took a deliberate trade, recorded because the next
+    // person will want to know why `guestPhoto` is missing from a projection
+    // that has `coverArtwork`:
     //
-    // **The remaining headroom does not survive realistic topic names.** These
-    // six entries use a 10-character name ("Leadership") costing ~48 B each. A
-    // 22-character one ("Leadership and Culture") costs ~73 B — six of those add
-    // ~150 B and take a maximal episode to roughly 1,320 B, well over budget,
-    // with no new field involved at all.
+    //   with guestPhoto + shareCard   1,169 B →  31 B spare → ~12-char topics
+    //   without guestPhoto            1,094 B → 106 B spare → ~16-char topics
     //
-    // So the topic taxonomy's naming is a payload decision before it is an
-    // editorial one, and it is decided in the task that creates the taxonomy —
-    // which has not run yet. Two honest options at that point: keep topic names
-    // short, or raise this budget deliberately with the measurement written
-    // down. What must not happen is the number being nudged up to make a red
-    // test green, because the budget is the only thing standing between the
-    // directory and a payload nobody is watching.
+    // Topic names are the tightest input by a wide margin: each character costs
+    // ~6 B per episode across a six-topic array. Twelve characters rules out
+    // "Sustainability" and "Mental Health"; sixteen does not. That is the whole
+    // reason `guestPhoto` was dropped — the directory card renders cover
+    // artwork, and the imagery chain has no portrait in it.
+    //
+    // **So the taxonomy has a hard ceiling of ~16 characters per topic name**,
+    // and it is enforced here rather than remembered: exceed it and this row
+    // goes red. If it ever does, the question is whether the taxonomy or the
+    // budget should move — not whether the constant can be nudged.
     const maximal = Object.fromEntries(
       Object.keys(EPISODE_LIST_PROJECTION).map((alias) => [alias, MAXIMAL_VALUES[alias]]),
     );

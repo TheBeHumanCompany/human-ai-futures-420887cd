@@ -72,6 +72,18 @@ export const EPISODE_PROJECTION = {
  * - `podbeanUrl` (123 B/ep) — the Podbean CTA lives on the detail page; a row
  *   links to `/podcast/<slug>`.
  * - `_id`, `guid`, `slugFrozenAt` (199 B/ep combined, 22%) — none is rendered.
+ * - `guestPhoto` (~75 B/ep once populated) — the directory card renders cover
+ *   artwork, not a portrait, and the imagery precedence chain is
+ *   `coverArtwork -> shareCard -> default` with no portrait in it. It was held
+ *   back for a card design that had not been settled; the card is settled now
+ *   and does not use it. The detail page still projects it via
+ *   `EPISODE_PROJECTION`, where it is rendered.
+ *
+ * That last exclusion is what keeps the topic taxonomy workable: with
+ * `guestPhoto` in the list, a maximal episode is 1,169 B and only ~12-character
+ * topic names fit under the 1,200 B bound. Without it the same episode is
+ * ~1,094 B, and names up to ~16 characters fit — the difference between a
+ * taxonomy that can say "Sustainability" and one that cannot.
  *
  * `guid` leaving is the one exclusion with a blast radius outside this file: it
  * was the React `key` in both `podcast.tsx` and `index.tsx`. Those become
@@ -93,7 +105,6 @@ export const EPISODE_LIST_PROJECTION = {
   excerpt: "excerpt",
   topics: "topics[]->{_id, name}",
   guestName: "guestName",
-  guestPhoto: "guestPhoto.asset._ref",
   coverArtwork: "coverArtwork.asset._ref",
   shareCard: "shareCard.asset._ref",
   audioUrl: "audioUrl",

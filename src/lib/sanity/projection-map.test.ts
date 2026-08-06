@@ -186,6 +186,7 @@ describe("EPISODE_LIST_PROJECTION", () => {
     "_id",
     "description",
     "guestBio",
+    "guestPhoto",
     "guid",
     "podbeanUrl",
     "searchText",
@@ -235,8 +236,8 @@ describe("EPISODE_LIST_PROJECTION", () => {
     // returned every key as null would satisfy the key check perfectly.
     expect(result.title).toBe(episodeFixture.title);
     expect(result.audioUrl).toBe(episodeFixture.audioUrl);
-    expect(result.guestPhoto).toBe(episodeFixture.guestPhoto.asset._ref);
     expect(result.coverArtwork).toBe(episodeFixture.coverArtwork.asset._ref);
+    expect(result.shareCard).toBe(episodeFixture.shareCard.asset._ref);
   });
 
   test("the excluded fields are genuinely absent from the evaluated output", async () => {
