@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-import { SITE_ORIGIN } from "@/lib/sanity/config";
+import { DEGRADED_RETRY_AFTER_SECONDS } from "@/lib/podcast/degraded-status";
+import { fetchSitemapEntriesFn } from "@/lib/podcast/queries";
+import { SITE_ORIGIN, episodeUrl } from "@/lib/sanity/config";
 
 // Canonical origin, confirmed 2026-08-05. Sitemap entries must be absolute;
 // until this was set the sitemap emitted bare paths, which crawlers reject.
@@ -27,6 +29,50 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/podcast", changefreq: "weekly", priority: "0.7" },
           { path: "/contact", changefreq: "yearly", priority: "0.6" },
         ];
+
+        /**
+         * A truncated sitemap is worse than no sitemap.
+         *
+         * If Sanity is unreachable, emitting the seven static entries with a
+         * 200 tells a crawler that this site has seven pages and the thirty-nine
+         * episode URLs it already knows about are gone. That is a deliberate
+         * removal signal produced by someone else's outage — the single failure
+         * this whole design exists to prevent.
+         *
+         * So the handler refuses to answer instead. A 503 is the one status that
+         * means "draw no conclusions from this", and `Retry-After` says when to
+         * come back. It returns its own Response, which passes through the
+         * server wrapper untouched: the catastrophic-error normaliser only fires
+         * on a JSON body, and the 500→503 upgrade only fires on a 500.
+         */
+        let episodes;
+        try {
+          // The PLAIN query function, not the server-function wrapper: this is
+          // already a server-only handler and cannot call one.
+          episodes = await fetchSitemapEntriesFn();
+        } catch {
+          return new Response("", {
+            status: 503,
+            headers: {
+              "Content-Type": "application/xml",
+              "Retry-After": String(DEGRADED_RETRY_AFTER_SECONDS),
+              "Cache-Control": "no-store",
+            },
+          });
+        }
+
+        for (const episode of episodes) {
+          entries.push({
+            // Routed through `episodeUrl` rather than templated here, so the
+            // sitemap and the page's own canonical tag cannot disagree about
+            // what an episode's URL is. The pathname is taken back off because
+            // the emitter below re-adds the origin for every entry.
+            path: new URL(episodeUrl(episode.slug.current)).pathname,
+            lastmod: episode.updatedAt,
+            changefreq: "yearly",
+            priority: "0.8",
+          });
+        }
 
         const urls = entries.map((e) =>
           [
