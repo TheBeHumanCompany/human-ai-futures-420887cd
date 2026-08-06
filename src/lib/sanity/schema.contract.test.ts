@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import { episode, slugLock, topic } from "../../../studio/schemaTypes";
+import { EPISODE_PROJECTION } from "./projection-map";
 
 /**
  * The schema contract.
@@ -11,11 +12,15 @@ import { episode, slugLock, topic } from "../../../studio/schemaTypes";
  * in the CMS break CI, instead of silently blanking a section on every rendered
  * page. Without it, `guestBio → bio` is a green build and 39 broken pages.
  *
- * These assertions are one-directional today (every field the read path needs
- * exists, with the type it needs). The reverse direction — every schema field
- * is either projected or on an explicit exclusion list — arrives with the
- * projection map, and is the half that catches a field added in Studio and
- * never surfaced.
+ * The assertions run in both directions now. The first half (above) is
+ * forward: every field the read path needs exists, with the type it needs.
+ * The second half (`episode schema field coverage`, below) is the reverse:
+ * every field Studio actually declares is either projected by
+ * `EPISODE_PROJECTION` or named on an explicit, reasoned exclusion list. That
+ * second half is what catches a field added in Studio and never surfaced —
+ * the false-green audit's row 2 ("Validates output aliases, not source
+ * paths") — which the forward direction alone cannot see, because a field
+ * nobody projects never appears on its side of the comparison.
  */
 
 type Field = { name: string; type: string; readOnly?: unknown; options?: Record<string, unknown> };
@@ -88,6 +93,52 @@ describe("episode schema", () => {
     // server-side facet impossible.
     const topics = field(episode, "topics") as (Field & { of?: { type: string }[] }) | undefined;
     expect(topics?.of?.[0]?.type).toBe("reference");
+  });
+});
+
+describe("episode schema field coverage", () => {
+  // Every field Studio lets Shane fill in must end up somewhere the read path
+  // can see it — either as a key in `EPISODE_PROJECTION`, or on this list,
+  // named with the reason it is deliberately invisible to every query. A field
+  // added to `episode.ts` and forgotten here is exactly the gap the forward
+  // assertions above cannot catch: nothing reads it, so nothing in the read
+  // path breaks, and the omission ships silently until someone goes looking
+  // for data Studio shows and the site never renders.
+  const EXCLUDED_FIELDS: Record<string, string> = {
+    // Hidden guest-normalisation escape hatch (episode.ts's GUEST FIELDS note)
+    // reserved for a future guest-reference migration. No query reads it and
+    // no page renders it; it exists so that migration is a script, not a
+    // re-authoring exercise.
+    guestKey: "guest-normalisation escape hatch, reserved for a future guest reference migration",
+    // Bookkeeping written once by the backfill seeder to record provenance.
+    // Never read back by the publish path, the queries, or any rendered
+    // surface — its only reader is a human inspecting a document in Studio.
+    seededBy: "backfill provenance bookkeeping, not read by any query or surface",
+  };
+
+  test("every excluded field actually exists on the schema", () => {
+    // Guards the guard: an exclusion for a field that was since renamed or
+    // removed would silently stop meaning anything, and the coverage test
+    // below would keep passing for the wrong reason.
+    const schemaFieldNames = new Set(fieldsOf(episode).map((f) => f.name));
+    for (const name of Object.keys(EXCLUDED_FIELDS)) {
+      expect(schemaFieldNames.has(name)).toBe(true);
+    }
+  });
+
+  test("every schema field is either projected or on the exclusion list", () => {
+    const projectedKeys = new Set(Object.keys(EPISODE_PROJECTION));
+    const uncovered = fieldsOf(episode)
+      .map((f) => f.name)
+      .filter((name) => !projectedKeys.has(name) && !(name in EXCLUDED_FIELDS));
+
+    // A non-empty list here means: `episode.ts` grew a field that is neither
+    // wired into `EPISODE_PROJECTION` (so no query returns it) nor named above
+    // with a reason (so its absence from the projection is a choice, not an
+    // oversight). Surfacing the exact field names in the assertion failure —
+    // rather than just a boolean — is what makes the fix a one-line addition
+    // to one of the two lists instead of a fresh investigation.
+    expect(uncovered).toEqual([]);
   });
 });
 

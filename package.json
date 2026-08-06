@@ -10,6 +10,11 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "test": "bun test src/",
+    "test:live": "RUN_LIVE_TESTS=1 bun test src/",
+    "typecheck": "tsc --noEmit && tsc -p scripts --noEmit && tsc -p studio --noEmit",
+    "slugs:propose": "bun run scripts/propose-slugs.ts",
+    "sanity:backfill": "bun run scripts/backfill.ts",
+    "podcast:snapshot": "bun run scripts/snapshot-catalogue.ts",
     "format": "prettier --write ."
   },
   "dependencies": {

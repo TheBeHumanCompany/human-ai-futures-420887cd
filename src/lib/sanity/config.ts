@@ -20,6 +20,26 @@ export const SANITY_API_VERSION = "2026-08-01";
 /** CDN-backed host for reads. Cached at the edge and cheaper than the raw API. */
 export const SANITY_QUERY_HOST = `https://${SANITY_PROJECT_ID}.apicdn.sanity.io`;
 
+/**
+ * The byte length above which `groq()` stops putting the query in the URL and
+ * POSTs `{query, params}` instead. POST is still CDN-cacheable, so the only
+ * thing that changes is the method.
+ *
+ * Sanity documents the GET ceiling at 11 kB and answers a longer URL with a
+ * `414`. Crossing it is not hypothetical — a multi-term search plus a topic
+ * filter plus pagination against a non-trivial projection gets there — and it
+ * would fail in production, never in a 39-episode test, which is the exact
+ * shape of defect this threshold exists to make impossible.
+ *
+ * 9,000 rather than something nearer the ceiling: the number that has to be
+ * safe is not the one this module computes but the one that arrives upstream
+ * after a CDN POP, a proxy and whatever percent-encoding they apply on the way.
+ * ~2 kB of slack costs one thing (a POST instead of a GET on the longest
+ * queries) and buys the guarantee that the measurement being taken here is
+ * conservative with respect to the one that actually enforces the limit.
+ */
+export const GET_URL_LIMIT = 9_000;
+
 /** Uncached host. Writes must not go through the CDN. */
 export const SANITY_MUTATE_HOST = `https://${SANITY_PROJECT_ID}.api.sanity.io`;
 

@@ -3,6 +3,7 @@ import { describe, expect, test } from "bun:test";
 import { clearEpisodeCache, loadEpisodes } from "../podbean/feed";
 import { parseGuest } from "../podbean/parse";
 import { makeEpisodeSlug } from "./slug";
+import slugsSnapshot from "./slugs.snapshot.json";
 
 const RUN_LIVE_TESTS = !!process.env.RUN_LIVE_TESTS;
 
@@ -156,6 +157,93 @@ describe("makeEpisodeSlug", () => {
     expect(slug).toBe(`${EPISODE_77_BASE}-2`);
     expect(slug.length).toBeLessThanOrEqual(60);
     expect(slug.endsWith("-2")).toBe(true);
+  });
+});
+
+/**
+ * `slugs.snapshot.json` is the reviewed, committed assignment of all 39 real
+ * episodes (see Step 5a) — this table checks every one of them, not the ~10
+ * hand-picked titles above. It validates the shipped *data*, not a call to
+ * `makeEpisodeSlug` (the snapshot carries slugs, not titles), which is the
+ * offline check available without a live feed fetch.
+ */
+describe("every slug committed in slugs.snapshot.json conforms", () => {
+  test("the snapshot has all 39 entries (non-vacuity floor)", () => {
+    expect(slugsSnapshot.length).toBe(39);
+  });
+
+  test.each(slugsSnapshot.map(({ slug }) => [slug]))("%s", (slug) => {
+    expect(slug.length).toBeGreaterThan(0);
+    expect(slug.length).toBeLessThanOrEqual(60);
+    expect(slug).toMatch(/^[a-z0-9-]+$/);
+    expect(slug.startsWith("-")).toBe(false);
+    expect(slug.endsWith("-")).toBe(false);
+  });
+
+  test("every slug in the snapshot is globally unique", () => {
+    const slugs = slugsSnapshot.map(({ slug }) => slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+  });
+});
+
+describe("collision resolution is order-independent under shuffle", () => {
+  // The bare, unsuffixed base slug is a first-come prize: whichever episode
+  // in a colliding group is processed FIRST wins it, and that choice really
+  // does depend on order — this is not the property being pinned here (an
+  // input set with an up-for-grabs bare slug is genuinely order-DEPENDENT
+  // under this algorithm; verified separately, not asserted below).
+  //
+  // The property that IS order-independent, and the one the plan's guarantee
+  // is read as describing: once the bare base is already taken by an episode
+  // OUTSIDE the shuffled batch, no batch member can ever win it, so every
+  // member falls straight through to its own `-<episodeNumber>` suffix — a
+  // key that depends only on that member's own episode number, never on
+  // which other members were processed first. Four distinct episode numbers
+  // sharing one base, run in three different orders, must therefore land on
+  // the identical {episodeNumber -> slug} assignment every time.
+  const titleFor = (num: number) =>
+    `Episode ${num}: Leading with Heart: Jill De Chavez on Building a People-First Business`;
+  // All four are two digits, like the "39" the top-of-file constants already
+  // truncate the base for, so the same re-truncated base applies to each.
+  const EPISODE_NUMBERS = [10, 20, 30, 40];
+
+  function resolveInOrder(order: readonly number[]): Record<number, string> {
+    const existingSlugs = new Set<string>([EPISODE_39_BASE]);
+    const assignment: Record<number, string> = {};
+    for (const num of order) {
+      const slug = makeEpisodeSlug(titleFor(num), num, existingSlugs);
+      existingSlugs.add(slug);
+      assignment[num] = slug;
+    }
+    return assignment;
+  }
+
+  test("forward, reversed and shuffled processing orders agree on every slug", () => {
+    const forward = resolveInOrder(EPISODE_NUMBERS);
+    const reversed = resolveInOrder([...EPISODE_NUMBERS].reverse());
+    const shuffled = resolveInOrder([30, 10, 40, 20]);
+
+    expect(reversed).toEqual(forward);
+    expect(shuffled).toEqual(forward);
+
+    // Not vacuous: each did fall through to its own re-truncated, numbered
+    // suffix, not to the (already-taken) bare base.
+    for (const num of EPISODE_NUMBERS) {
+      expect(forward[num]).toBe(`${EPISODE_39_TRUNCATED_BASE}-${num}`);
+    }
+  });
+});
+
+describe("makeEpisodeSlug is idempotent as a fixed point", () => {
+  // Feeding an already-produced slug back in as the "title" must reproduce it
+  // exactly: it is already lowercase kebab-case, so `parseGuest` (which only
+  // matches capitalized name shapes) declines, `keywordSlug` tokenizes on the
+  // hyphens right back into the same words in the same order, none of them
+  // are stopwords the slug itself hasn't already dropped, and it is already
+  // under the 60-character cap.
+  test.each(slugsSnapshot.map(({ slug }) => [slug]))("%s feeds back into itself", (slug) => {
+    expect(parseGuest(slug)).toBeUndefined();
+    expect(makeEpisodeSlug(slug, null, NONE)).toBe(slug);
   });
 });
 

@@ -9,7 +9,16 @@ export default tseslint.config(
   // `studio` is a separate project with its own eslint and prettier config
   // (single quotes, no semicolons) and its own generated `.sanity/runtime`
   // output. Linting it from here just makes the two formatters fight.
-  { ignores: ["dist", ".output", ".vinxi", ".vercel", "studio"] },
+  //
+  // `.omc`, `.omx` and `.codex` are agent-tooling runtime state, not project
+  // source. They are kept out of git (`.gitignore` / `.git/info/exclude`) but
+  // eslint has no view of that, so without these entries it walks into
+  // `.omx/runtime/codex-home` and reports tens of thousands of formatting
+  // errors in vendored files nobody here wrote — which takes the AC-35 lint
+  // gate permanently red and hides real findings in the noise.
+  {
+    ignores: ["dist", ".output", ".vinxi", ".vercel", "studio", ".omc", ".omx", ".codex"],
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],

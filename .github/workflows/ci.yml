@@ -1,0 +1,51 @@
+name: CI
+
+# The PR gate, and deliberately only the offline half of the suite.
+#
+# The live tests talk to Podbean's RSS feed and Sanity's Content Lake. During
+# this project's review the same suite failed 6/75 from one machine with blocked
+# sockets and passed 75/75 from another minutes later, with no code change. A
+# gate that red-lights on someone else's network trains people to merge past
+# red, so the live tests run nightly instead — see nightly.yml. RUN_LIVE_TESTS
+# is intentionally never set here.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Install app dependencies
+        run: bun install --frozen-lockfile
+
+      # `bun run typecheck` includes `tsc -p studio`, and the Studio is a
+      # separate npm project with its own lockfile. Without this step the
+      # typecheck fails on missing `sanity` types rather than on real errors.
+      - name: Install Studio dependencies
+        working-directory: studio
+        run: npm ci
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Test (offline)
+        run: bun test src/
+
+      - name: Build
+        run: bun run build
