@@ -148,19 +148,34 @@ export function equal(a: unknown, b: unknown): boolean {
 }
 
 /**
- * Mirrors `podbean/filter.ts`'s `normalise()` so a stored haystack and a
- * typed query meet in the same shape.
+ * Mirrors `podbean/filter.ts`'s `matchesQuery()` haystack so a stored haystack
+ * and a typed query meet in the same shape.
+ *
+ * The field list is not arbitrary — it is `filter.ts:79-84` exactly: title,
+ * guest, excerpt, and the literal `episode <N>`. That last one is why someone
+ * can type "episode 12" today and find it, and it is the reason this function
+ * cannot simply fold "the interesting text fields". The two implementations
+ * are a matched pair: whatever the client matcher searches, the server has to
+ * have stored, or the same query returns different results depending on which
+ * path served it. `normalise.test.ts` pins the two against each other.
+ *
+ * An episode with no number contributes the bare word "episode", which is
+ * exactly what `filter.ts` does with its `?? ""` — harmless, since "episode"
+ * then matches every episode rather than none, and deviating here to be tidier
+ * would reintroduce the divergence.
  *
  * Topic names are deliberately absent: a `topics[]` entry is a reference, and
  * resolving `_ref` to a name needs a second query that this transaction has no
  * reason to make.
  */
 function computeSearchText(doc: Record<string, unknown>): string {
-  const parts = [doc.title, doc.guestName, doc.excerpt].filter(
+  const text = [doc.title, doc.guestName, doc.excerpt].filter(
     (value): value is string => typeof value === "string",
   );
 
-  return parts
+  const episodeNumber = typeof doc.episodeNumber === "number" ? doc.episodeNumber : "";
+
+  return [...text, `episode ${episodeNumber}`]
     .join(" ")
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")

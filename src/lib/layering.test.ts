@@ -194,11 +194,37 @@ describe("AC-36 rule 3 — no route imports browseEpisodes or durationCounts", (
   });
 });
 
-describe("AC-36 rule 4 — groq-js never reaches a non-test file", () => {
+describe("AC-36 rule 4 — devDependencies never reach a non-test file", () => {
   test("no non-test file under src/ imports groq-js, except the documented groq-eval.ts wrapper", () => {
     const offenders = srcNonTestFiles
       .filter((file) => file !== GROQ_EVAL_FILE)
       .filter((file) => /from\s+["']groq-js["']|require\(\s*["']groq-js["']\s*\)/.test(read(file)));
+    expect(offenders).toEqual([]);
+  });
+
+  test("nothing under src/ imports @sanity/client — not even a test", () => {
+    // Decision D's split, enforced from the bundle side.
+    //
+    // `@sanity/client` is ~5 MB unpacked and a devDependency. It belongs to the
+    // Node-only write scripts (scripts/sanity-client.ts), where a battle-tested
+    // client's retry and error decoding is worth having for irreversible
+    // mutations. The deployed read path is the hand-rolled http.ts precisely so
+    // none of that reaches the server bundle.
+    //
+    // Unlike rule 4's groq-js check this covers test files too, and has no
+    // exception. `src/` is what the bundler walks; a test import would be the
+    // easiest way for the dependency to arrive there by accident, and nothing
+    // under src/ has a legitimate reason to construct a real client — the
+    // transports are injected (`PublishDeps`, `RollbackDeps`), which is what
+    // makes those suites runnable offline with no credential.
+    //
+    // The Studio's action does use the client, but it lives under studio/ and
+    // is not walked here. Its error translation is shared through
+    // src/lib/sanity/client-errors.ts, which duck-types on `statusCode` and
+    // imports nothing from the package — that is what lets it sit in src/.
+    const offenders = srcFiles.filter((file) =>
+      /from\s+["']@sanity\/client["']|require\(\s*["']@sanity\/client["']\s*\)/.test(read(file)),
+    );
     expect(offenders).toEqual([]);
   });
 });

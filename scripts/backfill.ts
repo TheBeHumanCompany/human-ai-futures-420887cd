@@ -44,8 +44,13 @@ import path from "node:path";
 
 import { clearEpisodeCache, loadEpisodes } from "../src/lib/podbean/feed";
 import { episodeDocId } from "../src/lib/podcast/doc-id";
-import { rollbackEpisodes, type RollbackPair } from "../src/lib/podcast/rollback";
+import {
+  rollbackEpisodes,
+  type RollbackDeps,
+  type RollbackPair,
+} from "../src/lib/podcast/rollback";
 import { buildSeedDocuments, type SlugProposal } from "../src/lib/podcast/sync";
+import { createScriptTransport } from "./sanity-client";
 import {
   PublishConflictError,
   SlugImmutableError,
@@ -376,7 +381,12 @@ async function runBackfill(dryRun: boolean) {
   // unknown state and force the operator to work out where the run got to.
   // Every failure is collected and reported in full at the end, and the process
   // exits non-zero so the failure cannot be mistaken for success.
-  const deps = dryRun ? dryRunDeps() : {};
+  // Live writes go through `@sanity/client` (Decision D): these are the
+  // irreversible mutations, and the official client's retry and error decoding
+  // are worth more here than one shared transport. Built only on the live path
+  // — a dry run stubs the transport entirely and must stay runnable with no
+  // credential at all.
+  const deps: PublishDeps = dryRun ? dryRunDeps() : createScriptTransport();
   const failures: Failure[] = [];
   let succeeded = 0;
   let totalMutations = 0;
@@ -468,7 +478,15 @@ async function runRollback(dryRun: boolean, force: boolean) {
   // Real reads, swallowed writes. `rollbackEpisodes` runs its real decision
   // table against the real dataset and the planned transaction is printed
   // verbatim, so the live run has nothing left to surprise anyone with.
-  const deps = dryRun ? { mutate: async () => ({ transactionId: "dry-run" }) } : {};
+  //
+  // Both paths read through `@sanity/client` (Decision D) — the dry run
+  // deliberately keeps the real `getDocuments`, because a rollback plan built
+  // against a stubbed read would answer "already rolled back" for everything
+  // and prove nothing.
+  const transport = createScriptTransport();
+  const deps: RollbackDeps = dryRun
+    ? { getDocuments: transport.getDocuments, mutate: async () => ({ transactionId: "dry-run" }) }
+    : transport;
   const report = await rollbackEpisodes(pairs, { force }, deps);
 
   for (const [index, result] of report.results.entries()) {

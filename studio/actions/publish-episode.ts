@@ -10,7 +10,6 @@ import {
 } from 'sanity'
 
 import {SANITY_API_VERSION} from '../../src/lib/sanity/config'
-import {SanityHttpError} from '../../src/lib/sanity/http'
 import {
   publishEpisode,
   PublishConflictError,
@@ -41,38 +40,18 @@ const OMITTED_FIELDS = new Set([
 ])
 
 /**
- * Translates a `@sanity/client` failure into the error shape `publish.ts`
- * arbitrates on.
+ * Re-exported so the Studio's transport story stays readable from this file,
+ * and so the existing `studio-publish-deps.test.ts` import keeps resolving.
  *
- * `publishEpisode()`'s one retriable failure is a strict `create` losing its
- * compare-and-set, which it recognises as `SanityHttpError` with `status ===
- * 409`. The Studio's client does not throw that: `client.mutate()` rejects with
- * `@sanity/client`'s own `ClientError`, a different class carrying its HTTP
- * status on `statusCode`. Untranslated, a genuine Studio-side 409 fails both
- * halves of that check, skips the retry entirely, and reaches the editor as a
- * raw client error instead of "published by someone else" — the transport
- * mismatch this adapter boundary exists to absorb.
- *
- * Duck-typed on `statusCode` rather than `instanceof ClientError`. `@sanity/client`
- * is a transitive dependency here (the Studio depends on `sanity`), so importing
- * the class would add an undeclared dependency *and* stake correctness on there
- * being exactly one copy of it in the tree — an `instanceof` that quietly
- * returns false against a duplicated package is the identical failure being
- * fixed.
- *
- * Anything without a numeric `statusCode` — a network failure, an abort, a bug
- * in this file — is returned untouched and propagates as itself. Nothing is
- * swallowed and nothing is relabelled.
+ * The implementation moved to `src/lib/sanity/client-errors.ts` when the Node
+ * scripts adopted `@sanity/client` too (Decision D): both writers that speak to
+ * Sanity through the official client need the same `statusCode` -> `status`
+ * translation, and this module imports React and `sanity` at module scope, so a
+ * script cannot borrow it from here.
  */
-export function normalizeSanityError(error: unknown): unknown {
-  if (error === null || typeof error !== 'object') return error
+import {normalizeSanityError} from '../../src/lib/sanity/client-errors'
 
-  const statusCode = (error as {statusCode?: unknown}).statusCode
-  if (typeof statusCode !== 'number') return error
-
-  const message = error instanceof Error ? error.message : String(error)
-  return new SanityHttpError(message, statusCode)
-}
+export {normalizeSanityError}
 
 /**
  * The Studio-side transport for `publishEpisode()`.

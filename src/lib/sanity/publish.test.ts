@@ -183,12 +183,17 @@ const KEYED_TOPICS = [
 ];
 
 /**
- * `computeSearchText` joins title, guestName and excerpt in that order, then
- * folds accents, lowercases and reduces punctuation to single spaces. Pinned
- * as a literal rather than recomputed, so a change to the haystack recipe goes
- * red here instead of silently altering what search matches.
+ * `computeSearchText` joins title, guestName, excerpt and the literal
+ * `episode <N>` in that order, then folds accents, lowercases and reduces
+ * punctuation to single spaces. Pinned as a literal rather than recomputed, so
+ * a change to the haystack recipe goes red here instead of silently altering
+ * what search matches.
+ *
+ * The trailing `episode 12` is the half that makes a typed query of "episode
+ * 12" resolve server-side the way `filter.ts` already resolves it client-side.
+ * It is the field list from `filter.ts:79-84`, not a superset chosen here.
  */
-const SEARCH_TEXT = "jane doe on ai safety jane doe jane doe joins to discuss ai safety";
+const SEARCH_TEXT = "jane doe on ai safety jane doe jane doe joins to discuss ai safety episode 12";
 
 /** The desired published shape as a caller supplies it: no `slugFrozenAt`, no `searchText`. */
 const AUTHORED: Record<string, unknown> = {

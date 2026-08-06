@@ -83,10 +83,79 @@ interface CatalogueSnapshot {
 /** The documented trip-wire from Decision E, asserted here and in snapshot.test.ts. */
 const MAX_SERIALIZED_BYTES = 1_000_000;
 
+/**
+ * Refuses to replace a snapshot that holds something this run cannot reproduce.
+ *
+ * The destructive case is quiet and one keystroke away: run this after the
+ * backfill and it rebuilds from the feed, which has no guest bios, no photos and
+ * no topics. Every enrichment field goes back to null, `isEnriched` goes to
+ * false for all 39, and the file still looks perfectly well-formed. The next
+ * outage then serves a catalogue that says nothing is enriched — every episode
+ * page `noindex`, every episode dropped from the sitemap — from a commit whose
+ * diff is 39 plausible-looking null assignments.
+ *
+ * So the check is on the OUTGOING file, not on operator intent. Two independent
+ * signals, either one sufficient, because they fail in different ways: `source`
+ * records where the data came from and is the honest marker once a re-harvest
+ * exists, while the enrichment scan catches a file whose `source` was never
+ * updated. `--force` is the deliberate override, and it prints what it is
+ * discarding rather than just proceeding.
+ */
+function guardExistingSnapshot(existing: CatalogueSnapshot, force: boolean): void {
+  const enriched = existing.episodes.filter(
+    (entry) =>
+      entry.isEnriched ||
+      entry.guestBio !== null ||
+      entry.guestPhotoRef !== null ||
+      entry.coverArtworkRef !== null ||
+      entry.topics.length > 0,
+  );
+
+  const fromSanity = existing.source === "sanity";
+  if (!fromSanity && enriched.length === 0) return;
+
+  const reasons = [
+    fromSanity ? `was harvested from Sanity, not from the feed` : null,
+    enriched.length > 0
+      ? `carries enrichment on ${enriched.length} of its ${existing.episodes.length} episodes`
+      : null,
+  ].filter((reason): reason is string => reason !== null);
+
+  if (force) {
+    console.warn(`\n!! OVERWRITING a snapshot that ${reasons.join(", and ")}.`);
+    console.warn("!! --force given; the enrichment below is being replaced with nulls:");
+    for (const entry of enriched.slice(0, 10)) console.warn(`!!   ${entry.slug}`);
+    if (enriched.length > 10) console.warn(`!!   ... and ${enriched.length - 10} more`);
+    console.warn("");
+    return;
+  }
+
+  console.error(`\nSNAPSHOT REFUSED — the existing file ${reasons.join(", and ")}.`);
+  console.error("");
+  console.error("This script rebuilds from the PodBean feed, which carries no guest bios,");
+  console.error("photos or topics. Rebuilding now would overwrite real enrichment with nulls,");
+  console.error("and the degraded read path would then report every episode as un-enriched:");
+  console.error("noindex on every episode page, and an empty sitemap.");
+  console.error("");
+  console.error("Once the backfill has run, the snapshot must be re-harvested from Sanity");
+  console.error("(plan Step 12) rather than regenerated from the feed. If you genuinely mean");
+  console.error("to discard what is there, re-run with --force.");
+  process.exit(1);
+}
+
 async function main() {
   const root = path.join(import.meta.dirname, "..");
   const slugsPath = path.join(root, "src/lib/podcast/slugs.snapshot.json");
   const outPath = path.join(root, "src/lib/podcast/catalogue.snapshot.json");
+
+  const force = process.argv.slice(2).includes("--force");
+
+  // Read-before-write. An absent file is the normal first run, not an error.
+  const existing = await readFile(outPath, "utf8").then(
+    (raw) => JSON.parse(raw) as CatalogueSnapshot,
+    () => undefined,
+  );
+  if (existing !== undefined) guardExistingSnapshot(existing, force);
 
   const proposals: SlugProposal[] = JSON.parse(await readFile(slugsPath, "utf8"));
   const bySlugGuid = new Map(proposals.map((proposal) => [proposal.guid, proposal]));
