@@ -3,6 +3,7 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {publishEpisodeAction} from './actions/publish-episode'
+import {syncFromPodbeanAction} from './actions/sync-from-podbean'
 
 /** Types that exist to make the system work, not to be authored. */
 const INFRASTRUCTURE_TYPES = ['slugLock']
@@ -45,12 +46,17 @@ export default defineConfig({
     //
     // Episodes get their built-in `publish` swapped for one that calls
     // publishEpisode() directly (Decision F's slug/episode compare-and-set)
-    // instead of Sanity's own publish operation. Every other type — and every
-    // other action on episode — passes through unchanged.
+    // instead of Sanity's own publish operation, and gain "Sync from Podbean"
+    // — which creates drafts for feed episodes Sanity has never seen and never
+    // publishes anything. Every other type — and every other action on episode
+    // — passes through unchanged.
     actions: (prev, {schemaType}) => {
       if (INFRASTRUCTURE_TYPES.includes(schemaType)) return []
       if (schemaType === 'episode') {
-        return prev.map((action) => (action.action === 'publish' ? publishEpisodeAction : action))
+        return [
+          ...prev.map((action) => (action.action === 'publish' ? publishEpisodeAction : action)),
+          syncFromPodbeanAction,
+        ]
       }
       return prev
     },

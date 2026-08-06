@@ -6,7 +6,15 @@ import { describe, expect, test } from "bun:test";
 import type { Episode } from "../podbean/types";
 import { SanityHttpError } from "../sanity/http";
 import { publishEpisode, type PublishResult } from "../sanity/publish";
-import { buildSeedDocuments, type SeedDocument, type SlugProposal } from "./sync";
+import { episodeDocId } from "./doc-id";
+import {
+  buildSeedDocuments,
+  planSyncDrafts,
+  syncProbeIds,
+  STUDIO_SYNC_SEEDED_BY,
+  type SeedDocument,
+  type SlugProposal,
+} from "./sync";
 
 function makeEpisode(overrides: Partial<Episode> = {}): Episode {
   return {
@@ -100,6 +108,182 @@ describe("buildSeedDocuments", () => {
 
     expect(results).toHaveLength(3);
     expect(results.map((r) => r.episodeDoc.title)).toEqual(["Title A", "Title B", "Title C"]);
+  });
+});
+
+/**
+ * Task 8 — the Studio "Sync from Podbean" plan.
+ *
+ * The Studio action itself is a React shell over these two functions and
+ * `bun test src/` cannot see `studio/**` (Principle 2), so everything that can
+ * be wrong in an interesting way is decided here and asserted here: which
+ * episodes count as new, what a new draft contains, and the two feed anomalies
+ * (a repeated guid, two guids collapsing to one document id) that would
+ * otherwise be discovered as a lost write.
+ */
+describe("syncProbeIds", () => {
+  test("asks about both the published id and the draft id for every guid", () => {
+    const ids = syncProbeIds([{ guid: "guid-1" }, { guid: "guid-2" }]);
+
+    expect(ids).toEqual([
+      "episode-guid-1",
+      "drafts.episode-guid-1",
+      "episode-guid-2",
+      "drafts.episode-guid-2",
+    ]);
+  });
+
+  test("deduplicates a repeated guid rather than probing it twice", () => {
+    expect(syncProbeIds([{ guid: "guid-1" }, { guid: "guid-1" }])).toEqual([
+      "episode-guid-1",
+      "drafts.episode-guid-1",
+    ]);
+  });
+});
+
+describe("planSyncDrafts", () => {
+  test("plans a draft for an unseen guid, pre-filled from the feed and stamped with its provenance", () => {
+    const episode = makeEpisode();
+
+    const plan = planSyncDrafts([episode], []);
+
+    expect(plan.create).toHaveLength(1);
+    expect(plan.create[0]).toEqual({
+      _id: "drafts.episode-guid-1",
+      _type: "episode",
+      guid: "guid-1",
+      title: "Episode 1: Some Title",
+      description: "Full show notes.",
+      excerpt: "Short excerpt.",
+      guestName: "Jane Doe",
+      podbeanUrl: "https://example.podbean.com/e/ep1",
+      audioUrl: "https://cdn.example.com/ep1.mp3",
+      durationSeconds: 1800,
+      publishedAt: "2026-01-01T00:00:00.000Z",
+      episodeNumber: 1,
+      seededBy: STUDIO_SYNC_SEEDED_BY,
+    });
+    expect(plan.existingGuids).toEqual([]);
+    expect(plan.collisions).toEqual([]);
+  });
+
+  test("never proposes a slug — the permanent URL stays a human decision", () => {
+    const [draft] = planSyncDrafts([makeEpisode()], []).create;
+
+    for (const omitted of ["slug", "slugFrozenAt", "searchText", "topics", "guestBio"]) {
+      expect(Object.hasOwn(draft, omitted)).toBe(false);
+    }
+  });
+
+  test("leaves guestName undefined, not a placeholder, when the title had no parseable guest", () => {
+    const [draft] = planSyncDrafts([makeEpisode({ guest: undefined })], []).create;
+
+    expect(draft.guestName).toBeUndefined();
+    expect(Object.hasOwn(draft, "guestName")).toBe(true);
+  });
+
+  test("carries exactly the same feed-derived field set as the backfill's seed document", () => {
+    const episode = makeEpisode();
+    const proposal = { guid: "guid-1", _id: "episode-guid-1", slug: "jane-doe-some-title" };
+
+    const [draft] = planSyncDrafts([episode], []).create;
+    const [seed] = buildSeedDocuments([episode], [proposal]);
+
+    const feedFieldsOf = (doc: object) =>
+      Object.keys(doc)
+        .filter((key) => !["_id", "_type", "seededBy"].includes(key))
+        .sort();
+
+    expect(feedFieldsOf(draft)).toEqual(feedFieldsOf(seed.episodeDoc));
+  });
+
+  /**
+   * The one that matters most. `createIfNotExists("drafts.episode-x")` against
+   * an episode that is published but has no draft does NOT no-op — it creates
+   * a draft, and a live episode silently acquires unpublished changes. A plan
+   * that probed only the draft id would do that to all 39 on its first run.
+   */
+  test("skips an episode that is already PUBLISHED — the phantom-draft case", () => {
+    const plan = planSyncDrafts([makeEpisode()], ["episode-guid-1"]);
+
+    expect(plan.create).toEqual([]);
+    expect(plan.existingGuids).toEqual(["guid-1"]);
+  });
+
+  test("skips an episode that already has a DRAFT — a second press creates nothing", () => {
+    const plan = planSyncDrafts([makeEpisode()], ["drafts.episode-guid-1"]);
+
+    expect(plan.create).toEqual([]);
+    expect(plan.existingGuids).toEqual(["guid-1"]);
+  });
+
+  test("skips an episode that has both a published document and a draft", () => {
+    const plan = planSyncDrafts([makeEpisode()], ["episode-guid-1", "drafts.episode-guid-1"]);
+
+    expect(plan.create).toEqual([]);
+    expect(plan.existingGuids).toEqual(["guid-1"]);
+  });
+
+  test("over a mixed feed, plans only the episodes Sanity has never seen", () => {
+    const episodes = [
+      makeEpisode({ guid: "guid-published" }),
+      makeEpisode({ guid: "guid-drafted" }),
+      makeEpisode({ guid: "guid-new" }),
+    ];
+
+    const plan = planSyncDrafts(episodes, [
+      "episode-guid-published",
+      "drafts.episode-guid-drafted",
+      // A document belonging to no feed item at all — an episode that has
+      // aged out of the feed. It must not perturb the plan.
+      "episode-guid-long-gone",
+    ]);
+
+    expect(plan.create.map((draft) => draft.guid)).toEqual(["guid-new"]);
+    expect(plan.create[0]._id).toBe("drafts.episode-guid-new");
+    expect(plan.existingGuids).toEqual(["guid-published", "guid-drafted"]);
+  });
+
+  test("counts a guid repeated within one feed once, and creates it once", () => {
+    const episodes = [makeEpisode(), makeEpisode({ title: "The same episode again" })];
+
+    const plan = planSyncDrafts(episodes, []);
+
+    expect(plan.create).toHaveLength(1);
+    expect(plan.create[0].title).toBe("Episode 1: Some Title");
+    expect(plan.duplicateGuids).toEqual(["guid-1"]);
+  });
+
+  /**
+   * `episodeDocId` substitutes every character outside [A-Za-z0-9_-], so two
+   * guids differing only in punctuation land on one `_id`. `scripts/backfill.ts`
+   * treats that as fatal; the plan reports it and — belt and braces — withholds
+   * both episodes from `create`, so a caller that ignored `collisions` still
+   * could not write one document standing in for two episodes.
+   */
+  test("reports two guids that sanitise to one document id, and plans neither", () => {
+    expect(episodeDocId("show/42")).toBe(episodeDocId("show-42"));
+
+    const episodes = [
+      makeEpisode({ guid: "show/42" }),
+      makeEpisode({ guid: "show-42" }),
+      makeEpisode({ guid: "guid-fine" }),
+    ];
+
+    const plan = planSyncDrafts(episodes, []);
+
+    expect(plan.create.map((draft) => draft.guid)).toEqual(["guid-fine"]);
+    expect(plan.collisions).toEqual([{ _id: "episode-show-42", guids: ["show/42", "show-42"] }]);
+    expect(plan.existingGuids).toEqual([]);
+  });
+
+  test("an empty feed plans nothing rather than throwing", () => {
+    expect(planSyncDrafts([], ["episode-guid-1"])).toEqual({
+      create: [],
+      existingGuids: [],
+      duplicateGuids: [],
+      collisions: [],
+    });
   });
 });
 

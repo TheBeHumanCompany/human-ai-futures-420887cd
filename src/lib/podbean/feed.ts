@@ -10,6 +10,15 @@ import type { Episode, EpisodeListItem } from "./types";
  * and Business tiers, which this account is below. Everything the site renders
  * is present in the feed, so no token, secret or environment variable is
  * involved anywhere in this integration.
+ *
+ * SERVER-SIDE ONLY, and the Studio deliberately does not import it. Verified
+ * 2026-08-06: this host answers 302 with **no `access-control-allow-origin`**
+ * header, and a browser evaluates CORS on the redirect response itself, so a
+ * browser fetch is blocked before the redirect is followed. The Studio's
+ * "Sync from Podbean" action therefore fetches the redirect *target* directly
+ * (`studio/lib/podbean-feed.ts`), which does send the header. Nothing on the
+ * server is affected — CORS is a browser rule — so this constant stays as it
+ * is, and the two are not to be deduplicated.
  */
 export const PODBEAN_FEED_URL = "https://shanejjamesgroup.podbean.com/feed.xml";
 
