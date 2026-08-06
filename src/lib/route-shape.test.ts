@@ -53,20 +53,35 @@ describe("generated route ids", () => {
     expect(ids).toContain("/");
   });
 
-  test("any episode route is mounted at the root, not nested under /podcast", () => {
-    // The episode route itself arrives with Step 8 of the plan, so there is
-    // nothing to find today and this passes on an empty match. It is written as
-    // a shape rule rather than a presence assertion precisely so it can exist
-    // before the route does — the plan calls for the guard to land first — and
-    // it goes red the moment a `$slug` route appears under `/podcast` without
-    // the trailing-underscore escape.
-    //
-    // When Step 8 lands, tighten this to an unconditional
-    // `expect(ids).toContain('/podcast_/$slug')`.
+  test("the episode route exists, mounted at the root rather than nested under /podcast", () => {
+    // Tightened from a conditional shape rule to an unconditional assertion now
+    // that the route exists. The underscore is the whole point: `podcast.tsx`
+    // is a leaf that renders no `<Outlet/>`, so a `podcast.$slug.tsx` would nest
+    // inside it and never render — and the resulting 404s would be on the exact
+    // URLs this project exists to keep alive.
+    expect(fileRouteIds()).toContain("/podcast_/$slug");
+  });
+
+  test("no episode route is mounted under /podcast without the escape", () => {
+    // The other direction: catches a rename that reintroduces the nesting even
+    // if the escaped route is also present.
     const episodeRoutes = fileRouteIds().filter((id) => /podcast.*\$slug/.test(id));
 
-    for (const id of episodeRoutes) {
-      expect(id).toBe("/podcast_/$slug");
-    }
+    expect(episodeRoutes).toEqual(["/podcast_/$slug"]);
+  });
+
+  test("the generated route resolves to the public URL the id obscures", () => {
+    // The id carries the underscore; the URL must not. `FileRoutesByFullPath` is
+    // where the public path is declared, and asserting both together is what
+    // pins D-J1's claim that the escape changes the id and nothing else.
+    const source = readFileSync(GENERATED, "utf8");
+    const start = source.indexOf("export interface FileRoutesByFullPath {");
+    expect(start).toBeGreaterThan(-1);
+
+    const block = source.slice(start, source.indexOf("\n}", start));
+    const fullPaths = [...block.matchAll(/'([^']+)':/g)].map((match) => match[1]);
+
+    expect(fullPaths).toContain("/podcast/$slug");
+    expect(fullPaths).not.toContain("/podcast_/$slug");
   });
 });
