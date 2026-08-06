@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { evaluate, parse } from "groq-js";
 
-import { EPISODE_PROJECTION, project } from "./projection-map";
+import { EPISODE_LIST_PROJECTION, EPISODE_PROJECTION, project } from "./projection-map";
 
 /**
  * Decision H's two layers.
@@ -163,5 +163,89 @@ describe("project(EPISODE_PROJECTION) evaluated by groq-js", () => {
 
     expect(result.guestPhoto).toBe("guestPhoto.asset._ref");
     expect(result.guestPhoto).not.toBe(episodeFixture.guestPhoto.asset._ref);
+  });
+});
+
+describe("EPISODE_LIST_PROJECTION", () => {
+  /**
+   * The exclusion set, pinned as a SET rather than as a list of assertions.
+   *
+   * The directory fetches the whole catalogue in one request, so every field
+   * here is paid 39 times over — and, at the ceiling this design is bounded by,
+   * hundreds of times. That makes an added field a payload decision rather than
+   * a detail, and the failure mode is silent: nothing renders differently, the
+   * response is just bigger, and the number nobody is watching moves.
+   *
+   * Comparing the derived set means a field added to `EPISODE_PROJECTION` and
+   * mirrored here without thought goes red, and so does a field quietly dropped
+   * from the exclusions.
+   */
+  const EXPECTED_EXCLUSIONS = [
+    "_id",
+    "description",
+    "guestBio",
+    "guid",
+    "podbeanUrl",
+    "searchText",
+    "slugFrozenAt",
+  ];
+
+  test("excludes exactly the documented set, no more and no less", () => {
+    const excluded = Object.keys(EPISODE_PROJECTION)
+      .filter((alias) => !(alias in EPISODE_LIST_PROJECTION))
+      .sort();
+
+    expect(excluded).toEqual(EXPECTED_EXCLUSIONS);
+  });
+
+  test("is a strict subset of the full projection — it invents no field of its own", () => {
+    // A field here that the detail projection does not have would mean two
+    // sources of truth for the same document shape.
+    const invented = Object.keys(EPISODE_LIST_PROJECTION).filter(
+      (alias) => !(alias in EPISODE_PROJECTION),
+    );
+    expect(invented).toEqual([]);
+  });
+
+  test("shares the exact source path with the full projection for every field it keeps", () => {
+    // The swap Decision H exists to prevent, in its second-most-likely form:
+    // the two maps drifting so the list renders a different field than the
+    // detail page does under the same alias.
+    for (const [alias, source] of Object.entries(EPISODE_LIST_PROJECTION)) {
+      expect(source).toBe(EPISODE_PROJECTION[alias as keyof typeof EPISODE_PROJECTION]);
+    }
+  });
+
+  test("includes audioUrl, which the homepage player already depends on", () => {
+    // Not a preference. `index.tsx` renders `<EpisodePlayer src={...audioUrl}>`
+    // today, so dropping this breaks a surface that has nothing to do with the
+    // directory.
+    expect(EPISODE_LIST_PROJECTION).toHaveProperty("audioUrl", "audioUrl");
+  });
+
+  test("the generated fragment evaluates over a raw document, sourcing every alias", async () => {
+    const tree = parse(project(EPISODE_LIST_PROJECTION));
+    const value = await evaluate(tree, { root: episodeFixture, dataset: [], dereference });
+    const result = (await value.get()) as Record<string, unknown>;
+
+    expect(Object.keys(result).sort()).toEqual(Object.keys(EPISODE_LIST_PROJECTION).sort());
+    // Values traced to their sources, not merely present — a fragment that
+    // returned every key as null would satisfy the key check perfectly.
+    expect(result.title).toBe(episodeFixture.title);
+    expect(result.audioUrl).toBe(episodeFixture.audioUrl);
+    expect(result.guestPhoto).toBe(episodeFixture.guestPhoto.asset._ref);
+    expect(result.coverArtwork).toBe(episodeFixture.coverArtwork.asset._ref);
+  });
+
+  test("the excluded fields are genuinely absent from the evaluated output", async () => {
+    // The exclusion asserted where it actually matters — in the bytes that come
+    // back — rather than only in the map the fragment was built from.
+    const tree = parse(project(EPISODE_LIST_PROJECTION));
+    const value = await evaluate(tree, { root: episodeFixture, dataset: [], dereference });
+    const result = (await value.get()) as Record<string, unknown>;
+
+    for (const alias of EXPECTED_EXCLUSIONS) {
+      expect(result).not.toHaveProperty(alias);
+    }
   });
 });
