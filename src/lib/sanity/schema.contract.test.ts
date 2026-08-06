@@ -114,6 +114,13 @@ describe("episode schema field coverage", () => {
     // Never read back by the publish path, the queries, or any rendered
     // surface — its only reader is a human inspecting a document in Studio.
     seededBy: "backfill provenance bookkeeping, not read by any query or surface",
+    // The fingerprint the share card was generated from. Read by
+    // `podcast:report` to list stale cards, never by a rendered surface — and
+    // deliberately NOT projected, because shipping it to the browser would pay
+    // for a staleness check on every page load that only a script performs.
+    // Note `shareCard` itself IS projected: the image is rendered, the key is
+    // not.
+    shareCardKey: "share-card staleness fingerprint, read only by podcast:report",
   };
 
   test("every excluded field actually exists on the schema", () => {

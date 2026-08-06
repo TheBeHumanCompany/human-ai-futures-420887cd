@@ -197,6 +197,7 @@ const MAXIMAL_VALUES: Record<string, unknown> = {
   guestName: "A Guest With A Fairly Long Name",
   guestPhoto: ASSET_REF,
   coverArtwork: ASSET_REF,
+  shareCard: ASSET_REF,
   audioUrl: "https://mcdn.podbean.com/mf/web/abcdefghij/episode-thirty-nine-final-mix.mp3",
   durationSeconds: 5400,
   publishedAt: "2025-02-01T00:00:00.000Z",
@@ -241,23 +242,26 @@ describe("the offline per-episode payload bound", () => {
   });
 
   test("records how much headroom the budget actually has, and where it goes", () => {
-    // Measured, not asserted as a vague margin, because the number is smaller
-    // than it looks and the reason matters.
+    // Measured, not asserted as a vague margin, because the margin is now
+    // small enough that the next scheduled change spends it.
     //
-    // A maximal episode is ~1,095 B against a 1,200 B budget: about 105 B, or
-    // 9%. Nearly all of the sensitivity is in `topics`. These six entries use a
-    // 10-character topic name; a realistic longer one ("Leadership and
-    // Culture", 22 chars) costs ~73 B per topic instead of ~48 and takes a
-    // six-topic episode to ~1,245 B — over budget on content alone, with no new
-    // field involved.
+    // A maximal episode measures ~1,169 B against the 1,200 B budget: about
+    // 31 B. It was ~105 B before `shareCard` entered this projection; that one
+    // field cost ~74 B, which is most of what there was.
     //
-    // Consequences worth knowing before they bite:
-    //   - `shareCard` joins this projection in the share-card task (~+60 B),
-    //     leaving roughly 45 B.
-    //   - So the topic taxonomy's naming is a payload decision, not only an
-    //     editorial one.
-    // If this row ever fails, the question to ask is whether the budget or the
-    // taxonomy should move — not to quietly raise the number.
+    // **The remaining headroom does not survive realistic topic names.** These
+    // six entries use a 10-character name ("Leadership") costing ~48 B each. A
+    // 22-character one ("Leadership and Culture") costs ~73 B — six of those add
+    // ~150 B and take a maximal episode to roughly 1,320 B, well over budget,
+    // with no new field involved at all.
+    //
+    // So the topic taxonomy's naming is a payload decision before it is an
+    // editorial one, and it is decided in the task that creates the taxonomy —
+    // which has not run yet. Two honest options at that point: keep topic names
+    // short, or raise this budget deliberately with the measurement written
+    // down. What must not happen is the number being nudged up to make a red
+    // test green, because the budget is the only thing standing between the
+    // directory and a payload nobody is watching.
     const maximal = Object.fromEntries(
       Object.keys(EPISODE_LIST_PROJECTION).map((alias) => [alias, MAXIMAL_VALUES[alias]]),
     );

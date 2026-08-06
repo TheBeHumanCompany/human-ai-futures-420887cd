@@ -3,8 +3,15 @@ import { capAtWordBoundary, kebab, keywordSlug } from "./normalise";
 
 const MAX_SLUG_LENGTH = 60;
 
-/** The same prefix `parseGuest` strips internally, applied here to the display title. */
-const EPISODE_PREFIX = /^Episode\s+\d+\s*[:\-—]\s*/i;
+/**
+ * The same prefix `parseGuest` strips internally, applied here to the display
+ * title.
+ *
+ * Exported because the share card strips it too — it renders the episode number
+ * as its own element rather than leaving it buried in the title. Two copies of
+ * this regex would drift the first time a title used a different dash.
+ */
+export const EPISODE_PREFIX = /^Episode\s+\d+\s*[:\-—]\s*/i;
 
 /**
  * Builds a stable, human-readable slug for an episode: guest name first, then
