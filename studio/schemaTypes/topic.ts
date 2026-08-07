@@ -21,7 +21,23 @@ export const topic = defineType({
       name: 'name',
       title: 'Name',
       type: 'string',
-      validation: (rule) => rule.required(),
+      /**
+       * 16 characters, and it is a payload budget rather than a style rule.
+       *
+       * The directory fetches the whole catalogue, so every topic name is paid
+       * for on every episode that references it — roughly 6 B per character per
+       * episode across a six-topic array. `queries.test.ts`'s per-episode bound
+       * (1,200 B) is measured against exactly this ceiling; see
+       * TOPIC_NAME_MAX_LENGTH in src/lib/podcast/topics.ts.
+       *
+       * **This rule is what makes the ceiling real.** `scripts/apply-topics.ts`
+       * uses `createIfNotExists` and so deliberately never overwrites a name an
+       * editor has edited here — which means the committed taxonomy file's own
+       * 16-character limit cannot bind production by itself. Without this rule a
+       * rename in the Studio grows the live payload while every offline test
+       * stays green against the file.
+       */
+      validation: (rule) => rule.required().max(16),
     }),
     defineField({
       name: 'slug',

@@ -120,7 +120,22 @@ export const episode = defineType({
       type: 'array',
       group: 'content',
       of: [defineArrayMember({type: 'reference', to: [{type: 'topic'}]})],
-      validation: (rule) => rule.unique(),
+      /**
+       * Six, because that is the number the payload budget was measured at.
+       *
+       * `queries.test.ts` bounds a maximal episode at 1,200 B and builds its
+       * fixture from six of the largest real topics. Measured against the
+       * shipped taxonomy: six topics is 1,161 B, seven is 1,214 B. The seventh
+       * topic is precisely what breaks the bound, so this is load-bearing rather
+       * than tidiness — see MAX_TOPICS_PER_EPISODE in src/lib/podcast/topics.ts.
+       *
+       * It has to live here because the offline bound cannot see editor
+       * behaviour. Decision K is explicit that the offline test is a regression
+       * detector for *developer* changes; catalogue growth is the live 120 kB
+       * ceiling's job. Neither one stops an editor adding a seventh topic to one
+       * episode, and before this rule nothing did.
+       */
+      validation: (rule) => rule.unique().max(6),
     }),
 
     /* ---------- guest ---------- */
