@@ -1,0 +1,415 @@
+{
+  "source": "src/lib/podcast/catalogue.snapshot.json — the 39 committed episode title and description values, and nothing else. Each evidence entry names the episode it came from and quotes that episode's own text; topics.test.ts checks every quote against THAT episode, not against the corpus as a whole.",
+  "constraint": "Names are capped at 16 characters (TOPIC_NAME_MAX_LENGTH in src/lib/podcast/topics.ts). The ceiling is set by queries.test.ts's per-episode payload bound, not by taste, and is mirrored by rule.max(16) on studio/schemaTypes/topic.ts so an editor rename cannot quietly breach the budget the offline test measures. The vocabulary is proposed only from the corpus above, under the same no-outside-research rule that governs guest bios. Every topic carries at least four attributed episodes, so none is a facet of one — the evidence list is the support set itself rather than a claimed count. Deliberately excluded despite appearing in the corpus: \"Entrepreneurship\" and \"Founder\" — every guest is a founder and every episode is about entrepreneurship, so as facets they are definitionally true of all 39 and discriminate nothing.",
+  "usageGuidanceForEnrichment": "For US-109 (Task 10), which assigns these to episodes. related.ts counts EVERY shared topic, so correlated labels double-weight relatedness. Two pairs are close enough to need a rule: (1) Wellness is the SECTOR (a wellness clinic, a wellness brand, financial wellness); Mental Health is the SUBJECT (burnout, therapy, meditation, emotional regulation). Assign both only when an episode genuinely does both. (2) Health Tech is technology applied to HEALTH outcomes (biowearables, VR therapeutics); AI & Technology is everything else technical (IoT, deep tech, AI tooling). Prefer the more specific label alone. Cap any single episode at six topics — the number studio/schemaTypes/episode.ts enforces and queries.test.ts's payload bound is measured against.",
+  "topics": [
+    {
+      "name": "Leadership",
+      "slug": "leadership",
+      "evidence": [
+        {
+          "episodeNumber": 10,
+          "quote": "Impactful Leadership"
+        },
+        {
+          "episodeNumber": 11,
+          "quote": "Leadership & Relentless"
+        },
+        {
+          "episodeNumber": 17,
+          "quote": "structured leadership"
+        },
+        {
+          "episodeNumber": 18,
+          "quote": "human-centred leadership"
+        },
+        {
+          "episodeNumber": 22,
+          "quote": "Leading with Heart"
+        }
+      ]
+    },
+    {
+      "name": "Purpose-Driven",
+      "slug": "purpose-driven",
+      "evidence": [
+        {
+          "episodeNumber": 10,
+          "quote": "mission-driven health tech company"
+        },
+        {
+          "episodeNumber": 16,
+          "quote": "Purpose-Driven Team"
+        },
+        {
+          "episodeNumber": 17,
+          "quote": "purpose-driven engineering studio"
+        },
+        {
+          "episodeNumber": 20,
+          "quote": "purpose-driven entrepreneurship"
+        },
+        {
+          "episodeNumber": 25,
+          "quote": "Purpose Over Profit"
+        }
+      ]
+    },
+    {
+      "name": "Company Culture",
+      "slug": "company-culture",
+      "evidence": [
+        {
+          "episodeNumber": 6,
+          "quote": "managing company culture"
+        },
+        {
+          "episodeNumber": 16,
+          "quote": "team-first culture"
+        },
+        {
+          "episodeNumber": 17,
+          "quote": "Radical Culture"
+        },
+        {
+          "episodeNumber": 19,
+          "quote": "culture of trust"
+        },
+        {
+          "episodeNumber": 25,
+          "quote": "strong team culture"
+        }
+      ]
+    },
+    {
+      "name": "Scaling",
+      "slug": "scaling",
+      "evidence": [
+        {
+          "episodeNumber": 6,
+          "quote": "scaling production"
+        },
+        {
+          "episodeNumber": 11,
+          "quote": "Scaling Canadian Protein"
+        },
+        {
+          "episodeNumber": 16,
+          "quote": "scaling through Sobeys"
+        },
+        {
+          "episodeNumber": 17,
+          "quote": "scaling a team"
+        },
+        {
+          "episodeNumber": 19,
+          "quote": "scales a beauty business"
+        }
+      ]
+    },
+    {
+      "name": "Resilience",
+      "slug": "resilience",
+      "evidence": [
+        {
+          "episodeNumber": 5,
+          "quote": "testament to perseverance"
+        },
+        {
+          "episodeNumber": 15,
+          "quote": "importance of resilience"
+        },
+        {
+          "episodeNumber": 27,
+          "quote": "Resilience in Business and Life"
+        },
+        {
+          "episodeNumber": 33,
+          "quote": "Lessons in Resilience"
+        },
+        {
+          "episodeNumber": 34,
+          "quote": "resilience, and redefining success"
+        }
+      ]
+    },
+    {
+      "name": "Sustainability",
+      "slug": "sustainability",
+      "evidence": [
+        {
+          "episodeNumber": 2,
+          "quote": "sustainable outerwear brand"
+        },
+        {
+          "episodeNumber": 5,
+          "quote": "eco-friendly, sustainable products"
+        },
+        {
+          "episodeNumber": 8,
+          "quote": "sustainability and circularity"
+        },
+        {
+          "episodeNumber": 14,
+          "quote": "interested in sustainability"
+        },
+        {
+          "episodeNumber": 21,
+          "quote": "sustainable beauty"
+        }
+      ]
+    },
+    {
+      "name": "Social Impact",
+      "slug": "social-impact",
+      "evidence": [
+        {
+          "episodeNumber": 18,
+          "quote": "social purpose"
+        },
+        {
+          "episodeNumber": 28,
+          "quote": "Social Impact with FoodMesh"
+        },
+        {
+          "episodeNumber": 31,
+          "quote": "social impact work"
+        },
+        {
+          "episodeNumber": 35,
+          "quote": "social impact, and business innovation"
+        },
+        {
+          "episodeNumber": 39,
+          "quote": "People-First Business in Social Impact"
+        }
+      ]
+    },
+    {
+      "name": "Mental Health",
+      "slug": "mental-health",
+      "evidence": [
+        {
+          "episodeNumber": 13,
+          "quote": "mental wellness platform"
+        },
+        {
+          "episodeNumber": 17,
+          "quote": "mental health, meditation"
+        },
+        {
+          "episodeNumber": 20,
+          "quote": "mental health and social wellness"
+        },
+        {
+          "episodeNumber": 22,
+          "quote": "mental health professionals"
+        },
+        {
+          "episodeNumber": 30,
+          "quote": "signs of burnout"
+        }
+      ]
+    },
+    {
+      "name": "Wellness",
+      "slug": "wellness",
+      "evidence": [
+        {
+          "episodeNumber": 7,
+          "quote": "thriving wellness entrepreneur"
+        },
+        {
+          "episodeNumber": 20,
+          "quote": "Redefining Wellness"
+        },
+        {
+          "episodeNumber": 23,
+          "quote": "Wellness-First Brand"
+        },
+        {
+          "episodeNumber": 29,
+          "quote": "Financial Wellness"
+        },
+        {
+          "episodeNumber": 30,
+          "quote": "Creating Wellness from Within"
+        }
+      ]
+    },
+    {
+      "name": "Fundraising",
+      "slug": "fundraising",
+      "evidence": [
+        {
+          "episodeNumber": 5,
+          "quote": "securing funding"
+        },
+        {
+          "episodeNumber": 10,
+          "quote": "navigating funding"
+        },
+        {
+          "episodeNumber": 12,
+          "quote": "without investors"
+        },
+        {
+          "episodeNumber": 16,
+          "quote": "raising capital"
+        },
+        {
+          "episodeNumber": 28,
+          "quote": "fundraising while pregnant"
+        }
+      ]
+    },
+    {
+      "name": "Bootstrapping",
+      "slug": "bootstrapping",
+      "evidence": [
+        {
+          "episodeNumber": 8,
+          "quote": "discuss bootstrapping"
+        },
+        {
+          "episodeNumber": 12,
+          "quote": "bootstrapping a mission-driven business"
+        },
+        {
+          "episodeNumber": 18,
+          "quote": "staying bootstrapped"
+        },
+        {
+          "episodeNumber": 25,
+          "quote": "bootstrapped solo venture"
+        }
+      ]
+    },
+    {
+      "name": "Food & Beverage",
+      "slug": "food-and-beverage",
+      "evidence": [
+        {
+          "episodeNumber": 4,
+          "quote": "Lavva Cultured Superfood"
+        },
+        {
+          "episodeNumber": 15,
+          "quote": "food distribution company"
+        },
+        {
+          "episodeNumber": 16,
+          "quote": "Better Energy Drink"
+        },
+        {
+          "episodeNumber": 24,
+          "quote": "Food Hall Model"
+        },
+        {
+          "episodeNumber": 25,
+          "quote": "Zimt Chocolates"
+        }
+      ]
+    },
+    {
+      "name": "Beauty",
+      "slug": "beauty",
+      "evidence": [
+        {
+          "episodeNumber": 5,
+          "quote": "Cheekbone Beauty"
+        },
+        {
+          "episodeNumber": 19,
+          "quote": "medical aesthetics clinics"
+        },
+        {
+          "episodeNumber": 20,
+          "quote": "Dermapure clinic empire"
+        },
+        {
+          "episodeNumber": 21,
+          "quote": "Redefining Skincare"
+        },
+        {
+          "episodeNumber": 27,
+          "quote": "pioneering beauty brand"
+        }
+      ]
+    },
+    {
+      "name": "Fashion",
+      "slug": "fashion",
+      "evidence": [
+        {
+          "episodeNumber": 2,
+          "quote": "studying fashion design"
+        },
+        {
+          "episodeNumber": 3,
+          "quote": "ripped boxers"
+        },
+        {
+          "episodeNumber": 8,
+          "quote": "Fixing Fashion"
+        },
+        {
+          "episodeNumber": 12,
+          "quote": "vegan luxury footwear"
+        },
+        {
+          "episodeNumber": 37,
+          "quote": "Luxury Tailoring"
+        }
+      ]
+    },
+    {
+      "name": "Health Tech",
+      "slug": "health-tech",
+      "evidence": [
+        {
+          "episodeNumber": 10,
+          "quote": "biowearable solution for PCOS"
+        },
+        {
+          "episodeNumber": 13,
+          "quote": "generative virtual reality"
+        },
+        {
+          "episodeNumber": 14,
+          "quote": "gene therapy"
+        },
+        {
+          "episodeNumber": 38,
+          "quote": "VR Therapeutics"
+        }
+      ]
+    },
+    {
+      "name": "AI & Technology",
+      "slug": "ai-and-technology",
+      "evidence": [
+        {
+          "episodeNumber": 8,
+          "quote": "using AI and live content"
+        },
+        {
+          "episodeNumber": 12,
+          "quote": "including AI, is helping her scale"
+        },
+        {
+          "episodeNumber": 17,
+          "quote": "AI-powered vision systems"
+        },
+        {
+          "episodeNumber": 22,
+          "quote": "AI-driven world"
+        },
+        {
+          "episodeNumber": 37,
+          "quote": "cutting-edge technology"
+        }
+      ]
+    }
+  ]
+}

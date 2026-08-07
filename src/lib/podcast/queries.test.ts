@@ -1,4 +1,6 @@
 import { afterEach, describe, expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 
 import { SanityHttpError } from "../sanity/http";
 import { EPISODE_LIST_PROJECTION, EPISODE_PROJECTION, project } from "../sanity/projection-map";
@@ -13,6 +15,12 @@ import {
   fetchSitemapEntriesFn,
   validateSlug,
 } from "./queries";
+import {
+  MAX_TOPICS_PER_EPISODE,
+  TAXONOMY_RELATIVE_PATH,
+  parseTaxonomy,
+  topicDocId,
+} from "./topics";
 
 /* ------------------------------------------------------------------ stubs -- */
 
@@ -180,24 +188,67 @@ const LONGEST_EXCERPT = catalogue.episodes.reduce((longest, episode) =>
   episode.excerpt.length > longest.excerpt.length ? episode : longest,
 ).excerpt;
 
+/**
+ * Slug and audio URL, taken from the corpus rather than invented.
+ *
+ * These were hand-written stand-ins ("a-fairly-long-guest-name-…", 57 chars, and
+ * a made-up 76-character mp3 URL) and **both were shorter than episodes that
+ * already exist**: the real maxima are 60 and 90. A fixture called "maximal"
+ * that the live data exceeds is not a bound, it is a guess — so both are now
+ * derived the same way `LONGEST_TITLE` and `LONGEST_EXCERPT` already were.
+ */
+const LONGEST_SLUG = catalogue.episodes.reduce((longest, episode) =>
+  episode.slug.length > longest.slug.length ? episode : longest,
+).slug;
+
+const LONGEST_AUDIO_URL = catalogue.episodes.reduce((longest, episode) =>
+  (episode.audioUrl ?? "").length > (longest.audioUrl ?? "").length ? episode : longest,
+).audioUrl;
+
 const ASSET_REF = `image-${"a".repeat(40)}-1200x630-png`;
 
+/**
+ * The six most expensive topics in the SHIPPED taxonomy, read off
+ * `content/topic-taxonomy.json` rather than invented here.
+ *
+ * This used to be six copies of a `{_id: "topic-leadership0", name: "Leadership"}`
+ * placeholder, which measured the placeholder rather than the vocabulary — and
+ * understated it in both dimensions: the real names run to 15 characters against
+ * that stand-in's 10, and the real ids to 23 against its 18.
+ *
+ * Six is the documented upper end of the per-episode range, and taking the six
+ * largest real entries makes this the genuine worst case a real episode can
+ * reach rather than an average one. Because it is read from the file, adding a
+ * longer topic name to the taxonomy moves this number — which is exactly the
+ * coupling the 16-character ceiling is supposed to have.
+ */
+const ALL_TAXONOMY_TOPICS = (() => {
+  const file = path.join(import.meta.dir, "..", "..", "..", TAXONOMY_RELATIVE_PATH);
+  const { taxonomy, errors } = parseTaxonomy(JSON.parse(readFileSync(file, "utf8")));
+  if (!taxonomy) throw new Error(`${TAXONOMY_RELATIVE_PATH} is unreadable: ${errors.join("; ")}`);
+
+  return taxonomy.topics
+    .map((topic) => ({ _id: topicDocId(topic.slug), name: topic.name }))
+    .sort((a, b) => JSON.stringify(b).length - JSON.stringify(a).length);
+})();
+
+const MAXIMAL_TOPICS = ALL_TAXONOMY_TOPICS.slice(0, MAX_TOPICS_PER_EPISODE);
+
 const MAXIMAL_VALUES: Record<string, unknown> = {
-  slug: { current: "a-fairly-long-guest-name-and-a-fairly-long-title-fragment" },
+  slug: { current: LONGEST_SLUG },
   episodeNumber: 39,
   title: LONGEST_TITLE,
   excerpt: LONGEST_EXCERPT,
-  // Six topics — the documented upper end of the per-episode range — each
-  // sized to the ~48 B the payload analysis assumed. See the headroom test
-  // below: this dimension is the budget's tightest constraint by some margin.
-  topics: Array.from({ length: 6 }, (_unused, index) => ({
-    _id: `topic-leadership${index}`,
-    name: "Leadership",
-  })),
+  // See MAXIMAL_TOPICS above: the six largest entries in the shipped taxonomy.
+  // This dimension is the budget's tightest constraint by some margin.
+  topics: MAXIMAL_TOPICS,
+  // 31 chars against a real maximum of 17 — left over-provisioned on purpose.
+  // A maximal fixture may exceed the corpus; what it may not do is fall short of
+  // it, which is what the slug and audio URL were doing.
   guestName: "A Guest With A Fairly Long Name",
   coverArtwork: ASSET_REF,
   shareCard: ASSET_REF,
-  audioUrl: "https://mcdn.podbean.com/mf/web/abcdefghij/episode-thirty-nine-final-mix.mp3",
+  audioUrl: LONGEST_AUDIO_URL,
   durationSeconds: 5400,
   publishedAt: "2025-02-01T00:00:00.000Z",
 };
@@ -244,10 +295,9 @@ describe("the offline per-episode payload bound", () => {
     // Measured, not asserted as a vague margin, because this budget is what
     // decides how the topic taxonomy is allowed to be named.
     //
-    // A maximal episode measures ~1,094 B against the 1,200 B bound — about
-    // 106 B. Getting there took a deliberate trade, recorded because the next
-    // person will want to know why `guestPhoto` is missing from a projection
-    // that has `coverArtwork`:
+    // Getting any headroom at all took a deliberate trade, recorded because the
+    // next person will want to know why `guestPhoto` is missing from a
+    // projection that has `coverArtwork`:
     //
     //   with guestPhoto + shareCard   1,169 B →  31 B spare → ~12-char topics
     //   without guestPhoto            1,094 B → 106 B spare → ~16-char topics
@@ -258,7 +308,26 @@ describe("the offline per-episode payload bound", () => {
     // reason `guestPhoto` was dropped — the directory card renders cover
     // artwork, and the imagery chain has no portrait in it.
     //
-    // **So the taxonomy has a hard ceiling of ~16 characters per topic name**,
+    // **RE-MEASURED against the shipped taxonomy (Task 9).** The two figures
+    // above were taken against a `{topic-leadership0, "Leadership"}` placeholder
+    // AND against a hand-written slug and audio URL that were both shorter than
+    // episodes already in the corpus. Correcting all three:
+    //
+    //   placeholder topics, invented slug/url   1,094 B → 106 B spare
+    //   shipped taxonomy, invented slug/url     1,144 B →  56 B spare
+    //   shipped taxonomy, real corpus maxima    1,161 B →  39 B spare
+    //
+    // The last line is the honest one. The plan's own corrected analysis (§2,
+    // "per-episode cost rises toward the ~1,145 B maximal case") predicted this
+    // within ~16 B, so the number is a confirmation rather than a surprise.
+    //
+    // 39 B is not much: it is less than one additional topic (~53 B) and about
+    // six characters spread across the six-topic array. The 16-character ceiling
+    // still holds — the longest shipped name is 15 — but the budget is close to
+    // spent, and the next person should treat it as full rather than as having
+    // room.
+    //
+    // **So the taxonomy has a hard ceiling of 16 characters per topic name**,
     // and it is enforced here rather than remembered: exceed it and this row
     // goes red. If it ever does, the question is whether the taxonomy or the
     // budget should move — not whether the constant can be nudged.
@@ -275,6 +344,69 @@ describe("the offline per-episode payload bound", () => {
     // Topics are the single largest contributor after the two text fields; if
     // that stops being true the analysis above needs redoing.
     expect(topicBytes).toBeGreaterThan(200);
+  });
+
+  test("the maximal topics come from the shipped taxonomy, not a placeholder", () => {
+    // Non-vacuity floor for everything above: an empty or unreadable taxonomy
+    // would zero out the largest contributor to the measurement and every
+    // budget row would pass for the wrong reason.
+    expect(MAXIMAL_TOPICS.length).toBe(6);
+    for (const topic of MAXIMAL_TOPICS) {
+      expect(topic._id).toMatch(/^topic-[a-z0-9-]+$/);
+      expect(topic.name.length).toBeGreaterThan(0);
+    }
+    // Distinct, so this is six real topics rather than one repeated six times.
+    expect(new Set(MAXIMAL_TOPICS.map((topic) => topic._id)).size).toBe(6);
+  });
+
+  test("pins the recorded measurement, so the comment above cannot rot", () => {
+    // The figures in the block above are load-bearing — they are what the
+    // 16-character ceiling was derived from — and a comment nothing checks is a
+    // comment that drifts. This is the tripwire.
+    //
+    // Three legitimate things move it: a taxonomy edit, a projection change, or
+    // a `catalogue.snapshot.json` refresh that lands a longer title or excerpt.
+    // All three are moments to re-read the budget analysis and update it, which
+    // is exactly why this is pinned rather than bounded.
+    const maximal = Object.fromEntries(
+      Object.keys(EPISODE_LIST_PROJECTION).map((alias) => [alias, MAXIMAL_VALUES[alias]]),
+    );
+    const bytes = new TextEncoder().encode(JSON.stringify(maximal)).length;
+
+    expect(bytes).toBe(1_161);
+    expect(PER_EPISODE_BUDGET_BYTES - bytes).toBe(39);
+  });
+
+  /**
+   * The cap the whole bound rests on, and the reason it lives in the Studio.
+   *
+   * Everything above measures a SIX-topic episode. Nothing in this file can stop
+   * an editor attaching a seventh — Decision K is explicit that the offline
+   * bound detects developer changes, and the live 120 kB ceiling detects
+   * catalogue growth; an editor over-tagging one episode is neither.
+   *
+   * So the cap is enforced by `rule.unique().max(6)` on
+   * `studio/schemaTypes/episode.ts`, and these rows are what tie that rule to
+   * this budget: they prove the seventh topic is not a matter of taste but the
+   * exact point where the bound breaks. If someone raises or removes the Studio
+   * rule, this is the test that explains what it cost.
+   */
+  test("a seventh topic breaches the bound — this is why the Studio caps it at six", () => {
+    const withN = (count: number) => {
+      const values = { ...MAXIMAL_VALUES, topics: ALL_TAXONOMY_TOPICS.slice(0, count) };
+      const episode = Object.fromEntries(
+        Object.keys(EPISODE_LIST_PROJECTION).map((alias) => [alias, values[alias]]),
+      );
+      return new TextEncoder().encode(JSON.stringify(episode)).length;
+    };
+
+    expect(MAX_TOPICS_PER_EPISODE).toBe(6);
+    expect(withN(MAX_TOPICS_PER_EPISODE)).toBeLessThanOrEqual(PER_EPISODE_BUDGET_BYTES);
+    expect(withN(MAX_TOPICS_PER_EPISODE + 1)).toBeGreaterThan(PER_EPISODE_BUDGET_BYTES);
+
+    // The taxonomy must actually be able to supply a seventh, or the row above
+    // proves nothing about the cap.
+    expect(ALL_TAXONOMY_TOPICS.length).toBeGreaterThan(MAX_TOPICS_PER_EPISODE);
   });
 
   test("the maximal fixture is genuinely larger than a typical real episode", () => {
