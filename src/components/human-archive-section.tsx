@@ -38,7 +38,6 @@ function PortraitCard({
     return () => io.disconnect();
   }, [onInView]);
 
-
   return (
     <figure
       onMouseEnter={onActivate}
@@ -52,10 +51,7 @@ function PortraitCard({
         active ? "lg:pt-0" : "lg:pt-8",
       ].join(" ")}
     >
-      <div
-        ref={ref}
-        className="relative aspect-4/5 overflow-hidden rounded-lg bg-ink"
-      >
+      <div ref={ref} className="relative aspect-4/5 overflow-hidden rounded-lg bg-ink">
         <img
           src={image}
           alt={`Portrait of ${name} from ${location}`}
@@ -114,8 +110,6 @@ function PortraitCard({
   );
 }
 
-
-
 export function HumanArchiveSection() {
   const DEFAULT_ACTIVE = 1;
   const [hovered, setHovered] = useState<number | null>(null);
@@ -128,7 +122,6 @@ export function HumanArchiveSection() {
     if (window.matchMedia("(min-width: 1024px)").matches) return;
     setScrolled(i);
   };
-
 
   return (
     <section className="section-cream border-t border-border">
@@ -172,7 +165,6 @@ export function HumanArchiveSection() {
               </Link>
             </div>
           </div>
-
         </div>
 
         {/* Portraits */}
@@ -201,7 +193,6 @@ export function HumanArchiveSection() {
           </span>
           <span className="text-sm text-ink/40">→</span>
         </div>
-
       </div>
     </section>
   );
