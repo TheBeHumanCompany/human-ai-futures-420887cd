@@ -6,11 +6,29 @@ import humanAiProfile from "@/assets/human-ai-profile.jpg";
 import newHumanEraImage from "@/assets/new-human-era-vancouver.jpg";
 
 import { Users, Shield, Target } from "lucide-react";
+import { EpisodePlayer } from "@/components/episode-player";
 import { SocialSection } from "@/components/social-section";
 import { HumanArchiveSection } from "@/components/human-archive-section";
-import { EPISODES, PRINCIPLES } from "@/lib/content";
+import { PRINCIPLES } from "@/lib/content";
+import { formatDuration } from "@/lib/podbean";
+import { loadFeaturedEpisodes } from "@/lib/podcast/featured";
+import { fetchEpisodeList } from "@/lib/podcast/queries";
 
 export const Route = createFileRoute("/")({
+  /**
+   * The one loader in this app that CATCHES, and the asymmetry is deliberate.
+   *
+   * `/podcast` and `/podcast/$slug` throw, so a Sanity outage becomes an honest
+   * 5xx there. Here that would be self-inflicted: a thrown loader errors the
+   * match and takes the ENTIRE front door to 500 because a podcast section
+   * could not load. The rest of this page is static and still true.
+   *
+   * The narrow catch itself lives in `loadFeaturedEpisodes` — a route loader
+   * calling a server function cannot be invoked outside the server runtime, so
+   * keeping the re-throw-versus-absorb branch here would make it untestable.
+   */
+  loader: () => loadFeaturedEpisodes(fetchEpisodeList),
+
   head: () => ({
     meta: [
       { title: "The Be Human Company — The Future Is Human." },
@@ -31,6 +49,9 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { featured, podcastUnavailable } = Route.useLoaderData();
+  const [latest, ...rest] = featured;
+
   return (
     <>
       {/* ---------- HERO ---------- */}
@@ -52,7 +73,6 @@ function Home() {
           className="absolute inset-0 -z-10 bg-gradient-to-r from-background/80 via-transparent to-transparent [--tw-gradient-via-position:32%] lg:hidden"
         />
 
-
         <div className="mx-auto flex min-h-[88svh] max-w-[1400px] items-end px-5 pb-16 pt-28 sm:px-8 lg:min-h-[80vh] lg:items-center lg:py-32">
           <div className="fade-up max-w-2xl">
             <h1 className="display text-[clamp(3.5rem,11vw,8.5rem)]">
@@ -61,8 +81,8 @@ function Home() {
               is <span className="text-lime">human</span>
             </h1>
             <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg lg:max-w-xl">
-              We help people and organizations practice what keeps us human in a world becoming
-              more artificial.
+              We help people and organizations practice what keeps us human in a world becoming more
+              artificial.
             </p>
           </div>
         </div>
@@ -94,7 +114,6 @@ function Home() {
           </div>
 
           <figure className="group relative aspect-[16/9] overflow-hidden rounded-lg lg:mt-32 lg:self-center">
-
             <img
               src={founderVideoPoster}
               alt="Shane speaking directly to camera in a warmly lit room with BE HUMAN lettering on the wall"
@@ -118,9 +137,11 @@ function Home() {
         </div>
       </section>
 
-
       {/* ---------- BE HUMAN AI ---------- */}
-      <section id="be-human-ai" className="section-ink relative isolate overflow-hidden border-t border-border">
+      <section
+        id="be-human-ai"
+        className="section-ink relative isolate overflow-hidden border-t border-border"
+      >
         {/* INTEGRATED PORTRAIT LAYER */}
         <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
           <img
@@ -156,7 +177,10 @@ function Home() {
               to="/be-human-ai"
               className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-xs font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink sm:mt-8 sm:px-8 sm:py-3.5 sm:text-sm"
             >
-              EXPLORE BE HUMAN AI <span aria-hidden className="text-lime transition-colors group-hover:text-ink">→</span>
+              EXPLORE BE HUMAN AI{" "}
+              <span aria-hidden className="text-lime transition-colors group-hover:text-ink">
+                →
+              </span>
             </Link>
           </div>
 
@@ -165,8 +189,6 @@ function Home() {
 
           {/* RIGHT COLUMN — CAPABILITIES */}
           <div className="mt-64 flex flex-col justify-center sm:mt-40 md:mt-20 lg:mt-0">
-
-
             <div className="border-t border-border">
               <div className="flex gap-5 py-7">
                 <Users className="mt-0.5 h-6 w-6 shrink-0 text-lime" strokeWidth={1.5} />
@@ -175,7 +197,8 @@ function Home() {
                     HUMAN READINESS
                   </h3>
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/75">
-                    Prepare your team with the skills, mindset, and confidence to thrive alongside AI.
+                    Prepare your team with the skills, mindset, and confidence to thrive alongside
+                    AI.
                   </p>
                 </div>
               </div>
@@ -186,8 +209,7 @@ function Home() {
                 <div>
                   <h3 className="font-display text-base font-semibold uppercase tracking-[0.04em] text-lime">
                     SECURITY, GOVERNANCE
-                    <br />
-                    & SOVEREIGNTY
+                    <br />& SOVEREIGNTY
                   </h3>
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/75">
                     Protect your data, reduce risk, and build AI on a foundation of trust.
@@ -243,7 +265,10 @@ function Home() {
               className="nhe-cta group mt-10 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-7 py-3.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime sm:px-8 sm:text-sm"
             >
               Learn More
-              <span aria-hidden className="text-base text-lime transition-transform group-hover:translate-x-1">
+              <span
+                aria-hidden
+                className="text-base text-lime transition-transform group-hover:translate-x-1"
+              >
                 →
               </span>
             </Link>
@@ -265,7 +290,10 @@ function Home() {
         <div className="mx-auto max-w-[1400px] px-6 pb-16 pt-16 sm:px-8 sm:pb-20 lg:pb-28 lg:pt-24">
           <div className="nhe-principles grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-14">
             {PRINCIPLES.map((p) => (
-              <article key={p.n} className="nhe-principle group max-w-sm border-t border-ink/12 pt-6">
+              <article
+                key={p.n}
+                className="nhe-principle group max-w-sm border-t border-ink/12 pt-6"
+              >
                 <div className="flex items-center gap-3">
                   <span className="font-display text-lg font-black tracking-[0.06em] text-lime">
                     {p.n}
@@ -285,18 +313,11 @@ function Home() {
         </div>
       </section>
 
-
-
-
       {/* ---------- STAY CONNECTED ---------- */}
       <SocialSection />
 
-
-
-
       {/* ---------- THE HUMAN ARCHIVE ---------- */}
       <HumanArchiveSection />
-
 
       {/* ---------- PODCAST ---------- */}
       <section className="section-ink border-t border-border">
@@ -325,17 +346,58 @@ function Home() {
               />
             </div>
             <div className="flex flex-col justify-center gap-4 p-6 sm:p-9 lg:p-12">
-              <p className="eyebrow text-lime">Featured episode</p>
+              <p className="eyebrow text-lime">
+                Featured episode
+                {latest?.episodeNumber ? ` · ${String(latest.episodeNumber).padStart(3, "0")}` : ""}
+              </p>
               <h3 className="display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.05]">
-                What your people already know about AI
+                {latest ? latest.title : "Where leaders prepare for the New Human Era"}
               </h3>
-              <p className="text-sm text-muted-foreground">With Amara Chen, COO — 56 min</p>
+              {/*
+                An outage says so, rather than rendering the generic headline
+                above as though nothing were wrong. The rest of this page is
+                static and still true, which is the whole reason this loader
+                catches instead of throwing — but the podcast section must not
+                quietly imply the show has no episodes.
+              */}
+              {podcastUnavailable && (
+                <p className="text-sm text-muted-foreground">
+                  Episodes are temporarily unavailable. They are all on{" "}
+                  <a
+                    className="underline underline-offset-4"
+                    href="https://shanejjamesgroup.podbean.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Podbean
+                  </a>{" "}
+                  in the meantime.
+                </p>
+              )}
+              {latest && (
+                <>
+                  <p className="text-sm text-muted-foreground">
+                    {latest.guestName ? `With ${latest.guestName} — ` : ""}
+                    {formatDuration(latest.durationSeconds)}
+                  </p>
+                  <EpisodePlayer
+                    src={latest.audioUrl}
+                    title={latest.title}
+                    durationSeconds={latest.durationSeconds}
+                    tone="ink"
+                    className="max-w-md"
+                  />
+                </>
+              )}
               <Link
                 to="/podcast"
                 className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-lime/90"
               >
-                Listen now{" "}
-                <span aria-hidden className="text-base transition-transform group-hover:translate-x-0.5">
+                {latest ? "All episodes" : "Listen now"}{" "}
+                <span
+                  aria-hidden
+                  className="text-base transition-transform group-hover:translate-x-0.5"
+                >
                   →
                 </span>
               </Link>
@@ -343,26 +405,39 @@ function Home() {
           </article>
 
           {/* Episode list */}
-          <ul className="mt-10 border-t border-border lg:mt-12">
-            {EPISODES.map((e) => (
-              <li
-                key={e.n}
-                className="flex items-baseline gap-4 border-b border-border py-4 sm:gap-8"
-              >
-                <span className="eyebrow w-8 shrink-0 text-muted-foreground">{e.n}</span>
-                <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">{e.title}</span>
-                <span className="eyebrow hidden shrink-0 text-muted-foreground sm:block">
-                  {e.guest}
-                </span>
-                <span className="eyebrow w-14 shrink-0 text-right text-muted-foreground">
-                  {e.length}
-                </span>
-              </li>
-            ))}
-          </ul>
+          {rest.length > 0 && (
+            <ul className="mt-10 border-t border-border lg:mt-12">
+              {rest.map((episode) => (
+                <li key={episode.slug.current} className="border-b border-border">
+                  {/*
+                    Safe to wrap the whole row here, unlike the directory: these
+                    rows carry no player, so there is no interactive content to
+                    nest inside the anchor.
+                  */}
+                  <Link
+                    to="/podcast/$slug"
+                    params={{ slug: episode.slug.current }}
+                    className="flex items-baseline gap-4 py-4 transition hover:opacity-70 sm:gap-8"
+                  >
+                    <span className="eyebrow w-8 shrink-0 text-muted-foreground">
+                      {episode.episodeNumber ?? "—"}
+                    </span>
+                    <span className="min-w-0 flex-1 truncate text-sm text-foreground/85">
+                      {episode.title}
+                    </span>
+                    <span className="eyebrow hidden shrink-0 text-muted-foreground sm:block">
+                      {episode.guestName ?? ""}
+                    </span>
+                    <span className="eyebrow w-14 shrink-0 text-right text-muted-foreground">
+                      {formatDuration(episode.durationSeconds)}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
-
     </>
   );
 }

@@ -13,7 +13,8 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About — The Be Human Company" },
       {
         property: "og:description",
-        content: "Why we exist, what we believe, and how the movement and the practice fit together.",
+        content:
+          "Why we exist, what we believe, and how the movement and the practice fit together.",
       },
     ],
   }),

@@ -1,0 +1,67 @@
+name: CI
+
+# The PR gate, and deliberately only the offline half of the suite.
+#
+# The live tests talk to Podbean's RSS feed and Sanity's Content Lake. During
+# this project's review the same suite failed 6/75 from one machine with blocked
+# sockets and passed 75/75 from another minutes later, with no code change. A
+# gate that red-lights on someone else's network trains people to merge past
+# red, so the live tests run nightly instead — see nightly.yml. RUN_LIVE_TESTS
+# is intentionally never set here.
+
+# Runs on every push to every branch, and on every pull request.
+#
+# Scoping `push` to `main` alone would mean a branch only ever got checked once
+# a pull request existed for it — which is backwards for a gate whose whole
+# purpose is catching things before review, and it leaves any branch worked on
+# without a PR completely unverified. Three automated writers push to this repo;
+# the cheap moment to find a broken branch is the push, not the merge.
+on:
+  push:
+  pull_request:
+
+# Deduplicates the two events, which is the cost of the trigger above: pushing
+# to a branch that already has an open pull request fires BOTH `push` and
+# `pull_request`, and they would otherwise run the identical eight steps twice.
+#
+# `head_ref` is set only on pull_request (the source branch, bare); `ref_name`
+# is the bare branch name on push. Taking whichever is present puts both events
+# in the SAME group for the same branch, so the second cancels the first rather
+# than racing it. `github.ref` alone would not do this — it is `refs/heads/x` on
+# push and `refs/pull/N/merge` on a pull request, which are different strings
+# and therefore different groups.
+concurrency:
+  group: ci-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Install app dependencies
+        run: bun install --frozen-lockfile
+
+      # `bun run typecheck` includes `tsc -p studio`, and the Studio is a
+      # separate npm project with its own lockfile. Without this step the
+      # typecheck fails on missing `sanity` types rather than on real errors.
+      - name: Install Studio dependencies
+        working-directory: studio
+        run: npm ci
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Test (offline)
+        run: bun test src/
+
+      - name: Build
+        run: bun run build

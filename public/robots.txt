@@ -12,3 +12,9 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# A non-group directive: it applies to the whole file, not to the group above
+# it, so it sits at the end after the final User-agent block rather than inside
+# one. Placed inside a group, crawlers that read groups strictly would treat it
+# as scoped to that agent — or ignore it.
+Sitemap: https://thebehumancompany.ca/sitemap.xml

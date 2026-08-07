@@ -66,7 +66,6 @@ export const PRINCIPLES = [
     title: "Character is earned",
     body: "Character isn't claimed in a statement. It's revealed in how you show up — every day.",
   },
-
 ] as const;
 
 export const ARCHIVE = [
@@ -104,10 +103,5 @@ export const ARCHIVE = [
   },
 ] as const;
 
-
-
-export const EPISODES = [
-  { n: "12", title: "The CEO who fired the roadmap", guest: "Marta Nilsen", length: "48 min" },
-  { n: "11", title: "Governance is a growth strategy", guest: "Devon Wallace", length: "52 min" },
-  { n: "10", title: "Teaching 8,000 people to use AI", guest: "Priya Ramesh", length: "41 min" },
-] as const;
+// Episodes are no longer hardcoded here. They come live from the PodBean RSS
+// feed — see `src/lib/podbean`.

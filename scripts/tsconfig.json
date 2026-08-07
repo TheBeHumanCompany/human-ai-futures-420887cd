@@ -1,0 +1,18 @@
+{
+  // The one-way-write code typechecks under its own project, not the root one.
+  //
+  // v3 of the plan proposed adding `scripts/**/*.ts` to the root `include`.
+  // That would fail on the first CI run: these scripts use `process.env` and
+  // `process.argv`, and while `@types/node` is installed it is deliberately
+  // absent from the root `types` (which is `["vite/client"]`). Widening the
+  // root project would mean either polluting the app's ambient types with Node
+  // globals or leaving the scripts unchecked. A second project costs one file
+  // and keeps both boundaries honest — this is R5 in the consensus plan.
+  "extends": "../tsconfig.json",
+  "include": ["**/*.ts"],
+  "exclude": [],
+  "compilerOptions": {
+    "types": ["node"],
+    "noEmit": true
+  }
+}
