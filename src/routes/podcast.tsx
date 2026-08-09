@@ -2,16 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
 import podcastImage from "@/assets/podcast.jpg";
-import { EpisodeCard } from "@/components/episode-card";
+import { EpisodeMediaCard } from "@/components/episode-media-card";
+import { FeaturedEpisode } from "@/components/featured-episode";
 import { PodcastDegraded } from "@/components/podcast-degraded";
-import {
-  browseEpisodes,
-  DEFAULT_BROWSE_STATE,
-  DURATION_OPTIONS,
-  durationCounts,
-  isDefaultBrowseState,
-  SORT_OPTIONS,
-} from "@/lib/podbean";
+import { browseEpisodes, DEFAULT_BROWSE_STATE, SORT_OPTIONS } from "@/lib/podbean";
 import {
   DEGRADED_RETRY_AFTER_SECONDS,
   DEGRADED_SOURCE_HEADER,
@@ -19,10 +13,11 @@ import {
 } from "@/lib/podcast/degraded-status";
 import { toBrowsable } from "@/lib/podcast/episode";
 import { fetchEpisodeList } from "@/lib/podcast/queries";
+import { ALL_TOPICS, filterByTopic, topicFacets } from "@/lib/podcast/topic-filter";
 import { cn } from "@/lib/utils";
 
-/** Rows rendered before "Show more". */
-const PAGE_SIZE = 12;
+/** Rows rendered before "View all episodes". */
+const PAGE_SIZE = 9;
 
 export const Route = createFileRoute("/podcast")({
   /**
@@ -54,176 +49,165 @@ export const Route = createFileRoute("/podcast")({
         property: "og:description",
         content: "Where leaders prepare for the New Human Era.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Podcast,
 });
 
-// timeZone is pinned deliberately. Without it the formatter resolves against
-// the runtime's zone — UTC on the server, the visitor's in the browser — so an
-// episode published between 00:00 and ~08:00 UTC on the 1st of a month renders
-// a different month on each side and trips a hydration mismatch.
-const PUBLISHED = new Intl.DateTimeFormat("en-CA", {
-  year: "numeric",
-  month: "short",
-  timeZone: "UTC",
-});
-
 function Podcast() {
   const { episodes } = Route.useLoaderData();
   const [browse, setBrowse] = useState(DEFAULT_BROWSE_STATE);
+  const [topic, setTopic] = useState<string>(ALL_TOPICS);
 
-  // Filtering is client-side and deliberately so: 39 episodes are already in
+  // Filtering is client-side and deliberately so: the catalogue is already in
   // memory, so a round-trip per keystroke would be slower and no more correct.
-  // The shipped filter is reused unchanged — `toBrowsable` renames two fields
-  // and carries the original along so a filtered row can still be rendered.
-  const browsable = useMemo(() => episodes.map(toBrowsable), [episodes]);
-  const visible = useMemo(() => browseEpisodes(browsable, browse), [browsable, browse]);
-  const counts = useMemo(() => durationCounts(browsable, browse.query), [browsable, browse.query]);
+  const browsable = useMemo(() => episodes.map((episode) => toBrowsable(episode)), [episodes]);
+  const searched = useMemo(
+    () => browseEpisodes<(typeof browsable)[number]>(browsable, browse),
+    [browsable, browse],
+  );
+  const visible = useMemo(() => filterByTopic(searched, topic), [searched, topic]);
+  const facets = useMemo(() => topicFacets(episodes), [episodes]);
 
-  // Renders a page at a time rather than the whole catalogue. The fetch is
-  // deliberately unbounded — filtering happens in memory so search stays
-  // instant — but rendering all of it is what would actually cost something.
   const [shown, setShown] = useState(PAGE_SIZE);
-  const rows = visible.slice(0, shown);
+  useEffect(() => setShown(PAGE_SIZE), [browse, topic]);
 
-  // Reset the window whenever the query changes. Without this, searching after
-  // "Show more" leaves the count reporting against the previous result set.
-  useEffect(() => setShown(PAGE_SIZE), [browse]);
+  const featured = visible[0]?.source;
+  const rest = visible.slice(1, 1 + shown);
+  const filtered = browse.query.trim() !== "" || topic !== ALL_TOPICS;
 
   return (
     <>
+      {/* ---- Hero ---- */}
       <section className="section-ink grain border-b border-border">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:py-28">
+        <div className="mx-auto grid max-w-[1500px] items-center gap-10 px-5 py-16 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] md:gap-12 lg:py-24">
           <div>
-            <p className="eyebrow text-lime">The People-Driven CEO Podcast</p>
-            <h1 className="display mt-6 text-[clamp(2.5rem,6vw,5rem)]">
-              Where leaders prepare for the New Human Era.
+            <h1 className="display text-[clamp(2.8rem,8.5vw,6rem)] leading-[0.9]">
+              The people-
+              <br />
+              driven CEO
+              <br />
+              <span className="text-lime">Podcast</span>
             </h1>
-            <p className="mt-8 max-w-lg text-lg leading-relaxed text-muted-foreground">
-              Conversations on leadership, AI, culture and building organizations where humanity
+            <p className="mt-8 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Conversations on leadership, AI, culture, and building organizations where humanity
               becomes the competitive advantage.
             </p>
-            <a
-              href="#episodes"
-              className="eyebrow mt-10 inline-flex items-center gap-2 rounded-full bg-lime px-7 py-4 text-ink"
-            >
-              Listen now <span aria-hidden>→</span>
-            </a>
           </div>
+
           <img
             src={podcastImage}
-            alt="Studio condenser microphone lit in a dark recording room"
-            loading="lazy"
-            width={1200}
-            height={900}
-            className="aspect-[4/3] w-full object-cover"
+            alt="Studio condenser microphone lit warmly in a dark recording room"
+            width={1400}
+            height={1050}
+            className="aspect-[4/3] w-full object-cover md:aspect-[5/4]"
           />
         </div>
       </section>
 
+      {/* ---- Discovery ---- */}
       <section id="episodes" className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
-          <div className="flex flex-wrap items-baseline justify-between gap-4">
-            <h2 className="eyebrow text-ink/50">All episodes</h2>
-            {episodes.length > 0 && (
-              <div className="flex items-baseline gap-4">
-                <span className="eyebrow text-ink/40" aria-live="polite">
-                  {visible.length === episodes.length
-                    ? `${episodes.length} episodes`
-                    : `${visible.length} of ${episodes.length}`}
-                </span>
-                {!isDefaultBrowseState(browse) && (
+        <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 lg:py-16">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="relative w-full lg:max-w-xs">
+              <Search
+                aria-hidden
+                className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink/40"
+              />
+              <input
+                type="search"
+                value={browse.query}
+                onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
+                placeholder="Search episodes, guests, or topics"
+                aria-label="Search episodes, guests, or topics"
+                className="w-full rounded-full border border-hairline-dark bg-transparent py-3 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/40 focus-visible:border-ink"
+              />
+              {browse.query && (
+                <button
+                  type="button"
+                  onClick={() => setBrowse((s) => ({ ...s, query: "" }))}
+                  aria-label="Clear search"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-ink/40 hover:text-ink"
+                >
+                  <X className="size-4" aria-hidden />
+                </button>
+              )}
+            </div>
+
+            <div
+              role="group"
+              aria-label="Filter episodes by topic"
+              className="-mx-5 flex snap-x gap-2 overflow-x-auto px-5 pb-1 lg:mx-0 lg:flex-wrap lg:justify-end lg:overflow-visible lg:px-0"
+            >
+              {[{ id: ALL_TOPICS, name: "All episodes" }, ...facets].map((facet) => {
+                const selected = topic === facet.id;
+                return (
                   <button
+                    key={facet.id}
                     type="button"
-                    onClick={() => setBrowse(DEFAULT_BROWSE_STATE)}
-                    className="eyebrow link-underline text-ink/60 hover:text-ink"
+                    aria-pressed={selected}
+                    onClick={() => setTopic(facet.id)}
+                    className={cn(
+                      "eyebrow shrink-0 snap-start whitespace-nowrap rounded-full border px-4 py-2.5 transition-colors",
+                      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink",
+                      selected
+                        ? "border-ink bg-ink text-cream"
+                        : "border-hairline-dark text-ink/60 hover:border-ink hover:text-ink",
+                    )}
                   >
-                    Clear
+                    {facet.name}
                   </button>
-                )}
-              </div>
-            )}
+                );
+              })}
+            </div>
           </div>
 
+          {/* ---- Featured + grid ---- */}
           {episodes.length === 0 ? (
-            <p className="mt-8 max-w-md text-lg leading-relaxed text-ink/60">
+            <p className="mt-12 max-w-md text-lg leading-relaxed text-ink/60">
               Episodes are taking a moment to load. Please refresh, or listen on your usual podcast
               app.
             </p>
+          ) : visible.length === 0 ? (
+            <div className="mt-12 border-t border-hairline-dark pt-10">
+              <p className="max-w-md text-lg leading-relaxed text-ink/60">
+                No episodes match{browse.query ? ` “${browse.query}”` : " that filter"}.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setBrowse(DEFAULT_BROWSE_STATE);
+                  setTopic(ALL_TOPICS);
+                }}
+                className="eyebrow link-underline mt-4 text-ink"
+              >
+                Clear filters
+              </button>
+            </div>
           ) : (
             <>
-              <div className="mt-8 flex flex-col gap-5 border-t border-hairline-dark pt-8 lg:flex-row lg:items-center lg:justify-between">
-                <div className="relative w-full lg:max-w-sm">
-                  <Search
-                    aria-hidden
-                    className="pointer-events-none absolute left-0 top-1/2 size-4 -translate-y-1/2 text-ink/40"
-                  />
-                  <input
-                    type="search"
-                    value={browse.query}
-                    onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
-                    placeholder="Search episodes, guests or topics"
-                    aria-label="Search episodes, guests or topics"
-                    className="w-full border-b border-hairline-dark bg-transparent py-2.5 pl-7 pr-8 text-base text-ink outline-none placeholder:text-ink/40 focus-visible:border-ink"
-                  />
-                  {browse.query && (
-                    <button
-                      type="button"
-                      onClick={() => setBrowse((s) => ({ ...s, query: "" }))}
-                      aria-label="Clear search"
-                      className="absolute right-0 top-1/2 -translate-y-1/2 p-1 text-ink/40 hover:text-ink"
-                    >
-                      <X className="size-4" aria-hidden />
-                    </button>
-                  )}
+              {featured && (
+                <div className="mt-10 lg:mt-12">
+                  <FeaturedEpisode episode={featured} />
                 </div>
+              )}
 
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
-                  <div
-                    role="group"
-                    aria-label="Filter by episode length"
-                    className="flex flex-wrap items-center gap-2"
-                  >
-                    {DURATION_OPTIONS.map((option) => {
-                      const count = counts[option.value];
-                      const selected = browse.duration === option.value;
-                      return (
-                        <button
-                          key={option.value}
-                          type="button"
-                          aria-pressed={selected}
-                          disabled={count === 0 && !selected}
-                          onClick={() => setBrowse((s) => ({ ...s, duration: option.value }))}
-                          className={cn(
-                            "eyebrow rounded-full border px-3.5 py-2 transition-colors",
-                            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink",
-                            selected
-                              ? "border-ink bg-ink text-cream"
-                              : "border-hairline-dark text-ink/60 hover:border-ink hover:text-ink",
-                            count === 0 &&
-                              !selected &&
-                              "cursor-not-allowed opacity-35 hover:border-hairline-dark hover:text-ink/60",
-                          )}
-                        >
-                          {option.label}
-                          <span className="ml-1.5 tabular-nums opacity-60">{count}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-
+              <div className="mt-14 flex flex-wrap items-baseline justify-between gap-4 border-t border-hairline-dark pt-6">
+                <h2 className="section-label section-label-light text-sm">All episodes</h2>
+                <div className="flex items-baseline gap-4">
+                  <span className="eyebrow text-ink/40" aria-live="polite">
+                    {filtered ? `${visible.length} of ${episodes.length}` : `${episodes.length} episodes`}
+                  </span>
                   <label className="flex items-center gap-2 text-sm text-ink/60">
-                    <span className="eyebrow">Sort</span>
+                    <span className="eyebrow">Sort by</span>
                     <select
                       value={browse.sort}
                       onChange={(event) =>
-                        setBrowse((s) => ({
-                          ...s,
-                          sort: event.target.value as typeof s.sort,
-                        }))
+                        setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
                       }
-                      className="border-b border-hairline-dark bg-transparent py-2 pr-6 text-sm text-ink outline-none focus-visible:border-ink"
+                      className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm text-ink outline-none focus-visible:border-ink"
                     >
                       {SORT_OPTIONS.map((option) => (
                         <option key={option.value} value={option.value}>
@@ -235,37 +219,22 @@ function Podcast() {
                 </div>
               </div>
 
-              {visible.length === 0 ? (
-                <div className="mt-10 border-t border-hairline-dark pt-10">
-                  <p className="max-w-md text-lg leading-relaxed text-ink/60">
-                    No episodes match{browse.query ? ` “${browse.query}”` : " that filter"}.
-                  </p>
+              <ul className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+                {rest.map((row) => (
+                  <EpisodeMediaCard key={row.source.slug.current} episode={row.source} />
+                ))}
+              </ul>
+
+              {shown + 1 < visible.length && (
+                <div className="mt-16 flex justify-center">
                   <button
                     type="button"
-                    onClick={() => setBrowse(DEFAULT_BROWSE_STATE)}
-                    className="eyebrow link-underline mt-4 text-ink"
+                    onClick={() => setShown((current) => current + PAGE_SIZE)}
+                    className="eyebrow rounded-full border border-ink px-8 py-4 text-ink transition-colors hover:bg-ink hover:text-cream"
                   >
-                    Clear filters
+                    View all episodes <span aria-hidden>→</span>
                   </button>
                 </div>
-              ) : (
-                <>
-                  <ul className="mt-6 border-t border-hairline-dark">
-                    {rows.map((row) => (
-                      <EpisodeCard key={row.source.slug.current} episode={row.source} />
-                    ))}
-                  </ul>
-
-                  {shown < visible.length && (
-                    <button
-                      type="button"
-                      onClick={() => setShown((current) => current + PAGE_SIZE)}
-                      className="eyebrow link-underline mt-8 text-ink"
-                    >
-                      Show more ({visible.length - shown} remaining)
-                    </button>
-                  )}
-                </>
               )}
             </>
           )}

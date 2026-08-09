@@ -4,21 +4,25 @@ import path from "node:path";
 
 import { DEGRADED_SOURCE_HEADER } from "@/lib/podcast/degraded-status";
 import { toBrowsable, type EpisodeListItem } from "@/lib/podcast/episode";
+import { ALL_TOPICS, filterByTopic, topicFacets } from "@/lib/podcast/topic-filter";
 import { browseEpisodes, DEFAULT_BROWSE_STATE } from "@/lib/podbean";
 import { Route } from "./podcast";
 
 /**
- * The directory, after the swap to Sanity.
+ * The directory, after the image-led redesign.
  *
  * The key-stability row is the one that would not otherwise exist. `guid` left
  * the list projection to save payload, and it was the React key here — but a
  * `key={undefined}` is a console warning, not a thrown error or a failed
- * render, so the regression would ship with a green suite. Nothing else in this
- * file catches it.
+ * render, so the regression would ship with a green suite.
  */
 
 const CARD = readFileSync(
-  path.join(import.meta.dir, "..", "components", "episode-card.tsx"),
+  path.join(import.meta.dir, "..", "components", "episode-media-card.tsx"),
+  "utf8",
+);
+const FEATURED = readFileSync(
+  path.join(import.meta.dir, "..", "components", "featured-episode.tsx"),
   "utf8",
 );
 const ROUTE = readFileSync(path.join(import.meta.dir, "podcast.tsx"), "utf8");
@@ -41,8 +45,6 @@ function episode(slug: string, overrides: Partial<EpisodeListItem> = {}): Episod
 
 describe("row keys are defined and unique", () => {
   test("every episode yields a defined, unique key from slug.current", () => {
-    // Asserted as a set sized against the row count, so a single undefined —
-    // which collapses to one entry — fails rather than passing quietly.
     const episodes = ["a", "b", "c"].map((slug) => episode(slug));
     const keys = episodes.map((item) => item.slug.current);
 
@@ -56,32 +58,22 @@ describe("row keys are defined and unique", () => {
   });
 });
 
-describe("the title links to the episode; the player does not sit inside it", () => {
-  test("the heading contains the Link", () => {
-    // A Link wrapping the whole row would put the audio player inside an
-    // anchor: nested interactive content, a real content-model defect.
-    const heading = CARD.slice(CARD.indexOf("<h3"), CARD.indexOf("</h3>"));
-    expect(heading).toContain("<Link");
-    expect(heading).toContain('to="/podcast/$slug"');
+describe("cards are image-forward and link to the episode", () => {
+  test("the grid card renders an image and links to /podcast/$slug", () => {
+    expect(CARD).toContain("<img");
+    expect(CARD).toContain('to="/podcast/$slug"');
+    expect(CARD).toContain("Listen");
   });
 
-  test("EpisodePlayer is rendered outside every Link", () => {
-    const playerAt = CARD.indexOf("<EpisodePlayer");
-    const headingEnd = CARD.indexOf("</h3>");
-
-    expect(playerAt).toBeGreaterThan(headingEnd);
-    // And it is not wrapped by the footer link either.
-    const footerAt = CARD.indexOf("View episode");
-    expect(playerAt).toBeLessThan(footerAt);
+  test("no audio player is nested inside a card link", () => {
+    expect(CARD).not.toContain("EpisodePlayer");
+    expect(FEATURED).not.toContain("EpisodePlayer");
   });
 
-  test("the player is retained rather than deleted to simplify the row", () => {
-    expect(CARD).toContain("<EpisodePlayer");
-    expect(CARD).toContain("src={episode.audioUrl}");
-  });
-
-  test("a second, larger affordance points at the same destination", () => {
-    expect(CARD).toContain("View episode");
+  test("the featured episode carries a prominent image and its own CTA", () => {
+    expect(FEATURED).toContain("<img");
+    expect(FEATURED).toContain("Featured episode");
+    expect(FEATURED).toContain("Listen to episode");
   });
 });
 
@@ -106,7 +98,7 @@ describe("the route declares Decision L's pieces", () => {
   });
 });
 
-describe("the shipped filter still drives the directory", () => {
+describe("search still drives the directory; length filtering is gone", () => {
   test("browseEpisodes runs over adapted Sanity episodes and returns real rows", () => {
     const episodes = [
       episode("a", { title: "Leading with Heart", guestName: "Linda Biggs" }),
@@ -121,33 +113,74 @@ describe("the shipped filter still drives the directory", () => {
     expect(hits.map((hit) => hit.source.slug.current)).toEqual(["b"]);
   });
 
-  test("the route imports the filter rather than reimplementing it", () => {
+  test("the route imports the shared filter rather than reimplementing it", () => {
     expect(ROUTE).toContain("browseEpisodes");
-    expect(ROUTE).toContain("durationCounts");
+  });
+
+  test("no duration bucket UI survives", () => {
+    expect(ROUTE).not.toContain("DURATION_OPTIONS");
+    expect(ROUTE).not.toContain("durationCounts");
+    expect(ROUTE).not.toContain("Any length");
+  });
+});
+
+describe("topic filters replace length categories", () => {
+  test("facets are derived from real episode topics, most common first", () => {
+    const lead = { _id: "topic-leadership", name: "Leadership" };
+    const ai = { _id: "topic-ai", name: "AI & Tech" };
+    const episodes = [
+      episode("a", { topics: [lead] }),
+      episode("b", { topics: [lead, ai] }),
+      episode("c", { topics: null }),
+    ];
+
+    expect(topicFacets(episodes).map((f) => f.name)).toEqual(["Leadership", "AI & Tech"]);
+  });
+
+  test("filtering by a topic keeps only episodes carrying it; all passes through", () => {
+    const lead = { _id: "topic-leadership", name: "Leadership" };
+    const rows = [episode("a", { topics: [lead] }), episode("b")].map(toBrowsable);
+
+    expect(filterByTopic(rows, "topic-leadership").map((r) => r.source.slug.current)).toEqual(["a"]);
+    expect(filterByTopic(rows, ALL_TOPICS)).toHaveLength(2);
+  });
+
+  test("the route wires the topic filter up", () => {
+    expect(ROUTE).toContain("topicFacets");
+    expect(ROUTE).toContain("filterByTopic");
+    expect(ROUTE).toContain("All episodes");
   });
 });
 
 describe("incremental render", () => {
-  test("a page size is declared and the row list is sliced by it", () => {
-    expect(ROUTE).toMatch(/const PAGE_SIZE = 12;/);
-    expect(ROUTE).toContain("visible.slice(0, shown)");
+  test("a page size is declared and the grid is sliced by it", () => {
+    expect(ROUTE).toMatch(/const PAGE_SIZE = 9;/);
+    expect(ROUTE).toContain("visible.slice(1, 1 + shown)");
   });
 
-  test("a Show more control exists and is conditional on there being more", () => {
-    expect(ROUTE).toContain("Show more");
-    expect(ROUTE).toContain("shown < visible.length");
+  test("a View all control exists and is conditional on there being more", () => {
+    expect(ROUTE).toContain("View all episodes");
+    expect(ROUTE).toContain("shown + 1 < visible.length");
   });
 
-  test("the window resets when the query changes", () => {
-    // Otherwise searching after "Show more" reports a count against the
-    // previous result set.
-    expect(ROUTE).toContain("setShown(PAGE_SIZE), [browse]");
+  test("the window resets when the query or topic changes", () => {
+    expect(ROUTE).toContain("setShown(PAGE_SIZE), [browse, topic]");
+  });
+});
+
+describe("the hero", () => {
+  test("PODCAST is the lime word and there is no LISTEN NOW button", () => {
+    expect(ROUTE).toContain('<span className="text-lime">Podcast</span>');
+    expect(ROUTE).not.toContain("Listen now");
+  });
+
+  test("the hero carries a large image", () => {
+    expect(ROUTE).toContain("podcastImage");
   });
 });
 
 describe("an empty catalogue and an outage are different states", () => {
   test("the empty state is reached by rendering, the outage by the errorComponent", () => {
-    // Conflating them is what would let an outage render as "no episodes yet".
     expect(ROUTE).toContain("errorComponent: PodcastDegraded");
     expect(ROUTE).toContain("Clear filters");
   });
