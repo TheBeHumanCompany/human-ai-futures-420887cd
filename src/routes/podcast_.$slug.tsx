@@ -149,6 +149,15 @@ function paragraphs(description: string): string[] {
   return grouped.filter(Boolean);
 }
 
+/**
+ * The feed bakes "Episode 39:" into many titles. The number already has its own
+ * label above the headline, so the prefix is stripped for display only — the
+ * stored title is untouched.
+ */
+function displayTitle(title: string): string {
+  return title.replace(/^\s*episode\s*#?\d+\s*[:\-–—]\s*/i, "");
+}
+
 function EpisodePage() {
   const { episode, related }: EpisodeLoaderData = Route.useLoaderData();
   const hero = episodeHeroImage(episode);
@@ -165,7 +174,7 @@ function EpisodePage() {
               <p className="eyebrow text-ink/50">Episode {episode.episodeNumber}</p>
             )}
             <h1 className="mt-5 font-display text-[clamp(2rem,5vw,3.35rem)] font-medium leading-[1.08] tracking-[0.005em] text-ink">
-              {episode.title}
+              {displayTitle(episode.title)}
             </h1>
             <p className="eyebrow mt-6 text-ink/50">
               <time dateTime={episode.publishedAt}>
@@ -270,7 +279,7 @@ function EpisodePage() {
                         >
                           <span className="font-medium">
                             {item.episodeNumber !== null && `Episode ${item.episodeNumber}: `}
-                            {item.title}
+                            {displayTitle(item.title)}
                           </span>
                           {item.guestName && (
                             <span className="mt-1 block text-sm text-ink/55">
