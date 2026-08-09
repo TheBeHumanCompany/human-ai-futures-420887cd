@@ -11,7 +11,7 @@ import {
   DEGRADED_SOURCE_HEADER,
   DEGRADED_SOURCE_VALUE,
 } from "@/lib/podcast/degraded-status";
-import { toBrowsable } from "@/lib/podcast/episode";
+import { toBrowsable, type EpisodeListItem } from "@/lib/podcast/episode";
 import { fetchEpisodeList } from "@/lib/podcast/queries";
 import { ALL_TOPICS, filterByTopic, topicFacets } from "@/lib/podcast/topic-filter";
 import { cn } from "@/lib/utils";
@@ -63,7 +63,7 @@ function Podcast() {
 
   // Filtering is client-side and deliberately so: the catalogue is already in
   // memory, so a round-trip per keystroke would be slower and no more correct.
-  const browsable = useMemo(() => episodes.map((episode) => toBrowsable(episode)), [episodes]);
+  const browsable = useMemo(() => episodes.map((episode: EpisodeListItem) => toBrowsable(episode)), [episodes]);
   const searched = useMemo(
     () => browseEpisodes<(typeof browsable)[number]>(browsable, browse),
     [browsable, browse],

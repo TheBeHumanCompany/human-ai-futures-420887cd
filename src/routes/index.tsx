@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import type { EpisodeListItem } from "@/lib/podcast/episode";
 import heroImage from "@/assets/hero.png";
 import founderVideoPoster from "@/assets/why-we-exist-video.jpg";
 import podcastImage from "@/assets/podcast.jpg";
@@ -407,7 +408,7 @@ function Home() {
           {/* Episode list */}
           {rest.length > 0 && (
             <ul className="mt-10 border-t border-border lg:mt-12">
-              {rest.map((episode) => (
+              {rest.map((episode: EpisodeListItem) => (
                 <li key={episode.slug.current} className="border-b border-border">
                   {/*
                     Safe to wrap the whole row here, unlike the directory: these

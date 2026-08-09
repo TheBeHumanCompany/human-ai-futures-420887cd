@@ -1,13 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { Play } from "lucide-react";
 
-import studioA from "@/assets/podcast.jpg";
-import studioB from "@/assets/podcast-still-1.jpg";
-import studioC from "@/assets/podcast-still-2.jpg";
-import studioD from "@/assets/podcast-still-3.jpg";
 import type { EpisodeListItem } from "@/lib/podcast/episode";
-import { imageUrl } from "@/lib/sanity/image";
+import { episodeImage } from "@/lib/podcast/imagery";
 import { formatDuration } from "@/lib/podbean";
+
+export { episodeImage };
 
 const PUBLISHED = new Intl.DateTimeFormat("en-CA", {
   year: "numeric",
@@ -16,40 +14,10 @@ const PUBLISHED = new Intl.DateTimeFormat("en-CA", {
   timeZone: "UTC",
 });
 
-/**
- * Studio stills used when an episode has no artwork of its own.
- *
- * Rotated deterministically by episode number rather than at random: the same
- * episode must show the same still on the server and in the browser, or the
- * grid flickers on hydration.
- */
-const STUDIO_STILLS = [studioA, studioB, studioC, studioD];
-
-/**
- * Card imagery, in precedence order: an episode's own cover artwork, then its
- * generated share card, then a studio still.
- *
- * The still is deliberate rather than a placeholder — it is recording-room
- * photography, and no guest portrait is invented for an episode without one.
- */
-export function episodeImage(episode: EpisodeListItem, width = 1200): string {
-  // `shareCard` is in the list projection but not in the rendered interface, so
-  // it is read structurally rather than by widening the shared type.
-  const shareCard = (episode as { shareCard?: string | null }).shareCard ?? null;
-  const still = STUDIO_STILLS[Math.abs(episode.episodeNumber ?? 0) % STUDIO_STILLS.length]!;
-  return (
-    imageUrl(episode.coverArtwork, { width, fit: "crop" }) ??
-    imageUrl(shareCard, { width, fit: "crop" }) ??
-    still
-  );
-}
-
-
-
-
 export function publishedOn(iso: string): string {
   return PUBLISHED.format(new Date(iso));
 }
+
 
 /**
  * One image-forward card in the episode grid.
