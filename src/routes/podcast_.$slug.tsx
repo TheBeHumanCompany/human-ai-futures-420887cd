@@ -191,7 +191,7 @@ function EpisodePage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Listen or watch full episode
+              Listen or Watch Full Episode
               <span aria-hidden className="text-lime transition-transform group-hover:translate-x-1">
                 →
               </span>
