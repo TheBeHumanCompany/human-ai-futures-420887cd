@@ -25,7 +25,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         to="/podcast/$slug"
         params={{ slug }}
         aria-label={`Listen to ${displayTitle(episode.title)}`}
-        className="group relative block aspect-[4/5] overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:min-h-[26rem]"
+        className="group relative block aspect-[4/5] overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:min-h-[22rem]"
       >
         <img
           src={episodeImage(episode)}
@@ -40,22 +40,22 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         </span>
       </Link>
 
-      <div className="flex flex-col justify-center px-6 py-8 sm:px-10 lg:px-14 lg:py-12">
+      <div className="flex flex-col justify-center px-6 py-8 sm:px-10 lg:px-14 lg:py-10">
         <p className="eyebrow font-semibold tracking-[0.15em] text-lime-ink">{episodeMeta(episode)}</p>
 
-        <h3 className="display-strong mt-4 max-w-[22ch] text-[clamp(1.5rem,2.2vw,2rem)] leading-[1.16] text-ink">
+        <h3 className="display-strong mt-6 max-w-[22ch] text-[clamp(1.35rem,1.95vw,1.8rem)] leading-[1.16] text-ink">
           <Link to="/podcast/$slug" params={{ slug }} className="hover:text-ink/70">
             {displayTitle(episode.title)}
           </Link>
         </h3>
 
-        <p className="mt-4 text-sm font-medium text-ink">
+        <p className="mt-5 text-sm font-medium text-ink">
           {episode.guestName ? `With ${episode.guestName} · ` : ""}
           {publishedOn(episode.publishedAt)}
         </p>
 
         {episode.excerpt && (
-          <p className="mt-5 line-clamp-3 max-w-xl text-base leading-relaxed text-ink/80">
+          <p className="mt-5 line-clamp-2 max-w-md text-base leading-relaxed text-ink/80">
             {episode.excerpt}
           </p>
         )}
