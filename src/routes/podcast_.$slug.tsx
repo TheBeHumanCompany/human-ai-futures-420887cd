@@ -214,7 +214,7 @@ function EpisodePage() {
 
             {episode.guestName && (
               <div className="lg:border-l lg:border-hairline-dark lg:pl-16">
-                <p className="section-label section-label-light text-xs">Meet the guest</p>
+                <p className="section-label section-label-dark text-sm">Meet the guest</p>
                 <h2 className="mt-4 font-display text-[clamp(1.6rem,3vw,2.1rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                   {episode.guestName}
                 </h2>
