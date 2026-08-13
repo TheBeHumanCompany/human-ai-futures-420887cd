@@ -240,60 +240,40 @@ function EpisodePage() {
             )}
           </div>
 
-          {/* ---- Topics + more episodes ---- */}
-          {(topics.length > 0 || related.length > 0) && (
-            <div className="mt-16 grid gap-12 border-t border-hairline-dark pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
-              {topics.length > 0 && (
-                <div>
-                  <p className="section-label section-label-light text-xs">Topics</p>
-                  <ul className="mt-5 flex flex-wrap gap-3">
-                    {topics.map((topic) => (
-                      <li key={topic._id}>
-                        <span className="inline-block rounded-full border border-ink/20 px-4 py-2 text-sm text-ink/80">
-                          {topic.name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {related.length > 0 && (
-                <div className={topics.length > 0 ? "" : "lg:col-start-2"}>
-                  <div className="flex items-baseline justify-between gap-6">
-                    <p className="section-label section-label-light text-xs">More episodes</p>
+          {/* ---- More episodes ---- */}
+          {related.length > 0 && (
+            <div className="mt-16 border-t border-hairline-dark pt-12">
+              <div className="flex flex-wrap items-baseline justify-between gap-6">
+                <p className="section-label section-label-light text-xs">More episodes</p>
+                <Link
+                  to="/podcast"
+                  className="eyebrow link-underline inline-flex items-center gap-2 text-ink/70 hover:text-ink"
+                >
+                  View all episodes <span aria-hidden className="text-lime">→</span>
+                </Link>
+              </div>
+              <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+                {related.map((item) => (
+                  <li key={item.slug.current} className="border-t border-hairline-dark pt-5">
                     <Link
-                      to="/podcast"
-                      className="eyebrow link-underline inline-flex items-center gap-2 text-ink/70 hover:text-ink"
+                      className="group block text-base leading-snug text-ink/85 hover:text-ink"
+                      to="/podcast/$slug"
+                      params={{ slug: item.slug.current }}
                     >
-                      View all episodes <span aria-hidden className="text-lime">→</span>
+                      <span className="font-medium">
+                        {item.episodeNumber !== null && `Episode ${item.episodeNumber}: `}
+                        {displayTitle(item.title)}
+                      </span>
+                      {item.guestName && (
+                        <span className="mt-1 block text-sm text-ink/55">With {item.guestName}</span>
+                      )}
                     </Link>
-                  </div>
-                  <ul className="mt-5 space-y-4">
-                    {related.map((item) => (
-                      <li key={item.slug.current}>
-                        <Link
-                          className="group block text-base leading-snug text-ink/85 hover:text-ink"
-                          to="/podcast/$slug"
-                          params={{ slug: item.slug.current }}
-                        >
-                          <span className="font-medium">
-                            {item.episodeNumber !== null && `Episode ${item.episodeNumber}: `}
-                            {displayTitle(item.title)}
-                          </span>
-                          {item.guestName && (
-                            <span className="mt-1 block text-sm text-ink/55">
-                              With {item.guestName}
-                            </span>
-                          )}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
+
         </div>
       </section>
     </>
