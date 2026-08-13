@@ -15,6 +15,12 @@ import guestEp30 from "@/assets/guest-ep30.png.asset.json";
 import guestEp29 from "@/assets/guest-ep29.png.asset.json";
 import guestEp28 from "@/assets/guest-ep28.png.asset.json";
 import guestEp27 from "@/assets/guest-ep27.png.asset.json";
+import guestEp26 from "@/assets/guest-ep26.png.asset.json";
+import guestEp25 from "@/assets/guest-ep25.png.asset.json";
+import guestEp24 from "@/assets/guest-ep24.png.asset.json";
+import guestEp23 from "@/assets/guest-ep23.png.asset.json";
+import guestEp22 from "@/assets/guest-ep22.png.asset.json";
+import guestEp21 from "@/assets/guest-ep21.png.asset.json";
 import { imageUrl } from "@/lib/sanity/image";
 import type { EpisodeListItem } from "./episode";
 
@@ -36,6 +42,12 @@ const GUEST_PORTRAITS: Record<number, string> = {
   29: guestEp29.url,
   28: guestEp28.url,
   27: guestEp27.url,
+  26: guestEp26.url,
+  25: guestEp25.url,
+  24: guestEp24.url,
+  23: guestEp23.url,
+  22: guestEp22.url,
+  21: guestEp21.url,
 };
 
 function suppliedPortrait(episode: Pick<EpisodeListItem, "episodeNumber">): string | null {
