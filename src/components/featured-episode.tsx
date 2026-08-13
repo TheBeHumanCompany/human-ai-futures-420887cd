@@ -26,7 +26,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         to="/podcast/$slug"
         params={{ slug }}
         aria-label={`Listen to ${displayTitle(episode.title)}`}
-        className="group relative block aspect-[4/5] overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:min-h-[22rem]"
+        className="group relative block aspect-[4/5] overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:min-h-[19rem]"
       >
         <img
           src={episodeImage(episode)}
