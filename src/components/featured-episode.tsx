@@ -20,7 +20,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
   const slug = episode.slug.current;
 
   return (
-    <article className="grid border border-hairline-dark lg:grid-cols-[minmax(0,38fr)_minmax(0,62fr)]">
+    <article className="grid border border-hairline-dark lg:grid-cols-[minmax(0,36fr)_minmax(0,64fr)]">
       <Link
         to="/podcast/$slug"
         params={{ slug }}
