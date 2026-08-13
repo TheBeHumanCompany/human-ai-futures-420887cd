@@ -71,7 +71,7 @@ describe("cards are image-forward and link to the episode", () => {
 
   test("the featured episode carries a prominent image and its own CTA", () => {
     expect(FEATURED).toContain("<img");
-    expect(FEATURED).toContain("Featured episode");
+    expect(FEATURED).toContain("Latest episode");
     expect(FEATURED).toContain("Listen to episode");
   });
 });
