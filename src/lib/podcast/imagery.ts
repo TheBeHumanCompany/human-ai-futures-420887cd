@@ -53,6 +53,11 @@ const GUEST_PORTRAITS: Record<number, string> = {
   23: guestEp23.url,
   22: guestEp22.url,
   21: guestEp21.url,
+  20: guestEp20.url,
+  19: guestEp19.url,
+  18: guestEp18.url,
+  17: guestEp17.url,
+  16: guestEp16.url,
 };
 
 function suppliedPortrait(episode: Pick<EpisodeListItem, "episodeNumber">): string | null {
