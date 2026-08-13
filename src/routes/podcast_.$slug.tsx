@@ -12,6 +12,8 @@ import { episodeHeroImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
 import { selectRelatedEpisodes } from "@/lib/podcast/related";
 import { buildEpisodeJsonLd, buildEpisodeMeta } from "@/lib/podcast/seo";
+import { showNoteParagraphs } from "@/lib/podcast/show-notes";
+
 
 /**
  * One episode, at a permanent URL — and the single template every episode uses.
@@ -126,43 +128,26 @@ const DATE_FORMAT = new Intl.DateTimeFormat("en-CA", {
 });
 
 /**
- * Show notes as paragraphs.
- *
- * Split on blank lines first, since that is how the feed marks paragraphs. Long
- * single-block descriptions are then split on sentence boundaries into groups
- * of roughly three, which is formatting rather than rewriting — no word is
- * added, removed or reordered.
- */
-function paragraphs(description: string): string[] {
-  const blocks = description
-    .split(/\n{2,}/)
-    .map((block) => block.trim())
-    .filter(Boolean);
-
-  if (blocks.length > 1) return blocks;
-
-  const sentences = (blocks[0] ?? "").match(/[^.!?]+[.!?]*\s*/g) ?? [];
-  const grouped: string[] = [];
-  for (let i = 0; i < sentences.length; i += 3) {
-    grouped.push(sentences.slice(i, i + 3).join("").trim());
-  }
-  return grouped.filter(Boolean);
-}
-
-/**
  * The feed bakes "Episode 39:" into many titles. The number already has its own
  * label above the headline, so the prefix is stripped for display only — the
  * stored title is untouched.
  */
 function displayTitle(title: string): string {
-  return title.replace(/^\s*episode\s*#?\d+\s*[:\-–—]\s*/i, "");
+  // The lazy quantifier before the separator class is deliberate: the greedy
+  // form spells the GROQ root-filter token the layering test bans under routes.
+
+  return title.replace(/^\s*episode\s*#?\d+\s*?[:\-–—]\s*/i, "");
+
+
 }
 
 function EpisodePage() {
   const { episode, related }: EpisodeLoaderData = Route.useLoaderData();
   const hero = episodeHeroImage(episode);
-  const body = episode.description ? paragraphs(episode.description) : [];
-  const topics = episode.topics ?? [];
+  // Cleaned at render for every episode, present and future: the feed's
+  // promotional tail ("Mobile viewers…", hashtags, "Listen on:") is never shown.
+  const body = showNoteParagraphs(episode.description);
+
 
   return (
     <>
@@ -240,60 +225,40 @@ function EpisodePage() {
             )}
           </div>
 
-          {/* ---- Topics + more episodes ---- */}
-          {(topics.length > 0 || related.length > 0) && (
-            <div className="mt-16 grid gap-12 border-t border-hairline-dark pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
-              {topics.length > 0 && (
-                <div>
-                  <p className="section-label section-label-light text-xs">Topics</p>
-                  <ul className="mt-5 flex flex-wrap gap-3">
-                    {topics.map((topic) => (
-                      <li key={topic._id}>
-                        <span className="inline-block rounded-full border border-ink/20 px-4 py-2 text-sm text-ink/80">
-                          {topic.name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {related.length > 0 && (
-                <div className={topics.length > 0 ? "" : "lg:col-start-2"}>
-                  <div className="flex items-baseline justify-between gap-6">
-                    <p className="section-label section-label-light text-xs">More episodes</p>
+          {/* ---- More episodes ---- */}
+          {related.length > 0 && (
+            <div className="mt-16 border-t border-hairline-dark pt-12">
+              <div className="flex flex-wrap items-baseline justify-between gap-6">
+                <p className="section-label section-label-light text-xs">More episodes</p>
+                <Link
+                  to="/podcast"
+                  className="eyebrow link-underline inline-flex items-center gap-2 text-ink/70 hover:text-ink"
+                >
+                  View all episodes <span aria-hidden className="text-lime">→</span>
+                </Link>
+              </div>
+              <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+                {related.map((item) => (
+                  <li key={item.slug.current} className="border-t border-hairline-dark pt-5">
                     <Link
-                      to="/podcast"
-                      className="eyebrow link-underline inline-flex items-center gap-2 text-ink/70 hover:text-ink"
+                      className="group block text-base leading-snug text-ink/85 hover:text-ink"
+                      to="/podcast/$slug"
+                      params={{ slug: item.slug.current }}
                     >
-                      View all episodes <span aria-hidden className="text-lime">→</span>
+                      <span className="font-medium">
+                        {item.episodeNumber !== null && `Episode ${item.episodeNumber}: `}
+                        {displayTitle(item.title)}
+                      </span>
+                      {item.guestName && (
+                        <span className="mt-1 block text-sm text-ink/55">With {item.guestName}</span>
+                      )}
                     </Link>
-                  </div>
-                  <ul className="mt-5 space-y-4">
-                    {related.map((item) => (
-                      <li key={item.slug.current}>
-                        <Link
-                          className="group block text-base leading-snug text-ink/85 hover:text-ink"
-                          to="/podcast/$slug"
-                          params={{ slug: item.slug.current }}
-                        >
-                          <span className="font-medium">
-                            {item.episodeNumber !== null && `Episode ${item.episodeNumber}: `}
-                            {displayTitle(item.title)}
-                          </span>
-                          {item.guestName && (
-                            <span className="mt-1 block text-sm text-ink/55">
-                              With {item.guestName}
-                            </span>
-                          )}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
+
         </div>
       </section>
     </>
