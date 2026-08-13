@@ -63,15 +63,15 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <p className="eyebrow text-lime-ink">{episodeMeta(episode)}</p>
-          <h3 className="display mt-2 text-[1.25rem] leading-[1.1] text-ink">
+          <p className="eyebrow font-semibold tracking-[0.15em] text-lime">{episodeMeta(episode)}</p>
+          <h3 className="display mt-3 text-[1.25rem] leading-[1.18] text-ink">
             {displayTitle(episode.title)}
           </h3>
           {episode.guestName && (
-            <p className="mt-2 text-sm text-ink/60">With {episode.guestName}</p>
+            <p className="mt-3 text-sm text-ink/65">With {episode.guestName}</p>
           )}
-          <p className="mt-1 text-sm text-ink/45">{publishedOn(episode.publishedAt)}</p>
-          <span className="eyebrow mt-auto pt-4 inline-flex items-center gap-2 text-ink">
+          <p className="mt-2 text-sm text-ink/50">{publishedOn(episode.publishedAt)}</p>
+          <span className="eyebrow mt-auto pt-6 inline-flex items-center gap-2 text-ink">
             Listen <span aria-hidden>→</span>
           </span>
         </div>
