@@ -42,12 +42,19 @@ export function episodeMeta(episode: EpisodeListItem): string {
   return `${episodeNumber(episode)} · ${episodeDuration(episode)}`;
 }
 
-/** Compact lime editorial tag for an episode number. */
+/** Episode number, rendered inside the shared lime metadata stamp. */
 export function EpisodeNumberTag({ episode }: { episode: EpisodeListItem }) {
+  return <span>{episodeNumber(episode)}</span>;
+}
+
+/** "EPISODE 39 · 46 MIN" as one small lime editorial stamp. */
+export function EpisodeMetaStamp({ episode }: { episode: EpisodeListItem }) {
   return (
-    <span className="inline-block bg-lime px-2 py-0.5 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
-      {episodeNumber(episode)}
-    </span>
+    <p className="inline-flex items-center gap-1.5 bg-lime px-2 py-1 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
+      <EpisodeNumberTag episode={episode} />
+      <span aria-hidden>·</span>
+      <span>{episodeDuration(episode)}</span>
+    </p>
   );
 }
 
