@@ -131,6 +131,22 @@ function Podcast() {
               )}
             </div>
 
+            <label className="flex items-center gap-3 text-sm text-ink/60">
+              <span className="eyebrow text-ink/60">Sort by</span>
+              <select
+                value={browse.sort}
+                onChange={(event) =>
+                  setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
+                }
+                className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm text-ink outline-none focus-visible:border-ink"
+              >
+                {SORT_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
 
           {/* ---- Featured + grid ---- */}
@@ -166,22 +182,6 @@ function Podcast() {
                   <span className="eyebrow text-ink/40" aria-live="polite">
                     {filtered ? `${visible.length} of ${episodes.length}` : `${episodes.length} episodes`}
                   </span>
-                  <label className="flex items-center gap-2 text-sm text-ink/60">
-                    <span className="eyebrow">Sort by</span>
-                    <select
-                      value={browse.sort}
-                      onChange={(event) =>
-                        setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
-                      }
-                      className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm text-ink outline-none focus-visible:border-ink"
-                    >
-                      {SORT_OPTIONS.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
                 </div>
               </div>
 
