@@ -58,9 +58,10 @@ function shareCardRef(episode: EpisodeListItem): string | null {
   return (episode as { shareCard?: string | null }).shareCard ?? null;
 }
 
-/** Grid/card imagery: episode artwork, then its share card, then a still. */
+/** Grid/card imagery: supplied portrait, artwork, share card, then a still. */
 export function episodeImage(episode: EpisodeListItem, width = 1200): string {
   return (
+    suppliedPortrait(episode) ??
     imageUrl(episode.coverArtwork, { width, fit: "crop" }) ??
     imageUrl(shareCardRef(episode), { width, fit: "crop" }) ??
     studioStill(episode)
@@ -79,8 +80,12 @@ export function episodeHeroImage(episode: EpisodeListItem): {
   src: string;
   isPortrait: boolean;
 } {
+  const supplied = suppliedPortrait(episode);
+  if (supplied) return { src: supplied, isPortrait: true };
+
   const portrait = imageUrl(episode.guestPhoto, { width: 1400, height: 1700, fit: "crop" });
   if (portrait) return { src: portrait, isPortrait: true };
+
 
   const artwork = imageUrl(episode.coverArtwork, { width: 1400, height: 1700, fit: "crop" });
   if (artwork) return { src: artwork, isPortrait: false };
