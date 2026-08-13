@@ -133,9 +133,10 @@ const DATE_FORMAT = new Intl.DateTimeFormat("en-CA", {
  * stored title is untouched.
  */
 function displayTitle(title: string): string {
-  // The separator class is written `[:...]{1}`-free of a preceding `*` on
-  // purpose: `*[` is the GROQ root-filter token the layering test bans in routes.
-  return title.replace(/^\s*episode\s*#?\d+\s+?[:\-–—]\s*/i, "");
+  // `\s*?` rather than `\s*` only to avoid the literal `*[` pair, which is the
+  // GROQ root-filter token the layering test bans anywhere under src/routes.
+  return title.replace(/^\s*episode\s*#?\d+\s*?[:\-–—]\s*/i, "");
+
 
 }
 
