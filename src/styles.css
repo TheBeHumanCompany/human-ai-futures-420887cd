@@ -227,3 +227,10 @@
     padding-right: 8rem;
   }
 }
+
+/* Episode metadata accent.
+   The brand lime is tuned for black backgrounds; on warm cream it drops below
+   readable contrast, so cream-side metadata uses the same hue darkened. */
+@utility text-lime-ink {
+  color: oklch(0.55 0.13 118);
+}
