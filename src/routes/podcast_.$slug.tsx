@@ -126,30 +126,6 @@ const DATE_FORMAT = new Intl.DateTimeFormat("en-CA", {
 });
 
 /**
- * Show notes as paragraphs.
- *
- * Split on blank lines first, since that is how the feed marks paragraphs. Long
- * single-block descriptions are then split on sentence boundaries into groups
- * of roughly three, which is formatting rather than rewriting — no word is
- * added, removed or reordered.
- */
-function paragraphs(description: string): string[] {
-  const blocks = description
-    .split(/\n{2,}/)
-    .map((block) => block.trim())
-    .filter(Boolean);
-
-  if (blocks.length > 1) return blocks;
-
-  const sentences = (blocks[0] ?? "").match(/[^.!?]+[.!?]*\s*/g) ?? [];
-  const grouped: string[] = [];
-  for (let i = 0; i < sentences.length; i += 3) {
-    grouped.push(sentences.slice(i, i + 3).join("").trim());
-  }
-  return grouped.filter(Boolean);
-}
-
-/**
  * The feed bakes "Episode 39:" into many titles. The number already has its own
  * label above the headline, so the prefix is stripped for display only — the
  * stored title is untouched.
@@ -161,8 +137,10 @@ function displayTitle(title: string): string {
 function EpisodePage() {
   const { episode, related }: EpisodeLoaderData = Route.useLoaderData();
   const hero = episodeHeroImage(episode);
-  const body = episode.description ? paragraphs(episode.description) : [];
-  const topics = episode.topics ?? [];
+  // Cleaned at render for every episode, present and future: the feed's
+  // promotional tail ("Mobile viewers…", hashtags, "Listen on:") is never shown.
+  const body = showNoteParagraphs(episode.description);
+
 
   return (
     <>
