@@ -14,7 +14,6 @@ import { selectRelatedEpisodes } from "@/lib/podcast/related";
 import { buildEpisodeJsonLd, buildEpisodeMeta } from "@/lib/podcast/seo";
 import { showNoteParagraphs } from "@/lib/podcast/show-notes";
 
-
 /**
  * One episode, at a permanent URL — and the single template every episode uses.
  *
@@ -137,8 +136,6 @@ function displayTitle(title: string): string {
   // form spells the GROQ root-filter token the layering test bans under routes.
 
   return title.replace(/^\s*episode\s*#?\d+\s*?[:\-–—]\s*/i, "");
-
-
 }
 
 function EpisodePage() {
@@ -147,7 +144,6 @@ function EpisodePage() {
   // Cleaned at render for every episode, present and future: the feed's
   // promotional tail ("Mobile viewers…", hashtags, "Listen on:") is never shown.
   const body = showNoteParagraphs(episode.description);
-
 
   return (
     <>
@@ -188,7 +184,10 @@ function EpisodePage() {
               rel="noopener noreferrer"
             >
               Listen or Watch Full Episode
-              <span aria-hidden className="text-lime transition-transform group-hover:translate-x-1">
+              <span
+                aria-hidden
+                className="text-lime transition-transform group-hover:translate-x-1"
+              >
                 →
               </span>
             </a>
@@ -236,7 +235,10 @@ function EpisodePage() {
                   to="/podcast"
                   className="eyebrow link-underline inline-flex items-center gap-2 text-ink/70 hover:text-ink"
                 >
-                  View all episodes <span aria-hidden className="text-lime">→</span>
+                  View all episodes{" "}
+                  <span aria-hidden className="text-lime">
+                    →
+                  </span>
                 </Link>
               </div>
               <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
@@ -252,7 +254,9 @@ function EpisodePage() {
                         {displayTitle(item.title)}
                       </span>
                       {item.guestName && (
-                        <span className="mt-1 block text-sm text-ink/55">With {item.guestName}</span>
+                        <span className="mt-1 block text-sm text-ink/55">
+                          With {item.guestName}
+                        </span>
                       )}
                     </Link>
                   </li>
@@ -260,7 +264,6 @@ function EpisodePage() {
               </ul>
             </div>
           )}
-
         </div>
       </section>
     </>
