@@ -2,12 +2,19 @@ import studioA from "@/assets/podcast.jpg";
 import studioB from "@/assets/podcast-still-1.jpg";
 import studioC from "@/assets/podcast-still-2.jpg";
 import studioD from "@/assets/podcast-still-3.jpg";
+import guestEp39 from "@/assets/guest-ep39.png.asset.json";
 import guestEp38 from "@/assets/guest-ep38.png.asset.json";
 import guestEp37 from "@/assets/guest-ep37.png.asset.json";
 import guestEp36 from "@/assets/guest-ep36.png.asset.json";
 import guestEp35 from "@/assets/guest-ep35.png.asset.json";
 import guestEp34 from "@/assets/guest-ep34.png.asset.json";
 import guestEp33 from "@/assets/guest-ep33.png.asset.json";
+import guestEp32 from "@/assets/guest-ep32.png.asset.json";
+import guestEp31 from "@/assets/guest-ep31.png.asset.json";
+import guestEp30 from "@/assets/guest-ep30.png.asset.json";
+import guestEp29 from "@/assets/guest-ep29.png.asset.json";
+import guestEp28 from "@/assets/guest-ep28.png.asset.json";
+import guestEp27 from "@/assets/guest-ep27.png.asset.json";
 import { imageUrl } from "@/lib/sanity/image";
 import type { EpisodeListItem } from "./episode";
 
@@ -16,12 +23,19 @@ import type { EpisodeListItem } from "./episode";
  * edited photographs of the guest, so they outrank every other source.
  */
 const GUEST_PORTRAITS: Record<number, string> = {
+  39: guestEp39.url,
   38: guestEp38.url,
   37: guestEp37.url,
   36: guestEp36.url,
   35: guestEp35.url,
   34: guestEp34.url,
   33: guestEp33.url,
+  32: guestEp32.url,
+  31: guestEp31.url,
+  30: guestEp30.url,
+  29: guestEp29.url,
+  28: guestEp28.url,
+  27: guestEp27.url,
 };
 
 function suppliedPortrait(episode: Pick<EpisodeListItem, "episodeNumber">): string | null {
