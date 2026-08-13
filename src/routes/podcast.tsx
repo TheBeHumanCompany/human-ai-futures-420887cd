@@ -115,8 +115,8 @@ function Podcast() {
                 type="search"
                 value={browse.query}
                 onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
-                placeholder="Search episodes, guests, or topics"
-                aria-label="Search episodes, guests, or topics"
+                placeholder="Search episodes, guests, or keywords"
+                aria-label="Search episodes, guests, or keywords"
                 className="w-full rounded-full border border-hairline-dark bg-transparent py-3 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/40 focus-visible:border-ink"
               />
               {browse.query && (
@@ -179,7 +179,7 @@ function Podcast() {
               <div className="mt-14 flex flex-wrap items-baseline justify-between gap-4 border-t border-hairline-dark pt-6">
                 <h2 className="section-label section-label-light text-sm">All episodes</h2>
                 <div className="flex items-baseline gap-4">
-                  <span className="eyebrow text-ink/40" aria-live="polite">
+                  <span className="eyebrow font-medium tracking-[0.16em] text-ink/70" aria-live="polite">
                     {filtered ? `${visible.length} of ${episodes.length}` : `${episodes.length} episodes`}
                   </span>
                 </div>
