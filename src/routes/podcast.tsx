@@ -131,14 +131,14 @@ function Podcast() {
               )}
             </div>
 
-            <label className="flex items-center gap-3 text-sm text-ink/60">
-              <span className="eyebrow text-ink/60">Sort by</span>
+            <label className="flex items-center gap-3 text-sm text-ink">
+              <span className="eyebrow text-ink/70">Sort by</span>
               <select
                 value={browse.sort}
                 onChange={(event) =>
                   setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
                 }
-                className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm text-ink outline-none focus-visible:border-ink"
+                className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm font-semibold text-ink outline-none focus-visible:border-ink"
               >
                 {SORT_OPTIONS.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -179,18 +179,18 @@ function Podcast() {
               <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-hairline-dark pt-6">
                 <h2 className="section-label section-label-light text-sm">All episodes</h2>
                 <div className="flex flex-wrap items-center gap-4">
-                  <span className="eyebrow font-medium tracking-[0.16em] text-ink/70" aria-live="polite">
+                  <span className="eyebrow font-semibold tracking-[0.16em] text-ink" aria-live="polite">
                     {filtered ? `${visible.length} of ${episodes.length}` : `${episodes.length} episodes`}
                   </span>
                   <span aria-hidden className="h-4 w-px bg-hairline-dark" />
-                  <label className="flex items-center gap-3 text-sm text-ink/60">
-                    <span className="eyebrow text-ink/60">Sort by</span>
+                  <label className="flex items-center gap-3 text-sm text-ink">
+                    <span className="eyebrow text-ink/70">Sort by</span>
                     <select
                       value={browse.sort}
                       onChange={(event) =>
                         setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
                       }
-                      className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm text-ink outline-none focus-visible:border-ink"
+                      className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm font-semibold text-ink outline-none focus-visible:border-ink"
                     >
                       {SORT_OPTIONS.map((option) => (
                         <option key={option.value} value={option.value}>

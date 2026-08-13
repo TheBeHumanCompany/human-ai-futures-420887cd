@@ -232,5 +232,14 @@
    The brand lime is tuned for black backgrounds; on warm cream it drops below
    readable contrast, so cream-side metadata uses the same hue darkened. */
 @utility text-lime-ink {
-  color: oklch(0.52 0.14 118);
+  color: var(--lime);
+}
+
+/* Condensed editorial headline weight for podcast titles */
+@utility display-strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
 }

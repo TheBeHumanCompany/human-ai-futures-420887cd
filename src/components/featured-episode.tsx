@@ -43,19 +43,19 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
       <div className="flex flex-col justify-center px-6 py-8 sm:px-10 lg:px-14 lg:py-12">
         <p className="eyebrow font-semibold tracking-[0.15em] text-lime-ink">{episodeMeta(episode)}</p>
 
-        <h3 className="display mt-4 max-w-[22ch] text-[clamp(1.5rem,2.2vw,2rem)] leading-[1.16] text-ink">
+        <h3 className="display-strong mt-4 max-w-[22ch] text-[clamp(1.5rem,2.2vw,2rem)] leading-[1.16] text-ink">
           <Link to="/podcast/$slug" params={{ slug }} className="hover:text-ink/70">
             {displayTitle(episode.title)}
           </Link>
         </h3>
 
-        <p className="mt-4 text-sm text-ink/60">
+        <p className="mt-4 text-sm font-medium text-ink">
           {episode.guestName ? `With ${episode.guestName} · ` : ""}
           {publishedOn(episode.publishedAt)}
         </p>
 
         {episode.excerpt && (
-          <p className="mt-5 line-clamp-3 max-w-xl text-base leading-relaxed text-ink/65">
+          <p className="mt-5 line-clamp-3 max-w-xl text-base leading-relaxed text-ink/80">
             {episode.excerpt}
           </p>
         )}
@@ -63,7 +63,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         <Link
           to="/podcast/$slug"
           params={{ slug }}
-          className="eyebrow mt-8 inline-flex items-center gap-3 text-ink"
+          className="eyebrow mt-8 inline-flex items-center gap-3 font-semibold tracking-[0.24em] text-ink"
         >
           <span className="flex size-9 items-center justify-center rounded-full bg-ink text-cream">
             <Play className="size-3.5 translate-x-px" aria-hidden />
