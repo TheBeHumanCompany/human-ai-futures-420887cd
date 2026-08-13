@@ -13,8 +13,6 @@ import {
 } from "@/lib/podcast/degraded-status";
 import { toBrowsable, type EpisodeListItem } from "@/lib/podcast/episode";
 import { fetchEpisodeList } from "@/lib/podcast/queries";
-import { ALL_TOPICS, filterByTopic, topicFacets } from "@/lib/podcast/topic-filter";
-import { cn } from "@/lib/utils";
 
 /** Rows rendered before "View all episodes". */
 const PAGE_SIZE = 9;
@@ -59,24 +57,21 @@ export const Route = createFileRoute("/podcast")({
 function Podcast() {
   const { episodes } = Route.useLoaderData();
   const [browse, setBrowse] = useState(DEFAULT_BROWSE_STATE);
-  const [topic, setTopic] = useState<string>(ALL_TOPICS);
 
   // Filtering is client-side and deliberately so: the catalogue is already in
   // memory, so a round-trip per keystroke would be slower and no more correct.
   const browsable = useMemo(() => episodes.map((episode: EpisodeListItem) => toBrowsable(episode)), [episodes]);
-  const searched = useMemo(
+  const visible = useMemo(
     () => browseEpisodes<(typeof browsable)[number]>(browsable, browse),
     [browsable, browse],
   );
-  const visible = useMemo(() => filterByTopic(searched, topic), [searched, topic]);
-  const facets = useMemo(() => topicFacets(episodes), [episodes]);
 
   const [shown, setShown] = useState(PAGE_SIZE);
-  useEffect(() => setShown(PAGE_SIZE), [browse, topic]);
+  useEffect(() => setShown(PAGE_SIZE), [browse]);
 
   const featured = visible[0]?.source;
   const rest = visible.slice(1, 1 + shown);
-  const filtered = browse.query.trim() !== "" || topic !== ALL_TOPICS;
+  const filtered = browse.query.trim() !== "";
 
   return (
     <>
@@ -136,32 +131,6 @@ function Podcast() {
               )}
             </div>
 
-            <div
-              role="group"
-              aria-label="Filter episodes by topic"
-              className="-mx-5 flex snap-x gap-2 overflow-x-auto px-5 pb-1 lg:mx-0 lg:flex-wrap lg:justify-end lg:overflow-visible lg:px-0"
-            >
-              {[{ id: ALL_TOPICS, name: "All episodes" }, ...facets].map((facet) => {
-                const selected = topic === facet.id;
-                return (
-                  <button
-                    key={facet.id}
-                    type="button"
-                    aria-pressed={selected}
-                    onClick={() => setTopic(facet.id)}
-                    className={cn(
-                      "eyebrow shrink-0 snap-start whitespace-nowrap rounded-full border px-4 py-2.5 transition-colors",
-                      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink",
-                      selected
-                        ? "border-ink bg-ink text-cream"
-                        : "border-hairline-dark text-ink/60 hover:border-ink hover:text-ink",
-                    )}
-                  >
-                    {facet.name}
-                  </button>
-                );
-              })}
-            </div>
           </div>
 
           {/* ---- Featured + grid ---- */}
@@ -173,14 +142,11 @@ function Podcast() {
           ) : visible.length === 0 ? (
             <div className="mt-12 border-t border-hairline-dark pt-10">
               <p className="max-w-md text-lg leading-relaxed text-ink/60">
-                No episodes match{browse.query ? ` “${browse.query}”` : " that filter"}.
+                No episodes match{browse.query ? ` “${browse.query}”` : " that search"}.
               </p>
               <button
                 type="button"
-                onClick={() => {
-                  setBrowse(DEFAULT_BROWSE_STATE);
-                  setTopic(ALL_TOPICS);
-                }}
+                onClick={() => setBrowse(DEFAULT_BROWSE_STATE)}
                 className="eyebrow link-underline mt-4 text-ink"
               >
                 Clear filters
