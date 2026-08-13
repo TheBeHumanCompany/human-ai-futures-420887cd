@@ -235,6 +235,11 @@
   color: var(--lime);
 }
 
+/* Lime that stays legible on the cream side (CTA arrows). */
+@utility text-lime-dark {
+  color: oklch(0.62 0.16 118);
+}
+
 /* Condensed editorial headline weight for podcast titles */
 @utility display-strong {
   font-family: var(--font-display);
