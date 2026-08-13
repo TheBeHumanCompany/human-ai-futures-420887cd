@@ -21,6 +21,11 @@ import guestEp24 from "@/assets/guest-ep24.png.asset.json";
 import guestEp23 from "@/assets/guest-ep23.png.asset.json";
 import guestEp22 from "@/assets/guest-ep22.png.asset.json";
 import guestEp21 from "@/assets/guest-ep21.png.asset.json";
+import guestEp20 from "@/assets/guest-ep20.png.asset.json";
+import guestEp19 from "@/assets/guest-ep19.png.asset.json";
+import guestEp18 from "@/assets/guest-ep18.png.asset.json";
+import guestEp17 from "@/assets/guest-ep17.webp.asset.json";
+import guestEp16 from "@/assets/guest-ep16.webp.asset.json";
 import { imageUrl } from "@/lib/sanity/image";
 import type { EpisodeListItem } from "./episode";
 
