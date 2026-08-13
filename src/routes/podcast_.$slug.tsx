@@ -14,7 +14,6 @@ import { selectRelatedEpisodes } from "@/lib/podcast/related";
 import { buildEpisodeJsonLd, buildEpisodeMeta } from "@/lib/podcast/seo";
 import { showNoteParagraphs } from "@/lib/podcast/show-notes";
 
-
 /**
  * One episode, at a permanent URL — and the single template every episode uses.
  *
@@ -137,8 +136,6 @@ function displayTitle(title: string): string {
   // form spells the GROQ root-filter token the layering test bans under routes.
 
   return title.replace(/^\s*episode\s*#?\d+\s*?[:\-–—]\s*/i, "");
-
-
 }
 
 function EpisodePage() {
@@ -148,7 +145,6 @@ function EpisodePage() {
   // promotional tail ("Mobile viewers…", hashtags, "Listen on:") is never shown.
   const body = showNoteParagraphs(episode.description);
 
-
   return (
     <>
       {/* ---- Hero: cream editorial column + full-bleed image ---- */}
@@ -156,9 +152,11 @@ function EpisodePage() {
         <div className="grid lg:grid-cols-2">
           <div className="order-1 flex flex-col justify-center px-5 py-12 sm:px-8 lg:py-20 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-16">
             {episode.episodeNumber !== null && (
-              <p className="eyebrow text-ink/50">Episode {episode.episodeNumber}</p>
+              <span className="eyebrow w-fit bg-lime px-2.5 py-1 text-ink">
+                Episode {episode.episodeNumber}
+              </span>
             )}
-            <h1 className="mt-5 font-display text-[clamp(2rem,5vw,3.35rem)] font-medium leading-[1.08] tracking-[0.005em] text-ink">
+            <h1 className="mt-5 border-l-4 border-lime pl-4 font-display text-[clamp(2rem,5vw,3.35rem)] font-medium leading-[1.08] tracking-[0.005em] text-ink">
               {displayTitle(episode.title)}
             </h1>
             <p className="eyebrow mt-6 text-ink/50">
@@ -186,7 +184,10 @@ function EpisodePage() {
               rel="noopener noreferrer"
             >
               Listen or Watch Full Episode
-              <span aria-hidden className="text-lime transition-transform group-hover:translate-x-1">
+              <span
+                aria-hidden
+                className="text-lime transition-transform group-hover:translate-x-1"
+              >
                 →
               </span>
             </a>
@@ -212,7 +213,7 @@ function EpisodePage() {
 
             {episode.guestName && (
               <div className="lg:border-l lg:border-hairline-dark lg:pl-16">
-                <p className="section-label section-label-light text-xs">Meet the guest</p>
+                <p className="section-label section-label-dark text-sm">Meet the guest</p>
                 <h2 className="mt-4 font-display text-[clamp(1.6rem,3vw,2.1rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                   {episode.guestName}
                 </h2>
@@ -234,7 +235,10 @@ function EpisodePage() {
                   to="/podcast"
                   className="eyebrow link-underline inline-flex items-center gap-2 text-ink/70 hover:text-ink"
                 >
-                  View all episodes <span aria-hidden className="text-lime">→</span>
+                  View all episodes{" "}
+                  <span aria-hidden className="text-lime">
+                    →
+                  </span>
                 </Link>
               </div>
               <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
@@ -250,7 +254,9 @@ function EpisodePage() {
                         {displayTitle(item.title)}
                       </span>
                       {item.guestName && (
-                        <span className="mt-1 block text-sm text-ink/55">With {item.guestName}</span>
+                        <span className="mt-1 block text-sm text-ink/55">
+                          With {item.guestName}
+                        </span>
                       )}
                     </Link>
                   </li>
@@ -258,7 +264,6 @@ function EpisodePage() {
               </ul>
             </div>
           )}
-
         </div>
       </section>
     </>
