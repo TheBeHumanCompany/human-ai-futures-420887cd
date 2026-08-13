@@ -34,7 +34,7 @@ export function episodeMeta(episode: EpisodeListItem): string {
 }
 
 /**
- * One episode in the grid: portrait left, text right, compact enough to scan.
+ * One episode in the grid: a single bordered horizontal card.
  *
  * The whole card is a `<Link>` — there is no audio player inside it, so there
  * is no nested interactive content to guard against. Playback lives on the
@@ -44,13 +44,13 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
   const slug = episode.slug.current;
 
   return (
-    <li className="group">
+    <li className="group h-full">
       <Link
         to="/podcast/$slug"
         params={{ slug }}
-        className="flex h-full gap-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+        className="flex h-full min-h-[10rem] overflow-hidden rounded-md border border-hairline-dark bg-cream focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
       >
-        <div className="relative aspect-[3/4] w-[38%] shrink-0 overflow-hidden bg-ink/10">
+        <div className="relative w-[38%] shrink-0 overflow-hidden bg-ink/10">
           <img
             src={episodeImage(episode, 600)}
             alt=""
@@ -62,16 +62,18 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
           </span>
         </div>
 
-        <div className="flex min-w-0 flex-1 flex-col">
-          <p className="eyebrow font-semibold tracking-[0.15em] text-lime-ink">{episodeMeta(episode)}</p>
-          <h3 className="display mt-3 text-[1.25rem] leading-[1.18] text-ink">
+        <div className="flex min-w-0 flex-1 flex-col p-5">
+          <p className="eyebrow font-semibold tracking-[0.15em] text-lime-ink">
+            {episodeMeta(episode)}
+          </p>
+          <h3 className="display mt-3 text-[1.2rem] leading-[1.18] text-ink">
             {displayTitle(episode.title)}
           </h3>
           {episode.guestName && (
-            <p className="mt-3 text-sm text-ink/65">With {episode.guestName}</p>
+            <p className="mt-2 text-sm text-ink/65">With {episode.guestName}</p>
           )}
-          <p className="mt-2 text-sm text-ink/50">{publishedOn(episode.publishedAt)}</p>
-          <span className="eyebrow mt-auto pt-6 inline-flex items-center gap-2 text-ink">
+          <p className="mt-1.5 text-sm text-ink/50">{publishedOn(episode.publishedAt)}</p>
+          <span className="eyebrow mt-auto inline-flex items-center gap-2 pt-4 text-ink">
             Listen <span aria-hidden>→</span>
           </span>
         </div>
