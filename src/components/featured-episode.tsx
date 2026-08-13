@@ -41,7 +41,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
       </Link>
 
       <div className="flex flex-col justify-center px-6 py-8 sm:px-10 lg:px-14 lg:py-12">
-        <p className="eyebrow font-semibold tracking-[0.15em] text-lime">{episodeMeta(episode)}</p>
+        <p className="eyebrow font-semibold tracking-[0.15em] text-lime-ink">{episodeMeta(episode)}</p>
 
         <h3 className="display mt-4 max-w-[22ch] text-[clamp(1.5rem,2.2vw,2rem)] leading-[1.16] text-ink">
           <Link to="/podcast/$slug" params={{ slug }} className="hover:text-ink/70">

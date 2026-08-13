@@ -63,7 +63,7 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <p className="eyebrow font-semibold tracking-[0.15em] text-lime">{episodeMeta(episode)}</p>
+          <p className="eyebrow font-semibold tracking-[0.15em] text-lime-ink">{episodeMeta(episode)}</p>
           <h3 className="display mt-3 text-[1.25rem] leading-[1.18] text-ink">
             {displayTitle(episode.title)}
           </h3>
