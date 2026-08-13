@@ -27,10 +27,28 @@ export function displayTitle(title: string): string {
   return title.replace(/^\s*episode\s*#?\d+\s*[:\-–—]\s*/i, "");
 }
 
+/** "EPISODE 39" — the highlighted portion of the metadata line. */
+export function episodeNumber(episode: EpisodeListItem): string {
+  return episode.episodeNumber !== null ? `Episode ${episode.episodeNumber}` : "Episode";
+}
+
+/** "45 MIN" — the neutral duration portion of the metadata line. */
+export function episodeDuration(episode: EpisodeListItem): string {
+  return formatDuration(episode.durationSeconds);
+}
+
 /** "EPISODE 39 · 45 MIN" — the one metadata line shared by every card. */
 export function episodeMeta(episode: EpisodeListItem): string {
-  const number = episode.episodeNumber !== null ? `Episode ${episode.episodeNumber}` : "Episode";
-  return `${number} · ${formatDuration(episode.durationSeconds)}`;
+  return `${episodeNumber(episode)} · ${episodeDuration(episode)}`;
+}
+
+/** Compact lime editorial tag for an episode number. */
+export function EpisodeNumberTag({ episode }: { episode: EpisodeListItem }) {
+  return (
+    <span className="inline-block bg-lime px-2 py-0.5 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
+      {episodeNumber(episode)}
+    </span>
+  );
 }
 
 /**
