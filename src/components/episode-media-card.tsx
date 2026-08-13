@@ -42,12 +42,19 @@ export function episodeMeta(episode: EpisodeListItem): string {
   return `${episodeNumber(episode)} · ${episodeDuration(episode)}`;
 }
 
-/** Compact lime editorial tag for an episode number. */
+/** Episode number, rendered inside the shared lime metadata stamp. */
 export function EpisodeNumberTag({ episode }: { episode: EpisodeListItem }) {
+  return <span>{episodeNumber(episode)}</span>;
+}
+
+/** "EPISODE 39 · 46 MIN" as one small lime editorial stamp. */
+export function EpisodeMetaStamp({ episode }: { episode: EpisodeListItem }) {
   return (
-    <span className="inline-block bg-lime px-2 py-0.5 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
-      {episodeNumber(episode)}
-    </span>
+    <p className="inline-flex items-center gap-1.5 bg-lime px-2 py-1 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
+      <EpisodeNumberTag episode={episode} />
+      <span aria-hidden>·</span>
+      <span>{episodeDuration(episode)}</span>
+    </p>
   );
 }
 
@@ -81,12 +88,8 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col p-5">
-          <p className="flex items-center gap-2 text-sm text-ink/70">
-            <EpisodeNumberTag episode={episode} />
-            <span aria-hidden>·</span>
-            <span className="eyebrow font-semibold tracking-[0.12em]">{episodeDuration(episode)}</span>
-          </p>
-          <h3 className="display-strong mt-3 text-[1.2rem] leading-[1.18] text-ink">
+          <EpisodeMetaStamp episode={episode} />
+          <h3 className="display mt-3 text-[1.15rem] font-semibold leading-[1.18] text-ink">
             {displayTitle(episode.title)}
           </h3>
           {episode.guestName && (
@@ -94,7 +97,7 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
           )}
           <p className="mt-1.5 text-sm text-ink/80">{publishedOn(episode.publishedAt)}</p>
           <span className="eyebrow mt-auto inline-flex items-center gap-2 pt-4 font-semibold tracking-[0.24em] text-ink">
-            Listen <span aria-hidden>→</span>
+            Listen <span aria-hidden className="text-lime-dark">→</span>
           </span>
         </div>
       </Link>

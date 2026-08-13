@@ -77,39 +77,24 @@ function Podcast() {
     <>
       {/* ---- Hero ---- */}
       <section className="section-ink grain border-b border-border">
-        <div className="mx-auto grid max-w-[1500px] items-center gap-10 px-5 py-16 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] md:gap-12 lg:py-24">
+        <div className="mx-auto grid max-w-[1500px] items-center gap-8 px-5 py-10 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:gap-10 lg:py-12">
           <div>
-            <h1 className="display text-[clamp(2.8rem,8.5vw,6rem)] leading-[0.9]">
+            <h1 className="display text-[clamp(2.4rem,6.5vw,4.6rem)] leading-[0.92]">
               The people-
               <br />
               driven CEO
               <br />
               <span className="text-lime">Podcast</span>
             </h1>
-            <p className="mt-8 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
               Conversations on leadership, AI, culture, and building organizations where humanity
               becomes the competitive advantage.
             </p>
-          </div>
 
-          <img
-            src={podcastImage}
-            alt="Studio condenser microphone lit warmly in a dark recording room"
-            width={1400}
-            height={1050}
-            className="aspect-[4/3] w-full object-cover md:aspect-[5/4]"
-          />
-        </div>
-      </section>
-
-      {/* ---- Discovery ---- */}
-      <section id="episodes" className="section-cream">
-        <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 lg:py-16">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="relative w-full lg:max-w-[28rem] xl:max-w-[32rem]">
+            <div className="relative mt-6 w-full max-w-[34rem]">
               <Search
                 aria-hidden
-                className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink/40"
+                className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink/50"
               />
               <input
                 type="search"
@@ -117,38 +102,34 @@ function Podcast() {
                 onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
                 placeholder="Search episodes, guests, or topics"
                 aria-label="Search episodes, guests, or topics"
-                className="w-full rounded-full border border-hairline-dark bg-transparent py-3 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/40 focus-visible:border-ink"
+                className="w-full rounded-full border border-cream/20 bg-cream py-3 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/50 focus-visible:border-lime"
               />
               {browse.query && (
                 <button
                   type="button"
                   onClick={() => setBrowse((s) => ({ ...s, query: "" }))}
                   aria-label="Clear search"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-ink/40 hover:text-ink"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-ink/50 hover:text-ink"
                 >
                   <X className="size-4" aria-hidden />
                 </button>
               )}
             </div>
-
-            <label className="flex items-center gap-3 text-sm text-ink">
-              <span className="eyebrow text-ink/70">Sort by</span>
-              <select
-                value={browse.sort}
-                onChange={(event) =>
-                  setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
-                }
-                className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm font-semibold text-ink outline-none focus-visible:border-ink"
-              >
-                {SORT_OPTIONS.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </label>
           </div>
 
+          <img
+            src={podcastImage}
+            alt="Studio condenser microphone lit warmly in a dark recording room"
+            width={1400}
+            height={1050}
+            className="aspect-[4/3] w-full object-cover md:aspect-[5/4] md:max-h-[26rem]"
+          />
+        </div>
+      </section>
+
+      {/* ---- Discovery ---- */}
+      <section id="episodes" className="section-cream">
+        <div className="mx-auto max-w-[1500px] px-5 py-8 sm:px-8 lg:py-10">
           {/* ---- Featured + grid ---- */}
           {episodes.length === 0 ? (
             <p className="mt-12 max-w-md text-lg leading-relaxed text-ink/60">
@@ -170,13 +151,9 @@ function Podcast() {
             </div>
           ) : (
             <>
-              {featured && (
-                <div className="mt-10 lg:mt-12">
-                  <FeaturedEpisode episode={featured} />
-                </div>
-              )}
+              {featured && <FeaturedEpisode episode={featured} />}
 
-              <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-hairline-dark pt-6">
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-hairline-dark pt-5">
                 <h2 className="section-label section-label-light text-sm">All episodes</h2>
                 <div className="flex flex-wrap items-center gap-4">
                   <span className="eyebrow font-semibold tracking-[0.16em] text-ink" aria-live="polite">
@@ -202,7 +179,7 @@ function Podcast() {
                 </div>
               </div>
 
-              <ul className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="mt-8 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
                 {rest.map((row) => (
                   <EpisodeMediaCard key={row.source.slug.current} episode={row.source} />
                 ))}
