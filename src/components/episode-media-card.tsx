@@ -81,8 +81,10 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col p-5">
-          <p className="eyebrow font-semibold tracking-[0.15em] text-lime-ink opacity-100">
-            {episodeMeta(episode)}
+          <p className="flex items-center gap-2 text-sm text-ink/70">
+            <EpisodeNumberTag episode={episode} />
+            <span aria-hidden>·</span>
+            <span className="eyebrow font-semibold tracking-[0.12em]">{episodeDuration(episode)}</span>
           </p>
           <h3 className="display-strong mt-3 text-[1.2rem] leading-[1.18] text-ink">
             {displayTitle(episode.title)}
