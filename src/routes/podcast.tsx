@@ -106,7 +106,7 @@ function Podcast() {
       <section id="episodes" className="section-cream">
         <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 lg:py-16">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="relative w-full lg:max-w-xs">
+            <div className="relative w-full lg:max-w-[28rem] xl:max-w-[32rem]">
               <Search
                 aria-hidden
                 className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink/40"
