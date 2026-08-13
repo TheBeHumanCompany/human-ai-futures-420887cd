@@ -156,9 +156,11 @@ function EpisodePage() {
         <div className="grid lg:grid-cols-2">
           <div className="order-1 flex flex-col justify-center px-5 py-12 sm:px-8 lg:py-20 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-16">
             {episode.episodeNumber !== null && (
-              <p className="eyebrow text-ink/50">Episode {episode.episodeNumber}</p>
+              <span className="eyebrow w-fit bg-lime px-2.5 py-1 text-ink">
+                Episode {episode.episodeNumber}
+              </span>
             )}
-            <h1 className="mt-5 font-display text-[clamp(2rem,5vw,3.35rem)] font-medium leading-[1.08] tracking-[0.005em] text-ink">
+            <h1 className="mt-5 border-l-4 border-lime pl-4 font-display text-[clamp(2rem,5vw,3.35rem)] font-medium leading-[1.08] tracking-[0.005em] text-ink">
               {displayTitle(episode.title)}
             </h1>
             <p className="eyebrow mt-6 text-ink/50">
