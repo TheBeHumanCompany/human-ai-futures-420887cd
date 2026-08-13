@@ -115,8 +115,8 @@ function Podcast() {
                 type="search"
                 value={browse.query}
                 onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
-                placeholder="Search episodes, guests, or keywords"
-                aria-label="Search episodes, guests, or keywords"
+                placeholder="Search episodes, guests, or topics"
+                aria-label="Search episodes, guests, or topics"
                 className="w-full rounded-full border border-hairline-dark bg-transparent py-3 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/40 focus-visible:border-ink"
               />
               {browse.query && (
@@ -176,12 +176,29 @@ function Podcast() {
                 </div>
               )}
 
-              <div className="mt-14 flex flex-wrap items-baseline justify-between gap-4 border-t border-hairline-dark pt-6">
+              <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-hairline-dark pt-6">
                 <h2 className="section-label section-label-light text-sm">All episodes</h2>
-                <div className="flex items-baseline gap-4">
+                <div className="flex flex-wrap items-center gap-4">
                   <span className="eyebrow font-medium tracking-[0.16em] text-ink/70" aria-live="polite">
                     {filtered ? `${visible.length} of ${episodes.length}` : `${episodes.length} episodes`}
                   </span>
+                  <span aria-hidden className="h-4 w-px bg-hairline-dark" />
+                  <label className="flex items-center gap-3 text-sm text-ink/60">
+                    <span className="eyebrow text-ink/60">Sort by</span>
+                    <select
+                      value={browse.sort}
+                      onChange={(event) =>
+                        setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
+                      }
+                      className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm text-ink outline-none focus-visible:border-ink"
+                    >
+                      {SORT_OPTIONS.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
                 </div>
               </div>
 
