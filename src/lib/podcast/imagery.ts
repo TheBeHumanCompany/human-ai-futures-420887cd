@@ -2,8 +2,32 @@ import studioA from "@/assets/podcast.jpg";
 import studioB from "@/assets/podcast-still-1.jpg";
 import studioC from "@/assets/podcast-still-2.jpg";
 import studioD from "@/assets/podcast-still-3.jpg";
+import guestEp38 from "@/assets/guest-ep38.png.asset.json";
+import guestEp37 from "@/assets/guest-ep37.png.asset.json";
+import guestEp36 from "@/assets/guest-ep36.png.asset.json";
+import guestEp35 from "@/assets/guest-ep35.png.asset.json";
+import guestEp34 from "@/assets/guest-ep34.png.asset.json";
+import guestEp33 from "@/assets/guest-ep33.png.asset.json";
 import { imageUrl } from "@/lib/sanity/image";
 import type { EpisodeListItem } from "./episode";
+
+/**
+ * Supplied guest portraits, keyed by episode number. These are real, already
+ * edited photographs of the guest, so they outrank every other source.
+ */
+const GUEST_PORTRAITS: Record<number, string> = {
+  38: guestEp38.url,
+  37: guestEp37.url,
+  36: guestEp36.url,
+  35: guestEp35.url,
+  34: guestEp34.url,
+  33: guestEp33.url,
+};
+
+function suppliedPortrait(episode: Pick<EpisodeListItem, "episodeNumber">): string | null {
+  return episode.episodeNumber !== null ? (GUEST_PORTRAITS[episode.episodeNumber] ?? null) : null;
+}
+
 
 /**
  * Which photograph an episode surface shows, decided in one place.
@@ -34,9 +58,10 @@ function shareCardRef(episode: EpisodeListItem): string | null {
   return (episode as { shareCard?: string | null }).shareCard ?? null;
 }
 
-/** Grid/card imagery: episode artwork, then its share card, then a still. */
+/** Grid/card imagery: supplied portrait, artwork, share card, then a still. */
 export function episodeImage(episode: EpisodeListItem, width = 1200): string {
   return (
+    suppliedPortrait(episode) ??
     imageUrl(episode.coverArtwork, { width, fit: "crop" }) ??
     imageUrl(shareCardRef(episode), { width, fit: "crop" }) ??
     studioStill(episode)
@@ -55,8 +80,12 @@ export function episodeHeroImage(episode: EpisodeListItem): {
   src: string;
   isPortrait: boolean;
 } {
+  const supplied = suppliedPortrait(episode);
+  if (supplied) return { src: supplied, isPortrait: true };
+
   const portrait = imageUrl(episode.guestPhoto, { width: 1400, height: 1700, fit: "crop" });
   if (portrait) return { src: portrait, isPortrait: true };
+
 
   const artwork = imageUrl(episode.coverArtwork, { width: 1400, height: 1700, fit: "crop" });
   if (artwork) return { src: artwork, isPortrait: false };
