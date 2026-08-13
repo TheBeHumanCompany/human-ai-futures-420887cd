@@ -5,6 +5,7 @@ import {
   displayTitle,
   episodeDuration,
   episodeImage,
+  EpisodeMetaStamp,
   EpisodeNumberTag,
   publishedOn,
 } from "@/components/episode-media-card";
