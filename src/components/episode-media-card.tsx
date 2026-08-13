@@ -27,10 +27,28 @@ export function displayTitle(title: string): string {
   return title.replace(/^\s*episode\s*#?\d+\s*[:\-–—]\s*/i, "");
 }
 
+/** "EPISODE 39" — the highlighted portion of the metadata line. */
+export function episodeNumber(episode: EpisodeListItem): string {
+  return episode.episodeNumber !== null ? `Episode ${episode.episodeNumber}` : "Episode";
+}
+
+/** "45 MIN" — the neutral duration portion of the metadata line. */
+export function episodeDuration(episode: EpisodeListItem): string {
+  return formatDuration(episode.durationSeconds);
+}
+
 /** "EPISODE 39 · 45 MIN" — the one metadata line shared by every card. */
 export function episodeMeta(episode: EpisodeListItem): string {
-  const number = episode.episodeNumber !== null ? `Episode ${episode.episodeNumber}` : "Episode";
-  return `${number} · ${formatDuration(episode.durationSeconds)}`;
+  return `${episodeNumber(episode)} · ${episodeDuration(episode)}`;
+}
+
+/** Compact lime editorial tag for an episode number. */
+export function EpisodeNumberTag({ episode }: { episode: EpisodeListItem }) {
+  return (
+    <span className="inline-block bg-lime px-2 py-0.5 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
+      {episodeNumber(episode)}
+    </span>
+  );
 }
 
 /**
@@ -63,8 +81,10 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col p-5">
-          <p className="eyebrow font-semibold tracking-[0.15em] text-lime-ink opacity-100">
-            {episodeMeta(episode)}
+          <p className="flex items-center gap-2 text-sm text-ink/70">
+            <EpisodeNumberTag episode={episode} />
+            <span aria-hidden>·</span>
+            <span className="eyebrow font-semibold tracking-[0.12em]">{episodeDuration(episode)}</span>
           </p>
           <h3 className="display-strong mt-3 text-[1.2rem] leading-[1.18] text-ink">
             {displayTitle(episode.title)}

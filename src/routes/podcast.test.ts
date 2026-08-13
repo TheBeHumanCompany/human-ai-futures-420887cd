@@ -71,7 +71,7 @@ describe("cards are image-forward and link to the episode", () => {
 
   test("the featured episode carries a prominent image and its own CTA", () => {
     expect(FEATURED).toContain("<img");
-    expect(FEATURED).toContain("Featured episode");
+    expect(FEATURED).toContain("Latest episode");
     expect(FEATURED).toContain("Listen to episode");
   });
 });
@@ -143,9 +143,11 @@ describe("episode numbers live in metadata, never in the title", () => {
     expect(FEATURED).toContain("displayTitle");
   });
 
-  test("the metadata line pairs number and duration", () => {
-    expect(CARD).toContain("episodeMeta");
-    expect(FEATURED).toContain("episodeMeta");
+  test("the metadata line pairs a highlighted episode number with a neutral duration", () => {
+    expect(CARD).toContain("EpisodeNumberTag");
+    expect(CARD).toContain("episodeDuration");
+    expect(FEATURED).toContain("EpisodeNumberTag");
+    expect(FEATURED).toContain("episodeDuration");
   });
 });
 

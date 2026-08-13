@@ -3,8 +3,9 @@ import { Play } from "lucide-react";
 
 import {
   displayTitle,
+  episodeDuration,
   episodeImage,
-  episodeMeta,
+  EpisodeNumberTag,
   publishedOn,
 } from "@/components/episode-media-card";
 import type { EpisodeListItem } from "@/lib/podcast/episode";
@@ -32,8 +33,8 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
           alt=""
           className="size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
-        <span className="eyebrow absolute left-4 top-4 bg-ink px-3 py-2 text-lime">
-          Featured episode
+        <span className="absolute left-4 top-4 bg-lime px-2.5 py-1.5 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
+          Latest episode
         </span>
         <span className="absolute bottom-5 left-5 flex size-12 items-center justify-center rounded-full border border-cream/80 text-cream transition-colors group-hover:bg-lime group-hover:text-ink">
           <Play className="size-4 translate-x-px" aria-hidden />
@@ -41,7 +42,11 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
       </Link>
 
       <div className="flex flex-col justify-center px-6 py-8 sm:px-10 lg:px-14 lg:py-10">
-        <p className="eyebrow font-semibold tracking-[0.15em] text-lime-ink">{episodeMeta(episode)}</p>
+        <p className="flex items-center gap-2 text-sm text-ink/70">
+          <EpisodeNumberTag episode={episode} />
+          <span aria-hidden>·</span>
+          <span className="eyebrow font-semibold tracking-[0.12em]">{episodeDuration(episode)}</span>
+        </p>
 
         <h3 className="display-strong mt-6 max-w-[22ch] text-[clamp(1.35rem,1.95vw,1.8rem)] leading-[1.16] text-ink">
           <Link to="/podcast/$slug" params={{ slug }} className="hover:text-ink/70">
