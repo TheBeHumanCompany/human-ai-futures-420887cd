@@ -3,8 +3,9 @@ import { Play } from "lucide-react";
 
 import {
   displayTitle,
+  episodeDuration,
   episodeImage,
-  episodeMeta,
+  EpisodeNumberTag,
   publishedOn,
 } from "@/components/episode-media-card";
 import type { EpisodeListItem } from "@/lib/podcast/episode";
