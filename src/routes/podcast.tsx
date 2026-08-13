@@ -179,7 +179,7 @@ function Podcast() {
                 </div>
               </div>
 
-              <ul className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="mt-8 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
                 {rest.map((row) => (
                   <EpisodeMediaCard key={row.source.slug.current} episode={row.source} />
                 ))}
