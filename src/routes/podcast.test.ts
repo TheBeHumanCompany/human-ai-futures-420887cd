@@ -4,7 +4,6 @@ import path from "node:path";
 
 import { DEGRADED_SOURCE_HEADER } from "@/lib/podcast/degraded-status";
 import { toBrowsable, type EpisodeListItem } from "@/lib/podcast/episode";
-import { ALL_TOPICS, filterByTopic, topicFacets } from "@/lib/podcast/topic-filter";
 import { browseEpisodes, DEFAULT_BROWSE_STATE } from "@/lib/podbean";
 import { Route } from "./podcast";
 
@@ -124,31 +123,29 @@ describe("search still drives the directory; length filtering is gone", () => {
   });
 });
 
-describe("topic filters replace length categories", () => {
-  test("facets are derived from real episode topics, most common first", () => {
-    const lead = { _id: "topic-leadership", name: "Leadership" };
-    const ai = { _id: "topic-ai", name: "AI & Tech" };
-    const episodes = [
-      episode("a", { topics: [lead] }),
-      episode("b", { topics: [lead, ai] }),
-      episode("c", { topics: null }),
-    ];
-
-    expect(topicFacets(episodes).map((f) => f.name)).toEqual(["Leadership", "AI & Tech"]);
+describe("no topic or length filtering survives on the directory", () => {
+  test("the route renders neither topic pills nor duration buckets", () => {
+    expect(ROUTE).not.toContain("topicFacets");
+    expect(ROUTE).not.toContain("filterByTopic");
+    expect(ROUTE).not.toContain("All episodes\"");
+    expect(ROUTE).not.toContain("DURATION_OPTIONS");
   });
 
-  test("filtering by a topic keeps only episodes carrying it; all passes through", () => {
-    const lead = { _id: "topic-leadership", name: "Leadership" };
-    const rows = [episode("a", { topics: [lead] }), episode("b")].map(toBrowsable);
+  test("search and sort remain the only discovery controls", () => {
+    expect(ROUTE).toContain("browseEpisodes");
+    expect(ROUTE).toContain("SORT_OPTIONS");
+  });
+});
 
-    expect(filterByTopic(rows, "topic-leadership").map((r) => r.source.slug.current)).toEqual(["a"]);
-    expect(filterByTopic(rows, ALL_TOPICS)).toHaveLength(2);
+describe("episode numbers live in metadata, never in the title", () => {
+  test("both card surfaces strip the feed's Episode N prefix", () => {
+    expect(CARD).toContain("displayTitle");
+    expect(FEATURED).toContain("displayTitle");
   });
 
-  test("the route wires the topic filter up", () => {
-    expect(ROUTE).toContain("topicFacets");
-    expect(ROUTE).toContain("filterByTopic");
-    expect(ROUTE).toContain("All episodes");
+  test("the metadata line pairs number and duration", () => {
+    expect(CARD).toContain("episodeMeta");
+    expect(FEATURED).toContain("episodeMeta");
   });
 });
 
@@ -163,8 +160,8 @@ describe("incremental render", () => {
     expect(ROUTE).toContain("shown + 1 < visible.length");
   });
 
-  test("the window resets when the query or topic changes", () => {
-    expect(ROUTE).toContain("setShown(PAGE_SIZE), [browse, topic]");
+  test("the window resets when the query changes", () => {
+    expect(ROUTE).toContain("setShown(PAGE_SIZE), [browse]");
   });
 });
 
