@@ -151,13 +151,9 @@ function Podcast() {
             </div>
           ) : (
             <>
-              {featured && (
-                <div className="mt-10 lg:mt-12">
-                  <FeaturedEpisode episode={featured} />
-                </div>
-              )}
+              {featured && <FeaturedEpisode episode={featured} />}
 
-              <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-hairline-dark pt-6">
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-hairline-dark pt-5">
                 <h2 className="section-label section-label-light text-sm">All episodes</h2>
                 <div className="flex flex-wrap items-center gap-4">
                   <span className="eyebrow font-semibold tracking-[0.16em] text-ink" aria-live="polite">
