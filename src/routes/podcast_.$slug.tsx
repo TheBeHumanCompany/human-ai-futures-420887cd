@@ -214,7 +214,10 @@ function EpisodePage() {
       <section className="section-cream">
         <div className="grid lg:grid-cols-2">
           <div className="px-5 pt-12 pb-6 sm:px-8 lg:pb-12 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-10">
-            <p className="section-label section-label-dark text-sm">Episode summary</p>
+            {/* Both column headings share ONE class string, deliberately: the
+                brief is that "Episode summary" and "Meet the guest" always
+                match. Any divergence here is a bug, not a variant. */}
+            <p className={SECTION_HEADING}>Episode summary</p>
             {body.length > 0 && (
               <div className="mt-3 max-w-[58ch] space-y-3 text-[1.0625rem] leading-[1.55] text-ink/80">
                 {body.map((paragraph: string) => (
