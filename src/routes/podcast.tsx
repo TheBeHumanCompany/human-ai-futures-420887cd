@@ -160,10 +160,10 @@ function Podcast() {
             <>
               {featured && <FeaturedEpisode episode={featured} />}
 
-              {/* Search first, then the heading, then the archive controls. No
-                  top border: it stacked against the featured card's own frame
-                  and read as a double line. */}
-              <div ref={archiveRef} className="mt-16 scroll-mt-24 lg:mt-20">
+              {/* Archive discovery: generous breathing room after the featured
+                  card, then search, then the "More episodes" heading, then the
+                  count/sort row, then the grid. */}
+              <div ref={archiveRef} className="mt-20 scroll-mt-24 lg:mt-28">
                 <div className="relative w-full max-w-[32rem]">
                   <Search
                     aria-hidden
@@ -189,9 +189,9 @@ function Podcast() {
                   )}
                 </div>
 
-                <h2 className="section-label section-label-light mt-8 text-sm">More episodes</h2>
+                <h2 className="section-label section-label-light mt-10 text-sm">More episodes</h2>
 
-                <div className="mt-3 flex flex-wrap items-center gap-4">
+                <div className="mt-4 flex flex-wrap items-center gap-4">
                   <span
                     className="eyebrow font-semibold tracking-[0.16em] text-ink"
                     aria-live="polite"
