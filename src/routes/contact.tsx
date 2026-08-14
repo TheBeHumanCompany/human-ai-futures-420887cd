@@ -85,13 +85,20 @@ function Contact() {
             point of view, not a pitch deck.
           </p>
           <dl className="mt-12 space-y-4 border-t border-hairline-dark pt-6 text-sm text-ink/70">
+            {/*
+              One address, matching the footer. This page previously split into
+              ai@ for new business and hello@ for everything else, which left
+              three different company addresses across the site once the footer
+              moved to connect@ — and asked a visitor to classify their own
+              enquiry before making it.
+            */}
             <div>
-              <dt className="eyebrow text-ink/45">New business</dt>
-              <dd className="mt-1">ai@thebehumancompany.ca</dd>
-            </div>
-            <div>
-              <dt className="eyebrow text-ink/45">Everything else</dt>
-              <dd className="mt-1">hello@thebehumancompany.ca</dd>
+              <dt className="eyebrow text-ink/45">Email</dt>
+              <dd className="mt-1">
+                <a href="mailto:connect@thebehumancompany.ca" className="hover:text-ink">
+                  connect@thebehumancompany.ca
+                </a>
+              </dd>
             </div>
             <div>
               <dt className="eyebrow text-ink/45">Where we are</dt>
