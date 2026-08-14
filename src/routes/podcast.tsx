@@ -163,8 +163,10 @@ function Podcast() {
               {/* Archive discovery: generous breathing room after the featured
                   card, then search, then the "More episodes" heading, then the
                   count/sort row, then the grid. */}
-              <div ref={archiveRef} className="mt-20 scroll-mt-24 lg:mt-28">
-                <div className="relative w-full max-w-[32rem]">
+              <div ref={archiveRef} className="mt-24 scroll-mt-24 lg:mt-32">
+                <h2 className="section-label section-label-light text-sm">More episodes</h2>
+
+                <div className="relative mt-5 w-full max-w-[38rem]">
                   <Search
                     aria-hidden
                     className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink/50"
@@ -175,7 +177,7 @@ function Podcast() {
                     onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
                     placeholder="Search episodes, guests, or keywords"
                     aria-label="Search episodes, guests, or keywords"
-                    className="w-full rounded-full border border-hairline-dark bg-cream py-2 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/50 focus-visible:border-ink"
+                    className="w-full rounded-full border border-hairline-dark bg-cream py-2.5 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/50 focus-visible:border-ink"
                   />
                   {browse.query && (
                     <button
@@ -189,7 +191,6 @@ function Podcast() {
                   )}
                 </div>
 
-                <h2 className="section-label section-label-light mt-10 text-sm">More episodes</h2>
 
                 <div className="mt-4 flex flex-wrap items-center gap-4">
                   <span
