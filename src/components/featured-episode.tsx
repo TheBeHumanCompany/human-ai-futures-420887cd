@@ -35,7 +35,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
           className="size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
         <span className="absolute left-4 top-4 bg-lime px-2.5 py-1.5 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
-          Latest episode
+          Featured episode
         </span>
         <span className="absolute bottom-5 left-5 flex size-12 items-center justify-center rounded-full border border-cream/80 text-cream transition-colors group-hover:bg-lime group-hover:text-ink">
           <Play className="size-4 translate-x-px" aria-hidden />
