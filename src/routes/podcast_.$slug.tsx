@@ -156,7 +156,7 @@ function EpisodePage() {
                 Episode {episode.episodeNumber}
               </span>
             )}
-            <h1 className="mt-4 border-l-4 border-lime pl-4 font-display text-[clamp(1.75rem,4vw,2.85rem)] font-medium leading-[1.02] tracking-[0.005em] text-ink">
+            <h1 className="mt-4 border-l-4 border-lime pl-4 font-display text-[clamp(1.75rem,4vw,2.85rem)] font-medium leading-[1.04] tracking-[0.005em] text-ink">
               {displayTitle(episode.title)}
             </h1>
             <p className="eyebrow mt-4 text-ink/50">
