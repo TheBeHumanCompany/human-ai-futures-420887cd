@@ -14,6 +14,7 @@ import { PRINCIPLES } from "@/lib/content";
 import { formatDuration } from "@/lib/podbean";
 import { loadFeaturedEpisodes } from "@/lib/podcast/featured";
 import { fetchEpisodeList } from "@/lib/podcast/queries";
+import { episodeImage } from "@/lib/podcast/imagery";
 
 export const Route = createFileRoute("/")({
   /**
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/")({
    * calling a server function cannot be invoked outside the server runtime, so
    * keeping the re-throw-versus-absorb branch here would make it untestable.
    */
-  loader: () => loadFeaturedEpisodes(fetchEpisodeList),
+  loader: () => loadFeaturedEpisodes(fetchEpisodeList, 39),
 
   head: () => ({
     meta: [
@@ -51,7 +52,8 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const { featured, podcastUnavailable } = Route.useLoaderData();
-  const [latest, ...rest] = featured;
+  const latest = featured.find((episode) => episode.episodeNumber === 5) ?? featured[0];
+  const rest = featured.filter((episode) => episode.episodeNumber !== 5).slice(0, 2);
 
   return (
     <>
@@ -338,8 +340,8 @@ function Home() {
           <article className="mt-10 grid overflow-hidden border border-border bg-foreground/[0.03] lg:mt-12 lg:grid-cols-[0.9fr_1fr]">
             <div className="relative min-h-[240px] sm:min-h-[300px] lg:min-h-[380px]">
               <img
-                src={podcastImage}
-                alt="Studio condenser microphone lit in a dark recording room"
+                src={latest ? episodeImage(latest) : podcastImage}
+                alt={latest?.guestName ? `Portrait of ${latest.guestName}` : "Studio condenser microphone lit in a dark recording room"}
                 loading="lazy"
                 width={1200}
                 height={900}
@@ -348,7 +350,7 @@ function Home() {
             </div>
             <div className="flex flex-col justify-center gap-4 p-6 sm:p-9 lg:p-12">
               <p className="eyebrow text-lime">
-                Featured episode
+                FEATURED EPISODE
                 {latest?.episodeNumber ? ` · ${String(latest.episodeNumber).padStart(3, "0")}` : ""}
               </p>
               <h3 className="display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.05]">
