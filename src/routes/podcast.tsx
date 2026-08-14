@@ -235,37 +235,30 @@ function Podcast() {
               </div>
 
 
-              <ul className="mt-6 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="mt-10 grid gap-x-10 gap-y-12 md:grid-cols-2 lg:gap-x-14 lg:gap-y-14">
                 {rest.map((episode) => (
                   <EpisodeMediaCard key={episode.slug.current} episode={episode} />
                 ))}
               </ul>
 
-
-              {isMobile && pageCount > 1 && (
-                <nav aria-label="Episode pages" className="mt-8 flex items-center justify-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => goToPage(current - 1)}
-                    disabled={current === 1}
-                    aria-label="Previous page"
-                    className="flex size-9 items-center justify-center rounded-full border border-hairline-dark text-ink disabled:opacity-35"
-                  >
-                    <span aria-hidden>‹</span>
-                  </button>
+              {pageCount > 1 && (
+                <nav
+                  aria-label="Episode pages"
+                  className="mt-14 flex items-center justify-center gap-8"
+                >
                   {Array.from({ length: pageCount }, (_, index) => index + 1).map((number) => (
                     <button
                       key={number}
                       type="button"
                       onClick={() => goToPage(number)}
                       aria-current={number === current ? "page" : undefined}
-                      className={`flex size-9 items-center justify-center rounded-full text-sm font-semibold ${
+                      className={`border-b-2 pb-1 text-sm font-semibold tracking-[0.12em] transition-colors ${
                         number === current
-                          ? "bg-ink text-cream"
-                          : "border border-hairline-dark text-ink"
+                          ? "border-lime text-ink"
+                          : "border-transparent text-ink/55 hover:text-ink"
                       }`}
                     >
-                      {number}
+                      {String(number).padStart(2, "0")}
                     </button>
                   ))}
                   <button
@@ -273,24 +266,13 @@ function Podcast() {
                     onClick={() => goToPage(current + 1)}
                     disabled={current === pageCount}
                     aria-label="Next page"
-                    className="flex size-9 items-center justify-center rounded-full border border-hairline-dark text-ink disabled:opacity-35"
+                    className="pb-1 text-ink transition-opacity disabled:opacity-30"
                   >
-                    <span aria-hidden>›</span>
+                    <span aria-hidden>→</span>
                   </button>
                 </nav>
               )}
 
-              {!isMobile && shown + 1 < visible.length && (
-                <div className="mt-12 flex justify-center">
-                  <button
-                    type="button"
-                    onClick={() => setShown((count) => count + PAGE_SIZE)}
-                    className="eyebrow rounded-full border border-ink px-8 py-4 text-ink transition-colors hover:bg-ink hover:text-cream"
-                  >
-                    View all episodes <span aria-hidden>→</span>
-                  </button>
-                </div>
-              )}
             </>
           )}
         </div>
