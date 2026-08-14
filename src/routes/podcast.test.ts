@@ -52,7 +52,7 @@ describe("row keys are defined and unique", () => {
   });
 
   test("the card is keyed on slug.current, never on the dropped guid", () => {
-    expect(ROUTE).toContain("key={episode.slug.current}");
+    expect(ROUTE).toContain("key={row.source.slug.current}");
     expect(ROUTE).not.toContain("key={episode.guid}");
   });
 });
@@ -71,7 +71,7 @@ describe("cards are image-forward and link to the episode", () => {
 
   test("the featured episode carries a prominent image and its own CTA", () => {
     expect(FEATURED).toContain("<img");
-    expect(FEATURED).toContain("Featured episode");
+    expect(FEATURED).toContain("Latest episode");
     expect(FEATURED).toContain("Listen to episode");
   });
 });
@@ -133,6 +133,7 @@ describe("no topic or length filtering survives on the directory", () => {
 
   test("search and sort remain the only discovery controls", () => {
     expect(ROUTE).toContain("browseEpisodes");
+    expect(ROUTE).toContain("SORT_OPTIONS");
   });
 });
 
@@ -152,20 +153,17 @@ describe("episode numbers live in metadata, never in the title", () => {
 
 describe("incremental render", () => {
   test("a page size is declared and the grid is sliced by it", () => {
-    expect(ROUTE).toMatch(/const PAGE_SIZE = 4;/);
-    expect(ROUTE).toContain("gridEpisodes.slice(0, PAGE_SIZE)");
+    expect(ROUTE).toMatch(/const PAGE_SIZE = 9;/);
+    expect(ROUTE).toContain("visible.slice(1, 1 + shown)");
   });
 
   test("a View all control exists and is conditional on there being more", () => {
     expect(ROUTE).toContain("View all episodes");
-    expect(ROUTE).toContain('to="/podcast/archive"');
+    expect(ROUTE).toContain("shown + 1 < visible.length");
   });
 
-  test("sort and pagination live on the full archive, not the landing page", () => {
-    const ARCHIVE = readFileSync(path.join(import.meta.dir, "podcast_.archive.tsx"), "utf8");
-    expect(ROUTE).not.toContain("SORT_OPTIONS");
-    expect(ARCHIVE).toContain("SORT_OPTIONS");
-    expect(ARCHIVE).toContain("Episode pages");
+  test("the window resets when the query changes", () => {
+    expect(ROUTE).toContain("setShown(PAGE_SIZE), [browse]");
   });
 });
 

@@ -17,7 +17,6 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BeHumanAiRouteImport } from './routes/be-human-ai'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PodcastArchiveRouteImport } from './routes/podcast_.archive'
 import { Route as PodcastSlugRouteImport } from './routes/podcast_.$slug'
 import { Route as HumanArchiveSlugRouteImport } from './routes/human-archive.$slug'
 
@@ -61,11 +60,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PodcastArchiveRoute = PodcastArchiveRouteImport.update({
-  id: '/podcast_/archive',
-  path: '/podcast/archive',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PodcastSlugRoute = PodcastSlugRouteImport.update({
   id: '/podcast_/$slug',
   path: '/podcast/$slug',
@@ -88,7 +82,6 @@ export interface FileRoutesByFullPath {
   '/the-new-human-era': typeof TheNewHumanEraRoute
   '/human-archive/$slug': typeof HumanArchiveSlugRoute
   '/podcast/$slug': typeof PodcastSlugRoute
-  '/podcast/archive': typeof PodcastArchiveRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,7 +94,6 @@ export interface FileRoutesByTo {
   '/the-new-human-era': typeof TheNewHumanEraRoute
   '/human-archive/$slug': typeof HumanArchiveSlugRoute
   '/podcast/$slug': typeof PodcastSlugRoute
-  '/podcast/archive': typeof PodcastArchiveRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -115,7 +107,6 @@ export interface FileRoutesById {
   '/the-new-human-era': typeof TheNewHumanEraRoute
   '/human-archive/$slug': typeof HumanArchiveSlugRoute
   '/podcast_/$slug': typeof PodcastSlugRoute
-  '/podcast_/archive': typeof PodcastArchiveRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -130,7 +121,6 @@ export interface FileRouteTypes {
     | '/the-new-human-era'
     | '/human-archive/$slug'
     | '/podcast/$slug'
-    | '/podcast/archive'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -143,7 +133,6 @@ export interface FileRouteTypes {
     | '/the-new-human-era'
     | '/human-archive/$slug'
     | '/podcast/$slug'
-    | '/podcast/archive'
   id:
     | '__root__'
     | '/'
@@ -156,7 +145,6 @@ export interface FileRouteTypes {
     | '/the-new-human-era'
     | '/human-archive/$slug'
     | '/podcast_/$slug'
-    | '/podcast_/archive'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -170,7 +158,6 @@ export interface RootRouteChildren {
   TheNewHumanEraRoute: typeof TheNewHumanEraRoute
   HumanArchiveSlugRoute: typeof HumanArchiveSlugRoute
   PodcastSlugRoute: typeof PodcastSlugRoute
-  PodcastArchiveRoute: typeof PodcastArchiveRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -231,13 +218,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/podcast_/archive': {
-      id: '/podcast_/archive'
-      path: '/podcast/archive'
-      fullPath: '/podcast/archive'
-      preLoaderRoute: typeof PodcastArchiveRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/podcast_/$slug': {
       id: '/podcast_/$slug'
       path: '/podcast/$slug'
@@ -266,7 +246,6 @@ const rootRouteChildren: RootRouteChildren = {
   TheNewHumanEraRoute: TheNewHumanEraRoute,
   HumanArchiveSlugRoute: HumanArchiveSlugRoute,
   PodcastSlugRoute: PodcastSlugRoute,
-  PodcastArchiveRoute: PodcastArchiveRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

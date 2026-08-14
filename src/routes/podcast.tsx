@@ -1,11 +1,12 @@
-import { useMemo, useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import podcastImage from "@/assets/podcast.jpg";
 import { EpisodeMediaCard } from "@/components/episode-media-card";
 import { FeaturedEpisode } from "@/components/featured-episode";
 import { PodcastDegraded } from "@/components/podcast-degraded";
-import { browseEpisodes, DEFAULT_BROWSE_STATE } from "@/lib/podbean";
+import { browseEpisodes, DEFAULT_BROWSE_STATE, SORT_OPTIONS } from "@/lib/podbean";
 import {
   DEGRADED_RETRY_AFTER_SECONDS,
   DEGRADED_SOURCE_HEADER,
@@ -14,12 +15,11 @@ import {
 import { toBrowsable, type EpisodeListItem } from "@/lib/podcast/episode";
 import { fetchEpisodeList } from "@/lib/podcast/queries";
 
-/**
- * How many episodes the curated landing page shows under the featured card.
- * The complete catalogue lives on /podcast/archive, so this page stays a
- * curated editorial spread rather than a database dump.
- */
-const PAGE_SIZE = 4;
+/** Episodes per paginated page on desktop. */
+const PAGE_SIZE = 8;
+
+/** Episodes per paginated page on mobile. */
+const MOBILE_PAGE_SIZE = 6;
 
 export const Route = createFileRoute("/podcast")({
   /**
@@ -60,18 +60,24 @@ export const Route = createFileRoute("/podcast")({
 
 function Podcast() {
   const { episodes } = Route.useLoaderData();
+  const isMobile = useIsMobile();
   const [browse, setBrowse] = useState(DEFAULT_BROWSE_STATE);
+
 
   // Filtering is client-side and deliberately so: the catalogue is already in
   // memory, so a round-trip per keystroke would be slower and no more correct.
-  const browsable = useMemo(
-    () => episodes.map((episode: EpisodeListItem) => toBrowsable(episode)),
-    [episodes],
-  );
+  const browsable = useMemo(() => episodes.map((episode: EpisodeListItem) => toBrowsable(episode)), [episodes]);
   const visible = useMemo(
     () => browseEpisodes<(typeof browsable)[number]>(browsable, browse),
     [browsable, browse],
   );
+
+  // Archive is paginated on every viewport rather than scrolling forever.
+
+  // Mobile browses the archive a page at a time rather than scrolling forever.
+  const [page, setPage] = useState(1);
+  useEffect(() => setPage(1), [browse, isMobile]);
+  const archiveRef = useRef<HTMLDivElement>(null);
 
   const featured =
     visible.find((row) => row.source.episodeNumber === 5)?.source ?? visible[0]?.source;
@@ -88,7 +94,18 @@ function Podcast() {
     );
   }, [visible]);
 
-  const rest = gridEpisodes.slice(0, PAGE_SIZE);
+  const perPage = isMobile ? MOBILE_PAGE_SIZE : PAGE_SIZE;
+  const pageCount = Math.max(1, Math.ceil(gridEpisodes.length / perPage));
+  const current = Math.min(page, pageCount);
+  const rest = gridEpisodes.slice((current - 1) * perPage, current * perPage);
+
+  const filtered = browse.query.trim() !== "";
+
+  function goToPage(next: number) {
+    setPage(Math.min(Math.max(next, 1), pageCount));
+    archiveRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
 
   return (
     <>
@@ -123,24 +140,41 @@ function Podcast() {
               className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,var(--ink)_0%,transparent_45%,transparent_70%,var(--ink)_100%),linear-gradient(to_right,var(--ink)_0%,transparent_30%,transparent_75%,var(--ink)_100%),radial-gradient(ellipse_at_center,transparent_30%,var(--ink)_100%)]"
             />
           </div>
+
         </div>
       </section>
+
 
       {/* ---- Discovery ---- */}
       <section id="episodes" className="section-cream">
         <div className="mx-auto max-w-[1500px] px-5 py-8 sm:px-8 lg:py-10">
+          {/* ---- Featured + grid ---- */}
           {episodes.length === 0 ? (
             <p className="mt-12 max-w-md text-lg leading-relaxed text-ink/60">
               Episodes are taking a moment to load. Please refresh, or listen on your usual podcast
               app.
             </p>
+          ) : visible.length === 0 ? (
+            <div className="mt-12 border-t border-hairline-dark pt-10">
+              <p className="max-w-md text-lg leading-relaxed text-ink/60">
+                No episodes match{browse.query ? ` “${browse.query}”` : " that search"}.
+              </p>
+              <button
+                type="button"
+                onClick={() => setBrowse(DEFAULT_BROWSE_STATE)}
+                className="eyebrow link-underline mt-4 text-ink"
+              >
+                Clear filters
+              </button>
+            </div>
           ) : (
             <>
               {featured && <FeaturedEpisode episode={featured} />}
 
-              {/* Curated archive: heading, then search, then four cards, then
-                  the route through to the complete archive. */}
-              <div className="mt-24 scroll-mt-24 lg:mt-32">
+              {/* Archive discovery: generous breathing room after the featured
+                  card, then search, then the "More episodes" heading, then the
+                  count/sort row, then the grid. */}
+              <div ref={archiveRef} className="mt-24 scroll-mt-24 lg:mt-32">
                 <h2 className="section-label section-label-light text-sm">More episodes</h2>
 
                 <div className="relative mt-5 w-full max-w-[38rem]">
@@ -167,37 +201,76 @@ function Podcast() {
                     </button>
                   )}
                 </div>
+
+                <div className="mt-7 flex flex-wrap items-center gap-4">
+
+                  <span
+                    className="eyebrow font-semibold tracking-[0.16em] text-ink"
+                    aria-live="polite"
+                  >
+                    {filtered
+                      ? `${visible.length} of ${episodes.length}`
+                      : `${episodes.length} episodes`}
+                  </span>
+                  <span aria-hidden className="h-4 w-px bg-hairline-dark" />
+                  <label className="flex items-center gap-3 text-sm text-ink">
+                    <span className="eyebrow text-ink/70">Sort by</span>
+                    <select
+                      value={browse.sort}
+                      onChange={(event) =>
+                        setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
+                      }
+                      className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm font-semibold text-ink outline-none focus-visible:border-ink"
+                    >
+                      {SORT_OPTIONS.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
               </div>
 
-              {rest.length === 0 ? (
-                <div className="mt-10">
-                  <p className="max-w-md text-lg leading-relaxed text-ink/60">
-                    No episodes match{browse.query ? ` “${browse.query}”` : " that search"}.
-                  </p>
+
+              <ul className="mt-10 grid gap-x-10 gap-y-12 md:grid-cols-2 lg:gap-x-14 lg:gap-y-14">
+                {rest.map((episode) => (
+                  <EpisodeMediaCard key={episode.slug.current} episode={episode} />
+                ))}
+              </ul>
+
+              {pageCount > 1 && (
+                <nav
+                  aria-label="Episode pages"
+                  className="mt-14 flex items-center justify-center gap-8"
+                >
+                  {Array.from({ length: pageCount }, (_, index) => index + 1).map((number) => (
+                    <button
+                      key={number}
+                      type="button"
+                      onClick={() => goToPage(number)}
+                      aria-current={number === current ? "page" : undefined}
+                      className={`border-b-2 pb-1 text-sm font-semibold tracking-[0.12em] transition-colors ${
+                        number === current
+                          ? "border-lime text-ink"
+                          : "border-transparent text-ink/55 hover:text-ink"
+                      }`}
+                    >
+                      {String(number).padStart(2, "0")}
+                    </button>
+                  ))}
                   <button
                     type="button"
-                    onClick={() => setBrowse(DEFAULT_BROWSE_STATE)}
-                    className="eyebrow link-underline mt-4 text-ink"
+                    onClick={() => goToPage(current + 1)}
+                    disabled={current === pageCount}
+                    aria-label="Next page"
+                    className="pb-1 text-ink transition-opacity disabled:opacity-30"
                   >
-                    Clear filters
+                    <span aria-hidden>→</span>
                   </button>
-                </div>
-              ) : (
-                <ul className="mt-10 grid gap-x-10 gap-y-12 md:grid-cols-2 lg:gap-x-14 lg:gap-y-14">
-                  {rest.map((episode) => (
-                    <EpisodeMediaCard key={episode.slug.current} episode={episode} />
-                  ))}
-                </ul>
+                </nav>
               )}
 
-              <div className="mt-16 flex justify-center lg:mt-20">
-                <Link
-                  to="/podcast/archive"
-                  className="eyebrow inline-flex items-center gap-3 rounded-full border border-ink px-8 py-4 font-semibold tracking-[0.24em] text-ink transition-colors hover:bg-ink hover:text-cream"
-                >
-                  View all episodes <span aria-hidden>→</span>
-                </Link>
-              </div>
             </>
           )}
         </div>
