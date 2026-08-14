@@ -137,99 +137,182 @@ function EpisodePage() {
   const { episode, related } = Route.useLoaderData();
   const hasGuest = Boolean(episode.guestName);
 
+  const guestLinks = episode.guestLinks ?? [];
+
   return (
-    <section className="section-cream">
-      <div className="mx-auto max-w-[900px] px-6 py-16 sm:px-8 lg:py-24">
-        <Link className="text-sm text-ink/60 underline hover:text-ink" to="/podcast">
-          ← All episodes
-        </Link>
+    <>
+      {/*
+        Hero: title panel left, guest portrait bleeding off the right edge.
+        The portrait column collapses away below lg rather than stacking — a
+        half-height crop of a head-and-shoulders shot above the title reads as a
+        mistake, and only one episode has a photo at all today.
+      */}
+      <section className="section-cream border-b border-ink/10">
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,44%)]">
+          <div className="min-w-0 px-6 py-16 sm:px-10 lg:py-20 xl:pl-[max(2.5rem,calc((100vw-1400px)/2))]">
+            {episode.episodeNumber !== null && (
+              <p className="eyebrow inline-block bg-lime px-2.5 py-1 text-ink">
+                Episode {episode.episodeNumber}
+              </p>
+            )}
 
-        <header className="mt-8">
-          {episode.episodeNumber !== null && (
-            <p className="text-sm uppercase tracking-[0.2em] text-ink/60">
-              Episode {episode.episodeNumber}
-            </p>
-          )}
-          <h1 className="mt-3 font-display text-3xl sm:text-4xl">{episode.title}</h1>
-          <p className="mt-3 text-sm text-ink/60">
-            <time dateTime={episode.publishedAt}>
-              {DATE_FORMAT.format(new Date(episode.publishedAt))}
-            </time>
-          </p>
-        </header>
+            <h1 className="display mt-8 max-w-2xl text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.02] text-ink">
+              {episode.title}
+            </h1>
 
-        <EpisodePlayer
-          className="mt-8"
-          src={episode.audioUrl}
-          title={episode.title}
-          durationSeconds={episode.durationSeconds}
-        />
-
-        <a
-          className="mt-6 inline-block rounded-md bg-ink px-6 py-3 text-sm font-medium text-cream transition hover:opacity-90"
-          href={episode.podbeanUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Listen or Watch Full Episode
-        </a>
-
-        {episode.description && (
-          <div className="mt-10 space-y-4 text-base leading-relaxed text-ink/85">
-            {episode.description
-              .split(/\n{2,}/)
-              .filter(Boolean)
-              .map((paragraph) => (
-                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-              ))}
-          </div>
-        )}
-
-        {/*
-          The guest block is omitted entirely when there is no name — two of the
-          thirty-nine really are like this, because their titles name a company
-          and the parser declines to guess. An empty "About the guest" heading
-          would be worse than no heading.
-        */}
-        {hasGuest && (
-          <div className="mt-12 grid gap-6 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-start">
-            <GuestAvatar
-              className="h-24 w-24 rounded-full object-cover"
-              guestPhoto={episode.guestPhoto}
-              guestName={episode.guestName}
-            />
-            <div>
-              <h2 className="text-sm uppercase tracking-[0.2em] text-ink/60">Guest</h2>
-              <p className="mt-2 font-display text-xl">{episode.guestName}</p>
-              {episode.guestBio && (
-                <p className="mt-3 text-base leading-relaxed text-ink/85">{episode.guestBio}</p>
-              )}
+            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ink/60">
+              <span>{Math.round(episode.durationSeconds / 60)} minutes</span>
+              <span aria-hidden className="text-ink/25">
+                |
+              </span>
+              <time dateTime={episode.publishedAt}>
+                {DATE_FORMAT.format(new Date(episode.publishedAt))}
+              </time>
             </div>
           </div>
-        )}
 
-        <EpisodeTopics className="mt-12" topics={episode.topics} />
+          {episode.guestPhoto && (
+            <div className="relative hidden min-h-[22rem] lg:block">
+              <GuestAvatar
+                className="absolute inset-0 h-full w-full object-cover"
+                guestPhoto={episode.guestPhoto}
+                guestName={episode.guestName}
+              />
+            </div>
+          )}
+        </div>
+      </section>
 
-        {related.length > 0 && (
-          <div className="mt-16 border-t border-ink/10 pt-10">
-            <h2 className="text-sm uppercase tracking-[0.2em] text-ink/60">More episodes</h2>
-            <ul className="mt-4 space-y-3">
+      <section className="section-cream">
+        <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
+          <div className="grid lg:grid-cols-2">
+            <div className="min-w-0 py-14 lg:py-16 lg:pr-16">
+              <h2 className="eyebrow inline-block bg-lime px-2.5 py-1 text-ink">Episode summary</h2>
+
+              {episode.description && (
+                <div className="mt-8 space-y-5 text-base leading-relaxed text-ink/85">
+                  {episode.description
+                    .split(/\n{2,}/)
+                    .filter(Boolean)
+                    .map((paragraph) => (
+                      <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                    ))}
+                </div>
+              )}
+
+              <EpisodePlayer
+                className="mt-10"
+                src={episode.audioUrl}
+                title={episode.title}
+                durationSeconds={episode.durationSeconds}
+              />
+
+              <a
+                className="eyebrow mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 text-cream transition-transform hover:-translate-y-0.5"
+                href={episode.podbeanUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Listen or Watch Full Episode <span aria-hidden>→</span>
+              </a>
+
+              <EpisodeTopics className="mt-12" topics={episode.topics} />
+            </div>
+
+            {/*
+              The guest panel is omitted entirely without a name — two of the
+              thirty-nine really are like this, because their titles name a
+              company and the parser declines to guess a person. An empty "Meet
+              the guest" heading would be worse than no heading. Role, bio, and
+              links each gate independently for the same reason.
+            */}
+            {hasGuest && (
+              <div className="min-w-0 border-t border-ink/10 py-14 lg:border-l lg:border-t-0 lg:py-16 lg:pl-16">
+                <h2 className="eyebrow inline-block bg-lime px-2.5 py-1 text-ink">
+                  Meet the guest
+                </h2>
+
+                <p className="display mt-8 text-[clamp(1.75rem,3vw,2.75rem)] text-ink">
+                  {episode.guestName}
+                </p>
+
+                {episode.guestRole && (
+                  <p className="mt-3 text-sm uppercase tracking-[0.18em] text-ink/55">
+                    {episode.guestRole}
+                  </p>
+                )}
+
+                {episode.guestBio && (
+                  <p className="mt-7 max-w-xl text-base leading-relaxed text-ink/85">
+                    {episode.guestBio}
+                  </p>
+                )}
+
+                {guestLinks.length > 0 && (
+                  <ul className="mt-10 space-y-4">
+                    {guestLinks.map((link) => (
+                      <li key={link.url}>
+                        <a
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="eyebrow group inline-flex items-center gap-3 text-ink"
+                        >
+                          {link.label}
+                          <span
+                            aria-hidden
+                            className="text-lime transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                          >
+                            ↗
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {related.length > 0 && (
+        <section className="section-cream border-t border-ink/10">
+          <div className="mx-auto max-w-[1400px] px-6 py-14 sm:px-10 lg:py-16">
+            <div className="flex flex-wrap items-baseline justify-between gap-4">
+              <h2 className="eyebrow text-ink/50">More episodes</h2>
+              <Link to="/podcast" className="eyebrow link-underline text-ink">
+                View all episodes <span aria-hidden>→</span>
+              </Link>
+            </div>
+
+            <ul className="mt-8 grid gap-px bg-hairline-dark sm:grid-cols-2 lg:grid-cols-3">
               {related.map((item) => (
-                <li key={item.slug.current}>
-                  <Link
-                    className="font-display text-lg underline-offset-4 hover:underline"
-                    to="/podcast/$slug"
-                    params={{ slug: item.slug.current }}
-                  >
-                    {item.title}
-                  </Link>
+                <li key={item.slug.current} className="bg-cream p-6">
+                  {item.episodeNumber !== null && (
+                    <span className="eyebrow inline-block bg-lime px-2 py-0.5 text-ink">
+                      Episode {item.episodeNumber}
+                    </span>
+                  )}
+                  <h3 className="display mt-4 text-xl text-ink">
+                    <Link
+                      className="underline-offset-4 hover:underline"
+                      to="/podcast/$slug"
+                      params={{ slug: item.slug.current }}
+                    >
+                      {item.title}
+                    </Link>
+                  </h3>
+                  {item.guestName && (
+                    <p className="mt-2 text-sm text-ink/60">With {item.guestName}</p>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
-        )}
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 }
 

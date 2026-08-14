@@ -31,6 +31,8 @@ describe("EPISODE_PROJECTION", () => {
       topics: "topics[]->{_id, name}",
       guestName: "guestName",
       guestBio: "guestBio",
+      guestRole: "guestRole",
+      guestLinks: "guestLinks[]{label, url}",
       guestPhoto: "guestPhoto.asset._ref",
       coverArtwork: "coverArtwork.asset._ref",
       shareCard: "shareCard.asset._ref",
@@ -186,7 +188,12 @@ describe("EPISODE_LIST_PROJECTION", () => {
     "_id",
     "description",
     "guestBio",
+    // Both added with the episode page's guest panel, and both detail-only for
+    // the reason this list exists: the directory renders neither, so shipping
+    // them in a payload multiplied across the whole catalogue would buy nothing.
+    "guestLinks",
     "guestPhoto",
+    "guestRole",
     "guid",
     "podbeanUrl",
     "searchText",

@@ -178,6 +178,52 @@ export const episode = defineType({
     }),
 
     defineField({
+      name: 'guestRole',
+      title: 'Guest role',
+      description:
+        'How the guest is introduced on the episode page — e.g. "Founder, Cheekbone Beauty". Leave blank rather than guessing; the line is omitted when empty.',
+      type: 'string',
+      group: 'guest',
+      validation: (rule) => rule.max(80).warning('Long roles wrap awkwardly under the guest name.'),
+    }),
+
+    defineField({
+      name: 'guestLinks',
+      title: 'Guest links',
+      description:
+        "The guest's own website, LinkedIn, or company page. HAND-ENTERED AND VERIFIED ONLY — never inferred. A plausible but wrong profile URL sends visitors to a different real person with the same name, which is worse than having no link at all.",
+      type: 'array',
+      group: 'guest',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'guestLink',
+          fields: [
+            defineField({
+              name: 'label',
+              title: 'Label',
+              description: 'Shown on the page — e.g. "Visit Cheekbone Beauty".',
+              type: 'string',
+              validation: (rule) => rule.required().max(60),
+            }),
+            defineField({
+              name: 'url',
+              title: 'URL',
+              type: 'url',
+              validation: (rule) =>
+                rule
+                  .required()
+                  .uri({scheme: ['http', 'https']})
+                  .error('Must be an http(s) URL.'),
+            }),
+          ],
+          preview: {select: {title: 'label', subtitle: 'url'}},
+        }),
+      ],
+      validation: (rule) => rule.max(4).warning('More than four links crowds the guest panel.'),
+    }),
+
+    defineField({
       name: 'guestKey',
       title: 'Guest key',
       description: 'Normalised guest name. Reserved for a future guest reference migration.',

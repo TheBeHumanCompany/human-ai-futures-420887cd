@@ -38,6 +38,11 @@ export const EPISODE_PROJECTION = {
   topics: "topics[]->{_id, name}",
   guestName: "guestName",
   guestBio: "guestBio",
+  guestRole: "guestRole",
+  // Projected as an explicit object rather than `guestLinks[]` so the shape the
+  // page consumes is pinned here, and an added schema field cannot silently
+  // start shipping in the payload.
+  guestLinks: "guestLinks[]{label, url}",
   guestPhoto: "guestPhoto.asset._ref",
   coverArtwork: "coverArtwork.asset._ref",
   shareCard: "shareCard.asset._ref",

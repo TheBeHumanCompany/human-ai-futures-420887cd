@@ -57,12 +57,30 @@ export interface EpisodeListItem {
  * mismatch. Declaring it here means reaching for a guest photo in a list card is
  * now a compile error rather than a blank image.
  */
+/** An external link belonging to the guest, hand-entered and verified. */
+export interface GuestLink {
+  label: string;
+  url: string;
+}
+
 export interface SanityEpisode extends EpisodeListItem {
   _id: string;
   guid: string;
   description: string;
   guestBio: string | null;
   guestPhoto: string | null;
+  /** How the guest is introduced, e.g. "Founder, Cheekbone Beauty". */
+  guestRole: string | null;
+  /**
+   * The guest's own links.
+   *
+   * Never inferred, and deliberately nullable rather than defaulted to an empty
+   * array: absent means nobody has supplied them, which is a different state
+   * from "this guest has none". A guessed profile URL points at a different real
+   * person with the same name, so the page renders nothing here until a human
+   * has entered and checked one.
+   */
+  guestLinks: GuestLink[] | null;
   podbeanUrl: string;
   searchText: string;
   slugFrozenAt: string | null;
