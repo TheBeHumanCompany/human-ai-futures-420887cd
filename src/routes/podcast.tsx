@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import podcastImage from "@/assets/podcast.jpg";
 import { EpisodeMediaCard } from "@/components/episode-media-card";
 import { FeaturedEpisode } from "@/components/featured-episode";
@@ -56,7 +57,9 @@ export const Route = createFileRoute("/podcast")({
 
 function Podcast() {
   const { episodes } = Route.useLoaderData();
+  const isMobile = useIsMobile();
   const [browse, setBrowse] = useState(DEFAULT_BROWSE_STATE);
+
 
   // Filtering is client-side and deliberately so: the catalogue is already in
   // memory, so a round-trip per keystroke would be slower and no more correct.
