@@ -72,8 +72,7 @@ function Podcast() {
     [browsable, browse],
   );
 
-  const [shown, setShown] = useState(PAGE_SIZE);
-  useEffect(() => setShown(PAGE_SIZE), [browse]);
+  // Archive is paginated on every viewport rather than scrolling forever.
 
   // Mobile browses the archive a page at a time rather than scrolling forever.
   const [page, setPage] = useState(1);
