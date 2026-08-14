@@ -9,7 +9,7 @@ import {
   DEGRADED_SOURCE_VALUE,
 } from "@/lib/podcast/degraded-status";
 import type { SanityEpisode } from "@/lib/podcast/episode";
-import { episodeHeroImage, episodeImage } from "@/lib/podcast/imagery";
+import { episodeHeroImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
 import { selectRelatedEpisodes } from "@/lib/podcast/related";
 import { buildEpisodeJsonLd, buildEpisodeMeta } from "@/lib/podcast/seo";
@@ -61,7 +61,7 @@ export const Route = createFileRoute("/podcast_/$slug")({
     if (!episode) throw notFound();
 
     const candidates = await fetchRelatedCandidates();
-    return { episode, related: selectRelatedEpisodes(episode, candidates, 2) };
+    return { episode, related: selectRelatedEpisodes(episode, candidates) };
   },
 
   /**
@@ -145,27 +145,24 @@ function EpisodePage() {
   // Cleaned at render for every episode, present and future: the feed's
   // promotional tail ("Mobile viewers…", hashtags, "Listen on:") is never shown.
   const body = showNoteParagraphs(episode.description);
-  // A guest column exists only when there is something real to put in it: a
-  // name AND a bio. A name alone would render a heading over empty space, which
-  // is the "empty panel" this template is meant never to show.
-  const hasGuestColumn = Boolean(episode.guestName && episode.guestBio);
 
   return (
     <>
-      {/* ---- Hero: 52/48 editorial column + portrait ---- */}
+      {/* ---- Hero: cream editorial column + portrait, 50/50, compact ---- */}
       <section className="section-cream border-b border-hairline-dark">
-        <div className="mx-auto grid max-w-[1400px] items-stretch gap-0 lg:grid-cols-[52fr_48fr]">
-          <div className="order-1 flex flex-col justify-center px-5 py-9 sm:px-8 lg:py-14 lg:pr-12">
+        <div className="grid lg:min-h-[540px] lg:grid-cols-2">
+          <div className="order-1 flex flex-col justify-center px-5 py-8 sm:px-8 lg:py-10 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-10">
             {episode.episodeNumber !== null && (
               <span className="eyebrow w-fit bg-lime px-2.5 py-1 text-ink">
                 Episode {episode.episodeNumber}
               </span>
             )}
-            <h1 className="mt-4 font-display text-[clamp(1.75rem,3.1vw,2.9rem)] font-medium leading-[1.02] tracking-[0.005em] text-ink">
+            <h1 className="mt-3 border-l-4 border-lime pl-4 font-display text-[clamp(1.6rem,3.4vw,3.35rem)] font-medium leading-[0.97] tracking-[0.005em] text-ink">
               {displayTitle(episode.title)}
             </h1>
 
-            <p className="eyebrow mt-4 flex flex-wrap items-center gap-2 text-ink/55">
+            {/* Date + duration in one compact metadata row. */}
+            <p className="eyebrow mt-3 flex flex-wrap items-center gap-2 text-ink/60">
               <time dateTime={episode.publishedAt}>
                 {DATE_FORMAT.format(new Date(episode.publishedAt))}
               </time>
@@ -179,53 +176,47 @@ function EpisodePage() {
               )}
             </p>
 
-            {/* Mobile order: text first, then image, then player. */}
-            <div className="mt-6 lg:hidden">
-              <HeroImage episode={episode} hero={hero} className="aspect-[4/3]" />
+            {/* Mobile order: image sits above the player. */}
+            <div className="mt-5 lg:hidden">
+              <HeroImage episode={episode} hero={hero} />
             </div>
 
-            <div className="mt-6 border-t border-hairline-dark pt-5">
-              <EpisodePlayer
-                className="max-w-sm"
-                src={episode.audioUrl}
-                title={episode.title}
-                durationSeconds={episode.durationSeconds}
-              />
+            <EpisodePlayer
+              className="mt-4 max-w-sm"
+              src={episode.audioUrl}
+              title={episode.title}
+              durationSeconds={episode.durationSeconds}
+            />
 
-              <a
-                className="eyebrow group mt-5 inline-flex h-[50px] w-fit items-center gap-3 bg-ink px-6 text-cream transition-colors hover:bg-ink/90"
-                href={episode.podbeanUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+            <a
+              className="eyebrow group mt-4 inline-flex h-[50px] w-fit items-center gap-3 bg-ink px-6 text-cream transition-colors hover:bg-ink/90"
+              href={episode.podbeanUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Listen or Watch Full Episode
+              <span
+                aria-hidden
+                className="text-lime transition-transform group-hover:translate-x-1"
               >
-                Listen or Watch Full Episode
-                <span
-                  aria-hidden
-                  className="text-lime transition-transform group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </a>
-            </div>
+                →
+              </span>
+            </a>
           </div>
 
           <div className="order-2 hidden lg:block">
-            <HeroImage episode={episode} hero={hero} className="h-full min-h-[440px]" />
+            <HeroImage episode={episode} hero={hero} className="h-full" />
           </div>
         </div>
       </section>
 
-      {/* ---- Summary + guest ---- */}
+      {/* ---- Episode summary + guest: same 50/50 split as the hero ---- */}
       <section className="section-cream">
-        <div
-          className={`mx-auto grid max-w-[1400px] px-5 pt-12 sm:px-8 lg:pt-14 ${
-            hasGuestColumn ? "lg:grid-cols-[62fr_38fr]" : ""
-          }`}
-        >
-          <div className={hasGuestColumn ? "pb-8 lg:pb-14 lg:pr-12" : "pb-8 lg:pb-14"}>
-            <p className="section-label section-label-dark text-sm text-lime">Episode summary</p>
+        <div className="grid lg:grid-cols-2">
+          <div className="px-5 pt-12 pb-6 sm:px-8 lg:pb-12 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-10">
+            <p className="section-label section-label-dark text-sm">Episode summary</p>
             {body.length > 0 && (
-              <div className="mt-4 max-w-[62ch] space-y-4 text-[1.0625rem] leading-[1.65] text-ink/80">
+              <div className="mt-3 max-w-[58ch] space-y-3 text-[1.0625rem] leading-[1.55] text-ink/80">
                 {body.map((paragraph: string) => (
                   <p key={paragraph.slice(0, 48)}>{paragraph}</p>
                 ))}
@@ -233,23 +224,25 @@ function EpisodePage() {
             )}
           </div>
 
-          {hasGuestColumn && (
-            <div className="border-t border-hairline-dark pt-8 pb-12 lg:border-l lg:border-t-0 lg:pt-0 lg:pb-14 lg:pl-12">
+          {episode.guestName && (
+            <div className="px-5 pb-12 sm:px-8 lg:border-l lg:border-hairline-dark lg:pt-12 lg:pl-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
               <p className="section-label text-sm text-lime">Meet the guest</p>
-              <h2 className="mt-4 font-display text-[clamp(1.35rem,2vw,1.6rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
+              <h2 className="mt-3 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                 {episode.guestName}
               </h2>
-              <p className="mt-4 max-w-[46ch] text-[1rem] leading-[1.65] text-ink/75">
-                {episode.guestBio}
-              </p>
+              {episode.guestBio && (
+                <p className="mt-3 max-w-[55ch] text-[1.0625rem] leading-[1.55] text-ink/75">
+                  {episode.guestBio}
+                </p>
+              )}
             </div>
           )}
         </div>
 
-        {/* ---- More episodes: compact related listening ---- */}
+        {/* ---- More episodes ---- */}
         {related.length > 0 && (
-          <div className="mx-auto max-w-[1400px] px-5 pb-14 sm:px-8">
-            <div className="border-t border-hairline-dark pt-7">
+          <div className="mx-auto max-w-[1400px] px-5 pb-12 sm:px-8">
+            <div className="border-t border-hairline-dark pt-8">
               <div className="flex flex-wrap items-baseline justify-between gap-5">
                 <p className="section-label section-label-light text-xs">More episodes</p>
                 <Link
@@ -262,44 +255,23 @@ function EpisodePage() {
                   </span>
                 </Link>
               </div>
-
-              <ul className="mt-6 grid gap-5 sm:grid-cols-2">
+              <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                 {related.map((item) => (
-                  <li key={item.slug.current}>
+                  <li key={item.slug.current} className="border-t border-hairline-dark pt-4">
                     <Link
-                      className="group flex items-center gap-4 border border-hairline-dark p-3 transition-colors hover:border-ink/40"
+                      className="group block text-base leading-snug text-ink/85 hover:text-ink"
                       to="/podcast/$slug"
                       params={{ slug: item.slug.current }}
                     >
-                      <img
-                        src={episodeImage(item, 320)}
-                        alt=""
-                        width={96}
-                        height={96}
-                        loading="lazy"
-                        className="size-20 shrink-0 object-cover sm:size-[5.5rem]"
-                      />
-                      <div className="min-w-0">
-                        {item.episodeNumber !== null && (
-                          <span className="eyebrow inline-block bg-lime px-2 py-0.5 text-[0.65rem] text-ink">
-                            Episode {item.episodeNumber}
-                          </span>
-                        )}
-                        <p className="mt-2 line-clamp-2 text-[0.95rem] font-medium leading-snug text-ink group-hover:text-ink/70">
-                          {displayTitle(item.title)}
-                        </p>
-                        <p className="eyebrow mt-1.5 flex flex-wrap items-center gap-2 text-ink/50">
-                          {item.guestName && <span className="truncate">{item.guestName}</span>}
-                          {item.guestName && item.durationSeconds > 0 && (
-                            <span aria-hidden className="text-lime">
-                              •
-                            </span>
-                          )}
-                          {item.durationSeconds > 0 && (
-                            <span>{formatDuration(item.durationSeconds)}</span>
-                          )}
-                        </p>
-                      </div>
+                      <span className="font-medium">
+                        {item.episodeNumber !== null && `Episode ${item.episodeNumber}: `}
+                        {displayTitle(item.title)}
+                      </span>
+                      {item.guestName && (
+                        <span className="mt-1 block text-sm text-ink/55">
+                          With {item.guestName}
+                        </span>
+                      )}
                     </Link>
                   </li>
                 ))}
@@ -307,17 +279,17 @@ function EpisodePage() {
             </div>
           </div>
         )}
-    </section>
+      </section>
+
     </>
   );
 }
 
 /**
- * The hero photograph.
+ * The hero photograph, with the guest overlay.
  *
- * No name overlay: the guest is named in the copy beside it, and stamping a
- * person's name over a photograph that may be a recording still is worse than
- * showing the photograph plainly.
+ * The GUEST label renders only over a real portrait: over a recording still it
+ * would attach a person's name to a photograph of someone else entirely.
  */
 function HeroImage({
   episode,
@@ -328,6 +300,8 @@ function HeroImage({
   hero: { src: string; isPortrait: boolean };
   className?: string;
 }) {
+  const labelled = hero.isPortrait && Boolean(episode.guestName);
+
   return (
     <div className={`relative w-full overflow-hidden bg-ink ${className ?? "aspect-[4/5]"}`}>
       <img
@@ -337,12 +311,19 @@ function HeroImage({
             ? `Portrait of ${episode.guestName}`
             : `Artwork for ${episode.title}`
         }
-        className="absolute inset-0 size-full object-cover object-[center_25%]"
+        className="size-full object-cover"
       />
+      {labelled && (
+        <div className="absolute right-5 top-5 text-right sm:right-8 sm:top-8">
+          <span className="eyebrow inline-block bg-lime px-2.5 py-1 text-ink">Guest</span>
+          <p className="mt-3 font-display text-xl uppercase tracking-[0.02em] text-cream sm:text-2xl">
+            {episode.guestName}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
-
 
 function EpisodeNotFound() {
   return (
