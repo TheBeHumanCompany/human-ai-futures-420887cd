@@ -159,59 +159,66 @@ function Podcast() {
             <>
               {featured && <FeaturedEpisode episode={featured} />}
 
-              <div ref={archiveRef} className="mt-8 scroll-mt-24 border-t border-hairline-dark pt-5">
-                <h2 className="section-label section-label-light text-sm">More episodes</h2>
+              {/* Search first, then the heading, then the archive controls. No
+                  top border: it stacked against the featured card's own frame
+                  and read as a double line. */}
+              <div ref={archiveRef} className="mt-16 scroll-mt-24 lg:mt-20">
+                <div className="relative w-full max-w-[32rem]">
+                  <Search
+                    aria-hidden
+                    className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink/50"
+                  />
+                  <input
+                    type="search"
+                    value={browse.query}
+                    onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
+                    placeholder="Search episodes, guests, or keywords"
+                    aria-label="Search episodes, guests, or keywords"
+                    className="w-full rounded-full border border-hairline-dark bg-cream py-2 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/50 focus-visible:border-ink"
+                  />
+                  {browse.query && (
+                    <button
+                      type="button"
+                      onClick={() => setBrowse((s) => ({ ...s, query: "" }))}
+                      aria-label="Clear search"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-ink/50 hover:text-ink"
+                    >
+                      <X className="size-4" aria-hidden />
+                    </button>
+                  )}
+                </div>
 
-                <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                  <div className="relative w-full max-w-[32rem]">
-                    <Search
-                      aria-hidden
-                      className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink/50"
-                    />
-                    <input
-                      type="search"
-                      value={browse.query}
-                      onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
-                      placeholder="Search episodes, guests, or keywords"
-                      aria-label="Search episodes, guests, or keywords"
-                      className="w-full rounded-full border border-hairline-dark bg-cream py-2 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/50 focus-visible:border-ink"
-                    />
-                    {browse.query && (
-                      <button
-                        type="button"
-                        onClick={() => setBrowse((s) => ({ ...s, query: "" }))}
-                        aria-label="Clear search"
-                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-ink/50 hover:text-ink"
-                      >
-                        <X className="size-4" aria-hidden />
-                      </button>
-                    )}
-                  </div>
+                <h2 className="section-label section-label-light mt-8 text-sm">More episodes</h2>
 
-                  <div className="flex flex-wrap items-center gap-4">
-                    <span className="eyebrow font-semibold tracking-[0.16em] text-ink" aria-live="polite">
-                      {filtered ? `${visible.length} of ${episodes.length}` : `${episodes.length} episodes`}
-                    </span>
-                    <span aria-hidden className="h-4 w-px bg-hairline-dark" />
-                    <label className="flex items-center gap-3 text-sm text-ink">
-                      <span className="eyebrow text-ink/70">Sort by</span>
-                      <select
-                        value={browse.sort}
-                        onChange={(event) =>
-                          setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
-                        }
-                        className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm font-semibold text-ink outline-none focus-visible:border-ink"
-                      >
-                        {SORT_OPTIONS.map((option) => (
-                          <option key={option.value} value={option.value}>
-                            {option.label}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
+                <div className="mt-3 flex flex-wrap items-center gap-4">
+                  <span
+                    className="eyebrow font-semibold tracking-[0.16em] text-ink"
+                    aria-live="polite"
+                  >
+                    {filtered
+                      ? `${visible.length} of ${episodes.length}`
+                      : `${episodes.length} episodes`}
+                  </span>
+                  <span aria-hidden className="h-4 w-px bg-hairline-dark" />
+                  <label className="flex items-center gap-3 text-sm text-ink">
+                    <span className="eyebrow text-ink/70">Sort by</span>
+                    <select
+                      value={browse.sort}
+                      onChange={(event) =>
+                        setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
+                      }
+                      className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm font-semibold text-ink outline-none focus-visible:border-ink"
+                    >
+                      {SORT_OPTIONS.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
                 </div>
               </div>
+
 
               <ul className="mt-6 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
                 {rest.map((row) => (
