@@ -192,8 +192,8 @@ function Podcast() {
                   )}
                 </div>
 
+                <div className="mt-7 flex flex-wrap items-center gap-4">
 
-                <div className="mt-4 flex flex-wrap items-center gap-4">
                   <span
                     className="eyebrow font-semibold tracking-[0.16em] text-ink"
                     aria-live="polite"
