@@ -228,8 +228,8 @@ function EpisodePage() {
 
           {/* ---- More episodes ---- */}
           {related.length > 0 && (
-            <div className="mt-16 border-t border-hairline-dark pt-12">
-              <div className="flex flex-wrap items-baseline justify-between gap-6">
+            <div className="mt-12 border-t border-hairline-dark pt-10">
+              <div className="flex flex-wrap items-baseline justify-between gap-5">
                 <p className="section-label section-label-light text-xs">More episodes</p>
                 <Link
                   to="/podcast"
@@ -241,9 +241,9 @@ function EpisodePage() {
                   </span>
                 </Link>
               </div>
-              <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+              <ul className="mt-7 grid gap-7 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
                 {related.map((item) => (
-                  <li key={item.slug.current} className="border-t border-hairline-dark pt-5">
+                  <li key={item.slug.current} className="border-t border-hairline-dark pt-4">
                     <Link
                       className="group block text-base leading-snug text-ink/85 hover:text-ink"
                       to="/podcast/$slug"
