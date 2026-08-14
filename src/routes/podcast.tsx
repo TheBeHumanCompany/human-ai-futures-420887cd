@@ -80,13 +80,27 @@ function Podcast() {
   useEffect(() => setPage(1), [browse, isMobile]);
   const archiveRef = useRef<HTMLDivElement>(null);
 
-  const featured = visible[0]?.source;
-  const tail = visible.slice(1);
-  const pageCount = Math.max(1, Math.ceil(tail.length / MOBILE_PAGE_SIZE));
+  const featured =
+    visible.find((row) => row.source.episodeNumber === 5)?.source ?? visible[0]?.source;
+
+  const gridEpisodes = useMemo<EpisodeListItem[]>(() => {
+    const withoutFeatured = visible.filter((row) => row.source.episodeNumber !== 5);
+    const ep39 = withoutFeatured.find((row) => row.source.episodeNumber === 39)?.source;
+    const ep38 = withoutFeatured.find((row) => row.source.episodeNumber === 38)?.source;
+    const remainder = withoutFeatured.filter(
+      (row) => row.source.episodeNumber !== 39 && row.source.episodeNumber !== 38,
+    );
+    return [ep39, ep38, ...remainder.map((row) => row.source)].filter(
+      (episode): episode is EpisodeListItem => episode !== undefined,
+    );
+  }, [visible]);
+
+  const pageCount = Math.max(1, Math.ceil(gridEpisodes.length / MOBILE_PAGE_SIZE));
   const current = Math.min(page, pageCount);
   const rest = isMobile
-    ? tail.slice((current - 1) * MOBILE_PAGE_SIZE, current * MOBILE_PAGE_SIZE)
-    : visible.slice(1, 1 + shown);
+    ? gridEpisodes.slice((current - 1) * MOBILE_PAGE_SIZE, current * MOBILE_PAGE_SIZE)
+    : gridEpisodes.slice(0, shown);
+
   const filtered = browse.query.trim() !== "";
 
   function goToPage(next: number) {
@@ -222,10 +236,11 @@ function Podcast() {
 
 
               <ul className="mt-6 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-                {rest.map((row) => (
-                  <EpisodeMediaCard key={row.source.slug.current} episode={row.source} />
+                {rest.map((episode) => (
+                  <EpisodeMediaCard key={episode.slug.current} episode={episode} />
                 ))}
               </ul>
+
 
               {isMobile && pageCount > 1 && (
                 <nav aria-label="Episode pages" className="mt-8 flex items-center justify-center gap-2">
