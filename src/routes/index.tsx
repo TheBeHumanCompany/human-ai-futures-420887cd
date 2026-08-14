@@ -14,6 +14,7 @@ import { PRINCIPLES } from "@/lib/content";
 import { formatDuration } from "@/lib/podbean";
 import { loadFeaturedEpisodes } from "@/lib/podcast/featured";
 import { fetchEpisodeList } from "@/lib/podcast/queries";
+import { episodeImage } from "@/lib/podcast/imagery";
 
 export const Route = createFileRoute("/")({
   /**
