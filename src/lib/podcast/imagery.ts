@@ -2,7 +2,7 @@ import studioA from "@/assets/podcast.jpg";
 import studioB from "@/assets/podcast-still-1.jpg";
 import studioC from "@/assets/podcast-still-2.jpg";
 import studioD from "@/assets/podcast-still-3.jpg";
-import guestEp39 from "@/assets/guest-ep39.png.asset.json";
+import guestEp39 from "@/assets/guest-ep39-jill.png.asset.json";
 import guestEp38 from "@/assets/guest-ep38.png.asset.json";
 import guestEp37 from "@/assets/guest-ep37.png.asset.json";
 import guestEp36 from "@/assets/guest-ep36.png.asset.json";
