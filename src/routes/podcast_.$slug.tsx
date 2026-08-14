@@ -337,7 +337,7 @@ function HeroImage({
             ? `Portrait of ${episode.guestName}`
             : `Artwork for ${episode.title}`
         }
-        className="size-full object-cover"
+        className="absolute inset-0 size-full object-cover object-[center_25%]"
       />
     </div>
   );
