@@ -126,7 +126,7 @@ function Podcast() {
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,var(--background)_100%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,var(--ink)_100%)]"
             />
           </div>
         </div>
