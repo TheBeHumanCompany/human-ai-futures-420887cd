@@ -61,7 +61,7 @@ export const Route = createFileRoute("/podcast_/$slug")({
     if (!episode) throw notFound();
 
     const candidates = await fetchRelatedCandidates();
-    return { episode, related: selectRelatedEpisodes(episode, candidates) };
+    return { episode, related: selectRelatedEpisodes(episode, candidates, 2) };
   },
 
   /**
