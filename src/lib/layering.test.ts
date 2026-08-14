@@ -150,9 +150,17 @@ describe("AC-36 rule 3 — no route imports browseEpisodes or durationCounts", (
    *
    * `src/routes/podcast.tsx` filters in the browser on purpose. The directory
    * fetches the catalogue once and runs the shipped `browseEpisodes` over it, so
-   * search stays instant and accent folding, substring matching and the duration
-   * buckets keep working against the corpus that already proved them — rather
-   * than being reimplemented as GROQ and re-proved against a different engine.
+   * search stays instant and accent folding and substring matching keep working
+   * against the corpus that already proved them — rather than being
+   * reimplemented as GROQ and re-proved against a different engine.
+   *
+   * This once said "and the duration buckets keep working". They no longer have
+   * a UI: the chips were removed from the directory in Round 10 because the
+   * approved design specifies search and sort only. `DURATION_OPTIONS` and
+   * `durationCounts` are still exported and still tested, so the capability is
+   * intact and the sentence above would simply have been false — which is not
+   * something to leave standing in the one file whose purpose is being honest
+   * about exceptions.
    *
    * So this is NOT a transitional exception waiting on a rewrite. It expires
    * only if the catalogue outgrows fetch-all, which the payload ceiling in

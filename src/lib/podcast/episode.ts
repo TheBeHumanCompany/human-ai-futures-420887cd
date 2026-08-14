@@ -30,19 +30,39 @@ export interface EpisodeListItem {
   excerpt: string;
   topics: SanityTopic[] | null;
   guestName: string | null;
-  guestPhoto: string | null;
   coverArtwork: string | null;
+  /**
+   * The generated branded card, and the field the directory actually renders.
+   *
+   * `EPISODE_LIST_PROJECTION` has always returned this, but the interface did
+   * not declare it — `shareImageUrl` reads it through `SeoEpisode`, where it is
+   * optional, so the gap typechecked and stayed invisible. Declared here because
+   * the image-led directory renders from it: `coverArtwork` is set on one of the
+   * thirty-nine episodes, so for the rest this is what resolves.
+   */
+  shareCard: string | null;
   audioUrl: string;
   durationSeconds: number;
   publishedAt: string;
 }
 
-/** The detail page's shape — the list fields plus everything only one page needs. */
+/**
+ * The detail page's shape — the list fields plus everything only one page needs.
+ *
+ * **`guestPhoto` lives here and not on `EpisodeListItem`.** It is projected by
+ * `EPISODE_DETAIL_PROJECTION` and not by the list projection, so on a list row
+ * it was always `undefined` while the type promised `string | null`. Nothing
+ * caught it: the detail page reads it legitimately, and the directory's test
+ * fixtures are cast `as EpisodeListItem`, which suppresses exactly this class of
+ * mismatch. Declaring it here means reaching for a guest photo in a list card is
+ * now a compile error rather than a blank image.
+ */
 export interface SanityEpisode extends EpisodeListItem {
   _id: string;
   guid: string;
   description: string;
   guestBio: string | null;
+  guestPhoto: string | null;
   podbeanUrl: string;
   searchText: string;
   slugFrozenAt: string | null;

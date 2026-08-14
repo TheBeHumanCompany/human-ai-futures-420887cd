@@ -2,8 +2,10 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
+import { episodeCardImage } from "@/components/episode-card";
 import { DEGRADED_SOURCE_HEADER } from "@/lib/podcast/degraded-status";
 import { toBrowsable, type EpisodeListItem } from "@/lib/podcast/episode";
+import { DEFAULT_SHARE_IMAGE_PATH } from "@/lib/podcast/seo";
 import { browseEpisodes, DEFAULT_BROWSE_STATE } from "@/lib/podbean";
 import { Route } from "./podcast";
 
@@ -65,23 +67,69 @@ describe("the title links to the episode; the player does not sit inside it", ()
     expect(heading).toContain('to="/podcast/$slug"');
   });
 
-  test("EpisodePlayer is rendered outside every Link", () => {
-    const playerAt = CARD.indexOf("<EpisodePlayer");
-    const headingEnd = CARD.indexOf("</h3>");
-
-    expect(playerAt).toBeGreaterThan(headingEnd);
-    // And it is not wrapped by the footer link either.
-    const footerAt = CARD.indexOf("View episode");
-    expect(playerAt).toBeLessThan(footerAt);
+  test("the row carries no player — playback lives on the episode page", () => {
+    // This replaces a test that asserted the opposite. The row previously
+    // embedded an EpisodePlayer, and the card's own docstring argued it should
+    // never be removed to simplify the row. That was overridden deliberately in
+    // Round 10 of the requirements interview, in favour of the approved
+    // directory design. Pinned so the reversal is a decision on the record
+    // rather than an assertion that quietly disappeared.
+    expect(CARD).not.toContain("<EpisodePlayer");
   });
 
-  test("the player is retained rather than deleted to simplify the row", () => {
-    expect(CARD).toContain("<EpisodePlayer");
-    expect(CARD).toContain("src={episode.audioUrl}");
+  test("the artwork link is named, and its play glyph is decorative", () => {
+    // The consequence of removing the player: the triangle on the artwork looks
+    // like a transport control and actually navigates. Without an accessible
+    // name it is an unlabelled image link — a WCAG 4.1.2 defect in the same
+    // standard the removed player argument was written to defend, and one that
+    // `not.toContain("<EpisodePlayer")` sails straight past.
+    const artwork = CARD.slice(CARD.indexOf("<Link"), CARD.indexOf("</Link>"));
+    expect(artwork).toContain("aria-label");
+    expect(artwork).toContain("Open episode:");
+    expect(artwork).toContain("aria-hidden");
   });
 
   test("a second, larger affordance points at the same destination", () => {
-    expect(CARD).toContain("View episode");
+    // Retained rather than updated away. Two links where one is an unlabelled
+    // image is precisely the configuration this row must not become.
+    expect(CARD).toContain("Listen to episode");
+  });
+});
+
+describe("episodeCardImage precedence", () => {
+  /**
+   * The test `episodeCardImage`'s docstring has always claimed exists.
+   *
+   * It matters more now than it did: the directory became image-led, so this
+   * chain decides what almost every row shows. On the live dataset exactly one
+   * of thirty-nine episodes has cover artwork and none has a generated share
+   * card, which means the default is currently the common case rather than the
+   * fallback — and once share cards are uploaded, a real photograph added later
+   * has to keep outranking the generated one with no code change.
+   */
+  // Asset ids must be hex — `REF_PATTERN` in src/lib/sanity/image.ts rejects
+  // anything else and `imageUrl` returns null, which silently resolves to the
+  // default and would make this test pass for the wrong reason.
+  const COVER_REF = "image-aaa111-1200x630-png";
+  const CARD_REF = "image-bbb222-1200x630-png";
+
+  test("cover artwork outranks a generated share card", () => {
+    const withBoth = episodeCardImage(
+      episode("a", { coverArtwork: COVER_REF, shareCard: CARD_REF }),
+    );
+    const withCardOnly = episodeCardImage(
+      episode("a", { coverArtwork: null, shareCard: CARD_REF }),
+    );
+
+    expect(withBoth).not.toBe(withCardOnly);
+    expect(withBoth).toContain("aaa111");
+    expect(withCardOnly).toContain("bbb222");
+  });
+
+  test("with neither set it falls back to the branded default", () => {
+    const fallback = episodeCardImage(episode("a", { coverArtwork: null, shareCard: null }));
+
+    expect(fallback).toContain(DEFAULT_SHARE_IMAGE_PATH);
   });
 });
 
@@ -123,7 +171,15 @@ describe("the shipped filter still drives the directory", () => {
 
   test("the route imports the filter rather than reimplementing it", () => {
     expect(ROUTE).toContain("browseEpisodes");
-    expect(ROUTE).toContain("durationCounts");
+  });
+
+  test("the duration-length chips are gone from the directory", () => {
+    // Removed deliberately in Round 10: the approved directory design specifies
+    // search and sort only. The filter library behind them is kept — see
+    // src/lib/podbean/filter.ts — so this pins the UI removal, not a capability
+    // deletion.
+    expect(ROUTE).not.toContain("DURATION_OPTIONS");
+    expect(ROUTE).not.toContain("durationCounts");
   });
 });
 

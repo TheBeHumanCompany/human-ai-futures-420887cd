@@ -22,6 +22,14 @@ export interface DurationOption {
   max: number;
 }
 
+/**
+ * NOTE: no UI consumes these buckets today, and that is deliberate.
+ *
+ * The directory's duration-filter chips were removed in Round 10 because the
+ * approved design specifies search and sort only. The capability is kept, fully
+ * tested, and re-exported — restoring the chips is a rendering change, not a
+ * rewrite. Do not delete this as unused.
+ */
 export const DURATION_OPTIONS: readonly DurationOption[] = [
   { value: "all", label: "Any length", min: 0, max: Number.POSITIVE_INFINITY },
   { value: "short", label: "Under 45 min", min: 0, max: 45 },

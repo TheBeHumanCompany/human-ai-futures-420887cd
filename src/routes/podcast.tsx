@@ -3,12 +3,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
 import podcastImage from "@/assets/podcast.jpg";
 import { EpisodeCard } from "@/components/episode-card";
+import { FeaturedEpisode } from "@/components/featured-episode";
 import { PodcastDegraded } from "@/components/podcast-degraded";
 import {
   browseEpisodes,
   DEFAULT_BROWSE_STATE,
-  DURATION_OPTIONS,
-  durationCounts,
   isDefaultBrowseState,
   SORT_OPTIONS,
 } from "@/lib/podbean";
@@ -19,7 +18,6 @@ import {
 } from "@/lib/podcast/degraded-status";
 import { toBrowsable } from "@/lib/podcast/episode";
 import { fetchEpisodeList } from "@/lib/podcast/queries";
-import { cn } from "@/lib/utils";
 
 /** Rows rendered before "Show more". */
 const PAGE_SIZE = 12;
@@ -78,8 +76,25 @@ function Podcast() {
   // The shipped filter is reused unchanged — `toBrowsable` renames two fields
   // and carries the original along so a filtered row can still be rendered.
   const browsable = useMemo(() => episodes.map(toBrowsable), [episodes]);
-  const visible = useMemo(() => browseEpisodes(browsable, browse), [browsable, browse]);
-  const counts = useMemo(() => durationCounts(browsable, browse.query), [browsable, browse.query]);
+
+  /**
+   * The newest episode gets its own block above the directory — but only on the
+   * default view.
+   *
+   * Featuring it unconditionally would make it unfindable: search the guest's
+   * name and the one episode that matches is the one excluded from the results,
+   * because it is sitting in the block above. So the moment a query or sort is
+   * applied, the feature block disappears and the list carries every match.
+   */
+  const isDefaultView = isDefaultBrowseState(browse);
+  const featured = isDefaultView ? browsable[0] : undefined;
+
+  const visible = useMemo(() => {
+    const rows = browseEpisodes(browsable, browse);
+    return featured
+      ? rows.filter((row) => row.source.slug.current !== featured.source.slug.current)
+      : rows;
+  }, [browsable, browse, featured]);
 
   // Renders a page at a time rather than the whole catalogue. The fetch is
   // deliberately unbounded — filtering happens in memory so search stays
@@ -93,39 +108,49 @@ function Podcast() {
 
   return (
     <>
-      <section className="section-ink grain border-b border-border">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:py-28">
-          <div>
-            <p className="eyebrow text-lime">The People-Driven CEO Podcast</p>
-            <h1 className="display mt-6 text-[clamp(2.5rem,6vw,5rem)]">
-              Where leaders prepare for the New Human Era.
-            </h1>
-            <p className="mt-8 max-w-lg text-lg leading-relaxed text-muted-foreground">
-              Conversations on leadership, AI, culture and building organizations where humanity
-              becomes the competitive advantage.
-            </p>
-            <a
-              href="#episodes"
-              className="eyebrow mt-10 inline-flex items-center gap-2 rounded-full bg-lime px-7 py-4 text-ink"
-            >
-              Listen now <span aria-hidden>→</span>
-            </a>
-          </div>
-          <img
-            src={podcastImage}
-            alt="Studio condenser microphone lit in a dark recording room"
-            loading="lazy"
-            width={1200}
-            height={900}
-            className="aspect-[4/3] w-full object-cover"
-          />
+      {/*
+        The show's name is the headline, and the microphone bleeds off the right
+        edge rather than sitting in a contained cell. `isolate` and the negative
+        z-index keep the image behind the copy without it escaping the section.
+      */}
+      <section className="section-ink grain relative isolate overflow-hidden border-b border-border">
+        <img
+          src={podcastImage}
+          alt=""
+          width={1200}
+          height={900}
+          className="absolute inset-y-0 right-0 -z-20 h-full w-full object-cover object-[70%_center] lg:w-[58%]"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-background via-background/85 to-background/40 lg:bg-gradient-to-r lg:from-background lg:via-background/90 lg:to-transparent lg:[--tw-gradient-via-position:46%]"
+        />
+
+        <div className="mx-auto max-w-[1400px] px-5 py-28 sm:px-8 lg:py-40">
+          <h1 className="display max-w-3xl text-[clamp(2.75rem,7vw,5.5rem)]">
+            The People-Driven CEO <span className="text-lime">Podcast</span>
+          </h1>
+          <p className="mt-10 max-w-lg text-lg leading-relaxed text-muted-foreground">
+            Conversations on leadership, AI, culture and building organizations where humanity
+            becomes the competitive advantage.
+          </p>
         </div>
       </section>
+
+      {featured && (
+        <section className="section-cream border-b border-ink/10">
+          <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-20">
+            <FeaturedEpisode episode={featured.source} />
+          </div>
+        </section>
+      )}
 
       <section id="episodes" className="section-cream">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
           <div className="flex flex-wrap items-baseline justify-between gap-4">
-            <h2 className="eyebrow text-ink/50">All episodes</h2>
+            <h2 className="display text-3xl text-ink lg:text-4xl">
+              {featured ? "More episodes" : "All episodes"}
+            </h2>
             {episodes.length > 0 && (
               <div className="flex items-baseline gap-4">
                 <span className="eyebrow text-ink/40" aria-live="polite">
@@ -179,40 +204,14 @@ function Podcast() {
                   )}
                 </div>
 
+                {/*
+                  The duration-length filter chips were removed here. They
+                  filtered by episode length with live per-bucket counts and
+                  worked, but they are not part of the approved directory design,
+                  which specifies search and sort only. The filter library behind
+                  them is deliberately kept — see src/lib/podbean/filter.ts.
+                */}
                 <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
-                  <div
-                    role="group"
-                    aria-label="Filter by episode length"
-                    className="flex flex-wrap items-center gap-2"
-                  >
-                    {DURATION_OPTIONS.map((option) => {
-                      const count = counts[option.value];
-                      const selected = browse.duration === option.value;
-                      return (
-                        <button
-                          key={option.value}
-                          type="button"
-                          aria-pressed={selected}
-                          disabled={count === 0 && !selected}
-                          onClick={() => setBrowse((s) => ({ ...s, duration: option.value }))}
-                          className={cn(
-                            "eyebrow rounded-full border px-3.5 py-2 transition-colors",
-                            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink",
-                            selected
-                              ? "border-ink bg-ink text-cream"
-                              : "border-hairline-dark text-ink/60 hover:border-ink hover:text-ink",
-                            count === 0 &&
-                              !selected &&
-                              "cursor-not-allowed opacity-35 hover:border-hairline-dark hover:text-ink/60",
-                          )}
-                        >
-                          {option.label}
-                          <span className="ml-1.5 tabular-nums opacity-60">{count}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-
                   <label className="flex items-center gap-2 text-sm text-ink/60">
                     <span className="eyebrow">Sort</span>
                     <select
@@ -238,7 +237,7 @@ function Podcast() {
               {visible.length === 0 ? (
                 <div className="mt-10 border-t border-hairline-dark pt-10">
                   <p className="max-w-md text-lg leading-relaxed text-ink/60">
-                    No episodes match{browse.query ? ` “${browse.query}”` : " that filter"}.
+                    No episodes match{browse.query ? ` “${browse.query}”` : " that search"}.
                   </p>
                   <button
                     type="button"
