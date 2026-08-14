@@ -112,32 +112,8 @@ function Podcast() {
               Conversations on leadership, AI, culture, and building organizations where humanity
               becomes the competitive advantage.
             </p>
-
-            <div className="relative mt-6 w-full max-w-[34rem]">
-              <Search
-                aria-hidden
-                className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink/50"
-              />
-              <input
-                type="search"
-                value={browse.query}
-                onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
-                placeholder="Search episodes, guests, or topics"
-                aria-label="Search episodes, guests, or topics"
-                className="w-full rounded-full border border-cream/20 bg-cream py-3 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/50 focus-visible:border-lime"
-              />
-              {browse.query && (
-                <button
-                  type="button"
-                  onClick={() => setBrowse((s) => ({ ...s, query: "" }))}
-                  aria-label="Clear search"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-ink/50 hover:text-ink"
-                >
-                  <X className="size-4" aria-hidden />
-                </button>
-              )}
-            </div>
           </div>
+
 
           <img
             src={podcastImage}
