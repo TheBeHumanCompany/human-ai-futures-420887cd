@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { EpisodePlayer } from "@/components/episode-player";
+import { formatDuration } from "@/lib/podbean/parse";
 import { PodcastDegraded } from "@/components/podcast-degraded";
 import {
   DEGRADED_RETRY_AFTER_SECONDS,
