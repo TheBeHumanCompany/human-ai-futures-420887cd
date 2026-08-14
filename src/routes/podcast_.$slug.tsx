@@ -139,9 +139,16 @@ function displayTitle(title: string): string {
   return title.replace(/^\s*episode\s*#?\d+\s*?[:\-–—]\s*/i, "");
 }
 
+/**
+ * The one heading style for both lower columns. Shared so "Episode summary" and
+ * "Meet the guest" cannot drift apart in colour, size, tracking or spacing.
+ */
+const SECTION_HEADING = "section-label text-sm text-lime";
+
 function EpisodePage() {
   const { episode, related }: EpisodeLoaderData = Route.useLoaderData();
   const hero = episodeHeroImage(episode);
+  const profile = guestProfile(episode.episodeNumber);
   // Cleaned at render for every episode, present and future: the feed's
   // promotional tail ("Mobile viewers…", hashtags, "Listen on:") is never shown.
   const body = showNoteParagraphs(episode.description);
