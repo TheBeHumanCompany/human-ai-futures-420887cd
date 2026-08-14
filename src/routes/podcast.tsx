@@ -99,7 +99,7 @@ function Podcast() {
     <>
       {/* ---- Hero ---- */}
       <section className="section-ink grain">
-        <div className="mx-auto grid max-w-[1500px] items-center gap-8 px-5 py-10 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:gap-10 lg:py-12">
+        <div className="mx-auto grid max-w-[1500px] items-center gap-8 px-5 pb-10 pt-6 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:gap-10 lg:pb-12 lg:pt-8">
           <div>
             <h1 className="display text-[clamp(2.4rem,6.5vw,4.6rem)] leading-[0.92]">
               The people-
@@ -115,7 +115,8 @@ function Podcast() {
           </div>
 
           {/* The photograph is dark-on-dark, so it is feathered into the ink
-              background on every edge instead of being cut off by a hard line. */}
+              background on every edge — and especially the top edge beneath the
+              sticky header — instead of being cut off by a hard line. */}
           <div className="relative">
             <img
               src={podcastImage}
@@ -126,7 +127,7 @@ function Podcast() {
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,var(--ink)_100%)]"
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,var(--ink)_0%,transparent_35%),radial-gradient(ellipse_at_center,transparent_45%,var(--ink)_100%)]"
             />
           </div>
         </div>
@@ -159,10 +160,10 @@ function Podcast() {
             <>
               {featured && <FeaturedEpisode episode={featured} />}
 
-              {/* Search first, then the heading, then the archive controls. No
-                  top border: it stacked against the featured card's own frame
-                  and read as a double line. */}
-              <div ref={archiveRef} className="mt-16 scroll-mt-24 lg:mt-20">
+              {/* Archive discovery: generous breathing room after the featured
+                  card, then search, then the "More episodes" heading, then the
+                  count/sort row, then the grid. */}
+              <div ref={archiveRef} className="mt-20 scroll-mt-24 lg:mt-28">
                 <div className="relative w-full max-w-[32rem]">
                   <Search
                     aria-hidden
@@ -188,9 +189,9 @@ function Podcast() {
                   )}
                 </div>
 
-                <h2 className="section-label section-label-light mt-8 text-sm">More episodes</h2>
+                <h2 className="section-label section-label-light mt-10 text-sm">More episodes</h2>
 
-                <div className="mt-3 flex flex-wrap items-center gap-4">
+                <div className="mt-4 flex flex-wrap items-center gap-4">
                   <span
                     className="eyebrow font-semibold tracking-[0.16em] text-ink"
                     aria-live="polite"
