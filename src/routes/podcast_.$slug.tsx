@@ -147,38 +147,48 @@ function EpisodePage() {
 
   return (
     <>
-      {/* ---- Hero: cream editorial column + full-bleed image ---- */}
+      {/* ---- Hero: cream editorial column + portrait, 50/50, compact ---- */}
       <section className="section-cream border-b border-hairline-dark">
-        <div className="grid lg:grid-cols-2">
-          <div className="order-1 flex flex-col justify-center px-5 py-8 sm:px-8 lg:py-12 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-12">
+        <div className="grid lg:min-h-[540px] lg:grid-cols-2">
+          <div className="order-1 flex flex-col justify-center px-5 py-8 sm:px-8 lg:py-10 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-10">
             {episode.episodeNumber !== null && (
               <span className="eyebrow w-fit bg-lime px-2.5 py-1 text-ink">
                 Episode {episode.episodeNumber}
               </span>
             )}
-            <h1 className="mt-4 border-l-4 border-lime pl-4 font-display text-[clamp(1.75rem,4vw,2.85rem)] font-medium leading-[1.04] tracking-[0.005em] text-ink">
+            <h1 className="mt-3 border-l-4 border-lime pl-4 font-display text-[clamp(1.6rem,3.4vw,3.35rem)] font-medium leading-[0.97] tracking-[0.005em] text-ink">
               {displayTitle(episode.title)}
             </h1>
-            <p className="eyebrow mt-4 text-ink/50">
+
+            {/* Date + duration in one compact metadata row. */}
+            <p className="eyebrow mt-3 flex flex-wrap items-center gap-2 text-ink/60">
               <time dateTime={episode.publishedAt}>
                 {DATE_FORMAT.format(new Date(episode.publishedAt))}
               </time>
+              {episode.durationSeconds > 0 && (
+                <>
+                  <span aria-hidden className="text-lime">
+                    •
+                  </span>
+                  <span>{formatDuration(episode.durationSeconds)}</span>
+                </>
+              )}
             </p>
 
             {/* Mobile order: image sits above the player. */}
-            <div className="mt-6 lg:hidden">
+            <div className="mt-5 lg:hidden">
               <HeroImage episode={episode} hero={hero} />
             </div>
 
             <EpisodePlayer
-              className="mt-5 max-w-sm"
+              className="mt-4 max-w-sm"
               src={episode.audioUrl}
               title={episode.title}
               durationSeconds={episode.durationSeconds}
             />
 
             <a
-              className="eyebrow group mt-5 inline-flex w-fit items-center gap-3 bg-ink px-6 py-3 text-cream transition-colors hover:bg-ink/90"
+              className="eyebrow group mt-4 inline-flex h-[50px] w-fit items-center gap-3 bg-ink px-6 text-cream transition-colors hover:bg-ink/90"
               href={episode.podbeanUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -194,41 +204,44 @@ function EpisodePage() {
           </div>
 
           <div className="order-2 hidden lg:block">
-            <HeroImage episode={episode} hero={hero} className="h-full min-h-[420px]" />
+            <HeroImage episode={episode} hero={hero} className="h-full" />
           </div>
         </div>
       </section>
 
-      {/* ---- Story + guest ---- */}
+      {/* ---- Episode summary + guest: same 50/50 split as the hero ---- */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 lg:py-14">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
+        <div className="grid lg:grid-cols-2">
+          <div className="px-5 pt-12 pb-6 sm:px-8 lg:pb-12 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-10">
+            <p className="section-label section-label-dark text-sm">Episode summary</p>
             {body.length > 0 && (
-              <div className="max-w-[58ch] space-y-5 text-base leading-[1.7] text-ink/80">
+              <div className="mt-3 max-w-[58ch] space-y-3 text-[1.0625rem] leading-[1.55] text-ink/80">
                 {body.map((paragraph: string) => (
                   <p key={paragraph.slice(0, 48)}>{paragraph}</p>
                 ))}
               </div>
             )}
-
-            {episode.guestName && (
-              <div className="lg:border-l lg:border-hairline-dark lg:pl-12">
-                <p className="section-label section-label-dark text-sm">Meet the guest</p>
-                <h2 className="mt-3 font-display text-[clamp(1.5rem,2.6vw,1.9rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
-                  {episode.guestName}
-                </h2>
-                {episode.guestBio && (
-                  <p className="mt-4 max-w-[55ch] text-base leading-[1.7] text-ink/75">
-                    {episode.guestBio}
-                  </p>
-                )}
-              </div>
-            )}
           </div>
 
-          {/* ---- More episodes ---- */}
-          {related.length > 0 && (
-            <div className="mt-12 border-t border-hairline-dark pt-10">
+          {episode.guestName && (
+            <div className="px-5 pb-12 sm:px-8 lg:border-l lg:border-hairline-dark lg:pt-12 lg:pl-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
+              <p className="section-label text-sm text-lime">Meet the guest</p>
+              <h2 className="mt-3 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
+                {episode.guestName}
+              </h2>
+              {episode.guestBio && (
+                <p className="mt-3 max-w-[55ch] text-[1.0625rem] leading-[1.55] text-ink/75">
+                  {episode.guestBio}
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* ---- More episodes ---- */}
+        {related.length > 0 && (
+          <div className="mx-auto max-w-[1400px] px-5 pb-12 sm:px-8">
+            <div className="border-t border-hairline-dark pt-8">
               <div className="flex flex-wrap items-baseline justify-between gap-5">
                 <p className="section-label section-label-light text-xs">More episodes</p>
                 <Link
@@ -241,7 +254,7 @@ function EpisodePage() {
                   </span>
                 </Link>
               </div>
-              <ul className="mt-7 grid gap-7 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+              <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                 {related.map((item) => (
                   <li key={item.slug.current} className="border-t border-hairline-dark pt-4">
                     <Link
@@ -263,9 +276,10 @@ function EpisodePage() {
                 ))}
               </ul>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </section>
+
     </>
   );
 }
