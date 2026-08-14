@@ -53,7 +53,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   const { featured, podcastUnavailable } = Route.useLoaderData();
   const latest = featured.find((episode) => episode.episodeNumber === 5) ?? featured[0];
-  const rest = featured.filter((episode) => episode.episodeNumber !== 5);
+  const rest = featured.filter((episode) => episode.episodeNumber !== 5).slice(0, 2);
 
   return (
     <>
