@@ -201,10 +201,10 @@ function EpisodePage() {
 
       {/* ---- Story + guest ---- */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-20">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+        <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 lg:py-14">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
             {body.length > 0 && (
-              <div className="max-w-[65ch] space-y-6 text-base leading-[1.75] text-ink/80">
+              <div className="max-w-[58ch] space-y-5 text-base leading-[1.7] text-ink/80">
                 {body.map((paragraph: string) => (
                   <p key={paragraph.slice(0, 48)}>{paragraph}</p>
                 ))}
@@ -212,13 +212,13 @@ function EpisodePage() {
             )}
 
             {episode.guestName && (
-              <div className="lg:border-l lg:border-hairline-dark lg:pl-16">
+              <div className="lg:border-l lg:border-hairline-dark lg:pl-12">
                 <p className="section-label section-label-dark text-sm">Meet the guest</p>
-                <h2 className="mt-4 font-display text-[clamp(1.6rem,3vw,2.1rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
+                <h2 className="mt-3 font-display text-[clamp(1.5rem,2.6vw,1.9rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                   {episode.guestName}
                 </h2>
                 {episode.guestBio && (
-                  <p className="mt-5 max-w-[60ch] text-base leading-[1.75] text-ink/75">
+                  <p className="mt-4 max-w-[55ch] text-base leading-[1.7] text-ink/75">
                     {episode.guestBio}
                   </p>
                 )}
