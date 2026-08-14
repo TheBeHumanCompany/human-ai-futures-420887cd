@@ -9,7 +9,7 @@ import {
   DEGRADED_SOURCE_VALUE,
 } from "@/lib/podcast/degraded-status";
 import type { SanityEpisode } from "@/lib/podcast/episode";
-import { episodeHeroImage } from "@/lib/podcast/imagery";
+import { episodeHeroImage, episodeImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
 import { selectRelatedEpisodes } from "@/lib/podcast/related";
 import { buildEpisodeJsonLd, buildEpisodeMeta } from "@/lib/podcast/seo";
