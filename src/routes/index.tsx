@@ -10,6 +10,7 @@ import { EpisodePlayer } from "@/components/episode-player";
 import { SocialSection } from "@/components/social-section";
 import { HumanArchiveSection } from "@/components/human-archive-section";
 import { PRINCIPLES } from "@/lib/content";
+import { INITIATIVES, MISSION } from "@/lib/positioning";
 import { formatDuration } from "@/lib/podbean";
 import { loadFeaturedEpisodes } from "@/lib/podcast/featured";
 import { fetchEpisodeList } from "@/lib/podcast/queries";
@@ -134,6 +135,46 @@ function Home() {
               </span>
             </button>
           </figure>
+        </div>
+
+        {/*
+          The four initiatives, ADDED to this section rather than replacing it.
+
+          Replacing would destroy the signature headline and the founder video
+          above; a separate near-identical section beneath would read as a
+          duplicate of the one it sits under. Appending inside is the smallest
+          contiguous diff in the hottest file in this repo.
+
+          A sibling <div> inherits NONE of the grid div's container classes, so
+          `mx-auto max-w-[1360px] px-6 sm:px-10 lg:px-14` is replicated here on
+          purpose — without it this band renders full-bleed beneath a
+          max-width section. Top padding is reduced because the grid div above
+          already closes with py-16/20/28.
+        */}
+        <div className="mx-auto max-w-[1360px] px-6 pb-16 pt-2 sm:px-10 sm:pb-20 lg:px-14 lg:pb-28">
+          <p className="max-w-2xl text-lg leading-relaxed text-ink/70">{MISSION.transitionLine}</p>
+
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
+            {INITIATIVES.map((initiative) => (
+              <div key={initiative.id} className="border-t border-border pt-5">
+                <h3 className="display text-xl text-ink lg:text-2xl">{initiative.name}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink/70">{initiative.short}</p>
+                <Link
+                  to={initiative.to}
+                  className="eyebrow link-underline mt-5 inline-flex items-center gap-2 text-ink"
+                >
+                  {initiative.cta} <span aria-hidden>→</span>
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <Link
+            to="/why-we-exist"
+            className="eyebrow link-underline mt-12 inline-flex items-center gap-2 text-ink"
+          >
+            Why we exist <span aria-hidden>→</span>
+          </Link>
         </div>
       </section>
 
