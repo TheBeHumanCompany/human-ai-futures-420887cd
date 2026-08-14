@@ -151,43 +151,109 @@ function Podcast() {
             <>
               {featured && <FeaturedEpisode episode={featured} />}
 
-              <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-hairline-dark pt-5">
-                <h2 className="section-label section-label-light text-sm">All episodes</h2>
-                <div className="flex flex-wrap items-center gap-4">
-                  <span className="eyebrow font-semibold tracking-[0.16em] text-ink" aria-live="polite">
-                    {filtered ? `${visible.length} of ${episodes.length}` : `${episodes.length} episodes`}
-                  </span>
-                  <span aria-hidden className="h-4 w-px bg-hairline-dark" />
-                  <label className="flex items-center gap-3 text-sm text-ink">
-                    <span className="eyebrow text-ink/70">Sort by</span>
-                    <select
-                      value={browse.sort}
-                      onChange={(event) =>
-                        setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
-                      }
-                      className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm font-semibold text-ink outline-none focus-visible:border-ink"
-                    >
-                      {SORT_OPTIONS.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
+              <div ref={archiveRef} className="mt-8 scroll-mt-24 border-t border-hairline-dark pt-5">
+                <h2 className="section-label section-label-light text-sm">More episodes</h2>
+
+                <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                  <div className="relative w-full max-w-[32rem]">
+                    <Search
+                      aria-hidden
+                      className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink/50"
+                    />
+                    <input
+                      type="search"
+                      value={browse.query}
+                      onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
+                      placeholder="Search episodes, guests, or keywords"
+                      aria-label="Search episodes, guests, or keywords"
+                      className="w-full rounded-full border border-hairline-dark bg-cream py-2 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/50 focus-visible:border-ink"
+                    />
+                    {browse.query && (
+                      <button
+                        type="button"
+                        onClick={() => setBrowse((s) => ({ ...s, query: "" }))}
+                        aria-label="Clear search"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-ink/50 hover:text-ink"
+                      >
+                        <X className="size-4" aria-hidden />
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-4">
+                    <span className="eyebrow font-semibold tracking-[0.16em] text-ink" aria-live="polite">
+                      {filtered ? `${visible.length} of ${episodes.length}` : `${episodes.length} episodes`}
+                    </span>
+                    <span aria-hidden className="h-4 w-px bg-hairline-dark" />
+                    <label className="flex items-center gap-3 text-sm text-ink">
+                      <span className="eyebrow text-ink/70">Sort by</span>
+                      <select
+                        value={browse.sort}
+                        onChange={(event) =>
+                          setBrowse((s) => ({ ...s, sort: event.target.value as typeof s.sort }))
+                        }
+                        className="border-b border-hairline-dark bg-transparent py-1.5 pr-6 text-sm font-semibold text-ink outline-none focus-visible:border-ink"
+                      >
+                        {SORT_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
                 </div>
               </div>
 
-              <ul className="mt-8 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="mt-6 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
                 {rest.map((row) => (
                   <EpisodeMediaCard key={row.source.slug.current} episode={row.source} />
                 ))}
               </ul>
 
-              {shown + 1 < visible.length && (
-                <div className="mt-16 flex justify-center">
+              {isMobile && pageCount > 1 && (
+                <nav aria-label="Episode pages" className="mt-8 flex items-center justify-center gap-2">
                   <button
                     type="button"
-                    onClick={() => setShown((current) => current + PAGE_SIZE)}
+                    onClick={() => goToPage(current - 1)}
+                    disabled={current === 1}
+                    aria-label="Previous page"
+                    className="flex size-9 items-center justify-center rounded-full border border-hairline-dark text-ink disabled:opacity-35"
+                  >
+                    <span aria-hidden>‹</span>
+                  </button>
+                  {Array.from({ length: pageCount }, (_, index) => index + 1).map((number) => (
+                    <button
+                      key={number}
+                      type="button"
+                      onClick={() => goToPage(number)}
+                      aria-current={number === current ? "page" : undefined}
+                      className={`flex size-9 items-center justify-center rounded-full text-sm font-semibold ${
+                        number === current
+                          ? "bg-ink text-cream"
+                          : "border border-hairline-dark text-ink"
+                      }`}
+                    >
+                      {number}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => goToPage(current + 1)}
+                    disabled={current === pageCount}
+                    aria-label="Next page"
+                    className="flex size-9 items-center justify-center rounded-full border border-hairline-dark text-ink disabled:opacity-35"
+                  >
+                    <span aria-hidden>›</span>
+                  </button>
+                </nav>
+              )}
+
+              {!isMobile && shown + 1 < visible.length && (
+                <div className="mt-12 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setShown((count) => count + PAGE_SIZE)}
                     className="eyebrow rounded-full border border-ink px-8 py-4 text-ink transition-colors hover:bg-ink hover:text-cream"
                   >
                     View all episodes <span aria-hidden>→</span>
