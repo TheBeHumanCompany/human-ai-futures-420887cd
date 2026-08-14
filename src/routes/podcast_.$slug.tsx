@@ -150,35 +150,35 @@ function EpisodePage() {
       {/* ---- Hero: cream editorial column + full-bleed image ---- */}
       <section className="section-cream border-b border-hairline-dark">
         <div className="grid lg:grid-cols-2">
-          <div className="order-1 flex flex-col justify-center px-5 py-12 sm:px-8 lg:py-20 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-16">
+          <div className="order-1 flex flex-col justify-center px-5 py-8 sm:px-8 lg:py-12 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-12">
             {episode.episodeNumber !== null && (
               <span className="eyebrow w-fit bg-lime px-2.5 py-1 text-ink">
                 Episode {episode.episodeNumber}
               </span>
             )}
-            <h1 className="mt-5 border-l-4 border-lime pl-4 font-display text-[clamp(2rem,5vw,3.35rem)] font-medium leading-[1.08] tracking-[0.005em] text-ink">
+            <h1 className="mt-4 border-l-4 border-lime pl-4 font-display text-[clamp(1.75rem,4vw,2.85rem)] font-medium leading-[1.04] tracking-[0.005em] text-ink">
               {displayTitle(episode.title)}
             </h1>
-            <p className="eyebrow mt-6 text-ink/50">
+            <p className="eyebrow mt-4 text-ink/50">
               <time dateTime={episode.publishedAt}>
                 {DATE_FORMAT.format(new Date(episode.publishedAt))}
               </time>
             </p>
 
             {/* Mobile order: image sits above the player. */}
-            <div className="mt-8 lg:hidden">
+            <div className="mt-6 lg:hidden">
               <HeroImage episode={episode} hero={hero} />
             </div>
 
             <EpisodePlayer
-              className="mt-8 max-w-md"
+              className="mt-5 max-w-sm"
               src={episode.audioUrl}
               title={episode.title}
               durationSeconds={episode.durationSeconds}
             />
 
             <a
-              className="eyebrow group mt-8 inline-flex w-fit items-center gap-3 bg-ink px-7 py-4 text-cream transition-colors hover:bg-ink/90"
+              className="eyebrow group mt-5 inline-flex w-fit items-center gap-3 bg-ink px-6 py-3 text-cream transition-colors hover:bg-ink/90"
               href={episode.podbeanUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -194,17 +194,17 @@ function EpisodePage() {
           </div>
 
           <div className="order-2 hidden lg:block">
-            <HeroImage episode={episode} hero={hero} className="h-full min-h-[560px]" />
+            <HeroImage episode={episode} hero={hero} className="h-full min-h-[420px]" />
           </div>
         </div>
       </section>
 
       {/* ---- Story + guest ---- */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-20">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+        <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 lg:py-14">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
             {body.length > 0 && (
-              <div className="max-w-[65ch] space-y-6 text-base leading-[1.75] text-ink/80">
+              <div className="max-w-[58ch] space-y-5 text-base leading-[1.7] text-ink/80">
                 {body.map((paragraph: string) => (
                   <p key={paragraph.slice(0, 48)}>{paragraph}</p>
                 ))}
@@ -212,13 +212,13 @@ function EpisodePage() {
             )}
 
             {episode.guestName && (
-              <div className="lg:border-l lg:border-hairline-dark lg:pl-16">
+              <div className="lg:border-l lg:border-hairline-dark lg:pl-12">
                 <p className="section-label section-label-dark text-sm">Meet the guest</p>
-                <h2 className="mt-4 font-display text-[clamp(1.6rem,3vw,2.1rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
+                <h2 className="mt-3 font-display text-[clamp(1.5rem,2.6vw,1.9rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                   {episode.guestName}
                 </h2>
                 {episode.guestBio && (
-                  <p className="mt-5 max-w-[60ch] text-base leading-[1.75] text-ink/75">
+                  <p className="mt-4 max-w-[55ch] text-base leading-[1.7] text-ink/75">
                     {episode.guestBio}
                   </p>
                 )}
@@ -228,8 +228,8 @@ function EpisodePage() {
 
           {/* ---- More episodes ---- */}
           {related.length > 0 && (
-            <div className="mt-16 border-t border-hairline-dark pt-12">
-              <div className="flex flex-wrap items-baseline justify-between gap-6">
+            <div className="mt-12 border-t border-hairline-dark pt-10">
+              <div className="flex flex-wrap items-baseline justify-between gap-5">
                 <p className="section-label section-label-light text-xs">More episodes</p>
                 <Link
                   to="/podcast"
@@ -241,9 +241,9 @@ function EpisodePage() {
                   </span>
                 </Link>
               </div>
-              <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+              <ul className="mt-7 grid gap-7 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
                 {related.map((item) => (
-                  <li key={item.slug.current} className="border-t border-hairline-dark pt-5">
+                  <li key={item.slug.current} className="border-t border-hairline-dark pt-4">
                     <Link
                       className="group block text-base leading-snug text-ink/85 hover:text-ink"
                       to="/podcast/$slug"
