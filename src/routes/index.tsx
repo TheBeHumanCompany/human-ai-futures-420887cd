@@ -340,8 +340,8 @@ function Home() {
           <article className="mt-10 grid overflow-hidden border border-border bg-foreground/[0.03] lg:mt-12 lg:grid-cols-[0.9fr_1fr]">
             <div className="relative min-h-[240px] sm:min-h-[300px] lg:min-h-[380px]">
               <img
-                src={podcastImage}
-                alt="Studio condenser microphone lit in a dark recording room"
+                src={latest ? episodeImage(latest) : podcastImage}
+                alt={latest?.guestName ? `Portrait of ${latest.guestName}` : "Studio condenser microphone lit in a dark recording room"}
                 loading="lazy"
                 width={1200}
                 height={900}
@@ -350,7 +350,7 @@ function Home() {
             </div>
             <div className="flex flex-col justify-center gap-4 p-6 sm:p-9 lg:p-12">
               <p className="eyebrow text-lime">
-                Featured episode
+                FEATURED EPISODE
                 {latest?.episodeNumber ? ` · ${String(latest.episodeNumber).padStart(3, "0")}` : ""}
               </p>
               <h3 className="display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.05]">
