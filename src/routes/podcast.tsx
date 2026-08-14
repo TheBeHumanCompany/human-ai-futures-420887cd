@@ -94,11 +94,10 @@ function Podcast() {
     );
   }, [visible]);
 
-  const pageCount = Math.max(1, Math.ceil(gridEpisodes.length / MOBILE_PAGE_SIZE));
+  const perPage = isMobile ? MOBILE_PAGE_SIZE : PAGE_SIZE;
+  const pageCount = Math.max(1, Math.ceil(gridEpisodes.length / perPage));
   const current = Math.min(page, pageCount);
-  const rest = isMobile
-    ? gridEpisodes.slice((current - 1) * MOBILE_PAGE_SIZE, current * MOBILE_PAGE_SIZE)
-    : gridEpisodes.slice(0, shown);
+  const rest = gridEpisodes.slice((current - 1) * perPage, current * perPage);
 
   const filtered = browse.query.trim() !== "";
 
