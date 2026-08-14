@@ -229,13 +229,18 @@ function EpisodePage() {
 
           {episode.guestName && (
             <div className="px-5 pb-12 sm:px-8 lg:border-l lg:border-hairline-dark lg:pt-12 lg:pl-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
-              <p className="section-label text-sm text-lime">Meet the guest</p>
+              <p className={SECTION_HEADING}>Meet the guest</p>
               <h2 className="mt-3 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                 {episode.guestName}
               </h2>
-              {episode.guestBio && (
+              {profile.role && (
+                <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>
+              )}
+              {/* Sanity first, the on-file profile only as a fallback — and
+                  nothing at all when neither exists. No filler. */}
+              {(episode.guestBio ?? profile.bio) && (
                 <p className="mt-3 max-w-[55ch] text-[1.0625rem] leading-[1.55] text-ink/75">
-                  {episode.guestBio}
+                  {episode.guestBio ?? profile.bio}
                 </p>
               )}
             </div>
