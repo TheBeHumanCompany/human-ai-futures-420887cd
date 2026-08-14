@@ -210,7 +210,7 @@ function EpisodePage() {
           </div>
 
           <div className="order-2 hidden lg:block">
-            <HeroImage episode={episode} hero={hero} className="h-full min-h-[460px]" />
+            <HeroImage episode={episode} hero={hero} className="h-full min-h-[440px]" />
           </div>
         </div>
       </section>
