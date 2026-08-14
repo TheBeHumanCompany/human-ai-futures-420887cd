@@ -1,0 +1,161 @@
+{
+  "source": "Supplied by hand and verified by the client, 2026-08-14. NOT derived from episode descriptions, NOT inferred, and NOT researched by any tool — a guest's URL is a factual claim about a real person, and a plausible but wrong one sends visitors to a different real person with the same name.",
+  "reviewNote": "Correct a link HERE, in this file, where it is reviewed as a diff — not in the Studio. scripts/apply-guest-links.ts overwrites guestLinks on every run, so an in-Studio edit to that one field is undone by the next apply. Every other field is safe to edit in the Studio. URLs are recorded exactly as supplied, including http:// where that is what was given: silently upgrading a scheme is a guess about a server's TLS support, and a broken https:// link is worse than a working http:// one.",
+  "episodes": [
+    {
+      "episodeNumber": 1,
+      "links": [{ "label": "Visit CAYA Health Centre", "url": "https://cayahealthcentre.com" }]
+    },
+    {
+      "episodeNumber": 2,
+      "links": [{ "label": "Visit AdhereTo Studio", "url": "https://www.adheretostudios.com" }]
+    },
+    {
+      "episodeNumber": 3,
+      "links": [{ "label": "Visit Devin & Lang", "url": "https://devinandlang.com" }]
+    },
+    { "episodeNumber": 4, "links": [{ "label": "Visit Lavva", "url": "https://lovvelavva.com/" }] },
+    {
+      "episodeNumber": 5,
+      "links": [{ "label": "Visit Cheekbone Beauty", "url": "https://www.cheekbonebeauty.com/" }]
+    },
+    {
+      "episodeNumber": 6,
+      "links": [
+        { "label": "Visit Mint Cleaning Products", "url": "https://mintcleaningproducts.com/" }
+      ]
+    },
+    {
+      "episodeNumber": 7,
+      "links": [{ "label": "Visit Vitality Wellness", "url": "https://www.vitalitywellnessw.com/" }]
+    },
+    { "episodeNumber": 8, "links": [{ "label": "Visit FXRY", "url": "https://www.thefxry.com/" }] },
+    {
+      "episodeNumber": 9,
+      "links": [
+        { "label": "Visit Christine Monaghan", "url": "https://christinemonaghan.com/collective/" }
+      ]
+    },
+    {
+      "episodeNumber": 10,
+      "links": [{ "label": "Visit Neuraura", "url": "https://www.neuraura.com/" }]
+    },
+    {
+      "episodeNumber": 11,
+      "links": [{ "label": "Visit BioSteel", "url": "https://biosteel.com/" }]
+    },
+    {
+      "episodeNumber": 12,
+      "links": [{ "label": "Visit Voes & Co.", "url": "https://voesandcompany.com/" }]
+    },
+    { "episodeNumber": 13, "links": [{ "label": "Visit Float VR", "url": "https://floatvr.io" }] },
+    { "episodeNumber": 14, "links": [{ "label": "Visit Jevitty", "url": "https://jevitty.com/" }] },
+    {
+      "episodeNumber": 15,
+      "links": [{ "label": "Visit Elements Brazil", "url": "https://www.elementsbrazil.com/" }]
+    },
+    {
+      "episodeNumber": 16,
+      "links": [{ "label": "Visit Rviita", "url": "https://rviitalize.com/" }]
+    },
+    {
+      "episodeNumber": 17,
+      "links": [{ "label": "Visit MistyWest", "url": "https://www.mistywest.com/" }]
+    },
+    { "episodeNumber": 18, "links": [{ "label": "Visit Joni", "url": "https://getjoni.com/" }] },
+    {
+      "episodeNumber": 19,
+      "links": [{ "label": "Visit The Skin Girls", "url": "http://www.theskingirls.ca/" }]
+    },
+    {
+      "episodeNumber": 20,
+      "links": [
+        { "label": "Visit Recess Thermal Station", "url": "https://www.recessthermalstation.com/" }
+      ]
+    },
+    {
+      "episodeNumber": 21,
+      "links": [{ "label": "Visit Nuez Acres", "url": "https://nuezacres.ca/" }]
+    },
+    {
+      "episodeNumber": 22,
+      "links": [],
+      "omissionReason": "No link supplied. The website in the episode description appears to be incorrect, and guessing a replacement is exactly what this field must never do."
+    },
+    {
+      "episodeNumber": 23,
+      "links": [{ "label": "Visit Ufeelu", "url": "https://www.ufeelu.com/" }]
+    },
+    {
+      "episodeNumber": 24,
+      "links": [{ "label": "Visit MOD Kitchen", "url": "https://www.modkitchen.ca/" }]
+    },
+    {
+      "episodeNumber": 25,
+      "links": [{ "label": "Visit Zimt Chocolates", "url": "http://www.zimtchocolates.com/" }]
+    },
+    {
+      "episodeNumber": 26,
+      "links": [{ "label": "Visit Amino Balls", "url": "https://www.aminoballs.com/" }]
+    },
+    {
+      "episodeNumber": 27,
+      "links": [{ "label": "Visit Plume Science", "url": "http://www.plumescience.com/" }]
+    },
+    {
+      "episodeNumber": 28,
+      "links": [{ "label": "Visit FoodMesh", "url": "http://www.foodmesh.ca/" }]
+    },
+    {
+      "episodeNumber": 29,
+      "links": [{ "label": "Visit ElektraFi", "url": "https://elektrafi.io/" }]
+    },
+    {
+      "episodeNumber": 30,
+      "links": [{ "label": "Visit EndoDiagnosis", "url": "https://endodiagnosis.com/" }]
+    },
+    {
+      "episodeNumber": 31,
+      "links": [
+        { "label": "Visit Renewal Development", "url": "https://www.renewaldevelopment.ca/" }
+      ]
+    },
+    {
+      "episodeNumber": 32,
+      "links": [{ "label": "Visit Tocha Foods", "url": "https://tochafoods.com/" }]
+    },
+    {
+      "episodeNumber": 33,
+      "links": [{ "label": "Visit Wise Bites", "url": "https://wise-bites.com/" }]
+    },
+    {
+      "episodeNumber": 34,
+      "links": [{ "label": "Visit Luna Nectar", "url": "https://lunanectar.com/en-intl" }]
+    },
+    {
+      "episodeNumber": 35,
+      "links": [
+        { "label": "Visit Susgrainable", "url": "https://susgrainable.com/pages/b2b-flour/" }
+      ]
+    },
+    {
+      "episodeNumber": 36,
+      "links": [{ "label": "Visit MisMacK Clean Cosmetics", "url": "https://mismack.com/" }]
+    },
+    {
+      "episodeNumber": 37,
+      "links": [{ "label": "Visit The Sartorial Shop", "url": "https://www.thesartorialshop.com/" }]
+    },
+    {
+      "episodeNumber": 38,
+      "links": [
+        { "label": "Visit Nik Vassev", "url": "https://www.nikvassev.com/" },
+        { "label": "Visit NovoBeing", "url": "https://novobeing.com/" }
+      ]
+    },
+    {
+      "episodeNumber": 39,
+      "links": [{ "label": "Visit Briteweb", "url": "https://briteweb.com/" }]
+    }
+  ]
+}
