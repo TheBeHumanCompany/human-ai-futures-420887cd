@@ -14,11 +14,15 @@ import { Route as TheHumanArchiveRouteImport } from './routes/the-human-archive'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PodcastRouteImport } from './routes/podcast'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BeHumanAiRouteImport } from './routes/be-human-ai'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BeHumanAiIndexRouteImport } from './routes/be-human-ai/index'
 import { Route as PodcastSlugRouteImport } from './routes/podcast_.$slug'
 import { Route as HumanArchiveSlugRouteImport } from './routes/human-archive.$slug'
+import { Route as BeHumanAiHumanReadinessRouteImport } from './routes/be-human-ai/human-readiness'
+import { Route as BeHumanAiGovernanceRouteImport } from './routes/be-human-ai/governance'
+import { Route as BeHumanAiBlueprintRouteImport } from './routes/be-human-ai/blueprint'
+import { Route as BeHumanAiAiStrategyRouteImport } from './routes/be-human-ai/ai-strategy'
 
 const TheNewHumanEraRoute = TheNewHumanEraRouteImport.update({
   id: '/the-new-human-era',
@@ -45,11 +49,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BeHumanAiRoute = BeHumanAiRouteImport.update({
-  id: '/be-human-ai',
-  path: '/be-human-ai',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -58,6 +57,11 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BeHumanAiIndexRoute = BeHumanAiIndexRouteImport.update({
+  id: '/be-human-ai/',
+  path: '/be-human-ai/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PodcastSlugRoute = PodcastSlugRouteImport.update({
@@ -70,94 +74,142 @@ const HumanArchiveSlugRoute = HumanArchiveSlugRouteImport.update({
   path: '/human-archive/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BeHumanAiHumanReadinessRoute = BeHumanAiHumanReadinessRouteImport.update({
+  id: '/be-human-ai/human-readiness',
+  path: '/be-human-ai/human-readiness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BeHumanAiGovernanceRoute = BeHumanAiGovernanceRouteImport.update({
+  id: '/be-human-ai/governance',
+  path: '/be-human-ai/governance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BeHumanAiBlueprintRoute = BeHumanAiBlueprintRouteImport.update({
+  id: '/be-human-ai/blueprint',
+  path: '/be-human-ai/blueprint',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BeHumanAiAiStrategyRoute = BeHumanAiAiStrategyRouteImport.update({
+  id: '/be-human-ai/ai-strategy',
+  path: '/be-human-ai/ai-strategy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/be-human-ai': typeof BeHumanAiRoute
   '/contact': typeof ContactRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
+  '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
+  '/be-human-ai/blueprint': typeof BeHumanAiBlueprintRoute
+  '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
+  '/be-human-ai/human-readiness': typeof BeHumanAiHumanReadinessRoute
   '/human-archive/$slug': typeof HumanArchiveSlugRoute
   '/podcast/$slug': typeof PodcastSlugRoute
+  '/be-human-ai/': typeof BeHumanAiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/be-human-ai': typeof BeHumanAiRoute
   '/contact': typeof ContactRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
+  '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
+  '/be-human-ai/blueprint': typeof BeHumanAiBlueprintRoute
+  '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
+  '/be-human-ai/human-readiness': typeof BeHumanAiHumanReadinessRoute
   '/human-archive/$slug': typeof HumanArchiveSlugRoute
   '/podcast/$slug': typeof PodcastSlugRoute
+  '/be-human-ai': typeof BeHumanAiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/be-human-ai': typeof BeHumanAiRoute
   '/contact': typeof ContactRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
+  '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
+  '/be-human-ai/blueprint': typeof BeHumanAiBlueprintRoute
+  '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
+  '/be-human-ai/human-readiness': typeof BeHumanAiHumanReadinessRoute
   '/human-archive/$slug': typeof HumanArchiveSlugRoute
   '/podcast_/$slug': typeof PodcastSlugRoute
+  '/be-human-ai/': typeof BeHumanAiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
-    | '/be-human-ai'
     | '/contact'
     | '/podcast'
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
+    | '/be-human-ai/ai-strategy'
+    | '/be-human-ai/blueprint'
+    | '/be-human-ai/governance'
+    | '/be-human-ai/human-readiness'
     | '/human-archive/$slug'
     | '/podcast/$slug'
+    | '/be-human-ai/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/be-human-ai'
     | '/contact'
     | '/podcast'
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
+    | '/be-human-ai/ai-strategy'
+    | '/be-human-ai/blueprint'
+    | '/be-human-ai/governance'
+    | '/be-human-ai/human-readiness'
     | '/human-archive/$slug'
     | '/podcast/$slug'
+    | '/be-human-ai'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/be-human-ai'
     | '/contact'
     | '/podcast'
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
+    | '/be-human-ai/ai-strategy'
+    | '/be-human-ai/blueprint'
+    | '/be-human-ai/governance'
+    | '/be-human-ai/human-readiness'
     | '/human-archive/$slug'
     | '/podcast_/$slug'
+    | '/be-human-ai/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  BeHumanAiRoute: typeof BeHumanAiRoute
   ContactRoute: typeof ContactRoute
   PodcastRoute: typeof PodcastRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TheHumanArchiveRoute: typeof TheHumanArchiveRoute
   TheNewHumanEraRoute: typeof TheNewHumanEraRoute
+  BeHumanAiAiStrategyRoute: typeof BeHumanAiAiStrategyRoute
+  BeHumanAiBlueprintRoute: typeof BeHumanAiBlueprintRoute
+  BeHumanAiGovernanceRoute: typeof BeHumanAiGovernanceRoute
+  BeHumanAiHumanReadinessRoute: typeof BeHumanAiHumanReadinessRoute
   HumanArchiveSlugRoute: typeof HumanArchiveSlugRoute
   PodcastSlugRoute: typeof PodcastSlugRoute
+  BeHumanAiIndexRoute: typeof BeHumanAiIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -197,13 +249,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/be-human-ai': {
-      id: '/be-human-ai'
-      path: '/be-human-ai'
-      fullPath: '/be-human-ai'
-      preLoaderRoute: typeof BeHumanAiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -216,6 +261,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/be-human-ai/': {
+      id: '/be-human-ai/'
+      path: '/be-human-ai'
+      fullPath: '/be-human-ai/'
+      preLoaderRoute: typeof BeHumanAiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/podcast_/$slug': {
@@ -232,20 +284,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HumanArchiveSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/be-human-ai/human-readiness': {
+      id: '/be-human-ai/human-readiness'
+      path: '/be-human-ai/human-readiness'
+      fullPath: '/be-human-ai/human-readiness'
+      preLoaderRoute: typeof BeHumanAiHumanReadinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/be-human-ai/governance': {
+      id: '/be-human-ai/governance'
+      path: '/be-human-ai/governance'
+      fullPath: '/be-human-ai/governance'
+      preLoaderRoute: typeof BeHumanAiGovernanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/be-human-ai/blueprint': {
+      id: '/be-human-ai/blueprint'
+      path: '/be-human-ai/blueprint'
+      fullPath: '/be-human-ai/blueprint'
+      preLoaderRoute: typeof BeHumanAiBlueprintRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/be-human-ai/ai-strategy': {
+      id: '/be-human-ai/ai-strategy'
+      path: '/be-human-ai/ai-strategy'
+      fullPath: '/be-human-ai/ai-strategy'
+      preLoaderRoute: typeof BeHumanAiAiStrategyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  BeHumanAiRoute: BeHumanAiRoute,
   ContactRoute: ContactRoute,
   PodcastRoute: PodcastRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TheHumanArchiveRoute: TheHumanArchiveRoute,
   TheNewHumanEraRoute: TheNewHumanEraRoute,
+  BeHumanAiAiStrategyRoute: BeHumanAiAiStrategyRoute,
+  BeHumanAiBlueprintRoute: BeHumanAiBlueprintRoute,
+  BeHumanAiGovernanceRoute: BeHumanAiGovernanceRoute,
+  BeHumanAiHumanReadinessRoute: BeHumanAiHumanReadinessRoute,
   HumanArchiveSlugRoute: HumanArchiveSlugRoute,
   PodcastSlugRoute: PodcastSlugRoute,
+  BeHumanAiIndexRoute: BeHumanAiIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

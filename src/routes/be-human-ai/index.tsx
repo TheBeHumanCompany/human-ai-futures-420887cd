@@ -1,7 +1,25 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SERVICES } from "@/lib/content";
 
-export const Route = createFileRoute("/be-human-ai")({
+/**
+ * The services overview, moved here from the former flat `src/routes/be-human-ai.tsx`
+ * so that `/be-human-ai/blueprint` and the three pillar pages can live beneath it.
+ *
+ * **The route id carries a trailing slash and the public URL does not.** The generator
+ * keys `FileRoutesByPath` on `'/be-human-ai/'` while that entry's own `path` is
+ * `'/be-human-ai'`, and `createFileRoute` is constrained to `keyof FileRoutesByPath` —
+ * so the *key* is what the argument has to match. Copying the old
+ * `createFileRoute("/be-human-ai")` verbatim is a hard type error once the flat file is
+ * gone. The `to:` union still carries `/be-human-ai` without the slash, which is why
+ * every existing `<Link to="/be-human-ai">` keeps working untouched.
+ *
+ * There is deliberately no `be-human-ai/route.tsx` layout file. Nothing needs hoisting —
+ * header and footer live in `__root.tsx` and each page sets its own `head()` — and a
+ * parent route that forgets `<Outlet/>` silently swallows every child, which is the exact
+ * failure `route-shape.test.ts:56-63` exists to catch. Add one later if shared chrome
+ * ever appears; it is additive and changes no URL.
+ */
+export const Route = createFileRoute("/be-human-ai/")({
   head: () => ({
     meta: [
       { title: "Be Human AI — AI Strategy, Governance & Agents" },
