@@ -99,16 +99,14 @@ function Podcast() {
     <>
       {/* ---- Hero ---- */}
       <section className="section-ink grain">
-        <div className="mx-auto grid max-w-[1500px] items-center gap-8 px-5 pb-10 pt-6 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:gap-14 lg:pb-12 lg:pt-8">
-          <div className="md:pl-6 lg:pl-12 xl:pl-20">
-            <h1 className="display text-[clamp(2.4rem,6.5vw,4.6rem)] leading-[0.92]">
-              The people-
+        <div className="mx-auto grid max-w-[1500px] items-center gap-10 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] md:gap-14 lg:pb-16 lg:pt-10">
+          <div className="md:pl-8 lg:pl-16 xl:pl-24">
+            <h1 className="display text-[clamp(2.6rem,7vw,5.2rem)] leading-[0.9] tracking-[0.01em]">
+              The people-driven
               <br />
-              driven CEO
-              <br />
-              <span className="text-lime">Podcast</span>
+              CEO <span className="text-lime">Podcast</span>
             </h1>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+            <p className="mt-7 max-w-md text-base leading-relaxed text-muted-foreground">
               Conversations on leadership, AI, culture, and building organizations where humanity
               becomes the competitive advantage.
             </p>
@@ -123,11 +121,11 @@ function Podcast() {
               alt="Studio condenser microphone lit warmly in a dark recording room"
               width={1400}
               height={1050}
-              className="aspect-[4/3] w-full object-cover md:aspect-[5/4] md:max-h-[26rem]"
+              className="aspect-[4/3] w-full object-cover md:aspect-[5/4] md:max-h-[24rem]"
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,var(--ink)_0%,transparent_40%,transparent_72%,var(--ink)_100%),linear-gradient(to_right,var(--ink)_0%,transparent_32%,transparent_78%,var(--ink)_100%),radial-gradient(ellipse_at_center,transparent_35%,var(--ink)_100%)]"
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,var(--ink)_0%,transparent_45%,transparent_70%,var(--ink)_100%),linear-gradient(to_right,var(--ink)_0%,transparent_30%,transparent_75%,var(--ink)_100%),radial-gradient(ellipse_at_center,transparent_30%,var(--ink)_100%)]"
             />
           </div>
 
