@@ -81,6 +81,13 @@ const GUEST_PORTRAITS: Record<number, string> = {
   10: guestEp10.url,
   9: guestEp9.url,
   8: guestEp8.url,
+  7: guestEp7.url,
+  6: guestEp6.url,
+  5: guestEp5.url,
+  4: guestEp4.url,
+  3: guestEp3.url,
+  2: guestEp2.url,
+  1: guestEp1.url,
 };
 
 function suppliedPortrait(episode: Pick<EpisodeListItem, "episodeNumber">): string | null {
