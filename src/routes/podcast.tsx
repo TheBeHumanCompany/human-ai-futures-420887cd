@@ -15,8 +15,8 @@ import {
 import { toBrowsable, type EpisodeListItem } from "@/lib/podcast/episode";
 import { fetchEpisodeList } from "@/lib/podcast/queries";
 
-/** Rows rendered before "View all episodes". */
-const PAGE_SIZE = 9;
+/** Episodes per paginated page on desktop. */
+const PAGE_SIZE = 8;
 
 /** Episodes per paginated page on mobile. */
 const MOBILE_PAGE_SIZE = 6;
