@@ -18,6 +18,9 @@ import { fetchEpisodeList } from "@/lib/podcast/queries";
 /** Rows rendered before "View all episodes". */
 const PAGE_SIZE = 9;
 
+/** Episodes per paginated page on mobile. */
+const MOBILE_PAGE_SIZE = 6;
+
 export const Route = createFileRoute("/podcast")({
   /**
    * No catch. A Sanity outage must reach the router as an errored match so the
