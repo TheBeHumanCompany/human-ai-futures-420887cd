@@ -73,9 +73,9 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
       <Link
         to="/podcast/$slug"
         params={{ slug }}
-        className="flex h-full min-h-[10rem] overflow-hidden rounded-md border border-hairline-dark bg-cream focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+        className="flex h-full min-h-[11.5rem] overflow-hidden rounded-md border border-hairline-dark bg-cream focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
       >
-        <div className="relative w-[38%] shrink-0 overflow-hidden bg-ink/10">
+        <div className="relative w-[40%] shrink-0 overflow-hidden bg-ink/10">
           <img
             src={episodeImage(episode, 600)}
             alt=""
@@ -87,9 +87,9 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
           </span>
         </div>
 
-        <div className="flex min-w-0 flex-1 flex-col p-5">
+        <div className="flex min-w-0 flex-1 flex-col p-6 lg:p-7">
           <EpisodeMetaStamp episode={episode} />
-          <h3 className="display mt-3 text-[1.15rem] font-semibold leading-[1.18] text-ink">
+          <h3 className="display mt-3.5 text-[1.2rem] font-semibold leading-[1.18] text-ink">
             {displayTitle(episode.title)}
           </h3>
           {episode.guestName && (
