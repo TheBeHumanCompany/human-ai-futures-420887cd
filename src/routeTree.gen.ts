@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhyWeExistRouteImport } from './routes/why-we-exist'
 import { Route as TheNewHumanEraRouteImport } from './routes/the-new-human-era'
 import { Route as TheHumanArchiveRouteImport } from './routes/the-human-archive'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -24,6 +25,11 @@ import { Route as BeHumanAiGovernanceRouteImport } from './routes/be-human-ai/go
 import { Route as BeHumanAiBlueprintRouteImport } from './routes/be-human-ai/blueprint'
 import { Route as BeHumanAiAiStrategyRouteImport } from './routes/be-human-ai/ai-strategy'
 
+const WhyWeExistRoute = WhyWeExistRouteImport.update({
+  id: '/why-we-exist',
+  path: '/why-we-exist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TheNewHumanEraRoute = TheNewHumanEraRouteImport.update({
   id: '/the-new-human-era',
   path: '/the-new-human-era',
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
+  '/why-we-exist': typeof WhyWeExistRoute
   '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
   '/be-human-ai/blueprint': typeof BeHumanAiBlueprintRoute
   '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
@@ -119,6 +126,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
+  '/why-we-exist': typeof WhyWeExistRoute
   '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
   '/be-human-ai/blueprint': typeof BeHumanAiBlueprintRoute
   '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
@@ -136,6 +144,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
+  '/why-we-exist': typeof WhyWeExistRoute
   '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
   '/be-human-ai/blueprint': typeof BeHumanAiBlueprintRoute
   '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
@@ -154,6 +163,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
+    | '/why-we-exist'
     | '/be-human-ai/ai-strategy'
     | '/be-human-ai/blueprint'
     | '/be-human-ai/governance'
@@ -170,6 +180,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
+    | '/why-we-exist'
     | '/be-human-ai/ai-strategy'
     | '/be-human-ai/blueprint'
     | '/be-human-ai/governance'
@@ -186,6 +197,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
+    | '/why-we-exist'
     | '/be-human-ai/ai-strategy'
     | '/be-human-ai/blueprint'
     | '/be-human-ai/governance'
@@ -203,6 +215,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TheHumanArchiveRoute: typeof TheHumanArchiveRoute
   TheNewHumanEraRoute: typeof TheNewHumanEraRoute
+  WhyWeExistRoute: typeof WhyWeExistRoute
   BeHumanAiAiStrategyRoute: typeof BeHumanAiAiStrategyRoute
   BeHumanAiBlueprintRoute: typeof BeHumanAiBlueprintRoute
   BeHumanAiGovernanceRoute: typeof BeHumanAiGovernanceRoute
@@ -214,6 +227,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/why-we-exist': {
+      id: '/why-we-exist'
+      path: '/why-we-exist'
+      fullPath: '/why-we-exist'
+      preLoaderRoute: typeof WhyWeExistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/the-new-human-era': {
       id: '/the-new-human-era'
       path: '/the-new-human-era'
@@ -323,6 +343,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TheHumanArchiveRoute: TheHumanArchiveRoute,
   TheNewHumanEraRoute: TheNewHumanEraRoute,
+  WhyWeExistRoute: WhyWeExistRoute,
   BeHumanAiAiStrategyRoute: BeHumanAiAiStrategyRoute,
   BeHumanAiBlueprintRoute: BeHumanAiBlueprintRoute,
   BeHumanAiGovernanceRoute: BeHumanAiGovernanceRoute,

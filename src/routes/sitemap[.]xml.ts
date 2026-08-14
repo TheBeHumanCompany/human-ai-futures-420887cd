@@ -30,6 +30,15 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/be-human-ai/human-readiness", changefreq: "monthly", priority: "0.8" },
           { path: "/be-human-ai/governance", changefreq: "monthly", priority: "0.8" },
           { path: "/be-human-ai/ai-strategy", changefreq: "monthly", priority: "0.8" },
+          // The mission page. Ranked with the three pillar pages rather than
+          // with `/be-human-ai` (0.9) or the Blueprint (1.0): those two carry
+          // the priced offer and the funnel that reaches it, and ranking the
+          // mission page level with them would misstate relative crawl
+          // priority. It sits above the remaining brand pages at 0.7.
+          { path: "/why-we-exist", changefreq: "monthly", priority: "0.8" },
+          // `/about` stays. It is a live canonical page — the team, story and
+          // press page — not a redirect, so dropping it here would deindex a
+          // page that returns 200.
           { path: "/about", changefreq: "monthly", priority: "0.7" },
           { path: "/the-new-human-era", changefreq: "monthly", priority: "0.7" },
           { path: "/the-human-archive", changefreq: "weekly", priority: "0.7" },

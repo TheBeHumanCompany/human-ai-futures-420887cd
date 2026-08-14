@@ -48,6 +48,12 @@ const EPISODES = [
  * silent omission is exactly the kind of thing nobody notices for months.
  *
  * The four `/be-human-ai/*` entries were added with the sales pages.
+ *
+ * `/why-we-exist` was ADDED rather than swapped in for `/about`. Both pages are
+ * live and canonical: the mission page states the positioning, and `/about`
+ * carries team, story and press. This list therefore grew by one — an earlier
+ * draft of that change removed `/about` on the reasoning that a redirecting URL
+ * should not be listed, which does not hold when the page is not redirecting.
  */
 const STATIC_PATHS = [
   "/",
@@ -56,6 +62,7 @@ const STATIC_PATHS = [
   "/be-human-ai/human-readiness",
   "/be-human-ai/governance",
   "/be-human-ai/ai-strategy",
+  "/why-we-exist",
   "/about",
   "/the-new-human-era",
   "/the-human-archive",
