@@ -1,7 +1,18 @@
 import { Link } from "@tanstack/react-router";
+
+import { PLACEHOLDER_HREF, displaySocialLinks } from "@/lib/socials";
+
 import { NAV, Wordmark } from "./site-header";
 
-const SOCIAL = ["YouTube", "LinkedIn", "Instagram", "TikTok", "Spotify", "X"];
+/**
+ * Platforms come from `src/lib/socials.ts`, shared with the homepage's
+ * "Follow the journey" section.
+ *
+ * This footer previously carried its own six-name array that listed Spotify
+ * while the homepage listed Facebook and Snapchat. Neither had a working link
+ * and each was edited without the other. One list now feeds both.
+ */
+const SOCIAL = displaySocialLinks();
 
 export function SiteFooter() {
   return (
@@ -39,9 +50,15 @@ export function SiteFooter() {
           <h3 className="eyebrow text-muted-foreground">Follow</h3>
           <ul className="mt-5 space-y-3">
             {SOCIAL.map((s) => (
-              <li key={s}>
-                <a href="#" className="text-sm text-foreground/80 hover:text-lime">
-                  {s}
+              <li key={s.name}>
+                <a
+                  href={s.href}
+                  {...(s.href === PLACEHOLDER_HREF
+                    ? {}
+                    : { target: "_blank", rel: "noopener noreferrer" })}
+                  className="text-sm text-foreground/80 hover:text-lime"
+                >
+                  {s.name}
                 </a>
               </li>
             ))}

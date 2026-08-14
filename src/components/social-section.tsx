@@ -1,5 +1,7 @@
 import type { ComponentType, SVGProps } from "react";
 
+import { PLACEHOLDER_HREF, displaySocialLinks } from "@/lib/socials";
+
 type IconProps = SVGProps<SVGSVGElement>;
 
 const YouTubeIcon = (props: IconProps) => (
@@ -92,15 +94,27 @@ const XIcon = (props: IconProps) => (
   </svg>
 );
 
-const PLATFORMS: { name: string; Icon: ComponentType<IconProps>; href: string }[] = [
-  { name: "YouTube", Icon: YouTubeIcon, href: "#" },
-  { name: "LinkedIn", Icon: LinkedInIcon, href: "#" },
-  { name: "Instagram", Icon: InstagramIcon, href: "#" },
-  { name: "TikTok", Icon: TikTokIcon, href: "#" },
-  { name: "Facebook", Icon: FacebookIcon, href: "#" },
-  { name: "Snapchat", Icon: SnapchatIcon, href: "#" },
-  { name: "X", Icon: XIcon, href: "#" },
-];
+/**
+ * Icons live here; URLs do not.
+ *
+ * `src/lib/socials.ts` is the single source of truth for which platforms exist
+ * and where they point, shared with the footer so the two can no longer drift.
+ * This map holds only the artwork, joined by name — the footer renders text
+ * links and has no reason to pull these SVGs into its bundle.
+ */
+const ICONS: Record<string, ComponentType<IconProps>> = {
+  YouTube: YouTubeIcon,
+  LinkedIn: LinkedInIcon,
+  Instagram: InstagramIcon,
+  TikTok: TikTokIcon,
+  Facebook: FacebookIcon,
+  Snapchat: SnapchatIcon,
+  X: XIcon,
+};
+
+const PLATFORMS = displaySocialLinks()
+  .map((link) => ({ ...link, Icon: ICONS[link.name] }))
+  .filter((link): link is typeof link & { Icon: ComponentType<IconProps> } => Boolean(link.Icon));
 
 export function SocialSection() {
   return (
@@ -123,6 +137,13 @@ export function SocialSection() {
             <a
               key={name}
               href={href}
+              // Once real URLs land in socials.ts these are all external, and an
+              // external link opening in place loses the visitor. While a handle
+              // is still pending the placeholder stays same-tab, so a dead link
+              // does not also spawn a blank window.
+              {...(href === PLACEHOLDER_HREF
+                ? {}
+                : { target: "_blank", rel: "noopener noreferrer" })}
               className="group flex flex-col items-center gap-4 p-2 text-center transition-opacity duration-300 focus-visible:outline-none focus-visible:opacity-100"
             >
               <Icon className="h-12 w-12 opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-focus-visible:scale-110 group-focus-visible:opacity-100 sm:h-14 sm:w-14" />
