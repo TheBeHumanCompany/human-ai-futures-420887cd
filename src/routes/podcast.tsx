@@ -98,7 +98,7 @@ function Podcast() {
   return (
     <>
       {/* ---- Hero ---- */}
-      <section className="section-ink grain border-b border-border">
+      <section className="section-ink grain">
         <div className="mx-auto grid max-w-[1500px] items-center gap-8 px-5 py-10 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:gap-10 lg:py-12">
           <div>
             <h1 className="display text-[clamp(2.4rem,6.5vw,4.6rem)] leading-[0.92]">
@@ -114,16 +114,24 @@ function Podcast() {
             </p>
           </div>
 
-
-          <img
-            src={podcastImage}
-            alt="Studio condenser microphone lit warmly in a dark recording room"
-            width={1400}
-            height={1050}
-            className="aspect-[4/3] w-full object-cover md:aspect-[5/4] md:max-h-[26rem]"
-          />
+          {/* The photograph is dark-on-dark, so it is feathered into the ink
+              background on every edge instead of being cut off by a hard line. */}
+          <div className="relative">
+            <img
+              src={podcastImage}
+              alt="Studio condenser microphone lit warmly in a dark recording room"
+              width={1400}
+              height={1050}
+              className="aspect-[4/3] w-full object-cover md:aspect-[5/4] md:max-h-[26rem]"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,var(--background)_100%)]"
+            />
+          </div>
         </div>
       </section>
+
 
       {/* ---- Discovery ---- */}
       <section id="episodes" className="section-cream">
