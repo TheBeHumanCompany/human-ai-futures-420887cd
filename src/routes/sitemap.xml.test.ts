@@ -39,9 +39,23 @@ const EPISODES = [
   { slug: { current: "joao-ribeiro-elements-brazil" }, updatedAt: "2025-03-01T00:00:00.000Z" },
 ];
 
+/**
+ * Mirrors the static `entries` array in `sitemap[.]xml.ts`.
+ *
+ * The suite asserts exact set equality on `<loc>`, so this list is a deliberate
+ * duplicate and adding a route without updating it turns two tests red. That is
+ * the point: a page missing from the sitemap is invisible to search, and a
+ * silent omission is exactly the kind of thing nobody notices for months.
+ *
+ * The four `/be-human-ai/*` entries were added with the sales pages.
+ */
 const STATIC_PATHS = [
   "/",
   "/be-human-ai",
+  "/be-human-ai/blueprint",
+  "/be-human-ai/human-readiness",
+  "/be-human-ai/governance",
+  "/be-human-ai/ai-strategy",
   "/about",
   "/the-new-human-era",
   "/the-human-archive",

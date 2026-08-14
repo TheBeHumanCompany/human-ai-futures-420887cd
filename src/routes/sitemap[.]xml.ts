@@ -23,6 +23,13 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/be-human-ai", changefreq: "monthly", priority: "0.9" },
+          // The priced offer. Ranked with the home page rather than with the
+          // services index, because it is the page the sales pages exist to
+          // reach and the only one carrying a transaction.
+          { path: "/be-human-ai/blueprint", changefreq: "monthly", priority: "1.0" },
+          { path: "/be-human-ai/human-readiness", changefreq: "monthly", priority: "0.8" },
+          { path: "/be-human-ai/governance", changefreq: "monthly", priority: "0.8" },
+          { path: "/be-human-ai/ai-strategy", changefreq: "monthly", priority: "0.8" },
           { path: "/about", changefreq: "monthly", priority: "0.7" },
           { path: "/the-new-human-era", changefreq: "monthly", priority: "0.7" },
           { path: "/the-human-archive", changefreq: "weekly", priority: "0.7" },
