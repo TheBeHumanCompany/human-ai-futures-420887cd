@@ -17,6 +17,7 @@
     "podcast:snapshot": "bun run scripts/snapshot-catalogue.ts",
     "podcast:share-cards": "bun run scripts/generate-share-cards.ts",
     "podcast:topics": "bun run scripts/apply-topics.ts",
+    "podcast:enrich": "bun run scripts/apply-enrichment.ts",
     "format": "prettier --write ."
   },
   "dependencies": {

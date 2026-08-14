@@ -200,6 +200,31 @@ function keyedTopics(topics: unknown): unknown {
  * carried forward when it is already frozen (row 1 has already established it
  * matches), plus a recomputed `searchText` and deterministic topic keys.
  */
+/**
+ * Fields the PUBLISHED document owns, which a draft may never overwrite.
+ *
+ * Both are written only by `scripts/generate-share-cards.ts`, and it patches the
+ * **published** document (`generate-share-cards.ts`'s `client.patch(episode._id)`).
+ * Neither is authored in the Studio — both are `readOnly` in
+ * `studio/schemaTypes/episode.ts`.
+ *
+ * **The data loss this prevents, in order.** A draft is created by copying the
+ * published document — which is exactly what `scripts/apply-enrichment.ts` does
+ * for all 39 episodes. Share cards are generated or regenerated afterwards,
+ * patching the published document only; the draft still holds the older value,
+ * or none at all. A human then publishes that draft: the Studio's action does
+ * not omit these two fields, `publishEpisode` reaches row 4, and
+ * `createOrReplace` writes the draft's stale value over the newer published one.
+ * The card is silently erased, and nothing goes red — which is pre-mortem #1's
+ * failure ("every guest who shared a link after launch got the generic card")
+ * arriving by a different route than the one that pre-mortem anticipated.
+ *
+ * Carried forward here rather than added to the Studio action's `OMITTED_FIELDS`
+ * because this is the single place every publish passes through: the backfill
+ * and any future writer get the same protection without having to remember it.
+ */
+const PUBLISHED_OWNED_FIELDS = ["shareCard", "shareCardKey"] as const;
+
 function buildDesired(
   episodeDoc: Record<string, unknown>,
   slug: string,
@@ -214,6 +239,25 @@ function buildDesired(
     slug: frozen ? frozen.slug : { current: slug, _type: "slug" },
     slugFrozenAt: frozen ? frozen.slugFrozenAt : now,
   };
+
+  // The published document is AUTHORITATIVE for these fields whenever it
+  // exists — including when it says the field is absent.
+  //
+  // Copying a present value forward is the obvious half. Deleting an absent one
+  // is the half that is easy to miss and was missed here first: if a card is
+  // removed from the published document while a draft still carries the old
+  // one, "leave absence alone" lets the draft's stale card come back on the next
+  // publish. That is the same resurrection bug as the original, running in the
+  // opposite direction.
+  //
+  // Only when there is no published document at all is `episodeDoc` left as-is:
+  // a first publication has nothing to be authoritative about.
+  if (published !== undefined) {
+    for (const field of PUBLISHED_OWNED_FIELDS) {
+      if (published[field] === undefined) delete desired[field];
+      else desired[field] = published[field];
+    }
+  }
 
   if ("topics" in desired) desired.topics = keyedTopics(desired.topics);
   desired.searchText = computeSearchText(desired);

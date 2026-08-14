@@ -468,6 +468,101 @@ describe("row 4 — episode absent: the episode-side compare-and-set", () => {
   });
 });
 
+/**
+ * The share-card erasure, in the order it actually happens.
+ *
+ * 1. `scripts/apply-enrichment.ts` copies the published document into
+ *    `drafts.<id>` — for all 39 episodes at once.
+ * 2. `bun run podcast:share-cards --apply` generates cards and patches the
+ *    PUBLISHED document (`client.patch(episode._id)`). The draft is untouched
+ *    and still carries the old value, or none.
+ * 3. A human publishes that draft. The Studio's `OMITTED_FIELDS` does not drop
+ *    `shareCard`/`shareCardKey`, so they ride in on `episodeDoc`, and row 4's
+ *    `createOrReplace` writes the stale value over the newer published one.
+ *
+ * Nothing goes red: a missing card falls back to `/og-default.png` exactly as
+ * designed. It is pre-mortem #1's failure reached by a route that pre-mortem
+ * did not anticipate, and it is only reachable at scale because US-109 creates
+ * 39 drafts where there were none.
+ */
+describe("published-owned fields survive a stale draft", () => {
+  const CARD = {
+    _type: "image",
+    asset: { _type: "reference", _ref: "image-card9999-1200x630-png" },
+  };
+
+  test("a newer published share card is NOT erased by a draft that predates it", async () => {
+    const publishedWithCard = {
+      ...PUBLISHED_DIFFERS,
+      shareCard: CARD,
+      shareCardKey: "key-generated-after-the-draft",
+    };
+    // The draft was copied BEFORE the card existed, so it carries neither field.
+    const read = readMock([publishedWithCard, OWNED_LOCK]);
+    const write = writeMock();
+
+    await publishEpisode(
+      { episodeDoc: AUTHORED, slug: SLUG, mode: "author" },
+      { getDocuments: read, mutate: write, now },
+    );
+
+    const submitted = write.calls[0] as Record<string, unknown>[];
+    const replaced = submitted.find((mutation) => mutation.createOrReplace)
+      ?.createOrReplace as Record<string, unknown>;
+
+    expect(replaced.shareCard).toEqual(CARD);
+    expect(replaced.shareCardKey).toBe("key-generated-after-the-draft");
+  });
+
+  test("a FIRST publication gains no empty keys", () => {
+    // Genuinely first: no published document in the read at all. An earlier
+    // version of this test claimed to cover this while its fixture DID contain
+    // a published document, so it exercised the preserve path and proved
+    // nothing about first publication.
+    const read = readMock([]);
+    const write = writeMock();
+
+    return publishEpisode(
+      { episodeDoc: AUTHORED, slug: SLUG, mode: "author" },
+      { getDocuments: read, mutate: write, now },
+    ).then(() => {
+      const submitted = write.calls[0] as Record<string, unknown>[];
+      const created = submitted.find((mutation) => mutation.create && !mutation.create.episodeId)
+        ?.create as Record<string, unknown>;
+
+      expect(created).toBeDefined();
+      expect(Object.hasOwn(created, "shareCard")).toBe(false);
+      expect(Object.hasOwn(created, "shareCardKey")).toBe(false);
+    });
+  });
+
+  test("a card REMOVED from the published document does not come back from a stale draft", () => {
+    // The mirror of the erasure bug. If "absent" were treated as "nothing to
+    // say" rather than as authoritative, a draft carrying the old card would
+    // resurrect it on the next publish — the same resurrection running the
+    // other way.
+    const draftWithStaleCard = {
+      ...AUTHORED,
+      shareCard: CARD,
+      shareCardKey: "key-from-a-card-since-removed",
+    };
+    const read = readMock([PUBLISHED_DIFFERS, OWNED_LOCK]); // published has no card
+    const write = writeMock();
+
+    return publishEpisode(
+      { episodeDoc: draftWithStaleCard, slug: SLUG, mode: "author" },
+      { getDocuments: read, mutate: write, now },
+    ).then(() => {
+      const submitted = write.calls[0] as Record<string, unknown>[];
+      const replaced = submitted.find((mutation) => mutation.createOrReplace)
+        ?.createOrReplace as Record<string, unknown>;
+
+      expect(Object.hasOwn(replaced, "shareCard")).toBe(false);
+      expect(Object.hasOwn(replaced, "shareCardKey")).toBe(false);
+    });
+  });
+});
+
 describe("row 4 — episode present and differing", () => {
   test("seed emits no episode mutation at all: the backfill cannot overwrite enrichment", async () => {
     const read = readMock([PUBLISHED_DIFFERS, OWNED_LOCK]);

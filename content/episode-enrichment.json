@@ -1,0 +1,298 @@
+{
+  "source": "src/lib/podcast/catalogue.snapshot.json — each episode's own title and description, and nothing else. No web research, no outside sources: validateEnrichment (src/lib/podcast/enrichment.ts) asserts every capitalised token and every numeric literal in a bio already appears in THAT episode's source text, and enrichment.test.ts runs this file against the real snapshot on every PR.",
+  "constraint": "Bios are 20–400 characters. Topics are slugs from content/topic-taxonomy.json, at most six per episode (rule.max(6) in studio/schemaTypes/episode.ts, and the number queries.test.ts's per-episode payload bound is measured against). The taxonomy's usageGuidanceForEnrichment rule is followed: Wellness is the sector and Mental Health the subject, assigned together only where an episode does both; Health Tech is preferred alone over AI & Technology where a technology is applied to health outcomes.",
+  "reviewNote": "READ THIS BEFORE APPROVING. The validator's clean result is labelled 'entities-and-numbers: clean' and never 'verified'. Stated precisely, it proves only this: no bio contains a capitalisation-bearing token, or a numeric literal, that its own episode's title or description does not also contain. It does NOT prove the bio is true, and three classes of false statement pass it cleanly: an all-lower-case invented name (\"paypal\"); a real number attached to the wrong thing (episode 38's own figures reversed into 'raised over $300 million ... more than 1 investor rejection' is clean); and any invented RELATIONSHIP between real entities — a founder who 'sold' a company her description says she 'stepped back from'. That last one is why the claim verbs (found/sell/raise/lead/launch/exit/acquire and their inflections) and the role claims (founder vs co-founder vs CEO vs owner) are extracted per episode as sign-off line items: they are the assertions a human has to check, and founder-vs-co-founder is invisible to the check because every word in it is lower case. Everything here lands as a Sanity DRAFT: http.ts pins perspective 'published', so nothing reaches the site until a human presses Publish in the Studio.",
+  "episodes": [
+    {
+      "guid": "shanejjamesgroup.podbean.com/e11b50a6-438a-326e-9f8d-6262769e9a98",
+      "episodeNumber": 1,
+      "guestName": null,
+      "guestBio": "Stephanie, a registered dietician, and Veronica, a psychologist, were both running private practices before they built CAYA together. They created a safe, judgment-free, one-stop shop for care and a 30-person team, now one of Vancouver's most inclusive and fast-growing clinics, centred on women, trans, and non-binary people.",
+      "topics": ["social-impact", "wellness", "scaling", "company-culture"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/ce6d4dfa-ab94-3fdd-9ff0-b6e35b5ab3b5",
+      "episodeNumber": 2,
+      "guestName": "Alexandra Dean",
+      "guestBio": "Alexandra Dean is the founder of Adhere to Studios, a sustainable outerwear brand redefining fashion with purpose. She moved from studying fashion design in Vancouver to working at Lululemon, where she honed her skills in technical garment development and design, then built her brand solo using excess materials and lower-impact methods.",
+      "topics": ["sustainability", "fashion", "purpose-driven"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/bd93c537-dc1d-3f35-91c1-89d4d9f5ae7d",
+      "episodeNumber": 3,
+      "guestName": "Tyler McCombs",
+      "guestBio": "Tyler McCombs is CEO and founder of Devin & Lang, where a frustration with ripped boxers evolved into a multi-million dollar brand. After launching just months before the pandemic, Tyler pivoted into face masks and eventually built a women-led company.",
+      "topics": ["fashion", "resilience"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/1a63bd31-9873-3205-bd78-135f08ab979a",
+      "episodeNumber": 4,
+      "guestName": "Elizabeth Fisher",
+      "guestBio": "Elizabeth Fisher is the founder of Lavva, a plant-based cultured superfood brand born from her journey through cancer recovery. Elizabeth launched Lavva with whole, functional ingredients like green plantains and pili nuts, faced near-collapse during the pandemic, and reclaimed her company when all seemed lost.",
+      "topics": ["food-and-beverage", "resilience", "purpose-driven"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/896c9589-89e8-3779-ba05-7bc6b5e5177e",
+      "episodeNumber": 5,
+      "guestName": "Jenn Harper",
+      "guestBio": "Jenn Harper is the trailblazing founder of Cheekbone Beauty. Jenn opens up about overcoming personal challenges, including generational trauma and addiction, and how her Indigenous heritage shaped her mission to create eco-friendly, sustainable products that honor the environment.",
+      "topics": ["beauty", "sustainability", "resilience", "social-impact"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/a9e8320f-ca71-3a3b-9727-bbb4a1badfca",
+      "episodeNumber": 6,
+      "guestName": null,
+      "guestBio": "Monica and Robin are the dynamic founders of Minta, a groundbreaking plant-based cleaning products brand. Their journey began at a small-town mom's meetup, evolved into a thriving cleaning business, and led to a product line reshaping the eco-conscious cleaning industry, from an appearance on Dragon's Den to managing company culture.",
+      "topics": ["sustainability", "scaling", "company-culture"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/da0512f0-7183-3cf1-a02d-fe6de261d395",
+      "episodeNumber": 7,
+      "guestName": "Ariel Jarvis",
+      "guestBio": "Ariel Jarvis is the founder of Vitality Wellness World. After a career-ending injury, Ariel pivoted into natural health, grinding through nine years of university while juggling multiple jobs. Today she runs a 3,000 sq. ft. clinic with 13 practitioners, blending health care, wealth care, and retreats.",
+      "topics": ["wellness", "resilience", "scaling"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/d016605c-9e14-3b7d-bc1e-6847b74389c1",
+      "episodeNumber": 8,
+      "guestName": "Calley Dawson",
+      "guestBio": "Calley Dawson is the founder of FXRY, a fashion repair startup on a mission to keep clothes in rotation and out of landfills. After 25 years in apparel design with brands like Urban Outfitters and Brooks Running, Calley left mass production for a business focused on sustainability and circularity, with local pickup and drop-off services in Seattle.",
+      "topics": ["fashion", "sustainability", "bootstrapping", "ai-and-technology"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/af647c20-634b-3846-85ef-3903be691c91",
+      "episodeNumber": 9,
+      "guestName": "Christine Monahan",
+      "guestBio": "Christine Monahan is the founder of Hubs Collective, transforming business through collaboration, innovation, and purpose-driven strategy. With decades of experience in sales, sponsorships, and event production, Christine helps niche leaders generate consistent revenue and champions doing less, way better.",
+      "topics": ["purpose-driven", "leadership"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/bdb50094-0110-3e5b-a653-395e34f83d90",
+      "episodeNumber": 10,
+      "guestName": "Claire Dixon",
+      "guestBio": "Claire Dixon is co-founder of Neuraura, which she came to from brain-machine interface tech to launch an innovative biowearable solution for PCOS. Claire has built a mission-driven health tech company while navigating funding and team-building, tackling one of the most overlooked chronic conditions affecting one in five women.",
+      "topics": ["health-tech", "fundraising", "purpose-driven", "leadership"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/5ffcffc4-0aaa-3093-ba0c-df3e3898c1dd",
+      "episodeNumber": 11,
+      "guestName": "Dan Crosby",
+      "guestBio": "Dan Crosby is the founder of CanadianProtein.com and BioSteel. Dan went from blending supplements in his kitchen to running two large-scale manufacturing facilities and managing a 250-person operation, drawing on lessons from real estate investing during the 2008 crash and scaling through e-commerce.",
+      "topics": ["scaling", "leadership", "food-and-beverage"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/220539dd-1a73-3c31-af42-6d961c2e1eb5",
+      "episodeNumber": 12,
+      "guestName": "Desiree Dupuis",
+      "guestBio": "Desiree Dupuis is the founder of Voes & Co., a pioneering vegan luxury footwear brand that redefines fashion with compassion and sustainability. Desiree makes high-end designer shoes from next-generation plant-based materials like cactus and corn leather, bootstrapping a mission-driven business without investors.",
+      "topics": ["fashion", "sustainability", "bootstrapping", "ai-and-technology"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/3586a3cf-d6ff-36d7-9a88-51c295c1b28b",
+      "episodeNumber": 13,
+      "guestName": "Doron Meir",
+      "guestBio": "Doron Meir is CEO and founder of FloatVR, a mental wellness platform using generative virtual reality to help users reset, refocus, and recharge. Inspired by his challenges with ADHD and emotional regulation, Doron created FloatVR to make the benefits of meditation more accessible for those who struggle with overstimulation or anxiety.",
+      "topics": ["mental-health", "health-tech", "leadership"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/2f346b2f-5034-3392-beb5-4525633fa41e",
+      "episodeNumber": 14,
+      "guestName": "Jerry Kroll",
+      "guestBio": "Jerry Kroll is the founder of Jevity Life Science and a pioneer in electric vehicles. Jerry explains how his one-person EV, the Solo, is helping reshape urban transportation, and how advances in AI, gene therapy, and personalized medicine are making it possible to live well past 100.",
+      "topics": ["health-tech", "sustainability"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/ad0023a1-2b0d-3fa8-be6d-0c4820e7a6ca",
+      "episodeNumber": 15,
+      "guestName": "Joao Ribeiro",
+      "guestBio": "Joao Ribeiro is the founder of Elements Brazil. Joao went from importing a failed shipment of banana-based snacks to building a thriving food distribution company with four businesses under his belt, after a disastrous first container, quitting his job at HSBC, and knocking on doors at Safeway stores.",
+      "topics": ["food-and-beverage", "resilience", "leadership"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/bf7bbc44-33e6-3c4e-94af-b5da134c0bd9",
+      "episodeNumber": 16,
+      "guestName": "Karly Jacobsen",
+      "guestBio": "Karly Jacobsen is co-founder of Rviita, the first non-carbonated, better-for-you energy drink delivered in innovative pouch packaging. Inspired by a close friend's energy drink-related heart scare, Karly and her brother, Mitch, built one of Canada's most exciting beverage startups, moving from night-shift nurse to entrepreneur, raising capital, and scaling through Sobeys and Costco.",
+      "topics": ["food-and-beverage", "fundraising", "scaling", "company-culture", "purpose-driven"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/c1e548ca-8a58-3787-bb8c-a03eb6ee4d46",
+      "episodeNumber": 17,
+      "guestName": "Leigh Christie",
+      "guestBio": "Leigh Christie is co-founder of MistyWest, a Vancouver-based engineering firm that designs intelligent and connected devices, from rugged IoT sensors to AI-powered vision systems, for companies like Meta, Google, and Intel. Leigh built a purpose-driven engineering studio on distributed authority, values-driven culture, and constant feedback.",
+      "topics": ["ai-and-technology", "company-culture", "leadership", "scaling", "mental-health"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/49ff307b-f975-3f1b-ac67-3da5e8ca3934",
+      "episodeNumber": 18,
+      "guestName": "Linda Biggs",
+      "guestBio": "Linda Biggs is co-founder and CEO of Joni, a modern period care company redefining a stagnant industry with innovation, impact, and integrity. Linda built a devoted community, scaled through word-of-mouth and social purpose, and became B Corp certified, all while staying bootstrapped and values-driven.",
+      "topics": [
+        "social-impact",
+        "bootstrapping",
+        "company-culture",
+        "purpose-driven",
+        "leadership"
+      ]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/2094e7bf-db3d-3e6a-9425-429770715d79",
+      "episodeNumber": 19,
+      "guestName": "Lisa Marie Blair",
+      "guestBio": "Lisa Marie Blair is the founder of The Skin Girls, one of Vancouver's top medical aesthetics clinics. Lisa moved from a one-room setup in Chinatown to a thriving six-room clinic, and launched her skincare line, Skin Edition, a vegan, cruelty-free brand that gives back to women's charities.",
+      "topics": ["beauty", "scaling", "company-culture", "leadership"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/c4674c7b-890b-3349-84ab-8f065ed4aeac",
+      "episodeNumber": 20,
+      "guestName": "Marilyne Gagne",
+      "guestBio": "Marilyne Gagne is the visionary behind the Dermapure clinic empire and co-founder of Recess. Marilyne led one of Canada's most successful aesthetic clinic networks and is now turning her focus toward mental health and social wellness with Recessa Modern, a social thermal station.",
+      "topics": ["beauty", "wellness", "mental-health", "leadership", "purpose-driven"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/1cbd8173-68bf-3b81-9cb6-dddb1bf5c2a7",
+      "episodeNumber": 21,
+      "guestName": "Nancy Wingham",
+      "guestBio": "Nancy Wingham is the founder of Nuez Acres. Nancy turned a small family pecan farm in Mexico into a sustainable beauty brand sold across North America, building a vertically integrated skincare company known for zero-waste production and innovative pecan oil-based formulas, and securing shelf space at Walmart Canada.",
+      "topics": ["beauty", "sustainability", "resilience"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/5694512a-ab78-3de7-81f5-a2f9ea1b1ef2",
+      "episodeNumber": 22,
+      "guestName": "Paige Abbott",
+      "guestBio": "Paige Abbott is a registered psychologist and founder of Sana Psychological, leading a growing team of mental health professionals in Calgary. With a background in outpatient addiction treatment and over 15 years of experience in the field, Paige launched her practice during the pandemic and built a sustainable, people-first business.",
+      "topics": ["mental-health", "leadership", "company-culture"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/ad5af0e4-d5e4-3b9d-89aa-f140fbddce66",
+      "episodeNumber": 23,
+      "guestName": "Sameer Padamsey",
+      "guestBio": "Sameer Padamsey is co-founder of Ufeelu, carving out a new category in cannabis focused entirely on wellness. His CBD-based products are designed to improve sleep, mood, and pain relief through non-intoxicating compounds, built in one of Canada's most highly regulated industries.",
+      "topics": ["wellness", "purpose-driven", "company-culture", "leadership"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/cd27229f-6065-381c-ae2b-4dc948480d46",
+      "episodeNumber": 24,
+      "guestName": "Tony Ferreira",
+      "guestBio": "Tony Ferreira is a chef, former restaurant group director, and co-founder of MOD Kitchen. After helping scale a hospitality group from 1 to 40 restaurants in Hong Kong, Tony returned to Vancouver to build a modern, delivery-first food hub. MOD Kitchen offers 10 private kitchens, a shared infrastructure, and a tech-enabled ordering system.",
+      "topics": ["food-and-beverage", "scaling", "leadership", "company-culture"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/2fdc6cb2-3409-32d1-8517-62e98bd98d70",
+      "episodeNumber": 25,
+      "guestName": "Emma Smith",
+      "guestBio": "Emma Smith is the founder of Zimt Chocolates, a plant-based, ethical chocolate brand built from scratch. What started as a bootstrapped solo venture in her early twenties has grown into a thriving small business with a loyal following across Western Canada, rooted in compassion for people, animals, and the planet.",
+      "topics": ["food-and-beverage", "bootstrapping", "purpose-driven", "company-culture"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/e0147967-1080-3aab-8d57-68dd5ba29813",
+      "episodeNumber": 26,
+      "guestName": "Beata Antoninas",
+      "guestBio": "Beata Antoninas is the founder of Amino Balls Inc. What started as homemade protein balls to stabilize her blood sugar became a fast-growing CPG company now available in thousands of retail stores and soon, Costco. Beata built a unique partnership with her fiance to grow the company while scaling distribution and building a values-driven team.",
+      "topics": ["food-and-beverage", "scaling", "company-culture", "resilience"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/6f1c90b1-7629-3ba8-8544-953b2fddde13",
+      "episodeNumber": 27,
+      "guestName": "Brett Bilon",
+      "guestBio": "Brett Bilon is co-founder of Plume Science, a pioneering beauty brand built alongside his wife and business partner. Plume Science began as an R&D project to develop safe, effective, non-toxic beauty products, starting with their now-patented lash and brow serum, and navigated explosive early growth, international expansion, and a pandemic-induced pivot from retail to e-commerce.",
+      "topics": ["beauty", "resilience", "scaling", "leadership"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/a09e05e3-de2a-3410-8a04-23fa676ab9e4",
+      "episodeNumber": 28,
+      "guestName": "Jessica Regan",
+      "guestBio": "Jessica Regan is founder and CEO of FoodMesh, a matchmaking platform that redirects unsellable but still good food to charities, farmers, and upcyclers. What began as a connector service has evolved into a full-scale B Corp, working with major grocers, municipalities, and over 2,500 organizations.",
+      "topics": [
+        "social-impact",
+        "sustainability",
+        "fundraising",
+        "food-and-beverage",
+        "purpose-driven"
+      ]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/116b037f-ecd0-3629-a408-2f6f072d26e9",
+      "episodeNumber": 29,
+      "guestName": "Antonio Zivanovic",
+      "guestBio": "Antonio Zivanovic is the founder of ElektraFi, a company dedicated to democratizing financial wellness through innovative employer-based platforms. Antonio moved from corporate health and wellness consulting to launching a fintech platform that empowers people to understand, manage, and feel secure about their money through confidential, user-friendly tools.",
+      "topics": ["wellness", "company-culture", "leadership", "purpose-driven"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/e4fda38c-4eaa-3725-bb31-8ecb6d0c8204",
+      "episodeNumber": 30,
+      "guestName": "Maria Porcellato",
+      "guestBio": "Maria Porcellato built her practice with compassion at the core, creating a space where clients feel seen, heard, and supported. Her own experiences with stress and burnout led her to pursue a more intentional, healing-centred life, and she now helps others recognize the signs of burnout and recover both emotionally and physically.",
+      "topics": ["wellness", "mental-health", "purpose-driven"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/2c827990-0187-3570-ade7-7842643228da",
+      "episodeNumber": 31,
+      "guestName": "Glyn Lewis",
+      "guestBio": "Glyn Lewis is a visionary leader and community builder with a deep passion for creating meaningful change. Glyn has built organizations that serve people and purpose, navigating challenges in social impact work while staying grounded in core values.",
+      "topics": ["social-impact", "leadership", "purpose-driven"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/d57dcf7c-fe60-313a-8a77-7ee75d61d3e1",
+      "episodeNumber": 32,
+      "guestName": "Viggy Venkat",
+      "guestBio": "Viggy Venkat is CEO of Tocha Foods, a passionate community leader and a creative mind dedicated to building spaces that empower others. Viggy shares how curiosity, compassion, and a strong sense of purpose shaped the way he shows up in the world, and what it takes to lead with authenticity and create meaningful impact.",
+      "topics": ["leadership", "purpose-driven", "social-impact"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/d51db9be-7234-303a-82f7-2fd1787c1d4b",
+      "episodeNumber": 33,
+      "guestName": "Cathline James",
+      "guestBio": "Cathline James is the founder of Wise Bites, a bold leader, visionary entrepreneur, and woman of deep faith. Cathline shares the real story behind her success, one filled with perseverance, tough decisions, and moments of divine clarity, and how resilience, belief, and a relentless commitment to growth have shaped her path.",
+      "topics": ["resilience", "leadership", "purpose-driven"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/1bde32db-158c-304f-9a2a-9acc8ad70239",
+      "episodeNumber": 34,
+      "guestName": "Mia Fiona Kut",
+      "guestBio": "Mia Fiona Kut is CEO of Luna Nectar, a multi-talented creative, actor, and entrepreneur. Mia shares her journey of self-expression, resilience, and redefining success on her terms, from navigating the entertainment industry to launching her ventures, and the role of creativity in healing and identity.",
+      "topics": ["resilience", "purpose-driven", "leadership"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/352cad4e-05e1-3973-8138-d640e567e202",
+      "episodeNumber": 35,
+      "guestName": "Marc Wandler",
+      "guestBio": "Marc Wandler is a founder and forward-thinking entrepreneur who creates systems and solutions that serve people first. Marc draws from his experiences in leadership, social impact, and business innovation, and opens up about the mindset needed to grow something that lasts.",
+      "topics": ["leadership", "social-impact", "purpose-driven", "scaling"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/c3f7cda1-6b39-3eb2-b2c9-26d90b15f7c8",
+      "episodeNumber": 36,
+      "guestName": "Missy MacKintosh",
+      "guestBio": "Missy MacKintosh is the founder of MisMacK Clean Cosmetics, leading a powerful shift in the beauty industry. Missy moved from working behind the scenes as a professional makeup artist to building her own inclusive, cruelty-free brand, disrupting a saturated market with clean products and bold creativity.",
+      "topics": ["beauty", "purpose-driven", "leadership"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/610d1af9-4a1f-30e3-8b90-927f03b83ad3",
+      "episodeNumber": 37,
+      "guestName": "Zahir Rajani",
+      "guestBio": "Zahir Rajani is the brilliant mind behind The Sartorial Shop, one of Vancouver's most refined custom suit boutiques. Zahir came from the world of commercial real estate before reviving his family's legacy. His parents opened their tailoring shop back in 1984, following in the footsteps of his grandfather, a master clothier in East Africa.",
+      "topics": ["fashion", "leadership", "ai-and-technology"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/18aba275-d904-39ab-a036-c4eac48260af",
+      "episodeNumber": 38,
+      "guestName": "Nick Vassev",
+      "guestBio": "Nick Vassev is the founder of NovoBeing, a VR therapeutics company integrating meditation, breathwork, and mental wellness into the healthcare system through immersive technology. Nick raised over $1 million in funding, overcame more than 300 investor rejections, and built a company supported by clinical trials showing a reduction in pain by over 50% with just 10 minutes of daily practice.",
+      "topics": ["health-tech", "mental-health", "fundraising", "leadership"]
+    },
+    {
+      "guid": "shanejjamesgroup.podbean.com/ae454373-d25b-33ff-82e1-2074c03b3ebd",
+      "episodeNumber": 39,
+      "guestName": "Jill De Chavez",
+      "guestBio": "Jill De Chavez is the owner of Briteweb, a digital agency that manages the online presence of mission-driven organizations, such as the David Suzuki Foundation. Jill took the bold step of purchasing the very agency where she once worked, and now leads a 15-person team, fostering a culture of psychological safety while making difficult decisions.",
+      "topics": [
+        "social-impact",
+        "leadership",
+        "company-culture",
+        "purpose-driven",
+        "ai-and-technology"
+      ]
+    }
+  ]
+}
