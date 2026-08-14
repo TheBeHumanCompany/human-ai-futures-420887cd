@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+
+import { ProcessSteps } from "@/components/sales/process-steps";
 import { SERVICES } from "@/lib/content";
 
 /**
@@ -126,15 +128,7 @@ function BeHumanAI() {
       <section className="section-ink border-t border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
           <h2 className="eyebrow text-lime">How we work</h2>
-          <div className="mt-10 grid gap-px bg-hairline sm:grid-cols-2 lg:grid-cols-4">
-            {PROCESS.map((p) => (
-              <div key={p.n} className="bg-background p-8">
-                <span className="eyebrow text-lime">{p.n}</span>
-                <h3 className="display mt-5 text-3xl">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-              </div>
-            ))}
-          </div>
+          <ProcessSteps steps={PROCESS} theme="ink" className="mt-10" />
         </div>
       </section>
     </>
