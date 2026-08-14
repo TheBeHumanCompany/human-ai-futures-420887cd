@@ -99,8 +99,8 @@ function Podcast() {
     <>
       {/* ---- Hero ---- */}
       <section className="section-ink grain">
-        <div className="mx-auto grid max-w-[1500px] items-center gap-8 px-5 pb-10 pt-6 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:gap-10 lg:pb-12 lg:pt-8">
-          <div>
+        <div className="mx-auto grid max-w-[1500px] items-center gap-8 px-5 pb-10 pt-6 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:gap-14 lg:pb-12 lg:pt-8">
+          <div className="md:pl-6 lg:pl-12 xl:pl-20">
             <h1 className="display text-[clamp(2.4rem,6.5vw,4.6rem)] leading-[0.92]">
               The people-
               <br />
@@ -127,9 +127,10 @@ function Podcast() {
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,var(--ink)_0%,transparent_35%),radial-gradient(ellipse_at_center,transparent_45%,var(--ink)_100%)]"
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,var(--ink)_0%,transparent_40%,transparent_72%,var(--ink)_100%),linear-gradient(to_right,var(--ink)_0%,transparent_32%,transparent_78%,var(--ink)_100%),radial-gradient(ellipse_at_center,transparent_35%,var(--ink)_100%)]"
             />
           </div>
+
         </div>
       </section>
 
@@ -163,8 +164,10 @@ function Podcast() {
               {/* Archive discovery: generous breathing room after the featured
                   card, then search, then the "More episodes" heading, then the
                   count/sort row, then the grid. */}
-              <div ref={archiveRef} className="mt-20 scroll-mt-24 lg:mt-28">
-                <div className="relative w-full max-w-[32rem]">
+              <div ref={archiveRef} className="mt-24 scroll-mt-24 lg:mt-32">
+                <h2 className="section-label section-label-light text-sm">More episodes</h2>
+
+                <div className="relative mt-5 w-full max-w-[38rem]">
                   <Search
                     aria-hidden
                     className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink/50"
@@ -175,7 +178,7 @@ function Podcast() {
                     onChange={(event) => setBrowse((s) => ({ ...s, query: event.target.value }))}
                     placeholder="Search episodes, guests, or keywords"
                     aria-label="Search episodes, guests, or keywords"
-                    className="w-full rounded-full border border-hairline-dark bg-cream py-2 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/50 focus-visible:border-ink"
+                    className="w-full rounded-full border border-hairline-dark bg-cream py-2.5 pl-11 pr-9 text-sm text-ink outline-none placeholder:text-ink/50 focus-visible:border-ink"
                   />
                   {browse.query && (
                     <button
@@ -189,9 +192,8 @@ function Podcast() {
                   )}
                 </div>
 
-                <h2 className="section-label section-label-light mt-10 text-sm">More episodes</h2>
+                <div className="mt-7 flex flex-wrap items-center gap-4">
 
-                <div className="mt-4 flex flex-wrap items-center gap-4">
                   <span
                     className="eyebrow font-semibold tracking-[0.16em] text-ink"
                     aria-live="polite"

@@ -21,12 +21,13 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
   const slug = episode.slug.current;
 
   return (
-    <article className="grid border border-hairline-dark lg:h-[21rem] lg:grid-cols-[minmax(0,34fr)_minmax(0,66fr)]">
+    <article className="grid overflow-hidden border border-hairline-dark lg:h-[21rem] lg:grid-cols-[minmax(0,34fr)_minmax(0,66fr)]">
       <Link
         to="/podcast/$slug"
         params={{ slug }}
         aria-label={`Listen to ${displayTitle(episode.title)}`}
-        className="group relative block aspect-[4/5] overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:h-full"
+        className="group relative block aspect-[4/5] overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:h-[21rem]"
+
       >
         <img
           src={episodeImage(episode)}
