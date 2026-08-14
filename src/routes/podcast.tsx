@@ -72,9 +72,25 @@ function Podcast() {
   const [shown, setShown] = useState(PAGE_SIZE);
   useEffect(() => setShown(PAGE_SIZE), [browse]);
 
+  // Mobile browses the archive a page at a time rather than scrolling forever.
+  const [page, setPage] = useState(1);
+  useEffect(() => setPage(1), [browse, isMobile]);
+  const archiveRef = useRef<HTMLDivElement>(null);
+
   const featured = visible[0]?.source;
-  const rest = visible.slice(1, 1 + shown);
+  const tail = visible.slice(1);
+  const pageCount = Math.max(1, Math.ceil(tail.length / MOBILE_PAGE_SIZE));
+  const current = Math.min(page, pageCount);
+  const rest = isMobile
+    ? tail.slice((current - 1) * MOBILE_PAGE_SIZE, current * MOBILE_PAGE_SIZE)
+    : visible.slice(1, 1 + shown);
   const filtered = browse.query.trim() !== "";
+
+  function goToPage(next: number) {
+    setPage(Math.min(Math.max(next, 1), pageCount));
+    archiveRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
 
   return (
     <>
