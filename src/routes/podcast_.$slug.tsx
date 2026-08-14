@@ -150,35 +150,35 @@ function EpisodePage() {
       {/* ---- Hero: cream editorial column + full-bleed image ---- */}
       <section className="section-cream border-b border-hairline-dark">
         <div className="grid lg:grid-cols-2">
-          <div className="order-1 flex flex-col justify-center px-5 py-12 sm:px-8 lg:py-20 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-16">
+          <div className="order-1 flex flex-col justify-center px-5 py-8 sm:px-8 lg:py-12 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-12">
             {episode.episodeNumber !== null && (
               <span className="eyebrow w-fit bg-lime px-2.5 py-1 text-ink">
                 Episode {episode.episodeNumber}
               </span>
             )}
-            <h1 className="mt-5 border-l-4 border-lime pl-4 font-display text-[clamp(2rem,5vw,3.35rem)] font-medium leading-[1.08] tracking-[0.005em] text-ink">
+            <h1 className="mt-4 border-l-4 border-lime pl-4 font-display text-[clamp(1.75rem,4vw,2.85rem)] font-medium leading-[1.02] tracking-[0.005em] text-ink">
               {displayTitle(episode.title)}
             </h1>
-            <p className="eyebrow mt-6 text-ink/50">
+            <p className="eyebrow mt-4 text-ink/50">
               <time dateTime={episode.publishedAt}>
                 {DATE_FORMAT.format(new Date(episode.publishedAt))}
               </time>
             </p>
 
             {/* Mobile order: image sits above the player. */}
-            <div className="mt-8 lg:hidden">
+            <div className="mt-6 lg:hidden">
               <HeroImage episode={episode} hero={hero} />
             </div>
 
             <EpisodePlayer
-              className="mt-8 max-w-md"
+              className="mt-5 max-w-sm"
               src={episode.audioUrl}
               title={episode.title}
               durationSeconds={episode.durationSeconds}
             />
 
             <a
-              className="eyebrow group mt-8 inline-flex w-fit items-center gap-3 bg-ink px-7 py-4 text-cream transition-colors hover:bg-ink/90"
+              className="eyebrow group mt-5 inline-flex w-fit items-center gap-3 bg-ink px-6 py-3 text-cream transition-colors hover:bg-ink/90"
               href={episode.podbeanUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -194,7 +194,7 @@ function EpisodePage() {
           </div>
 
           <div className="order-2 hidden lg:block">
-            <HeroImage episode={episode} hero={hero} className="h-full min-h-[560px]" />
+            <HeroImage episode={episode} hero={hero} className="h-full min-h-[420px]" />
           </div>
         </div>
       </section>
