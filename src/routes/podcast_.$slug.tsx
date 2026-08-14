@@ -9,6 +9,7 @@ import {
   DEGRADED_SOURCE_VALUE,
 } from "@/lib/podcast/degraded-status";
 import type { SanityEpisode } from "@/lib/podcast/episode";
+import { guestProfile } from "@/lib/podcast/guest-profiles";
 import { episodeHeroImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
 import { selectRelatedEpisodes } from "@/lib/podcast/related";
@@ -139,9 +140,16 @@ function displayTitle(title: string): string {
   return title.replace(/^\s*episode\s*#?\d+\s*?[:\-–—]\s*/i, "");
 }
 
+/**
+ * The one heading style for both lower columns. Shared so "Episode summary" and
+ * "Meet the guest" cannot drift apart in colour, size, tracking or spacing.
+ */
+const SECTION_HEADING = "section-label text-sm text-lime";
+
 function EpisodePage() {
   const { episode, related }: EpisodeLoaderData = Route.useLoaderData();
   const hero = episodeHeroImage(episode);
+  const profile = guestProfile(episode.episodeNumber);
   // Cleaned at render for every episode, present and future: the feed's
   // promotional tail ("Mobile viewers…", hashtags, "Listen on:") is never shown.
   const body = showNoteParagraphs(episode.description);
@@ -214,7 +222,10 @@ function EpisodePage() {
       <section className="section-cream">
         <div className="grid lg:grid-cols-2">
           <div className="px-5 pt-12 pb-6 sm:px-8 lg:pb-12 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-10">
-            <p className="section-label section-label-dark text-sm">Episode summary</p>
+            {/* Both column headings share ONE class string, deliberately: the
+                brief is that "Episode summary" and "Meet the guest" always
+                match. Any divergence here is a bug, not a variant. */}
+            <p className={SECTION_HEADING}>Episode summary</p>
             {body.length > 0 && (
               <div className="mt-3 max-w-[58ch] space-y-3 text-[1.0625rem] leading-[1.55] text-ink/80">
                 {body.map((paragraph: string) => (
@@ -226,13 +237,18 @@ function EpisodePage() {
 
           {episode.guestName && (
             <div className="px-5 pb-12 sm:px-8 lg:border-l lg:border-hairline-dark lg:pt-12 lg:pl-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
-              <p className="section-label text-sm text-lime">Meet the guest</p>
+              <p className={SECTION_HEADING}>Meet the guest</p>
               <h2 className="mt-3 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                 {episode.guestName}
               </h2>
-              {episode.guestBio && (
+              {profile.role && (
+                <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>
+              )}
+              {/* Sanity first, the on-file profile only as a fallback — and
+                  nothing at all when neither exists. No filler. */}
+              {(episode.guestBio ?? profile.bio) && (
                 <p className="mt-3 max-w-[55ch] text-[1.0625rem] leading-[1.55] text-ink/75">
-                  {episode.guestBio}
+                  {episode.guestBio ?? profile.bio}
                 </p>
               )}
             </div>
