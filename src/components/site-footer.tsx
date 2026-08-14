@@ -30,6 +30,9 @@ export function SiteFooter() {
             An AI strategy and transformation company, and a cultural movement for practising what
             keeps us human.
           </p>
+          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+            Indigenous and Canadian-owned.
+          </p>
           <p className="font-hand mt-8 text-2xl text-lime">Stay Human.</p>
         </div>
 
@@ -68,24 +71,25 @@ export function SiteFooter() {
         <div>
           <h3 className="eyebrow text-muted-foreground">Contact</h3>
           <ul className="mt-5 space-y-3 text-sm text-foreground/80">
+            {/*
+              One address, replacing the previous hello@ and ai@ split. Two
+              published addresses make a visitor choose before they have said
+              anything, and the wrong choice reads as being sent to the wrong
+              desk. The studios line that sat here was removed: it named Sydney,
+              London and New York, which contradicts the Indigenous-founded
+              Canadian positioning stated directly above it.
+            */}
             <li>
-              <a href="mailto:hello@thebehumancompany.ca" className="hover:text-lime">
-                hello@thebehumancompany.ca
+              <a href="mailto:connect@thebehumancompany.ca" className="hover:text-lime">
+                connect@thebehumancompany.ca
               </a>
             </li>
-            <li>
-              <a href="mailto:ai@thebehumancompany.ca" className="hover:text-lime">
-                ai@thebehumancompany.ca
-              </a>
-            </li>
-            <li className="text-muted-foreground">Sydney · London · New York</li>
           </ul>
         </div>
       </div>
 
       <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 border-t border-border px-5 py-6 sm:px-8">
         <p className="eyebrow text-muted-foreground">© 2026 The Be Human Company</p>
-        <p className="eyebrow text-muted-foreground">Human + AI · Better together</p>
       </div>
     </footer>
   );
