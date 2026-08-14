@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
    * calling a server function cannot be invoked outside the server runtime, so
    * keeping the re-throw-versus-absorb branch here would make it untestable.
    */
-  loader: () => loadFeaturedEpisodes(fetchEpisodeList),
+  loader: () => loadFeaturedEpisodes(fetchEpisodeList, 39),
 
   head: () => ({
     meta: [
