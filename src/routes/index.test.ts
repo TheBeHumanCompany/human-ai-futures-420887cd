@@ -97,7 +97,7 @@ describe("the catch is narrow", () => {
   test("the route stays a thin shell over it", () => {
     // No catch in the route at all: the branch is in one tested place rather
     // than duplicated into a file the test runner cannot execute.
-    expect(SOURCE).toContain("loadFeaturedEpisodes(fetchEpisodeList)");
+    expect(SOURCE).toMatch(/loadFeaturedEpisodes\s*\(\s*fetchEpisodeList/);
     // Matched as a catch CLAUSE, not the word — the route's comments discuss
     // catching at length, and a prose match would make this row meaningless.
     expect(SOURCE).not.toMatch(/\}\s*catch\s*\(|catch\s*\(\s*\w+\s*\)\s*\{/);
