@@ -69,12 +69,21 @@ function BeHumanAI() {
 
       <section className="section-cream">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
-          <h2 className="eyebrow text-ink/50">Capabilities</h2>
-          <div className="mt-10 grid gap-px bg-hairline-dark sm:grid-cols-2">
+          <h2 className="eyebrow text-ink/50">Our approach</h2>
+          <p className="display mt-8 max-w-4xl text-[clamp(2rem,5vw,3.5rem)] text-ink">
+            Prepare your people. Protect your organization. Transform your business.
+          </p>
+          <p className="mt-8 max-w-2xl leading-relaxed text-ink/75">
+            Not three disconnected services. One complete approach to becoming a human-first,
+            AI-powered organization.
+          </p>
+
+          <div className="mt-12 grid gap-px bg-hairline-dark lg:grid-cols-3">
             {SERVICES.map((s) => (
-              <article key={s.n} className="bg-cream p-8 lg:p-12">
+              <article key={s.n} className="flex flex-col bg-cream p-8 lg:p-12">
                 <span className="eyebrow text-ink/40">{s.n}</span>
-                <h3 className="display mt-6 text-3xl text-ink lg:text-4xl">{s.title}</h3>
+                <p className="eyebrow mt-6 text-ink/50">{s.promise}</p>
+                <h3 className="display mt-3 text-3xl text-ink lg:text-4xl">{s.title}</h3>
                 <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink/70">{s.body}</p>
                 <ul className="mt-7 space-y-2">
                   {s.points.map((p) => (
@@ -86,9 +95,31 @@ function BeHumanAI() {
                     </li>
                   ))}
                 </ul>
+                <Link to={s.to} className="eyebrow link-underline mt-8 inline-block text-ink">
+                  Explore <span aria-hidden>→</span>
+                </Link>
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section-ink border-t border-border">
+        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
+          <h2 className="eyebrow text-lime">Start here</h2>
+          <p className="display mt-8 max-w-3xl text-[clamp(2rem,5vw,3.25rem)]">
+            The Be Human AI Blueprint™
+          </p>
+          <p className="mt-8 max-w-2xl leading-relaxed text-muted-foreground">
+            An executive assessment and 90-day plan that tells you where AI creates the greatest
+            leverage, what must be protected, and what to do first.
+          </p>
+          <Link
+            to="/be-human-ai/blueprint"
+            className="eyebrow mt-10 inline-flex items-center gap-2 rounded-full bg-lime px-7 py-4 text-ink"
+          >
+            See what the Blueprint includes <span aria-hidden>→</span>
+          </Link>
         </div>
       </section>
 

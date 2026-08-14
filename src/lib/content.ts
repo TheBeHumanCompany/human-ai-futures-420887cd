@@ -1,3 +1,5 @@
+import { PILLAR_ROUTES } from "@/lib/sales/pillars";
+
 import portrait1Asset from "@/assets/archive-adewolf.png.asset.json";
 import portrait2Asset from "@/assets/archive-bella.png.asset.json";
 import portrait3Asset from "@/assets/archive-anton.png.asset.json";
@@ -8,30 +10,44 @@ const portrait2 = portrait2Asset.url;
 const portrait3 = portrait3Asset.url;
 const portrait4 = portrait4Asset.url;
 
+/**
+ * The three service pillars.
+ *
+ * This replaced a four-item capability list — AI Readiness & Strategy, Human +
+ * AI Transformation, Security Privacy & Governance, AI Agents & Workflow Design
+ * — which described the same work but did not match the approved sales copy.
+ * That copy frames the offering as three sequenced moments rather than four
+ * parallel capabilities, and the sequence is the argument: prepare people first,
+ * protect what matters second, and only then transform, because doing them in
+ * any other order compounds whatever is already misaligned.
+ *
+ * `to` deep-links each card to its pillar page. Its literal type comes from
+ * `PILLAR_ROUTES`, so renaming a route breaks the build rather than the link.
+ */
 export const SERVICES = [
   {
     n: "01",
-    title: "AI Readiness & Strategy",
-    body: "We assess where your organization actually stands, then build a sequenced roadmap tied to business outcomes rather than experiments.",
-    points: ["Readiness assessment", "Use-case prioritisation", "Investment roadmap"],
+    title: "Human Readiness",
+    promise: "Prepare your people",
+    body: "Every successful AI transformation starts with leadership, not technology. We build the clarity, confidence and shared direction that adoption depends on.",
+    points: ["Leadership readiness", "Employee AI usage", "Culture & confidence"],
+    to: PILLAR_ROUTES["human-readiness"],
   },
   {
     n: "02",
-    title: "Human + AI Transformation",
-    body: "We redesign how work gets done so people and AI complement each other — with adoption that survives the pilot phase.",
-    points: ["Operating model design", "Change & adoption", "AI literacy programs"],
+    title: "Security, Governance & Sovereignty",
+    promise: "Protect your organization",
+    body: "We uncover governance gaps, trace how data actually moves through AI systems, and define the safeguards that close them — before anything is deployed.",
+    points: ["Governance & security", "Shadow AI exposure", "Data sovereignty"],
+    to: PILLAR_ROUTES.governance,
   },
   {
     n: "03",
-    title: "Security, Privacy & Governance",
-    body: "We protect what matters: your data, your customers and your license to operate, with governance leaders can actually enforce.",
-    points: ["Risk & controls", "Policy frameworks", "Regulatory alignment"],
-  },
-  {
-    n: "04",
-    title: "AI Agents & Workflow Design",
-    body: "We design, build and deploy agents into real workflows, measured on cycle time, quality and cost — not novelty.",
-    points: ["Agent architecture", "Workflow automation", "Measurement & ROI"],
+    title: "AI Strategy & Transformation",
+    promise: "Transform your business",
+    body: "We rank opportunities across workflows, operations and customer experience by business value, effort and long-term advantage — not by what is trending.",
+    points: ["AI opportunity ranking", "Workflow transformation", "90-day roadmap"],
+    to: PILLAR_ROUTES["ai-strategy"],
   },
 ] as const;
 

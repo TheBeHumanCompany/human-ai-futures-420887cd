@@ -1,12 +1,28 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 
-/**
- * Placeholder for the Security, Governance & Sovereignty pillar page —
- * "Protect your organization". Throws rather than rendering blank; see
- * `blueprint.tsx` for why. Replaced wholesale in the pillar content commit.
- */
+import { PillarPage } from "@/components/sales/pillar-page";
+import { pillarBySlug } from "@/lib/sales/pillars";
+
+const pillar = pillarBySlug("governance");
+
 export const Route = createFileRoute("/be-human-ai/governance")({
-  component: () => {
-    throw notFound();
-  },
+  head: () => ({
+    meta: [
+      { title: "Security, Governance & Sovereignty — Protect your organization | Be Human AI" },
+      {
+        name: "description",
+        content:
+          "Governance gaps, data flows, shadow AI exposure and sovereignty — assessed across six domains and 56 of the 72 controls in the governance spine.",
+      },
+      {
+        property: "og:title",
+        content: "Security, Governance & Sovereignty — Protect your organization",
+      },
+      {
+        property: "og:description",
+        content: "Are you still in control of your data, your decisions, and your future?",
+      },
+    ],
+  }),
+  component: () => <PillarPage pillar={pillar} />,
 });
