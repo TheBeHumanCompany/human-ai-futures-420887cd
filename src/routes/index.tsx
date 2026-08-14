@@ -82,7 +82,7 @@ function Home() {
             </h1>
             <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg lg:max-w-xl">
               We help people and organizations practice what keeps us human in a world becoming more
-              artificial.
+              artificial. Through AI strategy, human readiness, governance, and transformation.
             </p>
           </div>
         </div>
