@@ -172,6 +172,20 @@ export const INITIATIVES: readonly [Initiative, Initiative, Initiative, Initiati
   },
 ];
 
+/**
+ * Lookup by id, throwing rather than returning undefined.
+ *
+ * Same shape and same reason as `pillarBySlug` in `sales/pillars.ts`: callers
+ * are rendering copy, and a silent `undefined` there is a blank section rather
+ * than a failure anyone notices. Indexing `INITIATIVES` positionally would work
+ * today and break the first time the order changes.
+ */
+export function initiativeById(id: Initiative["id"]): Initiative {
+  const initiative = INITIATIVES.find((candidate) => candidate.id === id);
+  if (!initiative) throw new Error(`Unknown initiative id: ${id}`);
+  return initiative;
+}
+
 export const WHATS_NEXT = {
   heading: "We're just getting started.",
   body: [

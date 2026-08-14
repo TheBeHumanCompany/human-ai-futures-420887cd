@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
+import { MISSION } from "@/lib/positioning";
 import { PLACEHOLDER_HREF, displaySocialLinks } from "@/lib/socials";
 
 import { NAV, Wordmark } from "./site-header";
@@ -26,9 +27,15 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div className="min-w-0">
           <Wordmark />
+          {/*
+            Drawn from `positioning.ts` rather than re-typed here. This line
+            previously split the company into a commercial arm and a cultural
+            one — the superseded model that `/why-we-exist` replaces — and it
+            rendered on every page of the site, which made it the widest single
+            statement of it anywhere.
+          */}
           <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            An AI strategy and transformation company, and a cultural movement for practising what
-            keeps us human.
+            {MISSION.missionLine}
           </p>
           <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
             Indigenous and Canadian-owned.

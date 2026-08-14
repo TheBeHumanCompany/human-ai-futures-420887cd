@@ -7,6 +7,7 @@ import {
   ARCHIVE_PERSPECTIVES_MIN,
   CLOSING,
   INITIATIVES,
+  initiativeById,
   MISSION,
   WHATS_NEXT,
 } from "./positioning";
@@ -58,6 +59,14 @@ describe("the four initiatives", () => {
     const tos = INITIATIVES.map((initiative) => initiative.to);
     expect(new Set(tos).size).toBe(tos.length);
     for (const to of tos) expect(KNOWN_ROUTES).toContain(to);
+  });
+
+  test("lookup by id returns the right one, and throws on an unknown one", () => {
+    for (const initiative of INITIATIVES) {
+      expect(initiativeById(initiative.id)).toBe(initiative);
+    }
+    // @ts-expect-error — deliberately outside the union, to pin the runtime guard
+    expect(() => initiativeById("does-not-exist")).toThrow();
   });
 
   test("every initiative carries a non-empty paragraph, a summary and a link label", () => {

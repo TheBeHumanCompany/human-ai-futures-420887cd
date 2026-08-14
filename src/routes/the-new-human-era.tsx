@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PRINCIPLES } from "@/lib/content";
+import { initiativeById } from "@/lib/positioning";
 
 export const Route = createFileRoute("/the-new-human-era")({
   head: () => ({
@@ -12,8 +13,14 @@ export const Route = createFileRoute("/the-new-human-era")({
       },
       { property: "og:title", content: "The New Human Era — Six Principles" },
       {
+        /*
+          The previous description framed The New Human Era as the container
+          the other initiatives sat inside. It is one of four peers, and it is
+          a worldview — so this text comes from `positioning.ts` rather than
+          being restated here, where it drifted from everything else.
+        */
         property: "og:description",
-        content: "A cultural movement for practising what keeps us human.",
+        content: initiativeById("the-new-human-era").short,
       },
     ],
   }),
