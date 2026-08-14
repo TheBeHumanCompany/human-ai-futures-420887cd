@@ -143,8 +143,12 @@ function displayTitle(title: string): string {
 /**
  * The one heading style for both lower columns. Shared so "Episode summary" and
  * "Meet the guest" cannot drift apart in colour, size, tracking or spacing.
+ *
+ * Rendered as a solid lime tag with black ink text to match the highlighted
+ * labels used elsewhere on the site (e.g. "LATEST EPISODE", episode numbers).
  */
-const SECTION_HEADING = "section-label text-sm text-lime";
+const SECTION_HEADING =
+  "section-label w-fit bg-lime px-2.5 py-1.5 text-ink text-xs";
 
 function EpisodePage() {
   const { episode, related }: EpisodeLoaderData = Route.useLoaderData();
