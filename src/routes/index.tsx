@@ -254,21 +254,16 @@ function Home() {
 
       {/* ---------- THE NEW HUMAN ERA ---------- */}
       <section className="section-cream border-t border-border">
-        {/* Top: editorial split — text ~38%, collage ~62% */}
-        <div className="lg:grid lg:grid-cols-[38%_62%] lg:items-center">
-          <div className="px-6 py-14 sm:px-10 sm:py-16 lg:py-20 lg:pl-[max(2rem,calc((100vw-1500px)/2+2rem))] lg:pr-14">
-            <p className="section-label section-label-light text-lime-dark text-[13px] sm:text-sm">
-              THE NEW HUMAN ERA
-            </p>
-            <div className="mt-3 h-[2px] w-24 bg-lime" aria-hidden />
-
-            <h2 className="display mt-7 text-[clamp(2.9rem,9vw,4.75rem)] font-extrabold leading-[0.92] tracking-[0.01em] text-ink">
+        {/* Top: editorial split — text ~32%, collage ~68% */}
+        <div className="lg:grid lg:grid-cols-[32%_68%] lg:items-center">
+          <div className="px-6 py-12 sm:px-10 sm:py-14 lg:py-16 lg:pl-[max(2rem,calc((100vw-1500px)/2+2rem))] lg:pr-10">
+            <h2 className="display text-[clamp(2.6rem,8vw,4.25rem)] font-extrabold leading-[0.92] tracking-[0.01em] text-ink">
               THE NEW
               <br />
               HUMAN ERA
             </h2>
 
-            <div className="mt-8 max-w-md space-y-5 text-base leading-relaxed text-ink/75 sm:text-lg">
+            <div className="mt-7 max-w-md space-y-4 text-[15px] leading-snug text-ink/75 sm:text-base">
               <p>
                 For generations, status was measured by{" "}
                 <strong className="font-semibold text-ink">what you had</strong>.
@@ -281,57 +276,64 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group mt-9 inline-flex w-fit items-center gap-3 border-b-2 border-lime pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:text-lime-dark sm:text-sm"
+              className="group mt-7 inline-flex w-fit items-center gap-2 border-b border-lime pb-0.5 text-sm font-medium uppercase tracking-[0.06em] text-ink transition-colors hover:text-lime-dark"
             >
               Learn more
-              <span
-                aria-hidden
-                className="text-base text-lime-dark transition-transform group-hover:translate-x-1"
-              >
+              <span aria-hidden className="transition-transform group-hover:translate-x-1">
                 →
               </span>
             </Link>
           </div>
 
           {/*
-            One uploaded collage, kept whole: no gaps, borders, overlays or
-            per-person crops. The aspect ratio follows the source (2:1) so the
-            four faces stay intact at every width.
+            One uploaded collage, kept whole: displayed at its natural aspect
+            ratio so none of the four people is cropped.
           */}
-          <figure className="relative overflow-hidden">
+          <figure className="px-6 pb-10 sm:px-10 lg:py-10 lg:pl-0 lg:pr-[max(1.5rem,calc((100vw-1500px)/2+1.5rem))]">
             <img
               src={collageImage}
               alt="Four people photographed at street level, side by side as one continuous portrait"
               loading="lazy"
               width={1786}
               height={886}
-              className="h-full w-full object-cover object-center aspect-[2/1] lg:aspect-auto lg:min-h-[600px]"
+              className="h-auto w-full"
             />
           </figure>
         </div>
 
         {/* Bottom: six principles */}
-        <div className="mx-auto max-w-[1500px] px-6 pb-16 pt-12 sm:px-10 sm:pb-20 lg:pb-24 lg:pt-14">
-          <div className="border-t border-ink/15 pt-10 sm:pt-12">
-            <div className="grid gap-x-0 gap-y-10 sm:grid-cols-2 lg:grid-cols-6">
-              {HOME_PRINCIPLES.map((p, i) => (
-                <article
-                  key={p.n}
-                  className={`px-0 sm:px-7 lg:px-6 ${
-                    i % 2 === 1 ? "sm:border-l sm:border-ink/12" : ""
-                  } ${i > 0 ? "lg:border-l lg:border-ink/12" : "lg:border-l-0"} ${
-                    i % 3 === 0 ? "lg:first-of-type:border-l-0" : ""
-                  } ${i === 0 ? "sm:border-l-0" : ""} sm:first:pl-0 lg:first:pl-0`}
-                >
-                  <span className="font-display text-sm font-black tracking-[0.14em] text-lime-dark">
-                    {p.n}
-                  </span>
-                  <h3 className="display mt-4 text-[clamp(1.05rem,1.4vw,1.2rem)] font-extrabold uppercase leading-tight text-ink">
-                    {p.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink/65">{p.body}</p>
-                </article>
-              ))}
+        <div className="mx-auto max-w-[1500px] px-6 pb-14 sm:px-10 sm:pb-16 lg:pb-20">
+          <div className="border-t border-ink/15 pt-8">
+            <p className="text-center font-display text-[11px] font-bold uppercase tracking-[0.22em] text-ink/60">
+              6 Human Principles
+            </p>
+            <div className="mt-8 grid gap-x-0 gap-y-8 sm:grid-cols-2 lg:grid-cols-6">
+              {HOME_PRINCIPLES.map((p, i) => {
+                const Icon = PRINCIPLE_ICONS[i];
+                return (
+                  <article
+                    key={p.n}
+                    className={`px-0 sm:px-6 lg:px-5 ${
+                      i % 2 === 1 ? "sm:border-l sm:border-ink/12" : ""
+                    } ${i > 0 ? "lg:border-l lg:border-ink/12" : "lg:border-l-0"} ${
+                      i === 0 ? "sm:border-l-0" : ""
+                    } sm:first:pl-0 lg:first:pl-0`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      {Icon ? (
+                        <Icon className="h-5 w-5 text-lime-dark" strokeWidth={1.25} aria-hidden />
+                      ) : null}
+                      <span className="font-display text-xs font-black tracking-[0.14em] text-lime-dark">
+                        {p.n}
+                      </span>
+                    </div>
+                    <h3 className="display mt-3 text-[clamp(1rem,1.3vw,1.15rem)] font-extrabold uppercase leading-tight text-ink">
+                      {p.title}
+                    </h3>
+                    <p className="mt-2 text-[13px] leading-relaxed text-ink/65">{p.body}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
