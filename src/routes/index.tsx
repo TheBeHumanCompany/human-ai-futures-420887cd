@@ -260,7 +260,7 @@ function Home() {
             <h2 className="display text-[clamp(2.75rem,8vw,4.5rem)] font-extrabold leading-[0.9] tracking-[0.01em] text-ink">
               THE NEW
               <br />
-              HUMAN ERA
+              <span className="text-lime">HUMAN</span> ERA
             </h2>
 
             <div className="mt-8 max-w-md space-y-5 text-[15px] leading-relaxed text-ink/80 sm:text-base">
