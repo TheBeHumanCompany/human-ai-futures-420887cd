@@ -163,7 +163,7 @@ export function HumanArchiveSection() {
               </p>
               <Link
                 to="/the-human-archive"
-                className="group mt-8 inline-flex w-fit items-center gap-2 py-1 text-sm font-semibold uppercase tracking-[0.12em] text-ink sm:mt-10"
+                className="group mt-8 inline-flex w-fit items-center gap-2 whitespace-nowrap py-1 text-sm font-semibold uppercase leading-none tracking-[0.12em] text-ink sm:mt-10"
               >
                 <span className="border-b border-lime pb-0.5">Explore the Human Archive</span>
                 <span aria-hidden className="text-lime transition-transform group-hover:translate-x-1">
