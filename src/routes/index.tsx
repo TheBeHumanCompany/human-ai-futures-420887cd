@@ -8,7 +8,19 @@ import collageAsset from "@/assets/new-human-era-collage.png.asset.json";
 
 const collageImage = collageAsset.url;
 
-import { Users, Shield, Target } from "lucide-react";
+import {
+  Users,
+  Shield,
+  Target,
+  User,
+  Brain,
+  MessageCircle,
+  Heart,
+  ArrowUpRight,
+} from "lucide-react";
+
+/** Line-art accents for the six principles, in order. */
+const PRINCIPLE_ICONS = [User, Brain, MessageCircle, Heart, Target, ArrowUpRight] as const;
 import { EpisodePlayer } from "@/components/episode-player";
 import { SocialSection } from "@/components/social-section";
 import { HumanArchiveSection } from "@/components/human-archive-section";
