@@ -257,7 +257,7 @@ function Home() {
         {/* Top: editorial split — text ~35%, collage ~65% */}
         <div className="lg:grid lg:grid-cols-[35%_65%] lg:items-center">
           <div className="px-6 py-12 sm:px-10 sm:py-14 lg:py-16 lg:pl-[max(2rem,calc((100vw-1500px)/2+2rem))] lg:pr-12">
-            <h2 className="display text-[clamp(2.75rem,8vw,4.5rem)] font-extrabold leading-[0.9] tracking-[0.01em] text-ink">
+            <h2 className="archive-question text-[clamp(2.3rem,9vw,3.5rem)] text-ink md:text-[5vw] lg:text-[clamp(2.3rem,6.4vw,5.4rem)]">
               THE NEW
               <br />
               <span className="text-lime">HUMAN</span> ERA
