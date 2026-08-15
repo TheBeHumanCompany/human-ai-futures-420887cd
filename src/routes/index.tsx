@@ -278,12 +278,10 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="group mt-9 inline-flex w-fit items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-ink"
+              className="group mt-9 inline-flex w-fit items-center gap-2 whitespace-nowrap py-1 text-sm font-semibold uppercase leading-none tracking-[0.12em] text-ink"
             >
-              <span className="bg-lime/45 px-1.5 py-0.5 transition-colors group-hover:bg-lime">
-                Learn more
-              </span>
-              <span aria-hidden className="transition-transform group-hover:translate-x-1">
+              <span className="border-b border-lime pb-0.5">Learn more</span>
+              <span aria-hidden className="text-lime transition-transform group-hover:translate-x-1">
                 →
               </span>
             </Link>
