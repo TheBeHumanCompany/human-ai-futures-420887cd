@@ -179,9 +179,14 @@ function Home() {
       </section>
 
       {/* ---------- BE HUMAN AI ---------- */}
+      {/*
+        `scroll-mt-24` clears the sticky header (~73px tall against 96px).
+        Without it a `/#be-human-ai` landing put this heading at y≈0, behind
+        the header — reproduced at 768px and 430px.
+      */}
       <section
         id="be-human-ai"
-        className="section-ink relative isolate overflow-hidden border-t border-border"
+        className="section-ink relative isolate scroll-mt-24 overflow-hidden border-t border-border"
       >
         {/* INTEGRATED PORTRAIT LAYER */}
         <div aria-hidden className="pointer-events-none absolute inset-0 z-0">

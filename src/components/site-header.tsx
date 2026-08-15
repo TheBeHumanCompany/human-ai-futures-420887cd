@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { mobileNavChildren, type NavChild, type NavItem } from "@/lib/nav";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,88 +12,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-
-/**
- * One entry beneath a parent item, in the desktop dropdown and the mobile
- * sub-list.
- */
-export interface NavChild {
-  to: string;
-  hash?: string;
-  label: string;
-  /**
-   * The parent's own destination, repeated inside the panel.
-   *
-   * Exists ONLY because the desktop trigger is a non-navigating <button>
-   * (ui/navigation-menu.tsx:41) — it is compensation for a desktop-only
-   * affordance loss, not content. The mobile parent row IS a real <Link>
-   * and already carries this destination, so the mobile render filters it
-   * out. Its label must differ from the parent's; the nav test enforces that
-   * unconditionally.
-   */
-  self?: true;
-}
-
-/**
- * The three things both renders need from a child, read through `NavChild`.
- *
- * `NAV` is `as const satisfies`, so every child is its own literal type and a
- * bare `child.hash` or `child.self` is a TS2339 on the children that lack the
- * key. An `in` check does not rescue it either: when NO member of the union
- * declares `hash`, `in` narrows the property to `unknown`, which `<Link>`
- * rejects. Taking a `NavChild` parameter widens the literal to the declared
- * shape once, in one place, and hands back something typed.
- *
- * Both renders go through these rather than repeating the access, because the
- * desktop and mobile blocks reading a child differently is exactly how the
- * `self` entry escaped into the mobile menu once already.
- */
-const isSelfChild = (child: NavChild): boolean => child.self === true;
-
-/** Two children may share a route and differ only by hash, so the key needs both. */
-const childKey = (child: NavChild): string => `${child.to}${child.hash ?? ""}`;
-
-/**
- * `hash` is threaded but unused today: no child carries one. The field exists
- * for the founder page, which lands as `#founder` on `/why-we-exist` before it
- * becomes a route of its own. Keeping the field and the threading is the
- * difference between an extensible shape and a rewrite later.
- */
-const hashProps = (child: NavChild): { hash?: string } =>
-  child.hash === undefined ? {} : { hash: child.hash };
-
-/**
- * Every route worth linking to, in one array.
- *
- * This is the single navigation source of truth: the desktop bar, the mobile
- * menu, and the footer's Navigate column all render from it, so a route added
- * here appears in all three.
- *
- * **Two flags decide placement, and getting them backwards inverts the whole
- * intent.** The header filters `footerOnly` out; the footer filters nothing and
- * lists everything. So a `footerOnly` route is reachable from the footer and
- * from in-page links, but does not crowd the desktop bar — which matters here,
- * because six long labels already fill it and the three pillar labels are the
- * longest on the site.
- *
- * `cta` promotes the Blueprint out of the link row entirely. It is the priced
- * offer the sales pages exist to sell, and rendering it as the seventh
- * indistinguishable link would bury it.
- */
-export interface NavItem {
-  to: string;
-  label: string;
-  /** Hidden from the desktop and mobile menus; still rendered in the footer. */
-  footerOnly?: boolean;
-  /** Rendered as a lime pill beside the menu rather than as a nav link. */
-  cta?: boolean;
-  /**
-   * Dropdown in the desktop bar; sub-list in the mobile menu. The footer maps
-   * NAV flat and reads only `to` and `label` (site-footer.tsx:42-48), so
-   * children are invisible there by construction.
-   */
-  children?: readonly NavChild[];
-}
 
 /**
  * The four initiatives sit UNDER the mission page rather than beside it.
@@ -106,17 +25,33 @@ export interface NavItem {
  * They keep `footerOnly` — an application of the flag as documented above, not
  * a redefinition — so the footer still lists all eleven routes.
  */
+/** Two children may share a route and differ only by hash, so the key needs both. */
+const childKey = (child: NavChild): string => `${child.to}${child.hash ?? ""}`;
+
+/**
+ * Annotated `readonly NavChild[]` rather than left to `as const` inference, and
+ * the annotation is load-bearing.
+ *
+ * Inside `as const satisfies` every child becomes its own literal type, so
+ * `child.self` and `child.hash` are a TS2339 on the children that lack the key
+ * — and an `in` check does not rescue `hash`, because when no member of the
+ * union declares it the property narrows to `unknown`, which `<Link>` rejects.
+ * Widening once here lets both renders read a child's fields directly. `to`
+ * stays safe for `<Link>` because `NavRoute` is itself a literal union.
+ */
+const WHY_WE_EXIST_CHILDREN: readonly NavChild[] = [
+  { to: "/why-we-exist", label: "Overview", self: true },
+  { to: "/be-human-ai", label: "Be Human AI" },
+  { to: "/the-new-human-era", label: "The New Human Era" },
+  { to: "/the-human-archive", label: "The Human Archive" },
+  { to: "/podcast", label: "Podcast" },
+];
+
 const NAV = [
   {
     to: "/why-we-exist",
     label: "Why We Exist",
-    children: [
-      { to: "/why-we-exist", label: "Overview", self: true },
-      { to: "/be-human-ai", label: "Be Human AI" },
-      { to: "/the-new-human-era", label: "The New Human Era" },
-      { to: "/the-human-archive", label: "The Human Archive" },
-      { to: "/podcast", label: "Podcast" },
-    ],
+    children: WHY_WE_EXIST_CHILDREN,
   },
   { to: "/be-human-ai", label: "Be Human AI", footerOnly: true },
   { to: "/be-human-ai/blueprint", label: "Blueprint", cta: true },
@@ -205,7 +140,16 @@ export function SiteHeader() {
                     Its chevron is also hard-sized for shadcn's `text-sm`,
                     which is oversized inside an `eyebrow` label.
                   */}
-                  <NavigationMenuPrimitive.Trigger className="eyebrow link-underline group inline-flex cursor-pointer items-center text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none data-[state=open]:text-foreground">
+                  {/*
+                    The focus ring is deliberate. An earlier version set
+                    `focus-visible:outline-none` and leaned on `link-underline`,
+                    which only reacts to `:hover` (styles.css) — so a keyboard
+                    user tabbing onto the trigger got no visible indication at
+                    all. `link-underline` now answers `:focus-visible` too, and
+                    the outline is kept as well because the trigger opens a
+                    panel rather than navigating.
+                  */}
+                  <NavigationMenuPrimitive.Trigger className="eyebrow link-underline group inline-flex cursor-pointer items-center text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime data-[state=open]:text-foreground">
                     {item.label}
                     <ChevronDown
                       className="ml-1.5 h-2.5 w-2.5 transition-transform duration-300 group-data-[state=open]:rotate-180"
@@ -227,7 +171,7 @@ export function SiteHeader() {
                           <NavigationMenuLink asChild>
                             <Link
                               to={child.to}
-                              {...hashProps(child)}
+                              {...(child.hash ? { hash: child.hash } : {})}
                               className="block px-3 py-2.5 text-sm text-foreground/80 transition-colors hover:text-lime"
                               activeProps={{ className: "text-lime" }}
                             >
@@ -315,29 +259,25 @@ export function SiteHeader() {
 
                 <CollapsibleContent>
                   {/*
-                    The `self` child is filtered OUT here, and the filtered list
-                    is mapped inline so no intermediate binding can be mapped by
-                    mistake. `self` exists only to give the desktop dropdown a
-                    route to the parent page, because the desktop trigger is a
-                    non-navigating <button>. The parent row directly above IS a
-                    real <Link> to that destination, so rendering the self entry
-                    here would print "Why We Exist" immediately beneath "Why We
-                    Exist" — and this block has no automated coverage beyond the
-                    label-inequality rule in nav.test.ts.
+                    `mobileNavChildren` drops the `self` entry. The parent row
+                    directly above IS a real <Link> to that destination, so
+                    rendering it here would print "Why We Exist" immediately
+                    beneath "Why We Exist". The filter lives in that exported
+                    function rather than inline precisely so nav.test.ts can
+                    bind to it — a test that re-created the expression would
+                    stay green if this call ever stopped filtering.
                   */}
-                  {item.children
-                    .filter((child) => !isSelfChild(child))
-                    .map((child) => (
-                      <Link
-                        key={childKey(child)}
-                        to={child.to}
-                        {...hashProps(child)}
-                        onClick={() => setOpen(false)}
-                        className="block border-b border-border py-3 pl-5 text-lg text-foreground/75"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                  {mobileNavChildren(item.children).map((child) => (
+                    <Link
+                      key={childKey(child)}
+                      to={child.to}
+                      {...(child.hash ? { hash: child.hash } : {})}
+                      onClick={() => setOpen(false)}
+                      className="block border-b border-border py-3 pl-5 text-lg text-foreground/75"
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
                 </CollapsibleContent>
               </Collapsible>
             ) : (

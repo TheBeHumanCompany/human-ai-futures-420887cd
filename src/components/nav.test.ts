@@ -1,5 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
+import { mobileNavChildren } from "@/lib/nav";
+
 import { NAV } from "./site-header";
 
 /**
@@ -69,34 +71,47 @@ describe("the self child", () => {
     // dropdown with no way to reach the parent page — the affordance `self`
     // exists to restore.
     for (const item of withChildren) {
-      const selves = item.children.filter((child) => "self" in child);
+      const selves = item.children.filter((child) => child.self);
       expect(selves).toHaveLength(1);
     }
   });
 
   test("it is first, so the parent's own page opens the panel", () => {
     for (const item of withChildren) {
-      expect("self" in item.children[0]).toBe(true);
+      expect(item.children[0].self).toBe(true);
     }
   });
 
   test("it carries its parent's destination", () => {
     for (const item of withChildren) {
       for (const child of item.children) {
-        if (!("self" in child)) continue;
+        if (!child.self) continue;
         expect(child.to).toBe(item.to);
       }
     }
   });
 
-  test("filtering it out leaves the children the mobile menu renders", () => {
-    // The mobile parent row is itself a <Link> to the same destination, so the
-    // mobile render drops `self`. Pinned here because that filter lives in a
-    // block with no other coverage.
+  test("the mobile menu renders it nowhere", () => {
+    /**
+     * Asserted through `mobileNavChildren`, the function the mobile block
+     * actually calls — NOT by re-creating the filter here.
+     *
+     * An earlier version of this test wrote `children.filter((c) => !("self"
+     * in c))` itself and asserted against that. It would have stayed green
+     * while production stopped filtering entirely, which makes it a statement
+     * about the test rather than about the menu. R17 is the one defect that
+     * already survived a full review round, so its guard has to be bound to
+     * the shipped code.
+     */
     for (const item of withChildren) {
-      const mobile = item.children.filter((child) => !("self" in child));
+      const mobile = mobileNavChildren(item.children);
+
       expect(mobile).toHaveLength(item.children.length - 1);
-      for (const child of mobile) expect(child.to).not.toBe(item.to);
+      for (const child of mobile) {
+        expect(child.self).toBeUndefined();
+        expect(child.to).not.toBe(item.to);
+        expect(child.label).not.toBe(item.label);
+      }
     }
   });
 });
@@ -117,7 +132,7 @@ describe("children point at routes NAV already knows", () => {
 
   test("child destinations are unique within their parent", () => {
     for (const item of withChildren) {
-      const tos = item.children.map((child) => `${child.to}${"hash" in child ? child.hash : ""}`);
+      const tos = item.children.map((child) => `${child.to}${child.hash ?? ""}`);
       expect(new Set(tos).size).toBe(tos.length);
     }
   });

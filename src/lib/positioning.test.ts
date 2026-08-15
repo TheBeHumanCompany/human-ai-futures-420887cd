@@ -143,7 +143,12 @@ describe("the perspectives figure — the mechanical gate", () => {
     if (ARCHIVE_FIGURE_CONFIRMED === null) return;
 
     expect(ARCHIVE_FIGURE_CONFIRMED).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-    expect(Number.isNaN(Date.parse(ARCHIVE_FIGURE_CONFIRMED))).toBe(false);
+    // Round-tripped, not just parsed. `Date.parse` normalises impossible dates
+    // — "2026-02-31" becomes 2 March and passes a bare NaN check — so the only
+    // way to reject one is to ask what day it actually landed on.
+    expect(new Date(ARCHIVE_FIGURE_CONFIRMED).toISOString().slice(0, 10)).toBe(
+      ARCHIVE_FIGURE_CONFIRMED,
+    );
   });
 
   test("the constant cannot drift from the copy that states it", () => {
@@ -205,6 +210,64 @@ describe("the figure cannot be re-typed into a component", () => {
       readFileSync(file, "utf8").includes("more than 200"),
     );
     expect(offenders).toEqual([]);
+  });
+});
+
+describe("the approved copy is reproduced verbatim", () => {
+  /**
+   * The byte-for-byte check, run by CI rather than by hand.
+   *
+   * `positioning.source.txt` is the founder's approved text as supplied, and it
+   * lives in the repo precisely so this can be reproduced from a fresh clone.
+   * An earlier version of this check was a throwaway script pointed at a file
+   * outside the repo — which made "verbatim" a claim in a comment rather than
+   * something the build enforces, the exact failure the module's own gate
+   * exists to avoid.
+   *
+   * Asserted in BOTH directions. Forwards catches a paraphrase; backwards
+   * catches a paragraph silently dropped, which no amount of checking the
+   * strings that ARE present can find.
+   */
+  const APPROVED = readFileSync(path.join(import.meta.dir, "positioning.source.txt"), "utf8")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  /** Every string in the module that claims to be the founder's own words. */
+  const VERBATIM: readonly string[] = [
+    MISSION.eyebrow,
+    MISSION.headline,
+    ...MISSION.lede,
+    MISSION.missionLine,
+    MISSION.transitionLine,
+    ...INITIATIVES.flatMap((initiative) => [initiative.name, ...initiative.full]),
+    WHATS_NEXT.heading,
+    ...WHATS_NEXT.body,
+    ...CLOSING,
+  ];
+
+  test("the fixture is present and complete", () => {
+    // Floor: both directions below are set comparisons and an empty fixture
+    // would make one of them vacuous.
+    expect(APPROVED.length).toBeGreaterThanOrEqual(22);
+  });
+
+  test("every verbatim string appears in the approved copy, byte for byte", () => {
+    const approved = new Set(APPROVED);
+    const paraphrased = VERBATIM.filter((value) => !approved.has(value));
+    expect(paraphrased).toEqual([]);
+  });
+
+  test("no approved line has been silently dropped", () => {
+    const used = new Set(VERBATIM);
+    const missing = APPROVED.filter((line) => !used.has(line));
+
+    if (ARCHIVE_FIGURE_CONFIRMED === null) {
+      // The one line the gate is allowed to withhold, and only this one.
+      expect(missing.every((line) => line.includes("more than 200"))).toBe(true);
+      return;
+    }
+    expect(missing).toEqual([]);
   });
 });
 

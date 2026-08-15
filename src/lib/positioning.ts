@@ -41,7 +41,13 @@ export interface Initiative {
   to: InitiativeRoute;
   /** The founder's paragraph, VERBATIM. One entry per paragraph. */
   full: readonly string[];
-  /** Homepage band summary — OURS, not approved copy. See the drift note. */
+  /**
+   * Compact summary — OURS, not approved copy. See the drift note.
+   *
+   * Read by the homepage band AND by The New Human Era's og:description
+   * (`the-new-human-era.tsx`), so it has to survive being read out of context
+   * as a search result, not just as a card.
+   */
   short: string;
   /** Link text out to the initiative. Ours. */
   cta: string;

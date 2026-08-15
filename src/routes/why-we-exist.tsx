@@ -5,10 +5,16 @@ import { CLOSING, INITIATIVES, MISSION, WHATS_NEXT } from "@/lib/positioning";
 /**
  * The mission page: one purpose, four initiatives.
  *
- * Every word here comes from `@/lib/positioning`. The page renders it and
- * nothing else — no data layer, no loader — because the thing that made this
- * page necessary was positioning copy living in four components at once, each
- * edited without the others.
+ * Every word of the page BODY comes from `@/lib/positioning` — the page renders
+ * it and nothing else, no data layer and no loader, because the thing that made
+ * this page necessary was positioning copy living in four components at once,
+ * each edited without the others. Do not type a sentence into the JSX below; if
+ * it needs saying, it belongs in the module.
+ *
+ * The one exception is `head()`, whose meta is route-local here exactly as it
+ * is in every other route (`about.tsx`, `the-new-human-era.tsx`). Search
+ * descriptions are written for the SERP, not for the page, and modelling them
+ * would put two differently-constrained kinds of copy in one place.
  *
  * Each initiative links to its own destination. The Human Archive link points
  * at `/the-human-archive`, the index that frames itself honestly as a selection
@@ -70,8 +76,12 @@ function WhyWeExist() {
       */}
       <section id="initiatives" className="section-ink scroll-mt-24">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <p className="eyebrow text-lime">Four connected initiatives</p>
-          <h2 className="display mt-6 max-w-3xl text-4xl lg:text-5xl">{MISSION.transitionLine}</h2>
+          {/*
+            No eyebrow above this heading. The transition line already says
+            "four connected initiatives", so a label repeating it was both a
+            duplication and the only unowned string in the body.
+          */}
+          <h2 className="display max-w-3xl text-4xl lg:text-5xl">{MISSION.transitionLine}</h2>
 
           <div className="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-2 lg:gap-16">
             {INITIATIVES.map((initiative) => (
@@ -126,8 +136,12 @@ function WhyWeExist() {
               {line}
             </p>
           ))}
-
-          <p className="font-hand mt-12 text-3xl text-muted-foreground">Stay Human.</p>
+          {/*
+            No "Stay Human." sign-off here. It is brand copy rather than
+            approved positioning, and the footer renders it on every page —
+            directly below this section, so the page would have closed by
+            saying it twice within a few hundred pixels.
+          */}
         </div>
       </section>
     </>

@@ -145,7 +145,8 @@ function Podcast() {
         </section>
       )}
 
-      <section id="episodes" className="section-cream">
+      {/* scroll-mt-24 clears the sticky header on a `/podcast#episodes` landing. */}
+      <section id="episodes" className="section-cream scroll-mt-24">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
           <div className="flex flex-wrap items-baseline justify-between gap-4">
             <h2 className="display text-3xl text-ink lg:text-4xl">
