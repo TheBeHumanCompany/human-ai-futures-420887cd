@@ -254,31 +254,35 @@ function Home() {
 
       {/* ---------- THE NEW HUMAN ERA ---------- */}
       <section className="section-cream border-t border-border">
-        {/* Top: editorial split — text ~32%, collage ~68% */}
-        <div className="lg:grid lg:grid-cols-[32%_68%] lg:items-center">
-          <div className="px-6 py-12 sm:px-10 sm:py-14 lg:py-16 lg:pl-[max(2rem,calc((100vw-1500px)/2+2rem))] lg:pr-10">
-            <h2 className="display text-[clamp(2.6rem,8vw,4.25rem)] font-extrabold leading-[0.92] tracking-[0.01em] text-ink">
+        {/* Top: editorial split — text ~35%, collage ~65% */}
+        <div className="lg:grid lg:grid-cols-[35%_65%] lg:items-center">
+          <div className="px-6 py-12 sm:px-10 sm:py-14 lg:py-16 lg:pl-[max(2rem,calc((100vw-1500px)/2+2rem))] lg:pr-12">
+            <h2 className="display text-[clamp(2.75rem,8vw,4.5rem)] font-extrabold leading-[0.9] tracking-[0.01em] text-ink">
               THE NEW
               <br />
               HUMAN ERA
             </h2>
 
-            <div className="mt-7 max-w-md space-y-4 text-[15px] leading-snug text-ink/75 sm:text-base">
+            <div className="mt-8 max-w-md space-y-5 text-[15px] leading-relaxed text-ink/80 sm:text-base">
               <p>
                 For generations, status was measured by{" "}
-                <strong className="font-semibold text-ink">what you had</strong>.
+                <strong className="whitespace-nowrap font-semibold text-ink">what you had.</strong>
               </p>
               <p>
                 In the New Human Era, it is measured by{" "}
-                <strong className="font-semibold text-ink">who you become</strong>.
+                <strong className="whitespace-nowrap font-semibold text-ink">
+                  who you become.
+                </strong>
               </p>
             </div>
 
             <Link
               to="/the-new-human-era"
-              className="group mt-7 inline-flex w-fit items-center gap-2 border-b border-lime pb-0.5 text-sm font-medium uppercase tracking-[0.06em] text-ink transition-colors hover:text-lime-dark"
+              className="group mt-9 inline-flex w-fit items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-ink"
             >
-              Learn more
+              <span className="bg-lime/45 px-1.5 py-0.5 transition-colors group-hover:bg-lime">
+                Learn more
+              </span>
               <span aria-hidden className="transition-transform group-hover:translate-x-1">
                 →
               </span>
@@ -303,10 +307,11 @@ function Home() {
 
         {/* Bottom: six principles */}
         <div className="mx-auto max-w-[1500px] px-6 pb-14 sm:px-10 sm:pb-16 lg:pb-20">
-          <div className="border-t border-ink/15 pt-8">
-            <p className="text-center font-display text-[11px] font-bold uppercase tracking-[0.22em] text-ink/60">
+          <div className="border-t border-ink/10 pt-8">
+            <p className="text-center font-display text-[11px] font-bold uppercase tracking-[0.24em] text-ink/55">
               6 Human Principles
             </p>
+
             <div className="mt-8 grid gap-x-0 gap-y-8 sm:grid-cols-2 lg:grid-cols-6">
               {HOME_PRINCIPLES.map((p, i) => {
                 const Icon = PRINCIPLE_ICONS[i];
