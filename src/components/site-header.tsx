@@ -4,6 +4,12 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { mobileNavChildren, type NavChild, type NavItem } from "@/lib/nav";
 import {
   NavigationMenu,
@@ -13,20 +19,21 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 
-/**
- * The four initiatives sit UNDER the mission page rather than beside it.
- *
- * A bar reading `About · Be Human AI · The New Human Era · The Human Archive ·
- * Podcast · Contact` rendered the exact complaint this change answers: four
- * peers with no visible relationship to each other. Nesting them under "Why We
- * Exist" is where the four-initiative family is stated, so the navigation
- * asserts the model instead of contradicting it.
- *
- * They keep `footerOnly` — an application of the flag as documented above, not
- * a redefinition — so the footer still lists all eleven routes.
- */
 /** Two children may share a route and differ only by hash, so the key needs both. */
 const childKey = (child: NavChild): string => `${child.to}${child.hash ?? ""}`;
+
+/**
+ * The three service pillars, as the Blueprint's sections.
+ *
+ * Labels are shortened from their `NAV` entries — "Security, Governance &
+ * Sovereignty" is the longest label on the site and wraps to three lines in a
+ * dropdown. The footer still lists the full names.
+ */
+const BLUEPRINT_CHILDREN: readonly NavChild[] = [
+  { to: "/be-human-ai/human-readiness", label: "Human Readiness" },
+  { to: "/be-human-ai/governance", label: "Governance & Sovereignty" },
+  { to: "/be-human-ai/ai-strategy", label: "AI Strategy" },
+];
 
 /**
  * Annotated `readonly NavChild[]` rather than left to `as const` inference, and
@@ -38,6 +45,18 @@ const childKey = (child: NavChild): string => `${child.to}${child.hash ?? ""}`;
  * union declares it the property narrows to `unknown`, which `<Link>` rejects.
  * Widening once here lets both renders read a child's fields directly. `to`
  * stays safe for `<Link>` because `NavRoute` is itself a literal union.
+ */
+/**
+ * The four initiatives sit UNDER the mission page rather than beside it.
+ *
+ * A bar reading `About · Be Human AI · The New Human Era · The Human Archive ·
+ * Podcast · Contact` rendered the exact complaint this change answers: four
+ * peers with no visible relationship to each other. Nesting them under "Why We
+ * Exist" is where the four-initiative family is stated, so the navigation
+ * asserts the model instead of contradicting it.
+ *
+ * They keep `footerOnly` — an application of the flag as documented above, not
+ * a redefinition — so the footer still lists all eleven routes.
  */
 const WHY_WE_EXIST_CHILDREN: readonly NavChild[] = [
   { to: "/why-we-exist", label: "Overview", self: true },
@@ -54,7 +73,17 @@ const NAV = [
     children: WHY_WE_EXIST_CHILDREN,
   },
   { to: "/be-human-ai", label: "Be Human AI", footerOnly: true },
-  { to: "/be-human-ai/blueprint", label: "Blueprint", cta: true },
+  {
+    to: "/be-human-ai/blueprint",
+    label: "Blueprint",
+    cta: true,
+    // A split control: the pill navigates, the chevron beside it opens the
+    // panel. Hence `triggerNavigates` and no `self` child — the three pillars
+    // are the sections of the engagement the Blueprint sells, and they were
+    // otherwise reachable only from the footer.
+    triggerNavigates: true,
+    children: BLUEPRINT_CHILDREN,
+  },
   { to: "/be-human-ai/human-readiness", label: "Human Readiness", footerOnly: true },
   {
     to: "/be-human-ai/governance",
@@ -78,8 +107,16 @@ const NAV = [
 /** Menu entries: everything except footer-only routes and the promoted CTA. */
 const MENU_ITEMS = NAV.filter((item) => !("footerOnly" in item) && !("cta" in item));
 
-/** The promoted call to action, if one is flagged. */
-const CTA_ITEM = NAV.find((item) => "cta" in item);
+/**
+ * The promoted call to action, if one is flagged.
+ *
+ * Narrowed with a predicate rather than left as the whole union, because the
+ * split control reads `CTA_ITEM.children` and a bare `find` returns every
+ * member of `NAV` — most of which have no children.
+ */
+const CTA_ITEM = NAV.find(
+  (item): item is Extract<(typeof NAV)[number], { cta: true }> => "cta" in item,
+);
 
 export function Wordmark({ tone = "light" }: { tone?: "light" | "dark" }) {
   return (
@@ -127,8 +164,9 @@ export function SiteHeader() {
               // and a bare property access is a compile error on the members
               // without the key. Same idiom the filters above use.
               //
-              // The same problem exists one level down, where `in` is NOT the
-              // fix — see `isSelfChild` / `childKey` / `hashProps` above.
+              // One level down the fix is different: the children arrays are
+              // ANNOTATED `readonly NavChild[]`, so `child.self` and
+              // `child.hash` read directly and need no narrow at all.
               "children" in item ? (
                 <NavigationMenuItem key={item.to}>
                   {/*
@@ -202,12 +240,52 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           {CTA_ITEM && (
-            <Link
-              to={CTA_ITEM.to}
-              className="eyebrow hidden rounded-full bg-lime px-5 py-2.5 text-ink transition-transform hover:-translate-y-0.5 lg:inline-flex"
-            >
-              {CTA_ITEM.label}
-            </Link>
+            /*
+              A split control, not a trigger. The pill stays a real <Link> so
+              the priced offer is still one click away; only the chevron beside
+              it opens the panel. That is why this item carries
+              `triggerNavigates` and no `self` child — see nav.ts.
+
+              DropdownMenu rather than a second NavigationMenu: Radix's
+              NavigationMenu.Root renders its own <nav>, and a second one here
+              would give the header two navigation landmarks.
+            */
+            <div className="hidden items-center rounded-full bg-lime transition-transform hover:-translate-y-0.5 lg:inline-flex">
+              <Link to={CTA_ITEM.to} className="eyebrow py-2.5 pl-5 pr-2 text-ink">
+                {CTA_ITEM.label}
+              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  aria-label={`Show what ${CTA_ITEM.label} covers`}
+                  className="group cursor-pointer rounded-full py-2.5 pl-1 pr-4 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                >
+                  <ChevronDown
+                    className="h-3 w-3 transition-transform duration-300 group-data-[state=open]:rotate-180"
+                    aria-hidden
+                  />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="min-w-[15rem]">
+                  {CTA_ITEM.children.map((child) => (
+                    /*
+                      `focus:bg-accent` is overridden for the same reason the
+                      NavigationMenu trigger avoids the stock style: --accent
+                      is --lime here, and Radix focuses a menu item on pointer
+                      move, so the shipped default paints a lime block behind
+                      every row the cursor passes over.
+                    */
+                    <DropdownMenuItem
+                      key={childKey(child)}
+                      asChild
+                      className="cursor-pointer px-3 py-2.5 text-sm text-foreground/80 focus:bg-transparent focus:text-lime"
+                    >
+                      <Link to={child.to} {...(child.hash ? { hash: child.hash } : {})}>
+                        {child.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           )}
           <button
             type="button"
@@ -294,13 +372,37 @@ export function SiteHeader() {
 
           {/* The pill has no room in the mobile bar, so the CTA lands here instead. */}
           {CTA_ITEM && (
-            <Link
-              to={CTA_ITEM.to}
-              onClick={() => setOpen(false)}
-              className="eyebrow mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-7 py-4 text-ink"
-            >
-              {CTA_ITEM.label} <span aria-hidden>→</span>
-            </Link>
+            <>
+              <Link
+                to={CTA_ITEM.to}
+                onClick={() => setOpen(false)}
+                className="eyebrow mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-7 py-4 text-ink"
+              >
+                {CTA_ITEM.label} <span aria-hidden>→</span>
+              </Link>
+
+              {/*
+                The Blueprint's sections, listed rather than tucked behind a
+                disclosure. There is no split control to replicate here — the
+                pill above is already the link — and three short rows at the
+                very bottom of the menu cost nothing, whereas hiding them would
+                leave the pillars reachable only from the footer on a phone.
+              */}
+              <ul className="mt-5 border-t border-border pt-4">
+                {mobileNavChildren(CTA_ITEM.children).map((child) => (
+                  <li key={childKey(child)}>
+                    <Link
+                      to={child.to}
+                      {...(child.hash ? { hash: child.hash } : {})}
+                      onClick={() => setOpen(false)}
+                      className="block py-2 text-base text-foreground/70"
+                    >
+                      {child.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
         </nav>
       )}

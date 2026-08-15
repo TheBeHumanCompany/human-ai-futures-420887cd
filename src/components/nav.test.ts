@@ -66,19 +66,43 @@ describe("the self child", () => {
    * of navigating, so without it the desktop bar has no route to the parent
    * page at all.
    */
-  test("there is exactly one per children array, not at most one", () => {
+  /**
+   * The rule branches on the KIND of control the parent has, rather than
+   * exempting any dropdown by name.
+   *
+   * A Radix trigger is a `<button>` that opens the panel instead of
+   * navigating, so its panel must carry a `self` child or the parent page
+   * becomes unreachable from the bar. A split control — a real `<Link>` with a
+   * separate chevron — already reaches the parent page, so a `self` there
+   * would be a second route to somewhere the pill goes in one click.
+   *
+   * Both branches carry their own floor, because either one is vacuous if no
+   * item of that kind exists.
+   */
+  const navigating = withChildren.filter((item) => "triggerNavigates" in item);
+  const nonNavigating = withChildren.filter((item) => !("triggerNavigates" in item));
+
+  test("both kinds of dropdown exist, so neither branch below is vacuous", () => {
+    expect(navigating.length).toBeGreaterThan(0);
+    expect(nonNavigating.length).toBeGreaterThan(0);
+  });
+
+  test("a non-navigating trigger has exactly one self, and it is first", () => {
     // "At most one" would pass an array with none, which leaves the desktop
     // dropdown with no way to reach the parent page — the affordance `self`
     // exists to restore.
-    for (const item of withChildren) {
-      const selves = item.children.filter((child) => child.self);
-      expect(selves).toHaveLength(1);
+    for (const item of nonNavigating) {
+      expect(item.children.filter((child) => child.self)).toHaveLength(1);
+      expect(item.children[0].self).toBe(true);
     }
   });
 
-  test("it is first, so the parent's own page opens the panel", () => {
-    for (const item of withChildren) {
-      expect(item.children[0].self).toBe(true);
+  test("a navigating control has no self at all", () => {
+    // The pill is already a <Link> to this destination; repeating it inside
+    // the panel is the duplication `self` exists to avoid, not an instance of
+    // the problem it solves.
+    for (const item of navigating) {
+      expect(item.children.filter((child) => child.self)).toHaveLength(0);
     }
   });
 
@@ -106,7 +130,11 @@ describe("the self child", () => {
     for (const item of withChildren) {
       const mobile = mobileNavChildren(item.children);
 
-      expect(mobile).toHaveLength(item.children.length - 1);
+      // Exactly the self entries are removed and nothing else — derived from
+      // the INPUT, so this is a property of the result rather than a second
+      // copy of the filter.
+      const selfCount = item.children.filter((child) => child.self).length;
+      expect(mobile).toHaveLength(item.children.length - selfCount);
       for (const child of mobile) {
         expect(child.self).toBeUndefined();
         expect(child.to).not.toBe(item.to);

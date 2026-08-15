@@ -21,6 +21,10 @@
 export type NavRoute =
   | "/why-we-exist"
   | "/be-human-ai"
+  | "/be-human-ai/blueprint"
+  | "/be-human-ai/human-readiness"
+  | "/be-human-ai/governance"
+  | "/be-human-ai/ai-strategy"
   | "/the-new-human-era"
   | "/the-human-archive"
   | "/podcast";
@@ -62,6 +66,21 @@ export interface NavItem {
   footerOnly?: boolean;
   /** Rendered as a lime pill beside the menu rather than as a nav link. */
   cta?: boolean;
+  /**
+   * The parent's own control navigates, so its panel needs no `self` child.
+   *
+   * Two dropdowns, two different controls. "Why We Exist" is a Radix trigger,
+   * which is a `<button>` that opens the panel instead of navigating — so its
+   * panel MUST carry a `self` child or the mission page becomes unreachable
+   * from the bar. The Blueprint is a split control: the pill is a real `<Link>`
+   * and only the chevron beside it opens the panel, so a `self` child there
+   * would be a second route to a page the pill already reaches.
+   *
+   * The nav test asserts both branches off this flag rather than exempting the
+   * Blueprint by name, so a future dropdown gets the right rule by declaring
+   * which kind of control it has.
+   */
+  triggerNavigates?: true;
   /**
    * Dropdown in the desktop bar; sub-list in the mobile menu. The footer maps
    * NAV flat and reads only `to` and `label` (site-footer.tsx), so children are
