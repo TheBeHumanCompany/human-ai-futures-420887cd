@@ -114,13 +114,13 @@ function Home() {
             </p>
             <div className="section-label-rule mt-5 sm:mt-6" aria-hidden />
 
-            <h2 className="archive-question mt-10 text-[clamp(2.3rem,9vw,3.5rem)] text-ink sm:mt-12 md:text-[5vw] lg:mt-14 lg:text-[clamp(2.3rem,6.4vw,5.4rem)]">
+            <h2 className="archive-question mt-10 text-[clamp(2.4rem,9.5vw,4rem)] text-ink sm:mt-12 md:text-[5.5vw] lg:mt-14 lg:text-[clamp(2.5rem,6.8vw,5.8rem)]">
               BEING HUMAN IS
               <br />
               WHAT WE ARE
               <br />
               BORN WITH
-              <span className="mt-10 block sm:mt-12">
+              <span className="mt-8 block sm:mt-10">
                 HUMANITY IS
                 <br />
                 WHAT WE
