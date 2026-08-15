@@ -12,7 +12,7 @@ import { Users, Shield, Target } from "lucide-react";
 import { EpisodePlayer } from "@/components/episode-player";
 import { SocialSection } from "@/components/social-section";
 import { HumanArchiveSection } from "@/components/human-archive-section";
-import { PRINCIPLES } from "@/lib/content";
+import { HOME_PRINCIPLES } from "@/lib/content";
 import { formatDuration } from "@/lib/podbean";
 import { loadFeaturedEpisodes } from "@/lib/podcast/featured";
 import { fetchEpisodeList } from "@/lib/podcast/queries";
