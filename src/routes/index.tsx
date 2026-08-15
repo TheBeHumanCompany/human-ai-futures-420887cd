@@ -239,20 +239,22 @@ function Home() {
       </section>
 
       {/* ---------- THE NEW HUMAN ERA ---------- */}
-      <section className="nhe-section section-cream border-t border-border">
-        {/* Top: editorial split */}
-        <div className="nhe-split lg:grid lg:grid-cols-[36%_64%] lg:items-stretch">
-          <div className="nhe-panel relative z-10 bg-cream px-6 py-14 sm:px-10 sm:py-16 lg:py-20 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-16">
-            <h2 className="display text-[clamp(3rem,10vw,5.25rem)] font-extrabold leading-[0.92] tracking-[0.01em] text-ink">
+      <section className="section-cream border-t border-border">
+        {/* Top: editorial split — text ~38%, collage ~62% */}
+        <div className="lg:grid lg:grid-cols-[38%_62%] lg:items-center">
+          <div className="px-6 py-14 sm:px-10 sm:py-16 lg:py-20 lg:pl-[max(2rem,calc((100vw-1500px)/2+2rem))] lg:pr-14">
+            <p className="section-label section-label-light text-lime-dark text-[13px] sm:text-sm">
+              THE NEW HUMAN ERA
+            </p>
+            <div className="mt-3 h-[2px] w-24 bg-lime" aria-hidden />
+
+            <h2 className="display mt-7 text-[clamp(2.9rem,9vw,4.75rem)] font-extrabold leading-[0.92] tracking-[0.01em] text-ink">
               THE NEW
               <br />
-              HUMAN
-              <br />
-              <span className="text-lime">ERA</span>
+              HUMAN ERA
             </h2>
-            <div className="nhe-accent mt-5 h-[3px] w-16 bg-lime" aria-hidden />
 
-            <div className="mt-8 max-w-md space-y-6 text-base leading-relaxed text-ink/75 sm:text-lg">
+            <div className="mt-8 max-w-md space-y-5 text-base leading-relaxed text-ink/75 sm:text-lg">
               <p>
                 For generations, status was measured by{" "}
                 <strong className="font-semibold text-ink">what you had</strong>.
@@ -265,53 +267,58 @@ function Home() {
 
             <Link
               to="/the-new-human-era"
-              className="nhe-cta group mt-10 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-7 py-3.5 text-xs font-medium uppercase tracking-widest text-ink transition-colors hover:bg-lime sm:px-8 sm:text-sm"
+              className="group mt-9 inline-flex w-fit items-center gap-3 border-b-2 border-lime pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:text-lime-dark sm:text-sm"
             >
-              Learn More
+              Learn more
               <span
                 aria-hidden
-                className="text-base text-lime transition-transform group-hover:translate-x-1"
+                className="text-base text-lime-dark transition-transform group-hover:translate-x-1"
               >
                 →
               </span>
             </Link>
           </div>
 
-          <figure className="nhe-media relative overflow-hidden lg:-ml-[8%] lg:w-[108%]">
+          {/*
+            One uploaded collage, kept whole: no gaps, borders, overlays or
+            per-person crops. The aspect ratio follows the source (2:1) so the
+            four faces stay intact at every width.
+          */}
+          <figure className="relative overflow-hidden">
             <img
-              src={newHumanEraImage}
-              alt="Vancouver skyline across the harbour at golden hour with the North Shore mountains and a totem pole in the foreground"
+              src={collageImage}
+              alt="Four people photographed at street level, side by side as one continuous portrait"
               loading="lazy"
-              width={1920}
-              height={1280}
-              className="h-full w-full object-cover aspect-[16/10] lg:aspect-auto lg:min-h-[560px]"
+              width={1786}
+              height={886}
+              className="h-full w-full object-cover object-center aspect-[2/1] lg:aspect-auto lg:min-h-[600px]"
             />
           </figure>
         </div>
 
         {/* Bottom: six principles */}
-        <div className="mx-auto max-w-[1400px] px-6 pb-16 pt-16 sm:px-8 sm:pb-20 lg:pb-28 lg:pt-24">
-          <div className="nhe-principles grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-14">
-            {PRINCIPLES.map((p) => (
-              <article
-                key={p.n}
-                className="nhe-principle group max-w-sm border-t border-ink/12 pt-6"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="font-display text-lg font-black tracking-[0.06em] text-lime">
+        <div className="mx-auto max-w-[1500px] px-6 pb-16 pt-12 sm:px-10 sm:pb-20 lg:pb-24 lg:pt-14">
+          <div className="border-t border-ink/15 pt-10 sm:pt-12">
+            <div className="grid gap-x-0 gap-y-10 sm:grid-cols-2 lg:grid-cols-6">
+              {HOME_PRINCIPLES.map((p, i) => (
+                <article
+                  key={p.n}
+                  className={`px-0 sm:px-7 lg:px-6 ${
+                    i % 2 === 1 ? "sm:border-l sm:border-ink/12" : ""
+                  } ${i > 0 ? "lg:border-l lg:border-ink/12" : "lg:border-l-0"} ${
+                    i % 3 === 0 ? "lg:first-of-type:border-l-0" : ""
+                  } ${i === 0 ? "sm:border-l-0" : ""} sm:first:pl-0 lg:first:pl-0`}
+                >
+                  <span className="font-display text-sm font-black tracking-[0.14em] text-lime-dark">
                     {p.n}
                   </span>
-                  <span
-                    aria-hidden
-                    className="h-[2px] w-6 bg-lime transition-all duration-300 group-hover:w-10"
-                  />
-                </div>
-                <h3 className="display mt-4 text-[clamp(1.15rem,2.2vw,1.45rem)] font-extrabold leading-tight text-ink">
-                  {p.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink/65">{p.body}</p>
-              </article>
-            ))}
+                  <h3 className="display mt-4 text-[clamp(1.05rem,1.4vw,1.2rem)] font-extrabold uppercase leading-tight text-ink">
+                    {p.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink/65">{p.body}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
