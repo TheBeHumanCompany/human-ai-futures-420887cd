@@ -107,14 +107,14 @@ function Home() {
 
       {/* ---------- WHY WE EXIST ---------- */}
       <section className="section-cream border-b border-ink/10">
-        <div className="mx-auto grid max-w-[1360px] items-start gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[42%_58%] lg:gap-16 lg:px-14 lg:py-28">
+        <div className="mx-auto grid max-w-[1360px] items-start gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[44%_56%] lg:gap-10 lg:px-12 lg:py-28">
           <div className="min-w-0">
             <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
               WHY WE EXIST
             </p>
             <div className="section-label-rule mt-5 sm:mt-6" aria-hidden />
 
-            <h2 className="archive-question mt-10 text-[clamp(2.4rem,9.5vw,4rem)] text-ink sm:mt-12 md:text-[5.5vw] lg:mt-14 lg:text-[clamp(2.5rem,6.6vw,5.5rem)]">
+            <h2 className="archive-question mt-10 text-[clamp(2.4rem,9.5vw,4rem)] text-ink sm:mt-12 md:text-[5.5vw] lg:mt-14 lg:text-[clamp(2.5rem,6.6vw,5.6rem)]">
               BEING HUMAN IS
               <br />
               WHAT WE ARE
