@@ -163,10 +163,10 @@ export function HumanArchiveSection() {
               </p>
               <Link
                 to="/the-human-archive"
-                className="mt-8 inline-flex w-fit items-center gap-2.5 whitespace-nowrap rounded-full bg-lime px-7 py-3.5 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-ink shadow-[0_1px_0_0_rgba(0,0,0,0.06)] transition-transform duration-300 ease-out hover:-translate-y-0.5 hover:opacity-95 sm:mt-10 sm:text-xs"
+                className="group mt-8 inline-flex w-fit items-center gap-2 py-1 text-sm font-semibold uppercase tracking-[0.12em] text-ink sm:mt-10"
               >
-                Explore the Human Archive
-                <span aria-hidden className="text-sm font-black">
+                <span className="border-b border-lime pb-0.5">Explore the Human Archive</span>
+                <span aria-hidden className="text-lime transition-transform group-hover:translate-x-1">
                   →
                 </span>
               </Link>
