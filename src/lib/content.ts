@@ -68,6 +68,20 @@ export const PRINCIPLES = [
   },
 ] as const;
 
+/**
+ * The homepage cut of the six principles — shorter, chant-like lines meant to
+ * read as culture rather than as service copy. The longer `PRINCIPLES` above
+ * still powers the dedicated /the-new-human-era page.
+ */
+export const HOME_PRINCIPLES = [
+  { n: "01", title: "Fully here.", body: "Presence is the new luxury." },
+  { n: "02", title: "Keep your own mind.", body: "Think for yourself. Always." },
+  { n: "03", title: "Your word carries weight.", body: "Say it. Mean it. Live it." },
+  { n: "04", title: "Real is rare.", body: "Authenticity is how we stand out." },
+  { n: "05", title: "Know what matters.", body: "Clarity comes from what you value." },
+  { n: "06", title: "Build the reps.", body: "Small daily actions shape who we become." },
+] as const;
+
 export const ARCHIVE = [
   {
     image: portrait1,
