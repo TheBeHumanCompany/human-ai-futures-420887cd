@@ -114,7 +114,7 @@ function Home() {
             </p>
             <div className="section-label-rule mt-5 sm:mt-6" aria-hidden />
 
-            <h2 className="archive-question mt-10 text-[clamp(2.4rem,9.5vw,4rem)] text-ink sm:mt-12 md:text-[5.5vw] lg:mt-14 lg:text-[clamp(2.5rem,6.8vw,5.8rem)]">
+            <h2 className="archive-question mt-10 text-[clamp(2.4rem,9.5vw,4rem)] text-ink sm:mt-12 md:text-[5.5vw] lg:mt-14 lg:text-[clamp(2.5rem,6.6vw,5.5rem)]">
               BEING HUMAN IS
               <br />
               WHAT WE ARE
