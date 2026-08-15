@@ -353,10 +353,12 @@ function Home() {
         <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 md:py-16 lg:py-24">
           {/* Compact intro */}
           <div className="max-w-2xl">
-            <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
-              THE PEOPLE-DRIVEN CEO PODCAST
-            </p>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground sm:mt-5 lg:mt-6">
+            <h2 className="display text-[clamp(2.4rem,6.5vw,5.2rem)] leading-[0.9] tracking-[0.01em]">
+              The people-driven
+              <br />
+              CEO <span className="text-lime">Podcast</span>
+            </h2>
+            <p className="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground">
               Conversations on leadership, AI and culture — where humanity becomes the competitive
               advantage.
             </p>
