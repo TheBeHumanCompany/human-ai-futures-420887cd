@@ -1,14 +1,26 @@
 import { PILLAR_ROUTES } from "@/lib/sales/pillars";
 
-import portrait1Asset from "@/assets/archive-adewolf.png.asset.json";
-import portrait2Asset from "@/assets/archive-bella.png.asset.json";
-import portrait3Asset from "@/assets/archive-anton.png.asset.json";
-import portrait4Asset from "@/assets/archive-arlina.png.asset.json";
-
-const portrait1 = portrait1Asset.url;
-const portrait2 = portrait2Asset.url;
-const portrait3 = portrait3Asset.url;
-const portrait4 = portrait4Asset.url;
+/**
+ * The four archive portraits, imported as real files — NOT through the
+ * `*.png.asset.json` pointers that sit beside them.
+ *
+ * Those JSON files carry a `url` of the form `/__l5e/assets-v1/<id>/<file>`,
+ * which only Lovable's own hosting serves. The dev-side proxy for that path is
+ * `apply: "serve"` and a no-op unless `LOVABLE_PREVIEW_HOST` is set, and
+ * nothing rewrites it at build time — so the bare path was being baked into
+ * both the client and SSR bundles and 404ing everywhere except a
+ * `*.lovable.app` preview. On the deployed site all four portraits rendered as
+ * broken images with their alt text showing.
+ *
+ * Importing the file directly hands the path to Vite, which fingerprints and
+ * emits the asset like every other image here. `hero.png` is the same
+ * situation resolved the same way, which is why its `.asset.json` is still
+ * present but unused. Do not point these back at the JSON.
+ */
+import portrait1 from "@/assets/archive-adewolf.jpg";
+import portrait2 from "@/assets/archive-bella.jpg";
+import portrait3 from "@/assets/archive-anton.jpg";
+import portrait4 from "@/assets/archive-arlina.jpg";
 
 /**
  * The three service pillars.
