@@ -57,7 +57,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "AI strategy and transformation for the New Human Era. Being human is what we're born with. Humanity is what we practise.",
+          "AI readiness, governance, agents and leadership. We help organizations become AI-ready without losing what makes them human.",
       },
     ],
   }),

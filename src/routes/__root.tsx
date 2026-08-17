@@ -79,15 +79,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "The Be Human Company — AI Strategy for the New Human Era" },
+      { title: "The Be Human Company — The Future Is Human." },
       {
         name: "description",
         content:
-          "We help leaders and organizations become AI-ready without losing what makes them human.",
+          "AI readiness, governance, agents and leadership. We help organizations become AI-ready without losing what makes them human.",
       },
       { name: "author", content: "The Be Human Company" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "The Be Human Company — The Future Is Human." },
+      { name: "twitter:title", content: "The Be Human Company — The Future Is Human." },
+      { property: "og:description", content: "AI readiness, governance, agents and leadership. We help organizations become AI-ready without losing what makes them human." },
+      { name: "twitter:description", content: "AI readiness, governance, agents and leadership. We help organizations become AI-ready without losing what makes them human." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/eb55abfeecf4f29714d837974fc48a31/id-preview-3502a2a4--d03b88e4-8da1-457b-8afc-3c434677b299.lovable.app-1786826151353.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/eb55abfeecf4f29714d837974fc48a31/id-preview-3502a2a4--d03b88e4-8da1-457b-8afc-3c434677b299.lovable.app-1786826151353.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
