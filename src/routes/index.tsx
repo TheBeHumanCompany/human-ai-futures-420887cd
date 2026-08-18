@@ -318,9 +318,7 @@ function Home() {
                     key={p.n}
                     className={`px-0 sm:px-6 lg:px-5 ${
                       i % 2 === 1 ? "sm:border-l sm:border-ink/12" : "sm:pl-0"
-                    } ${i > 0 ? "lg:border-l lg:border-ink/12" : "lg:border-l-0"} ${
-                      i === 0 ? "sm:border-l-0" : ""
-                    } lg:first:pl-0`}
+                    } ${i > 0 ? "lg:border-l lg:border-ink/12" : "lg:border-l-0"} lg:first:pl-0`}
                   >
                     <div className="flex items-center gap-2.5">
                       {Icon ? (

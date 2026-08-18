@@ -53,7 +53,7 @@ function WhyWeExist() {
 
       <section className="section-ink">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
-          <p className="eyebrow text-lime">The problem we kept running into</p>
+          <p className="type-label-caps text-lime">The problem we kept running into</p>
           <h2 className="type-h2-condensed mt-6 max-w-3xl">
             AI does not improve organizations. It reveals them.
           </h2>
@@ -78,7 +78,7 @@ function WhyWeExist() {
       <section className="section-ink border-t border-border">
         <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-28">
           <div>
-            <p className="eyebrow text-lime">One company, two halves</p>
+            <p className="type-label-caps text-lime">One company, two halves</p>
             <h2 className="type-h2-condensed mt-6">A practice and a movement.</h2>
             <p className="type-body mt-6 text-muted-foreground">
               Be Human AI is our commercial practice: AI readiness, governance, agents and

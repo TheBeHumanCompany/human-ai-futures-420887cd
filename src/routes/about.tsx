@@ -42,7 +42,7 @@ function About() {
       <section className="section-ink">
         <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-28">
           <div>
-            <p className="eyebrow text-lime">One company, two halves</p>
+            <p className="type-label-caps text-lime">One company, two halves</p>
             <h2 className="type-h3-caps-light mt-6">A practice and a movement.</h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
               Be Human AI is our commercial practice: AI readiness, governance, agents and

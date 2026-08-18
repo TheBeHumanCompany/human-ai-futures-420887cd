@@ -390,12 +390,10 @@
 @utility type-label-caps {
   font-family: var(--font-display);
   font-weight: 700;
-  /* The preferred term is what decides the rendered size at 1440px, not the
-     ceiling. At `1vw` this resolved to 0.90rem and cut the largest section
-     labels by 20% — caught by the S4.3 sweep, not by any assertion. `1.25vw`
-     lands on 18px at 1440, which is what production renders for WHY WE EXIST
-     and OUR SOLUTION — the reference every other section kicker was asked to
-     match. */
+  /* The preferred term decides the size at 1440px, not the ceiling: `1.25vw`
+     lands on 18px there, matching production's WHY WE EXIST / OUR SOLUTION
+     kickers — the reference every section kicker is sized against. Range is
+     14px (mobile) to 18px. */
   font-size: clamp(0.875rem, 1.25vw, 1.125rem);
   line-height: 1;
   letter-spacing: 0.08em;
@@ -516,11 +514,15 @@
    lime rule. The four old utility NAMES are deleted in Phase 4; this ROLE
    survives them.
 
-   The eyebrow text itself keeps using the existing `eyebrow` utility, which is
-   EXPLICITLY OUT of the AC-4.2 migration scope (Amendment 2, decision 1) and has
-   45 live call sites. Defining a second `type-eyebrow` beside it would create
-   exactly the fifth competing utility this consolidation exists to prevent
-   (V25), so only the rule gets a successor name here.
+   Page/section kicker TEXT (the label that opens a section, with or without
+   this rule beneath it) uses `type-label-caps`, sized against production's
+   WHY WE EXIST. The `eyebrow` utility remains for everything else that is
+   letterspaced-caps but not a section opener — nav links, buttons, badges,
+   table headers, footer column headings, episode/guest metadata — which is
+   EXPLICITLY OUT of the AC-4.2 migration scope (Amendment 2, decision 1).
+   Defining a second `type-eyebrow` beside it would create exactly the fifth
+   competing utility this consolidation exists to prevent (V25), so only the
+   rule gets a successor name here.
 */
 
 @utility type-eyebrow-rule {
