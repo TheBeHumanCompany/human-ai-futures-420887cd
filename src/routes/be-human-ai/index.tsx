@@ -79,8 +79,8 @@ function Blueprint() {
       </section>
 
       <section className="section-cream">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-4 sm:px-8 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-16">
-          <div className="min-w-0">
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-4 sm:px-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-16">
+          <div className="min-w-0 lg:col-start-2 lg:row-start-1">
             {BLUEPRINT_SECTIONS.map((section) => (
               <BlueprintSectionView key={section.id} section={section} />
             ))}
@@ -89,7 +89,7 @@ function Blueprint() {
           {/* The one page on the site with a second nav. Placed after the
               content in source order so a screen reader or a no-CSS reader
               meets the page itself first. */}
-          <aside className="lg:order-first lg:py-14">
+          <aside className="lg:col-start-1 lg:row-start-1 lg:py-14">
             <BlueprintSubnav sections={BLUEPRINT_SECTIONS} />
           </aside>
         </div>
