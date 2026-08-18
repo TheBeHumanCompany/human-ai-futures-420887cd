@@ -77,7 +77,14 @@ const principles = await optionalConstant(async () => {
 
 const blueprintSections = await optionalConstant(async () => {
   const file = Bun.file(path.join(REPO_ROOT, "docs", "blueprint-sections.json"));
-  return (await file.json()) as Array<{ id: string }>;
+  const doc = (await file.json()) as { sections?: Array<{ id: string; tier: number }> };
+  // The fixture is `{ $comment, sections: [...] }`, not a bare array. Asserted
+  // rather than assumed: an earlier version of this file destructured it as an
+  // array, and the resulting `.map is not a function` surfaced as a fixture
+  // crash mid-suite rather than as anything legible.
+  if (!Array.isArray(doc.sections))
+    throw new Error("blueprint-sections.json has no sections array");
+  return doc.sections;
 });
 
 /** A minimally correct page: enough that the real gate passes on it unmutated. */
@@ -97,12 +104,17 @@ function goodPage(pathname: string): string {
   const principleList = principles
     ? `<ul>${principles.map((p) => `<li>${p}</li>`).join("")}</ul>`
     : "";
+  // Only tier-2 sections are collapsed, matching what the gate derives from the
+  // fixture. Wrapping all 16 in <details> would make the fixture disagree with
+  // the page it stands in for, and the control test would fail for a reason
+  // that has nothing to do with the injected faults.
   const sections =
     blueprintSections && pathname === "/be-human-ai"
       ? blueprintSections
-          .map(
-            (s) =>
-              `<section id="${s.id}"><details><summary>${s.id}</summary>${filler}</details></section>`,
+          .map((s) =>
+            s.tier === 2
+              ? `<section id="${s.id}"><details><summary>${s.id}</summary>${filler}</details></section>`
+              : `<section id="${s.id}">${filler}</section>`,
           )
           .join("")
       : "";

@@ -417,4 +417,42 @@ Web search surfaces only **Shane's personal accounts** — `ca.linkedin.com/in/s
 - **Component 2 has no remaining content blockers.** Every value it needs is now known: the three social URLs, `INDIGENOUS_LINE = "Indigenous-led. Canadian-built"`, and both cal.com booking URLs.
 
 ---
+
+## Amendment 5 — 2026-08-18, execution-time decisions
+
+Two surfaced by worker-3 during Phase 3. Both are visible product changes; neither was decided by inference.
+
+### Decision 1 — Socials are FOUR, not three
+`social-section.tsx` shipped **seven** platforms — Facebook and X in addition to the five previously known. Amendment 4's "exactly three" would have silently dropped both.
+
+**User decision: keep X, drop Facebook.**
+
+- [ ] **AC-2.3d** The social list is **exactly four**, all verified HTTP 200 on 2026-08-18: *(supersedes AC-2.3c's "exactly three")*
+
+| Platform | URL |
+|---|---|
+| LinkedIn | `https://www.linkedin.com/company/the-be-human-company/` |
+| Instagram | `https://www.instagram.com/thebehumancompany/` |
+| YouTube | `https://www.youtube.com/@shanejeremyjames` |
+| X | `https://x.com/shanejjames` — store this form; `twitter.com/shanejjames` 301s to it |
+
+- **Removed:** TikTok, Snapchat, Facebook — with their orphaned icon components (`TikTokIcon`, `SnapchatIcon`, `FacebookIcon`). `XIcon` is **retained**.
+- The list is data-driven from `brand.ts`; `social-links.sh` reads it rather than hardcoding names.
+
+### Decision 2 — `/about` stays live; `/why-we-exist` is a new page
+The plan recommended repurposing `/about` with a 301. That changes a live URL, and §11 Q9 was never resolved.
+
+**User decision: create `/why-we-exist` fresh, keep `/about` live and reachable.**
+
+- [ ] **AC-3.2b** `/why-we-exist` exists as a **new route**. `/about` remains live at its current URL, unredirected. *(supersedes S3.6c's 301 recommendation; closes §11 Q9)*
+- [ ] **AC-3.8a** The About dropdown parent **links to `/about`**, so the page is not orphaned from navigation while its two children (Why We Exist, Who We Are) sit beneath it.
+- Rationale: zero live-URL risk — no existing link, bookmark, or search result breaks. Reversible to a 301 later via `nav.ts` plus a redirect, with no structural rework.
+
+### Also corrected during execution
+- **`brand.ts` vs `booking.ts` conflict.** The lead's brief said all constants live in `brand.ts`, but AC-2.4's layering proof asserts no file outside `src/lib/booking.ts` contains `cal.com`. Resolution: literals in `booking.ts`, re-exported by `brand.ts` (the re-export contains no `cal.com` substring). Both criteria satisfied, neither weakened.
+- **`site-header.tsx` has no booking CTA on this branch** — the plan's `S3.5` line references (`:46-63`) are stale and point at the hamburger button. AC-2.6's header CTA is being **added**, not rewired.
+- **`bun test src/` never executed `scripts/**`** — both fault-injection suites would have sat permanently unrun. `test:scripts` added and wired into the Phase 8 gate.
+- **`ac-inventory.ts` would have parsed the spec from gitignored `.omc/`** — the AC-X.7a defect applied to the spec itself. A tracked copy now lives at `docs/spec/`, with a SHA-256 guard against drift.
+
+---
 **Status: pending approval**

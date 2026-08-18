@@ -100,6 +100,8 @@ bash scripts/verify/delta.sh
 bash scripts/verify/audit-or-true.sh
 bash scripts/verify/audit-count.sh
 bash scripts/verify/audit-scans.sh
+bash scripts/verify/audit-coverage.sh
+bash scripts/verify/assert-spec-fresh.sh
 bash scripts/verify/ac-bijection.sh
 
 require_file docs/type-inventory.md "S0.6: the type inventory — the only source of the type counts"
@@ -119,9 +121,10 @@ pass "AC-X.7a: no gate input is gitignored"
 # Every script the plan invokes must exist. Missing files exit 127, which a
 # runner that does not check exit codes reads as success.
 for s in lib.sh ac-suite.sh ac-bijection.sh ac-inventory.ts audit-scans.sh audit-or-true.sh \
-  audit-count.sh delta.sh g1.sh restore-drill.sh social-links.sh prod-images.sh \
-  prod-acceptance.sh acceptance-faults.test.ts visual-diff.ts baseline.ts \
-  validate-approval.ts install-hooks.sh; do
+  audit-count.sh audit-coverage.sh delta.sh g1.sh restore-drill.sh social-links.sh \
+  prod-images.sh prod-acceptance.sh acceptance-faults.test.ts visual-diff.ts baseline.ts \
+  validate-approval.ts install-hooks.sh viewports.ts e2e.sh phase0-exit.sh \
+  assert-assets.sh assert-provenance.sh assert-tracked-gates.sh assert-spec-fresh.sh; do
   require_file "scripts/verify/$s" "S0.4c: scripts/verify/$s exists"
 done
 for s in recover-assets.ts recover-assets.test.ts type-inventory.ts; do
@@ -129,6 +132,8 @@ for s in recover-assets.ts recover-assets.test.ts type-inventory.ts; do
 done
 require_file playwright.config.ts "S0.4c: playwright.config.ts exists"
 require_file src/lib/surfaces.ts "S0.4c: src/lib/surfaces.ts exists"
+require_file e2e/no-js.spec.ts "S0.4c: the JS-disabled spec AC-6.9b depends on"
+require_file docs/spec/SOURCES.json "S0.4c: the tracked-copy manifest"
 pass "S0.4c: every artifact the plan invokes exists"
 
 # ── 5. The fault-injection suites actually run and pass ────────────────────

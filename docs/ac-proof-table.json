@@ -74,6 +74,12 @@
       "note": ""
     },
     {
+      "id": "AC-2.3d",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
       "id": "AC-2.4",
       "phase": null,
       "proof": null,
@@ -116,6 +122,12 @@
       "note": ""
     },
     {
+      "id": "AC-3.2b",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
       "id": "AC-3.3",
       "phase": "9",
       "proof": "bash scripts/verify/prod-acceptance.sh \"$ENV_URL\"",
@@ -147,6 +159,12 @@
     },
     {
       "id": "AC-3.7a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-3.8a",
       "phase": null,
       "proof": null,
       "note": ""

@@ -143,7 +143,15 @@ bp="$(fetch_ok "$BASE/be-human-ai")"
 if [ -f docs/blueprint-sections.json ]; then
   # AC-6.2: all 16 sections present, in PDF order. Ordered, not just present —
   # a set check passes on a scrambled page.
-  ids="$(jq -r '.[].id' docs/blueprint-sections.json)"
+  #
+  # Both the section list AND the expected collapsed count are read from the
+  # fixture. Amendment 2 decision 2 approved tiering as "3 summary cards / 7
+  # collapsed / 6 visible" and the shipped fixture is 2/7/7; that split is
+  # Phase 6's to decide, and a gate carrying its own copy of the numbers would
+  # either contradict the page or have to be edited every time the editorial
+  # call moved. What the gate holds it to is the invariant: every section in
+  # the DOM, in order, and exactly the tier-2 ones collapsed.
+  ids="$(jq -r '.sections[].id' docs/blueprint-sections.json)"
   id_n="$(printf '%s\n' "$ids" | grep -c .)"
   assert_eq "$id_n" "16" "AC-6.2: the fixture declares 16 sections"
 
@@ -160,15 +168,24 @@ $ids
 EOF
 
   # AC-6.9b: collapsed sections are native <details>, openable with JS off.
+  # AC-6.9c: count uniquely identified section containers, not nested state
+  # attributes — the superseded selector counted 8 for 2 sections.
+  expected_collapsed="$(jq '[.sections[] | select(.tier == 2)] | length' docs/blueprint-sections.json)"
+  assert_ge "$expected_collapsed" 1 "AC-6.9c: the fixture declares collapsed sections"
   details="$(printf '%s' "$bp" | grep -oE '<details\b' | grep -c . || true)"
-  assert_ge "${details:-0}" 6 "AC-6.9b/c: at least six native <details> sections"
-  # AC-6.9c: count uniquely identified containers, not nested state attributes.
+  assert_eq "${details:-0}" "$expected_collapsed" "AC-6.9b/c: exactly the tier-2 sections are collapsed"
   summaries="$(printf '%s' "$bp" | grep -oE '<summary\b' | grep -c . || true)"
   assert_eq "${summaries:-0}" "${details:-0}" "AC-6.9c: every <details> has exactly one <summary>"
+
+  # The superseded mechanism must be gone: Radix's state attribute is what the
+  # old gate miscounted, so its presence means the accordion came back.
+  radix="$(printf '%s' "$bp" | grep -c 'data-state="\(open\|closed\)"' || true)"
+  assert_eq "${radix:-0}" "0" "AC-6.9b: no scripted accordion survives"
+
   # AC-6.9c/d floor: a <details> present but empty passes a count and fails the
   # thing the count stands for.
   assert_ge "${#bp}" 20000 "AC-6.9d: the Blueprint page carries real prose, not just section shells"
-  pass "AC-6.2/AC-6.9b/AC-6.9c: $id_n sections present and ordered, $details native <details>"
+  pass "AC-6.2/AC-6.9b/AC-6.9c: $id_n sections present and ordered, $details collapsed as declared"
 else
   echo "SKIP[AC-6.2]: docs/blueprint-sections.json does not exist yet (Phase 6, S6.0)" >&2
 fi

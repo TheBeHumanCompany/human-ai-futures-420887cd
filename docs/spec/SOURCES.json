@@ -1,0 +1,15 @@
+{
+  "description": "Tracked copies of documents that live under .omc/, which .gitignore:27 ignores. Release gates parse the TRACKED copy — a gate reading an ignored path works locally and fails on the first CI clone (AC-X.7a). scripts/verify/assert-spec-fresh.sh asserts each copy still matches its origin whenever the origin is present, so the copy cannot silently go stale while everyone reads the live document.",
+  "sources": [
+    {
+      "tracked": "docs/spec/deep-interview-behuman-site-restructure.md",
+      "origin": ".omc/specs/deep-interview-behuman-site-restructure.md",
+      "why": "The acceptance criteria. ac-inventory.ts derives the live AC set from this file and ac-bijection.sh holds the proof table to it, so drift here silently re-scopes the release gate."
+    },
+    {
+      "tracked": "docs/spec/behuman-site-restructure-consensus.md",
+      "origin": ".omc/plans/behuman-site-restructure-consensus.md",
+      "why": "The consensus plan, including the S0.4c artifact manifest and the section 3 AC-proof table that docs/ac-proof-table.json is the machine-readable form of."
+    }
+  ]
+}

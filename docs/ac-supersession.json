@@ -30,6 +30,12 @@
     "reason": "Scoped by its own text: 'supersedes AC-2.3's no href=\"#\" remains FOR THESE THREE'. AC-2.3 covered every footer social link in both site-footer.tsx and social-section.tsx. Amendment 4 supplies three real URLs and deletes TikTok and Snapchat, so the residual AC-2.3 obligation — that no href=\"#\" survives anywhere in those two files — is still live and still needs proving."
   },
   {
+    "by": "AC-2.3d",
+    "target": "AC-2.3c",
+    "kind": "partial",
+    "reason": "Scoped by its own text: 'supersedes AC-2.3c's exactly three'. Only the count moved — Amendment 5 kept X and dropped Facebook, making the list four. Everything else AC-2.3c requires is untouched and still needs proving: the deletion of the orphaned icon components, and a test asserting the rendered footer carries no removed-platform text and that every social link has an https:// href. Retiring AC-2.3c outright would drop those obligations on the floor while the count looked correct."
+  },
+  {
     "by": "AC-4.2b",
     "target": "AC-4.2",
     "kind": "partial",

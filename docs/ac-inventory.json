@@ -1,8 +1,8 @@
 {
   "description": "Derived from docs/spec/deep-interview-behuman-site-restructure.md by scripts/verify/ac-inventory.ts. Do not hand-edit — regenerate. The live set here is what ac-bijection.sh holds the proof table to, in both directions.",
   "generated_from": "docs/spec/deep-interview-behuman-site-restructure.md",
-  "total": 71,
-  "live": 67,
+  "total": 74,
+  "live": 70,
   "retired": 4,
   "criteria": [
     {
@@ -81,6 +81,15 @@
       "id": "AC-2.3c",
       "text": "`SOCIAL` in `site-footer.tsx:4` and the platform list in `social-section.tsx:101` contain **exactly three** entries — LinkedIn, Instagram, YouTube. TikTok and Snapchat are deleted, along with any now-unused icon components (e.g. `SnapchatIcon`, `social-section.tsx:78`). A test asserts the rendered footer contains no TikTok or Snapchat text and exactly three social links, each with an `https://` href.",
       "line": 416,
+      "status": "live",
+      "amended_by": [
+        "AC-2.3d"
+      ]
+    },
+    {
+      "id": "AC-2.3d",
+      "text": "The social list is **exactly four**, all verified HTTP 200 on 2026-08-18: *(supersedes AC-2.3c's \"exactly three\")*",
+      "line": 430,
       "status": "live"
     },
     {
@@ -150,6 +159,12 @@
       "status": "live"
     },
     {
+      "id": "AC-3.2b",
+      "text": "`/why-we-exist` exists as a **new route**. `/about` remains live at its current URL, unredirected. *(supersedes S3.6c's 301 recommendation; closes §11 Q9)*",
+      "line": 447,
+      "status": "live"
+    },
+    {
       "id": "AC-3.3",
       "text": "Every page except the Blueprint page renders only the single top nav.",
       "line": 93,
@@ -186,6 +201,12 @@
       "id": "AC-3.7a",
       "text": "The Blueprint nav item is a lime pill, visually distinct from the text nav items, per staging.",
       "line": 288,
+      "status": "live"
+    },
+    {
+      "id": "AC-3.8a",
+      "text": "The About dropdown parent **links to `/about`**, so the page is not orphaned from navigation while its two children (Why We Exist, Who We Are) sit beneath it.",
+      "line": 448,
       "status": "live"
     },
     {
