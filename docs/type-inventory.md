@@ -7,7 +7,7 @@
 > without regenerating this file fails the gate.
 
 > ### Which tree this describes
-> Branch `feat/site-restructure` at `f2fc14ce6531`, working tree **dirty**.
+> Branch `feat/site-restructure` at `5ccd0c883eea`, working tree **dirty**.
 >
 > **The 47-site floor is a user decision measured against `main@a6a377a`** (Amendment 2,
 > decision 1). Verified: run against that tree this scanner returns `display` 24 ·

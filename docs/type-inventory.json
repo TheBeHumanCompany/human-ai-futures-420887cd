@@ -2,7 +2,7 @@
   "generatedBy": "scripts/type-inventory.ts",
   "scannerSha256": "641e7fdd57606f57f327a3347072f7e99c3746ba360184b1cf72dc2080b92e42",
   "provenance": {
-    "head": "f2fc14ce653193eb2256787aa6abe4b55f20ff6f",
+    "head": "5ccd0c883eea344457db6a09498ed07b9a625409",
     "branch": "feat/site-restructure",
     "workingTreeDirty": true,
     "mergeBaseWithPlanBase": "a6a377abeaa262f4f245766f3b00a31e9704f8f8"
