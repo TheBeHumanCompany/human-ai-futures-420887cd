@@ -71,7 +71,7 @@ export function PillarPage({
             </div>
 
             <aside className="lg:pt-2">
-              <h2 className="eyebrow text-ink/50">What we look at</h2>
+              <h2 className="type-label-caps text-ink/50">What we look at</h2>
               <ul className="mt-6 space-y-2">
                 {focusAreas.map((area) => (
                   <li
