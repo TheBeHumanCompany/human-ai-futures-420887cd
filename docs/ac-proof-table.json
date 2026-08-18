@@ -1,0 +1,407 @@
+{
+  "description": "One row per LIVE acceptance criterion. `proof` is a shell command that exits non-zero when the criterion is not met; null means the phase that owns it has not landed yet. ac-suite.sh --release fails if any row still has a null proof, so 'not written yet' can never be mistaken for 'passing'.",
+  "rows": [
+    {
+      "id": "AC-1.1",
+      "phase": "0",
+      "proof": "bash scripts/verify/assert-assets.sh",
+      "note": ""
+    },
+    {
+      "id": "AC-1.2",
+      "phase": "0",
+      "proof": "bash scripts/verify/assert-assets.sh",
+      "note": ""
+    },
+    {
+      "id": "AC-1.3",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-1.4",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-1.5",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-1.6",
+      "phase": "9",
+      "proof": "bash scripts/verify/prod-images.sh \"$ENV_URL\"",
+      "note": ""
+    },
+    {
+      "id": "AC-2.1",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-2.1b",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-2.2",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-2.3",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-2.3b",
+      "phase": "3",
+      "proof": "bash scripts/verify/social-links.sh",
+      "note": ""
+    },
+    {
+      "id": "AC-2.3c",
+      "phase": "3",
+      "proof": "bash scripts/verify/social-links.sh",
+      "note": ""
+    },
+    {
+      "id": "AC-2.4",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-2.5",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-2.6",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-2.7a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-2.8b",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-3.1a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-3.2a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-3.3",
+      "phase": "9",
+      "proof": "bash scripts/verify/prod-acceptance.sh \"$ENV_URL\"",
+      "note": ""
+    },
+    {
+      "id": "AC-3.4",
+      "phase": "9",
+      "proof": "bash scripts/verify/prod-acceptance.sh \"$ENV_URL\"",
+      "note": ""
+    },
+    {
+      "id": "AC-3.5a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-3.5b",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-3.6a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-3.7a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-4.1",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-4.2",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-4.2b",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-4.3",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-4.4",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-4.4b",
+      "phase": "4",
+      "proof": "bash scripts/verify/g1.sh",
+      "note": ""
+    },
+    {
+      "id": "AC-4.5",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-4.6a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-5.1",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-5.2",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-5.3",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-5.4b",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-5.5",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-5.6",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-5.7",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-5.8a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-5.9a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.1",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.2",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.3",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.4",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.5",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.6",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.7",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.8",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.9a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.9b",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.9c",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.9d",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.10a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.11a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-6.12a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-7.1",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-7.2",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-7.3",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-X.1",
+      "phase": "0",
+      "proof": "bash scripts/verify/assert-provenance.sh",
+      "note": ""
+    },
+    {
+      "id": "AC-X.2",
+      "phase": "8",
+      "proof": "bash scripts/verify/delta.sh",
+      "note": ""
+    },
+    {
+      "id": "AC-X.3",
+      "phase": "8",
+      "proof": "bunx tsc --noEmit && bunx tsc -p scripts --noEmit && bunx tsc -p studio --noEmit",
+      "note": ""
+    },
+    {
+      "id": "AC-X.4",
+      "phase": "8",
+      "proof": "bash scripts/verify/delta.sh",
+      "note": ""
+    },
+    {
+      "id": "AC-X.5",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-X.6a",
+      "phase": null,
+      "proof": null,
+      "note": ""
+    },
+    {
+      "id": "AC-X.7a",
+      "phase": "0",
+      "proof": "bash scripts/verify/assert-tracked-gates.sh",
+      "note": ""
+    }
+  ]
+}

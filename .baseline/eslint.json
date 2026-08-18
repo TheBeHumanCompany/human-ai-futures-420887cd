@@ -1,0 +1,65 @@
+{
+  "description": "eslint errors inherited from main@a6a377a, pinned deliberately (S0.4). The gate is on DELTA: no NEW error. The tree-wide `eslint --fix` lands in Phase 7, last, where it cannot collide with bot commits. Warnings are excluded — only severity 2 is counted.",
+  "generated_at": "2026-08-18T01:42:33.096Z",
+  "commit": "a6a377abeaa262f4f245766f3b00a31e9704f8f8",
+  "command": "bunx eslint -f json .",
+  "total_errors": 33,
+  "files_linted": 152,
+  "fingerprints": [
+    {
+      "file": "src/components/episode-media-card.tsx",
+      "rule": "prettier/prettier",
+      "count": 1
+    },
+    {
+      "file": "src/components/featured-episode.tsx",
+      "rule": "prettier/prettier",
+      "count": 2
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "rule": "prettier/prettier",
+      "count": 7
+    },
+    {
+      "file": "src/lib/podcast/imagery.ts",
+      "rule": "prettier/prettier",
+      "count": 2
+    },
+    {
+      "file": "src/lib/podcast/show-notes.ts",
+      "rule": "no-misleading-character-class",
+      "count": 1
+    },
+    {
+      "file": "src/lib/podcast/show-notes.ts",
+      "rule": "prettier/prettier",
+      "count": 1
+    },
+    {
+      "file": "src/routes/__root.tsx",
+      "rule": "prettier/prettier",
+      "count": 4
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "rule": "prettier/prettier",
+      "count": 2
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "rule": "prettier/prettier",
+      "count": 3
+    },
+    {
+      "file": "src/routes/podcast.test.ts",
+      "rule": "prettier/prettier",
+      "count": 1
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "rule": "prettier/prettier",
+      "count": 9
+    }
+  ]
+}

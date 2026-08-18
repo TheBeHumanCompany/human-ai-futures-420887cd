@@ -10,7 +10,13 @@
   // and keeps both boundaries honest — this is R5 in the consensus plan.
   "extends": "../tsconfig.json",
   "include": ["**/*.ts"],
-  "exclude": [],
+  // Same exclusion, and the same reason, as the root project: tests run under
+  // Bun's own runtime, which supplies `bun:test` and the `Bun` global.
+  // Typechecking them here would need the bun-types package, and `bunfig.toml`
+  // enforces a 24h minimumReleaseAge on new packages. Excluding keeps
+  // `tsc -p scripts --noEmit` meaningful for the shipped scripts without
+  // adding a dependency to satisfy a type-only need.
+  "exclude": ["**/*.test.ts"],
   "compilerOptions": {
     "types": ["node"],
     "noEmit": true

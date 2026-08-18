@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://thebehumancompany.ca/schemas/approval.json",
+  "title": "Human-review approval record",
+  "description": "Every human gate in this project records its verdict here. Three amendments in a row produced the same defect — a release gate blocking on a gitignored path (.omc/state/…), which works on the author's laptop and fails on the first CI clone. AC-X.7a closes it: every human-review artifact lives under tracked .approvals/, is schema-validated, and is bound to BOTH the deployment URL and the commit SHA it approves. Approving a preview and shipping something else must not be expressible.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["gate", "reviewer", "timestamp", "deployment_url", "commit_sha", "verdict"],
+  "properties": {
+    "gate": {
+      "description": "Which gate this record closes.",
+      "type": "string",
+      "enum": ["typography", "who-we-are", "maya-staging", "positioning"]
+    },
+    "reviewer": {
+      "description": "The human who reviewed. A name, not a role — roles cannot be asked follow-up questions.",
+      "type": "string",
+      "minLength": 2
+    },
+    "timestamp": {
+      "description": "ISO-8601, UTC. Commits touching the approved surface must post-date this; an approval that predates the work it approves approves nothing.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "deployment_url": {
+      "description": "The exact URL the reviewer looked at. Not localhost — fonts render differently, and half of what these gates judge is type.",
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "commit_sha": {
+      "description": "Full 40-character SHA of the commit deployed at deployment_url.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["approved", "rejected", "approved-with-changes"]
+    },
+    "notes": {
+      "description": "Free text. Required when the verdict is not a clean approval.",
+      "type": "string"
+    },
+    "evidence": {
+      "description": "Typed evidence binding the verdict to the artifact it judged, so that approving one thing and shipping another fails the gate rather than passing it quietly.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scale_sha256": {
+          "description": "SHA-256 of the type-scale block in src/styles.css, as it stood when approved. g1.sh re-computes and compares it at release. Required for the typography gate.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "specimen_url": {
+          "description": "The deployed type-specimen route the reviewer compared against.",
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "screenshots": {
+          "description": "Paths, repo-relative, to any screenshots taken at review time.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reviewed_paths": {
+          "description": "Repo-relative paths the reviewer was asked to judge. A later commit touching one of these without a fresh approval is a gate failure, not a warning.",
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "gate": { "const": "typography" } }, "required": ["gate"] },
+      "then": {
+        "required": ["evidence"],
+        "properties": {
+          "evidence": { "required": ["scale_sha256"] }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "verdict": { "enum": ["rejected", "approved-with-changes"] } },
+        "required": ["verdict"]
+      },
+      "then": { "required": ["notes"] }
+    }
+  ]
+}
