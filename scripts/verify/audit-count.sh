@@ -34,7 +34,14 @@ PIPED_TO_COUNT='wc[[:space:]]+-l[[:space:]]*\|[[:space:]]*count'
 offenders=""
 while IFS= read -r file; do
   [ -n "$file" ] || continue
-  hits="$(grep -nE "$BARE_WC" "$file" | grep -vE "$PIPED_TO_COUNT" || true)"
+  # Whole-line comments are dropped before matching. The rule is documented in
+  # prose across this tree — `restore-drill.sh` opens by explaining that
+  # `ls | wc -l` is not a backup test — and prose describing the forbidden
+  # shape is not the forbidden shape. Trailing comments are deliberately NOT
+  # stripped: that direction only ever yields a false positive, which is
+  # visible and cheap, whereas stripping them could hide a real offender behind
+  # a `#` on the same line.
+  hits="$(grep -vE '^[[:space:]]*#' "$file" | grep -nE "$BARE_WC" | grep -vE "$PIPED_TO_COUNT" || true)"
   if [ -n "$hits" ]; then
     offenders="$offenders
 $file: $hits"

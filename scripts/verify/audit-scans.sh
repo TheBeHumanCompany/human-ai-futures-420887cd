@@ -34,7 +34,28 @@ SELF="scripts/verify/audit-scans.sh"
 # file does not contain the literal it forbids even before the path exclusion
 # applies. Belt and braces: the two defences fail independently.
 RECURSIVE='grep[[:space:]]+(-[a-zA-Z]*[rR][a-zA-Z]*|--recursive)'
-OVER_SRC='[[:space:]](\./)?src(/|[[:space:]]|$)'
+# `src` as a grep TARGET. The trailing class matters: an earlier version
+# accepted only `/`, whitespace or end-of-line after `src`, and so missed
+# `grep -rn "fetch(" src)` — the single most likely spelling, because the call
+# is nearly always inside a `$(…)` substitution. That miss was found by seeding
+# the offender and watching the audit pass, which is why the negative control
+# below is part of the audit rather than something run once by hand.
+OVER_SRC='[[:space:]](\./)?src(/[^[:space:]]*)?([[:space:]]|[)"'"'"';|&]|$)'
+
+# ── 0. The audit audits itself, first ──────────────────────────────────────
+#
+# This pattern has been wrong once already, in a way that made the whole gate
+# useless while it reported PASS across every file in the tree. A pattern-based
+# audit is only as good as its pattern, and nothing else in this repo can tell
+# you the pattern stopped matching. So it is exercised against a known offender
+# and a known-clean line on every run, before it is trusted with real files.
+probe() { printf '%s\n' "$1" | grep -E "$RECURSIVE" | grep -cE "$OVER_SRC" || true; }
+
+assert_eq "$(probe 'hits="$(grep -rn "fetch(" src)"')" "1" "self-test: catches a recursive grep over src inside \$( )"
+assert_eq "$(probe 'grep -r foo src/lib')" "1" "self-test: catches a recursive grep over a src subdirectory"
+assert_eq "$(probe 'grep --recursive foo ./src')" "1" "self-test: catches the long flag and a ./ prefix"
+assert_eq "$(probe 'grep -c foo src/lib/x.ts')" "0" "self-test: a NON-recursive grep of one file is not an offence"
+assert_eq "$(probe 'grep -rn foo docs')" "0" "self-test: a recursive grep of something other than src is not an offence"
 
 sh_files="$(find scripts/verify -type f -name '*.sh' | grep -v "^$SELF\$" | LC_ALL=C sort)"
 sh_n="$(printf '%s\n' "$sh_files" | grep -c .)"
@@ -43,7 +64,9 @@ assert_ge "$sh_n" 5 "the audit found shell gates to audit"
 offenders=""
 while IFS= read -r file; do
   [ -n "$file" ] || continue
-  hits="$(grep -nE "$RECURSIVE" "$file" | grep -E "$OVER_SRC" || true)"
+  # Whole-line comments dropped: prose describing the forbidden shape is not
+  # the forbidden shape. Trailing comments are kept, so nothing hides behind a `#`.
+  hits="$(grep -vE '^[[:space:]]*#' "$file" | grep -nE "$RECURSIVE" | grep -E "$OVER_SRC" || true)"
   if [ -n "$hits" ]; then
     offenders="$offenders
 $file: $hits"
