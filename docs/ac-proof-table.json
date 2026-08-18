@@ -15,26 +15,26 @@
     },
     {
       "id": "AC-1.3",
-      "phase": null,
-      "proof": null,
+      "phase": "1",
+      "proof": "bash scripts/verify/assert-asset-imports.sh",
       "note": ""
     },
     {
       "id": "AC-1.4",
-      "phase": null,
-      "proof": null,
+      "phase": "1",
+      "proof": "bash scripts/verify/assert-asset-imports.sh",
       "note": ""
     },
     {
       "id": "AC-1.5",
-      "phase": null,
-      "proof": null,
+      "phase": "1",
+      "proof": "bash scripts/verify/assert-asset-imports.sh",
       "note": ""
     },
     {
       "id": "AC-1.6",
-      "phase": "9",
-      "proof": "bash scripts/verify/prod-images.sh \"$ENV_URL\"",
+      "phase": "1",
+      "proof": "bash scripts/verify/assert-build-assets.sh && bash scripts/verify/prod-images.sh \"$ENV_URL\"",
       "note": ""
     },
     {

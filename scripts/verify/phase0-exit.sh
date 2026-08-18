@@ -51,7 +51,21 @@ require_file docs/asset-inventory.json "the derived asset inventory"
 failures="$(jq '[.[] | select(.status != "ok" and .status != "skipped-already-present")] | length' .baseline/asset-recovery-report.json)"
 assert_eq "$failures" "0" "AC-1.2: no asset failed recovery"
 
-pointers="$(find src/assets -name '*.asset.json' | grep -c .)"
+# The pointer count, from wherever the pointers still live.
+#
+# Before Phase 1 that is `src/assets/*.asset.json`. AC-1.4 deletes those files,
+# so afterwards it is `docs/asset-pointers.json`, where they were archived
+# verbatim. Reading whichever exists keeps this gate meaningful on both sides of
+# that deletion — the alternative was a gate that counts 0 pointers, compares it
+# to 0 manifest entries, and reports a triumphant PASS over nothing.
+if find src/assets -name '*.asset.json' 2>/dev/null | grep -q .; then
+  pointers="$(find src/assets -name '*.asset.json' | grep -c .)"
+  pointer_origin="src/assets/*.asset.json"
+else
+  require_file docs/asset-pointers.json "the archived pointer set (AC-1.4 deleted the files)"
+  pointers="$(jq '.pointers | length' docs/asset-pointers.json)"
+  pointer_origin="docs/asset-pointers.json (archive)"
+fi
 manifest_n="$(jq 'length' src/assets/asset-recovery-manifest.json)"
 report_n="$(jq 'length' .baseline/asset-recovery-report.json)"
 assert_ge "$pointers" 40 "the pointer glob found pointers (floor)"

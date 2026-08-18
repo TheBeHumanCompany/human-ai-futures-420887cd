@@ -25,8 +25,22 @@ require_file .baseline/asset-recovery-report.json "the per-asset recovery report
 # Derived from the pointer glob, never a literal. The plan is explicit that 46
 # is not to be hardcoded anywhere: a pointer added or removed must change what
 # this gate expects, on its own.
-pointers="$(find src/assets -name '*.asset.json' | grep -c .)"
-assert_ge "$pointers" 40 "the pointer glob found pointers (floor — 0 would make this vacuous)"
+# The pointer count, from wherever the pointers still live.
+#
+# Before Phase 1 that is `src/assets/*.asset.json`. AC-1.4 deletes those files,
+# so afterwards it is `docs/asset-pointers.json`, where they were archived
+# verbatim. Reading whichever exists keeps this gate meaningful on both sides of
+# that deletion — the alternative was a gate that counts 0 pointers, compares it
+# to 0 manifest entries, and reports a triumphant PASS over nothing.
+if find src/assets -name '*.asset.json' 2>/dev/null | grep -q .; then
+  pointers="$(find src/assets -name '*.asset.json' | grep -c .)"
+  pointer_origin="src/assets/*.asset.json"
+else
+  require_file docs/asset-pointers.json "the archived pointer set (AC-1.4 deleted the files)"
+  pointers="$(jq '.pointers | length' docs/asset-pointers.json)"
+  pointer_origin="docs/asset-pointers.json (archive)"
+fi
+assert_ge "$pointers" 40 "the pointer set is populated (floor — 0 would make this vacuous)"
 
 manifest_n="$(jq 'length' src/assets/asset-recovery-manifest.json)"
 report_n="$(jq 'length' .baseline/asset-recovery-report.json)"
@@ -106,4 +120,4 @@ collisions="$(jq '[.[] | select(.alt_source != null and .alt_source.sha256 == .s
 assert_eq "$collisions" "0" "each alt_source is a genuinely independent copy, not the same bytes"
 
 total_bytes="$(jq '[.[].bytes] | add' src/assets/asset-recovery-manifest.json)"
-pass "AC-1.1/AC-1.2: $manifest_n originals verified ($recovered_n recovered from $pointers pointers, $supplied_n supplied; $total_bytes bytes), $alts with a second source, 0 failures"
+pass "AC-1.1/AC-1.2: $manifest_n originals verified ($recovered_n recovered from $pointers pointers, $supplied_n supplied via $pointer_origin; $total_bytes bytes), $alts with a second source, 0 failures"

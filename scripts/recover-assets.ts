@@ -58,6 +58,7 @@ const ASSETS_DIR = path.join(REPO_ROOT, "src", "assets");
 const MANIFEST_PATH = path.join(ASSETS_DIR, "asset-recovery-manifest.json");
 const REPORT_PATH = path.join(REPO_ROOT, ".baseline", "asset-recovery-report.json");
 const INVENTORY_PATH = path.join(REPO_ROOT, "docs", "asset-inventory.json");
+const POINTER_ARCHIVE_PATH = path.join(REPO_ROOT, "docs", "asset-pointers.json");
 
 /** Attempts per asset, and the backoff between them. */
 export const MAX_ATTEMPTS = 3;
@@ -73,6 +74,15 @@ export type Pointer = {
   size: number;
   content_type: string;
   created_at: string;
+  /** Archive-only: the path the pointer file used to live at. */
+  _archived_from?: string;
+  /**
+   * Archive-only: the binary's filename beside its pointer. Recorded rather
+   * than re-derived — it happens to equal `original_filename` for all 46 today,
+   * and a future asset where those diverge would otherwise write to the wrong
+   * path with nothing reporting it.
+   */
+  _target_filename?: string;
 };
 
 /**
@@ -163,10 +173,51 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /** Every `*.asset.json` under src/assets, sorted. Never a hardcoded 46. */
 export function listPointerFiles(dir = ASSETS_DIR): string[] {
+  if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((name) => name.endsWith(".asset.json"))
     .sort()
     .map((name) => path.join(dir, name));
+}
+
+/**
+ * The archived pointers, read when the `*.asset.json` files are gone.
+ *
+ * AC-1.4 deletes every pointer file, and rightly: a pointer imported by source
+ * code bakes a `/__l5e/assets-v1/...` path into the bundle that only Lovable's
+ * own hosting serves, which is the production 404 this entire pass began with.
+ *
+ * But those files were also the only record of each asset's Lovable
+ * `asset_id`, `url`, `r2_key` and declared `size`/`content_type` — the inputs
+ * that make re-recovery possible if a binary is ever lost. Deleting them would
+ * have closed the original bug and silently thrown away the disaster-recovery
+ * path in the same commit, and nothing would have reported that second loss.
+ *
+ * So they are archived verbatim to `docs/asset-pointers.json`, outside `src/`
+ * where no bundler can reach them and where AC-1.3's scan does not look.
+ * Recovery reads them from there once the files are gone, so
+ * `bun run scripts/recover-assets.ts` still works after Phase 1.
+ */
+export function readArchivedPointers(): Pointer[] {
+  if (!existsSync(POINTER_ARCHIVE_PATH)) return [];
+  const doc = JSON.parse(readFileSync(POINTER_ARCHIVE_PATH, "utf8")) as { pointers?: Pointer[] };
+  return Array.isArray(doc.pointers) ? doc.pointers : [];
+}
+
+/**
+ * The pointer set, from wherever it still exists.
+ *
+ * Before Phase 1 that is the `*.asset.json` files; after Phase 1 it is the
+ * archive. The two are never both authoritative: if the files are present they
+ * win, because they are what the bundler could actually see and therefore what
+ * AC-1.3 and AC-1.4 are about.
+ */
+export function pointerSet(): { pointers: Pointer[]; from: "files" | "archive" } {
+  const files = listPointerFiles();
+  if (files.length > 0) {
+    return { pointers: files.map(readPointer), from: "files" };
+  }
+  return { pointers: readArchivedPointers(), from: "archive" };
 }
 
 /** `hero.png.asset.json` -> `hero.png`, beside the pointer. */
@@ -325,13 +376,15 @@ function readAltSource(filename: string): ManifestEntry["alt_source"] {
 export async function main(argv: string[] = process.argv.slice(2)): Promise<number> {
   const verifyOnly = argv.includes("--verify");
 
-  const pointerFiles = listPointerFiles();
-  if (pointerFiles.length === 0) {
-    console.error("FAIL: no *.asset.json pointers found under src/assets — nothing to recover.");
-    console.error("A 'success' here would be vacuous, so this is an error, not a no-op.");
+  const { pointers: pointerList, from: pointerOrigin } = pointerSet();
+  if (pointerList.length === 0) {
+    console.error("FAIL: no asset pointers found — neither src/assets/*.asset.json nor");
+    console.error("  docs/asset-pointers.json. A 'success' here would be vacuous, so this is an");
+    console.error("  error, not a no-op.");
     return 1;
   }
-  console.log(`${pointerFiles.length} pointers found under src/assets/`);
+  const pointerFiles = pointerList;
+  console.log(`${pointerList.length} pointers found (source: ${pointerOrigin})`);
 
   const priorManifest: ManifestEntry[] = existsSync(MANIFEST_PATH)
     ? JSON.parse(readFileSync(MANIFEST_PATH, "utf8"))
@@ -341,9 +394,8 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<numb
   const manifest: ManifestEntry[] = [];
   const report: ReportEntry[] = [];
 
-  for (const pointerFile of pointerFiles) {
-    const pointer = readPointer(pointerFile);
-    const filename = targetNameFor(pointerFile);
+  for (const pointer of pointerList) {
+    const filename = pointer._target_filename ?? pointer.original_filename;
     const targetPath = path.join(ASSETS_DIR, filename);
     const label = `${filename} (${pointer.asset_id})`;
 
