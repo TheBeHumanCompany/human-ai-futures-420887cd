@@ -1,0 +1,37 @@
+{
+  "$comment": [
+    "The Blueprint page's 16 sections, in the order they appear in the source PDF.",
+    "This file is the spine: the page renders from it and every assertion reads it, so",
+    "'the page has 16 sections in PDF order' cannot drift from what is checked.",
+    "",
+    "TIERS ARE PRESENTATION, NEVER PRESENCE. All 16 render into the DOM in this order,",
+    "always. The tier decides prominence only:",
+    "  1 = always visible. The linear path to a booking; a complete sales page on its own.",
+    "  2 = native <details>, default-collapsed. In the DOM, openable with JavaScript off.",
+    "  3 = compressed to summary cards whose depth lives on its own route.",
+    "",
+    "This exists because two requirements pull against each other: every section must be",
+    "present, and they must not all shout at once. Those are only compatible if presence",
+    "and prominence are different things. The failure this guards against is buying",
+    "digestibility with scissors — so a test asserts the ordered id array, which goes red",
+    "if a section is deleted to make the page feel shorter."
+  ],
+  "sections": [
+    { "id": "hero", "title": "Artificial Intelligence Will Change Every Business", "tier": 1 },
+    { "id": "the-problem", "title": "The Problem", "tier": 1 },
+    { "id": "our-approach", "title": "Our Approach", "tier": 3 },
+    { "id": "canadian-trust", "title": "Canadian Trust, Sovereignty & Stewardship", "tier": 2 },
+    { "id": "our-commitments", "title": "Our Commitments", "tier": 2 },
+    { "id": "the-blueprint", "title": "The Be Human AI Blueprint", "tier": 1 },
+    { "id": "who-it-is-for", "title": "Who It Is For", "tier": 2 },
+    { "id": "what-youll-receive", "title": "What You'll Receive", "tier": 1 },
+    { "id": "client-proof", "title": "Client Proof", "tier": 1 },
+    { "id": "how-it-works", "title": "How It Works", "tier": 2 },
+    { "id": "what-waiting-costs", "title": "What Waiting Actually Costs", "tier": 2 },
+    { "id": "the-offer", "title": "The Offer", "tier": 1 },
+    { "id": "the-team", "title": "Built for Human-First AI Transformation", "tier": 3 },
+    { "id": "who-we-work-best-with", "title": "Who We Work Best With", "tier": 2 },
+    { "id": "faq", "title": "Frequently Asked Questions", "tier": 2 },
+    { "id": "closing-cta", "title": "Ready to Build a Stronger Organization?", "tier": 1 }
+  ]
+}
