@@ -47,7 +47,7 @@ type WithChildren<T extends NavItem> = T & { children: readonly NavChild[] };
 export function Wordmark({ tone = "light" }: { tone?: "light" | "dark" }) {
   return (
     <Link to="/" className="group inline-flex flex-col leading-none">
-      <span className={`type-h4-caps ${tone === "dark" ? "text-ink" : "text-foreground"}`}>
+      <span className={`type-wordmark ${tone === "dark" ? "text-ink" : "text-foreground"}`}>
         THE BE HUMAN COMPANY
       </span>
     </Link>
@@ -189,7 +189,7 @@ function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => voi
       <Link
         to={item.to}
         onClick={onNavigate}
-        className="type-h3-condensed block border-b border-border py-4 text-foreground"
+        className="display block border-b border-border py-4 text-3xl text-foreground"
       >
         {item.label}
       </Link>
@@ -199,7 +199,7 @@ function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => voi
   return (
     <Collapsible className="border-b border-border">
       <CollapsibleTrigger className="group flex w-full items-center justify-between py-4 text-left">
-        <span className={`type-h3-condensed ${item.cta ? "text-lime" : "text-foreground"}`}>
+        <span className={`display text-3xl ${item.cta ? "text-lime" : "text-foreground"}`}>
           {item.label}
         </span>
         <ChevronDown

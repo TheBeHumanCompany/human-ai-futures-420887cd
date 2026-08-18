@@ -87,9 +87,11 @@ export function SocialSection() {
       <div className="mx-auto max-w-[1400px] px-6 py-16 text-center sm:px-8 sm:py-20 lg:py-24">
         {/* Intro */}
         <div className="mx-auto min-w-0 max-w-3xl">
-          <h2 className="type-h1-caps text-foreground">Follow the journey</h2>
+          <h2 className="display text-[clamp(2.5rem,8vw,4.75rem)] font-extralight uppercase leading-[0.95] tracking-[0.02em] text-foreground">
+            Follow the journey
+          </h2>
 
-          <p className="type-body-lg mx-auto mt-5 max-w-md text-lime sm:mt-6 lg:mt-8">
+          <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-lime sm:mt-6 sm:text-lg lg:mt-8">
             Ideas. Conversations. Human stories.
           </p>
         </div>
@@ -107,7 +109,9 @@ export function SocialSection() {
                 className="group flex flex-col items-center gap-4 p-2 text-center transition-opacity duration-300 focus-visible:outline-none focus-visible:opacity-100"
               >
                 <Icon className="h-12 w-12 opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-focus-visible:scale-110 group-focus-visible:opacity-100 sm:h-14 sm:w-14" />
-                <span className="eyebrow text-foreground">{name}</span>
+                <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-foreground">
+                  {name}
+                </span>
               </a>
             );
           })}

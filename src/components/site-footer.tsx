@@ -31,11 +31,18 @@ export function SiteFooter() {
   return (
     <footer className="section-ink border-t border-border">
       <div className="border-b border-border bg-lime py-5 text-center">
-        {/* The `max-sm` size override is not a bespoke step reaching around the
-            scale — it is an overflow guard. This one line is long enough that
-            the scale's floor (2rem) breaks it across three rows on a 375px
-            screen, inside a band sized for one. */}
-        <p className="type-h2-caps px-4 tracking-normal text-ink max-sm:px-2 max-sm:text-[clamp(1.45rem,5.6vw,1.95rem)] max-sm:leading-none max-sm:tracking-[-0.02em] sm:tracking-normal">
+        {/* Still on `display`, deliberately, and this is not an oversight.
+            `display` is Oswald 200 and this line carries no weight override, so
+            it renders light. The type scale's only uppercase register is 700.
+            Migrating it would not be a migration — it would be a restyle of a
+            line nobody asked to restyle, and it would pass every gate we have
+            while doing it. It moves once the scale grows a light uppercase
+            step; until then the correct target does not exist.
+
+            The `max-sm` size override is an overflow guard, not a bespoke step
+            reaching around the scale: this line is long enough to break across
+            three rows on a 375px screen, inside a band sized for one. */}
+        <p className="display px-4 text-4xl uppercase tracking-normal text-ink max-sm:px-2 max-sm:text-[clamp(1.45rem,5.6vw,1.95rem)] max-sm:leading-none max-sm:tracking-[-0.02em] sm:tracking-normal">
           The future belongs to the most human
         </p>
       </div>
@@ -43,14 +50,14 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div className="min-w-0">
           <Wordmark />
-          <p className="mt-6 max-w-xs type-body-sm text-muted-foreground">
+          <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground">
             An AI strategy and transformation company, and a cultural movement for practising what
             keeps us human.
           </p>
 
           <p
             data-brand="indigenous-line"
-            className="mt-6 inline-flex items-center gap-2 type-body-sm text-foreground/80"
+            className="mt-6 inline-flex items-center gap-2 text-sm text-foreground/80"
           >
             <MapleLeaf className="h-4 w-4 shrink-0 text-lime" />
             <span>{INDIGENOUS_LINE}</span>
@@ -64,7 +71,7 @@ export function SiteFooter() {
           <ul className="mt-5 space-y-3">
             {navDestinations().map((item) => (
               <li key={item.to}>
-                <Link to={item.to} className="type-body-sm text-foreground/80 hover:text-lime">
+                <Link to={item.to} className="text-sm text-foreground/80 hover:text-lime">
                   {item.label}
                 </Link>
               </li>
@@ -81,7 +88,7 @@ export function SiteFooter() {
                   href={social.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="type-body-sm text-foreground/80 hover:text-lime"
+                  className="text-sm text-foreground/80 hover:text-lime"
                 >
                   {social.name}
                 </a>
@@ -92,7 +99,7 @@ export function SiteFooter() {
 
         <div>
           <h3 className="eyebrow text-muted-foreground">Contact</h3>
-          <ul className="mt-5 space-y-3 type-body-sm text-foreground/80">
+          <ul className="mt-5 space-y-3 text-sm text-foreground/80">
             <li>
               <a href="mailto:hello@thebehumancompany.ca" className="hover:text-lime">
                 hello@thebehumancompany.ca
