@@ -363,20 +363,20 @@
     },
     {
       "id": "AC-7.1",
-      "phase": null,
-      "proof": null,
+      "phase": "2",
+      "proof": "bun test src/lib/archive.test.ts",
       "note": ""
     },
     {
       "id": "AC-7.2",
-      "phase": null,
-      "proof": null,
+      "phase": "2",
+      "proof": "bun test src/lib/archive.test.ts",
       "note": ""
     },
     {
       "id": "AC-7.3",
-      "phase": null,
-      "proof": null,
+      "phase": "2",
+      "proof": "bun test src/lib/archive.test.ts && bunx playwright test e2e/surfaces.spec.ts --project=desktop",
       "note": ""
     },
     {
