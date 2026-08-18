@@ -31,7 +31,7 @@ function Contact() {
       <div className="mx-auto grid max-w-[1400px] gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_1fr] lg:py-28">
         <div className="min-w-0">
           <p className="eyebrow text-ink/50">Contact</p>
-          <h1 className="type-h1-caps mt-6 text-ink">
+          <h1 className="type-h1-caps-light mt-6 text-ink">
             Prepare your organization for the New Human Era.
           </h1>
           <p className="mt-8 max-w-md text-lg leading-relaxed text-ink/70">

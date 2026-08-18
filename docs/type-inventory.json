@@ -2,26 +2,26 @@
   "generatedBy": "scripts/type-inventory.ts",
   "scannerSha256": "641e7fdd57606f57f327a3347072f7e99c3746ba360184b1cf72dc2080b92e42",
   "provenance": {
-    "head": "9fa36d6adf3fe1ecae08e5fe91f993f9df0a2aa5",
+    "head": "f2fc14ce653193eb2256787aa6abe4b55f20ff6f",
     "branch": "feat/site-restructure",
     "workingTreeDirty": true,
     "mergeBaseWithPlanBase": "a6a377abeaa262f4f245766f3b00a31e9704f8f8"
   },
   "scope": {
-    "binding": 3,
-    "fourAc42Names": 3,
+    "binding": 0,
+    "fourAc42Names": 0,
     "sectionLabelVariants": 0,
-    "eyebrowOutOfScope": 65,
+    "eyebrowOutOfScope": 68,
     "combinedWithEyebrow": 68,
-    "utilityDefinitions": 2
+    "utilityDefinitions": 1
   },
   "rawSizeDeclarations": {
-    "arbitrary": 28,
-    "tailwindNamed": 147,
-    "total": 175
+    "arbitrary": 27,
+    "tailwindNamed": 140,
+    "total": 167
   },
-  "filesScanned": 119,
-  "filesWithTypeDeclarations": 49,
+  "filesScanned": 121,
+  "filesWithTypeDeclarations": 50,
   "excluded": {
     "path": "src/routes/type-specimen.tsx",
     "applied": true,
@@ -30,8 +30,8 @@
   "perUtility": [
     {
       "utility": "display",
-      "callSites": 3,
-      "definitions": 1,
+      "callSites": 0,
+      "definitions": 0,
       "inScope": true
     },
     {
@@ -72,12 +72,84 @@
     },
     {
       "utility": "eyebrow",
-      "callSites": 65,
+      "callSites": 68,
       "definitions": 1,
       "inScope": false
     }
   ],
   "occurrences": [
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 51,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 68,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 113,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 126,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 144,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 212,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 229,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 359,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
     {
       "file": "src/components/episode-media-card.tsx",
       "line": 53,
@@ -1304,156 +1376,12 @@
     },
     {
       "file": "src/routes/be-human-ai/index.tsx",
-      "line": 51,
+      "line": 60,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
       "maxRem": null,
       "proposed": "eyebrow (unchanged — out of scope)"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 52,
-      "token": "display",
-      "raw": "display",
-      "category": "utility-in-scope",
-      "maxRem": null,
-      "proposed": "type-h?-caps (size set elsewhere — resolve at migration)"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 52,
-      "token": "text-[clamp(2.75rem,8vw,6.5rem)]",
-      "raw": "text-[clamp(2.75rem,8vw,6.5rem)]",
-      "category": "arbitrary-size",
-      "maxRem": 6.5,
-      "proposed": "type-h1-prose"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 55,
-      "token": "text-lg",
-      "raw": "text-lg",
-      "category": "tailwind-size",
-      "maxRem": 1.125,
-      "proposed": "type-body"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 61,
-      "token": "eyebrow",
-      "raw": "eyebrow",
-      "category": "utility-out-of-scope",
-      "maxRem": null,
-      "proposed": "eyebrow (unchanged — out of scope)"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 70,
-      "token": "eyebrow",
-      "raw": "eyebrow",
-      "category": "utility-out-of-scope",
-      "maxRem": null,
-      "proposed": "eyebrow (unchanged — out of scope)"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 74,
-      "token": "eyebrow",
-      "raw": "eyebrow",
-      "category": "utility-out-of-scope",
-      "maxRem": null,
-      "proposed": "eyebrow (unchanged — out of scope)"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 75,
-      "token": "display",
-      "raw": "display",
-      "category": "utility-in-scope",
-      "maxRem": null,
-      "proposed": "type-h?-caps (size set elsewhere — resolve at migration)"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 75,
-      "token": "text-4xl",
-      "raw": "lg:text-4xl",
-      "category": "tailwind-size",
-      "maxRem": 2.25,
-      "proposed": "type-h3-prose"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 75,
-      "token": "text-3xl",
-      "raw": "text-3xl",
-      "category": "tailwind-size",
-      "maxRem": 1.875,
-      "proposed": "type-h3-prose"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 76,
-      "token": "text-sm",
-      "raw": "text-sm",
-      "category": "tailwind-size",
-      "maxRem": 0.875,
-      "proposed": "type-body"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 81,
-      "token": "text-xs",
-      "raw": "text-xs",
-      "category": "tailwind-size",
-      "maxRem": 0.75,
-      "proposed": "type-body"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 95,
-      "token": "eyebrow",
-      "raw": "eyebrow",
-      "category": "utility-out-of-scope",
-      "maxRem": null,
-      "proposed": "eyebrow (unchanged — out of scope)"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 99,
-      "token": "eyebrow",
-      "raw": "eyebrow",
-      "category": "utility-out-of-scope",
-      "maxRem": null,
-      "proposed": "eyebrow (unchanged — out of scope)"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 100,
-      "token": "display",
-      "raw": "display",
-      "category": "utility-in-scope",
-      "maxRem": null,
-      "proposed": "type-h?-caps (size set elsewhere — resolve at migration)"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 100,
-      "token": "text-3xl",
-      "raw": "text-3xl",
-      "category": "tailwind-size",
-      "maxRem": 1.875,
-      "proposed": "type-h3-prose"
-    },
-    {
-      "file": "src/routes/be-human-ai/index.tsx",
-      "line": 101,
-      "token": "text-sm",
-      "raw": "text-sm",
-      "category": "tailwind-size",
-      "maxRem": 0.875,
-      "proposed": "type-body"
     },
     {
       "file": "src/routes/contact.tsx",
@@ -2267,16 +2195,7 @@
     },
     {
       "file": "src/styles.css",
-      "line": 121,
-      "token": "display",
-      "raw": "display",
-      "category": "utility-definition",
-      "maxRem": null,
-      "proposed": "deleted (definition, not a call site)"
-    },
-    {
-      "file": "src/styles.css",
-      "line": 129,
+      "line": 113,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-definition",

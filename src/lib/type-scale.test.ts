@@ -42,15 +42,6 @@ const srcNonTestFiles = walk(SRC_DIR)
 /** The one file excluded from the migration — see `scripts/type-inventory.ts`. */
 const SPECIMEN = join(SRC_DIR, "routes", "type-specimen.tsx");
 
-/**
- * The Blueprint page is being rewritten on the scale from scratch in Phase 6 and
- * was deliberately left out of the Phase 4 migration. It is the ONLY remaining
- * holder of a legacy utility. Named explicitly so that when it is migrated this
- * test fails and forces the exception — and the `display` block — to be deleted,
- * rather than the exception quietly outliving its reason.
- */
-const PHASE_6_PENDING = join(SRC_DIR, "routes", "be-human-ai", "index.tsx");
-
 const utilityBlock = (name: string) => {
   const m = new RegExp(`@utility\\s+${name}\\s*\\{([^}]*)\\}`).exec(STYLES);
   return m ? m[1] : null;
@@ -120,10 +111,45 @@ describe("AC-4.1 — the scale is defined, in every register", () => {
     expect(utilityBlock("type-h1-condensed")).toContain("--font-display");
     expect(utilityBlock("type-h1-prose")).toContain("--font-sans");
   });
+
+  /**
+   * The uppercase register carries a WEIGHT axis as well as a size ladder.
+   *
+   * Without it, migrating `display` (Oswald 200, 24 call sites including the
+   * company Wordmark) has only one destination — the 700 steps — and the
+   * migration silently restyles the logotype and every light editorial headline.
+   * That failure passes every other gate in this repo: the class name is valid,
+   * types check, and the "every heading carries a type-* class" proof gets
+   * *greener*. This is the only assertion that can catch it.
+   */
+  describe("the uppercase register has a weight axis", () => {
+    const CAPS_LEVELS = ["hero", "h1", "h2", "h3", "h4"] as const;
+
+    for (const level of CAPS_LEVELS) {
+      test(`type-${level}-caps is 700 and type-${level}-caps-light is 200`, () => {
+        expect(utilityBlock(`type-${level}-caps`)).toMatch(/font-weight:\s*700\b/);
+        expect(utilityBlock(`type-${level}-caps-light`)).toMatch(/font-weight:\s*200\b/);
+      });
+
+      test(`type-${level}-caps and its light twin are the same size`, () => {
+        // A weight axis that also changes size is not an axis, it is two
+        // different steps wearing related names — and migrating for weight
+        // would quietly resize as well.
+        const size = (n: string) => /font-size:\s*([^;]+)/.exec(utilityBlock(n) ?? "")?.[1];
+        expect(size(`type-${level}-caps-light`)).toBe(size(`type-${level}-caps`));
+      });
+    }
+
+    test("the label step is bold only — every one of its call sites was 700", () => {
+      expect(utilityBlock("type-label-caps")).toMatch(/font-weight:\s*700\b/);
+      expect(utilityBlock("type-label-caps-light")).toBeNull();
+    });
+  });
 });
 
 describe("AC-4.2 — the legacy utilities are gone", () => {
   const RETIRED = [
+    "display",
     "archive-question",
     "section-label",
     "section-label-dark",
@@ -169,10 +195,13 @@ describe("AC-4.2 — the legacy utilities are gone", () => {
     return count;
   };
 
-  test("the counter sees the utility the Phase 6 file plainly uses", () => {
-    // Floor for the two assertions below: if the counter returns 0 here it is
-    // broken, and "no file references X" would pass vacuously everywhere.
-    expect(callSites(PHASE_6_PENDING, "display")).toBeGreaterThanOrEqual(1);
+  test("the counter is not simply blind", () => {
+    // Non-vacuity floor. Every assertion below is of the form "this token
+    // appears nowhere", which passes trivially if the counter always returns 0.
+    // Point it at a class that IS present and require a hit.
+    const index = join(SRC_DIR, "routes", "index.tsx");
+    expect(callSites(index, "type-label-caps")).toBeGreaterThanOrEqual(1);
+    expect(callSites(index, "type-hero-caps-light")).toBeGreaterThanOrEqual(1);
   });
 
   for (const name of RETIRED) {
@@ -184,21 +213,14 @@ describe("AC-4.2 — the legacy utilities are gone", () => {
     });
   }
 
-  test("`display` survives only in the one Phase 6 file, and nowhere else", () => {
+  test("all four AC-4.2 names are retired — definitions and call sites both", () => {
+    for (const name of RETIRED) {
+      expect(utilityBlock(name)).toBeNull();
+    }
     const offenders = srcNonTestFiles
-      .filter((f) => f !== SPECIMEN && f !== PHASE_6_PENDING)
-      .filter((f) => callSites(f, "display") > 0);
+      .filter((f) => f !== SPECIMEN)
+      .flatMap((f) => RETIRED.filter((n) => callSites(f, n) > 0).map((n) => `${f}: ${n}`));
     expect(offenders).toEqual([]);
-  });
-
-  test("when the Phase 6 file is migrated, the `display` block must go too", () => {
-    // This is the tripwire. `display` is still defined ONLY because
-    // be-human-ai/index.tsx still calls it. The moment that stops being true,
-    // this fails and the definition has to be deleted — so the exception cannot
-    // outlive its justification.
-    const stillCalled = callSites(PHASE_6_PENDING, "display") > 0;
-    const stillDefined = utilityBlock("display") !== null;
-    expect(stillDefined).toBe(stillCalled);
   });
 
   test("the migration reached the site an attribute regex cannot see", () => {

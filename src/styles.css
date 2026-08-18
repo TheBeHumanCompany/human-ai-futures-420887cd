@@ -106,25 +106,9 @@
 
 /* ---- Editorial type utilities ---- */
 
-/* ⚠ THE LAST SURVIVING LEGACY UTILITY — DELETE ME.
- *
- * `display` is the fourth AC-4.2 name and the only one still defined. It has
- * exactly THREE call sites left, all in `src/routes/be-human-ai/index.tsx`
- * (the Blueprint page), which was excluded from the Phase 4 migration because
- * it is being rewritten on the scale from scratch in Phase 6.
- *
- * It survives ONLY so that page keeps rendering until that lands. AC-4.2 is not
- * satisfied while this block exists. The moment `be-human-ai/index.tsx` stops
- * referencing it — `bun run scripts/type-inventory.ts` reports `binding: 0` —
- * delete this block. Do not add call sites; use `type-h{1..4}-caps`.
- */
-@utility display {
-  font-family: var(--font-display);
-  font-weight: 200;
-  line-height: 0.92;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
+/* `display` lived here — Oswald 200, uppercase, the fourth AC-4.2 name and the
+   last to go. Its 24 call sites are now on `type-{hero,h1..h4}-caps-light`,
+   which preserve its weight exactly. All four names are retired. */
 
 @utility eyebrow {
   font-size: 0.6875rem;
@@ -261,30 +245,66 @@
    normalised to a 1440px reference viewport.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ── Register 1: condensed bold uppercase (Oswald 700) ───────────────────────
-   The step sizes are FITTED TO THE MEASURED SITE, not chosen in the abstract.
-   Every pre-existing uppercase heading was measured at a 1440px viewport before
-   this ladder was set; the spread ran 8.5rem down to 0.75rem. Two things fell
-   out of that measurement and changed the first draft of this scale:
+/* ── Register 1: UPPERCASE (Oswald) — two weights, six sizes ─────────────────
+   This register has a WEIGHT AXIS, and that is not decoration. The utility it
+   replaces, `display`, is Oswald **200** and carries 24 call sites including the
+   company Wordmark. A ladder that only offered 700 would have forced every one
+   of those sites from 200 to 700 during migration — a restyle of the logotype
+   and every light editorial headline on the site, disguised as a consolidation.
+   It would also have passed every gate we have: the class name is valid, types
+   check, and an "every heading carries a type-* class" proof gets *greener*.
 
-     · The page heroes disagreed with each other — 8.5rem (home), 6.5rem
-       (Blueprint), 6rem (archive), 5.5rem (about). They are the same element
-       playing the same role, so they collapse onto one step. `h1` sits at 7rem:
-       high enough that the homepage hero stays dominant, low enough that the
-       other three are not inflated. A 5.5rem ceiling — the first draft — would
-       have cut the homepage hero by 35%.
-     · `section-label` had NOWHERE to go. Its call sites render at 0.75–1.125rem
-       in Oswald 700 at 0.08em tracking. `eyebrow` is 0.6875rem Work Sans 500 at
-       0.22em (wrong face, wrong size, wrong tracking) and `h4` is nearly double.
-       Migrating those sites to either would have been a visible regression
-       dressed up as a consolidation, so the role survives as `type-label-caps`
-       (V39: the eyebrow+rule ROLE outlives the four utility names).
+     `-caps`        Oswald 700 — the hammer. Successor to `archive-question`.
+     `-caps-light`  Oswald 200 — the airy editorial voice. Successor to `display`.
+
+   Sizes are fitted to the measured site, not chosen in the abstract. Every
+   pre-existing uppercase heading was measured at a 1440px viewport first, and
+   the spread ran 8.5rem down to 0.75rem — which is six steps, not four. Three
+   findings shaped this ladder:
+
+     · The homepage hero is 8.5rem and is the most prominent element on the
+       site. It gets its own step rather than being cut to fit a four-rung
+       ladder; nothing here shrinks materially.
+     · The other page heroes disagreed with each other (6.0 / 5.5 / 5.2 / 5.0)
+       and now share `h1` at 6rem.
+     · `section-label` had NOWHERE to go — 0.75–1.125rem, Oswald 700, 0.08em
+       tracking. `eyebrow` is Work Sans 500 at 0.6875rem/0.22em (wrong face,
+       size and tracking) and `h4` is larger still. The role survives as
+       `type-label-caps` (V39: the eyebrow+rule ROLE outlives the four names).
    ───────────────────────────────────────────────────────────────────────────── */
+
+/* The homepage hero, and nothing else. */
+@utility type-hero-caps {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 9.5vw, 8.5rem);
+  line-height: 0.9;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+@utility type-hero-caps-light {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(3rem, 9.5vw, 8.5rem);
+  line-height: 0.9;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
 
 @utility type-h1-caps {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.75rem, 8.5vw, 7rem);
+  font-size: clamp(2.75rem, 7vw, 6rem);
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+@utility type-h1-caps-light {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.75rem, 7vw, 6rem);
   line-height: 0.92;
   letter-spacing: 0.005em;
   text-transform: uppercase;
@@ -293,7 +313,16 @@
 @utility type-h2-caps {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.25rem, 5.4vw, 4.5rem);
+  font-size: clamp(2.25rem, 5.2vw, 4.5rem);
+  line-height: 0.94;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+@utility type-h2-caps-light {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.25rem, 5.2vw, 4.5rem);
   line-height: 0.94;
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -302,7 +331,16 @@
 @utility type-h3-caps {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  line-height: 1;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
+
+@utility type-h3-caps-light {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
   line-height: 1;
   letter-spacing: 0.015em;
   text-transform: uppercase;
@@ -311,15 +349,23 @@
 @utility type-h4-caps {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.0625rem, 1.5vw, 1.375rem);
+  font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+@utility type-h4-caps-light {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(1.125rem, 1.7vw, 1.5rem);
   line-height: 1.18;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
 /* The `section-label` successor: a small, tightly-tracked uppercase label that
-   sits above a lime rule. This is the fifth caps step and it is not optional —
-   see the note above. */
+   sits above a lime rule. Bold only — every one of its call sites was 700. */
 @utility type-label-caps {
   font-family: var(--font-display);
   font-weight: 700;

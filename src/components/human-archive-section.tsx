@@ -136,7 +136,7 @@ export function HumanArchiveSection() {
 
           {/* Title */}
           <div className="md:order-1 md:pr-12 lg:pr-16">
-            <h2 className="type-h2-caps text-ink">
+            <h2 className="type-h1-caps text-ink">
               What does it
               <br />
               mean to

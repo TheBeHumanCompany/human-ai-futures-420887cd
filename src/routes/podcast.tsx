@@ -116,7 +116,7 @@ function Podcast() {
       <section className="section-ink grain">
         <div className="mx-auto grid max-w-[1500px] items-center gap-10 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] md:gap-14 lg:pb-16 lg:pt-10">
           <div className="md:pl-8 lg:pl-16 xl:pl-24">
-            <h1 className="type-h2-caps">
+            <h1 className="type-h1-caps-light">
               The people-driven
               <br />
               CEO <span className="text-lime">Podcast</span>

@@ -92,7 +92,7 @@ function Home() {
 
         <div className="mx-auto flex min-h-[88svh] max-w-[1400px] items-end px-5 pb-16 pt-28 sm:px-8 lg:min-h-[80vh] lg:items-center lg:py-32">
           <div className="fade-up max-w-2xl">
-            <h1 className="type-h1-caps">
+            <h1 className="type-hero-caps-light">
               The future
               <br />
               is <span className="text-lime">human</span>
@@ -179,7 +179,7 @@ function Home() {
           {/* LEFT COLUMN */}
           <div className="flex max-w-xl flex-col justify-center">
             <p className="type-label-caps text-lime">OUR SOLUTION</p>
-            <h2 className="type-h2-caps mt-5 sm:mt-6 lg:mt-8">
+            <h2 className="type-h2-caps-light mt-5 sm:mt-6 lg:mt-8">
               BE HUMAN <span className="text-lime">AI</span>
             </h2>
             <p className="mt-6 max-w-[17.5rem] text-base leading-relaxed text-foreground/80 sm:max-w-sm">
@@ -253,7 +253,7 @@ function Home() {
         {/* Top: editorial split — text ~35%, collage ~65% */}
         <div className="lg:grid lg:grid-cols-[35%_65%] lg:items-center">
           <div className="px-6 py-12 sm:px-10 sm:py-14 lg:py-16 lg:pl-[max(2rem,calc((100vw-1500px)/2+2rem))] lg:pr-12">
-            <h2 className="type-h2-caps text-ink">
+            <h2 className="type-h1-caps text-ink">
               THE NEW
               <br />
               <span className="text-lime">HUMAN</span> ERA
@@ -350,7 +350,7 @@ function Home() {
         <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 md:py-16 lg:py-24">
           {/* Compact intro */}
           <div className="max-w-2xl">
-            <h2 className="type-h2-caps">
+            <h2 className="type-h1-caps-light">
               The people-driven
               <br />
               CEO <span className="text-lime">Podcast</span>
@@ -382,7 +382,7 @@ function Home() {
                 FEATURED EPISODE
                 {latest?.episodeNumber ? ` · ${String(latest.episodeNumber).padStart(3, "0")}` : ""}
               </p>
-              <h3 className="type-h3-caps">
+              <h3 className="type-h3-caps-light">
                 {latest ? latest.title : "Where leaders prepare for the New Human Era"}
               </h3>
               {/*

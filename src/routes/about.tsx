@@ -27,7 +27,7 @@ function About() {
       <section className="section-cream border-b border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
           <p className="eyebrow text-ink/50">About</p>
-          <h1 className="type-h1-caps mt-6 max-w-4xl text-ink">
+          <h1 className="type-h1-caps-light mt-6 max-w-4xl text-ink">
             Being human is what we're born with. Humanity is what we practise.
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">
@@ -43,7 +43,7 @@ function About() {
         <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-28">
           <div>
             <p className="eyebrow text-lime">One company, two halves</p>
-            <h2 className="type-h2-caps mt-6">A practice and a movement.</h2>
+            <h2 className="type-h3-caps-light mt-6">A practice and a movement.</h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
               Be Human AI is our commercial practice: AI readiness, governance, agents and
               leadership work for organizations preparing for the AI era.

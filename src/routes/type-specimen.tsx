@@ -2,7 +2,8 @@
  * `/type-specimen` — the G1 review instrument (S0.7, AC-4.3).
  *
  * This is NOT a site page. It exists so the proposed type scale can be approved
- * against real font rendering before Phase 4 touches any of the 47 call sites,
+ * against real font rendering, and to keep that scale reviewable after it was
+ * applied. It records what shipped, on both the size and the WEIGHT axis.
  * and it is DELETED in S8.2 once the scale is approved and applied. It is
  * `noindex, nofollow`, and it is absent from `sitemap[.]xml.ts`'s static list.
  *
@@ -44,7 +45,7 @@ interface Row {
   /** The utility class under review. */
   cls: string;
   /** Which of the three mockup voices this row belongs to. */
-  voice: 1 | 2 | 3 | 0;
+  voice: 1 | 2 | 3 | 4 | 0;
   /** The exemplar string, taken verbatim from a mockup wherever one exists. */
   sample: string;
   /** Where that string appears, so the reviewer can compare like with like. */
@@ -59,6 +60,11 @@ const VOICES = {
     face: "Work Sans 200/300",
     note: "does not exist on main",
   },
+  4: {
+    name: "Condensed light UPPERCASE",
+    face: "Oswald 200",
+    note: "what `display` actually is — 24 sites incl. the Wordmark",
+  },
   0: { name: "Body & supporting", face: "Work Sans 400/500", note: "" },
 } as const;
 
@@ -69,7 +75,7 @@ const ROWS: Row[] = [
     voice: 1,
     sample: "It is part of how you build one.",
     source:
-      "mockup 3 — the answering line under the big question. Also the page-hero step: the four page heroes disagreed (8.5 / 6.5 / 6 / 5.5rem) and now share this one.",
+      "mockup 3 — the answering line under the big question. Also the page-hero step: the page heroes disagreed (6.0 / 5.5 / 5.2 / 5.0rem) and now share it.",
   },
   {
     cls: "type-h2-caps",
@@ -89,12 +95,33 @@ const ROWS: Row[] = [
     sample: "It is about who we are as human beings and what kind of world we build next.",
     source: "mockup 2 — the subline beneath it",
   },
+  // Voice 4 — Oswald 200 UPPERCASE. This is what `display` has always been, and
+  // it had no home in the first draft of the scale. Without it, migrating
+  // `display`'s 24 call sites means restyling the Wordmark from 200 to 700.
+  {
+    cls: "type-hero-caps-light",
+    voice: 4,
+    sample: "The future is human.",
+    source: "the homepage hero — 8.5rem at Oswald 200, the largest type on the site",
+  },
+  {
+    cls: "type-h1-caps-light",
+    voice: 4,
+    sample: "Real stories. Real humans.",
+    source: "the page heroes — /about, /contact, /the-human-archive, /podcast",
+  },
+  {
+    cls: "type-h4-caps-light",
+    voice: 4,
+    sample: "The Be Human Company",
+    source: "the Wordmark's weight, shown at the step it renders on",
+  },
   {
     cls: "type-label-caps",
     voice: 1,
     sample: "The Human Archive",
     source:
-      "mockup 1 — the section opener above the lime rule. The fifth caps step: the `section-label` successor, added because its 20 call sites (0.75–1.125rem, Oswald 700, 0.08em) fit neither the eyebrow nor h4.",
+      "mockup 1 — the section opener above the lime rule. The `section-label` successor: its call sites (0.75–1.125rem, Oswald 700, 0.08em) fit neither the eyebrow nor h4.",
   },
 
   // Voice 2 — Oswald 300 sentence case. Currently impossible: the existing
@@ -383,8 +410,8 @@ function TypeSpecimen() {
         </SectionOpener>
 
         {/* The three voices, stated before they are shown. */}
-        <section className="mb-16 grid gap-6 md:grid-cols-3">
-          {([1, 2, 3] as const).map((v) => (
+        <section className="mb-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {([1, 2, 3, 4] as const).map((v) => (
             <div key={v} className="rounded-sm border border-hairline-dark p-5">
               <p className="eyebrow text-ink/40">Voice {v}</p>
               <div className="type-eyebrow-rule" />
@@ -399,12 +426,13 @@ function TypeSpecimen() {
         <section className="mb-20">
           <p className="eyebrow text-ink/50">The three voices, side by side</p>
           <div className="type-eyebrow-rule" />
-          <div className="mt-8 grid gap-10 lg:grid-cols-3">
+          <div className="mt-8 grid gap-10 lg:grid-cols-2 xl:grid-cols-4">
             <p className="type-h3-caps text-ink">This is bigger than AI.</p>
             <p className="type-h2-condensed text-ink">We are the Bridge Generation.</p>
             <p className="type-h2-prose text-ink">
               But what if your humanity is not the reward at the end of a good life?
             </p>
+            <p className="type-h3-caps-light text-ink">The future is human.</p>
           </div>
         </section>
 

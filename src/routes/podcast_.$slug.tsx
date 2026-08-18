@@ -345,7 +345,7 @@ function EpisodeNotFound() {
   return (
     <section className="section-cream">
       <div className="mx-auto max-w-[720px] px-6 py-24 text-center sm:px-8">
-        <h1 className="type-h3-caps">Episode not found</h1>
+        <h1 className="type-h3-caps-light">Episode not found</h1>
         <p className="mt-6 text-base leading-relaxed text-ink/80">
           We could not find that episode. It may have been moved, or the link may be mistyped.
         </p>

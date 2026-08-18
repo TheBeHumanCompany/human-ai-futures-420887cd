@@ -7,7 +7,7 @@
 > without regenerating this file fails the gate.
 
 > ### Which tree this describes
-> Branch `feat/site-restructure` at `9fa36d6adf3f`, working tree **dirty**.
+> Branch `feat/site-restructure` at `f2fc14ce6531`, working tree **dirty**.
 >
 > **The 47-site floor is a user decision measured against `main@a6a377a`** (Amendment 2,
 > decision 1). Verified: run against that tree this scanner returns `display` 24 ·
@@ -24,24 +24,24 @@
 
 | Scope | Call sites |
 |---|---|
-| The four AC-4.2 names (`display`, `display-strong`, `archive-question`, `section-label`) | **3** |
-| + `section-label-{dark,light,rule}` | **3** ← **the binding scope (AC-4.2b)** |
+| The four AC-4.2 names (`display`, `display-strong`, `archive-question`, `section-label`) | **0** |
+| + `section-label-{dark,light,rule}` | **0** ← **the binding scope (AC-4.2b)** |
 | + `eyebrow` (**explicitly OUT of scope**, Amendment 2 decision 1) | 68 |
-| `@utility` definitions in `src/styles.css` (deleted, not migrated) | 2 |
+| `@utility` definitions in `src/styles.css` (deleted, not migrated) | 1 |
 
 | Utility | Call sites | Definitions | In scope |
 |---|---|---|---|
-| `display` | 3 | 1 | yes |
+| `display` | 0 | 0 | yes |
 | `display-strong` | 0 | 0 | yes |
 | `archive-question` | 0 | 0 | yes |
 | `section-label` | 0 | 0 | yes |
 | `section-label-dark` | 0 | 0 | yes |
 | `section-label-light` | 0 | 0 | yes |
 | `section-label-rule` | 0 | 0 | yes |
-| `eyebrow` | 65 | 1 | **no** |
+| `eyebrow` | 68 | 1 | **no** |
 
-Files scanned (non-test `src/**/*.{ts,tsx}`): **119**.
-Files carrying at least one type-setting declaration: **49**.
+Files scanned (non-test `src/**/*.{ts,tsx}`): **121**.
+Files carrying at least one type-setting declaration: **50**.
 
 **One file is excluded**, `src/routes/type-specimen.tsx` (exclusion applied).
 It is the G1 review instrument and is deleted in S8.2. It necessarily *names* the
@@ -57,21 +57,27 @@ regressed to the defective form and the count silently drops by two.
 
 - `src/components/episode-player.tsx:139` — `eyebrow`
 
-## 2. Utility call sites — in scope (3)
+## 2. Utility call sites — in scope (0)
 
 | Site | Token | Max size | Proposed scale step |
 |---|---|---|---|
-| `src/routes/be-human-ai/index.tsx:52` | `display` | — | type-h?-caps (size set elsewhere — resolve at migration) |
-| `src/routes/be-human-ai/index.tsx:75` | `display` | — | type-h?-caps (size set elsewhere — resolve at migration) |
-| `src/routes/be-human-ai/index.tsx:100` | `display` | — | type-h?-caps (size set elsewhere — resolve at migration) |
 
-## 3. Utility call sites — `eyebrow`, out of scope (65)
+
+## 3. Utility call sites — `eyebrow`, out of scope (68)
 
 Listed for reconciliation only. **Phase 4 does not touch these** (Amendment 2,
 decision 1). `eyebrow` is extended in place rather than duplicated (V25).
 
 | Site | Token | Max size | Disposition |
 |---|---|---|---|
+| `src/components/blueprint.tsx:51` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/blueprint.tsx:68` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/blueprint.tsx:113` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/blueprint.tsx:126` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/blueprint.tsx:144` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/blueprint.tsx:212` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/blueprint.tsx:229` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/blueprint.tsx:359` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/social-section.tsx:110` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/episode-player.tsx:139` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/site-header.tsx:58` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
@@ -100,12 +106,7 @@ decision 1). `eyebrow` is extended in place rather than duplicated (V25).
 | `src/routes/why-we-exist.tsx:81` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/why-we-exist.tsx:96` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/why-we-exist.tsx:102` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/routes/be-human-ai/index.tsx:51` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/routes/be-human-ai/index.tsx:61` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/routes/be-human-ai/index.tsx:70` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/routes/be-human-ai/index.tsx:74` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/routes/be-human-ai/index.tsx:95` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/routes/be-human-ai/index.tsx:99` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/routes/be-human-ai/index.tsx:60` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/the-human-archive.tsx:28` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/the-human-archive.tsx:55` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/podcast.tsx:166` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
@@ -138,13 +139,13 @@ decision 1). `eyebrow` is extended in place rather than duplicated (V25).
 | `src/routes/about.tsx:45` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/about.tsx:57` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 
-## 4. Raw size declarations (175)
+## 4. Raw size declarations (167)
 
 Not part of the 47-occurrence utility floor, but migrated alongside it in S4.2 —
 these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 `the-new-human-era.tsx` and `be-human-ai.tsx`.
 
-### 4a. Arbitrary values `text-[…]` (28)
+### 4a. Arbitrary values `text-[…]` (27)
 
 | Site | Token | Max size | Proposed scale step |
 |---|---|---|---|
@@ -166,7 +167,6 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/routes/index.tsx:262` | `text-[15px]` | 0.938rem | type-body |
 | `src/routes/index.tsx:308` | `text-[11px]` | 0.688rem | type-body |
 | `src/routes/index.tsx:333` | `text-[13px]` | 0.813rem | type-body |
-| `src/routes/be-human-ai/index.tsx:52` | `text-[clamp(2.75rem,8vw,6.5rem)]` | 6.500rem | type-h1-prose |
 | `src/routes/human-archive.$slug.tsx:49` | `text-[9px]` | 0.563rem | type-body |
 | `src/routes/human-archive.$slug.tsx:52` | `text-[10px]` | 0.625rem | type-body |
 | `src/routes/human-archive.$slug.tsx:62` | `text-[12px]` | 0.750rem | type-body |
@@ -177,7 +177,7 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/routes/podcast_.$slug.tsx:244` | `text-[clamp(1.4rem,2.2vw,1.75rem)]` | 1.750rem | type-h3-prose |
 | `src/routes/podcast_.$slug.tsx:251` | `text-[1.0625rem]` | 1.063rem | type-body |
 
-### 4b. Tailwind named sizes (147)
+### 4b. Tailwind named sizes (140)
 
 | Site | Token | Max size | Proposed scale step |
 |---|---|---|---|
@@ -297,13 +297,6 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/routes/__root.tsx:52` | `text-sm` | 0.875rem | type-body |
 | `src/routes/__root.tsx:61` | `text-sm` | 0.875rem | type-body |
 | `src/routes/__root.tsx:67` | `text-sm` | 0.875rem | type-body |
-| `src/routes/be-human-ai/index.tsx:55` | `text-lg` | 1.125rem | type-body |
-| `src/routes/be-human-ai/index.tsx:75` | `text-3xl` | 1.875rem | type-h3-prose |
-| `src/routes/be-human-ai/index.tsx:75` | `lg:text-4xl` | 2.250rem | type-h3-prose |
-| `src/routes/be-human-ai/index.tsx:76` | `text-sm` | 0.875rem | type-body |
-| `src/routes/be-human-ai/index.tsx:81` | `text-xs` | 0.750rem | type-body |
-| `src/routes/be-human-ai/index.tsx:100` | `text-3xl` | 1.875rem | type-h3-prose |
-| `src/routes/be-human-ai/index.tsx:101` | `text-sm` | 0.875rem | type-body |
 | `src/routes/human-archive.$slug.tsx:65` | `text-base` | 1.000rem | type-body |
 | `src/routes/human-archive.$slug.tsx:65` | `sm:text-lg` | 1.125rem | type-body |
 | `src/routes/human-archive.$slug.tsx:71` | `sm:text-xs` | 0.750rem | type-body |
@@ -329,15 +322,14 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/routes/about.tsx:47` | `text-base` | 1.000rem | type-body |
 | `src/routes/about.tsx:51` | `text-base` | 1.000rem | type-body |
 
-## 5. `@utility` definitions in `src/styles.css` (2)
+## 5. `@utility` definitions in `src/styles.css` (1)
 
 Rule 4 keeps these in their own category so a definition is never counted as a
 call site. They are **deleted** in S4.2, not migrated.
 
 | Site | Token | Disposition |
 |---|---|---|
-| `src/styles.css:121` | `display` | deleted (definition, not a call site) |
-| `src/styles.css:129` | `eyebrow` | deleted (definition, not a call site) |
+| `src/styles.css:113` | `eyebrow` | deleted (definition, not a call site) |
 
 ## 6. The proposed scale — two registers, not one
 
