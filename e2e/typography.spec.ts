@@ -24,12 +24,12 @@ import { visitableSurfaces } from "../src/lib/surfaces.ts";
 
 const surfaces = visitableSurfaces();
 
-/** Where the site's breakpoints actually sit, plus the design reference. */
-const VIEWPORTS = [
-  { name: "mobile", width: 375, height: 780 },
-  { name: "tablet", width: 768, height: 1024 },
-  { name: "desktop", width: 1440, height: 900 },
-] as const;
+/**
+ * Viewports come from the Playwright PROJECTS, not from a loop in here.
+ * `playwright.config.ts` runs one project per entry in
+ * `scripts/verify/viewports.ts`, so looping again would run 3x3 combinations
+ * and — worse — report a width the page was never actually rendered at.
+ */
 
 test.describe("fixture floors", () => {
   test("the surface list is populated", () => {
@@ -39,76 +39,150 @@ test.describe("fixture floors", () => {
   });
 });
 
-for (const vp of VIEWPORTS) {
-  test.describe(`${vp.name} (${vp.width}px)`, () => {
-    for (const surface of surfaces) {
-      test(`${surface.path} does not overflow horizontally`, async ({ page }) => {
-        await page.setViewportSize({ width: vp.width, height: vp.height });
-        await page.goto(surface.path);
-        await page.evaluate(() => document.fonts.ready);
+for (const surface of surfaces) {
+  test(`${surface.path} does not overflow horizontally`, async ({ page }, testInfo) => {
+    const vp = { name: testInfo.project.name, width: page.viewportSize()?.width ?? 0 };
+    await page.goto(surface.path);
+    await page.evaluate(() => document.fonts.ready);
 
-        const overflow = await page.evaluate(() => {
-          const docWidth = document.documentElement.clientWidth;
-          // 1px of slack: sub-pixel layout rounding is not a regression.
-          const offenders: { tag: string; cls: string; right: number }[] = [];
-          for (const el of Array.from(document.body.querySelectorAll<HTMLElement>("*"))) {
-            const style = getComputedStyle(el);
-            if (style.position === "fixed" || style.overflowX === "auto") continue;
-            if (style.overflowX === "scroll" || style.visibility === "hidden") continue;
-            const r = el.getBoundingClientRect();
-            if (r.width === 0 || r.height === 0) continue;
-            if (r.right > docWidth + 1) {
-              offenders.push({
-                tag: el.tagName.toLowerCase(),
-                cls: el.className?.toString().slice(0, 90) ?? "",
-                right: Math.round(r.right),
-              });
+    const overflow = await page.evaluate(() => {
+      const docWidth = document.documentElement.clientWidth;
+      // 1px of slack: sub-pixel layout rounding is not a regression.
+      const offenders: { why: string; tag: string; cls: string; detail: string }[] = [];
+      for (const el of Array.from(document.body.querySelectorAll<HTMLElement>("*"))) {
+        const style = getComputedStyle(el);
+        if (style.position === "fixed" || style.overflowX === "auto") continue;
+        if (style.overflowX === "scroll" || style.visibility === "hidden") continue;
+        const r = el.getBoundingClientRect();
+        if (r.width === 0 || r.height === 0) continue;
+
+        // Two different overflows, and only reporting the first leaves the
+        // failure message empty in exactly the case that matters. A box can
+        // sit inside the viewport while its CONTENT does not: an oversized
+        // heading in a narrow grid column has a 260px box and 542px of
+        // text, so its `right` is fine and the page still scrolls.
+        if (r.right > docWidth + 1) {
+          offenders.push({
+            why: "box extends past the viewport",
+            tag: el.tagName.toLowerCase(),
+            cls: el.className?.toString().slice(0, 70) ?? "",
+            detail: `right ${Math.round(r.right)} > ${docWidth}`,
+          });
+        } else if (el.scrollWidth > el.clientWidth + 1 && el.clientWidth > 0) {
+          offenders.push({
+            why: "content wider than its box",
+            tag: el.tagName.toLowerCase(),
+            cls: el.className?.toString().slice(0, 70) ?? "",
+            detail: `content ${el.scrollWidth} > box ${el.clientWidth}`,
+          });
+        }
+      }
+      return { docWidth, scrollWidth: document.documentElement.scrollWidth, offenders };
+    });
+
+    expect(
+      overflow.scrollWidth,
+      `${surface.path} scrolls horizontally at ${vp.width}px. Offenders are collected in ` +
+        `document order, so the LAST are the innermost and the most likely cause: ` +
+        JSON.stringify(overflow.offenders.slice(-3)),
+    ).toBeLessThanOrEqual(overflow.docWidth + 1);
+  });
+
+  test(`${surface.path} names no utility that does not exist`, async ({ page }) => {
+    await page.goto(surface.path);
+    await page.evaluate(() => document.fonts.ready);
+
+    /**
+     * The failure this catches: an element keeps a perfectly well-formed class
+     * attribute naming a utility that has since been deleted, and silently
+     * renders as body text. Four elements did exactly that when `display` was
+     * removed while they still referenced it — on 13 surfaces — and nothing in
+     * the repo could see it, because the class name was spelled correctly.
+     *
+     * Detecting it by *appearance* does not work. A heading legitimately set in
+     * `eyebrow` is Work Sans at 11px, and one set in `type-label-caps` is 16px;
+     * both look exactly like "fell back to the body font at the body size".
+     * An earlier draft of this test used a size threshold and failed on 45
+     * correctly-styled headings — the fourth assertion in this build that would
+     * have gone red on correct work.
+     *
+     * So it asks the stylesheet instead: every typography utility named in the
+     * DOM must actually resolve to a rule. That has no false positives and
+     * catches deletions and typos alike.
+     */
+    const orphans = await page.evaluate(() => {
+      const defined = new Set<string>();
+      for (const sheet of Array.from(document.styleSheets)) {
+        let rules: CSSRuleList;
+        try {
+          rules = sheet.cssRules;
+        } catch {
+          continue; // cross-origin (the webfont sheet) — not ours to inspect
+        }
+        const collect = (list: CSSRuleList) => {
+          for (const rule of Array.from(list)) {
+            if (rule instanceof CSSStyleRule) {
+              for (const m of rule.selectorText.matchAll(/\.((?:[\w-]|\\.)+)/g)) {
+                defined.add(m[1].replace(/\\/g, ""));
+              }
+            } else if ("cssRules" in rule) {
+              collect((rule as CSSGroupingRule).cssRules);
             }
           }
-          return { docWidth, scrollWidth: document.documentElement.scrollWidth, offenders };
-        });
+        };
+        collect(rules);
+      }
 
-        expect(
-          overflow.scrollWidth,
-          `${surface.path} scrolls horizontally at ${vp.width}px; first offenders: ` +
-            JSON.stringify(overflow.offenders.slice(0, 3)),
-        ).toBeLessThanOrEqual(overflow.docWidth + 1);
-      });
+      // Only the names this consolidation governs. A bare Tailwind class that
+      // happens to be unused is not this test's business.
+      const governed = /^(type-|eyebrow$|display$|display-strong$|archive-question$|section-label)/;
+      const found: { cls: string; tag: string; text: string }[] = [];
+      for (const el of Array.from(document.querySelectorAll<HTMLElement>("*"))) {
+        for (const cls of Array.from(el.classList)) {
+          if (!governed.test(cls) || defined.has(cls)) continue;
+          found.push({
+            cls,
+            tag: el.tagName.toLowerCase(),
+            text: (el.innerText ?? "").trim().slice(0, 40),
+          });
+        }
+      }
+      return { definedCount: defined.size, found };
+    });
 
-      test(`${surface.path} has no unstyled heading`, async ({ page }) => {
-        await page.setViewportSize({ width: vp.width, height: vp.height });
-        await page.goto(surface.path);
-        await page.evaluate(() => document.fonts.ready);
+    // Floor: if the stylesheet could not be read at all, `defined` is empty and
+    // every class would look orphaned — or, with the check inverted, nothing
+    // ever would. Assert we actually parsed a stylesheet before trusting it.
+    expect(
+      orphans.definedCount,
+      `${surface.path}: no CSS rules were readable, so this check proves nothing`,
+    ).toBeGreaterThan(100);
 
-        const headings = await page.evaluate(() => {
-          const out: { text: string; family: string; size: number }[] = [];
-          for (const h of Array.from(document.querySelectorAll<HTMLElement>("h1,h2,h3,h4,h5,h6"))) {
-            if (!h.innerText.trim()) continue;
-            const s = getComputedStyle(h);
-            out.push({
-              text: h.innerText.trim().slice(0, 40),
-              family: s.fontFamily,
-              size: parseFloat(s.fontSize),
-            });
-          }
-          return out;
-        });
+    expect(
+      orphans.found,
+      `${surface.path}: class(es) name a utility with no CSS rule — deleted or misspelt`,
+    ).toEqual([]);
+  });
 
-        expect(headings.length, `${surface.path} must render headings`).toBeGreaterThanOrEqual(1);
+  test(`${surface.path} renders headings in a brand face`, async ({ page }) => {
+    await page.goto(surface.path);
+    await page.evaluate(() => document.fonts.ready);
 
-        // A heading left on a deleted utility keeps a valid class attribute and
-        // renders at the body's 16px in the body face. That is what four
-        // elements did after `display` was removed, and no assertion in the
-        // repo could see it — the class name was still spelled correctly.
-        const unstyled = headings.filter(
-          (h) => !/Oswald|Work Sans/.test(h.family) || h.size <= 16.5,
-        );
-        expect(
-          unstyled,
-          `${surface.path}: heading(s) resolved to body text — a deleted or misspelt utility`,
-        ).toEqual([]);
-      });
-    }
+    const headings = await page.evaluate(() =>
+      Array.from(document.querySelectorAll<HTMLElement>("h1,h2,h3,h4,h5,h6"))
+        .filter((h) => h.innerText.trim())
+        .map((h) => ({
+          text: h.innerText.trim().slice(0, 40),
+          family: getComputedStyle(h).fontFamily,
+        })),
+    );
+
+    expect(headings.length, `${surface.path} must render headings`).toBeGreaterThanOrEqual(1);
+
+    // Size is deliberately not asserted here — see above. Family is safe:
+    // every heading on this site is Oswald or Work Sans by design.
+    const offFace = headings.filter((h) => !/Oswald|Work Sans/.test(h.family));
+    expect(offFace, `${surface.path}: heading(s) not in a brand face`).toEqual([]);
   });
 }
 
@@ -119,28 +193,24 @@ test.describe("lines that must not wrap", () => {
    * a mobile-only regression that the desktop-resolved static sweep is blind to
    * by construction, since that sweep deliberately skips `max-*` variants.
    */
-  test("the footer strapline stays on one line at every viewport", async ({ page }) => {
-    for (const vp of VIEWPORTS) {
-      await page.setViewportSize({ width: vp.width, height: vp.height });
-      await page.goto("/");
-      await page.evaluate(() => document.fonts.ready);
+  test("the footer strapline stays on one line", async ({ page }) => {
+    const width = page.viewportSize()?.width ?? 0;
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
 
-      const strapline = page.getByText("The future belongs to the most human", { exact: false });
-      await expect(strapline, `strapline missing at ${vp.width}px`).toBeVisible();
+    const strapline = page.getByText("The future belongs to the most human", { exact: false });
+    await expect(strapline, `strapline missing at ${width}px`).toBeVisible();
 
-      const rows = await strapline.evaluate((el) => {
-        const s = getComputedStyle(el);
-        const lineHeight =
-          s.lineHeight === "normal" ? parseFloat(s.fontSize) * 1.2 : parseFloat(s.lineHeight);
-        const inner =
-          el.getBoundingClientRect().height -
-          parseFloat(s.paddingTop) -
-          parseFloat(s.paddingBottom);
-        return Math.round(inner / lineHeight);
-      });
+    const rows = await strapline.evaluate((el) => {
+      const s = getComputedStyle(el);
+      const lineHeight =
+        s.lineHeight === "normal" ? parseFloat(s.fontSize) * 1.2 : parseFloat(s.lineHeight);
+      const inner =
+        el.getBoundingClientRect().height - parseFloat(s.paddingTop) - parseFloat(s.paddingBottom);
+      return Math.round(inner / lineHeight);
+    });
 
-      expect(rows, `strapline wrapped onto ${rows} rows at ${vp.width}px`).toBeLessThanOrEqual(1);
-    }
+    expect(rows, `strapline wrapped onto ${rows} rows at ${width}px`).toBeLessThanOrEqual(1);
   });
 });
 
@@ -152,7 +222,6 @@ test.describe("lines that must not wrap", () => {
  */
 test.describe("AC-4.3 — the specimen measures what it claims", () => {
   test("every row reports five real computed values", async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
     const res = await page.goto("/type-specimen");
     expect(res?.ok()).toBe(true);
     await page.evaluate(() => document.fonts.ready);

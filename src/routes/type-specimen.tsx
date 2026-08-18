@@ -326,10 +326,15 @@ function ViewportFrames() {
       {VIEWPORTS.map((vp) => {
         const scale = vp.width > 460 ? 460 / vp.width : 1;
         return (
-          <figure key={vp.width} data-viewport={vp.width}>
+          <figure key={vp.width} data-viewport={vp.width} className="min-w-0">
             <figcaption className="eyebrow mb-3 text-ink/50">{vp.label}</figcaption>
+            {/* The iframe is absolutely positioned. `transform: scale()` shrinks
+                what you SEE but not what the element occupies in layout, so a
+                1440px frame in normal flow makes this whole page scroll
+                sideways on a phone — which the browser suite caught. Taking it
+                out of flow lets the wrapper own the footprint. */}
             <div
-              className="overflow-hidden rounded-lg border border-hairline-dark bg-cream"
+              className="relative w-full overflow-hidden rounded-lg border border-hairline-dark bg-cream"
               style={{ height: 520 }}
             >
               <iframe
@@ -338,6 +343,9 @@ function ViewportFrames() {
                 width={vp.width}
                 height={Math.round(520 / scale)}
                 style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
                   width: vp.width,
                   height: Math.round(520 / scale),
                   border: 0,
