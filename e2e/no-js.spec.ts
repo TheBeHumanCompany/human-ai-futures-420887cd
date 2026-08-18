@@ -95,14 +95,32 @@ test.describe("AC-6.9b — progressive disclosure without JavaScript", () => {
   });
 
   test("the nested disclosures inside them behave the same way", async ({ page }) => {
+    // This one opens 7 sections and then reads, clicks and re-asserts on 9+
+    // nested disclosures — roughly 40 browser round-trips, run 4-way parallel
+    // against a dev server. Playwright's 30s default was not enough and the
+    // suite failed intermittently on `locator.click: Test timeout exceeded`,
+    // which reads like a broken page rather than a slow test.
+    //
+    // Raised rather than retried on purpose: a `retries` setting would have
+    // hidden this behind a green "flaky" label without anyone learning that
+    // the budget, not the page, was the problem.
+    test.setTimeout(120_000);
     await page.goto(BLUEPRINT);
 
     // Open every section first. A nested <details> inside a closed parent is
     // not rendered, so it cannot be clicked — and a test that tried would fail
     // on actionability rather than on the property it meant to check.
-    const sections = page.locator("details[data-section-id]");
-    for (let i = 0; i < (await sections.count()); i += 1) {
-      await sections.nth(i).locator("summary").first().click();
+    // Resolve the whole set ONCE, then click the resolved handles.
+    //
+    // `sections.nth(i)` inside the loop re-queries the document on every
+    // iteration, and each click changes it — opening a <details> re-lays out
+    // its subtree, so the element at index i is not necessarily the element
+    // that was at index i a moment ago. Playwright then fails with "element
+    // was detached from the DOM, retrying". Measured before this change: 3
+    // consecutive runs gave 2, 0 and 1 failures. It is not HMR — the dev log
+    // shows no reloads during the runs, and no src/ file changed.
+    for (const summary of await page.locator("details[data-section-id] > summary").all()) {
+      await summary.click();
     }
 
     const nested = page.locator("details:not([data-section-id])");
@@ -112,8 +130,11 @@ test.describe("AC-6.9b — progressive disclosure without JavaScript", () => {
     // Zero here would mean the page had quietly flattened.
     expect(count, "nested disclosures must exist").toBeGreaterThanOrEqual(9);
 
-    for (let i = 0; i < count; i += 1) {
-      const item = nested.nth(i);
+    // Same reason as above: resolve once, then work through stable handles.
+    const items = await nested.all();
+    expect(items.length, "the resolved set matches the counted set").toBe(count);
+
+    for (const [i, item] of items.entries()) {
       expect(
         (await bodyTextOf(item)).length,
         `nested disclosure ${i} must carry content while closed`,

@@ -28,7 +28,13 @@ import { VIEWPORTS } from "./scripts/verify/viewports.ts";
  * both ends, so a single-viewport check is close to no check at all.
  */
 
-const BASE_URL = process.env.E2E_BASE_URL ?? "http://localhost:3000";
+// 8080, not 3000. `bun run dev` is Lovable's vite-tanstack config, which serves
+// on 8080 and falls back to 8081+ when that is taken. Pointed at 3000 the
+// browser suite spent 120s waiting for a server that was already running on
+// another port and then failed as a timeout — a failure that looks like a
+// broken app rather than a wrong URL. Override with E2E_BASE_URL for staging
+// or production.
+const BASE_URL = process.env.E2E_BASE_URL ?? "http://localhost:8080";
 
 export default defineConfig({
   testDir: "./e2e",

@@ -28,6 +28,7 @@ import {
   MAX_ATTEMPTS,
   listPointerFiles,
   originFor,
+  pointerSet,
   readPointer,
   recoverOne,
   targetNameFor,
@@ -214,10 +215,13 @@ describe("the pointer set is discovered, never hardcoded", () => {
     // The floor that keeps every assertion above from being vacuous against
     // this repo: if the glob broke, "all assets recovered" would be true of
     // zero assets.
-    const files = listPointerFiles();
-    expect(files.length).toBeGreaterThanOrEqual(40);
-    for (const f of files) {
-      const p = readPointer(f);
+    // Reads whichever source still exists. AC-1.4 deletes the `*.asset.json`
+    // files in Phase 1, after which the archive at docs/asset-pointers.json is
+    // the pointer set — so a test that globbed only the files would go from
+    // asserting 46 pointers to asserting none, and pass either way.
+    const { pointers } = pointerSet();
+    expect(pointers.length).toBeGreaterThanOrEqual(40);
+    for (const p of pointers) {
       expect(p.asset_id).toMatch(/^[0-9a-f-]{36}$/);
       expect(p.size).toBeGreaterThan(0);
       expect(p.content_type).toMatch(/^image\//);
@@ -261,8 +265,8 @@ describe("the committed manifest and report agree with the pointer set", () => {
       source?: string;
       provenance?: string;
     }>;
-    const expected = listPointerFiles()
-      .map((f) => targetNameFor(f))
+    const expected = pointerSet()
+      .pointers.map((p) => p._target_filename ?? p.original_filename)
       .sort();
     const recovered = manifest.filter((e) => e.source !== "supplied");
     expect(recovered.map((e) => e.filename).sort()).toEqual(expected);
@@ -298,7 +302,7 @@ describe("the committed manifest and report agree with the pointer set", () => {
     // names supplied assets, which have no pointer.
     const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as Array<{ filename: string }>;
     expect(report.length).toBe(manifest.length);
-    expect(report.length).toBeGreaterThanOrEqual(listPointerFiles().length);
+    expect(report.length).toBeGreaterThanOrEqual(pointerSet().pointers.length);
     const failed = report.filter((r) => r.status === "failed");
     expect(failed.map((f) => f.asset_id)).toEqual([]);
   });
