@@ -101,7 +101,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;700;800&family=Caveat:wght@500&family=Work+Sans:wght@300;400;500;600&display=swap",
+        // Work Sans 200 backs the type scale's `-prose` register (the largest
+        // reflective statements in Maya's mockups). Adding it costs nothing:
+        // Google serves Work Sans as a variable font, so `wght@200;300;400;500;600`
+        // and `wght@300;400;500;600` return a byte-identical set of woff2 URLs —
+        // the multiple URLs are `unicode-range` subsets, not per-weight files.
+        // The same is true of Oswald, which is why its weight list is not trimmed.
+        href: "https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;700;800&family=Caveat:wght@500&family=Work+Sans:wght@200;300;400;500;600&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],

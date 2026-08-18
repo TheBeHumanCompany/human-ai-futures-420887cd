@@ -56,13 +56,9 @@ function ArchiveProfile() {
         </div>
 
         <div>
-          <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
-            The Human Archive
-          </p>
-          <div className="section-label-rule" aria-hidden />
-          <h1 className="archive-question mt-6 text-[clamp(2.25rem,5vw,4rem)] text-ink">
-            {person.name}
-          </h1>
+          <p className="type-label-caps text-ink">The Human Archive</p>
+          <div className="type-eyebrow-rule" aria-hidden />
+          <h1 className="type-h2-caps mt-6 text-ink">{person.name}</h1>
           <p className="mt-3 text-[12px] uppercase tracking-[0.16em] text-ink/55">
             {person.location}
           </p>
@@ -86,9 +82,7 @@ function MissingProfile() {
   return (
     <section className="section-cream">
       <div className="mx-auto max-w-[1400px] px-6 py-24 sm:px-8">
-        <h1 className="archive-question text-[clamp(2rem,5vw,3.5rem)] text-ink">
-          Archive entry not found
-        </h1>
+        <h1 className="type-h2-caps text-ink">Archive entry not found</h1>
         <Link
           to="/the-human-archive"
           className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-ink transition-opacity hover:opacity-90 sm:text-xs"

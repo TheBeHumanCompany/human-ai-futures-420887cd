@@ -27,7 +27,6 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         params={{ slug }}
         aria-label={`Listen to ${displayTitle(episode.title)}`}
         className="group relative block aspect-[4/5] overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:h-[21rem]"
-
       >
         <img
           src={episodeImage(episode)}
@@ -49,7 +48,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
           <span>{episodeDuration(episode)}</span>
         </p>
 
-        <h3 className="display mt-4 max-w-[26ch] text-[clamp(1.3rem,1.8vw,1.7rem)] font-semibold leading-[1.16] text-ink">
+        <h3 className="type-h4-caps mt-4 max-w-[26ch] text-ink">
           <Link to="/podcast/$slug" params={{ slug }} className="hover:text-ink/70">
             {displayTitle(episode.title)}
           </Link>
@@ -74,7 +73,10 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
           <span className="flex size-9 items-center justify-center rounded-full bg-ink text-cream">
             <Play className="size-3.5 translate-x-px" aria-hidden />
           </span>
-          Listen to episode <span aria-hidden className="text-lime-dark">→</span>
+          Listen to episode{" "}
+          <span aria-hidden className="text-lime-dark">
+            →
+          </span>
         </Link>
       </div>
     </article>

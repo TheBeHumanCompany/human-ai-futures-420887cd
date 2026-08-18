@@ -26,7 +26,7 @@ function Archive() {
       <section className="section-cream border-b border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
           <p className="eyebrow text-ink/50">The Human Archive</p>
-          <h1 className="display mt-6 text-[clamp(2.75rem,8vw,6rem)] text-ink">
+          <h1 className="type-h1-caps mt-6 text-ink">
             Real stories.
             <br />
             Real humans.
@@ -51,7 +51,7 @@ function Archive() {
                 className="aspect-[4/5] w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
               />
               <figcaption className="mt-4">
-                <p className="display text-2xl">{person.name}</p>
+                <p className="type-h3-caps">{person.name}</p>
                 <p className="eyebrow mt-1 text-muted-foreground">{person.location}</p>
               </figcaption>
             </figure>

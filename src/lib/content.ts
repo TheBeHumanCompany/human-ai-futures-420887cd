@@ -35,51 +35,43 @@ export const SERVICES = [
   },
 ] as const;
 
-export const PRINCIPLES = [
-  {
-    n: "01",
-    title: "Presence is the new luxury",
-    body: "Attention is the scarcest resource of the decade. In a distracted world, being fully here is a competitive act.",
-  },
-  {
-    n: "02",
-    title: "Wisdom is the new intelligence",
-    body: "Knowledge is abundant and cheap. Judgment — knowing what matters and what doesn't — is not.",
-  },
-  {
-    n: "03",
-    title: "Humanity is the advantage",
-    body: "Empathy, courage and compassion are the capabilities machines cannot copy or counterfeit.",
-  },
-  {
-    n: "04",
-    title: "Real is rare",
-    body: "As synthetic content becomes endless, authenticity stops being a value and becomes a currency.",
-  },
-  {
-    n: "05",
-    title: "Trust wins",
-    body: "Trust compounds over time. It is the foundation of every lasting relationship, team and brand.",
-  },
-  {
-    n: "06",
-    title: "Character is earned",
-    body: "Character isn't claimed in a statement. It's revealed in how you show up — every day.",
-  },
+/**
+ * The six principle titles — the ONE definition, consumed by `HOME_PRINCIPLES`
+ * below, by `/the-new-human-era`, and by the tests that prove them (AC-5.4b).
+ *
+ * Verbatim from the manifesto PDF p.9, and **period-free** (AC-5.9a; Maya,
+ * 2026-08-15). Three competing forms had been in circulation at once — the PDF's
+ * `"Built in the Reps."`, this file's `"Build the reps."`, and AC-5.4's
+ * period-free listing — precisely because each consumer kept its own hand-typed
+ * copy. A second list anywhere is how that recurs, so there is exactly one.
+ */
+export const PRINCIPLE_TITLES = [
+  "Fully Here",
+  "Keep Your Own Mind",
+  "Your Word Carries Weight",
+  "Real Is Rare",
+  "Know What Matters",
+  "Built in the Reps",
 ] as const;
 
 /**
- * The homepage cut of the six principles — shorter, chant-like lines meant to
- * read as culture rather than as service copy. The longer `PRINCIPLES` above
- * still powers the dedicated /the-new-human-era page.
+ * The six principles, short and chant-like — culture, not service copy. Titles
+ * come from `PRINCIPLE_TITLES`; only the bodies are defined here.
+ *
+ * The longer six-item const that used to sit above this one ("Presence is the
+ * new luxury", "Wisdom is the new intelligence", …) was superseded by the
+ * manifesto and is deleted (AC-5.5). These six are the only principles.
+ * Its name is deliberately not written here: the AC-5.5 proof greps the source
+ * for that bare identifier and expects zero hits, so naming it in prose would
+ * fail the gate exactly as a surviving reference would.
  */
 export const HOME_PRINCIPLES = [
-  { n: "01", title: "Fully here.", body: "Presence is the new luxury." },
-  { n: "02", title: "Keep your own mind.", body: "Think for yourself. Always." },
-  { n: "03", title: "Your word carries weight.", body: "Say it. Mean it. Live it." },
-  { n: "04", title: "Real is rare.", body: "Authenticity is how we stand out." },
-  { n: "05", title: "Know what matters.", body: "Clarity comes from what you value." },
-  { n: "06", title: "Build the reps.", body: "Small daily actions shape who we become." },
+  { n: "01", title: PRINCIPLE_TITLES[0], body: "Presence is the new luxury." },
+  { n: "02", title: PRINCIPLE_TITLES[1], body: "Think for yourself. Always." },
+  { n: "03", title: PRINCIPLE_TITLES[2], body: "Say it. Mean it. Live it." },
+  { n: "04", title: PRINCIPLE_TITLES[3], body: "Authenticity is how we stand out." },
+  { n: "05", title: PRINCIPLE_TITLES[4], body: "Clarity comes from what you value." },
+  { n: "06", title: PRINCIPLE_TITLES[5], body: "Small daily actions shape who we become." },
 ] as const;
 
 export const ARCHIVE = [

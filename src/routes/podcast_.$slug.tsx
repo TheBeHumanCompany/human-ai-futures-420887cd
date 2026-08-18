@@ -147,8 +147,7 @@ function displayTitle(title: string): string {
  * Rendered as a solid lime tag with black ink text to match the highlighted
  * labels used elsewhere on the site (e.g. "LATEST EPISODE", episode numbers).
  */
-const SECTION_HEADING =
-  "section-label w-fit bg-lime px-2.5 py-1.5 text-ink text-xs";
+const SECTION_HEADING = "type-label-caps w-fit bg-lime px-2.5 py-1.5 text-ink";
 
 function EpisodePage() {
   const { episode, related }: EpisodeLoaderData = Route.useLoaderData();
@@ -245,9 +244,7 @@ function EpisodePage() {
               <h2 className="mt-3 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                 {episode.guestName}
               </h2>
-              {profile.role && (
-                <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>
-              )}
+              {profile.role && <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>}
               {/* Sanity first, the on-file profile only as a fallback — and
                   nothing at all when neither exists. No filler. */}
               {(episode.guestBio ?? profile.bio) && (
@@ -264,7 +261,7 @@ function EpisodePage() {
           <div className="mx-auto max-w-[1400px] px-5 pb-12 sm:px-8">
             <div className="border-t border-hairline-dark pt-8">
               <div className="flex flex-wrap items-baseline justify-between gap-5">
-                <p className="section-label section-label-light text-xs">More episodes</p>
+                <p className="type-label-caps text-ink">More episodes</p>
                 <Link
                   to="/podcast"
                   className="eyebrow link-underline inline-flex items-center gap-2 text-ink/70 hover:text-ink"
@@ -300,7 +297,6 @@ function EpisodePage() {
           </div>
         )}
       </section>
-
     </>
   );
 }
@@ -349,7 +345,7 @@ function EpisodeNotFound() {
   return (
     <section className="section-cream">
       <div className="mx-auto max-w-[720px] px-6 py-24 text-center sm:px-8">
-        <h1 className="display text-3xl sm:text-4xl">Episode not found</h1>
+        <h1 className="type-h3-caps">Episode not found</h1>
         <p className="mt-6 text-base leading-relaxed text-ink/80">
           We could not find that episode. It may have been moved, or the link may be mistyped.
         </p>
