@@ -2,7 +2,7 @@
   "generatedBy": "scripts/type-inventory.ts",
   "scannerSha256": "641e7fdd57606f57f327a3347072f7e99c3746ba360184b1cf72dc2080b92e42",
   "provenance": {
-    "head": "2292d77577579d25b7c5e112a9f445fe3175c6c3",
+    "head": "ae4d57430779b5d356eaf7809e841746b94e3c88",
     "branch": "feat/site-restructure",
     "workingTreeDirty": true,
     "mergeBaseWithPlanBase": "a6a377abeaa262f4f245766f3b00a31e9704f8f8"
@@ -16,9 +16,9 @@
     "utilityDefinitions": 1
   },
   "rawSizeDeclarations": {
-    "arbitrary": 26,
+    "arbitrary": 27,
     "tailwindNamed": 148,
-    "total": 174
+    "total": 175
   },
   "filesScanned": 121,
   "filesWithTypeDeclarations": 50,
@@ -431,12 +431,12 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 44,
-      "token": "text-sm",
-      "raw": "text-sm",
-      "category": "tailwind-size",
-      "maxRem": 0.875,
-      "proposed": "type-body"
+      "line": 43,
+      "token": "text-[clamp(1.45rem,5.6vw,1.95rem)]",
+      "raw": "max-sm:text-[clamp(1.45rem,5.6vw,1.95rem)]",
+      "category": "arbitrary-size",
+      "maxRem": 1.95,
+      "proposed": "type-h3-prose"
     },
     {
       "file": "src/components/site-footer.tsx",
@@ -449,7 +449,16 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 57,
+      "line": 58,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 64,
       "token": "text-2xl",
       "raw": "text-2xl",
       "category": "tailwind-size",
@@ -458,7 +467,7 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 61,
+      "line": 68,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -467,7 +476,7 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 65,
+      "line": 72,
       "token": "text-sm",
       "raw": "text-sm",
       "category": "tailwind-size",
@@ -476,7 +485,7 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 74,
+      "line": 81,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -485,7 +494,7 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 82,
+      "line": 89,
       "token": "text-sm",
       "raw": "text-sm",
       "category": "tailwind-size",
@@ -494,7 +503,7 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 92,
+      "line": 99,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -503,7 +512,7 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 93,
+      "line": 100,
       "token": "text-sm",
       "raw": "text-sm",
       "category": "tailwind-size",
@@ -512,7 +521,7 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 109,
+      "line": 116,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -521,7 +530,7 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 110,
+      "line": 117,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -2114,7 +2123,7 @@
     },
     {
       "file": "src/routes/the-new-human-era.tsx",
-      "line": 115,
+      "line": 116,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -2123,7 +2132,7 @@
     },
     {
       "file": "src/routes/the-new-human-era.tsx",
-      "line": 154,
+      "line": 155,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -2132,7 +2141,7 @@
     },
     {
       "file": "src/routes/the-new-human-era.tsx",
-      "line": 245,
+      "line": 246,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -2141,7 +2150,7 @@
     },
     {
       "file": "src/routes/the-new-human-era.tsx",
-      "line": 721,
+      "line": 722,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",

@@ -29,6 +29,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Children, isValidElement, cloneElement, type ReactNode, type ReactElement } from "react";
 
+import archiveStill from "@/assets/human-archive-still.webp";
 import { ARCHIVE, HOME_PRINCIPLES } from "@/lib/content";
 
 export const Route = createFileRoute("/the-new-human-era")({
@@ -739,6 +740,18 @@ function NewHumanEra() {
         <Opener label="What we are actually building" tone="ink" />
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
+            {/* A Human Archive still. Rendered at its native 738px cap rather
+                than stretched to the column: the source is a video frame, and
+                upscaling it would read as a defect where a little softness at
+                natural size reads as documentary. */}
+            <img
+              src={archiveStill}
+              alt="A young girl shelters under a rainbow umbrella at a street gathering, looking down at a pin held in an adult's hand."
+              width={738}
+              height={955}
+              loading="lazy"
+              className="mb-10 w-full max-w-[460px] rounded-xl object-cover"
+            />
             <h2 className="type-h2-prose">
               We are not here to add more to your life. We are here to develop who you are being.
             </h2>

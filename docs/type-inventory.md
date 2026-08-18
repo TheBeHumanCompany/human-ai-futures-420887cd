@@ -7,7 +7,7 @@
 > without regenerating this file fails the gate.
 
 > ### Which tree this describes
-> Branch `feat/site-restructure` at `2292d7757757`, working tree **dirty**.
+> Branch `feat/site-restructure` at `ae4d57430779`, working tree **dirty**.
 >
 > **The 47-site floor is a user decision measured against `main@a6a377a`** (Amendment 2,
 > decision 1). Verified: run against that tree this scanner returns `display` 24 ·
@@ -86,11 +86,11 @@ decision 1). `eyebrow` is extended in place rather than duplicated (V25).
 | `src/components/site-header.tsx:255` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/site-header.tsx:289` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/episode-media-card.tsx:97` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/site-footer.tsx:61` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/site-footer.tsx:74` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/site-footer.tsx:92` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/site-footer.tsx:109` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/site-footer.tsx:110` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/site-footer.tsx:68` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/site-footer.tsx:81` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/site-footer.tsx:99` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/site-footer.tsx:116` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/site-footer.tsx:117` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/pillar-page.tsx:48` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/pillar-page.tsx:74` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/pillar-page.tsx:90` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
@@ -112,10 +112,10 @@ decision 1). `eyebrow` is extended in place rather than duplicated (V25).
 | `src/routes/podcast.tsx:208` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/podcast.tsx:217` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/podcast.tsx:287` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/routes/the-new-human-era.tsx:115` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/routes/the-new-human-era.tsx:154` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/routes/the-new-human-era.tsx:245` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/routes/the-new-human-era.tsx:721` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/routes/the-new-human-era.tsx:116` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/routes/the-new-human-era.tsx:155` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/routes/the-new-human-era.tsx:246` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/routes/the-new-human-era.tsx:722` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/contact.tsx:33` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/contact.tsx:43` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/contact.tsx:47` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
@@ -138,13 +138,13 @@ decision 1). `eyebrow` is extended in place rather than duplicated (V25).
 | `src/routes/about.tsx:45` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/about.tsx:57` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 
-## 4. Raw size declarations (174)
+## 4. Raw size declarations (175)
 
 Not part of the 47-occurrence utility floor, but migrated alongside it in S4.2 —
 these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 `the-new-human-era.tsx` and `be-human-ai.tsx`.
 
-### 4a. Arbitrary values `text-[…]` (26)
+### 4a. Arbitrary values `text-[…]` (27)
 
 | Site | Token | Max size | Proposed scale step |
 |---|---|---|---|
@@ -153,6 +153,7 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/components/ui/form.tsx:131` | `text-[0.8rem]` | 0.800rem | type-body |
 | `src/components/ui/form.tsx:153` | `text-[0.8rem]` | 0.800rem | type-body |
 | `src/components/episode-media-card.tsx:53` | `text-[0.7rem]` | 0.700rem | type-body |
+| `src/components/site-footer.tsx:43` | `max-sm:text-[clamp(1.45rem,5.6vw,1.95rem)]` | 1.950rem | type-h3-prose |
 | `src/components/featured-episode.tsx:36` | `text-[0.7rem]` | 0.700rem | type-body |
 | `src/components/featured-episode.tsx:45` | `text-[0.7rem]` | 0.700rem | type-body |
 | `src/components/human-archive-section.tsx:81` | `text-[9.5px]` | 0.594rem | type-body |
@@ -256,12 +257,12 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/components/ui/context-menu.tsx:164` | `text-xs` | 0.750rem | type-body |
 | `src/components/episode-media-card.tsx:94` | `text-sm` | 0.875rem | type-body |
 | `src/components/episode-media-card.tsx:96` | `text-sm` | 0.875rem | type-body |
-| `src/components/site-footer.tsx:44` | `text-sm` | 0.875rem | type-body |
 | `src/components/site-footer.tsx:51` | `text-sm` | 0.875rem | type-body |
-| `src/components/site-footer.tsx:57` | `text-2xl` | 1.500rem | type-h4-prose |
-| `src/components/site-footer.tsx:65` | `text-sm` | 0.875rem | type-body |
-| `src/components/site-footer.tsx:82` | `text-sm` | 0.875rem | type-body |
-| `src/components/site-footer.tsx:93` | `text-sm` | 0.875rem | type-body |
+| `src/components/site-footer.tsx:58` | `text-sm` | 0.875rem | type-body |
+| `src/components/site-footer.tsx:64` | `text-2xl` | 1.500rem | type-h4-prose |
+| `src/components/site-footer.tsx:72` | `text-sm` | 0.875rem | type-body |
+| `src/components/site-footer.tsx:89` | `text-sm` | 0.875rem | type-body |
+| `src/components/site-footer.tsx:100` | `text-sm` | 0.875rem | type-body |
 | `src/components/podcast-degraded.tsx:24` | `text-sm` | 0.875rem | type-body |
 | `src/components/podcast-degraded.tsx:26` | `text-3xl` | 1.875rem | type-h3-prose |
 | `src/components/podcast-degraded.tsx:26` | `sm:text-4xl` | 2.250rem | type-h3-prose |
