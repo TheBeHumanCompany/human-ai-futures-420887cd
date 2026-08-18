@@ -364,12 +364,36 @@
   text-transform: uppercase;
 }
 
+/* The company lockup, and only the company lockup.
+ *
+ * A wordmark is designed around its letterspacing, so it does not belong on a
+ * general heading step. On `main` it was `display text-xl font-bold uppercase
+ * tracking-tight sm:text-2xl`, which resolves to Oswald 700 at 1.25/1.5rem with
+ * **negative** tracking and a 0.92 line-height. Putting it on `type-h4-caps`
+ * preserved the weight but moved tracking from -0.025em to +0.02em and
+ * line-height from 0.92 to 1.18 — a looser lockup on all 13 surfaces.
+ *
+ * Giving it its own step means no competing Tailwind utility sits beside it,
+ * so nobody "cleans up" a `tracking-tight` that was load-bearing.
+ */
+@utility type-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
 /* The `section-label` successor: a small, tightly-tracked uppercase label that
    sits above a lime rule. Bold only — every one of its call sites was 700. */
 @utility type-label-caps {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(0.8125rem, 1vw, 1rem);
+  /* The preferred term is what decides the rendered size at 1440px, not the
+     ceiling. At `1vw` this resolved to 0.90rem and cut the largest section
+     labels by 20% — caught by the S4.3 sweep, not by any assertion. */
+  font-size: clamp(0.8125rem, 1.1vw, 1.0625rem);
   line-height: 1;
   letter-spacing: 0.08em;
   text-transform: uppercase;

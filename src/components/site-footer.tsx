@@ -31,18 +31,9 @@ export function SiteFooter() {
   return (
     <footer className="section-ink border-t border-border">
       <div className="border-b border-border bg-lime py-5 text-center">
-        {/* Still on `display`, deliberately, and this is not an oversight.
-            `display` is Oswald 200 and this line carries no weight override, so
-            it renders light. The type scale's only uppercase register is 700.
-            Migrating it would not be a migration — it would be a restyle of a
-            line nobody asked to restyle, and it would pass every gate we have
-            while doing it. It moves once the scale grows a light uppercase
-            step; until then the correct target does not exist.
-
-            The `max-sm` size override is an overflow guard, not a bespoke step
-            reaching around the scale: this line is long enough to break across
-            three rows on a 375px screen, inside a band sized for one. */}
-        <p className="display px-4 text-4xl uppercase tracking-normal text-ink max-sm:px-2 max-sm:text-[clamp(1.45rem,5.6vw,1.95rem)] max-sm:leading-none max-sm:tracking-[-0.02em] sm:tracking-normal">
+        {/* The lime strapline. Oswald 200 preserved via the light caps register —
+            it was never a bold line, and `type-h3-caps` would have made it one. */}
+        <p className="type-h3-caps-light px-4 max-sm:px-2 text-ink">
           The future belongs to the most human
         </p>
       </div>

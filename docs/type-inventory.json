@@ -2,7 +2,7 @@
   "generatedBy": "scripts/type-inventory.ts",
   "scannerSha256": "641e7fdd57606f57f327a3347072f7e99c3746ba360184b1cf72dc2080b92e42",
   "provenance": {
-    "head": "5ccd0c883eea344457db6a09498ed07b9a625409",
+    "head": "2292d77577579d25b7c5e112a9f445fe3175c6c3",
     "branch": "feat/site-restructure",
     "workingTreeDirty": true,
     "mergeBaseWithPlanBase": "a6a377abeaa262f4f245766f3b00a31e9704f8f8"
@@ -11,14 +11,14 @@
     "binding": 0,
     "fourAc42Names": 0,
     "sectionLabelVariants": 0,
-    "eyebrowOutOfScope": 68,
-    "combinedWithEyebrow": 68,
+    "eyebrowOutOfScope": 67,
+    "combinedWithEyebrow": 67,
     "utilityDefinitions": 1
   },
   "rawSizeDeclarations": {
-    "arbitrary": 27,
-    "tailwindNamed": 140,
-    "total": 167
+    "arbitrary": 26,
+    "tailwindNamed": 148,
+    "total": 174
   },
   "filesScanned": 121,
   "filesWithTypeDeclarations": 50,
@@ -72,7 +72,7 @@
     },
     {
       "utility": "eyebrow",
-      "callSites": 68,
+      "callSites": 67,
       "definitions": 1,
       "inScope": false
     }
@@ -431,16 +431,25 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 38,
-      "token": "text-[clamp(1.45rem,5.6vw,1.95rem)]",
-      "raw": "max-sm:text-[clamp(1.45rem,5.6vw,1.95rem)]",
-      "category": "arbitrary-size",
-      "maxRem": 1.95,
-      "proposed": "type-h3-prose"
+      "line": 44,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 59,
+      "line": 51,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 57,
       "token": "text-2xl",
       "raw": "text-2xl",
       "category": "tailwind-size",
@@ -449,7 +458,7 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 63,
+      "line": 61,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -458,7 +467,16 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 76,
+      "line": 65,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 74,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -467,7 +485,16 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 94,
+      "line": 82,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 92,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -476,7 +503,16 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 111,
+      "line": 93,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 109,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -485,7 +521,7 @@
     },
     {
       "file": "src/components/site-footer.tsx",
-      "line": 112,
+      "line": 110,
       "token": "eyebrow",
       "raw": "eyebrow",
       "category": "utility-out-of-scope",
@@ -548,12 +584,30 @@
     },
     {
       "file": "src/components/social-section.tsx",
+      "line": 92,
+      "token": "text-lg",
+      "raw": "sm:text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/social-section.tsx",
+      "line": 92,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/social-section.tsx",
       "line": 110,
-      "token": "eyebrow",
-      "raw": "eyebrow",
-      "category": "utility-out-of-scope",
-      "maxRem": null,
-      "proposed": "eyebrow (unchanged — out of scope)"
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
     },
     {
       "file": "src/components/ui/accordion.tsx",

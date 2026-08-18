@@ -87,9 +87,7 @@ export function SocialSection() {
       <div className="mx-auto max-w-[1400px] px-6 py-16 text-center sm:px-8 sm:py-20 lg:py-24">
         {/* Intro */}
         <div className="mx-auto min-w-0 max-w-3xl">
-          <h2 className="display text-[clamp(2.5rem,8vw,4.75rem)] font-extralight uppercase leading-[0.95] tracking-[0.02em] text-foreground">
-            Follow the journey
-          </h2>
+          <h2 className="type-h2-caps-light text-foreground">Follow the journey</h2>
 
           <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-lime sm:mt-6 sm:text-lg lg:mt-8">
             Ideas. Conversations. Human stories.

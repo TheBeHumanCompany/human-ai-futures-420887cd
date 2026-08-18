@@ -7,7 +7,7 @@
 > without regenerating this file fails the gate.
 
 > ### Which tree this describes
-> Branch `feat/site-restructure` at `5ccd0c883eea`, working tree **dirty**.
+> Branch `feat/site-restructure` at `2292d7757757`, working tree **dirty**.
 >
 > **The 47-site floor is a user decision measured against `main@a6a377a`** (Amendment 2,
 > decision 1). Verified: run against that tree this scanner returns `display` 24 ·
@@ -26,7 +26,7 @@
 |---|---|
 | The four AC-4.2 names (`display`, `display-strong`, `archive-question`, `section-label`) | **0** |
 | + `section-label-{dark,light,rule}` | **0** ← **the binding scope (AC-4.2b)** |
-| + `eyebrow` (**explicitly OUT of scope**, Amendment 2 decision 1) | 68 |
+| + `eyebrow` (**explicitly OUT of scope**, Amendment 2 decision 1) | 67 |
 | `@utility` definitions in `src/styles.css` (deleted, not migrated) | 1 |
 
 | Utility | Call sites | Definitions | In scope |
@@ -38,7 +38,7 @@
 | `section-label-dark` | 0 | 0 | yes |
 | `section-label-light` | 0 | 0 | yes |
 | `section-label-rule` | 0 | 0 | yes |
-| `eyebrow` | 68 | 1 | **no** |
+| `eyebrow` | 67 | 1 | **no** |
 
 Files scanned (non-test `src/**/*.{ts,tsx}`): **121**.
 Files carrying at least one type-setting declaration: **50**.
@@ -63,7 +63,7 @@ regressed to the defective form and the count silently drops by two.
 |---|---|---|---|
 
 
-## 3. Utility call sites — `eyebrow`, out of scope (68)
+## 3. Utility call sites — `eyebrow`, out of scope (67)
 
 Listed for reconciliation only. **Phase 4 does not touch these** (Amendment 2,
 decision 1). `eyebrow` is extended in place rather than duplicated (V25).
@@ -78,7 +78,6 @@ decision 1). `eyebrow` is extended in place rather than duplicated (V25).
 | `src/components/blueprint.tsx:212` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/blueprint.tsx:229` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/blueprint.tsx:359` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/social-section.tsx:110` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/episode-player.tsx:139` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/site-header.tsx:58` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/site-header.tsx:83` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
@@ -87,11 +86,11 @@ decision 1). `eyebrow` is extended in place rather than duplicated (V25).
 | `src/components/site-header.tsx:255` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/site-header.tsx:289` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/episode-media-card.tsx:97` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/site-footer.tsx:63` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/site-footer.tsx:76` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/site-footer.tsx:94` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/site-footer.tsx:111` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
-| `src/components/site-footer.tsx:112` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/site-footer.tsx:61` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/site-footer.tsx:74` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/site-footer.tsx:92` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/site-footer.tsx:109` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
+| `src/components/site-footer.tsx:110` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/pillar-page.tsx:48` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/pillar-page.tsx:74` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/components/pillar-page.tsx:90` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
@@ -139,13 +138,13 @@ decision 1). `eyebrow` is extended in place rather than duplicated (V25).
 | `src/routes/about.tsx:45` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 | `src/routes/about.tsx:57` | `eyebrow` | — | eyebrow (unchanged — out of scope) |
 
-## 4. Raw size declarations (167)
+## 4. Raw size declarations (174)
 
 Not part of the 47-occurrence utility floor, but migrated alongside it in S4.2 —
 these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 `the-new-human-era.tsx` and `be-human-ai.tsx`.
 
-### 4a. Arbitrary values `text-[…]` (27)
+### 4a. Arbitrary values `text-[…]` (26)
 
 | Site | Token | Max size | Proposed scale step |
 |---|---|---|---|
@@ -154,7 +153,6 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/components/ui/form.tsx:131` | `text-[0.8rem]` | 0.800rem | type-body |
 | `src/components/ui/form.tsx:153` | `text-[0.8rem]` | 0.800rem | type-body |
 | `src/components/episode-media-card.tsx:53` | `text-[0.7rem]` | 0.700rem | type-body |
-| `src/components/site-footer.tsx:38` | `max-sm:text-[clamp(1.45rem,5.6vw,1.95rem)]` | 1.950rem | type-h3-prose |
 | `src/components/featured-episode.tsx:36` | `text-[0.7rem]` | 0.700rem | type-body |
 | `src/components/featured-episode.tsx:45` | `text-[0.7rem]` | 0.700rem | type-body |
 | `src/components/human-archive-section.tsx:81` | `text-[9.5px]` | 0.594rem | type-body |
@@ -177,10 +175,13 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/routes/podcast_.$slug.tsx:244` | `text-[clamp(1.4rem,2.2vw,1.75rem)]` | 1.750rem | type-h3-prose |
 | `src/routes/podcast_.$slug.tsx:251` | `text-[1.0625rem]` | 1.063rem | type-body |
 
-### 4b. Tailwind named sizes (140)
+### 4b. Tailwind named sizes (148)
 
 | Site | Token | Max size | Proposed scale step |
 |---|---|---|---|
+| `src/components/social-section.tsx:92` | `text-base` | 1.000rem | type-body |
+| `src/components/social-section.tsx:92` | `sm:text-lg` | 1.125rem | type-body |
+| `src/components/social-section.tsx:110` | `text-xs` | 0.750rem | type-body |
 | `src/components/ui/alert-dialog.tsx:65` | `text-lg` | 1.125rem | type-body |
 | `src/components/ui/alert-dialog.tsx:77` | `text-sm` | 0.875rem | type-body |
 | `src/components/ui/tabs.tsx:30` | `text-sm` | 0.875rem | type-body |
@@ -255,7 +256,12 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/components/ui/context-menu.tsx:164` | `text-xs` | 0.750rem | type-body |
 | `src/components/episode-media-card.tsx:94` | `text-sm` | 0.875rem | type-body |
 | `src/components/episode-media-card.tsx:96` | `text-sm` | 0.875rem | type-body |
-| `src/components/site-footer.tsx:59` | `text-2xl` | 1.500rem | type-h4-prose |
+| `src/components/site-footer.tsx:44` | `text-sm` | 0.875rem | type-body |
+| `src/components/site-footer.tsx:51` | `text-sm` | 0.875rem | type-body |
+| `src/components/site-footer.tsx:57` | `text-2xl` | 1.500rem | type-h4-prose |
+| `src/components/site-footer.tsx:65` | `text-sm` | 0.875rem | type-body |
+| `src/components/site-footer.tsx:82` | `text-sm` | 0.875rem | type-body |
+| `src/components/site-footer.tsx:93` | `text-sm` | 0.875rem | type-body |
 | `src/components/podcast-degraded.tsx:24` | `text-sm` | 0.875rem | type-body |
 | `src/components/podcast-degraded.tsx:26` | `text-3xl` | 1.875rem | type-h3-prose |
 | `src/components/podcast-degraded.tsx:26` | `sm:text-4xl` | 2.250rem | type-h3-prose |

@@ -189,7 +189,7 @@ function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => voi
       <Link
         to={item.to}
         onClick={onNavigate}
-        className="display block border-b border-border py-4 text-3xl text-foreground"
+        className="type-h3-caps-light block border-b border-border py-4 text-foreground"
       >
         {item.label}
       </Link>
@@ -199,7 +199,7 @@ function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => voi
   return (
     <Collapsible className="border-b border-border">
       <CollapsibleTrigger className="group flex w-full items-center justify-between py-4 text-left">
-        <span className={`display text-3xl ${item.cta ? "text-lime" : "text-foreground"}`}>
+        <span className={`type-h3-caps-light ${item.cta ? "text-lime" : "text-foreground"}`}>
           {item.label}
         </span>
         <ChevronDown

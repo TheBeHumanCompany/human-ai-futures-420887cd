@@ -140,6 +140,27 @@ describe("AC-4.1 — the scale is defined, in every register", () => {
       });
     }
 
+    test("the wordmark has its own step, and it keeps its negative tracking", () => {
+      // A wordmark is designed around its letterspacing. On `main` the lockup
+      // carried `tracking-tight` (-0.025em); putting it on a general heading
+      // step moved it to +0.02em and loosened the logotype on all 13 surfaces.
+      // Its own step means no competing Tailwind utility sits beside it for
+      // someone to "clean up" later.
+      const block = utilityBlock("type-wordmark");
+      expect(block).not.toBeNull();
+      expect(block).toMatch(/font-weight:\s*700\b/);
+      const tracking = /letter-spacing:\s*(-?[\d.]+)em/.exec(block ?? "")?.[1];
+      expect(Number(tracking)).toBeLessThan(0);
+
+      const header = readFileSync(join(SRC_DIR, "components", "site-header.tsx"), "utf8");
+      expect(header).toContain("type-wordmark");
+      // And nothing else claims the step.
+      const others = srcNonTestFiles
+        .filter((f) => f !== SPECIMEN && !f.endsWith("site-header.tsx"))
+        .filter((f) => readFileSync(f, "utf8").includes("type-wordmark"));
+      expect(others).toEqual([]);
+    });
+
     test("the label step is bold only — every one of its call sites was 700", () => {
       expect(utilityBlock("type-label-caps")).toMatch(/font-weight:\s*700\b/);
       expect(utilityBlock("type-label-caps-light")).toBeNull();
@@ -176,7 +197,14 @@ describe("AC-4.2 — the legacy utilities are gone", () => {
    * substring matching would count `--font-display` as a use of `display`.
    */
   const callSites = (file: string, token: string) => {
-    const text = readFileSync(file, "utf8");
+    // Comments are stripped FIRST. A doc comment that mentions a utility in
+    // backticks — "`display` is Oswald 200" — is a template literal as far as a
+    // regex is concerned, and counts as a call site. The AST-based scanner in
+    // scripts/ never sees comments; this has to match that behaviour or the two
+    // disagree and the derived floor becomes unfalsifiable.
+    const text = readFileSync(file, "utf8")
+      .replace(/\/\*[\s\S]*?\*\//g, "")
+      .replace(/(^|[^:])\/\/[^\n]*/g, "$1");
     const spans = text.match(/"[^"\n]*"|'[^'\n]*'|`[^`]*`/g) ?? [];
     let count = 0;
     for (const span of spans) {

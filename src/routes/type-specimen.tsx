@@ -113,8 +113,15 @@ const ROWS: Row[] = [
   {
     cls: "type-h4-caps-light",
     voice: 4,
+    sample: "Real is rare.",
+    source: "small light uppercase — archive names and card labels",
+  },
+  {
+    cls: "type-wordmark",
+    voice: 1,
     sample: "The Be Human Company",
-    source: "the Wordmark's weight, shown at the step it renders on",
+    source:
+      "the company lockup. Its own step, because a wordmark is designed around its letterspacing — this one is negatively tracked and a general heading step would loosen it.",
   },
   {
     cls: "type-label-caps",
