@@ -101,6 +101,7 @@ bash scripts/verify/audit-or-true.sh
 bash scripts/verify/audit-count.sh
 bash scripts/verify/audit-scans.sh
 bash scripts/verify/audit-coverage.sh
+bash scripts/verify/audit-typecheck.sh
 bash scripts/verify/assert-spec-fresh.sh
 bash scripts/verify/ac-bijection.sh
 
@@ -121,7 +122,7 @@ pass "AC-X.7a: no gate input is gitignored"
 # Every script the plan invokes must exist. Missing files exit 127, which a
 # runner that does not check exit codes reads as success.
 for s in lib.sh ac-suite.sh ac-bijection.sh ac-inventory.ts audit-scans.sh audit-or-true.sh \
-  audit-count.sh audit-coverage.sh delta.sh g1.sh restore-drill.sh social-links.sh \
+  audit-count.sh audit-coverage.sh audit-typecheck.sh delta.sh g1.sh restore-drill.sh social-links.sh \
   prod-images.sh prod-acceptance.sh acceptance-faults.test.ts visual-diff.ts baseline.ts \
   validate-approval.ts install-hooks.sh viewports.ts e2e.sh phase0-exit.sh \
   assert-assets.sh assert-provenance.sh assert-tracked-gates.sh assert-spec-fresh.sh; do
