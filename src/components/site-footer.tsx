@@ -32,8 +32,15 @@ export function SiteFooter() {
     <footer className="section-ink border-t border-border">
       <div className="border-b border-border bg-lime py-5 text-center">
         {/* The lime strapline. Oswald 200 preserved via the light caps register —
-            it was never a bold line, and `type-h3-caps` would have made it one. */}
-        <p className="type-h3-caps-light px-4 max-sm:px-2 text-ink">
+            it was never a bold line, and `type-h3-caps` would have made it one.
+
+            The `max-sm` size override is an overflow guard, not a bespoke step
+            reaching around the scale. This line is 36 characters in a band
+            sized for one row, and the light-caps floor of 1.75rem renders it
+            ~21% larger on a 375px screen than the tuned value it replaced —
+            enough to wrap. Removing it is a mobile regression that no gate we
+            have would catch, so it is restored with the reason attached. */}
+        <p className="type-h3-caps-light px-4 text-ink max-sm:px-2 max-sm:text-[clamp(1.45rem,5.6vw,1.95rem)] max-sm:leading-none max-sm:tracking-[-0.02em]">
           The future belongs to the most human
         </p>
       </div>
