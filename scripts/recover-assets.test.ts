@@ -247,16 +247,25 @@ describe("the committed manifest and report agree with the pointer set", () => {
   const manifestPath = path.join(REPO_ROOT, "src", "assets", "asset-recovery-manifest.json");
   const reportPath = path.join(REPO_ROOT, ".baseline", "asset-recovery-report.json");
 
-  test("every pointer has exactly one manifest entry", () => {
+  test("every pointer has exactly one RECOVERED manifest entry", () => {
+    // Not "the manifest equals the pointer set". The manifest also carries
+    // SUPPLIED assets — a designer's crop, a still from video content — which
+    // have no `*.asset.json` pointer and never did. Asserting set equality
+    // would reject every one of them; relaxing it to a subset check would stop
+    // noticing a recovered asset that vanished. So the two kinds are separated
+    // and each is asserted on its own terms.
     const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as Array<{
       filename: string;
       sha256: string;
       bytes: number;
+      source?: string;
+      provenance?: string;
     }>;
     const expected = listPointerFiles()
       .map((f) => targetNameFor(f))
       .sort();
-    expect(manifest.map((e) => e.filename).sort()).toEqual(expected);
+    const recovered = manifest.filter((e) => e.source !== "supplied");
+    expect(recovered.map((e) => e.filename).sort()).toEqual(expected);
     expect(new Set(manifest.map((e) => e.filename)).size).toBe(manifest.length);
   });
 
@@ -285,9 +294,72 @@ describe("the committed manifest and report agree with the pointer set", () => {
       asset_id: string;
       status: string;
     }>;
-    expect(report.length).toBe(listPointerFiles().length);
+    // The report covers the whole manifest, not just the pointer set — it also
+    // names supplied assets, which have no pointer.
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as Array<{ filename: string }>;
+    expect(report.length).toBe(manifest.length);
+    expect(report.length).toBeGreaterThanOrEqual(listPointerFiles().length);
     const failed = report.filter((r) => r.status === "failed");
     expect(failed.map((f) => f.asset_id)).toEqual([]);
+  });
+
+  test("every supplied asset records real provenance and matches its bytes on disk", () => {
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as Array<{
+      filename: string;
+      sha256: string;
+      bytes: number;
+      source?: string;
+      provenance?: string;
+      derivative?: { filename: string; sha256: string; bytes: number };
+    }>;
+    const supplied = manifest.filter((e) => e.source === "supplied");
+
+    for (const entry of supplied) {
+      // A supplied asset has no pointer to check against, so this text is the
+      // only origin record it will ever have. An empty one is a silent loss of
+      // the thing that makes the asset accountable.
+      expect(entry.provenance ?? "").not.toBe("");
+      expect((entry.provenance ?? "").length).toBeGreaterThan(20);
+
+      // It must have NO pointer — an asset with one is recovered, and marking
+      // it supplied would skip the integrity check the pointer makes possible.
+      expect(
+        existsSync(path.join(REPO_ROOT, "src", "assets", `${entry.filename}.asset.json`)),
+      ).toBe(false);
+
+      const file = path.join(REPO_ROOT, "src", "assets", entry.filename);
+      expect(existsSync(file)).toBe(true);
+      const bytes = readFileSync(file);
+      expect(bytes.byteLength).toBe(entry.bytes);
+      const h = new Bun.CryptoHasher("sha256");
+      h.update(bytes);
+      expect(h.digest("hex")).toBe(entry.sha256);
+
+      if (entry.derivative) {
+        const deriv = path.join(REPO_ROOT, "src", "assets", entry.derivative.filename);
+        expect(existsSync(deriv)).toBe(true);
+        const derivBytes = readFileSync(deriv);
+        expect(derivBytes.byteLength).toBe(entry.derivative.bytes);
+        // A derivative is a DIFFERENT image. If these ever matched, one of the
+        // two reads is wrong and the "derivative" is a copy of the original.
+        expect(entry.derivative.sha256).not.toBe(entry.sha256);
+      }
+    }
+  });
+
+  test("a supplied asset survives a manifest rebuild", () => {
+    // recover-assets.ts reconstructs the manifest from the pointer glob on
+    // every run. Without explicit carry-over, supplied assets are dropped each
+    // time and AC-7.2 fails on a file sitting untouched in src/assets/.
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as Array<{
+      filename: string;
+      source?: string;
+    }>;
+    const report = JSON.parse(readFileSync(reportPath, "utf8")) as Array<{ filename: string }>;
+    const supplied = manifest.filter((e) => e.source === "supplied");
+    for (const entry of supplied) {
+      expect(report.some((r) => r.filename === entry.filename)).toBe(true);
+    }
   });
 
   test("the four archive portraits carry a host-independent second source", () => {

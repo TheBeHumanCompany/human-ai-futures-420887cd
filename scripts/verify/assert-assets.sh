@@ -30,8 +30,32 @@ assert_ge "$pointers" 40 "the pointer glob found pointers (floor — 0 would mak
 
 manifest_n="$(jq 'length' src/assets/asset-recovery-manifest.json)"
 report_n="$(jq 'length' .baseline/asset-recovery-report.json)"
-assert_eq "$manifest_n" "$pointers" "AC-1.1: the manifest covers every pointer"
-assert_eq "$report_n" "$pointers" "AC-1.2: the report names every pointer"
+
+# The manifest holds two kinds of asset and the counts are NOT equal.
+#
+#   recovered  one per *.asset.json pointer, integrity checkable against it
+#   supplied   handed over directly (a designer's crop, a still from video).
+#              No pointer exists or ever did, so no fetch can reproduce it.
+#
+# The invariant is therefore "every pointer has an entry", not "the counts
+# match". Asserting equality would either reject every supplied asset or, if
+# someone relaxed it to `>=`, stop noticing a recovered asset that vanished.
+# Both directions are checked separately below.
+recovered_n="$(jq '[.[] | select(.source != "supplied")] | length' src/assets/asset-recovery-manifest.json)"
+supplied_n="$(jq '[.[] | select(.source == "supplied")] | length' src/assets/asset-recovery-manifest.json)"
+assert_eq "$recovered_n" "$pointers" "AC-1.1: every pointer has a recovered manifest entry"
+assert_eq "$((recovered_n + supplied_n))" "$manifest_n" "AC-1.1: every manifest entry is classified recovered or supplied"
+assert_eq "$report_n" "$manifest_n" "AC-1.2: the report names every manifest entry"
+
+# A supplied asset's provenance is the only origin record it will ever have,
+# so an empty one is a silent loss of the thing that makes it accountable.
+unprovenanced="$(jq '[.[] | select(.source == "supplied") | select((.provenance // "") | length < 20)] | length' src/assets/asset-recovery-manifest.json)"
+assert_eq "$unprovenanced" "0" "AC-1.1: every supplied asset records real provenance"
+
+# Derivatives are DIFFERENT images. If a derivative hash ever equalled its
+# original's, one of the two reads is wrong.
+deriv_collisions="$(jq '[.[] | select(.derivative != null and .derivative.sha256 == .sha256)] | length' src/assets/asset-recovery-manifest.json)"
+assert_eq "$deriv_collisions" "0" "AC-1.1: no derivative is byte-identical to its original"
 
 # AC-1.2: no silent skips. Any non-ok status is named with its asset_id.
 failed="$(jq -r '[.[] | select(.status != "ok" and .status != "skipped-already-present")] | .[] | "\(.asset_id) \(.filename) \(.error // "no error recorded")"' .baseline/asset-recovery-report.json)"
@@ -82,4 +106,4 @@ collisions="$(jq '[.[] | select(.alt_source != null and .alt_source.sha256 == .s
 assert_eq "$collisions" "0" "each alt_source is a genuinely independent copy, not the same bytes"
 
 total_bytes="$(jq '[.[].bytes] | add' src/assets/asset-recovery-manifest.json)"
-pass "AC-1.1/AC-1.2: $manifest_n/$pointers originals verified ($total_bytes bytes), $alts with a second source, 0 failures"
+pass "AC-1.1/AC-1.2: $manifest_n originals verified ($recovered_n recovered from $pointers pointers, $supplied_n supplied; $total_bytes bytes), $alts with a second source, 0 failures"

@@ -55,8 +55,12 @@ pointers="$(find src/assets -name '*.asset.json' | grep -c .)"
 manifest_n="$(jq 'length' src/assets/asset-recovery-manifest.json)"
 report_n="$(jq 'length' .baseline/asset-recovery-report.json)"
 assert_ge "$pointers" 40 "the pointer glob found pointers (floor)"
-assert_eq "$manifest_n" "$pointers" "AC-1.1: the manifest covers every pointer"
-assert_eq "$report_n" "$pointers" "AC-1.2: the report names every pointer"
+# Not equality: the manifest also carries SUPPLIED assets, which have no
+# pointer and never did. Every pointer must have an entry; the converse does
+# not hold. See scripts/verify/assert-assets.sh for the full check.
+recovered_n="$(jq '[.[] | select(.source != "supplied")] | length' src/assets/asset-recovery-manifest.json)"
+assert_eq "$recovered_n" "$pointers" "AC-1.1: every pointer has a recovered manifest entry"
+assert_eq "$report_n" "$manifest_n" "AC-1.2: the report names every manifest entry"
 
 # The manifest must describe files that are actually there, at those hashes.
 # Without this the restore drill verifies a fiction.
