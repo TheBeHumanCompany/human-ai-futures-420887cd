@@ -4,6 +4,7 @@ import type {} from "@tanstack/react-start";
 import { DEGRADED_RETRY_AFTER_SECONDS } from "@/lib/podcast/degraded-status";
 import { fetchSitemapEntriesFn } from "@/lib/podcast/queries";
 import { SITE_ORIGIN, episodeUrl } from "@/lib/sanity/config";
+import { sitemapSurfaces } from "@/lib/surfaces";
 
 // Canonical origin, confirmed 2026-08-05. Sitemap entries must be absolute;
 // until this was set the sitemap emitted bare paths, which crawlers reject.
@@ -20,21 +21,23 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const entries: SitemapEntry[] = [
-          { path: "/", changefreq: "weekly", priority: "1.0" },
-          { path: "/be-human-ai", changefreq: "monthly", priority: "0.9" },
-          { path: "/about", changefreq: "monthly", priority: "0.7" },
-          { path: "/the-new-human-era", changefreq: "monthly", priority: "0.7" },
-          { path: "/the-human-archive", changefreq: "weekly", priority: "0.7" },
-          { path: "/podcast", changefreq: "weekly", priority: "0.7" },
-          { path: "/contact", changefreq: "yearly", priority: "0.6" },
-        ];
+        /**
+         * The static pages come from `SURFACES`, not from a list kept here.
+         *
+         * This handler and its test used to hold separate copies of that list,
+         * and the test asserted its copy by exact equality. That arrangement
+         * fails in both directions: adding a route turns the test red for a
+         * reason unrelated to the change, and — far worse — updating the test's
+         * copy without the handler's silently drops pages from the sitemap
+         * while the suite stays green. One list, two readers.
+         */
+        const entries: SitemapEntry[] = sitemapSurfaces();
 
         /**
          * A truncated sitemap is worse than no sitemap.
          *
-         * If Sanity is unreachable, emitting the seven static entries with a
-         * 200 tells a crawler that this site has seven pages and the thirty-nine
+         * If Sanity is unreachable, emitting only the static entries with a
+         * 200 tells a crawler that this site is those pages and the thirty-nine
          * episode URLs it already knows about are gone. That is a deliberate
          * removal signal produced by someone else's outage — the single failure
          * this whole design exists to prevent.

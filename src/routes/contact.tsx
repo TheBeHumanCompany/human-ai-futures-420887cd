@@ -1,5 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { BOOKING_URL_15MIN } from "@/lib/booking";
+
+// The "Studios" row that used to sit in this list named three cities on three
+// continents. This company has offices in none of them, and a contact page is
+// the last place a plausible-sounding invention belongs. The booking link
+// replaces it with something a reader can actually act on.
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
@@ -25,7 +31,7 @@ function Contact() {
       <div className="mx-auto grid max-w-[1400px] gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_1fr] lg:py-28">
         <div className="min-w-0">
           <p className="eyebrow text-ink/50">Contact</p>
-          <h1 className="display mt-6 text-[clamp(2.5rem,7vw,5rem)] text-ink">
+          <h1 className="type-h1-caps mt-6 text-ink">
             Prepare your organization for the New Human Era.
           </h1>
           <p className="mt-8 max-w-md text-lg leading-relaxed text-ink/70">
@@ -42,8 +48,12 @@ function Contact() {
               <dd className="mt-1">hello@thebehumancompany.ca</dd>
             </div>
             <div>
-              <dt className="eyebrow text-ink/45">Studios</dt>
-              <dd className="mt-1">Sydney · London · New York</dd>
+              <dt className="eyebrow text-ink/45">Book a call</dt>
+              <dd className="mt-1">
+                <a href={BOOKING_URL_15MIN} target="_blank" rel="noreferrer" className="underline">
+                  Fifteen minutes, no deck
+                </a>
+              </dd>
             </div>
           </dl>
         </div>

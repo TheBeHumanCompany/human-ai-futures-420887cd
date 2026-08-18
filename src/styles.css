@@ -7,7 +7,10 @@
 /*
  * The Be Human Company design system.
  * Black + warm cream + restrained acid-lime. Condensed editorial headlines
- * (Bebas Neue) over a clean humanist sans (Work Sans).
+ * (Oswald — see `--font-display` below) over a clean humanist sans (Work Sans).
+ *
+ * The comment here read "Bebas Neue" until 2026-08-17. That face has never been
+ * loaded by this app; `--font-display` has always resolved to Oswald.
  */
 
 @theme inline {
@@ -103,6 +106,18 @@
 
 /* ---- Editorial type utilities ---- */
 
+/* ⚠ THE LAST SURVIVING LEGACY UTILITY — DELETE ME.
+ *
+ * `display` is the fourth AC-4.2 name and the only one still defined. It has
+ * exactly THREE call sites left, all in `src/routes/be-human-ai/index.tsx`
+ * (the Blueprint page), which was excluded from the Phase 4 migration because
+ * it is being rewritten on the scale from scratch in Phase 6.
+ *
+ * It survives ONLY so that page keeps rendering until that lands. AC-4.2 is not
+ * satisfied while this block exists. The moment `be-human-ai/index.tsx` stops
+ * referencing it — `bun run scripts/type-inventory.ts` reports `binding: 0` —
+ * delete this block. Do not add call sites; use `type-h{1..4}-caps`.
+ */
 @utility display {
   font-family: var(--font-display);
   font-weight: 200;
@@ -110,16 +125,6 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
-
-/* Human Archive main question — bold condensed editorial */
-@utility archive-question {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: 0.005em;
-  text-transform: uppercase;
-}
-
 
 @utility eyebrow {
   font-size: 0.6875rem;
@@ -194,29 +199,11 @@
   }
 }
 
-/* Standardized section labels */
-@utility section-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-@utility section-label-dark {
-  color: var(--lime);
-}
-
-@utility section-label-light {
-  color: var(--ink);
-}
-
-@utility section-label-rule {
-  margin-top: 0.75rem;
-  height: 3px;
-  width: 4rem;
-  background-color: var(--lime);
-}
+/* `section-label`, `section-label-dark`, `section-label-light` and
+   `section-label-rule` lived here. All four are gone (AC-4.2), replaced by
+   `type-label-caps` + `type-eyebrow-rule` and plain `text-lime` / `text-ink`
+   for the two colour modifiers. The eyebrow+rule ROLE they served is preserved,
+   which is the part V39 insisted must outlive the names. */
 
 /* ---- The New Human Era section ---- */
 
@@ -240,11 +227,253 @@
   color: oklch(0.62 0.16 118);
 }
 
-/* Condensed editorial headline weight for podcast titles */
-@utility display-strong {
+/* ═══════════════════════════════════════════════════════════════════════════
+   The type scale (S0.6b / S4.1) — THREE registers across TWO family axes.
+   ───────────────────────────────────────────────────────────────────────────
+   Maya's four New Human Era mockups use three distinct display voices. Only the
+   first is reachable on `main`, which is why the pre-existing `display` /
+   `archive-question` / `section-label` utilities cannot build half the page:
+
+     1. `-caps`      Oswald 700, UPPERCASE — the hammer lines.
+                     "THIS IS BIGGER THAN AI." · "IT IS PART OF HOW YOU BUILD ONE."
+                     "SO WE STARTED ASKING ONE QUESTION: WHAT DOES IT MEAN TO BE HUMAN?"
+
+     2. `-condensed` Oswald 300, sentence case — the condensed reflective lines.
+                     "We are the Bridge Generation."
+                     "Technology is advancing, and humanity has to advance with it."
+                     UNREACHABLE today: `display` hardcodes `text-transform: uppercase`.
+
+     3. `-prose`     Work Sans 200/300, wide, sentence case — the big soft questions.
+                     "But what if your humanity is not the reward at the end of a good life?"
+                     "What if practising your humanity is how you build the life you want?"
+                     DOES NOT EXIST today in any form.
+
+   Two family axes (Oswald condensed / Work Sans wide), three registers, because
+   Oswald is needed in BOTH uppercase and sentence case. Collapsing 2 and 3 into
+   one "sentence-case" register would force a choice of family per level, and
+   mockup 2's Bridge Generation heading would render in Work Sans — wrong face.
+
+   FONT COST IS ZERO. Oswald 200/300/700 and Work Sans 300 are already requested;
+   Work Sans 200 was added to the same `css2` request, which Google serves as a
+   variable font — the returned woff2 set is byte-identical either way.
+
+   Sizes are `clamp(min, preferred, max)`; the max is the mockup measurement
+   normalised to a 1440px reference viewport.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Register 1: condensed bold uppercase (Oswald 700) ───────────────────────
+   The step sizes are FITTED TO THE MEASURED SITE, not chosen in the abstract.
+   Every pre-existing uppercase heading was measured at a 1440px viewport before
+   this ladder was set; the spread ran 8.5rem down to 0.75rem. Two things fell
+   out of that measurement and changed the first draft of this scale:
+
+     · The page heroes disagreed with each other — 8.5rem (home), 6.5rem
+       (Blueprint), 6rem (archive), 5.5rem (about). They are the same element
+       playing the same role, so they collapse onto one step. `h1` sits at 7rem:
+       high enough that the homepage hero stays dominant, low enough that the
+       other three are not inflated. A 5.5rem ceiling — the first draft — would
+       have cut the homepage hero by 35%.
+     · `section-label` had NOWHERE to go. Its call sites render at 0.75–1.125rem
+       in Oswald 700 at 0.08em tracking. `eyebrow` is 0.6875rem Work Sans 500 at
+       0.22em (wrong face, wrong size, wrong tracking) and `h4` is nearly double.
+       Migrating those sites to either would have been a visible regression
+       dressed up as a consolidation, so the role survives as `type-label-caps`
+       (V39: the eyebrow+rule ROLE outlives the four utility names).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@utility type-h1-caps {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: clamp(2.75rem, 8.5vw, 7rem);
   line-height: 0.92;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+@utility type-h2-caps {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5.4vw, 4.5rem);
+  line-height: 0.94;
   letter-spacing: 0.01em;
   text-transform: uppercase;
+}
+
+@utility type-h3-caps {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
+
+@utility type-h4-caps {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.0625rem, 1.5vw, 1.375rem);
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* The `section-label` successor: a small, tightly-tracked uppercase label that
+   sits above a lime rule. This is the fifth caps step and it is not optional —
+   see the note above. */
+@utility type-label-caps {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.8125rem, 1vw, 1rem);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Register 2: condensed light sentence case (Oswald 300) ──────────────── */
+
+@utility type-h1-condensed {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: 0.005em;
+  text-transform: none;
+}
+
+@utility type-h2-condensed {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.4vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: 0.005em;
+  text-transform: none;
+}
+
+@utility type-h3-condensed {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+  line-height: 1.14;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+@utility type-h4-condensed {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+/* ── Register 3: wide light sentence case (Work Sans 200/300) ────────────── */
+
+@utility type-h1-prose {
+  font-family: var(--font-sans);
+  font-weight: 200;
+  font-size: clamp(2.25rem, 5.6vw, 5rem);
+  line-height: 1.14;
+  letter-spacing: 0.005em;
+  text-transform: none;
+}
+
+@utility type-h2-prose {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.4vw, 3.5rem);
+  line-height: 1.18;
+  letter-spacing: 0.005em;
+  text-transform: none;
+}
+
+@utility type-h3-prose {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.24;
+  letter-spacing: 0.005em;
+  text-transform: none;
+}
+
+@utility type-h4-prose {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  line-height: 1.32;
+  letter-spacing: 0.005em;
+  text-transform: none;
+}
+
+/* ── Body ────────────────────────────────────────────────────────────────── */
+
+@utility type-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.65;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+@utility type-body-lg {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(1.0625rem, 1.2vw, 1.25rem);
+  line-height: 1.6;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Captions, quote attributions, footnotes. Present so that pages under AC-4.5's
+   ban on raw sizes still have a legitimate step below body — without it the ban
+   just pushes authors back to `text-sm`. */
+@utility type-body-sm {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ── The eyebrow + lime rule role (V39) ──────────────────────────────────── */
+/*
+   Every mockup section opens with a letterspaced uppercase eyebrow above a short
+   lime rule. The four old utility NAMES are deleted in Phase 4; this ROLE
+   survives them.
+
+   The eyebrow text itself keeps using the existing `eyebrow` utility, which is
+   EXPLICITLY OUT of the AC-4.2 migration scope (Amendment 2, decision 1) and has
+   45 live call sites. Defining a second `type-eyebrow` beside it would create
+   exactly the fifth competing utility this consolidation exists to prevent
+   (V25), so only the rule gets a successor name here.
+*/
+
+@utility type-eyebrow-rule {
+  margin-top: 0.75rem;
+  height: 3px;
+  width: 3.5rem;
+  background-color: var(--lime);
+}
+
+/* Centred hairline with a lime dot at its midpoint (mockup 3). */
+@utility type-divider-dot {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background-color: currentColor;
+  opacity: 0.18;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 7px;
+    width: 7px;
+    border-radius: 9999px;
+    background-color: var(--lime);
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }

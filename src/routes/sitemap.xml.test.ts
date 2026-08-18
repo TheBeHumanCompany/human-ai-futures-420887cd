@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 
 import { SITE_ORIGIN } from "@/lib/sanity/config";
+import { sitemapSurfaces } from "@/lib/surfaces";
 import { Route } from "./sitemap[.]xml";
 
 /**
@@ -39,21 +40,53 @@ const EPISODES = [
   { slug: { current: "joao-ribeiro-elements-brazil" }, updatedAt: "2025-03-01T00:00:00.000Z" },
 ];
 
-const STATIC_PATHS = [
-  "/",
-  "/be-human-ai",
-  "/about",
-  "/the-new-human-era",
-  "/the-human-archive",
-  "/podcast",
-  "/contact",
-];
+/**
+ * Read from `SURFACES`, not retyped.
+ *
+ * This file used to keep its own copy of the static page list and assert it by
+ * exact equality, with a comment hardcoding "the site still has seven pages".
+ * That copy is the bug, not the assertion: it makes every route addition a
+ * two-place edit, and if only one place is edited the failure is silent in the
+ * direction that matters — a test updated without the handler passes while the
+ * sitemap has stopped listing pages that exist.
+ *
+ * Sharing the source keeps the equality assertion (which is worth keeping — a
+ * count passes while an episode is missing and a bogus entry replaces it) while
+ * removing the thing that made it brittle. The floor below is what stops this
+ * from becoming circular: if `SURFACES` ever collapsed to nothing, both sides
+ * of the equality would agree on an empty sitemap.
+ */
+const STATIC_PATHS = sitemapSurfaces().map((s) => s.path);
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const GET = () => (Route.options as any).server.handlers.GET() as Promise<Response>;
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 const locsOf = (xml: string) => [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+
+describe("the shared page list", () => {
+  test("is populated, so the equality assertions below are not circular", () => {
+    // Both sides of every `toEqual` here now read `SURFACES`. If that list ever
+    // collapsed — a bad filter, a renamed field — the handler and the test
+    // would agree on an empty sitemap and every case would pass. This is the
+    // floor that makes them mean something.
+    expect(STATIC_PATHS.length).toBeGreaterThanOrEqual(12);
+    expect(STATIC_PATHS).toContain("/");
+    expect(STATIC_PATHS).toContain("/be-human-ai");
+    expect(STATIC_PATHS).toContain("/be-human-ai/human-readiness");
+    expect(STATIC_PATHS).toContain("/who-we-are");
+    expect(STATIC_PATHS).toContain("/why-we-exist");
+  });
+
+  test("excludes surfaces that render but are not content", () => {
+    // The type specimen is a real page with real chrome, deliberately not
+    // advertised. Deriving the sitemap from "every surface" instead of "every
+    // surface with crawl hints" would quietly publish it.
+    expect(STATIC_PATHS).not.toContain("/type-specimen");
+    expect(STATIC_PATHS).not.toContain("/sitemap.xml");
+    expect(STATIC_PATHS.some((p) => p.includes("$slug"))).toBe(false);
+  });
+});
 
 describe("reachable Sanity", () => {
   test("the <loc> set equals the static pages plus every episode, exactly", () => {
@@ -99,7 +132,7 @@ describe("reachable Sanity", () => {
 
   test("an empty catalogue still emits the static pages", async () => {
     // A genuinely empty catalogue is a real state, distinct from an outage, and
-    // the site still has seven pages.
+    // the site still has all of its static pages.
     stubFetch(() => ok([]));
     const locs = locsOf(await (await GET()).text());
 

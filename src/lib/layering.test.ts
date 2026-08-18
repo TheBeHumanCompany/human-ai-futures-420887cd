@@ -281,6 +281,80 @@ describe("AC-36 rule 5 — publish.ts is the sole slugLock mutation writer", () 
   });
 });
 
+describe("site chrome — copy and links that may exist in exactly one place", () => {
+  /**
+   * Five text rules, all scoped to `srcNonTestFiles` for one reason.
+   *
+   * Each of these bans a string from the shipped source. This file has to name
+   * those strings to check for them, so a scan that walked all of `src/` would
+   * match its own fixtures and report a violation that is really just the rule
+   * reading itself. `srcNonTestFiles` already exists here for exactly that
+   * problem (see rules 4 and 5 above) and is reused rather than re-derived.
+   *
+   * They are text rules rather than DOM assertions because the failure they
+   * catch is a *second copy*, and a second copy renders perfectly. Only source
+   * text can tell you there are two.
+   */
+  const BOOKING_FILE = path.join(SRC_DIR, "lib", "booking.ts");
+  const BRAND_FILE = path.join(SRC_DIR, "lib", "brand.ts");
+
+  test("the fixture is non-empty before any rule below claims a clean result", () => {
+    expect(srcNonTestFiles.length).toBeGreaterThanOrEqual(30);
+  });
+
+  test("only booking.ts names the booking host", () => {
+    // An inlined booking URL in a CTA is indistinguishable from a correct one
+    // by review, and it survives until the real link changes and one stale
+    // button keeps sending people to a calendar nobody watches.
+    const offenders = srcNonTestFiles
+      .filter((file) => file !== BOOKING_FILE)
+      .filter((file) => /cal\.com/.test(read(file)));
+    expect(offenders).toEqual([]);
+  });
+
+  test("the previous booking provider is gone entirely", () => {
+    const offenders = srcNonTestFiles.filter((file) => /calendly/i.test(read(file)));
+    expect(offenders).toEqual([]);
+  });
+
+  test("only brand.ts contains the Indigenous line", () => {
+    // Implementation and proof consume one constant. A page that types the
+    // copy inline renders identically and drifts silently the day the wording
+    // is revised.
+    const offenders = srcNonTestFiles
+      .filter((file) => file !== BRAND_FILE)
+      .filter((file) => read(file).includes("Indigenous-led. Canadian-built"));
+    expect(offenders).toEqual([]);
+  });
+
+  test("no superseded wording of that line survives anywhere in src/", () => {
+    // Three variants were in circulation and two acceptance criteria demanded
+    // different ones. Deleting the losers is what makes the canonical string
+    // canonical; leaving one in a comment is how it gets copied back out.
+    const SUPERSEDED = ["Indigenous and Canadian-owned", "Indigenous-founded"];
+    const offenders = srcNonTestFiles.filter((file) => {
+      const source = read(file);
+      return SUPERSEDED.some((variant) => source.includes(variant));
+    });
+    expect(offenders).toEqual([]);
+  });
+
+  test("no office location that does not exist is named on any surface", () => {
+    // The footer and the contact page both advertised studios in three cities
+    // this company has no presence in.
+    const offenders = srcNonTestFiles.filter((file) => /\bSydney\b/.test(read(file)));
+    expect(offenders).toEqual([]);
+  });
+
+  test("no anchor is left pointing at a bare fragment placeholder", () => {
+    // `href="#"` is what an unwired link looks like. Seven of them shipped on
+    // this site's own footer, which is the one place a visitor reads as a
+    // statement of fact about the company.
+    const offenders = srcNonTestFiles.filter((file) => /href=\s*["']#["']/.test(read(file)));
+    expect(offenders).toEqual([]);
+  });
+});
+
 describe("Decision D — the Sanity runtime path imports no Node built-in", () => {
   /**
    * `http.ts`'s header stakes its whole design on this: "runtime-agnostic by

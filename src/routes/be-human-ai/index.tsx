@@ -1,7 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SERVICES } from "@/lib/content";
 
-export const Route = createFileRoute("/be-human-ai")({
+/**
+ * `/be-human-ai`, as a directory index rather than a leaf file.
+ *
+ * This file was `src/routes/be-human-ai.tsx` and had to move before the three
+ * pillar routes could exist beside it. Under file-based routing, adding
+ * `src/routes/be-human-ai/<pillar>.tsx` while `be-human-ai.tsx` still existed
+ * would have made the latter their *layout* route — and it renders no
+ * `<Outlet/>`, so all three pillars would have mounted and displayed nothing.
+ *
+ * This repo has already been bitten by exactly that: `podcast_.$slug.tsx`
+ * carries a trailing-underscore escape for the same reason, documented in
+ * `src/lib/route-shape.test.ts`. As a directory index this stays a leaf, the
+ * pillars are siblings rather than children, and no `<Outlet/>` is needed
+ * anywhere. `route-shape.test.ts` now asserts all four ids explicitly, because
+ * a blank pillar page is invisible to a route-count floor.
+ */
+export const Route = createFileRoute("/be-human-ai/")({
   head: () => ({
     meta: [
       { title: "Be Human AI — AI Strategy, Governance & Agents" },
