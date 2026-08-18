@@ -114,8 +114,8 @@ function Podcast() {
     <>
       {/* ---- Hero ---- */}
       <section className="section-ink grain">
-        <div className="mx-auto grid max-w-[1500px] items-center gap-10 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] md:gap-14 lg:pb-16 lg:pt-10">
-          <div className="md:pl-8 lg:pl-16 xl:pl-24">
+        <div className="mx-auto grid max-w-[1500px] items-center gap-10 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] md:gap-14 lg:pb-16 lg:pt-10">
+          <div className="md:pl-4 lg:pl-6 xl:pl-8">
             <h1 className="type-h1-caps-light">
               The people-driven
               <br />
@@ -136,7 +136,7 @@ function Podcast() {
               alt="Studio condenser microphone lit warmly in a dark recording room"
               width={1400}
               height={1050}
-              className="aspect-[4/3] w-full object-cover md:aspect-[5/4] md:max-h-[24rem]"
+              className="aspect-[3/2] max-h-[16rem] w-full object-cover object-[50%_45%] sm:aspect-[4/3] sm:max-h-[20rem] md:aspect-[5/4] md:max-h-[24rem]"
             />
             <div
               aria-hidden

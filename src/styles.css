@@ -392,8 +392,11 @@
   font-weight: 700;
   /* The preferred term is what decides the rendered size at 1440px, not the
      ceiling. At `1vw` this resolved to 0.90rem and cut the largest section
-     labels by 20% — caught by the S4.3 sweep, not by any assertion. */
-  font-size: clamp(0.8125rem, 1.1vw, 1.0625rem);
+     labels by 20% — caught by the S4.3 sweep, not by any assertion. `1.25vw`
+     lands on 18px at 1440, which is what production renders for WHY WE EXIST
+     and OUR SOLUTION — the reference every other section kicker was asked to
+     match. */
+  font-size: clamp(0.875rem, 1.25vw, 1.125rem);
   line-height: 1;
   letter-spacing: 0.08em;
   text-transform: uppercase;

@@ -113,7 +113,7 @@ function Band({
 function Opener({ label, tone = "cream" }: { label: string; tone?: Tone }) {
   return (
     <header className="mb-10">
-      <p className={`eyebrow ${tone === "cream" ? "text-ink/50" : "text-lime"}`}>{label}</p>
+      <p className={`type-label-caps ${tone === "cream" ? "text-ink/50" : "text-lime"}`}>{label}</p>
       <div className="type-eyebrow-rule" />
     </header>
   );
@@ -184,7 +184,7 @@ function NewHumanEra() {
     <Bands>
       {/* ---------- 1. Opening belief (cream) ---------- */}
       <Band>
-        <Opener label="The New Human Era" />
+        <Opener label="The Opportunity" />
         <h1 className="type-h1-caps max-w-4xl">The New Human Era</h1>
         <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
@@ -348,8 +348,7 @@ function NewHumanEra() {
           </div>
 
           <div>
-            <p className="type-body-lg text-ink/60">The New Human Era begins with one belief:</p>
-            <h3 className="type-h1-condensed mt-4">
+            <h3 className="type-h1-condensed">
               Technology is advancing, and humanity has to advance <Key>with it</Key>.
             </h3>
             <p className="type-body-lg mt-8 text-ink/70">
@@ -408,7 +407,7 @@ function NewHumanEra() {
             wanted would arrive with it. We spend decades building the outside of our lives and
             assume the inside will take care of itself.
           </p>
-          <h2 className="type-h1-prose mt-12">
+          <h2 className="type-h2-prose mt-12">
             But what if your humanity is not the reward at the end of a good life?
           </h2>
           <div className="type-eyebrow-rule mx-auto my-10" />
@@ -424,7 +423,7 @@ function NewHumanEra() {
               Your humanity is not separate from those outcomes.
             </span>
             <span aria-hidden className="hidden h-8 w-px bg-lime sm:block" />
-            <span className="type-h3-caps">It is underneath them.</span>
+            <span className="type-h2-caps">It is underneath them.</span>
           </p>
         </div>
       </Band>

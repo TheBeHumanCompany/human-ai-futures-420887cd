@@ -57,7 +57,7 @@ function Blueprint() {
     <>
       <section className="section-ink grain border-b border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
-          <p className="eyebrow text-lime">Human + AI transformation</p>
+          <p className="type-label-caps text-lime">Human + AI transformation</p>
           <span className="type-eyebrow-rule block" aria-hidden />
           <h1 className="type-h1-caps mt-6 max-w-5xl">
             Artificial intelligence will change every business.

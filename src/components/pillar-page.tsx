@@ -45,7 +45,7 @@ export function PillarPage({
     <>
       <section className="section-ink grain border-b border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <p className="eyebrow text-lime">{kicker}</p>
+          <p className="type-label-caps text-lime">{kicker}</p>
           {/* The eyebrow-over-lime-rule opening. It is the one section marker
               every mockup uses, so it survives the type consolidation under a
               successor name rather than being folded into a heading style. */}

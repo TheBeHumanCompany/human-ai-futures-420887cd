@@ -38,7 +38,7 @@ function WhoWeAre() {
     <>
       <section className="section-cream grain border-b border-hairline-dark">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <p className="eyebrow text-ink/50">Who we are</p>
+          <p className="type-label-caps text-ink/50">Who we are</p>
           <span className="type-eyebrow-rule block" aria-hidden />
           <h1 className="type-h1-condensed mt-6 max-w-4xl text-ink">
             Built for human-first AI transformation
@@ -63,7 +63,7 @@ function WhoWeAre() {
 
       <section className="section-ink">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
-          <h2 className="eyebrow text-lime">The team behind your transformation</h2>
+          <h2 className="type-label-caps text-lime">The team behind your transformation</h2>
           <p className="type-body mt-6 max-w-2xl text-muted-foreground">
             We stay intentionally small, so every client works directly with the people leading the
             engagement — not a rotating account team or junior consultants.

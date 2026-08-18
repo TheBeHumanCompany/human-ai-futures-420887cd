@@ -25,11 +25,11 @@ export { BOOKING_URL_15MIN, BOOKING_URL_30MIN } from "./booking";
  * quoted anywhere in this tree: a text-level rule asserts they appear nowhere,
  * and a comment quoting one would be the first thing to trip it.
  *
- * No period after "Canadian-built" — the string is exact, and a test compares
- * it by identity. A maple leaf renders beside it wherever it appears
- * (AC-2.8b), within two DOM levels.
+ * A trailing period closes "Canadian-built." — the string is exact, and a
+ * test compares it by identity. A maple leaf renders beside it wherever it
+ * appears (AC-2.8b), within two DOM levels.
  */
-export const INDIGENOUS_LINE = "Indigenous-led. Canadian-built";
+export const INDIGENOUS_LINE = "Indigenous-led. Canadian-built.";
 
 /**
  * The positioning disclaimer, pinned rather than paraphrased (AC-6.11a).

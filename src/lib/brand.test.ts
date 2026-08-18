@@ -8,8 +8,8 @@ describe("the Indigenous line", () => {
     // Asserted by identity rather than by keyword. Three earlier wordings were
     // each "close enough" to pass a keyword check, and two acceptance criteria
     // demanded different ones — which is the contradiction this string exists
-    // to end. No trailing period.
-    expect(INDIGENOUS_LINE).toBe("Indigenous-led. Canadian-built");
+    // to end. It closes with a trailing period.
+    expect(INDIGENOUS_LINE).toBe("Indigenous-led. Canadian-built.");
   });
 });
 

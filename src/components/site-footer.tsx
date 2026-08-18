@@ -99,13 +99,8 @@ export function SiteFooter() {
           <h3 className="eyebrow text-muted-foreground">Contact</h3>
           <ul className="mt-5 space-y-3 text-sm text-foreground/80">
             <li>
-              <a href="mailto:hello@thebehumancompany.ca" className="hover:text-lime">
-                hello@thebehumancompany.ca
-              </a>
-            </li>
-            <li>
-              <a href="mailto:ai@thebehumancompany.ca" className="hover:text-lime">
-                ai@thebehumancompany.ca
+              <a href="mailto:info@thebehumancompany.ca" className="hover:text-lime">
+                info@thebehumancompany.ca
               </a>
             </li>
           </ul>

@@ -30,7 +30,7 @@ function Contact() {
     <section className="section-cream grain">
       <div className="mx-auto grid max-w-[1400px] gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_1fr] lg:py-28">
         <div className="min-w-0">
-          <p className="eyebrow text-ink/50">Contact</p>
+          <p className="type-label-caps text-ink/50">Contact</p>
           <h1 className="type-h1-caps-light mt-6 text-ink">
             Prepare your organization for the New Human Era.
           </h1>
@@ -40,12 +40,8 @@ function Contact() {
           </p>
           <dl className="mt-12 space-y-4 border-t border-hairline-dark pt-6 text-sm text-ink/70">
             <div>
-              <dt className="eyebrow text-ink/45">New business</dt>
-              <dd className="mt-1">ai@thebehumancompany.ca</dd>
-            </div>
-            <div>
-              <dt className="eyebrow text-ink/45">Everything else</dt>
-              <dd className="mt-1">hello@thebehumancompany.ca</dd>
+              <dt className="eyebrow text-ink/45">Email</dt>
+              <dd className="mt-1">info@thebehumancompany.ca</dd>
             </div>
             <div>
               <dt className="eyebrow text-ink/45">Book a call</dt>

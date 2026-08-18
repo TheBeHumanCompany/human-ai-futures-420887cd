@@ -26,7 +26,7 @@ function About() {
     <>
       <section className="section-cream border-b border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <p className="eyebrow text-ink/50">About</p>
+          <p className="type-label-caps text-ink/50">About</p>
           <h1 className="type-h1-caps-light mt-6 max-w-4xl text-ink">
             Being human is what we're born with. Humanity is what we practise.
           </h1>

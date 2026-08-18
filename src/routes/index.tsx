@@ -99,6 +99,9 @@ function Home() {
               We help people and organizations practice what keeps us human in a world becoming more
               artificial.
             </p>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-foreground/70 sm:text-lg lg:max-w-xl">
+              Through AI strategy, human readiness, governance, and transformation.
+            </p>
           </div>
         </div>
       </section>
@@ -274,7 +277,7 @@ function Home() {
               to="/the-new-human-era"
               className="group mt-9 inline-flex w-fit items-center gap-2 whitespace-nowrap py-1 text-sm font-semibold uppercase leading-none tracking-[0.12em] text-ink"
             >
-              <span className="border-b border-lime pb-0.5">Learn more</span>
+              <span className="border-b border-lime pb-0.5">Read the New Human Era</span>
               <span
                 aria-hidden
                 className="text-lime transition-transform group-hover:translate-x-1"
@@ -314,10 +317,10 @@ function Home() {
                   <article
                     key={p.n}
                     className={`px-0 sm:px-6 lg:px-5 ${
-                      i % 2 === 1 ? "sm:border-l sm:border-ink/12" : ""
+                      i % 2 === 1 ? "sm:border-l sm:border-ink/12" : "sm:pl-0"
                     } ${i > 0 ? "lg:border-l lg:border-ink/12" : "lg:border-l-0"} ${
                       i === 0 ? "sm:border-l-0" : ""
-                    } sm:first:pl-0 lg:first:pl-0`}
+                    } lg:first:pl-0`}
                   >
                     <div className="flex items-center gap-2.5">
                       {Icon ? (
@@ -327,7 +330,9 @@ function Home() {
                         {p.n}
                       </span>
                     </div>
-                    <h3 className="type-h4-caps mt-3 text-ink">{p.title}</h3>
+                    <h3 className="type-h4-caps mt-3 text-[1.15rem] font-extrabold leading-[1.25] text-ink">
+                      {p.title}
+                    </h3>
                     <p className="mt-2 text-[13px] leading-relaxed text-ink/65">{p.body}</p>
                   </article>
                 );
