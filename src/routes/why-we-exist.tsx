@@ -14,7 +14,7 @@ export const Route = createFileRoute("/why-we-exist")({
       { property: "og:title", content: "Why We Exist — The Be Human Company" },
       {
         property: "og:description",
-        content: "Being human is what we're born with. Humanity is what we practise.",
+        content: "Being human is what we're born with. Humanity is what we practice.",
       },
     ],
   }),
@@ -40,14 +40,14 @@ function WhyWeExist() {
           <p className="type-label-caps text-ink/50">Why we exist</p>
           <span className="type-eyebrow-rule block" aria-hidden />
           <h1 className="type-h1-prose mt-6 max-w-4xl text-ink">
-            Being human is what we're born with. Humanity is what we practise.
+            Being human is what we're born with. Humanity is what we practice.
           </h1>
           <p className="type-body-lg mt-8 max-w-xl text-ink/70">
             As technology becomes more powerful, humanity has to become more intentional. We exist
             to help people and organizations become more capable with AI while becoming more
             deliberate about their humanity.
           </p>
-          <p className="font-hand mt-10 text-3xl text-ink/70">Stay Human.</p>
+          <p className="font-hand mt-10 text-3xl text-lime">Stay Human.</p>
         </div>
       </section>
 

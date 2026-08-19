@@ -169,7 +169,7 @@ const ROWS: Row[] = [
   {
     cls: "type-h2-prose",
     voice: 3,
-    sample: "What if practising your humanity is how you build the life you want?",
+    sample: "What if practicing your humanity is how you build the life you want?",
     source: "mockup 4 — The Bigger Question",
   },
   {

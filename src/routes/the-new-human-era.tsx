@@ -48,7 +48,7 @@ export const Route = createFileRoute("/the-new-human-era")({
       {
         property: "og:description",
         content:
-          "Human Wealth, Human Debt and Human Reps. A manifesto for practising your humanity.",
+          "Human Wealth, Human Debt and Human Reps. A manifesto for practicing your humanity.",
       },
     ],
   }),
@@ -352,7 +352,7 @@ function NewHumanEra() {
               Technology is advancing, and humanity has to advance <Key>with it</Key>.
             </h3>
             <p className="type-body-lg mt-8 text-ink/70">
-              Governments cannot practise your humanity for you. Companies cannot do your
+              Governments cannot practice your humanity for you. Companies cannot do your
               relationships for you. AI cannot decide what kind of parent, friend, leader or human
               being you become.
             </p>
@@ -372,7 +372,7 @@ function NewHumanEra() {
           <div>
             <Opener label="The bigger question" tone="ink" />
             <h2 className="type-h2-prose">
-              What if practising your humanity is how you build the life you want?
+              What if practicing your humanity is how you build the life you want?
             </h2>
           </div>
           <div>
@@ -383,7 +383,7 @@ function NewHumanEra() {
             <p className="type-body-lg mt-6 text-muted-foreground">
               We became extraordinarily good at developing everything around the human: our
               businesses, our productivity, our technology and our bank accounts. Very little taught
-              us to practise the humanity of the person doing the building.
+              us to practice the humanity of the person doing the building.
             </p>
             <p className="type-body-lg mt-6 text-muted-foreground">
               Even self-help and personal growth begin with the self. The person. How do I become
@@ -391,7 +391,7 @@ function NewHumanEra() {
               But the New Human Era asks a bigger question:
             </p>
             <p className="type-h4-prose mt-8">
-              What happens when the things you practise not only improve your own life, but improve
+              What happens when the things you practice not only improve your own life, but improve
               what another human experiences because you were there?
             </p>
           </div>
@@ -531,7 +531,7 @@ function NewHumanEra() {
       <Band id="human-reps">
         <Opener label="Human Reps" />
         <h2 className="type-h2-caps max-w-3xl">
-          Human Reps: how you actually practise your humanity
+          Human Reps: how you actually practice your humanity
         </h2>
         <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
@@ -543,7 +543,7 @@ function NewHumanEra() {
             </p>
             <p className="type-body-lg mt-6 text-ink/70">
               You can agree with everything above and still wake up tomorrow behaving exactly the
-              same way you did yesterday. That is why humanity has to be practised. We call those
+              same way you did yesterday. That is why humanity has to be practiced. We call those
               practices Human Reps.
             </p>
             <p className="type-h4-condensed mt-8">
@@ -588,7 +588,7 @@ function NewHumanEra() {
             Human Mode is not about disconnecting from technology. It is about creating enough space
             to choose what happens next. You do not have to live there perfectly. The goal is simply
             to notice more often, because every time you catch yourself, you create another chance
-            to practise the human you want to become.
+            to practice the human you want to become.
           </p>
         </div>
       </Band>
@@ -613,7 +613,7 @@ function NewHumanEra() {
           <div>
             <p className="type-body-lg text-ink/70">
               A real Human Rep can build something in you while creating something better for
-              another human in the same act. That is why practising your humanity is not simply a
+              another human in the same act. That is why practicing your humanity is not simply a
               private project. Its effect begins moving outward the moment you do it.
             </p>
             <p className="type-body-lg mt-6 text-ink/60">
@@ -639,9 +639,9 @@ function NewHumanEra() {
         <h2 className="type-h2-caps max-w-3xl">Some friction is where humans are built</h2>
         <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <p className="type-body-lg text-muted-foreground">
-            Much of who we become is shaped by what we repeatedly practise. If you continually hand
-            away your thinking because something else can answer faster, you become less practised
-            at wrestling with hard questions yourself. Practise being Fully Here and you get better
+            Much of who we become is shaped by what we repeatedly practice. If you continually hand
+            away your thinking because something else can answer faster, you become less practiced
+            at wrestling with hard questions yourself. Practice being Fully Here and you get better
             at giving attention. Keep your word and trust starts attaching itself to your name.
           </p>
           <div>
@@ -657,7 +657,7 @@ function NewHumanEra() {
             </p>
             <h3 className="type-h3-prose mt-8">
               Is this technology freeing me to become more human, or replacing something in myself I
-              still need to practise?
+              still need to practice?
             </h3>
           </div>
         </div>
@@ -674,7 +674,7 @@ function NewHumanEra() {
           data-framework-chain
           className="mt-12 flex flex-wrap items-center gap-x-4 gap-y-4 border-y border-ink/15 py-8"
         >
-          {["Practise Humanity", "Human Reps", "Human Wealth", "Better Life", "Better World"].map(
+          {["Practice Humanity", "Human Reps", "Human Wealth", "Better Life", "Better World"].map(
             (node, i, all) => (
               <li key={node} className="flex items-center gap-4">
                 <span className="type-h4-caps">{node}</span>
@@ -690,10 +690,10 @@ function NewHumanEra() {
 
         <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <p className="type-body-lg text-ink/70">
-            You practise your humanity through small choices. Those choices become Human Reps.
+            You practice your humanity through small choices. Those choices become Human Reps.
             Repeated reps build Human Wealth. Human Wealth helps you build a richer life. And
             because those reps so often affect another human at the same time, the effect moves
-            outward too. A better life for the person practising it. A more human world because they
+            outward too. A better life for the person practicing it. A more human world because they
             did.
           </p>
           <p className="type-body-lg text-ink/70">
@@ -728,7 +728,7 @@ function NewHumanEra() {
         <p className="type-body-lg mt-14 max-w-3xl text-ink/70">
           They are not commandments. They are not a claim that we discovered the only way to be
           human. They are language for things humanity itself keeps reminding us are worth
-          practising. That is what makes the Human Archive so important. It keeps real human voices
+          practicing. That is what makes the Human Archive so important. It keeps real human voices
           inside the conversation as the world changes. Not one guru telling humanity what it should
           become. Humanity helping shape it.
         </p>
@@ -751,12 +751,12 @@ function NewHumanEra() {
               loading="lazy"
               className="mb-10 w-full max-w-[460px] rounded-xl object-cover"
             />
-            <h2 className="type-h2-prose">
+            <h2 className="type-h2-condensed">
               We are not here to add more to your life. We are here to develop who you are being.
             </h2>
             <p className="type-body-lg mt-8 text-muted-foreground">
               The goal of the New Human Era is not another philosophy people read, agree with and
-              forget. We want to help millions of people understand how to practise their humanity
+              forget. We want to help millions of people understand how to practice their humanity
               deliberately — and understand what it can build in their own lives and in the lives
               around them.
             </p>
@@ -775,7 +775,7 @@ function NewHumanEra() {
               they begin to shape culture.
             </p>
             <p className="type-body-lg mt-6 text-muted-foreground">
-              One person practises differently. Another human experiences the difference. Enough
+              One person practices differently. Another human experiences the difference. Enough
               changed experiences shape relationships. Relationships shape families, teams, schools
               and communities. Eventually, what people repeatedly experience begins changing what a
               culture considers normal.
@@ -783,7 +783,7 @@ function NewHumanEra() {
             <h3 className="type-h3-condensed mt-8">That is how humanity compounds.</h3>
             <p className="type-body-lg mt-6 text-muted-foreground">
               That is the scale of the ambition. Not millions of people following one philosophy.
-              Millions of people learning how to practise their humanity in a world becoming more
+              Millions of people learning how to practice their humanity in a world becoming more
               artificial.
             </p>
           </div>
@@ -794,7 +794,7 @@ function NewHumanEra() {
       <Band id="the-invitation">
         <Opener label="The invitation" />
         <h2 className="type-h2-caps max-w-3xl">
-          There are no perfect humans here. There are only humans practising.
+          There are no perfect humans here. There are only humans practicing.
         </h2>
         <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>

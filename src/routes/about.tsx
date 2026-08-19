@@ -8,7 +8,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "An AI strategy and transformation company, and a cultural movement. Being human is what we're born with. Humanity is what we practise.",
+          "An AI strategy and transformation company, and a cultural movement. Being human is what we're born with. Humanity is what we practice.",
       },
       { property: "og:title", content: "About — The Be Human Company" },
       {
@@ -28,7 +28,7 @@ function About() {
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
           <p className="type-label-caps text-ink/50">About</p>
           <h1 className="type-h1-caps-light mt-6 max-w-4xl text-ink">
-            Being human is what we're born with. Humanity is what we practise.
+            Being human is what we're born with. Humanity is what we practice.
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">
             As technology becomes more powerful, humanity must become more intentional. We exist to
