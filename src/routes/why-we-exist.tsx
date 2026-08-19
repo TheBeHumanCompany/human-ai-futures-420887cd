@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import manifestoImage from "@/assets/manifesto.jpg";
 
@@ -127,6 +127,16 @@ function WhyWeExist() {
                 It's a story about attention. About time. About the people we love getting
                 whatever's left of us after the day has already taken everything else.
               </p>
+              <p className="type-body mt-6 text-muted-foreground">
+                We think that's our generation's story. And it started long before artificial
+                intelligence arrived.
+              </p>
+              <p className="type-body mt-6 text-muted-foreground">
+                For generations, we've gotten remarkably good at building the world around us
+                &mdash; businesses, economies, systems capable of extraordinary things. But
+                somewhere in that process, a lot of us stopped asking the simpler question
+                underneath it.
+              </p>
             </div>
             <div className="lg:pt-4">
               <p className="type-body text-foreground">
@@ -137,6 +147,16 @@ function WhyWeExist() {
               <p className="type-body mt-6 text-muted-foreground">
                 AI can unlock extraordinary progress. But the real question is not whether it
                 becomes more intelligent. It will. The real question is who we become because of it.
+              </p>
+              <p className="type-body mt-6 text-muted-foreground">
+                Now we're in the middle of one of the biggest transitions in human history. For the
+                first time, we're building technology that can think alongside us, create alongside
+                us, and increasingly make decisions that used to belong only to people.
+              </p>
+              <p className="type-body mt-6 text-muted-foreground">
+                The opportunity in that is real. AI will cure diseases, remove decades of repetitive
+                work, unlock discoveries we haven't imagined yet, and give millions of people
+                something that's become genuinely rare.
               </p>
             </div>
           </div>
@@ -196,7 +216,7 @@ function WhyWeExist() {
               themselves. But they compound into trust with your name attached, into relationships
               strong enough to carry real life, into leaders people actually believe, into families
               that feel closer instead of more distant, into organizations that become more human
-              because the people inside them choose to practice being human.
+              because the people inside them chose to practice being human.
             </p>
             <p className="type-body mt-6 text-ink">
               <strong className="font-semibold">We call that Human Wealth.</strong>
@@ -266,6 +286,105 @@ function WhyWeExist() {
           </p>
         </div>
       </section>
+
+      {/* ---------- The four connected pieces (ink) ----------
+
+          The tail of Maya's 08-18 document, which the first build of this page
+          stopped short of ("there is still text that needs to be added",
+          08-19 08:52). Her four screens end at Human Reps / Human Wealth, so
+          the LAYOUT below is not hers — the copy is, verbatim.
+
+          Each piece is a real destination, so each is a link. That is also the
+          honest reason this block is worth building rather than four more
+          paragraphs: it is the only place on the site where the four halves of
+          the company are named together and reachable in one move. */}
+      <section className="section-ink border-t border-border">
+        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+          <p className="type-label-caps text-lime">The infrastructure</p>
+          <span className="type-eyebrow-rule block" aria-hidden />
+          <h2 className="type-h2-condensed mt-6 max-w-3xl">
+            Right now, that infrastructure is four connected pieces.
+          </h2>
+
+          <ul className="mt-16 grid gap-x-16 gap-y-12 lg:grid-cols-2">
+            {INFRASTRUCTURE.map((piece) => (
+              <li key={piece.to} className="border-t border-border pt-8">
+                <h3 className="type-h4-caps-light">
+                  <Link to={piece.to} className="transition-colors hover:text-lime">
+                    {piece.name}
+                  </Link>
+                </h3>
+                <p className="type-body mt-5 text-muted-foreground">{piece.body}</p>
+              </li>
+            ))}
+          </ul>
+
+          <p className="type-body mt-16 max-w-3xl border-t border-border pt-12 text-muted-foreground">
+            This is just the beginning. The infrastructure keeps growing, through education,
+            research, media, community, and whatever this transition ends up asking of us next,
+            because it isn't finished asking yet.
+          </p>
+        </div>
+      </section>
+
+      {/* ---------- Why we're building it (cream) ---------- */}
+      <section className="section-cream border-t border-hairline-dark">
+        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+          <div className="max-w-3xl">
+            <p className="type-body text-ink/70">
+              We're not building this because we're afraid of artificial intelligence.
+            </p>
+            <p className="type-body mt-6 text-ink/70">
+              We're building it because we've seen what's possible if humanity leads this well, and
+              what's at risk if it doesn't.
+            </p>
+            <p className="type-body mt-6 text-ink/70">
+              Technology will keep advancing whether we're ready or not.
+            </p>
+          </div>
+
+          <h2 className="type-h2-condensed mt-12 max-w-3xl text-ink">
+            Humanity has to advance with it.
+          </h2>
+
+          <p className="type-h3-condensed mt-16 max-w-3xl border-t border-hairline-dark pt-12 text-ink">
+            One Human Rep won't change the world. Millions of them will.
+          </p>
+          <p className="type-h3-condensed mt-4 text-lime-dark">
+            That's not a hope. That's the plan.
+          </p>
+        </div>
+      </section>
     </>
   );
 }
+
+/**
+ * The four pieces, in the order Maya's document names them.
+ *
+ * A const rather than four hand-written blocks: the bodies are her words and
+ * the destinations are the nav's, and keeping them as data is what stops a
+ * later edit from quietly rewording one piece and leaving the other three.
+ */
+const INFRASTRUCTURE = [
+  {
+    to: "/be-human-ai",
+    name: "Be Human AI",
+    body: "Be Human AI helps organizations adopt AI through strategy, human readiness, governance, and transformation, keeping a person accountable for every judgment that matters. Hence, the technology strengthens both the business and the people inside it.",
+  },
+  {
+    to: "/the-new-human-era",
+    name: "The New Human Era",
+    body: "The New Human Era is the worldview underneath it all, a framework for how humanity practices itself deliberately in a world becoming more artificial. It asks people to rethink what success, status, and a life well lived actually mean when execution stops being the scarce thing.",
+  },
+  {
+    to: "/the-human-archive",
+    name: "The Human Archive",
+    body: "The Human Archive is a living record built around one question we keep asking strangers on camera: what does it mean to be human? Not experts. Not a panel. Just people, telling us the truth. It keeps real human experience at the center of a transition that could easily lose it.",
+  },
+  {
+    to: "/podcast",
+    name: "The People-Driven CEO Podcast",
+    body: "The People-Driven CEO Podcast is where we sit down with founders and leaders and ask them to say the honest version out loud, the one that doesn't usually make it into a keynote.",
+  },
+] as const;

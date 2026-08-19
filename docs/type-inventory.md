@@ -166,11 +166,6 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/routes/index.tsx:262` | `text-[15px]` | 0.938rem | type-body |
 | `src/routes/index.tsx:308` | `text-[11px]` | 0.688rem | type-body |
 | `src/routes/index.tsx:333` | `text-[13px]` | 0.813rem | type-body |
-| `src/routes/human-archive.$slug.tsx:49` | `text-[9px]` | 0.563rem | type-body |
-| `src/routes/human-archive.$slug.tsx:52` | `text-[10px]` | 0.625rem | type-body |
-| `src/routes/human-archive.$slug.tsx:62` | `text-[12px]` | 0.750rem | type-body |
-| `src/routes/human-archive.$slug.tsx:71` | `text-[0.7rem]` | 0.700rem | type-body |
-| `src/routes/human-archive.$slug.tsx:88` | `text-[0.7rem]` | 0.700rem | type-body |
 | `src/routes/podcast_.$slug.tsx:171` | `text-[clamp(1.6rem,3.4vw,3.35rem)]` | 3.350rem | type-h2-prose |
 | `src/routes/podcast_.$slug.tsx:233` | `text-[1.0625rem]` | 1.063rem | type-body |
 | `src/routes/podcast_.$slug.tsx:244` | `text-[clamp(1.4rem,2.2vw,1.75rem)]` | 1.750rem | type-h3-prose |
@@ -304,10 +299,6 @@ these are what a `clamp(`-only scan misses. AC-4.5 bans all of them from
 | `src/routes/__root.tsx:52` | `text-sm` | 0.875rem | type-body |
 | `src/routes/__root.tsx:61` | `text-sm` | 0.875rem | type-body |
 | `src/routes/__root.tsx:67` | `text-sm` | 0.875rem | type-body |
-| `src/routes/human-archive.$slug.tsx:65` | `text-base` | 1.000rem | type-body |
-| `src/routes/human-archive.$slug.tsx:65` | `sm:text-lg` | 1.125rem | type-body |
-| `src/routes/human-archive.$slug.tsx:71` | `sm:text-xs` | 0.750rem | type-body |
-| `src/routes/human-archive.$slug.tsx:88` | `sm:text-xs` | 0.750rem | type-body |
 | `src/routes/the-human-archive.tsx:34` | `text-lg` | 1.125rem | type-body |
 | `src/routes/podcast.tsx:124` | `text-base` | 1.000rem | type-body |
 | `src/routes/podcast.tsx:154` | `text-lg` | 1.125rem | type-body |

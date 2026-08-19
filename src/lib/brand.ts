@@ -32,6 +32,22 @@ export { BOOKING_URL_15MIN, BOOKING_URL_30MIN } from "./booking";
 export const INDIGENOUS_LINE = "Indigenous-led. Canadian-built.";
 
 /**
+ * The one contact address, and the only mailbox the site talks to.
+ *
+ * Hardcoded in three places before this constant existed — the footer, the
+ * contact page's details list, and (as of 2026-08-19) the enquiry form's
+ * delivery target. The third is what made a constant necessary rather than
+ * tidy: a copy of this string that drifts in the footer is a cosmetic bug, but
+ * a copy that drifts in the send path routes real enquiries into a mailbox
+ * nobody reads, and looks identical from the outside either way.
+ *
+ * `thebehumancompany.ca` — with the "the". `behumancompany.ca` has no MX and no
+ * A record, so mail addressed there is not slow, it is gone. Checked on
+ * 2026-08-19 precisely because the shorter form is the natural typo.
+ */
+export const CONTACT_EMAIL = "info@thebehumancompany.ca";
+
+/**
  * The positioning disclaimer, pinned rather than paraphrased (AC-6.11a).
  *
  * A direct restatement of `framework/controls.yaml`'s `meta.positioning`:

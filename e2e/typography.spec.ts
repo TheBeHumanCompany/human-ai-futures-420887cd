@@ -52,7 +52,6 @@ const HEADING_SKIP_DEBT = new Map<string, string[]>([
   ["/podcast", ["h1 -> h3"]],
   ["/contact", ["h1 -> h3"]],
   ["/type-specimen", ["h1 -> h3"]],
-  ["/human-archive/adewolf", ["h1 -> h3"]],
 ]);
 
 /**

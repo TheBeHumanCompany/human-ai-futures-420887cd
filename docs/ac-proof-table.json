@@ -39,27 +39,27 @@
     },
     {
       "id": "AC-2.1",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"renders all four required elements|Stay Human\"",
+      "note": "Four discrete DOM assertions, plus computed font-family and colour for the sign-off. A class name in the markup is not evidence the rule applied."
     },
     {
       "id": "AC-2.1b",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bun test src/lib/brand.test.ts -t \"canonical fourth variant\" && bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"the Indigenous line is exactly the canonical string\"",
+      "note": "Constant asserted by identity, the footer asserted to render it, and both superseded wordings asserted absent from the rendered page."
     },
     {
       "id": "AC-2.2",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bun test src/lib/layering.test.ts -t \"no office location that does not exist\"",
+      "note": "Scoped to srcNonTestFiles: an unscoped scan matches this rule's own fixture text and could never pass."
     },
     {
       "id": "AC-2.3",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bun test src/lib/layering.test.ts -t \"no anchor is left pointing at a bare fragment\" && bash scripts/verify/social-links.sh",
+      "note": "The source rule removes bare-fragment anchors everywhere; social-links.sh proves each surviving link resolves."
     },
     {
       "id": "AC-2.3b",
@@ -75,57 +75,63 @@
     },
     {
       "id": "AC-2.3d",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bash scripts/verify/social-links.sh",
+      "note": "worker-1's script. The count is derived from SOCIAL_LINKS rather than typed, which is why three revisions of it needed no script edit."
     },
     {
       "id": "AC-2.4",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bun test src/lib/brand.test.ts -t \"two exact literals\" && bun test src/lib/layering.test.ts -t \"only booking.ts names the booking host\"",
+      "note": "Both literals by identity, plus the layering rule that no other non-test file contains the booking host."
     },
     {
       "id": "AC-2.5",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bun test src/lib/layering.test.ts -t \"previous booking provider is gone entirely\"",
+      "note": "Case-insensitive, scoped to srcNonTestFiles."
     },
     {
       "id": "AC-2.6",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "6",
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"the header books the 15-minute call|three times, in three sections\"",
+      "note": "The header CTA count is exact; the Blueprint's three are asserted to sit in three DISTINCT section ancestors, so three stacked in one section fails."
     },
     {
       "id": "AC-2.7a",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"the two CTA labels read as Maya specified\"",
+      "note": "Both required labels AND both superseded labels, across three surfaces. A positive-only check passes while the old wording survives elsewhere."
     },
     {
       "id": "AC-2.8b",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"maple leaf sits within two DOM levels\"",
+      "note": "DOM distance measured to the common ancestor. The proof imports INDIGENOUS_LINE rather than holding a copy; a third hardcoding would defeat the criterion it claims to prove."
     },
     {
       "id": "AC-3.1a",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bun test src/lib/nav.test.ts -t \"NAV equals it exactly\" && bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"six top-level items and exactly two dropdown parents\"",
+      "note": "Deep equality over the whole tree, not a length check, then the rendered bar asserted to match the model."
     },
     {
       "id": "AC-3.2a",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"About opens onto two distinct, live destinations\"",
+      "note": "The panel is actually opened, its two children asserted distinct, and each fetched for a 200."
     },
     {
       "id": "AC-3.2b",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"still live, unredirected\"",
+      "note": "/about is fetched with maxRedirects 0 — a 301 here would be the live-URL change the user explicitly declined."
+    },
+    {
+      "id": "AC-3.2c",
+      "phase": "3",
+      "proof": "bun test src/lib/copy-fidelity.test.ts",
+      "note": "Amendment 7, proof replaced after review: the previous row named a playwright test that did not exist (`-g \"Why We Exist\"` matched nothing and exited 1). This holds the page to docs/source/why-we-exist.txt sentence by sentence, with each divergence from her screens named and asserted still-real in both directions."
     },
     {
       "id": "AC-3.3",
@@ -141,33 +147,45 @@
     },
     {
       "id": "AC-3.5a",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"three team cards and only three\"",
+      "note": "Three names and three exact roles, read from the rendered cards. Shane's staging review is a release artifact, gated separately by AC-X.6a."
     },
     {
       "id": "AC-3.5b",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"three team cards and only three\" && bun test src/lib/route-shape.test.ts -t \"every generated route is a declared surface\"",
+      "note": "Exactly three cards, and the router-equality check proves no per-member route was added — the explicit non-goal of this pass."
     },
     {
       "id": "AC-3.6a",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"three pillar destinations exist with distinct headings\"",
+      "note": "Each pillar fetched for a 200 and its H1 read; the three headings asserted distinct, so three routes sharing one heading fails."
     },
     {
       "id": "AC-3.7a",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"Blueprint is the one lime pill\"",
+      "note": "Computed background-color compared against the resolved --lime, radius >= 9999px, and EXACTLY one item matching — every item being a pill would otherwise pass."
     },
     {
       "id": "AC-3.8a",
-      "phase": null,
-      "proof": null,
-      "note": ""
+      "phase": "3",
+      "proof": "bun test src/lib/nav.test.ts -t \"About links to /about\" && bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"the About parent itself links to /about\"",
+      "note": "Model and render both asserted. Without this, /about is live but unreachable from the navigation."
+    },
+    {
+      "id": "AC-3.9a",
+      "phase": "3",
+      "proof": "bun test src/lib/copy-fidelity.test.ts && bun test src/lib/route-shape.test.ts",
+      "note": "Amendment 7, proof replaced after review: route-shape alone proved registration, not copy or the absence of placeholder frames. The fidelity test compares every sentence against docs/source/meet-the-founder.txt and asserts the route has no <img>, no <figure> and no asset import."
+    },
+    {
+      "id": "AC-3.11a",
+      "phase": "3",
+      "proof": "bun test src/lib/contact.test.ts",
+      "note": "Amendment 7, restated after review: the earlier wording was circular (success = whatever the code called success). The suite now asserts the total property across every reachable outcome — accepted, refused, provider error, network throw, no key, invalid, honeypot — and that only a provider 2xx yields ok. The honeypot returns `ignored`, never a confirmation."
     },
     {
       "id": "AC-4.1",
@@ -374,10 +392,10 @@
       "note": ""
     },
     {
-      "id": "AC-7.3",
+      "id": "AC-7.3a",
       "phase": "2",
       "proof": "bun test src/lib/archive.test.ts && bunx playwright test e2e/surfaces.spec.ts --project=desktop",
-      "note": ""
+      "note": "Amendment 6, proof strengthened after review: the consumer check now requires `ARCHIVE.map(` rather than the bare token, so dropping the New Human Era four-entry row while keeping an unrelated ARCHIVE reference goes red. Production side proven by scripts/verify/acceptance/human-archive.sh, whose control and injected regression both run green in acceptance-faults.test.ts."
     },
     {
       "id": "AC-X.1",

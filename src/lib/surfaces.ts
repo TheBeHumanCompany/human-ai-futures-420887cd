@@ -110,6 +110,15 @@ export const SURFACES: readonly Surface[] = [
     sitemap: { changefreq: "monthly", priority: "0.8" },
   },
   {
+    // Maya's 2026-08-18 brief. Not in the nav tree — AC-3.1a deep-equals that
+    // tree, so a seventh top-level item is an amendment, not an edit. Reachable
+    // from /who-we-are until that is decided.
+    path: "/about-the-founder",
+    kind: "page",
+    expectsSingleNav: true,
+    sitemap: { changefreq: "yearly", priority: "0.6" },
+  },
+  {
     path: "/the-new-human-era",
     kind: "page",
     expectsSingleNav: true,
@@ -138,7 +147,6 @@ export const SURFACES: readonly Surface[] = [
   // sitemap.
   { path: "/type-specimen", kind: "page", expectsSingleNav: true },
   { path: "/sitemap.xml", kind: "machine", expectsSingleNav: false },
-  { path: "/human-archive/$slug", kind: "dynamic", expectsSingleNav: true, sampleSlug: "adewolf" },
   { path: "/podcast/$slug", kind: "dynamic", expectsSingleNav: true, sampleSlug: "" },
 ] as const;
 

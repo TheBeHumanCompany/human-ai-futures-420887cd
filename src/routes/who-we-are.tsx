@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { TEAM } from "@/lib/team";
 
@@ -66,6 +66,25 @@ function WhoWeAre() {
                   <p key={paragraph.slice(0, 40)}>{paragraph}</p>
                 ))}
               </div>
+
+              {/* The only way into the founder page today. It is deliberately
+                  not in the nav: AC-3.1a deep-equals the nav tree, so a seventh
+                  top-level item is an amendment rather than an edit. Until that
+                  is decided, this card is the entrance. */}
+              {member.profile ? (
+                <Link
+                  to={member.profile}
+                  className="group mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold uppercase leading-none tracking-[0.12em] text-foreground"
+                >
+                  <span className="border-b border-lime pb-0.5">Read his story</span>
+                  <span
+                    aria-hidden
+                    className="text-lime transition-transform group-hover:translate-x-1"
+                  >
+                    &rarr;
+                  </span>
+                </Link>
+              ) : null}
             </article>
           ))}
         </div>

@@ -58,5 +58,11 @@
     "target": "AC-6.9a",
     "kind": "partial",
     "reason": "Self-describing: 'supersedes AC-6.9a's MECHANISM; its five sub-assertions stand'. Amendment 3 decision 2 replaced the Radix accordion with native <details>/<summary> after Codex demonstrated the accordion's closed-count gate passing with two empty items. The digestibility requirement AC-6.9a exists for is unchanged."
+  },
+  {
+    "by": "AC-7.3a",
+    "target": "AC-7.3",
+    "kind": "full",
+    "reason": "AC-7.3 names two surfaces — /the-human-archive and the homepage section — and requires both to render the four entries. Amendment 6 defers the page to a teaser that renders none of them, so half of AC-7.3 is not merely narrowed, it is now forbidden. AC-7.3a restates the whole criterion over the surfaces that still render the entries (homepage section, /the-new-human-era row) and adds the deferral's own assertions, so nothing of AC-7.3 is left to prove separately."
   }
 ]

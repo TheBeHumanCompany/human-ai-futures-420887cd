@@ -118,25 +118,64 @@ describe("AC-7.2 — the portraits render from committed binaries", () => {
   });
 });
 
-describe("AC-7.3 — both surfaces read from one source", () => {
-  test("the archive routes and the homepage section all consume ARCHIVE", () => {
-    // "Zero broken images" on two surfaces is only checkable in a browser, and
+describe("AC-7.3 — every surface that renders the archive reads from one source", () => {
+  /**
+   * ── Amended 2026-08-19 (Sid: defer the archive) ──────────────────────────
+   *
+   * AC-7.3 was written when `/the-human-archive` rendered the portrait grid
+   * and `/human-archive/$slug` rendered an entry each. Both are deferred: the
+   * page is now a teaser that says "to be released soon", and the `$slug`
+   * route is deleted. So the criterion's surfaces are no longer those two.
+   *
+   * The property it was protecting is unchanged and still worth pinning —
+   * nothing renders a portrait list of its own — so the consumer set moves to
+   * the two surfaces that DO still render the four entries. Rewriting the list
+   * without also pinning the deferral would be the cheap version of this edit:
+   * the grid could quietly come back and the suite would applaud. Hence the
+   * second test.
+   */
+  test("the homepage section and the New Human Era row both consume ARCHIVE", () => {
+    // "Zero broken images" is only checkable in a browser, and
     // e2e/surfaces.spec.ts does that. What IS checkable here is the property
     // that makes it hold: both surfaces render the same four entries from one
     // module, so neither can drift into its own hardcoded list of portraits.
     const consumers = [
-      "src/routes/the-human-archive.tsx",
-      "src/routes/human-archive.$slug.tsx",
       "src/components/human-archive-section.tsx",
+      "src/routes/the-new-human-era.tsx",
     ];
     for (const file of consumers) {
       const full = path.join(REPO_ROOT, file);
       expect(existsSync(full), `${file} must exist`).toBe(true);
       const source = readFileSync(full, "utf8");
-      expect(source, `${file} must consume ARCHIVE`).toContain("ARCHIVE");
+      // `.map(` and not merely the token: a surface can keep an unrelated
+      // `ARCHIVE` reference — a type import, one featured portrait — while
+      // having dropped the row that renders all four, and a bare `toContain`
+      // stays green through exactly that. The New Human Era row is the case in
+      // point: it renders one feature portrait AND the four, from the same
+      // const, so only the iteration proves the four are still there.
+      expect(source, `${file} must render every entry, not one`).toMatch(/ARCHIVE\.map\(/);
       // No surface may reach for a pointer or an image path of its own.
       expect(source).not.toContain("__l5e");
       expect(source).not.toContain(".asset.json");
     }
+  });
+
+  test("the deferred archive page renders no entries, and the $slug route is gone", () => {
+    const page = path.join(REPO_ROOT, "src/routes/the-human-archive.tsx");
+    const source = readFileSync(page, "utf8");
+
+    // The grid is gone: the page neither imports the entries nor names one.
+    expect(source).not.toContain('from "@/lib/content"');
+    for (const entry of ARCHIVE) {
+      expect(source, `${entry.name} must not be on the deferred page`).not.toContain(entry.name);
+    }
+
+    // And it says so, in the words the deferral was approved in.
+    expect(source.toLowerCase()).toContain("to be released soon");
+
+    expect(
+      existsSync(path.join(REPO_ROOT, "src/routes/human-archive.$slug.tsx")),
+      "the per-entry route is deferred with the grid",
+    ).toBe(false);
   });
 });

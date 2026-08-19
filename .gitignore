@@ -26,6 +26,11 @@ dist-ssr
 # OMC agent runtime state
 .omc
 
+# Codex CLI runtime state — session logs, sqlite (+ its WAL/SHM siblings) and
+# generated skill scaffolding. Same class as .omc and .omx, all three of which
+# scripts/verify/audit-coverage.sh already skips as agent tooling.
+.codex
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -36,3 +41,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Playwright run artifacts
+test-results/
+playwright-report/
+e2e-results.json
+
+# Env files. `vercel link` appended the `.env*` line; the negation is ours —
+# `.env.example` is documentation the project depends on and must stay visible,
+# and a blanket `.env*` would swallow it on any file that is not already tracked.
+.env*
+!.env.example

@@ -36,12 +36,22 @@ export type TeamMember = {
   descriptors: readonly string[];
   /** Card body, one entry per paragraph. */
   bio: readonly string[];
+  /**
+   * A long-form page for this person, when one exists.
+   *
+   * Optional on purpose: only Shane has one (`/about-the-founder`, built from
+   * Maya's 2026-08-18 brief). Carried as data rather than an `id === "shane"`
+   * branch in the card, so the second and third profiles are a field each and
+   * not another special case.
+   */
+  profile?: string;
 };
 
 export const TEAM: readonly TeamMember[] = [
   {
     id: "shane-james",
     name: "Shane James",
+    profile: "/about-the-founder",
     role: "Founder & CEO",
     descriptors: ["Entrepreneur", "Business strategist", "Executive advisor"],
     bio: [

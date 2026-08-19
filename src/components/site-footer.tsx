@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 import { MapleLeaf } from "./maple-leaf";
 import { Wordmark } from "./site-header";
-import { INDIGENOUS_LINE, SOCIAL_LINKS } from "@/lib/brand";
+import { CONTACT_EMAIL, INDIGENOUS_LINE, SOCIAL_LINKS } from "@/lib/brand";
 import { navDestinations } from "@/lib/nav";
 
 /**
@@ -99,8 +99,8 @@ export function SiteFooter() {
           <h3 className="eyebrow text-muted-foreground">Contact</h3>
           <ul className="mt-5 space-y-3 text-sm text-foreground/80">
             <li>
-              <a href="mailto:info@thebehumancompany.ca" className="hover:text-lime">
-                info@thebehumancompany.ca
+              <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-lime">
+                {CONTACT_EMAIL}
               </a>
             </li>
           </ul>

@@ -17,11 +17,11 @@ import { Route as TheHumanArchiveRouteImport } from './routes/the-human-archive'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PodcastRouteImport } from './routes/podcast'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutTheFounderRouteImport } from './routes/about-the-founder'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BeHumanAiIndexRouteImport } from './routes/be-human-ai/index'
 import { Route as PodcastSlugRouteImport } from './routes/podcast_.$slug'
-import { Route as HumanArchiveSlugRouteImport } from './routes/human-archive.$slug'
 import { Route as BeHumanAiHumanReadinessRouteImport } from './routes/be-human-ai/human-readiness'
 import { Route as BeHumanAiGovernanceRouteImport } from './routes/be-human-ai/governance'
 import { Route as BeHumanAiAiStrategyRouteImport } from './routes/be-human-ai/ai-strategy'
@@ -66,6 +66,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutTheFounderRoute = AboutTheFounderRouteImport.update({
+  id: '/about-the-founder',
+  path: '/about-the-founder',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -84,11 +89,6 @@ const BeHumanAiIndexRoute = BeHumanAiIndexRouteImport.update({
 const PodcastSlugRoute = PodcastSlugRouteImport.update({
   id: '/podcast_/$slug',
   path: '/podcast/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HumanArchiveSlugRoute = HumanArchiveSlugRouteImport.update({
-  id: '/human-archive/$slug',
-  path: '/human-archive/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BeHumanAiHumanReadinessRoute = BeHumanAiHumanReadinessRouteImport.update({
@@ -110,6 +110,7 @@ const BeHumanAiAiStrategyRoute = BeHumanAiAiStrategyRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/about-the-founder': typeof AboutTheFounderRoute
   '/contact': typeof ContactRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -121,13 +122,13 @@ export interface FileRoutesByFullPath {
   '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
   '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
   '/be-human-ai/human-readiness': typeof BeHumanAiHumanReadinessRoute
-  '/human-archive/$slug': typeof HumanArchiveSlugRoute
   '/podcast/$slug': typeof PodcastSlugRoute
   '/be-human-ai/': typeof BeHumanAiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/about-the-founder': typeof AboutTheFounderRoute
   '/contact': typeof ContactRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -139,7 +140,6 @@ export interface FileRoutesByTo {
   '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
   '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
   '/be-human-ai/human-readiness': typeof BeHumanAiHumanReadinessRoute
-  '/human-archive/$slug': typeof HumanArchiveSlugRoute
   '/podcast/$slug': typeof PodcastSlugRoute
   '/be-human-ai': typeof BeHumanAiIndexRoute
 }
@@ -147,6 +147,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/about-the-founder': typeof AboutTheFounderRoute
   '/contact': typeof ContactRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -158,7 +159,6 @@ export interface FileRoutesById {
   '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
   '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
   '/be-human-ai/human-readiness': typeof BeHumanAiHumanReadinessRoute
-  '/human-archive/$slug': typeof HumanArchiveSlugRoute
   '/podcast_/$slug': typeof PodcastSlugRoute
   '/be-human-ai/': typeof BeHumanAiIndexRoute
 }
@@ -167,6 +167,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/about-the-founder'
     | '/contact'
     | '/podcast'
     | '/sitemap.xml'
@@ -178,13 +179,13 @@ export interface FileRouteTypes {
     | '/be-human-ai/ai-strategy'
     | '/be-human-ai/governance'
     | '/be-human-ai/human-readiness'
-    | '/human-archive/$slug'
     | '/podcast/$slug'
     | '/be-human-ai/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/about-the-founder'
     | '/contact'
     | '/podcast'
     | '/sitemap.xml'
@@ -196,13 +197,13 @@ export interface FileRouteTypes {
     | '/be-human-ai/ai-strategy'
     | '/be-human-ai/governance'
     | '/be-human-ai/human-readiness'
-    | '/human-archive/$slug'
     | '/podcast/$slug'
     | '/be-human-ai'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/about-the-founder'
     | '/contact'
     | '/podcast'
     | '/sitemap.xml'
@@ -214,7 +215,6 @@ export interface FileRouteTypes {
     | '/be-human-ai/ai-strategy'
     | '/be-human-ai/governance'
     | '/be-human-ai/human-readiness'
-    | '/human-archive/$slug'
     | '/podcast_/$slug'
     | '/be-human-ai/'
   fileRoutesById: FileRoutesById
@@ -222,6 +222,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AboutTheFounderRoute: typeof AboutTheFounderRoute
   ContactRoute: typeof ContactRoute
   PodcastRoute: typeof PodcastRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -233,7 +234,6 @@ export interface RootRouteChildren {
   BeHumanAiAiStrategyRoute: typeof BeHumanAiAiStrategyRoute
   BeHumanAiGovernanceRoute: typeof BeHumanAiGovernanceRoute
   BeHumanAiHumanReadinessRoute: typeof BeHumanAiHumanReadinessRoute
-  HumanArchiveSlugRoute: typeof HumanArchiveSlugRoute
   PodcastSlugRoute: typeof PodcastSlugRoute
   BeHumanAiIndexRoute: typeof BeHumanAiIndexRoute
 }
@@ -296,6 +296,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about-the-founder': {
+      id: '/about-the-founder'
+      path: '/about-the-founder'
+      fullPath: '/about-the-founder'
+      preLoaderRoute: typeof AboutTheFounderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -322,13 +329,6 @@ declare module '@tanstack/react-router' {
       path: '/podcast/$slug'
       fullPath: '/podcast/$slug'
       preLoaderRoute: typeof PodcastSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/human-archive/$slug': {
-      id: '/human-archive/$slug'
-      path: '/human-archive/$slug'
-      fullPath: '/human-archive/$slug'
-      preLoaderRoute: typeof HumanArchiveSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/be-human-ai/human-readiness': {
@@ -358,6 +358,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AboutTheFounderRoute: AboutTheFounderRoute,
   ContactRoute: ContactRoute,
   PodcastRoute: PodcastRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
@@ -369,7 +370,6 @@ const rootRouteChildren: RootRouteChildren = {
   BeHumanAiAiStrategyRoute: BeHumanAiAiStrategyRoute,
   BeHumanAiGovernanceRoute: BeHumanAiGovernanceRoute,
   BeHumanAiHumanReadinessRoute: BeHumanAiHumanReadinessRoute,
-  HumanArchiveSlugRoute: HumanArchiveSlugRoute,
   PodcastSlugRoute: PodcastSlugRoute,
   BeHumanAiIndexRoute: BeHumanAiIndexRoute,
 }

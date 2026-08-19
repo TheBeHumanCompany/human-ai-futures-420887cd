@@ -293,6 +293,25 @@ three. The user re-decided on 2026-08-17 with the corrected premise.
 - [ ] **AC-2.8a** A maple leaf sits **beside the "Indigenous-led" line** (Maya, 08-15 18:47) — this locates AC-6.6's leaf.
 - [ ] **AC-6.9a** The Blueprint page is built **section by section and digestible** — Maya, 08-15 13:57: *"it just feels like information overload for the blueprint. We need to make that page more digestible."* Rendering all 16 PDF sections at equal weight fails this criterion.
 
+### What the 2026-08-19 external review changed
+An adversarial pass over this amendment rejected it, correctly, on four points,
+all now closed:
+- The honeypot returned success while discarding the message, and the page said
+  "that reached us". Nothing is sent, so nothing is confirmed — it returns
+  `ignored` and shows the fallback.
+- The confirmation claimed delivery on a provider 2xx, which is acceptance.
+- AC-3.2c's registered proof named a playwright test that did not exist.
+- Copy fidelity was claimed but unverifiable: the PDFs lived in a WhatsApp store
+  outside the repo. They are now committed under `docs/source/` and enforced by
+  `src/lib/copy-fidelity.test.ts`, which found and fixed a real defect on the
+  way in — an earlier draft of the founder page had silently expanded every
+  contraction in Shane's first-person voice.
+
+It also surfaced a defect in someone else's lane worth recording: the
+fault-injection fixture omitted `data-section-id` on section-level `<details>`,
+so `prod-acceptance.sh` failed at AC-6.9b/c and **every later fault case was
+passing on the wrong rejection**. Fixed; that suite is now 14/14.
+
 ### Open items created by this amendment
 1. **Brett's testimonial is still unwritten** (Maya, 08-15 15:52: *"We still need to get a quote from Brett"*). PDF v4 pp.7 and 12 carry placeholders. Blueprint cannot ship complete without it.
 2. **"Lindsay / Vancouver"** is quoted in mockup 2 but is not one of the four `ARCHIVE` entries.
@@ -453,6 +472,166 @@ The plan recommended repurposing `/about` with a 301. That changes a live URL, a
 - **`site-header.tsx` has no booking CTA on this branch** — the plan's `S3.5` line references (`:46-63`) are stale and point at the hamburger button. AC-2.6's header CTA is being **added**, not rewired.
 - **`bun test src/` never executed `scripts/**`** — both fault-injection suites would have sat permanently unrun. `test:scripts` added and wired into the Phase 8 gate.
 - **`ac-inventory.ts` would have parsed the spec from gitignored `.omc/`** — the AC-X.7a defect applied to the spec itself. A tracked copy now lives at `docs/spec/`, with a SHA-256 guard against drift.
+
+---
+
+## Amendment 6 — 2026-08-19, the Human Archive is deferred
+
+**User decision (Sid, 2026-08-19): hold the Human Archive back — "we can use to be released soon or something similar".**
+
+The four entries are real and stay on the site. The homepage archive section and
+the `/the-new-human-era` portrait row both render them from `ARCHIVE`, unchanged.
+What is deferred is the archive as a *destination*: `/the-human-archive` drops
+its portrait grid for a teaser that says **"To be released soon"**, and the
+per-entry route `/human-archive/$slug` — four pages whose own copy read "This
+archive entry is being prepared" — is deleted rather than left promising a
+conversation the site cannot yet show.
+
+The route stays live and stays in the nav. It is linked from the bar, from the
+homepage section and from `/the-new-human-era`; a destination that admits it is
+not ready beats three dead ends. The homepage CTA reads **"Coming soon"** rather
+than "Explore the archive", because a label has to match what is behind it.
+
+- [ ] **AC-7.3a** The four entries render with zero broken images on the **homepage archive section** and on the `/the-new-human-era` portrait row, both reading from `ARCHIVE`. `/the-human-archive` carries the deferral notice — the words "to be released soon" — and names no entry, and `src/routes/human-archive.$slug.tsx` does not exist. *(supersedes AC-7.3; clarifies AC-2.7a — "Explore the archive" is now the `/the-new-human-era` CTA only)*
+
+AC-7.1 and AC-7.2 are untouched, and that is what makes this a deferral rather
+than a deletion: the entries, their quotes, their archive numbers and their
+committed binaries are preserved exactly. Restoring the archive is a revert of
+the deferral commit, not a rebuild.
+
+### What the 2026-08-19 external review changed
+An adversarial pass over this amendment rejected it, correctly, on four points,
+all now closed:
+- The honeypot returned success while discarding the message, and the page said
+  "that reached us". Nothing is sent, so nothing is confirmed — it returns
+  `ignored` and shows the fallback.
+- The confirmation claimed delivery on a provider 2xx, which is acceptance.
+- AC-3.2c's registered proof named a playwright test that did not exist.
+- Copy fidelity was claimed but unverifiable: the PDFs lived in a WhatsApp store
+  outside the repo. They are now committed under `docs/source/` and enforced by
+  `src/lib/copy-fidelity.test.ts`, which found and fixed a real defect on the
+  way in — an earlier draft of the founder page had silently expanded every
+  contraction in Shane's first-person voice.
+
+It also surfaced a defect in someone else's lane worth recording: the
+fault-injection fixture omitted `data-section-id` on section-level `<details>`,
+so `prod-acceptance.sh` failed at AC-6.9b/c and **every later fault case was
+passing on the wrong rejection**. Fixed; that suite is now 14/14.
+
+### Open items created by this amendment
+- `/the-new-human-era` keeps its "Explore the archive" button, which now lands
+  on the teaser. AC-2.7a pins that label, so changing it is a further amendment,
+  not an execution-time call.
+- `/the-human-archive` stays in the sitemap at `changefreq: weekly`. Accurate
+  again the day the archive lands; mildly overstated while it is a teaser.
+
+---
+
+## Amendment 7 — 2026-08-19, Maya's outstanding pages, and Contact removed
+
+Three decisions, all taken with the documents Maya sent on 08-18 and 08-19 in hand.
+
+### 1. "About the Founder" is built from the PDF, not the mockup copy
+She sent eleven design screens and, one second later, a four-page PDF captioned
+"I will make sure to provide you with the proper text and images". The screens
+carry a condensed third-person retelling; the PDF is first person and complete.
+The PDF is used verbatim, because the PDF is what she called the proper text.
+
+Her section spine is kept (MEET THE FOUNDER → EARLY YEARS → BUILDING AT SCALE →
+the black pull-quote band → MEDIA · LEADERSHIP · TRAINING → ACTIONS OF COMPASSION
+→ WHY THIS WORK), plus one kicker that is **not** hers — HUMAN PERFORMANCE —
+because the PDF's Brainwave Synergy passage has no slot in her design.
+
+**The photographs landed the same day.** The page first shipped as type only —
+the pictures existed solely flattened inside her JPEG mockups, and an empty
+frame waiting for one is the placeholder this repo's gates exist to keep out of
+production. Sid supplied the ten originals on 2026-08-19; they are converted to
+WebP at display width (~1MB total against ~2.4MB of source JPEG), imported so
+the bundler fingerprints them, and each carries real alt text.
+
+Two deviations from her mockup, both stated rather than hidden: her BUILDING AT
+SCALE and MEDIA rows repeat the same three photographs, so the media row takes
+the two she uses further down and every picture appears exactly once; and WHY
+THIS WORK stays type, because the closing portrait in her design has no
+counterpart in what was sent.
+
+- [ ] **AC-3.9a** `/about-the-founder` exists and renders the 08-18 PDF's copy — the hero, five body sections, the "Businesses don't grow because of products" band, and the closing belief — verbatim, with **zero** accepted divergences, held to `docs/source/meet-the-founder.txt` sentence by sentence. Ten photographs render, every one a fingerprinted bundle import rather than a hand-written path, each with alt text longer than fifteen characters; there is exactly one `<img>` in the file, inside the shared `Shot` component, so no photograph can bypass the common treatment. No empty `<figure>`, no `placeholder`/`coming soon`/`TODO` string, and the page design she drew is not itself shipped as content. It is reachable from `/who-we-are` (Shane's card), and it is **not** a nav item.
+
+### 2. Contact stays, and its form actually sends
+The page was first removed as redundant: it offered `info@thebehumancompany.ca`
+and the cal.com booking link, both already in the footer, plus an enquiry form.
+**Sid reversed that mid-pass — fix the form instead.** The removal is reverted in
+full; the nav keeps its six items and AC-3.1a stands unamended.
+
+The form deserved the suspicion. Its only submit handler was
+`onSubmit={(e) => e.preventDefault()}`, so it accepted enquiries, cleared, and
+discarded every one, with nothing on the page or in the logs to say so. It now
+posts to a server function that mails the enquiry.
+
+**Address.** The instruction named `info@behumancompany.ca`. That domain has no
+MX and no A record (checked 2026-08-19), so mail to it is not slow, it is gone.
+The canonical `info@thebehumancompany.ca` — the address already on the footer
+and the contact page, whose domain carries Google Workspace MX — is what the
+form sends to, and it is now one constant, `CONTACT_EMAIL` in `brand.ts`, rather
+than three hand-typed copies.
+
+**Transport.** The deploy target cannot open outbound SMTP, so delivery goes
+over Resend's HTTP API. Both prerequisites were satisfied on 2026-08-19: the
+`RESEND_API_KEY` (send-only restricted) is set, and the sending domain
+`updates.thebehumancompany.ca` is verified — a subdomain, not the apex, so the
+mailbox people actually read keeps its own MX and SPF and cannot inherit a
+deliverability problem caused by website mail. The key is set locally and in all
+three Vercel environments.
+
+**What was actually observed**, stated at the strength of the evidence: a
+submission through the form returned a Resend 2xx with a message id, and the
+page rendered its confirmation. Nobody has opened the shared mailbox to confirm
+the message landed, and this system consumes no `email.delivered` webhook, so
+delivery itself is **unverified**. An earlier draft of this paragraph said the
+message "arrives at the shared mailbox" and quoted a confirmation string the
+page no longer shows; it had the evidence for neither, and it contradicted
+AC-3.11a's own acceptance-not-delivery wording below. Caught in review.
+
+Before verification the same path returned 403 and the form said so rather than
+confirming, which is the behaviour that matters: a silent success is the defect
+being fixed, so every non-2xx, throw, and missing key returns a visible failure
+carrying the direct-email fallback.
+
+- [ ] **AC-3.11a** The `/contact` form submits to a server function that mails the enquiry to `CONTACT_EMAIL`, with `reply_to` set to the sender. No submit path resolves to `preventDefault()` alone. Across **every** reachable outcome — accepted, provider refusal, provider error, network throw, missing key, invalid input, honeypot — the visitor sees a confirmation **only** where the provider answered 2xx; every other outcome renders the direct-email fallback. The honeypot returns `ignored`, not success: nothing is sent, so nothing is confirmed. The confirmation says the message is *on its way*, not that it was delivered, because a 2xx is acceptance for delivery and a message can still bounce or be suppressed afterwards.
+
+### 3. "Why We Exist" is completed from her document
+Her four screens end at Human Reps / Human Wealth, but her document does not:
+"there is still text that needs to be added" (08-19 08:52). The missing tail is
+the four connected pieces, "this is just the beginning", and the closing
+sequence. Copy verbatim; the layout for the four pieces is ours, since her
+screens have none — each piece is a link, because each is a real destination.
+
+- [ ] **AC-3.2c** `/why-we-exist` carries the 08-18 document, ending with the four connected pieces (Be Human AI, The New Human Era, The Human Archive, The People-Driven CEO Podcast — each linking to its own route) and the closing lines through "That's not a hope. That's the plan." Held to `docs/source/why-we-exist.txt` sentence by sentence. It is **not** wholly verbatim, and the exceptions are enumerated rather than averaged away: three sentences her own 08-19 screens shorten or trim, and the `Indigenous-founded` → `Indigenous-led` substitution that `layering.test.ts` enforces. Each exception is asserted to still be a real divergence, so the list cannot become a standing licence to drift. *(clarifies AC-3.2b)*
+
+### What the 2026-08-19 external review changed
+An adversarial pass over this amendment rejected it, correctly, on four points,
+all now closed:
+- The honeypot returned success while discarding the message, and the page said
+  "that reached us". Nothing is sent, so nothing is confirmed — it returns
+  `ignored` and shows the fallback.
+- The confirmation claimed delivery on a provider 2xx, which is acceptance.
+- AC-3.2c's registered proof named a playwright test that did not exist.
+- Copy fidelity was claimed but unverifiable: the PDFs lived in a WhatsApp store
+  outside the repo. They are now committed under `docs/source/` and enforced by
+  `src/lib/copy-fidelity.test.ts`, which found and fixed a real defect on the
+  way in — an earlier draft of the founder page had silently expanded every
+  contraction in Shane's first-person voice.
+
+It also surfaced a defect in someone else's lane worth recording: the
+fault-injection fixture omitted `data-section-id` on section-level `<details>`,
+so `prod-acceptance.sh` failed at AC-6.9b/c and **every later fault case was
+passing on the wrong rejection**. Fixed; that suite is now 14/14.
+
+### Open items created by this amendment
+- Whether `/about-the-founder` joins the About dropdown. AC-3.1a deep-equals the nav tree, so a new entry there is an amendment, not an execution-time call.
+- `RESEND_API_KEY` is set in `.env.local` (gitignored) and in all three Vercel environments; it takes effect on the next deployment. The key passed through a chat transcript, so rotating it is worth doing.
+- Contact rate limiting is per-instance and in-memory. Durable protection needs the platform firewall or a shared store (Upstash) — an account decision, not code.
+- Delivery is confirmed only to provider acceptance. Consuming an `email.delivered` webhook is the only way to claim more, and the copy deliberately claims no more.
 
 ---
 **Status: pending approval**
