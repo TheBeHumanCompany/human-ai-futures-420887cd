@@ -48,8 +48,10 @@ function WhyWeExist() {
             deliberate about their humanity.
           </p>
           {/* Maya asked for the signature in brand lime. This band is cream, where
-              `--lime` lands at ~1.3:1 — `text-lime-dark` is the same hue at the
-              lightness the cream side is designed for. */}
+              `--lime` measures 1.26:1 — `text-lime-dark` is the same 118° hue at
+              the lightness the cream side is designed for. Chromium paints it
+              rgb(127,146,0) on rgb(244,240,230) = 3.07:1, which clears AA for
+              text at this size. */}
           <p className="font-hand mt-10 text-3xl text-lime-dark">Stay Human.</p>
         </div>
       </section>

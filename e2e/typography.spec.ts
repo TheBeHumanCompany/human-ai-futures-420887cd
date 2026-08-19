@@ -25,17 +25,34 @@ import { visitableSurfaces } from "../src/lib/surfaces.ts";
 const surfaces = visitableSurfaces();
 
 /**
- * Surfaces whose heading outline already skipped a level when the outline check
- * below was written. Recorded rather than fixed because they are unrelated to
- * the change that added the check, and quietly restyling five pages to make a
- * new assertion green is how a proof stops meaning anything.
+ * Heading-outline debt that predates the check below, pinned exactly.
+ *
+ * Recorded rather than fixed because the cause is unrelated to the content pass
+ * that added the check, and restyling pages to make a new assertion green is how
+ * a proof stops meaning anything.
+ *
+ * The cause is one shared component, not five page bugs: `site-footer.tsx` sets
+ * its column headings ("NAVIGATE", "FOLLOW", "CONTACT") as `h3`, so any page
+ * whose content outline stops at `h1` jumps straight to them. Four of these five
+ * are literally the same `h1 -> h3` into the footer. Fix the footer and four of
+ * these entries go at once — which is why they are worth pinning rather than
+ * chasing individually.
+ *
+ * Pinned as exact rank pairs and compared with `toEqual`, so this fails in BOTH
+ * directions: a route that gets cleaned up no longer matches, and so does one
+ * that grows a new or deeper skip. An earlier draft asserted only "at least one
+ * skip", which a fault-injected `h1 -> h4` on /contact walked straight through.
+ *
+ * Heading TEXT is deliberately not pinned. The /podcast skip lands on an episode
+ * card title that comes from the live Podbean feed, so pinning it would fail the
+ * day the newest episode changes — a flake dressed up as a regression.
  */
-const HEADING_SKIP_DEBT = new Set([
-  "/the-human-archive",
-  "/podcast",
-  "/contact",
-  "/type-specimen",
-  "/human-archive/adewolf",
+const HEADING_SKIP_DEBT = new Map<string, string[]>([
+  ["/the-human-archive", ["h1 -> h3"]],
+  ["/podcast", ["h1 -> h3"]],
+  ["/contact", ["h1 -> h3"]],
+  ["/type-specimen", ["h1 -> h3"]],
+  ["/human-archive/adewolf", ["h1 -> h3"]],
 ]);
 
 /**
@@ -226,16 +243,16 @@ for (const surface of surfaces) {
       .filter(({ level, prev }) => prev !== undefined && level > prev + 1)
       .map(({ level, prev }) => `h${prev} -> h${level}`);
 
-    if (HEADING_SKIP_DEBT.has(surface.path)) {
-      // A ratchet, not a mute. These five skipped a level before this check
-      // existed and are out of scope for the content pass that added it. The
-      // assertion is inverted so the list cannot rot: fix one and this fails,
-      // telling you to delete the entry rather than leaving a stale exemption
-      // that silently covers a real regression later.
+    const debt = HEADING_SKIP_DEBT.get(surface.path);
+    if (debt) {
+      // Exact match, so the exemption cannot widen. Cleaning the route up fails
+      // here too — that is deliberate: it tells you to delete the entry instead
+      // of leaving a stale one that would later swallow a real regression.
       expect(
-        skips.length,
-        `${surface.path}: heading outline is clean now — drop it from HEADING_SKIP_DEBT`,
-      ).toBeGreaterThan(0);
+        skips,
+        `${surface.path}: heading outline changed. If you fixed it, remove the ` +
+          `entry from HEADING_SKIP_DEBT. If this is new, it is a regression.`,
+      ).toEqual(debt);
     } else {
       expect(skips, `${surface.path}: heading level skipped`).toEqual([]);
     }
