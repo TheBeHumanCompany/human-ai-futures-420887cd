@@ -35,8 +35,14 @@ export const Route = createFileRoute("/why-we-exist")({
  * Section order below is Maya's, from the four screens she sent on 2026-08-19
  * ("this is what the Why We Exist page needs to look like, this in this
  * order"): hero → What We Noticed → The Real Question → Human Reps / Human
- * Wealth. Body copy is verbatim from the 3-page doc she sent on 2026-08-18,
- * with one deliberate exception noted at the Indigenous line below.
+ * Wealth.
+ *
+ * Copy follows her SCREENS where they and the 3-page doc disagree — the screens
+ * are the later edit and are what she signed off ("this is what it needs to look
+ * like"). They condense the doc in places, so this is not the doc verbatim. The
+ * doc's third page (the four connected pieces, and the "That's not a hope.
+ * That's the plan." close) has no screen yet and is deliberately not invented
+ * here; she said more text is still coming.
  */
 function WhyWeExist() {
   return (
@@ -79,8 +85,8 @@ function WhyWeExist() {
               <p className="type-body mt-6 text-muted-foreground">
                 We started asking people one question:
               </p>
-              <p className="type-body mt-6 font-semibold text-foreground">
-                What does it mean to be human?
+              <p className="type-body mt-6 text-foreground">
+                <strong className="font-semibold">What does it mean to be human?</strong>
               </p>
               <p className="type-body mt-6 text-muted-foreground">
                 Almost nobody talks about their job title, how productive they've been, or what
@@ -123,8 +129,10 @@ function WhyWeExist() {
               </p>
             </div>
             <div className="lg:pt-4">
-              <p className="type-body font-semibold text-foreground">
-                What kind of humans are these systems actually helping us become?
+              <p className="type-body text-foreground">
+                <strong className="font-semibold">
+                  What kind of humans are these systems actually helping us become?
+                </strong>
               </p>
               <p className="type-body mt-6 text-muted-foreground">
                 AI can unlock extraordinary progress. But the real question is not whether it
@@ -171,8 +179,10 @@ function WhyWeExist() {
             <p className="type-body mt-6 text-ink/70">
               Being human isn't something you're born finished with.
             </p>
-            <p className="type-body mt-6 font-semibold text-ink">
-              You're born human. Humanity is what you practice.
+            <p className="type-body mt-6 text-ink">
+              <strong className="font-semibold">
+                You're born human. Humanity is what you practice.
+              </strong>
             </p>
             <p className="type-body mt-6 text-ink/70">
               You practice it in the conversations you choose to have instead of scrolling past. In
@@ -188,7 +198,9 @@ function WhyWeExist() {
               that feel closer instead of more distant, into organizations that become more human
               because the people inside them choose to practice being human.
             </p>
-            <p className="type-body mt-6 font-semibold text-ink">We call that Human Wealth.</p>
+            <p className="type-body mt-6 text-ink">
+              <strong className="font-semibold">We call that Human Wealth.</strong>
+            </p>
             <p className="type-body mt-6 text-ink/70">
               We believe the world gets measurably better every time someone chooses to practice
               their humanity. Not because we say it does. Because it's true every single time it
@@ -225,7 +237,7 @@ function WhyWeExist() {
 
           <div className="mt-16 grid gap-12 border-t border-hairline-dark pt-12 lg:grid-cols-2 lg:gap-20">
             <div>
-              <p className="type-label-caps text-lime-dark">Human Reps</p>
+              <h2 className="type-label-caps text-lime-dark">Human Reps</h2>
               <span className="type-eyebrow-rule block" aria-hidden />
               <p className="type-h3-condensed mt-6 text-ink">
                 Small, conscious choices where you interrupt the automatic pattern and decide how
@@ -233,7 +245,7 @@ function WhyWeExist() {
               </p>
             </div>
             <div className="border-t border-hairline-dark pt-12 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
-              <p className="type-label-caps text-lime-dark">Human Wealth</p>
+              <h2 className="type-label-caps text-lime-dark">Human Wealth</h2>
               <span className="type-eyebrow-rule block" aria-hidden />
               <p className="type-h3-condensed mt-6 text-ink">
                 Trust with your name attached. Relationships strong enough to carry real life.

@@ -76,7 +76,7 @@ export type Block =
    *
    * `strong` opts a single lead into the bold caps register. Maya asked for it
    * on one line only ("just change that one and see how it looks"), and there
-   * are 23 leads across the Blueprint pages — so this is a per-block flag
+   * are 22 leads across the Blueprint pages — so this is a per-block flag
    * rather than a change to how every lead renders.
    */
   | { kind: "lead"; text: string; strong?: boolean }
