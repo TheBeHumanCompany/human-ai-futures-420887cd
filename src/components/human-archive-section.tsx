@@ -38,7 +38,6 @@ function PortraitCard({
     return () => io.disconnect();
   }, [onInView]);
 
-
   return (
     <figure
       onMouseEnter={onActivate}
@@ -52,10 +51,7 @@ function PortraitCard({
         active ? "lg:pt-0" : "lg:pt-8",
       ].join(" ")}
     >
-      <div
-        ref={ref}
-        className="relative aspect-4/5 overflow-hidden rounded-lg bg-ink"
-      >
+      <div ref={ref} className="relative aspect-4/5 overflow-hidden rounded-lg bg-ink">
         <img
           src={image}
           alt={`Portrait of ${name} from ${location}`}
@@ -114,8 +110,6 @@ function PortraitCard({
   );
 }
 
-
-
 export function HumanArchiveSection() {
   const DEFAULT_ACTIVE = 1;
   const [hovered, setHovered] = useState<number | null>(null);
@@ -129,7 +123,6 @@ export function HumanArchiveSection() {
     setScrolled(i);
   };
 
-
   return (
     <section className="section-cream border-t border-border">
       <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8 sm:py-20 lg:py-28">
@@ -137,13 +130,13 @@ export function HumanArchiveSection() {
         <div className="grid gap-8 md:grid-cols-[1.5fr_1fr] md:gap-0">
           {/* Label — mobile only, sits above the title */}
           <div className="md:hidden">
-            <p className="section-label section-label-light text-[15px]">THE HUMAN ARCHIVE</p>
-            <div className="section-label-rule" aria-hidden />
+            <p className="type-label-caps text-ink">THE HUMAN ARCHIVE</p>
+            <div className="type-eyebrow-rule" aria-hidden />
           </div>
 
           {/* Title */}
           <div className="md:order-1 md:pr-12 lg:pr-16">
-            <h2 className="archive-question text-[clamp(2.3rem,9vw,3.5rem)] text-ink md:text-[5vw] lg:text-[clamp(2.3rem,6.4vw,5.4rem)]">
+            <h2 className="type-h1-caps text-ink">
               What does it
               <br />
               mean to
@@ -154,25 +147,29 @@ export function HumanArchiveSection() {
 
           <div className="md:order-2 md:border-l md:border-ink/15 md:pl-12 lg:pl-16">
             <div className="md:pt-4 lg:pt-8">
-              <p className="section-label section-label-light hidden text-base md:block lg:text-lg">
-                THE HUMAN ARCHIVE
-              </p>
-              <div className="section-label-rule hidden md:block" aria-hidden />
+              <p className="type-label-caps hidden text-ink md:block">THE HUMAN ARCHIVE</p>
+              <div className="type-eyebrow-rule hidden md:block" aria-hidden />
               <p className="text-base leading-relaxed text-ink/60 md:mt-8 lg:mt-9 lg:whitespace-nowrap lg:text-[17px]">
                 A growing archive of real, human perspective.
               </p>
+              {/* "Coming soon", not "Explore the archive": the archive page is
+                  held back to a teaser (Sid, 2026-08-19), so the label has to
+                  match what is behind it. Still a link — the page explains the
+                  wait, and the nav points there too. */}
               <Link
                 to="/the-human-archive"
                 className="group mt-8 inline-flex w-fit items-center gap-2 whitespace-nowrap py-1 text-sm font-semibold uppercase leading-none tracking-[0.12em] text-ink sm:mt-10"
               >
-                <span className="border-b border-lime pb-0.5">Explore the Human Archive</span>
-                <span aria-hidden className="text-lime transition-transform group-hover:translate-x-1">
+                <span className="border-b border-lime pb-0.5">Coming soon</span>
+                <span
+                  aria-hidden
+                  className="text-lime transition-transform group-hover:translate-x-1"
+                >
                   →
                 </span>
               </Link>
             </div>
           </div>
-
         </div>
 
         {/* Portraits */}
@@ -201,7 +198,6 @@ export function HumanArchiveSection() {
           </span>
           <span className="text-sm text-ink/40">→</span>
         </div>
-
       </div>
     </section>
   );

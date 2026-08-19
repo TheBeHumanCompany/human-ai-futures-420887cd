@@ -1,0 +1,4 @@
+{
+  "$comment": "One definition of where the browser suite points by default, read by BOTH playwright.config.ts and scripts/verify/e2e.sh. They previously each carried their own literal: the config said 8080 and the shell status line said 3000, so a run announced a server it was not testing. The port moved off 8080 on 2026-08-19: `bun run dev` is Lovable's vite-tanstack config, which binds 8080 and FALLS BACK to 8081+ when taken — and 8080 is taken on at least one dev machine by a local service. Playwright then waited 120s for a URL nothing was serving and reported a timeout, which reads like a broken app rather than a busy port. The webServer command now binds this exact port with --strictPort, so a clash fails loudly and immediately instead of drifting.",
+  "defaultBaseUrl": "http://localhost:5180"
+}

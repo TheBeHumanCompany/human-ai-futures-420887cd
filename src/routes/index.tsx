@@ -4,9 +4,7 @@ import heroImage from "@/assets/hero.png";
 import founderVideoPoster from "@/assets/why-we-exist-video.jpg";
 import podcastImage from "@/assets/podcast.jpg";
 import humanAiProfile from "@/assets/human-ai-profile.jpg";
-import collageAsset from "@/assets/new-human-era-collage.png.asset.json";
-
-const collageImage = collageAsset.url;
+import collageImage from "@/assets/new-human-era-collage.png";
 
 import {
   Users,
@@ -92,7 +90,7 @@ function Home() {
 
         <div className="mx-auto flex min-h-[88svh] max-w-[1400px] items-end px-5 pb-16 pt-28 sm:px-8 lg:min-h-[80vh] lg:items-center lg:py-32">
           <div className="fade-up max-w-2xl">
-            <h1 className="display text-[clamp(3.5rem,11vw,8.5rem)]">
+            <h1 className="type-hero-caps-light">
               The future
               <br />
               is <span className="text-lime">human</span>
@@ -100,6 +98,9 @@ function Home() {
             <p className="mt-8 max-w-md text-base leading-relaxed text-foreground/85 sm:text-lg lg:max-w-xl">
               We help people and organizations practice what keeps us human in a world becoming more
               artificial.
+            </p>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-foreground/70 sm:text-lg lg:max-w-xl">
+              Through AI strategy, human readiness, governance, and transformation.
             </p>
           </div>
         </div>
@@ -109,12 +110,10 @@ function Home() {
       <section className="section-cream border-b border-ink/10">
         <div className="mx-auto grid max-w-[1360px] items-start gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[42%_58%] lg:gap-16 lg:px-14 lg:py-28">
           <div className="min-w-0">
-            <p className="section-label section-label-light text-[15px] sm:text-base lg:text-lg">
-              WHY WE EXIST
-            </p>
-            <div className="section-label-rule mt-5 sm:mt-6" aria-hidden />
+            <p className="type-label-caps text-ink">WHY WE EXIST</p>
+            <div className="type-eyebrow-rule mt-5 sm:mt-6" aria-hidden />
 
-            <h2 className="display mt-10 text-[clamp(2.6rem,10vw,3.4rem)] font-extrabold uppercase leading-[0.98] tracking-[0.01em] text-ink sm:mt-12 sm:text-[clamp(3.2rem,7vw,4.4rem)] lg:mt-14 lg:text-[clamp(3.4rem,4.8vw,5.25rem)] lg:leading-[0.94]">
+            <h2 className="type-h2-caps mt-10 text-ink sm:mt-12 lg:mt-14">
               BEING HUMAN IS
               <br />
               WHAT WE ARE
@@ -180,10 +179,8 @@ function Home() {
         <div className="relative z-10 mx-auto grid max-w-[1400px] gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[34%_22%_44%] lg:items-center lg:gap-8 lg:py-28">
           {/* LEFT COLUMN */}
           <div className="flex max-w-xl flex-col justify-center">
-            <p className="section-label section-label-dark text-[15px] sm:text-base lg:text-lg">
-              OUR SOLUTION
-            </p>
-            <h2 className="display mt-5 sm:mt-6 lg:mt-8 text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.92]">
+            <p className="type-label-caps text-lime">OUR SOLUTION</p>
+            <h2 className="type-h2-caps-light mt-5 sm:mt-6 lg:mt-8">
               BE HUMAN <span className="text-lime">AI</span>
             </h2>
             <p className="mt-6 max-w-[17.5rem] text-base leading-relaxed text-foreground/80 sm:max-w-sm">
@@ -257,7 +254,7 @@ function Home() {
         {/* Top: editorial split — text ~35%, collage ~65% */}
         <div className="lg:grid lg:grid-cols-[35%_65%] lg:items-center">
           <div className="px-6 py-12 sm:px-10 sm:py-14 lg:py-16 lg:pl-[max(2rem,calc((100vw-1500px)/2+2rem))] lg:pr-12">
-            <h2 className="archive-question text-[clamp(2.3rem,9vw,3.5rem)] text-ink md:text-[5vw] lg:text-[clamp(2.3rem,6.4vw,5.4rem)]">
+            <h2 className="type-h1-caps text-ink">
               THE NEW
               <br />
               <span className="text-lime">HUMAN</span> ERA
@@ -280,8 +277,11 @@ function Home() {
               to="/the-new-human-era"
               className="group mt-9 inline-flex w-fit items-center gap-2 whitespace-nowrap py-1 text-sm font-semibold uppercase leading-none tracking-[0.12em] text-ink"
             >
-              <span className="border-b border-lime pb-0.5">Learn more</span>
-              <span aria-hidden className="text-lime transition-transform group-hover:translate-x-1">
+              <span className="border-b border-lime pb-0.5">Read the New Human Era</span>
+              <span
+                aria-hidden
+                className="text-lime transition-transform group-hover:translate-x-1"
+              >
                 →
               </span>
             </Link>
@@ -317,10 +317,8 @@ function Home() {
                   <article
                     key={p.n}
                     className={`px-0 sm:px-6 lg:px-5 ${
-                      i % 2 === 1 ? "sm:border-l sm:border-ink/12" : ""
-                    } ${i > 0 ? "lg:border-l lg:border-ink/12" : "lg:border-l-0"} ${
-                      i === 0 ? "sm:border-l-0" : ""
-                    } sm:first:pl-0 lg:first:pl-0`}
+                      i % 2 === 1 ? "sm:border-l sm:border-ink/12" : "sm:pl-0"
+                    } ${i > 0 ? "lg:border-l lg:border-ink/12" : "lg:border-l-0"} lg:first:pl-0`}
                   >
                     <div className="flex items-center gap-2.5">
                       {Icon ? (
@@ -330,7 +328,7 @@ function Home() {
                         {p.n}
                       </span>
                     </div>
-                    <h3 className="display mt-3 text-[clamp(1rem,1.3vw,1.15rem)] font-extrabold uppercase leading-tight text-ink">
+                    <h3 className="type-h4-caps mt-3 text-[1.15rem] font-extrabold leading-[1.25] text-ink">
                       {p.title}
                     </h3>
                     <p className="mt-2 text-[13px] leading-relaxed text-ink/65">{p.body}</p>
@@ -353,7 +351,7 @@ function Home() {
         <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8 md:py-16 lg:py-24">
           {/* Compact intro */}
           <div className="max-w-2xl">
-            <h2 className="display text-[clamp(2.4rem,6.5vw,5.2rem)] leading-[0.9] tracking-[0.01em]">
+            <h2 className="type-h1-caps-light">
               The people-driven
               <br />
               CEO <span className="text-lime">Podcast</span>
@@ -369,7 +367,11 @@ function Home() {
             <div className="relative min-h-[240px] sm:min-h-[300px] lg:min-h-[380px]">
               <img
                 src={latest ? episodeImage(latest) : podcastImage}
-                alt={latest?.guestName ? `Portrait of ${latest.guestName}` : "Studio condenser microphone lit in a dark recording room"}
+                alt={
+                  latest?.guestName
+                    ? `Portrait of ${latest.guestName}`
+                    : "Studio condenser microphone lit in a dark recording room"
+                }
                 loading="lazy"
                 width={1200}
                 height={900}
@@ -381,7 +383,7 @@ function Home() {
                 FEATURED EPISODE
                 {latest?.episodeNumber ? ` · ${String(latest.episodeNumber).padStart(3, "0")}` : ""}
               </p>
-              <h3 className="display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.05]">
+              <h3 className="type-h3-caps-light">
                 {latest ? latest.title : "Where leaders prepare for the New Human Era"}
               </h3>
               {/*

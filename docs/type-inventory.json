@@ -1,0 +1,2188 @@
+{
+  "generatedBy": "scripts/type-inventory.ts",
+  "scannerSha256": "641e7fdd57606f57f327a3347072f7e99c3746ba360184b1cf72dc2080b92e42",
+  "provenance": {
+    "head": "ae4d57430779b5d356eaf7809e841746b94e3c88",
+    "branch": "feat/site-restructure",
+    "workingTreeDirty": true,
+    "mergeBaseWithPlanBase": "a6a377abeaa262f4f245766f3b00a31e9704f8f8"
+  },
+  "scope": {
+    "binding": 0,
+    "fourAc42Names": 0,
+    "sectionLabelVariants": 0,
+    "eyebrowOutOfScope": 67,
+    "combinedWithEyebrow": 67,
+    "utilityDefinitions": 1
+  },
+  "rawSizeDeclarations": {
+    "arbitrary": 27,
+    "tailwindNamed": 148,
+    "total": 175
+  },
+  "filesScanned": 121,
+  "filesWithTypeDeclarations": 50,
+  "excluded": {
+    "path": "src/routes/type-specimen.tsx",
+    "applied": true,
+    "reason": "G1 review instrument; names the utilities it replaces; deleted in S8.2"
+  },
+  "perUtility": [
+    {
+      "utility": "display",
+      "callSites": 0,
+      "definitions": 0,
+      "inScope": true
+    },
+    {
+      "utility": "display-strong",
+      "callSites": 0,
+      "definitions": 0,
+      "inScope": true
+    },
+    {
+      "utility": "archive-question",
+      "callSites": 0,
+      "definitions": 0,
+      "inScope": true
+    },
+    {
+      "utility": "section-label",
+      "callSites": 0,
+      "definitions": 0,
+      "inScope": true
+    },
+    {
+      "utility": "section-label-dark",
+      "callSites": 0,
+      "definitions": 0,
+      "inScope": true
+    },
+    {
+      "utility": "section-label-light",
+      "callSites": 0,
+      "definitions": 0,
+      "inScope": true
+    },
+    {
+      "utility": "section-label-rule",
+      "callSites": 0,
+      "definitions": 0,
+      "inScope": true
+    },
+    {
+      "utility": "eyebrow",
+      "callSites": 67,
+      "definitions": 1,
+      "inScope": false
+    }
+  ],
+  "occurrences": [
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 51,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 68,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 113,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 126,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 144,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 212,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 229,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/blueprint.tsx",
+      "line": 359,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/episode-media-card.tsx",
+      "line": 53,
+      "token": "text-[0.7rem]",
+      "raw": "text-[0.7rem]",
+      "category": "arbitrary-size",
+      "maxRem": 0.7,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/episode-media-card.tsx",
+      "line": 94,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/episode-media-card.tsx",
+      "line": 96,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/episode-media-card.tsx",
+      "line": 97,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/episode-player.tsx",
+      "line": 139,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/featured-episode.tsx",
+      "line": 36,
+      "token": "text-[0.7rem]",
+      "raw": "text-[0.7rem]",
+      "category": "arbitrary-size",
+      "maxRem": 0.7,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/featured-episode.tsx",
+      "line": 45,
+      "token": "text-[0.7rem]",
+      "raw": "text-[0.7rem]",
+      "category": "arbitrary-size",
+      "maxRem": 0.7,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/featured-episode.tsx",
+      "line": 57,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/featured-episode.tsx",
+      "line": 63,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/featured-episode.tsx",
+      "line": 71,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "line": 81,
+      "token": "text-[9.5px]",
+      "raw": "text-[9.5px]",
+      "category": "arbitrary-size",
+      "maxRem": 0.59375,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "line": 85,
+      "token": "text-[9.5px]",
+      "raw": "text-[9.5px]",
+      "category": "arbitrary-size",
+      "maxRem": 0.59375,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "line": 93,
+      "token": "text-[clamp(1.1rem,2.2vw,1.6rem)]",
+      "raw": "text-[clamp(1.1rem,2.2vw,1.6rem)]",
+      "category": "arbitrary-size",
+      "maxRem": 1.6,
+      "proposed": "type-h4-prose"
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "line": 101,
+      "token": "text-[clamp(1rem,1.5vw,1.25rem)]",
+      "raw": "text-[clamp(1rem,1.5vw,1.25rem)]",
+      "category": "arbitrary-size",
+      "maxRem": 1.25,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "line": 104,
+      "token": "text-[9.5px]",
+      "raw": "text-[9.5px]",
+      "category": "arbitrary-size",
+      "maxRem": 0.59375,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "line": 152,
+      "token": "text-[17px]",
+      "raw": "lg:text-[17px]",
+      "category": "arbitrary-size",
+      "maxRem": 1.0625,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "line": 152,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "line": 157,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "line": 192,
+      "token": "text-[9.5px]",
+      "raw": "text-[9.5px]",
+      "category": "arbitrary-size",
+      "maxRem": 0.59375,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/human-archive-section.tsx",
+      "line": 195,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/pillar-page.tsx",
+      "line": 48,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/pillar-page.tsx",
+      "line": 74,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/pillar-page.tsx",
+      "line": 79,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/pillar-page.tsx",
+      "line": 90,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/pillar-page.tsx",
+      "line": 97,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/podcast-degraded.tsx",
+      "line": 24,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/podcast-degraded.tsx",
+      "line": 26,
+      "token": "text-4xl",
+      "raw": "sm:text-4xl",
+      "category": "tailwind-size",
+      "maxRem": 2.25,
+      "proposed": "type-h3-prose"
+    },
+    {
+      "file": "src/components/podcast-degraded.tsx",
+      "line": 26,
+      "token": "text-3xl",
+      "raw": "text-3xl",
+      "category": "tailwind-size",
+      "maxRem": 1.875,
+      "proposed": "type-h3-prose"
+    },
+    {
+      "file": "src/components/podcast-degraded.tsx",
+      "line": 30,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/podcast-degraded.tsx",
+      "line": 35,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/podcast-degraded.tsx",
+      "line": 40,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 43,
+      "token": "text-[clamp(1.45rem,5.6vw,1.95rem)]",
+      "raw": "max-sm:text-[clamp(1.45rem,5.6vw,1.95rem)]",
+      "category": "arbitrary-size",
+      "maxRem": 1.95,
+      "proposed": "type-h3-prose"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 51,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 58,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 64,
+      "token": "text-2xl",
+      "raw": "text-2xl",
+      "category": "tailwind-size",
+      "maxRem": 1.5,
+      "proposed": "type-h4-prose"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 68,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 72,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 81,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 89,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 99,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 100,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 116,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/site-footer.tsx",
+      "line": 117,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/site-header.tsx",
+      "line": 58,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/site-header.tsx",
+      "line": 83,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/site-header.tsx",
+      "line": 156,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/site-header.tsx",
+      "line": 217,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/site-header.tsx",
+      "line": 255,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/site-header.tsx",
+      "line": 289,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/components/social-section.tsx",
+      "line": 92,
+      "token": "text-lg",
+      "raw": "sm:text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/social-section.tsx",
+      "line": 92,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/social-section.tsx",
+      "line": 110,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/accordion.tsx",
+      "line": 25,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/accordion.tsx",
+      "line": 43,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/alert-dialog.tsx",
+      "line": 65,
+      "token": "text-lg",
+      "raw": "text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/alert-dialog.tsx",
+      "line": 77,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/alert.tsx",
+      "line": 7,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/alert.tsx",
+      "line": 45,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/badge.tsx",
+      "line": 7,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/breadcrumb.tsx",
+      "line": 20,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/button.tsx",
+      "line": 8,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/button.tsx",
+      "line": 22,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/calendar.tsx",
+      "line": 61,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/calendar.tsx",
+      "line": 72,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/calendar.tsx",
+      "line": 73,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/calendar.tsx",
+      "line": 79,
+      "token": "text-[0.8rem]",
+      "raw": "text-[0.8rem]",
+      "category": "arbitrary-size",
+      "maxRem": 0.8,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/calendar.tsx",
+      "line": 85,
+      "token": "text-[0.8rem]",
+      "raw": "text-[0.8rem]",
+      "category": "arbitrary-size",
+      "maxRem": 0.8,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/calendar.tsx",
+      "line": 168,
+      "token": "text-xs",
+      "raw": "[&>span]:text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/card.tsx",
+      "line": 36,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/chart.tsx",
+      "line": 51,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/chart.tsx",
+      "line": 162,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/command.tsx",
+      "line": 47,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/command.tsx",
+      "line": 74,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/command.tsx",
+      "line": 86,
+      "token": "text-xs",
+      "raw": "[&_[cmdk-group-heading]]:text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/command.tsx",
+      "line": 114,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/command.tsx",
+      "line": 126,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/context-menu.tsx",
+      "line": 28,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/context-menu.tsx",
+      "line": 81,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/context-menu.tsx",
+      "line": 97,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/context-menu.tsx",
+      "line": 120,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/context-menu.tsx",
+      "line": 143,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/context-menu.tsx",
+      "line": 164,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/dialog.tsx",
+      "line": 75,
+      "token": "text-lg",
+      "raw": "text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/dialog.tsx",
+      "line": 87,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/drawer.tsx",
+      "line": 69,
+      "token": "text-lg",
+      "raw": "text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/drawer.tsx",
+      "line": 81,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/dropdown-menu.tsx",
+      "line": 30,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/dropdown-menu.tsx",
+      "line": 85,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/dropdown-menu.tsx",
+      "line": 101,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/dropdown-menu.tsx",
+      "line": 124,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/dropdown-menu.tsx",
+      "line": 147,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/dropdown-menu.tsx",
+      "line": 167,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/form.tsx",
+      "line": 131,
+      "token": "text-[0.8rem]",
+      "raw": "text-[0.8rem]",
+      "category": "arbitrary-size",
+      "maxRem": 0.8,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/form.tsx",
+      "line": 153,
+      "token": "text-[0.8rem]",
+      "raw": "text-[0.8rem]",
+      "category": "arbitrary-size",
+      "maxRem": 0.8,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/input-otp.tsx",
+      "line": 42,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/input.tsx",
+      "line": 11,
+      "token": "text-sm",
+      "raw": "file:text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/input.tsx",
+      "line": 11,
+      "token": "text-sm",
+      "raw": "md:text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/input.tsx",
+      "line": 11,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/label.tsx",
+      "line": 10,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/menubar.tsx",
+      "line": 49,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/menubar.tsx",
+      "line": 66,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/menubar.tsx",
+      "line": 122,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/menubar.tsx",
+      "line": 138,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/menubar.tsx",
+      "line": 161,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/menubar.tsx",
+      "line": 184,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/menubar.tsx",
+      "line": 205,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/navigation-menu.tsx",
+      "line": 38,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/select.tsx",
+      "line": 22,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/select.tsx",
+      "line": 101,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/select.tsx",
+      "line": 114,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sheet.tsx",
+      "line": 93,
+      "token": "text-lg",
+      "raw": "text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sheet.tsx",
+      "line": 105,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sidebar.tsx",
+      "line": 434,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sidebar.tsx",
+      "line": 472,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sidebar.tsx",
+      "line": 504,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sidebar.tsx",
+      "line": 513,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sidebar.tsx",
+      "line": 514,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sidebar.tsx",
+      "line": 515,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sidebar.tsx",
+      "line": 621,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sidebar.tsx",
+      "line": 708,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/sidebar.tsx",
+      "line": 709,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/table.tsx",
+      "line": 8,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/table.tsx",
+      "line": 90,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/tabs.tsx",
+      "line": 30,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/textarea.tsx",
+      "line": 10,
+      "token": "text-sm",
+      "raw": "md:text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/textarea.tsx",
+      "line": 10,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/toggle.tsx",
+      "line": 8,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/components/ui/tooltip.tsx",
+      "line": 23,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/__root.tsx",
+      "line": 21,
+      "token": "text-7xl",
+      "raw": "text-7xl",
+      "category": "tailwind-size",
+      "maxRem": 4.5,
+      "proposed": "type-h1-prose"
+    },
+    {
+      "file": "src/routes/__root.tsx",
+      "line": 22,
+      "token": "text-xl",
+      "raw": "text-xl",
+      "category": "tailwind-size",
+      "maxRem": 1.25,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/__root.tsx",
+      "line": 23,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/__root.tsx",
+      "line": 29,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/__root.tsx",
+      "line": 49,
+      "token": "text-xl",
+      "raw": "text-xl",
+      "category": "tailwind-size",
+      "maxRem": 1.25,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/__root.tsx",
+      "line": 52,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/__root.tsx",
+      "line": 61,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/__root.tsx",
+      "line": 67,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/about.tsx",
+      "line": 29,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/about.tsx",
+      "line": 33,
+      "token": "text-lg",
+      "raw": "text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/about.tsx",
+      "line": 38,
+      "token": "text-3xl",
+      "raw": "text-3xl",
+      "category": "tailwind-size",
+      "maxRem": 1.875,
+      "proposed": "type-h3-prose"
+    },
+    {
+      "file": "src/routes/about.tsx",
+      "line": 45,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/about.tsx",
+      "line": 47,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/about.tsx",
+      "line": 51,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/about.tsx",
+      "line": 57,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/be-human-ai/index.tsx",
+      "line": 60,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/contact.tsx",
+      "line": 33,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/contact.tsx",
+      "line": 37,
+      "token": "text-lg",
+      "raw": "text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/contact.tsx",
+      "line": 41,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/contact.tsx",
+      "line": 43,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/contact.tsx",
+      "line": 47,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/contact.tsx",
+      "line": 51,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/contact.tsx",
+      "line": 71,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/contact.tsx",
+      "line": 82,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/contact.tsx",
+      "line": 93,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 100,
+      "token": "text-lg",
+      "raw": "sm:text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 100,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 185,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 191,
+      "token": "text-sm",
+      "raw": "sm:text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 191,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 209,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 212,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 223,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 227,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 237,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 240,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 262,
+      "token": "text-base",
+      "raw": "sm:text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 262,
+      "token": "text-[15px]",
+      "raw": "text-[15px]",
+      "category": "arbitrary-size",
+      "maxRem": 0.9375,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 277,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 308,
+      "token": "text-[11px]",
+      "raw": "text-[11px]",
+      "category": "arbitrary-size",
+      "maxRem": 0.6875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 328,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 333,
+      "token": "text-[13px]",
+      "raw": "text-[13px]",
+      "category": "arbitrary-size",
+      "maxRem": 0.8125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 358,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 381,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 396,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 411,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 426,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 431,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 454,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 457,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 460,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/index.tsx",
+      "line": 463,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 167,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 171,
+      "token": "text-[clamp(1.6rem,3.4vw,3.35rem)]",
+      "raw": "text-[clamp(1.6rem,3.4vw,3.35rem)]",
+      "category": "arbitrary-size",
+      "maxRem": 3.35,
+      "proposed": "type-h2-prose"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 176,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 203,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 233,
+      "token": "text-[1.0625rem]",
+      "raw": "text-[1.0625rem]",
+      "category": "arbitrary-size",
+      "maxRem": 1.0625,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 244,
+      "token": "text-[clamp(1.4rem,2.2vw,1.75rem)]",
+      "raw": "text-[clamp(1.4rem,2.2vw,1.75rem)]",
+      "category": "arbitrary-size",
+      "maxRem": 1.75,
+      "proposed": "type-h3-prose"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 247,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 251,
+      "token": "text-[1.0625rem]",
+      "raw": "text-[1.0625rem]",
+      "category": "arbitrary-size",
+      "maxRem": 1.0625,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 267,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 279,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 288,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 334,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 335,
+      "token": "text-2xl",
+      "raw": "sm:text-2xl",
+      "category": "tailwind-size",
+      "maxRem": 1.5,
+      "proposed": "type-h4-prose"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 335,
+      "token": "text-xl",
+      "raw": "text-xl",
+      "category": "tailwind-size",
+      "maxRem": 1.25,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 349,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast_.$slug.tsx",
+      "line": 352,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 124,
+      "token": "text-base",
+      "raw": "text-base",
+      "category": "tailwind-size",
+      "maxRem": 1,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 154,
+      "token": "text-lg",
+      "raw": "text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 160,
+      "token": "text-lg",
+      "raw": "text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 166,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 192,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 208,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 216,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 217,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 223,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 261,
+      "token": "text-sm",
+      "raw": "text-sm",
+      "category": "tailwind-size",
+      "maxRem": 0.875,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/podcast.tsx",
+      "line": 287,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/the-human-archive.tsx",
+      "line": 28,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/the-human-archive.tsx",
+      "line": 34,
+      "token": "text-lg",
+      "raw": "text-lg",
+      "category": "tailwind-size",
+      "maxRem": 1.125,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/the-human-archive.tsx",
+      "line": 55,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/the-new-human-era.tsx",
+      "line": 116,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/the-new-human-era.tsx",
+      "line": 155,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/the-new-human-era.tsx",
+      "line": 246,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/the-new-human-era.tsx",
+      "line": 722,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/who-we-are.tsx",
+      "line": 41,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/who-we-are.tsx",
+      "line": 66,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/who-we-are.tsx",
+      "line": 76,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/who-we-are.tsx",
+      "line": 82,
+      "token": "text-xs",
+      "raw": "text-xs",
+      "category": "tailwind-size",
+      "maxRem": 0.75,
+      "proposed": "type-body"
+    },
+    {
+      "file": "src/routes/who-we-are.tsx",
+      "line": 117,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/why-we-exist.tsx",
+      "line": 40,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/why-we-exist.tsx",
+      "line": 50,
+      "token": "text-3xl",
+      "raw": "text-3xl",
+      "category": "tailwind-size",
+      "maxRem": 1.875,
+      "proposed": "type-h3-prose"
+    },
+    {
+      "file": "src/routes/why-we-exist.tsx",
+      "line": 56,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/why-we-exist.tsx",
+      "line": 81,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/why-we-exist.tsx",
+      "line": 96,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/routes/why-we-exist.tsx",
+      "line": 102,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-out-of-scope",
+      "maxRem": null,
+      "proposed": "eyebrow (unchanged — out of scope)"
+    },
+    {
+      "file": "src/styles.css",
+      "line": 113,
+      "token": "eyebrow",
+      "raw": "eyebrow",
+      "category": "utility-definition",
+      "maxRem": null,
+      "proposed": "deleted (definition, not a call site)"
+    }
+  ]
+}

@@ -89,15 +89,16 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
 
         <div className="flex min-w-0 flex-1 flex-col p-5">
           <EpisodeMetaStamp episode={episode} />
-          <h3 className="display mt-3 text-[1.15rem] font-semibold leading-[1.18] text-ink">
-            {displayTitle(episode.title)}
-          </h3>
+          <h3 className="type-h4-caps mt-3 text-ink">{displayTitle(episode.title)}</h3>
           {episode.guestName && (
             <p className="mt-2 text-sm font-medium text-ink">With {episode.guestName}</p>
           )}
           <p className="mt-1.5 text-sm text-ink/80">{publishedOn(episode.publishedAt)}</p>
           <span className="eyebrow mt-auto inline-flex items-center gap-2 pt-4 font-semibold tracking-[0.24em] text-ink">
-            Listen <span aria-hidden className="text-lime-dark">→</span>
+            Listen{" "}
+            <span aria-hidden className="text-lime-dark">
+              →
+            </span>
           </span>
         </div>
       </Link>

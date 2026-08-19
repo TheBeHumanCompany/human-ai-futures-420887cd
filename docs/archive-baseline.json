@@ -1,0 +1,35 @@
+{
+  "$comment": "The Human Archive as it stood at main@a6a377a, extracted programmatically from that commit rather than retyped. AC-7.1 requires the four entries' quotes, locations and archive numbers to be PRESERVED through this restructure — so the criterion needs a record of what they were, taken from before the work started. Only `image` was allowed to change (from a Lovable pointer's .url to a real file import), which is why it is absent here: pinning it would pin the bug.",
+  "extracted_from": "main@a6a377a:src/lib/content.ts",
+  "count": 4,
+  "entries": [
+    {
+      "name": "ADEWOLF",
+      "location": "Vancouver, Canada",
+      "no": "046",
+      "slug": "adewolf",
+      "quote": "Love.\nLove each other."
+    },
+    {
+      "name": "BELLA",
+      "location": "Vancouver, Canada",
+      "no": "026",
+      "slug": "bella",
+      "quote": "Fun.\nEnjoying your life\nto the end."
+    },
+    {
+      "name": "ANTON",
+      "location": "Toronto, Canada",
+      "no": "010",
+      "slug": "anton",
+      "quote": "Passion, compassion\nand patience towards\nyour fellow humans."
+    },
+    {
+      "name": "ARLINA",
+      "location": "Chitre, Panama",
+      "no": "037",
+      "slug": "arlina",
+      "quote": "Empathy.\nWith people and\nanything you do in life."
+    }
+  ]
+}

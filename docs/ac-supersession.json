@@ -1,0 +1,68 @@
+[
+  {
+    "by": "AC-3.1a",
+    "target": "AC-3.1",
+    "kind": "full",
+    "reason": "AC-3.1 required a FLAT nav with no dropdown component. AC-3.1a requires two dropdown parents. Nothing of AC-3.1 survives; it is also struck through in the spec. Round 4 flattened the nav on the premise that About would be a dropdown's only child, and Shane's structure nests two pages under it, so the premise was false."
+  },
+  {
+    "by": "AC-3.2a",
+    "target": "AC-3.2",
+    "kind": "full",
+    "reason": "AC-3.2 required that no /why-we-exist route exist. AC-3.2a requires 'Why We Exist' to be a distinct destination. Directly contradictory; AC-3.2 is also struck through in the spec."
+  },
+  {
+    "by": "AC-2.1b",
+    "target": "AC-2.1",
+    "kind": "partial",
+    "reason": "AC-2.1 names four footer elements: the strapline bar, the wordmark + positioning paragraph, the Indigenous line, and 'Stay Human.' in Caveat/lime. Only the Indigenous line moved (Amendment 3 decision 1 made the canonical string 'Indigenous-led. Canadian-built'). The other three are unchanged and still need proving, so AC-2.1 stays live."
+  },
+  {
+    "by": "AC-2.8b",
+    "target": "AC-2.8a",
+    "kind": "full",
+    "reason": "The parenthetical is unqualified — 'supersedes AC-2.8a'. AC-2.8a located the maple leaf beside a string ('Indigenous-led') that Amendment 3 then replaced outright, so its entire content is restated by AC-2.8b, which additionally requires implementation and proof to share one constant."
+  },
+  {
+    "by": "AC-2.3b",
+    "target": "AC-2.3",
+    "kind": "partial",
+    "reason": "Scoped by its own text: 'supersedes AC-2.3's no href=\"#\" remains FOR THESE THREE'. AC-2.3 covered every footer social link in both site-footer.tsx and social-section.tsx. Amendment 4 supplies three real URLs and deletes TikTok and Snapchat, so the residual AC-2.3 obligation — that no href=\"#\" survives anywhere in those two files — is still live and still needs proving."
+  },
+  {
+    "by": "AC-2.3d",
+    "target": "AC-2.3c",
+    "kind": "partial",
+    "reason": "Scoped by its own text: 'supersedes AC-2.3c's exactly three'. Only the count moved — Amendment 5 kept X and dropped Facebook, making the list four. Everything else AC-2.3c requires is untouched and still needs proving: the deletion of the orphaned icon components, and a test asserting the rendered footer carries no removed-platform text and that every social link has an https:// href. Retiring AC-2.3c outright would drop those obligations on the floor while the count looked correct."
+  },
+  {
+    "by": "AC-4.2b",
+    "target": "AC-4.2",
+    "kind": "partial",
+    "reason": "Explicitly scoped: 'supersedes AC-4.2's scope ambiguity'. AC-4.2's substantive requirement — that the four competing display utilities be consolidated into one documented weight set — is untouched. Only the question of how many call sites that covers was resolved (47, Amendment 2 decision 1)."
+  },
+  {
+    "by": "AC-4.4b",
+    "target": "AC-4.4",
+    "kind": "partial",
+    "reason": "Scoped: 'supersedes AC-4.4's BLOCKING BEHAVIOUR'. Amendment 4 clears the gate in advance, so the scale no longer waits on a sign-off round — but the amendment states in the same breath that the specimen is still built and that .approvals/typography.json still records scale_sha256. The approval-artifact half of AC-4.4 therefore survives and is still proven by g1.sh; only the stop-the-line half is gone."
+  },
+  {
+    "by": "AC-5.4b",
+    "target": "AC-5.4",
+    "kind": "full",
+    "reason": "Unqualified — 'supersedes AC-5.4; AC-5.9a governs'. AC-5.4 required 'Built in the Reps.' with a trailing period, which AC-5.9a forbids. The two cannot both hold, and AC-5.4b restates the whole six-principle list in its period-free form from a single shared fixture. Nothing of AC-5.4 is left to prove."
+  },
+  {
+    "by": "AC-6.9b",
+    "target": "AC-6.9a",
+    "kind": "partial",
+    "reason": "Self-describing: 'supersedes AC-6.9a's MECHANISM; its five sub-assertions stand'. Amendment 3 decision 2 replaced the Radix accordion with native <details>/<summary> after Codex demonstrated the accordion's closed-count gate passing with two empty items. The digestibility requirement AC-6.9a exists for is unchanged."
+  },
+  {
+    "by": "AC-7.3a",
+    "target": "AC-7.3",
+    "kind": "full",
+    "reason": "AC-7.3 names two surfaces — /the-human-archive and the homepage section — and requires both to render the four entries. Amendment 6 defers the page to a teaser that renders none of them, so half of AC-7.3 is not merely narrowed, it is now forbidden. AC-7.3a restates the whole criterion over the surfaces that still render the entries (homepage section, /the-new-human-era row) and adds the deferral's own assertions, so nothing of AC-7.3 is left to prove separately."
+  }
+]

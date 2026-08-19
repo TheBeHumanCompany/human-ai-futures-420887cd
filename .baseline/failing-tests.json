@@ -1,0 +1,31 @@
+{
+  "description": "Tests failing on main@a6a377a, pinned deliberately (S0.4). Recorded by ASSERTION IDENTITY, not by name: both failures are stale source strings, so a same-named failure with different asserted literals is a NEW failure and the delta gate must say so.",
+  "generated_at": "2026-08-18T01:42:33.096Z",
+  "commit": "a6a377abeaa262f4f245766f3b00a31e9704f8f8",
+  "command": "bun test src/",
+  "tests_run": 639,
+  "failing": [
+    {
+      "file": "src/routes/podcast.test.ts",
+      "suite": "incremental render",
+      "name": "a page size is declared and the grid is sliced by it",
+      "line": 155,
+      "assertions": [
+        "const PAGE_SIZE = 9;",
+        "visible.slice(1, 1 + shown)"
+      ],
+      "known_cause": "Stale source string. `const PAGE_SIZE = 9;` still matches (podcast.tsx:19); the second assertion greps for \"visible.slice(1, 1 + shown)\" and the file now slices as \"gridEpisodes.slice(0, shown)\" (podcast.tsx:102) after mobile pagination was added. The behaviour is present; the literal is not. Repaired in Phase 7 (S0.4b)."
+    },
+    {
+      "file": "src/routes/podcast.test.ts",
+      "suite": "row keys are defined and unique",
+      "name": "the card is keyed on slug.current, never on the dropped guid",
+      "line": 54,
+      "assertions": [
+        "key={row.source.slug.current}",
+        "key={episode.guid}"
+      ],
+      "known_cause": "Stale source string. The test asserts podcast.tsx contains \"key={row.source.slug.current}\"; the file has said \"key={episode.slug.current}\" (podcast.tsx:240) since a bot commit reshaped the grid. The invariant the test was written to protect — cards keyed on slug.current, never on the dropped guid — still holds; only the literal it greps for is stale. Repaired in Phase 7, not here (S0.4b)."
+    }
+  ]
+}

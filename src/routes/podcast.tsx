@@ -63,10 +63,12 @@ function Podcast() {
   const isMobile = useIsMobile();
   const [browse, setBrowse] = useState(DEFAULT_BROWSE_STATE);
 
-
   // Filtering is client-side and deliberately so: the catalogue is already in
   // memory, so a round-trip per keystroke would be slower and no more correct.
-  const browsable = useMemo(() => episodes.map((episode: EpisodeListItem) => toBrowsable(episode)), [episodes]);
+  const browsable = useMemo(
+    () => episodes.map((episode: EpisodeListItem) => toBrowsable(episode)),
+    [episodes],
+  );
   const visible = useMemo(
     () => browseEpisodes<(typeof browsable)[number]>(browsable, browse),
     [browsable, browse],
@@ -108,14 +110,13 @@ function Podcast() {
     archiveRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-
   return (
     <>
       {/* ---- Hero ---- */}
       <section className="section-ink grain">
-        <div className="mx-auto grid max-w-[1500px] items-center gap-10 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] md:gap-14 lg:pb-16 lg:pt-10">
-          <div className="md:pl-8 lg:pl-16 xl:pl-24">
-            <h1 className="display text-[clamp(2.6rem,7vw,5.2rem)] leading-[0.9] tracking-[0.01em]">
+        <div className="mx-auto grid max-w-[1500px] items-center gap-10 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] md:gap-14 lg:pb-16 lg:pt-10">
+          <div className="md:pl-4 lg:pl-6 xl:pl-8">
+            <h1 className="type-h1-caps-light">
               The people-driven
               <br />
               CEO <span className="text-lime">Podcast</span>
@@ -135,17 +136,15 @@ function Podcast() {
               alt="Studio condenser microphone lit warmly in a dark recording room"
               width={1400}
               height={1050}
-              className="aspect-[4/3] w-full object-cover md:aspect-[5/4] md:max-h-[24rem]"
+              className="aspect-[3/2] max-h-[16rem] w-full object-cover object-[50%_45%] sm:aspect-[4/3] sm:max-h-[20rem] md:aspect-[5/4] md:max-h-[24rem]"
             />
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,var(--ink)_0%,transparent_45%,transparent_70%,var(--ink)_100%),linear-gradient(to_right,var(--ink)_0%,transparent_30%,transparent_75%,var(--ink)_100%),radial-gradient(ellipse_at_center,transparent_30%,var(--ink)_100%)]"
             />
           </div>
-
         </div>
       </section>
-
 
       {/* ---- Discovery ---- */}
       <section id="episodes" className="section-cream">
@@ -177,7 +176,7 @@ function Podcast() {
                   card, then search, then the "More episodes" heading, then the
                   count/sort row, then the grid. */}
               <div ref={archiveRef} className="mt-24 scroll-mt-24 lg:mt-32">
-                <h2 className="section-label section-label-light text-sm">More episodes</h2>
+                <h2 className="type-label-caps text-ink">More episodes</h2>
 
                 <div className="relative mt-5 w-full max-w-[38rem]">
                   <Search
@@ -205,7 +204,6 @@ function Podcast() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap items-center gap-4">
-
                   <span
                     className="eyebrow font-semibold tracking-[0.16em] text-ink"
                     aria-live="polite"
@@ -234,16 +232,17 @@ function Podcast() {
                 </div>
               </div>
 
-
               <ul className="mt-6 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
                 {rest.map((episode) => (
                   <EpisodeMediaCard key={episode.slug.current} episode={episode} />
                 ))}
               </ul>
 
-
               {isMobile && pageCount > 1 && (
-                <nav aria-label="Episode pages" className="mt-8 flex items-center justify-center gap-2">
+                <nav
+                  aria-label="Episode pages"
+                  className="mt-8 flex items-center justify-center gap-2"
+                >
                   <button
                     type="button"
                     onClick={() => goToPage(current - 1)}

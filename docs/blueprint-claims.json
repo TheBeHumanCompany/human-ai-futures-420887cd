@@ -1,0 +1,140 @@
+{
+  "$comment": [
+    "Traceability from public claims on the Blueprint page to the control framework that",
+    "backs them, at framework/controls.yaml in the thebehumancompany repository.",
+    "",
+    "The point is not documentation. Sales copy about governance drifts from the thing it",
+    "describes one confident sentence at a time, and nothing catches it, because prose has",
+    "no compiler. Every claim below names the control ids it rests on; a test asserts each",
+    "id resolves in the real YAML and that at least eight domains are represented, so a",
+    "claim that outgrew its evidence — or an id that was renamed underneath it — fails",
+    "loudly instead of shipping.",
+    "",
+    "POSITIONING, WHICH IS BINDING: controls.yaml's own meta.positioning says the framework",
+    "is readiness and assurance, NOT a compliance guarantee, and that the Maturity Score is",
+    "NOT a certification. Copy may describe what is assessed. It may not promise an outcome",
+    "the framework itself declines to promise.",
+    "",
+    "SOVEREIGNTY ASSERTS NO DEFINITION, deliberately. controls.yaml records a signed-off",
+    "divergence: it rescoped sovereignty from hosting geography to data handling, and its",
+    "declared source of truth has not been updated to match. While those two disagree, any",
+    "definition published here would contradict one of them. So the claims below describe",
+    "practices that are assessed and evidenced, and never say what sovereignty is."
+  ],
+  "claims": [
+    {
+      "claim": "We uncover governance gaps and trace how data actually moves through AI systems.",
+      "section": "canadian-trust",
+      "controls": ["gov-01", "gov-03", "sov-08"],
+      "domains": ["governance", "sovereignty"]
+    },
+    {
+      "claim": "Shadow AI exposure is assessed rather than assumed: which tools are in use, what data reaches them, and who is accountable.",
+      "section": "canadian-trust",
+      "controls": ["gov-02", "cyber-07", "work-04", "vendor-11"],
+      "domains": ["governance", "cybersecurity", "workforce_readiness", "vendor_risk"]
+    },
+    {
+      "claim": "We look at whether no-train and no-retention terms are contractually in place with the providers already in use.",
+      "section": "canadian-trust",
+      "controls": ["sov-01", "vendor-01", "vendor-02"],
+      "domains": ["sovereignty", "vendor_risk"]
+    },
+    {
+      "claim": "We look at whether personal and confidential data is redacted at the model boundary by a control, rather than by instructing people.",
+      "section": "canadian-trust",
+      "controls": ["sov-02", "cyber-05", "priv-02"],
+      "domains": ["sovereignty", "cybersecurity", "privacy_data"]
+    },
+    {
+      "claim": "We look at whether model and tool calls are recorded in a retained, reviewable audit trail.",
+      "section": "canadian-trust",
+      "controls": ["sov-03", "cyber-06", "trans-05"],
+      "domains": ["sovereignty", "cybersecurity", "transparency_audit"]
+    },
+    {
+      "claim": "We look at whether the business controls the encryption keys for sensitive AI data.",
+      "section": "canadian-trust",
+      "controls": ["sov-04"],
+      "domains": ["sovereignty"]
+    },
+    {
+      "claim": "We look at whether there is an exit and portability plan, including deletion of the provider's copy.",
+      "section": "canadian-trust",
+      "controls": ["sov-05", "vendor-08"],
+      "domains": ["sovereignty", "vendor_risk"]
+    },
+    {
+      "claim": "Processing location and legal jurisdiction are treated as one recorded, rationalized factor in a data-handling decision — not as the whole question.",
+      "section": "canadian-trust",
+      "controls": ["sov-07", "vendor-05", "vendor-09"],
+      "domains": ["sovereignty", "vendor_risk"]
+    },
+    {
+      "claim": "No client-facing output is delivered without a human who has reviewed it and stands behind it.",
+      "section": "our-commitments",
+      "controls": ["ops-02", "ops-03"],
+      "domains": ["operational_risk"]
+    },
+    {
+      "claim": "AI can inform a decision. It never owns the judgment.",
+      "section": "our-commitments",
+      "controls": ["ops-02", "ops-08"],
+      "domains": ["operational_risk"]
+    },
+    {
+      "claim": "If your information will pass through non-Canadian AI infrastructure, you will know before it happens.",
+      "section": "our-commitments",
+      "controls": ["sov-07", "sov-08", "vendor-09"],
+      "domains": ["sovereignty", "vendor_risk"]
+    },
+    {
+      "claim": "Every AI system we build or recommend has a named person responsible for its direction and outcomes.",
+      "section": "our-commitments",
+      "controls": ["gov-03", "ops-08", "trans-01"],
+      "domains": ["governance", "operational_risk", "transparency_audit"]
+    },
+    {
+      "claim": "The Risk & Governance Review covers shadow AI exposure, data flows, governance gaps, cybersecurity concerns, and sovereignty considerations — with what to address first.",
+      "section": "what-youll-receive",
+      "controls": [
+        "gov-01",
+        "priv-02",
+        "cyber-03",
+        "vendor-07",
+        "sov-08",
+        "ops-01",
+        "work-01",
+        "trans-01"
+      ],
+      "domains": [
+        "governance",
+        "privacy_data",
+        "cybersecurity",
+        "vendor_risk",
+        "sovereignty",
+        "operational_risk",
+        "workforce_readiness",
+        "transparency_audit"
+      ]
+    },
+    {
+      "claim": "Executive Findings covers leadership readiness and employee AI usage.",
+      "section": "what-youll-receive",
+      "controls": ["work-01", "work-06", "gov-03"],
+      "domains": ["workforce_readiness", "governance"]
+    },
+    {
+      "claim": "Each ranked AI opportunity carries a recommended human owner.",
+      "section": "what-youll-receive",
+      "controls": ["gov-02", "ops-01", "ops-08"],
+      "domains": ["governance", "operational_risk"]
+    },
+    {
+      "claim": "Your information is used solely to complete your Blueprint. It is not used to train our systems or anyone else's.",
+      "section": "faq",
+      "controls": ["sov-01", "vendor-01", "priv-04"],
+      "domains": ["sovereignty", "vendor_risk", "privacy_data"]
+    }
+  ]
+}
