@@ -34,10 +34,10 @@ function WhoWeAre() {
   return (
     <section className="section-ink">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
-        {/* Maya's 2026-08-18 review deleted the hero and the "One team. One shared
-            purpose." band, which took the page's only <h1> with them. This label is
-            now the top-level heading, so it carries h1 — same `type-label-caps`
-            treatment, no visual change. */}
+        {/* This label opens the page, so it is the h1 even though it is set at kicker
+            size: `type-label-caps` is the treatment, not the rank. Member names below
+            are h2 for the same reason — they are the page's second level, and
+            `type-h3-caps` only describes how they look. */}
         <h1 className="type-label-caps text-lime">The team behind your transformation</h1>
         <p className="type-body mt-6 max-w-2xl text-muted-foreground">
           We stay intentionally small, so every client works directly with the people leading the
@@ -47,7 +47,7 @@ function WhoWeAre() {
         <div className="mt-12 grid gap-px bg-hairline lg:grid-cols-3">
           {TEAM.map((member) => (
             <article key={member.id} data-team-member={member.id} className="bg-background p-8">
-              <h3 className="type-h3-caps text-foreground">{member.name}</h3>
+              <h2 className="type-h3-caps text-foreground">{member.name}</h2>
               <p className="eyebrow mt-3 text-lime">{member.role}</p>
 
               <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-1">

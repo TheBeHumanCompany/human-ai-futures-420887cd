@@ -25,6 +25,20 @@ import { visitableSurfaces } from "../src/lib/surfaces.ts";
 const surfaces = visitableSurfaces();
 
 /**
+ * Surfaces whose heading outline already skipped a level when the outline check
+ * below was written. Recorded rather than fixed because they are unrelated to
+ * the change that added the check, and quietly restyling five pages to make a
+ * new assertion green is how a proof stops meaning anything.
+ */
+const HEADING_SKIP_DEBT = new Set([
+  "/the-human-archive",
+  "/podcast",
+  "/contact",
+  "/type-specimen",
+  "/human-archive/adewolf",
+]);
+
+/**
  * Viewports come from the Playwright PROJECTS, not from a loop in here.
  * `playwright.config.ts` runs one project per entry in
  * `scripts/verify/viewports.ts`, so looping again would run 3x3 combinations
@@ -183,6 +197,44 @@ for (const surface of surfaces) {
     // every heading on this site is Oswald or Work Sans by design.
     const offFace = headings.filter((h) => !/Oswald|Work Sans/.test(h.family));
     expect(offFace, `${surface.path}: heading(s) not in a brand face`).toEqual([]);
+  });
+
+  test(`${surface.path} has a heading outline with no skipped level`, async ({ page }) => {
+    // The face check above passes on any tag, so it cannot see rank. That blind
+    // spot is not theoretical: deleting the Who We Are hero took the page's only
+    // H1 and left H1 -> H3, and every committed proof stayed green. Rank is a
+    // separate axis from appearance — `type-h3-caps` on an h2 is correct and
+    // common here, which is exactly why the tag needs its own assertion.
+    await page.goto(surface.path);
+
+    const levels = await page.evaluate(() =>
+      Array.from(document.querySelectorAll<HTMLElement>("h1,h2,h3,h4,h5,h6"))
+        .filter((h) => h.innerText.trim())
+        .map((h) => Number(h.tagName[1])),
+    );
+
+    expect(levels.filter((l) => l === 1).length, `${surface.path} must have exactly one h1`).toBe(
+      1,
+    );
+
+    const skips = levels
+      .map((level, i) => ({ level, prev: levels[i - 1] }))
+      .filter(({ level, prev }) => prev !== undefined && level > prev + 1)
+      .map(({ level, prev }) => `h${prev} -> h${level}`);
+
+    if (HEADING_SKIP_DEBT.has(surface.path)) {
+      // A ratchet, not a mute. These five skipped a level before this check
+      // existed and are out of scope for the content pass that added it. The
+      // assertion is inverted so the list cannot rot: fix one and this fails,
+      // telling you to delete the entry rather than leaving a stale exemption
+      // that silently covers a real regression later.
+      expect(
+        skips.length,
+        `${surface.path}: heading outline is clean now — drop it from HEADING_SKIP_DEBT`,
+      ).toBeGreaterThan(0);
+    } else {
+      expect(skips, `${surface.path}: heading level skipped`).toEqual([]);
+    }
   });
 }
 

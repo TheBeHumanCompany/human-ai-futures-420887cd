@@ -47,7 +47,10 @@ function WhyWeExist() {
             to help people and organizations become more capable with AI while becoming more
             deliberate about their humanity.
           </p>
-          <p className="font-hand mt-10 text-3xl text-lime">Stay Human.</p>
+          {/* Maya asked for the signature in brand lime. This band is cream, where
+              `--lime` lands at ~1.3:1 — `text-lime-dark` is the same hue at the
+              lightness the cream side is designed for. */}
+          <p className="font-hand mt-10 text-3xl text-lime-dark">Stay Human.</p>
         </div>
       </section>
 
