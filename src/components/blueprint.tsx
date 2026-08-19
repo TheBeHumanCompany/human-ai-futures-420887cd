@@ -75,7 +75,13 @@ function Pricing() {
 function BlockView({ block }: { block: Block }) {
   switch (block.kind) {
     case "lead":
-      return <p className="type-h3-condensed mt-8 max-w-3xl text-ink">{block.text}</p>;
+      return (
+        <p
+          className={`mt-8 max-w-3xl text-ink ${block.strong ? "type-h2-caps" : "type-h3-condensed"}`}
+        >
+          {block.text}
+        </p>
+      );
 
     case "para":
       return <p className={`mt-5 ${PROSE}`}>{block.text}</p>;

@@ -71,8 +71,15 @@ export const TURNAROUND = "3 business days";
 type Secondary = { secondary?: boolean };
 
 export type Block =
-  /** A large statement line. The PDF's bold pull sentences. */
-  | { kind: "lead"; text: string }
+  /**
+   * A large statement line. The PDF's bold pull sentences.
+   *
+   * `strong` opts a single lead into the bold caps register. Maya asked for it
+   * on one line only ("just change that one and see how it looks"), and there
+   * are 23 leads across the Blueprint pages — so this is a per-block flag
+   * rather than a change to how every lead renders.
+   */
+  | { kind: "lead"; text: string; strong?: boolean }
   | ({ kind: "para"; text: string } & Secondary)
   /** Plain bulleted list. */
   | ({ kind: "list"; items: readonly string[] } & Secondary)
@@ -154,7 +161,7 @@ const CONTENT: Record<string, { summary?: string; blocks: readonly Block[] }> = 
 
   "the-problem": {
     blocks: [
-      { kind: "lead", text: "Most companies are implementing AI backwards." },
+      { kind: "lead", text: "Most companies are implementing AI backwards.", strong: true },
       {
         kind: "para",
         text: "They start by asking, “What can we automate?” They should be asking, “What should humans still own?” The distinction sounds simple. The organizational difference is enormous.",

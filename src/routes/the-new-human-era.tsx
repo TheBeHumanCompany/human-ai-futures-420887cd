@@ -277,8 +277,11 @@ function NewHumanEra() {
         <DividerDot />
 
         <div className="mx-auto max-w-4xl text-center">
-          <p className="type-body-lg text-ink/60">That should make us ask a harder question:</p>
-          <h3 className="type-h2-condensed mt-6">
+          {/* Maya asked for this to open on a proper section kicker rather than
+              the lowercase lead-in sentence it used to carry. */}
+          <p className="type-label-caps text-ink">The harder question</p>
+          <span className="type-eyebrow-rule mx-auto block" aria-hidden />
+          <h3 className="type-h2-condensed mt-8">
             If these are the things people tell us make life <Key>human</Key>, why have we built a
             world that keeps pushing them aside?
           </h3>
@@ -316,8 +319,11 @@ function NewHumanEra() {
           </div>
           <div className="self-end">
             <div className="type-eyebrow-rule mb-6" />
-            <h3 className="type-h2-caps">That is why we believe this is bigger than AI.</h3>
-            <p className="type-h4-caps mt-5 text-foreground/80">
+            {/* Maya's screen cuts this to the claim itself and drops the line
+                below out of caps, so the statement carries the emphasis on its
+                own instead of competing with a second uppercase block. */}
+            <h3 className="type-h2-caps">This is bigger than AI.</h3>
+            <p className="type-h4-condensed mt-5 text-foreground/80">
               It is about who we are as human beings and what kind of world we build next.
             </p>
           </div>
