@@ -206,6 +206,10 @@ for (const surface of surfaces) {
     // separate axis from appearance — `type-h3-caps` on an h2 is correct and
     // common here, which is exactly why the tag needs its own assertion.
     await page.goto(surface.path);
+    // Same settle as its siblings. This is a client-rendered app, so reading the
+    // DOM straight after `goto` can sample it before React has put the headings
+    // in — which would fail on the h1 count for a reason that is not the bug.
+    await page.evaluate(() => document.fonts.ready);
 
     const levels = await page.evaluate(() =>
       Array.from(document.querySelectorAll<HTMLElement>("h1,h2,h3,h4,h5,h6"))
