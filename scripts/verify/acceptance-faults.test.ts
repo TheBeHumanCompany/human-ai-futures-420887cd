@@ -98,7 +98,26 @@ function goodPage(pathname: string): string {
   const images = ["one", "two", "three", "four"]
     .map((n) => `<img src="/assets/${n}.webp" alt="${n}">`)
     .join("");
-  const archive = ["ADEWOLF", "BELLA", "ANTON", "ARLINA"].map((n) => `<h3>${n}</h3>`).join("");
+
+  // ── the archive, as it is actually laid out since the 2026-08-19 deferral ──
+  //
+  // The four entries render on the homepage section and on /the-new-human-era;
+  // /the-human-archive is a teaser that names none of them. The fixture has to
+  // model that split rather than stamping the entries onto every page: with the
+  // entries everywhere, the component's "the deferred page lists no entries"
+  // assertion would fail the control, and with them nowhere the AC-7.1 case
+  // would pass vacuously.
+  const deferred = pathname === "/the-human-archive";
+  const archive = deferred
+    ? `<p>To be released soon</p>`
+    : ["ADEWOLF", "BELLA", "ANTON", "ARLINA"].map((n) => `<h3>${n}</h3>`).join("");
+  // Fingerprinted the way the bundler emits them — the stem is what the gate
+  // counts, because a bare <img> floor passes on the collage alone.
+  const portraits = deferred
+    ? ""
+    : ["adewolf", "bella", "anton", "arlina"]
+        .map((n) => `<img src="/assets/archive-${n}-a1b2c3d4.png" alt="${n}">`)
+        .join("");
   const pricing = `<p>$795 CAD founding rate, $1,500 CAD thereafter, 3 business days.</p>`;
   const footer = brand ? `<footer><p>🍁 ${brand.INDIGENOUS_LINE}</p></footer>` : "";
   const principleList = principles
@@ -108,12 +127,18 @@ function goodPage(pathname: string): string {
   // fixture. Wrapping all 16 in <details> would make the fixture disagree with
   // the page it stands in for, and the control test would fail for a reason
   // that has nothing to do with the injected faults.
+  //
+  // `data-section-id` is not decoration: blueprint.sh counts section-level
+  // disclosures by that attribute precisely so the FAQ's nine nested <details>
+  // do not inflate the count. Without it the control failed on
+  // "AC-6.9b/c: got 0 want 7" — and because the driver exits at the first
+  // failure, every fault case after it was passing on the WRONG rejection.
   const sections =
     blueprintSections && pathname === "/be-human-ai"
       ? blueprintSections
           .map((s) =>
             s.tier === 2
-              ? `<section id="${s.id}"><details><summary>${s.id}</summary>${filler}</details></section>`
+              ? `<section id="${s.id}"><details data-section-id="${s.id}"><summary>${s.id}</summary>${filler}</details></section>`
               : `<section id="${s.id}">${filler}</section>`,
           )
           .join("")
@@ -124,6 +149,7 @@ function goodPage(pathname: string): string {
     subnav,
     `<main data-path="${pathname}">`,
     images,
+    portraits,
     archive,
     pricing,
     principleList,
@@ -243,6 +269,23 @@ describe("prod-acceptance.sh fails on seeded faults", () => {
     async () => {
       const r = await runAgainstFixture((_p, html) => html.replace("<h3>ARLINA</h3>", ""));
       expectRejected(r, "ARLINA");
+    },
+    TEST_TIMEOUT,
+  );
+
+  test(
+    "the deferred archive page quietly regrowing its entries is rejected (AC-7.3)",
+    async () => {
+      // The deferral is a decision, and the only thing standing between a
+      // decision and a silent revert is a check that has been seen failing.
+      // This is that check: the grid coming back on /the-human-archive — the
+      // exact shape of the regression — must be refused.
+      const r = await runAgainstFixture((pathname, html) =>
+        pathname === "/the-human-archive"
+          ? html.replace("</main>", "<h3>ADEWOLF</h3></main>")
+          : html,
+      );
+      expectRejected(r, "ADEWOLF");
     },
     TEST_TIMEOUT,
   );

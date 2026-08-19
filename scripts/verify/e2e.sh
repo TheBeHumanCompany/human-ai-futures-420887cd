@@ -24,6 +24,8 @@
 cd "$REPO_ROOT"
 
 require_file playwright.config.ts "the Playwright config"
+require_file "$VERIFY_LIB_DIR/e2e-config.json" "the shared e2e base-URL config"
+require_cmd jq "e2e"
 
 # ── the spec set is non-empty ──────────────────────────────────────────────
 specs="$(find e2e -type f -name '*.spec.ts' 2>/dev/null | LC_ALL=C sort || true)"
@@ -59,5 +61,9 @@ if ! bunx playwright --version >/dev/null 2>&1; then
   exit 1
 fi
 
-echo "e2e: $spec_n spec file(s), running against ${E2E_BASE_URL:-http://localhost:3000}"
+# Read the default from the same file playwright.config.ts reads, so the two
+# can never again disagree about which server this run is talking to.
+default_base="$(jq -r '.defaultBaseUrl' "$VERIFY_LIB_DIR/e2e-config.json")"
+assert_ne "$default_base" "null" "e2e: the shared default base URL is defined"
+echo "e2e: $spec_n spec file(s), running against ${E2E_BASE_URL:-$default_base}"
 exec bunx playwright test "$@"

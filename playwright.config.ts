@@ -1,6 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 import { VIEWPORTS } from "./scripts/verify/viewports.ts";
+import e2eConfig from "./scripts/verify/e2e-config.json" with { type: "json" };
 
 /**
  * Browser-runner configuration.
@@ -28,13 +29,16 @@ import { VIEWPORTS } from "./scripts/verify/viewports.ts";
  * both ends, so a single-viewport check is close to no check at all.
  */
 
-// 8080, not 3000. `bun run dev` is Lovable's vite-tanstack config, which serves
-// on 8080 and falls back to 8081+ when that is taken. Pointed at 3000 the
-// browser suite spent 120s waiting for a server that was already running on
-// another port and then failed as a timeout — a failure that looks like a
-// broken app rather than a wrong URL. Override with E2E_BASE_URL for staging
-// or production.
-const BASE_URL = process.env.E2E_BASE_URL ?? "http://localhost:8080";
+// The default lives in scripts/verify/e2e-config.json, read by this file and by
+// scripts/verify/e2e.sh. They each used to carry their own literal and drifted:
+// the config said 8080 while the shell status line said 3000, so a run
+// announced one server and tested another.
+//
+// `bun run dev` is Lovable's vite-tanstack config, which binds 8080 and falls
+// back to 8081+ when taken. Pointed at 3000 the suite spent 120s waiting for a
+// server that was already up elsewhere, then failed as a timeout — which reads
+// like a broken app rather than a wrong URL.
+const BASE_URL = process.env.E2E_BASE_URL ?? e2eConfig.defaultBaseUrl;
 
 export default defineConfig({
   testDir: "./e2e",
@@ -52,9 +56,14 @@ export default defineConfig({
   // Only started for a localhost base URL. Pointed at staging or production,
   // spawning a local dev server would be, at best, wasted work — and at worst
   // the thing that actually answered the requests the gate then reported on.
+  // The port is taken FROM the same config the URL comes from, and bound with
+  // --strictPort. `bun run dev` binds 8080 and silently falls back to 8081+ when
+  // that is taken, which is how a run ends up waiting two minutes on a URL
+  // nothing serves and calling it a timeout. Strict binding turns a port clash
+  // into an immediate, legible failure.
   webServer: BASE_URL.includes("localhost")
     ? {
-        command: "bun run dev",
+        command: `bunx vite dev --port ${new URL(BASE_URL).port || "5180"} --strictPort`,
         url: BASE_URL,
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,

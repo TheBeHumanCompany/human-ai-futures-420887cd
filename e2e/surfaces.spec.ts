@@ -49,11 +49,35 @@ test.describe("every surface renders", () => {
       // No image may 404. `naturalWidth === 0` on a loaded <img> is the only
       // reliable in-browser signal for this; a network listener misses images
       // served from cache on a second visit.
-      const broken = await page.evaluate(() =>
-        Array.from(document.images)
-          .filter((img) => img.complete && img.naturalWidth === 0)
-          .map((img) => img.currentSrc || img.src),
-      );
+      //
+      // The `complete` filter alone was a false-green, demonstrated in review:
+      // a lazy image below the fold is never requested, so it reports
+      // `{complete: false, naturalWidth: 0}` and drops out of the filter — a
+      // 404 on any `loading="lazy"` picture passed this gate silently. Since
+      // the founder page is ten lazy photographs, that is most of the images on
+      // the site. So every image is forced to load first, and the wait is on
+      // decode rather than on a timer.
+      const broken = await page.evaluate(async () => {
+        const images = Array.from(document.images);
+        await Promise.all(
+          images.map(async (img) => {
+            img.loading = "eager";
+            // setAttribute, not `img.src = img.src` — the latter is the same
+            // reload trick but reads as a no-op to both a reviewer and to
+            // eslint's no-self-assign rule.
+            if (!img.complete) img.setAttribute("src", img.src);
+            try {
+              await img.decode();
+            } catch {
+              // decode() rejects precisely on the broken ones; the assertion
+              // below is what reports them, with their URL.
+            }
+          }),
+        );
+        return images
+          .filter((img) => img.naturalWidth === 0)
+          .map((img) => img.currentSrc || img.src);
+      });
       expect(broken, `${surface.path} must render every image`).toEqual([]);
 
       // AC-1.6 — no Lovable pointer path survives into the deploy. Those

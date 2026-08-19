@@ -215,6 +215,67 @@ head_ok() {
 USER_AGENT="${USER_AGENT:-thebehumancompany-release-gate/1.0 (+https://www.thebehumancompany.ca)}"
 
 # ---------------------------------------------------------------------------
+# RULE 4 — grep over FETCHED CONTENT must be binary-safe.
+#
+# BSD/macOS grep treats input containing a NUL byte as binary and silently
+# reports NOTHING: `grep -c` exits 1 with no count, `grep -o` prints nothing.
+# GNU grep says "Binary file matches" and also gives you no matches.
+#
+# Server-rendered HTML from this app contains NUL bytes — 9 of them in the
+# Blueprint page, emitted inside the streaming-SSR payload. So:
+#
+#     lovable="$(printf '%s' "$body" | grep -c '__l5e' || true)"
+#     assert_eq "$lovable" 0 "no Lovable pointer path"
+#
+# PASSES on a page that is full of `__l5e` paths. Reproduced: a fixture of one
+# NUL byte plus `<img src="/__l5e/assets-v1/a/b.png">` returns 0 from bare grep
+# and 1 from `LC_ALL=C grep -a`.
+#
+# That is a false PASS on every negative assertion in the production gate — the
+# exact class this harness exists to prevent, sitting inside the harness. It
+# also produced a false FAIL that surfaced it: a <details> count that flapped
+# between 24 and 0 on byte-identical responses, because grep's binary heuristic
+# depends on where a NUL lands relative to its read buffer.
+#
+# Always count content through these. `audit-binary-grep.sh` enforces it.
+# ---------------------------------------------------------------------------
+
+# count_in <text> <fixed-pattern> -> number of matches, binary-safe
+count_in() {
+  local n
+  n="$(printf '%s' "$1" | LC_ALL=C grep -a -o -F -- "$2" | LC_ALL=C grep -c . || true)"
+  printf '%s' "${n:-0}"
+}
+
+# count_in_re <text> <extended-regex> -> number of matches, binary-safe
+count_in_re() {
+  local n
+  n="$(printf '%s' "$1" | LC_ALL=C grep -a -o -E -- "$2" | LC_ALL=C grep -c . || true)"
+  printf '%s' "${n:-0}"
+}
+
+# matches_in_re <text> <extended-regex> -> the matches themselves, one per line
+matches_in_re() {
+  printf '%s' "$1" | LC_ALL=C grep -a -o -E -- "$2" || true
+}
+
+# assert_absent <text> <fixed-pattern> <what> — the shape that was silently
+# passing. Kept as one call so a negative content assertion cannot be written
+# the unsafe way by habit.
+assert_absent() {
+  local n
+  n="$(count_in "$1" "$2")"
+  assert_eq "$n" "0" "$3"
+}
+
+# assert_present_at_least <text> <fixed-pattern> <floor> <what>
+assert_present_at_least() {
+  local n
+  n="$(count_in "$1" "$2")"
+  assert_ge "$n" "$3" "$4"
+}
+
+# ---------------------------------------------------------------------------
 # Source-file enumeration.
 #
 # Forbidden-token scans MUST route through this, not through a bare recursive
