@@ -214,7 +214,7 @@ function WhyWeExist() {
             matters, is who we become because of it.
           </p>
 
-          <h2 className="type-h1-prose mt-14 max-w-[16ch] lg:mt-14">
+          <h2 className="type-h1-prose mt-12 max-w-[16ch] lg:mt-14">
             Being human isn't something you're born finished with.
           </h2>
         </div>
@@ -398,7 +398,7 @@ function WhyWeExist() {
         <div className="mx-auto flex max-w-[1100px] flex-col items-center px-5 py-16 text-center sm:px-8 lg:py-24">
           <SectionLabel tone="light">The plan</SectionLabel>
 
-          <p className="type-body mt-14 max-w-[52ch] text-muted-foreground lg:mt-12">
+          <p className="type-body mt-10 max-w-[52ch] text-muted-foreground lg:mt-12">
             We're not building this because we're afraid of artificial intelligence.
           </p>
           <p className="type-body mt-5 max-w-[52ch] text-muted-foreground">
@@ -406,7 +406,7 @@ function WhyWeExist() {
             what's at risk if it doesn't.
           </p>
 
-          <h2 className="type-h1-prose mt-12 max-w-[18ch] lg:mt-24">
+          <h2 className="type-h1-prose mt-12 max-w-[18ch] lg:mt-16">
             Technology will keep advancing whether we're ready or not.
           </h2>
 
