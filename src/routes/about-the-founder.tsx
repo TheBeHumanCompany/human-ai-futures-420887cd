@@ -1,20 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import aocFoodDrive from "@/assets/founder-aoc-fooddrive.webp";
-import aocTeam from "@/assets/founder-aoc-team.webp";
 import conversations from "@/assets/founder-conversations.webp";
 import curvesTruck from "@/assets/founder-curves-truck.webp";
-import filming from "@/assets/founder-filming.webp";
 import harrington from "@/assets/founder-harrington.webp";
 import mentoring from "@/assets/founder-mentoring.webp";
 
-import kitv from "@/assets/founder-kitv.webp";
 import pressCanIndia from "@/assets/founder-press-canindia.webp";
 import pressCn from "@/assets/founder-press-cn.webp";
 import satnam from "@/assets/founder-satnam.webp";
 
 /**
- * `/about-the-founder` — "Meet the Founder", built from Maya's 2026-08-18 brief.
+ * `/about-the-founder` — "Meet the Founder", built from Maya's 2026-08-18 brief
+ * and restructured 2026-08-20 into one continuous biography.
  *
  * ── Where every word came from ────────────────────────────────────────────
  *
@@ -23,31 +21,31 @@ import satnam from "@/assets/founder-satnam.webp";
  * `src/lib/copy-fidelity.test.ts` holds this file to
  * `docs/source/meet-the-founder.txt` sentence by sentence.
  *
- * ── One typography system, shared with /why-we-exist (2026-08-20) ─────────
+ * ── One headline, six chapters (2026-08-20) ───────────────────────────────
  *
- * This page used to run a tall condensed register (`type-h*-caps` and
- * `type-h*-condensed`) that exists nowhere on /why-we-exist, so the two read as
- * two different sites. That register is gone. What is left is exactly the three
- * treatments the mission page uses:
+ * "A life spent building" is the ONLY large editorial headline on the page.
+ * Every later chapter opens on its `SectionLabel` alone — the per-section h2s
+ * ("Entrepreneurship started early", "People build organizations", "How trust
+ * is built", "What helps people…", "Business was never the whole story") were
+ * removed outright, not shrunk, and nothing replaced them. The page should read
+ * as one biography divided into chapters, not six hero sections.
  *
- *   · `type-h1-prose` / `type-h2-prose` / `type-h3-prose` — Work Sans 200/300,
- *     every large statement a size step of the same face.
- *   · `type-body` / `type-body-lg` / `type-body-sm` — paragraphs, always.
- *   · `SectionLabel` — the uppercase kicker over a short lime rule, byte for
- *     byte the component /why-we-exist declares. Duplicated rather than
- *     imported because the brief scopes this change to this route; if a third
- *     page needs it, that is the moment it moves to src/components.
+ * Backgrounds: warm cream throughout, with exactly one ink section — the belief
+ * pause after BUILDING AT SCALE, deliberately short and quiet.
  *
- * Section padding, label-to-headline distance and the hairline dividers copy
- * the tightened rhythm that page settled on (py-14 / lg:py-20, mt-10).
+ * ── The image system ──────────────────────────────────────────────────────
  *
- * ── The photographs ───────────────────────────────────────────────────────
+ * Two treatments only, so no photograph outweighs the story:
  *
- * Fewer, larger, and each tied to the paragraph it stands next to. The hero is
- * type only; BUILDING AT SCALE keeps one picture at half-width instead of a
- * three-up gallery; EARLY YEARS gains the Curves trailer, which is archival and
- * therefore rendered uncropped — no aspect box, no frame, no rounded card, so
- * the truck's copy and the three men stay whole.
+ *   · `Shot` — standard supporting photography. Fixed 4:3, `object-fit: cover`,
+ *     the same radius and the same 600px ceiling everywhere, single or paired.
+ *   · `Archival` — magazine scans and clippings. Same frame and radius, but
+ *     `object-fit: contain` on a soft field so the document is never cropped.
+ *
+ * Three photographs were removed entirely at Maya's request: the KITV studio
+ * shot (BUILDING AT SCALE is intentionally text-led), the mural/cameraman
+ * filming frame, and the posed three-person Actions of Compassion portrait.
+ * Their containers went with them; no blank space was left behind.
  */
 export const Route = createFileRoute("/about-the-founder")({
   head: () => ({
@@ -72,28 +70,53 @@ export const Route = createFileRoute("/about-the-founder")({
 });
 
 /**
- * One photograph, one treatment.
- *
- * `alt` is required by the type rather than optional: every one of these is a
- * photograph of real people doing real things, and a screen reader deserves to
- * be told which. Passing no aspect class renders the picture at its own
- * proportions — the archival case, where cropping loses the evidence.
+ * A standard supporting photograph: 4:3, cropped to fill, capped so it never
+ * spans the full measure. `alt` is required by the type rather than optional —
+ * every one of these is a photograph of real people doing real things.
  */
-function Shot({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+function Shot({
+  src,
+  alt,
+  fit = "cover",
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  fit?: "cover" | "contain";
+  className?: string;
+}) {
   return (
     <img
       src={src}
       alt={alt}
       loading="lazy"
       decoding="async"
-      className={`w-full object-cover ${className}`}
+      className={`aspect-[4/3] w-full rounded-sm ${
+        fit === "contain" ? "bg-ink/5 object-contain p-3" : "object-cover"
+      } ${className}`}
     />
   );
 }
 
 /**
+ * Archival document: the same frame and radius as a photograph, but shown
+ * whole (`object-contain`) so a clipping is never cropped. It is `Shot` with
+ * one prop rather than a second component, so every picture on the page keeps
+ * going through a single `<img>`.
+ */
+function Archival({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+  return <Shot src={src} alt={alt} fit="contain" className={className} />;
+}
+
+/** Two photographs, equal weight: same width, height, ratio, radius and gap. */
+function ShotPair({ children }: { children: React.ReactNode }) {
+  return <div className="grid max-w-[1000px] gap-6 sm:grid-cols-2">{children}</div>;
+}
+
+/**
  * The section kicker, identical to the one on /why-we-exist: uppercase label
  * above a short lime rule, `text-ink/50` on cream and `text-lime` on ink.
+ * After the opening section this is the ONLY thing that introduces a chapter.
  */
 function SectionLabel({ children, tone }: { children: string; tone: "dark" | "light" }) {
   return (
@@ -106,18 +129,22 @@ function SectionLabel({ children, tone }: { children: string; tone: "dark" | "li
   );
 }
 
+/** Label column / story column. Shared by every chapter so the rhythm matches. */
+const CHAPTER_GRID =
+  "grid gap-8 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:gap-16";
+const CHAPTER_PAD = "mx-auto max-w-[1400px] px-5 py-12 sm:px-8 lg:py-16";
+
 function Founder() {
   return (
     <>
       {/* ══════ 01 — MEET THE FOUNDER (cream) ══════
-          Typography-led. No photograph: the opening earns its scale from the
-          headline and the two columns of intro, the way the mission hero does. */}
+          Typography-led, text only. The page's single large headline. */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
           <SectionLabel tone="dark">Meet the Founder</SectionLabel>
-          <h1 className="type-h1-prose mt-10 max-w-[16ch] text-ink">A life spent building</h1>
+          <h1 className="type-h1-prose mt-8 max-w-[16ch] text-ink">A life spent building</h1>
 
-          <div className="mt-12 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-20">
+          <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-20">
             <p className="type-body-lg max-w-[52ch] text-ink/70">
               Looking back, I realize every business I&rsquo;ve built, every leader I&rsquo;ve
               worked with, every team I&rsquo;ve trained, and every movement I&rsquo;ve been part of
@@ -135,13 +162,10 @@ function Founder() {
 
       {/* ══════ 02 — EARLY YEARS (cream) ══════ */}
       <section className="section-cream border-t border-hairline-dark">
-        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+        <div className={CHAPTER_PAD}>
+          <div className={CHAPTER_GRID}>
             <div>
               <SectionLabel tone="dark">Early years</SectionLabel>
-              <h2 className="type-h2-prose mt-10 max-w-[14ch] text-ink">
-                Entrepreneurship started early
-              </h2>
             </div>
             <div>
               <p className="type-body text-ink/70">
@@ -159,11 +183,10 @@ function Founder() {
                 decade.
               </p>
 
-              {/* Archival: rendered at its own proportions, uncropped. */}
               <Shot
                 src={curvesTruck}
                 alt="Shane James with two colleagues in front of a Curves for Women transport trailer, America's Largest Fitness Franchise"
-                className="my-10"
+                className="my-8 max-w-[600px]"
               />
 
               <p className="type-body text-ink/70">
@@ -174,35 +197,31 @@ function Founder() {
                 Tale&rsquo;awtxw Aboriginal Capital Corporation helped support the publication of my
                 books, allowing me to continue sharing ideas beyond the businesses I was building.
               </p>
-            </div>
-          </div>
 
-          {/* The two press clippings this section already carried — retained,
-              because they are the "featured internationally" sentence itself. */}
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            <Shot
-              src={pressCn}
-              alt="Chinese-language newspaper feature on Shane James losing 65 pounds in six months"
-              className="aspect-[4/3]"
-            />
-            <Shot
-              src={pressCanIndia}
-              alt="CanIndia Plus newspaper interview headlined Think, Act, Love, Lose Weight!"
-              className="aspect-[4/3]"
-            />
+              {/* Archival clippings: shown whole, never cropped. */}
+              <div className="mt-8 grid max-w-[1000px] gap-6 sm:grid-cols-2">
+                <Archival
+                  src={pressCn}
+                  alt="Chinese-language newspaper feature on Shane James losing 65 pounds in six months"
+                />
+                <Archival
+                  src={pressCanIndia}
+                  alt="CanIndia Plus newspaper interview headlined Think, Act, Love, Lose Weight!"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ══════ 03 — BUILDING AT SCALE (cream) ══════ */}
+      {/* ══════ 03 — BUILDING AT SCALE (cream) ══════
+          Intentionally text-led: no photograph, so the page can breathe before
+          the belief pause. */}
       <section className="section-cream border-t border-hairline-dark">
-        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+        <div className={CHAPTER_PAD}>
+          <div className={CHAPTER_GRID}>
             <div>
               <SectionLabel tone="dark">Building at scale</SectionLabel>
-              <h2 className="type-h2-prose mt-10 max-w-[14ch] text-ink">
-                People build organizations
-              </h2>
             </div>
             <div>
               <p className="type-body text-ink/70">
@@ -224,56 +243,30 @@ function Founder() {
               </p>
             </div>
           </div>
-
-          {/* One picture, at scale, aligned to the text column of the grid. */}
-          <div className="mt-12 lg:grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
-            <div aria-hidden className="hidden lg:block" />
-            <Shot
-              src={kitv}
-              alt="Shane James interviewed at the KITV 4 Morning News desk"
-              className="aspect-[16/10]"
-            />
-          </div>
         </div>
       </section>
 
       {/* ══════ 04 — THE BELIEF (ink) ══════
-          Centered pull-quote. The oversized marks are cream at low opacity and
-          sit outside the sentence, so they frame it rather than punctuate it. */}
+          The page's only ink section. Short, narrow, no decorative marks: a
+          private belief, not a keynote slide. */}
       <section className="section-ink">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 text-center sm:px-8 lg:py-24">
-          <figure className="relative mx-auto max-w-[900px]">
-            <span
-              aria-hidden
-              className="pointer-events-none absolute -top-8 -left-2 select-none text-[6rem] leading-none text-cream/10 sm:-top-10 sm:-left-8 sm:text-[9rem]"
-            >
-              &ldquo;
-            </span>
-            <blockquote className="type-h2-prose relative">
-              Businesses don&rsquo;t grow because of products. They grow because of people.
-            </blockquote>
-            <span
-              aria-hidden
-              className="pointer-events-none absolute -right-2 -bottom-16 select-none text-[6rem] leading-none text-cream/10 sm:-right-8 sm:-bottom-20 sm:text-[9rem]"
-            >
-              &rdquo;
-            </span>
-          </figure>
-
-          <p className="type-body mx-auto mt-12 max-w-[40ch] text-muted-foreground lg:mt-14">
+        <div className="mx-auto max-w-[1400px] px-5 py-12 text-center sm:px-8 lg:py-16">
+          <blockquote className="type-h3-prose mx-auto max-w-[30ch]">
+            Businesses don&rsquo;t grow because of products. They grow because of people.
+          </blockquote>
+          <p className="type-body-sm mx-auto mt-6 max-w-[40ch] text-muted-foreground">
             The only way I truly win is if my people win first.
           </p>
-          <p className="type-body-sm mt-6 text-muted-foreground/70">&mdash; Shane</p>
+          <p className="type-body-sm mt-4 text-muted-foreground/70">&mdash; Shane</p>
         </div>
       </section>
 
       {/* ══════ 05 — MEDIA · LEADERSHIP · TRAINING (cream) ══════ */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+        <div className={CHAPTER_PAD}>
+          <div className={CHAPTER_GRID}>
             <div>
               <SectionLabel tone="dark">Media &middot; Leadership &middot; Training</SectionLabel>
-              <h2 className="type-h2-prose mt-10 max-w-[14ch] text-ink">How trust is built</h2>
             </div>
             <div>
               <p className="type-body text-ink/70">
@@ -291,17 +284,17 @@ function Founder() {
                 continue to hold equity in several of the companies I helped build.
               </p>
 
-              <div className="my-10 grid gap-6 sm:grid-cols-2">
-                <Shot
-                  src={harrington}
-                  alt="Shane James with Kevin Harrington on a film set, teleprompter and camera rig behind them"
-                  className="aspect-[4/5]"
-                />
-                <Shot
-                  src={satnam}
-                  alt="Shane James and Satnam Singh, the first Indian-born NBA draftee, flexing together off camera"
-                  className="aspect-[4/5]"
-                />
+              <div className="my-8">
+                <ShotPair>
+                  <Shot
+                    src={harrington}
+                    alt="Shane James with Kevin Harrington on a film set, teleprompter and camera rig behind them"
+                  />
+                  <Shot
+                    src={satnam}
+                    alt="Shane James and Satnam Singh, the first Indian-born NBA draftee, flexing together off camera"
+                  />
+                </ShotPair>
               </div>
 
               <p className="type-body text-ink/70">
@@ -325,17 +318,12 @@ function Founder() {
       </section>
 
       {/* ══════ 06 — HUMAN PERFORMANCE (cream) ══════
-          The one kicker that is not in Maya's screens: her design has no slot
-          for the Brainwave Synergy passage, and folding it into a neighbouring
-          section would have put it where it does not belong. */}
+          One photograph only: the diner/conversation frames. */}
       <section className="section-cream border-t border-hairline-dark">
-        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+        <div className={CHAPTER_PAD}>
+          <div className={CHAPTER_GRID}>
             <div>
               <SectionLabel tone="dark">Human performance</SectionLabel>
-              <h2 className="type-h2-prose mt-10 max-w-[16ch] text-ink">
-                What helps people become the best version of themselves
-              </h2>
             </div>
             <div>
               <p className="type-body text-ink/70">
@@ -358,11 +346,10 @@ function Founder() {
                 people become the best version of themselves.
               </p>
 
-              {/* Moved out of the two-up grid: shown whole, at its own proportions. */}
               <Shot
                 src={conversations}
                 alt="Four frames of Shane James in conversation, on a desert road and in a diner booth"
-                className="my-10"
+                className="my-8 max-w-[600px]"
               />
 
               <p className="type-body text-ink/70">
@@ -384,34 +371,17 @@ function Founder() {
                 are built by people who are healthy enough to do their best work and supported
                 enough to become their best selves.
               </p>
-
-              <Shot
-                src={mentoring}
-                alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
-                className="my-10"
-              />
-
-              <Shot
-                src={filming}
-                alt="Shane James being filmed on location in front of a painted mural"
-                className="mt-10"
-              />
-
             </div>
-
           </div>
         </div>
       </section>
 
       {/* ══════ 07 — ACTIONS OF COMPASSION (cream) ══════ */}
       <section className="section-cream border-t border-hairline-dark">
-        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+        <div className={CHAPTER_PAD}>
+          <div className={CHAPTER_GRID}>
             <div>
               <SectionLabel tone="dark">Actions of Compassion</SectionLabel>
-              <h2 className="type-h2-prose mt-10 max-w-[14ch] text-ink">
-                Business was never the whole story
-              </h2>
             </div>
             <div>
               <p className="type-body text-ink/70">
@@ -430,42 +400,40 @@ function Founder() {
                 Association, and later joined the board of the nonprofit organization founded by my
                 longtime mentor, John Volken, founder of United Furniture Warehouse.
               </p>
-            </div>
-          </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            <Shot
-              src={aocFoodDrive}
-              alt="Actions of Compassion volunteers with boxes of donated food at a food drive"
-              className="aspect-[4/3]"
-            />
-            <Shot
-              src={aocTeam}
-              alt="Three people wearing Actions of Compassion shirts and caps"
-              className="aspect-[4/3]"
-            />
+              <div className="mt-8">
+                <ShotPair>
+                  <Shot
+                    src={mentoring}
+                    alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
+                  />
+                  <Shot
+                    src={aocFoodDrive}
+                    alt="Actions of Compassion volunteers with boxes of donated food at a food drive"
+                  />
+                </ShotPair>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ══════ 08 — WHAT I&rsquo;VE LEARNED (cream) ══════
-          A quiet, reflective close: the lessons on the left, the reflection on
-          the right, separated by the same subtle hairline used elsewhere. */}
+      {/* ══════ 08 — WHAT I'VE LEARNED (cream) ══════
+          The quietest section on the page: a reflective statement rather than a
+          headline, in ink — no lime on the sentence. */}
       <section className="section-cream border-t border-hairline-dark">
-        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
+        <div className={CHAPTER_PAD}>
           <SectionLabel tone="dark">What I&rsquo;ve learned</SectionLabel>
 
-          <h2 className="type-h2-prose mt-10 max-w-[22ch] text-ink">
-            When I look back, I don&rsquo;t see a resume.
-            <br />
-            <span className="text-lime-dark">I see a lot of lessons.</span>
-          </h2>
+          <p className="mt-8 max-w-[30ch] font-sans text-[1.75rem] leading-tight font-extralight text-ink lg:text-[2.5rem]">
+            When I look back, I don&rsquo;t see a resume. I see a lot of lessons.
+          </p>
 
-          <div className="mt-12 grid gap-12 lg:mt-14 lg:grid-cols-2 lg:gap-20">
+          <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-20">
             {/* LEFT — LESSONS */}
             <ul className="divide-y divide-hairline-dark">
               {LESSONS.map((lesson) => (
-                <li key={lesson} className="type-body py-6 text-ink/70 first:pt-0 lg:py-7">
+                <li key={lesson} className="type-body py-5 text-ink/70 first:pt-0">
                   {lesson}
                 </li>
               ))}
@@ -473,10 +441,10 @@ function Founder() {
 
             {/* RIGHT — REFLECTION */}
             <div>
-              <p className="type-h3-prose max-w-[34ch] text-ink">
+              <p className="type-h4-prose max-w-[34ch] text-ink">
                 I don&rsquo;t have all the answers.
               </p>
-              <p className="type-body mt-8 text-ink/70">
+              <p className="type-body mt-6 text-ink/70">
                 Technology is moving quickly, and I think the choices we make around it will shape
                 how we work, lead, connect, and live.
               </p>
@@ -506,5 +474,3 @@ const LESSONS = [
   "Every team showed me how much culture matters.",
   "Every success, and every mistake, gave me more to learn.",
 ] as const;
-
-

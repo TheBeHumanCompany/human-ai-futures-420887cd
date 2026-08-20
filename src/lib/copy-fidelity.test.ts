@@ -251,7 +251,10 @@ describe("/about-the-founder ships photographs, not placeholders", () => {
    */
   test("every photograph is a bundled asset, never a hand-written path", () => {
     const imports = [...source.matchAll(/from "(@\/assets\/[^"]+)"/g)].map((m) => m[1]);
-    expect(imports.length, "the page renders photographs").toBeGreaterThanOrEqual(10);
+    // 2026-08-20: the page dropped three photographs (the KITV studio shot, the
+    // mural/cameraman frame, the posed Actions of Compassion portrait) so the
+    // biography leads and the pictures support it. Eight remain.
+    expect(imports.length, "the page renders photographs").toBeGreaterThanOrEqual(8);
     for (const spec of imports) {
       expect(spec).toMatch(/\.(webp|png|jpe?g|avif)$/);
       // The production 404 this repo was rebuilt to fix.
@@ -264,8 +267,15 @@ describe("/about-the-founder ships photographs, not placeholders", () => {
   test("no photograph ships without alt text", () => {
     // A decorative-image exemption would be wrong here: every one of these is a
     // photograph of real people, and none is decoration.
-    const shots = [...code.matchAll(/<Shot\b[\s\S]*?\/>/g)].map((m) => m[0]);
-    expect(shots.length).toBeGreaterThanOrEqual(10);
+    // `Archival` forwards its own props to `<Shot ... alt={alt} />`; that call
+    // site carries no literal to check, and the two <Archival> tags it renders
+    // are checked as literals below.
+    const shots = [
+      ...code.matchAll(/<(?:Shot|Archival)\b[\s\S]*?\/>/g),
+    ]
+      .map((m) => m[0])
+      .filter((tag) => !tag.includes("alt={alt}"));
+    expect(shots.length).toBeGreaterThanOrEqual(7);
     for (const shot of shots) {
       const alt = /alt="([^"]*)"/.exec(shot)?.[1] ?? "";
       expect(alt.trim().length, `alt too short in: ${shot.slice(0, 70)}`).toBeGreaterThan(15);
