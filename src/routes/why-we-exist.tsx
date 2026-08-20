@@ -383,6 +383,12 @@ function WhyWeExist() {
               ))}
             </ul>
           </div>
+
+          <p className="type-body mt-12 max-w-[62ch] text-ink/70 lg:mt-16">
+            This is just the beginning. The infrastructure keeps growing, through education,
+            research, media, community, and whatever this transition ends up asking of us next,
+            because it isn't finished asking yet.
+          </p>
         </div>
       </section>
 
