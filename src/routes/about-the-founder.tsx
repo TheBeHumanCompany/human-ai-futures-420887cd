@@ -448,37 +448,45 @@ function Founder() {
         </div>
       </section>
 
-      {/* ══════ 08 — WHY THIS WORK (ink) ══════
-          Type only: a photograph here would compete with the closing line. */}
-      <section className="section-ink">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-24">
-          <SectionLabel tone="light">Why this work</SectionLabel>
-          <h2 className="type-h2-prose mt-10 max-w-[18ch]">Preparation, not a r&eacute;sum&eacute;</h2>
+      {/* ══════ 08 — WHAT I&rsquo;VE LEARNED (cream) ══════
+          A quiet, reflective close: the lessons on the left, the reflection on
+          the right, separated by the same subtle hairline used elsewhere. */}
+      <section className="section-cream border-t border-hairline-dark">
+        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
+          <SectionLabel tone="dark">What I&rsquo;ve learned</SectionLabel>
 
-          <div className="mt-12 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-20">
+          <h2 className="type-h2-prose mt-10 max-w-[22ch] text-ink">
+            When I look back, I don&rsquo;t see a resume.
+            <br />
+            <span className="text-lime-dark">I see a lot of lessons.</span>
+          </h2>
+
+          <div className="mt-12 grid gap-12 lg:mt-14 lg:grid-cols-2 lg:gap-20">
+            {/* LEFT — LESSONS */}
+            <ul className="divide-y divide-hairline-dark">
+              {LESSONS.map((lesson) => (
+                <li key={lesson} className="type-body py-6 text-ink/70 first:pt-0 lg:py-7">
+                  {lesson}
+                </li>
+              ))}
+            </ul>
+
+            {/* RIGHT — REFLECTION */}
             <div>
-              <p className="type-body text-muted-foreground">
-                When I look back today, I don&rsquo;t see a r&eacute;sum&eacute;. I see preparation.
+              <p className="type-h3-prose max-w-[34ch] text-ink">
+                I don&rsquo;t have all the answers.
               </p>
-              <ul className="type-body mt-8 space-y-3 text-muted-foreground">
-                <li>Every business taught me how to build.</li>
-                <li>Every leader taught me something new.</li>
-                <li>Every team taught me how culture shapes performance.</li>
-                <li>Every success and every setback deepened my understanding of people.</li>
-              </ul>
-            </div>
-            <div>
-              <p className="type-body text-muted-foreground">
-                Together, those experiences led me to one belief:
+              <p className="type-body mt-8 text-ink/70">
+                Technology is moving quickly, and I think the choices we make around it will shape
+                how we work, lead, connect, and live.
               </p>
-              <p className="type-h3-prose mt-6 max-w-[34ch]">
-                The greatest opportunity of our generation isn&rsquo;t simply building more
-                intelligent technology. It&rsquo;s helping people become more intentional about
-                practicing their humanity alongside it.
+              <p className="type-body mt-6 text-ink/70">
+                The Be Human Company is my attempt to bring the lessons I&rsquo;ve learned together
+                and contribute something useful to that transition.
               </p>
-              <p className="type-body mt-8 text-muted-foreground">
-                That&rsquo;s the work I&rsquo;ve devoted my life to. And it&rsquo;s the work
-                I&rsquo;m committed to building through The Be Human Company.
+              <p className="type-body mt-6 text-ink/70">
+                I&rsquo;m still learning. I&rsquo;m still building. And I&rsquo;m grateful to be doing
+                it alongside people who care about where we go from here.
               </p>
             </div>
           </div>
@@ -487,4 +495,16 @@ function Founder() {
     </>
   );
 }
+
+/**
+ * The four reflective lessons that close the founder story. Kept as data so
+ * the wording stays consistent across the list and the surrounding paragraphs.
+ */
+const LESSONS = [
+  "Every business taught me something about building.",
+  "Every leader taught me something about people.",
+  "Every team showed me how much culture matters.",
+  "Every success, and every mistake, gave me more to learn.",
+] as const;
+
 
