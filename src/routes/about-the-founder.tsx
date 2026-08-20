@@ -478,4 +478,3 @@ function Founder() {
   );
 }
 
-export { Founder };
