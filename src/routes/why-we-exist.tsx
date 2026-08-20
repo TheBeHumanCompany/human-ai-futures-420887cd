@@ -274,7 +274,7 @@ function WhyWeExist() {
 
       {/* ══════ 07 — THE INFRASTRUCTURE (cream) ══════ */}
       <section className="section-cream">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} pt-14 pb-8 lg:py-24`}>
           <SectionLabel tone="dark">The infrastructure</SectionLabel>
 
           <h2 className="type-h2-prose mt-10 max-w-[22ch] text-ink">
