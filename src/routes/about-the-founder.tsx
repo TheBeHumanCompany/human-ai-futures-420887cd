@@ -240,7 +240,7 @@ function Founder() {
           sit outside the sentence, so they frame it rather than punctuate it. */}
       <section className="section-ink">
         <div className="mx-auto max-w-[1400px] px-5 py-16 text-center sm:px-8 lg:py-24">
-          <figure className="relative mx-auto max-w-[26ch]">
+          <figure className="relative mx-auto max-w-[18ch] text-[0.5em] sm:max-w-[22ch]">
             <span
               aria-hidden
               className="pointer-events-none absolute -top-8 -left-2 select-none text-[6rem] leading-none text-cream/10 sm:-top-10 sm:-left-8 sm:text-[9rem]"
