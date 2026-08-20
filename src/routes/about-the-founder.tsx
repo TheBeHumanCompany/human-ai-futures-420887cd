@@ -6,6 +6,8 @@ import conversations from "@/assets/founder-conversations.webp";
 import curvesTruck from "@/assets/founder-curves-truck.webp";
 import filming from "@/assets/founder-filming.webp";
 import harrington from "@/assets/founder-harrington.webp";
+import mentoring from "@/assets/founder-mentoring.webp";
+
 import kitv from "@/assets/founder-kitv.webp";
 import pressCanIndia from "@/assets/founder-press-canindia.webp";
 import pressCn from "@/assets/founder-press-cn.webp";
