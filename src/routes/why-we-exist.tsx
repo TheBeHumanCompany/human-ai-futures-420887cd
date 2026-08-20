@@ -48,7 +48,7 @@ function WhyWeExist() {
     <>
       {/* ══════ 01 — THE HUMAN STORY (cream) ══════ */}
       <section className="section-cream">
-        <div className={`${SHELL} py-14 lg:py-24`}>
+        <div className={`${SHELL} pt-14 pb-10 lg:pt-24 lg:pb-24`}>
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
             <div className="max-w-[52ch]">
               <SectionLabel tone="dark">The human story</SectionLabel>
@@ -57,27 +57,29 @@ function WhyWeExist() {
                 There's a moment from The Human Archive we haven't stopped thinking about.
               </h1>
 
-              <p className="type-body mt-8 text-ink/70">
+              <p className="type-body mt-6 text-ink/70">
                 Actually, it's not one moment. It's a pattern. We started asking people one
                 question:
               </p>
-              <p className="type-h3-prose mt-8 text-ink">What does it mean to be human?</p>
-              <p className="type-body mt-8 text-ink/70">
+              <p className="type-body mt-5 font-semibold text-ink/90">
+                What does it mean to be human?
+              </p>
+              <p className="type-body mt-5 text-ink/70">
                 Almost nobody talks about their job title, how productive they've been, or what
                 they've built.
               </p>
-              <p className="type-body mt-6 text-ink/70">
+              <p className="type-body mt-5 text-ink/70">
                 They talk about feeling things. Laughing. Crying. Showing up for someone when it was
                 hard. Being kind when it would've been easier not to be.
               </p>
 
               {/* Quiet pull quote — no rule above it, no isolated block. */}
-              <figure className="mt-10 max-w-[44ch]">
-                <blockquote className="type-body-lg text-ink/85">
+              <figure className="mt-8 max-w-[44ch]">
+                <blockquote className="type-body font-semibold text-ink/90">
                   &ldquo;To love one another. Treat each other, and yourself, with respect and
                   compassion.&rdquo;
                 </blockquote>
-                <figcaption className="type-body-sm mt-4 text-ink/55">
+                <figcaption className="type-body mt-3 text-ink/55">
                   &mdash; Lindsay, Vancouver
                 </figcaption>
               </figure>
