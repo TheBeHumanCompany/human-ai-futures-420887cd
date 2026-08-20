@@ -286,8 +286,9 @@ function Founder() {
                 continue to hold equity in several of the companies I helped build.
               </p>
 
+              {/* Both sources are 1:1; shown square, side by side, restrained. */}
               <div className="my-8">
-                <ShotPair>
+                <SquarePair>
                   <Shot
                     src={harrington}
                     alt="Shane James with Kevin Harrington on a film set, teleprompter and camera rig behind them"
@@ -296,7 +297,7 @@ function Founder() {
                     src={satnam}
                     alt="Shane James and Satnam Singh, the first Indian-born NBA draftee, flexing together off camera"
                   />
-                </ShotPair>
+                </SquarePair>
               </div>
 
               <p className="type-body text-ink/70">
