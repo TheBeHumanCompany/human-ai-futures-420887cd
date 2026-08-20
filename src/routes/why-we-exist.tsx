@@ -297,38 +297,55 @@ function WhyWeExist() {
 
       {/* ══════ 08 — HOW IT COMES TO LIFE (cream) ══════ */}
       <section className="section-cream">
-        <div className={`${SHELL} pb-16 lg:pb-24`}>
-          <div className="grid gap-12 lg:grid-cols-[34%_1fr] lg:gap-16">
-            <div className="max-w-[34ch]">
+        <div className={`${SHELL} py-16 lg:py-24`}>
+          <div className="grid gap-12 lg:grid-cols-[35%_1fr] lg:gap-16">
+            <div className="flex flex-col">
               <SectionLabel tone="dark">How it comes to life</SectionLabel>
-              <h2 className="type-h3-prose mt-10 text-ink">Four parts. One mission.</h2>
-              <p className="type-body mt-6 text-ink/70">
+
+              <h2 className="type-h2-condensed mt-12 text-ink">
+                Four parts.
+                <br />
+                One mission.
+              </h2>
+
+              <p className="type-body mt-10 max-w-[36ch] text-ink/70">
                 Everything we do is connected by one belief: humanity is our greatest advantage.
+              </p>
+
+              <span className="mt-12 block w-full border-t border-ink/10" aria-hidden />
+
+              <p className="type-body mt-12 max-w-[40ch] text-ink/70">
+                This is just the beginning. The infrastructure keeps growing, through education,
+                research, media, community, and whatever this transition ends up asking of us next,
+                because it isn't finished asking yet.
               </p>
             </div>
 
-            <ul className="grid gap-10">
-              {INFRASTRUCTURE.map((piece) => (
-                <li key={piece.to}>
-                  <Link to={piece.to} className="group block max-w-[56ch]">
-                    <h3 className="type-h4-prose text-ink transition-opacity group-hover:opacity-60">
-                      {piece.name}
-                      <span aria-hidden className="type-body-sm ml-3 text-ink/40">
-                        &rarr;
-                      </span>
-                    </h3>
-                    <p className="type-body-sm mt-2 text-ink/60">{piece.body}</p>
-                  </Link>
-                </li>
-              ))}
+            <ul className="flex flex-col">
+              {INFRASTRUCTURE.map((piece, i) => {
+                const isLast = i === INFRASTRUCTURE.length - 1;
+                return (
+                  <li
+                    key={piece.to}
+                    className={[
+                      "py-8 first:pt-0",
+                      !isLast ? "border-b border-ink/10" : "",
+                    ].join(" ")}
+                  >
+                    <Link to={piece.to} className="group block">
+                      <h3 className="type-h4-prose text-ink transition-opacity group-hover:opacity-60">
+                        {piece.name}
+                        <span aria-hidden className="type-body-sm ml-3 text-ink/40">
+                          &rarr;
+                        </span>
+                      </h3>
+                      <p className="type-body-sm mt-2 max-w-[56ch] text-ink/60">{piece.body}</p>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
-
-          <p className="type-body mt-12 max-w-[56ch] text-ink/70">
-            This is just the beginning. The infrastructure keeps growing, through education,
-            research, media, community, and whatever this transition ends up asking of us next,
-            because it isn't finished asking yet.
-          </p>
         </div>
       </section>
 
