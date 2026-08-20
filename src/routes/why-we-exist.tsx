@@ -1,6 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import manifestoImage from "@/assets/manifesto.jpg";
+import archiveAdewolf from "@/assets/archive-adewolf.png";
+import archiveArlina from "@/assets/archive-arlina.png";
+import archiveBella from "@/assets/archive-bella.png";
+import founderConversations from "@/assets/founder-conversations.webp";
 
 export const Route = createFileRoute("/why-we-exist")({
   head: () => ({
@@ -16,6 +20,8 @@ export const Route = createFileRoute("/why-we-exist")({
         property: "og:description",
         content: "Being human is what we're born with. Humanity is what we practice.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: WhyWeExist,
@@ -27,34 +33,37 @@ export const Route = createFileRoute("/why-we-exist")({
  * "About" is a label in the nav, not a page: its two destinations are this
  * one and `/who-we-are`. This page argues *why*; that one introduces *who*.
  *
- * The existing `/about` route is deliberately left in place and untouched. The
- * plan recommends folding it into this URL behind a 301, but that changes a
- * live, indexed URL and the decision has not been made — so this route is
- * additive, and `/about` keeps working exactly as it did.
+ * The page is a SCROLLED STORY rather than a stack of text blocks (Maya,
+ * 2026-08-20), moving hero → the Human Archive pattern → the question
+ * underneath → the opportunity (Time) → the real question → Human Reps and
+ * Human Wealth → generations, not quarters → the infrastructure → the four
+ * connected pieces → the close.
  *
- * Section order below is Maya's, from the four screens she sent on 2026-08-19
- * ("this is what the Why We Exist page needs to look like, this in this
- * order"): hero → What We Noticed → The Real Question → Human Reps / Human
- * Wealth.
+ * Copy is her document, complete, and `src/lib/copy-fidelity.test.ts` holds
+ * this file to `docs/source/why-we-exist.txt` sentence by sentence — the few
+ * places the page and the document differ are named there with a reason, and
+ * nowhere else. So paragraphs may be RESHAPED into statements here; they may
+ * not be reworded.
  *
- * Copy follows her SCREENS where they and the 3-page doc disagree — the screens
- * are the later edit and are what she signed off ("this is what it needs to look
- * like"). They condense the doc in places, so this is not the doc verbatim. The
- * doc's third page (the four connected pieces, and the "That's not a hope.
- * That's the plan." close) has no screen yet and is deliberately not invented
- * here; she said more text is still coming.
+ * Every visual decision is borrowed rather than invented: cream/ink section
+ * alternation and the eyebrow + lime rule from the homepage, oversized
+ * statement lines from `/the-new-human-era`, documentary photography and the
+ * bordered editorial rows from `/who-we-are` and `/about-the-founder`. No card
+ * system, no new tokens.
  */
 function WhyWeExist() {
   return (
     <>
+      {/* ══════ 01 — HERO (cream) — preserved direction, spacing refined ══════ */}
       <section className="section-cream border-b border-hairline-dark">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-24 lg:py-32">
           <p className="type-label-caps text-ink/50">Why we exist</p>
           <span className="type-eyebrow-rule block" aria-hidden />
-          <h1 className="type-h1-prose mt-6 max-w-4xl text-ink">
-            Being human is what we're born with. Humanity is what we practice.
+          <h1 className="type-h1-prose mt-8 max-w-4xl text-ink sm:mt-10">
+            Being human is what we're born with. Humanity is what we{" "}
+            <span className="text-lime-dark">practice</span>.
           </h1>
-          <p className="type-body-lg mt-8 max-w-xl text-ink/70">
+          <p className="type-body-lg mt-8 max-w-xl text-ink/70 sm:mt-10">
             As technology becomes more powerful, humanity has to become more intentional. We exist
             to help people and organizations become more capable with AI while becoming more
             deliberate about their humanity.
@@ -64,19 +73,21 @@ function WhyWeExist() {
               the lightness the cream side is designed for. Chromium paints it
               rgb(127,146,0) on rgb(244,240,230) = 3.07:1, which clears AA for
               text at this size. */}
-          <p className="font-hand mt-10 text-3xl text-lime-dark">Stay Human.</p>
+          <p className="font-hand mt-12 text-3xl text-lime-dark">Stay Human.</p>
         </div>
       </section>
 
-      {/* ---------- What we noticed (ink) ---------- */}
+      {/* ══════ 02 — THE HUMAN STORY (ink) ══════
+          Documentary portraits from the Archive, offset rather than gridded, so
+          the section reads as a pattern of people and not a gallery of cards. */}
       <section className="section-ink">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <p className="type-label-caps text-foreground">What we noticed</p>
+          <p className="type-label-caps text-lime">The human story</p>
           <span className="type-eyebrow-rule block" aria-hidden />
 
-          <div className="mt-12 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-20">
-            <div>
-              <h2 className="type-h2-condensed max-w-2xl">
+          <div className="mt-12 grid gap-14 lg:mt-16 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
+            <div className="max-w-[58ch]">
+              <h2 className="type-h2-condensed">
                 There's a moment from The Human Archive we haven't stopped thinking about.
               </h2>
               <p className="type-body mt-8 text-muted-foreground">
@@ -85,10 +96,12 @@ function WhyWeExist() {
               <p className="type-body mt-6 text-muted-foreground">
                 We started asking people one question:
               </p>
-              <p className="type-body mt-6 text-foreground">
-                <strong className="font-semibold">What does it mean to be human?</strong>
+
+              <p className="type-h3-condensed mt-10 text-foreground">
+                What does it mean to be human?
               </p>
-              <p className="type-body mt-6 text-muted-foreground">
+
+              <p className="type-body mt-10 text-muted-foreground">
                 Almost nobody talks about their job title, how productive they've been, or what
                 they've built.
               </p>
@@ -98,32 +111,67 @@ function WhyWeExist() {
               </p>
             </div>
 
-            {/* The rule sits left of the quote on desktop and above it on mobile,
-                which is the only part of Maya's screenshot that cannot survive a
-                one-column layout unchanged. */}
-            <figure className="border-t border-border pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
-              <blockquote className="type-h3-condensed">
+            {/* Two portraits, one dropped, the way the Archive rail staggers them. */}
+            <div className="grid grid-cols-2 gap-4 self-start sm:gap-6">
+              <figure className="overflow-hidden">
+                <img
+                  src={archiveAdewolf}
+                  alt="Adewolf, photographed on the street in Vancouver for The Human Archive"
+                  loading="lazy"
+                  width={800}
+                  height={1000}
+                  className="aspect-4/5 w-full object-cover"
+                />
+              </figure>
+              <figure className="mt-10 overflow-hidden sm:mt-16">
+                <img
+                  src={archiveArlina}
+                  alt="Arlina, photographed in Chitré, Panama for The Human Archive"
+                  loading="lazy"
+                  width={800}
+                  height={1000}
+                  className="aspect-4/5 w-full object-cover"
+                />
+              </figure>
+            </div>
+          </div>
+
+          {/* Lindsay, given the room a spoken answer deserves. */}
+          <figure className="mt-16 grid gap-10 border-t border-border pt-12 lg:mt-24 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+            <img
+              src={archiveBella}
+              alt="Bella, photographed in Vancouver for The Human Archive"
+              loading="lazy"
+              width={800}
+              height={1000}
+              className="aspect-4/5 w-full max-w-xs object-cover"
+            />
+            <div className="self-center">
+              <blockquote className="type-h2-condensed max-w-[24ch]">
                 &ldquo;To love one another. Treat each other, and yourself, with respect and
                 compassion.&rdquo;
               </blockquote>
-              <figcaption className="type-body mt-6 text-muted-foreground">
+              <figcaption className="eyebrow mt-8 text-muted-foreground">
                 &mdash; Lindsay, Vancouver
               </figcaption>
-            </figure>
-          </div>
+            </div>
+          </figure>
         </div>
       </section>
 
-      {/* ---------- The real question (ink) ---------- */}
+      {/* ══════ 03 — THE QUESTION UNDERNEATH IT ALL (ink) ══════ */}
       <section className="section-ink border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <p className="type-label-caps text-lime">The real question</p>
+        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-32">
+          <p className="type-label-caps text-lime">The question underneath</p>
           <span className="type-eyebrow-rule block" aria-hidden />
 
-          <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-20">
-            <div>
-              <h2 className="type-h2-condensed">It isn't really a story about technology.</h2>
-              <p className="type-body mt-8 text-muted-foreground">
+          <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.25fr] lg:gap-20">
+
+            <div className="max-w-[52ch]">
+              <p className="type-body text-muted-foreground">
+                It isn't really a story about technology.
+              </p>
+              <p className="type-body mt-6 text-muted-foreground">
                 It's a story about attention. About time. About the people we love getting
                 whatever's left of us after the day has already taken everything else.
               </p>
@@ -138,79 +186,95 @@ function WhyWeExist() {
                 underneath it.
               </p>
             </div>
-            <div className="lg:pt-4">
-              <p className="type-body text-foreground">
-                <strong className="font-semibold">
-                  What kind of humans are these systems actually helping us become?
-                </strong>
-              </p>
-              <p className="type-body mt-6 text-muted-foreground">
-                AI can unlock extraordinary progress. But the real question is not whether it
-                becomes more intelligent. It will. The real question is who we become because of it.
-              </p>
-              <p className="type-body mt-6 text-muted-foreground">
-                Now we're in the middle of one of the biggest transitions in human history. For the
-                first time, we're building technology that can think alongside us, create alongside
-                us, and increasingly make decisions that used to belong only to people.
-              </p>
-              <p className="type-body mt-6 text-muted-foreground">
-                The opportunity in that is real. AI will cure diseases, remove decades of repetitive
-                work, unlock discoveries we haven't imagined yet, and give millions of people
-                something that's become genuinely rare.
-              </p>
-            </div>
+
+            <h2 className="type-h1-prose self-center text-foreground">
+              What kind of humans are these systems actually helping us become?
+            </h2>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ 04 — THE OPPORTUNITY (cream) ══════ */}
+      <section className="section-cream border-t border-hairline-dark">
+        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+          <p className="type-label-caps text-ink/50">The opportunity</p>
+          <span className="type-eyebrow-rule block" aria-hidden />
+
+          <div className="mt-12 max-w-[58ch]">
+            <p className="type-body text-ink/70">
+              Now we're in the middle of one of the biggest transitions in human history. For the
+              first time, we're building technology that can think alongside us, create alongside
+              us, and increasingly make decisions that used to belong only to people.
+            </p>
+            <p className="type-body mt-6 text-ink/70">
+              The opportunity in that is real. AI will cure diseases, remove decades of repetitive
+              work, unlock discoveries we haven't imagined yet, and give millions of people
+              something that's become genuinely rare.
+            </p>
           </div>
 
-          <div className="mt-20 grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <div className="mt-16 grid items-center gap-12 lg:mt-20 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
             <div>
-              <p className="type-h1-condensed text-lime">Time.</p>
-              <p className="type-body mt-6 text-muted-foreground">
-                Time to be present with the people we love.
-                <br />
-                Time to think instead of react.
-                <br />
-                Time to actually experience the life we've spent so long building.
+              <h2 className="type-h1-caps text-lime-dark">Time</h2>
+              <div className="mt-8 max-w-md border-t border-hairline-dark pt-8">
+                <p className="type-h4-condensed text-ink">Time to be present with the people we love.</p>
+                <p className="type-h4-condensed mt-4 text-ink">Time to think instead of react.</p>
+                <p className="type-h4-condensed mt-4 text-ink">
+                  Time to actually experience the life we've spent so long building.
+                </p>
+              </div>
+              <p className="type-body mt-10 text-ink/70">
+                We believe that future is worth building toward.
               </p>
             </div>
+
             <img
               src={manifestoImage}
               alt="Four friends talking together on a rooftop as the sun sets behind the city"
               loading="lazy"
               width={1408}
               height={912}
-              className="aspect-[4/3] w-full rounded-lg object-cover"
+              className="aspect-[4/3] w-full object-cover"
             />
           </div>
         </div>
       </section>
 
-      {/* ---------- Human Reps / Human Wealth (cream) ---------- */}
+      {/* ══════ 05 — THE REAL QUESTION (ink) ══════
+          The turning point, so it is a page-width statement and almost nothing else. */}
+      <section className="section-ink border-t border-border">
+        <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-36">
+          <p className="type-label-caps text-lime">The real question</p>
+          <span className="type-eyebrow-rule block" aria-hidden />
+
+          <p className="type-body mt-14 max-w-[52ch] text-muted-foreground">
+            But every leap this size asks something of us in return. The question was never really
+            whether AI becomes more intelligent. It will. The real question, the one that actually
+            matters, is who we become because of it.
+          </p>
+
+          <h2 className="type-h1-condensed mt-14 max-w-4xl">
+            Being human isn't something you're born finished with.
+          </h2>
+        </div>
+      </section>
+
+      {/* ══════ 06 — HUMAN REPS + HUMAN WEALTH (cream) ══════ */}
       <section className="section-cream border-t border-hairline-dark">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <div className="max-w-4xl">
-            <p className="type-body text-ink/70">
-              We believe that future is worth building toward.
-            </p>
-            <p className="type-body mt-6 text-ink/70">
-              But every leap this size asks something of us in return. The question was never really
-              whether AI becomes more intelligent. It will. The real question, the one that actually
-              matters, is who we become because of it.
-            </p>
-            <p className="type-body mt-6 text-ink/70">
-              Being human isn't something you're born finished with.
-            </p>
-            <p className="type-body mt-6 text-ink">
-              <strong className="font-semibold">
-                You're born human. Humanity is what you practice.
-              </strong>
-            </p>
-            <p className="type-body mt-6 text-ink/70">
+          <h2 className="type-h1-caps max-w-4xl text-ink">
+            You're born human. Humanity is what you <span className="text-lime-dark">practice</span>
+            .
+          </h2>
+
+          <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
+            <p className="type-body max-w-[58ch] text-ink/70">
               You practice it in the conversations you choose to have instead of scrolling past. In
               the promises you keep when breaking them would be easier. In the moments you think for
               yourself instead of letting something else think for you. In choosing to be fully
               present with the person in front of you when distraction would cost you nothing.
             </p>
-            <p className="type-body mt-6 text-ink/70">
+            <p className="type-body max-w-[58ch] text-ink/70">
               We call those moments Human Reps. Small, conscious choices where you interrupt the
               automatic pattern and decide how you want to show up. None of them look like much by
               themselves. But they compound into trust with your name attached, into relationships
@@ -218,15 +282,52 @@ function WhyWeExist() {
               that feel closer instead of more distant, into organizations that become more human
               because the people inside them chose to practice being human.
             </p>
-            <p className="type-body mt-6 text-ink">
-              <strong className="font-semibold">We call that Human Wealth.</strong>
-            </p>
-            <p className="type-body mt-6 text-ink/70">
+          </div>
+
+          {/* What the reps compound into, as a line of plain words with rules
+              between them — the /who-we-are divider language, not four boxes. */}
+          <ul className="mt-16 grid border-t border-hairline-dark sm:grid-cols-2 lg:mt-20 lg:grid-cols-5">
+            {COMPOUNDS.map((item) => (
+              <li
+                key={item}
+                className="border-b border-hairline-dark py-6 pr-6 sm:border-b-0 sm:border-r sm:last:border-r-0 sm:py-8 sm:pl-6 sm:first:pl-0"
+              >
+                <p className="type-h4-caps text-ink">{item}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-16 max-w-3xl border-t border-hairline-dark pt-12 lg:mt-20">
+            <h3 className="type-h2-caps text-ink">
+              We call that <span className="text-lime-dark">Human Wealth</span>.
+            </h3>
+            <p className="type-body mt-8 text-ink/70">
               We believe the world gets measurably better every time someone chooses to practice
               their humanity. Not because we say it does. Because it's true every single time it
               happens &mdash; one conversation. One promise kept &mdash; one moment of real presence
               instead of performance.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ 07 — GENERATIONS, NOT QUARTERS (ink) ══════
+          Photography and narrative in the /who-we-are register: this is a way of
+          deciding, not a credential, so it is told rather than badged. */}
+      <section className="section-ink border-t border-border">
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-20 lg:py-28">
+          <img
+            src={founderConversations}
+            alt="Shane in conversation with a group of people, listening rather than presenting"
+            loading="lazy"
+            width={1200}
+            height={900}
+            className="aspect-[5/4] w-full object-cover"
+          />
+
+          <div className="max-w-[58ch]">
+            <p className="type-label-caps text-lime">Generations, not quarters</p>
+            <span className="type-eyebrow-rule block" aria-hidden />
             {/* Maya's doc uses a different adjective here than the site does.
                 That wording is one of the two superseded variants
                 `layering.test.ts` bans by name, so this reads "Indigenous-led" —
@@ -235,7 +336,10 @@ function WhyWeExist() {
                 is deliberately not spelled out in this comment: the same proof
                 scans comments, precisely because that is how a retired variant
                 gets copied back into live copy.) */}
-            <p className="type-body mt-6 text-ink/70">
+            <h2 className="type-h2-condensed mt-10 max-w-[22ch]">
+              The decisions we make today are inherited by the people who come after us.
+            </h2>
+            <p className="type-body mt-8 text-muted-foreground">
               That belief didn't start with AI, either. It's older than that. As an Indigenous-led
               company, we grew up understanding something the rest of the world is only now circling
               back to: the decisions we make today are inherited by the people who come after us.
@@ -243,83 +347,77 @@ function WhyWeExist() {
               this company was built from, and it's why we think about this transition in
               generations, not quarters.
             </p>
-            <p className="type-body mt-6 text-ink/70">
-              That's why we created The Be Human Company. Not simply to help organizations adopt AI.
-              Not to launch another movement with a hashtag attached.
-            </p>
-            <p className="type-body mt-6 text-ink/70">
-              We're building the human infrastructure for the age of artificial intelligence. The
-              ideas. The frameworks. The practices. The research. The conversations. The stories.
-              The tools that help people and organizations strengthen the human qualities that
-              become more valuable, not less, as technology becomes more capable.
-            </p>
           </div>
-
-          <div className="mt-16 grid gap-12 border-t border-hairline-dark pt-12 lg:grid-cols-2 lg:gap-20">
-            <div>
-              <h2 className="type-label-caps text-lime-dark">Human Reps</h2>
-              <span className="type-eyebrow-rule block" aria-hidden />
-              <p className="type-h3-condensed mt-6 text-ink">
-                Small, conscious choices where you interrupt the automatic pattern and decide how
-                you want to show up.
-              </p>
-            </div>
-            <div className="border-t border-hairline-dark pt-12 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
-              <h2 className="type-label-caps text-lime-dark">Human Wealth</h2>
-              <span className="type-eyebrow-rule block" aria-hidden />
-              <p className="type-h3-condensed mt-6 text-ink">
-                Trust with your name attached. Relationships strong enough to carry real life.
-                Leaders people actually believe. Families that feel closer. Organizations that
-                become more human.
-              </p>
-            </div>
-          </div>
-
-          <p className="mt-16 flex items-start gap-5 border-t border-hairline-dark pt-10 text-ink/70">
-            <span className="type-h3-condensed leading-none text-lime-dark" aria-hidden>
-              &#8599;
-            </span>
-            <span className="eyebrow">
-              We believe the world gets measurably better every time someone chooses to practice
-              their humanity.
-            </span>
-          </p>
         </div>
       </section>
 
-      {/* ---------- The four connected pieces (ink) ----------
+      {/* ══════ 08 — WHY THE BE HUMAN COMPANY EXISTS (cream) ══════ */}
+      <section className="section-cream border-t border-hairline-dark">
+        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+          <div className="max-w-[58ch]">
+            <p className="type-body text-ink/70">
+              That's why we created The Be Human Company. Not simply to help organizations adopt AI.
+              Not to launch another movement with a hashtag attached.
+            </p>
+          </div>
 
-          The tail of Maya's 08-18 document, which the first build of this page
-          stopped short of ("there is still text that needs to be added",
-          08-19 08:52). Her four screens end at Human Reps / Human Wealth, so
-          the LAYOUT below is not hers — the copy is, verbatim.
+          <h2 className="type-h1-condensed mt-12 max-w-4xl text-ink">
+            We're building the human infrastructure for the age of artificial intelligence.
+          </h2>
+
+          <div className="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+            <ul className="grid gap-0 border-t border-hairline-dark sm:grid-cols-2">
+              {INFRASTRUCTURE_PARTS.map((part) => (
+                <li key={part} className="border-b border-hairline-dark py-5">
+                  <p className="type-h3-caps-light text-ink">{part}</p>
+                </li>
+              ))}
+            </ul>
+
+            <p className="type-body max-w-[58ch] self-center text-ink/70">
+              The ideas. The frameworks. The practices. The research. The conversations. The
+              stories. The tools that help people and organizations strengthen the human qualities
+              that become more valuable, not less, as technology becomes more capable.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ 09 — FOUR CONNECTED PIECES (ink) ══════
 
           Each piece is a real destination, so each is a link. That is also the
           honest reason this block is worth building rather than four more
           paragraphs: it is the only place on the site where the four halves of
-          the company are named together and reachable in one move. */}
+          the company are named together and reachable in one move. Large
+          editorial rows with hairline dividers, not four cards. */}
       <section className="section-ink border-t border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
           <p className="type-label-caps text-lime">The infrastructure</p>
           <span className="type-eyebrow-rule block" aria-hidden />
-          <h2 className="type-h2-condensed mt-6 max-w-3xl">
+          <h2 className="type-h2-condensed mt-8 max-w-3xl">
             Right now, that infrastructure is four connected pieces.
           </h2>
 
-          <ul className="mt-16 grid gap-x-16 gap-y-12 lg:grid-cols-2">
-            {INFRASTRUCTURE.map((piece) => (
-              <li key={piece.to} className="border-t border-border pt-8">
-                <h3 className="type-h4-caps-light">
-                  <Link to={piece.to} className="transition-colors hover:text-lime">
+          <ul className="mt-14 lg:mt-16">
+            {INFRASTRUCTURE.map((piece, i) => (
+              <li key={piece.to} className="border-t border-border last:border-b">
+                <Link
+                  to={piece.to}
+                  className="group grid gap-6 py-10 lg:grid-cols-[auto_1fr_1.35fr] lg:items-baseline lg:gap-12 lg:py-12"
+                >
+                  <span className="eyebrow text-lime">0{i + 1}</span>
+                  <h3 className="type-h3-caps-light transition-colors group-hover:text-lime">
                     {piece.name}
-                  </Link>
-                </h3>
-                <p className="type-body mt-5 text-muted-foreground">{piece.body}</p>
+                  </h3>
+                  <span className="type-body block max-w-[62ch] text-muted-foreground">
+                    {piece.body}
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
 
-          <p className="type-body mt-16 max-w-3xl border-t border-border pt-12 text-muted-foreground">
+          <p className="type-body mt-14 max-w-[62ch] text-muted-foreground">
             This is just the beginning. The infrastructure keeps growing, through education,
             research, media, community, and whatever this transition ends up asking of us next,
             because it isn't finished asking yet.
@@ -327,10 +425,10 @@ function WhyWeExist() {
         </div>
       </section>
 
-      {/* ---------- Why we're building it (cream) ---------- */}
+      {/* ══════ 10 — ENDING (cream) ══════ */}
       <section className="section-cream border-t border-hairline-dark">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <div className="max-w-3xl">
+        <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-36">
+          <div className="max-w-[58ch]">
             <p className="type-body text-ink/70">
               We're not building this because we're afraid of artificial intelligence.
             </p>
@@ -343,14 +441,12 @@ function WhyWeExist() {
             </p>
           </div>
 
-          <h2 className="type-h2-condensed mt-12 max-w-3xl text-ink">
-            Humanity has to advance with it.
-          </h2>
+          <h2 className="type-h1-caps mt-14 max-w-4xl text-ink">Humanity has to advance with it.</h2>
 
-          <p className="type-h3-condensed mt-16 max-w-3xl border-t border-hairline-dark pt-12 text-ink">
+          <p className="type-h2-condensed mt-20 max-w-3xl border-t border-hairline-dark pt-14 text-ink">
             One Human Rep won't change the world. Millions of them will.
           </p>
-          <p className="type-h3-condensed mt-4 text-lime-dark">
+          <p className="type-h2-condensed mt-6 text-lime-dark">
             That's not a hope. That's the plan.
           </p>
         </div>
@@ -358,6 +454,29 @@ function WhyWeExist() {
     </>
   );
 }
+
+/**
+ * What Human Reps compound into — read straight off the paragraph above them,
+ * so the row is a restatement of her sentence and not new brand language.
+ */
+const COMPOUNDS = [
+  "Trust",
+  "Relationships",
+  "Leadership",
+  "Families",
+  "Organizations",
+] as const;
+
+/** The infrastructure, named as she names it. */
+const INFRASTRUCTURE_PARTS = [
+  "The ideas",
+  "The frameworks",
+  "The practices",
+  "The research",
+  "The conversations",
+  "The stories",
+  "The tools",
+] as const;
 
 /**
  * The four pieces, in the order Maya's document names them.
