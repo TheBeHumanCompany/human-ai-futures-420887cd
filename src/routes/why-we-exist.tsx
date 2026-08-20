@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Heart, Lightbulb, Users } from "lucide-react";
 
 import manifestoImage from "@/assets/manifesto.jpg";
 import humanStoryPortrait from "@/assets/human-story-portrait.webp";
@@ -152,16 +153,36 @@ function WhyWeExist() {
             />
           </div>
 
-          {/* Three clean text blocks. No rules, no separators, no cards. */}
-          <div className="mt-14 grid gap-8 lg:mt-16 lg:grid-cols-3 lg:gap-12">
-            {TIME_LINES.map((line) => (
-              <p key={line} className="type-h4-prose max-w-[26ch] text-ink">
-                {line}
-              </p>
-            ))}
+          {/* Three statement rows with icon circles and vertical dividers on desktop. */}
+          <div className="mt-14 grid gap-0 lg:mt-16 lg:grid-cols-3">
+            {TIME_LINES.map((line, i) => {
+              const isFirst = i === 0;
+              const isLast = i === TIME_LINES.length - 1;
+              const Icon = line.icon;
+              return (
+                <div
+                  key={line.text}
+                  className={[
+                    "flex items-center gap-5 py-8 lg:py-0",
+                    isFirst ? "lg:pr-10" : isLast ? "lg:pl-10" : "lg:px-10",
+                    !isLast
+                      ? "border-b border-ink/10 lg:border-b-0 lg:border-r"
+                      : "",
+                  ].join(" ")}
+                >
+                  <span
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-lime/25 text-lime-dark"
+                    aria-hidden
+                  >
+                    <Icon size={22} strokeWidth={1.25} />
+                  </span>
+                  <p className="type-h4-prose text-ink">{line.text}</p>
+                </div>
+              );
+            })}
           </div>
 
-          <p className="type-body mt-12 max-w-[52ch] text-ink/70">
+          <p className="type-body mx-auto mt-12 max-w-[52ch] text-center text-ink/70">
             We believe that future is worth building toward.
           </p>
         </div>
@@ -361,11 +382,23 @@ function SectionLabel({ children, tone }: { children: string; tone: "dark" | "li
   );
 }
 
-/** The three Time lines, exactly as her screens trim them. */
+/** The three Time lines, each paired with a human-centered icon. */
 const TIME_LINES = [
-  "Time to be present with the people we love.",
-  "Time to think instead of react.",
-  "Time to actually experience the life we've spent so long building.",
+  {
+    text: "Time to be present with the people we love.",
+    icon: Users,
+    label: "Presence",
+  },
+  {
+    text: "Time to think instead of react.",
+    icon: Lightbulb,
+    label: "Thought",
+  },
+  {
+    text: "Time to actually experience the life we've spent so long building.",
+    icon: Heart,
+    label: "Experience",
+  },
 ] as const;
 
 /** What Human Reps compound into — read straight off the paragraph above them. */
