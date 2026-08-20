@@ -496,3 +496,15 @@ function Founder() {
   );
 }
 
+/**
+ * The four reflective lessons that close the founder story. Kept as data so
+ * the wording stays consistent across the list and the surrounding paragraphs.
+ */
+const LESSONS = [
+  "Every business taught me something about building.",
+  "Every leader taught me something about people.",
+  "Every team showed me how much culture matters.",
+  "Every success, and every mistake, gave me more to learn.",
+] as const;
+
+
