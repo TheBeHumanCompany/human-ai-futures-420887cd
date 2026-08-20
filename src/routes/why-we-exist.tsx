@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Heart, Lightbulb, Users } from "lucide-react";
+import { ArrowUpRight, Heart, Lightbulb, Users } from "lucide-react";
 
 import manifestoImage from "@/assets/manifesto.jpg";
 import humanStoryPortrait from "@/assets/human-story-portrait.webp";
@@ -352,28 +352,60 @@ function WhyWeExist() {
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
         <div className={`${SHELL} py-16 lg:py-24`}>
-          <div className="max-w-[56ch]">
-            <SectionLabel tone="light">The plan</SectionLabel>
+          <SectionLabel tone="light">The plan</SectionLabel>
 
-            <h2 className="type-h2-prose mt-10 max-w-[20ch]">
-              Technology will keep advancing whether we're ready or not. Humanity has to advance
-              with it.
-            </h2>
+          <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* LEFT COLUMN: main statement */}
+            <div>
+              <h2 className="type-h2-prose max-w-[16ch] text-foreground">
+                Technology will
+                <br />
+                keep advancing
+                <br />
+                whether we're
+                <br />
+                ready or not.
+                <br />
+                Humanity has to
+                <br />
+                advance with it.
+              </h2>
+            </div>
 
-            <p className="type-body mt-10 text-muted-foreground">
-              We're not building this because we're afraid of artificial intelligence.
-            </p>
-            <p className="type-body mt-5 text-muted-foreground">
-              We're building it because we've seen what's possible if humanity leads this well, and
-              what's at risk if it doesn't.
-            </p>
-            <p className="type-body mt-5 text-muted-foreground">
-              One Human Rep won't change the world. Millions of them will.
-            </p>
+            {/* RIGHT COLUMN: three supporting thoughts */}
+            <div className="flex flex-col">
+              {PLAN_THOUGHTS.map((thought, i) => {
+                const isLast = i === PLAN_THOUGHTS.length - 1;
+                return (
+                  <div
+                    key={thought}
+                    className={[
+                      "flex items-start gap-5 py-8 first:pt-0",
+                      !isLast ? "border-b border-foreground/10" : "",
+                    ].join(" ")}
+                  >
+                    <span
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-foreground/15"
+                      aria-hidden
+                    >
+                      <ArrowUpRight size={18} className="text-lime" strokeWidth={1.5} />
+                    </span>
+                    <p className="type-body-lg pt-1.5 text-foreground/90">{thought}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
 
-            <p className="type-h3-prose mt-10 text-foreground">
-              That's not a hope. That's the plan.
-            </p>
+          {/* BOTTOM CLOSING LINE */}
+          <div className="mt-16 lg:mt-20">
+            <span className="block w-full border-t border-foreground/10" aria-hidden />
+            <div className="mt-10 flex items-start gap-5">
+              <span className="mt-2 block h-10 w-0.5 bg-lime" aria-hidden />
+              <p className="type-h3-prose text-foreground">
+                That's not a hope. <span className="text-lime">That's the plan.</span>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -445,4 +477,11 @@ const INFRASTRUCTURE = [
     name: "The People-Driven CEO Podcast",
     body: "The People-Driven CEO Podcast is where we sit down with founders and leaders and ask them to say the honest version out loud, the one that doesn't usually make it into a keynote.",
   },
+] as const;
+
+/** The three supporting statements in The Plan section. */
+const PLAN_THOUGHTS = [
+  "We're not building this because we're afraid of artificial intelligence.",
+  "We're building it because we've seen what's possible if humanity leads this well, and what's at risk if it doesn't.",
+  "One Human Rep won't change the world. Millions of them will.",
 ] as const;
