@@ -350,9 +350,9 @@ function Founder() {
               </p>
 
               <Shot
-                src={conversations}
-                alt="Four frames of Shane James in conversation, on a desert road and in a diner booth"
-                className="my-8 max-w-[600px]"
+                src={diner}
+                alt="Shane James in conversation with a woman across a red diner booth"
+                className="my-8 max-w-[560px]"
               />
 
               <p className="type-body text-ink/70">
