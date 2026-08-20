@@ -235,9 +235,8 @@ function WhyWeExist() {
       <section className="section-ink">
         <div className={`${SHELL} py-16 lg:py-24`}>
           <SectionLabel tone="light">Generations, not quarters</SectionLabel>
-          {/* Her document says "Indigenous-founded" here; that wording is one of
-              the superseded variants `layering.test.ts` bans by name, so this
-              reads "Indigenous-led" — the canonical voice. Flagged to Maya. */}
+          {/* Her document uses a superseded variant of this line; the page reads
+              "Indigenous-led" — the canonical voice. Flagged to Maya. */}
           <h2 className="type-h2-prose mt-10 max-w-[22ch]">
             The decisions we make today are inherited by the people who come after us.
           </h2>
