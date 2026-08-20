@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import aocFoodDrive from "@/assets/founder-aoc-fooddrive.webp";
-import conversations from "@/assets/founder-conversations.webp";
 import curvesTruck from "@/assets/founder-curves-truck.webp";
+import diner from "@/assets/founder-diner.webp";
 import harrington from "@/assets/founder-harrington.webp";
 import mentoring from "@/assets/founder-mentoring.webp";
 
@@ -33,19 +33,24 @@ import satnam from "@/assets/founder-satnam.webp";
  * Backgrounds: warm cream throughout, with exactly one ink section — the belief
  * pause after BUILDING AT SCALE, deliberately short and quiet.
  *
- * ── The image system ──────────────────────────────────────────────────────
+ * ── The image system (revised 2026-08-20) ────────────────────────────────
  *
- * Two treatments only, so no photograph outweighs the story:
+ * Photographs keep their OWN orientation. Nothing is squeezed into a shared
+ * ratio, because a fixed 4:3 was cropping heads and turning the biography into
+ * a gallery. Consistency comes from restrained widths, matching radius and a
+ * shared vertical rhythm instead:
  *
- *   · `Shot` — standard supporting photography. Fixed 4:3, `object-fit: cover`,
- *     the same radius and the same 600px ceiling everywhere, single or paired.
- *   · `Archival` — magazine scans and clippings. Same frame and radius, but
- *     `object-fit: contain` on a soft field so the document is never cropped.
+ *   · `Shot` — a supporting photograph at its natural ratio (`h-auto`,
+ *     no forced `aspect-*`), capped so it sits at roughly half the measure.
+ *   · `Archival` — magazine scans, shown whole on the cream page itself:
+ *     no beige card, no padding box, just the document at its own proportions.
  *
  * Three photographs were removed entirely at Maya's request: the KITV studio
  * shot (BUILDING AT SCALE is intentionally text-led), the mural/cameraman
  * filming frame, and the posed three-person Actions of Compassion portrait.
- * Their containers went with them; no blank space was left behind.
+ * The four-frame conversations collage went too; HUMAN PERFORMANCE now shows
+ * only the single diner frame cut from it.
+
  */
 export const Route = createFileRoute("/about-the-founder")({
   head: () => ({
@@ -70,48 +75,45 @@ export const Route = createFileRoute("/about-the-founder")({
 });
 
 /**
- * A standard supporting photograph: 4:3, cropped to fill, capped so it never
- * spans the full measure. `alt` is required by the type rather than optional —
- * every one of these is a photograph of real people doing real things.
+ * A supporting photograph at its OWN aspect ratio. No `aspect-*`, no cover
+ * crop: the file's proportions decide the height, the caller decides only how
+ * wide it may get. `alt` is required by the type rather than optional — every
+ * one of these is a photograph of real people doing real things.
  */
-function Shot({
-  src,
-  alt,
-  fit = "cover",
-  className = "",
-}: {
-  src: string;
-  alt: string;
-  fit?: "cover" | "contain";
-  className?: string;
-}) {
+function Shot({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
   return (
     <img
       src={src}
       alt={alt}
       loading="lazy"
       decoding="async"
-      className={`aspect-[4/3] w-full rounded-sm ${
-        fit === "contain" ? "bg-ink/5 object-contain p-3" : "object-cover"
-      } ${className}`}
+      className={`h-auto w-full rounded-sm ${className}`}
     />
   );
 }
 
 /**
- * Archival document: the same frame and radius as a photograph, but shown
- * whole (`object-contain`) so a clipping is never cropped. It is `Shot` with
- * one prop rather than a second component, so every picture on the page keeps
- * going through a single `<img>`.
+ * Archival document: no card, no beige field, no radius — a scan sitting
+ * directly on the cream page at its natural proportions, sized to stay
+ * readable as archival material.
  */
 function Archival({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
-  return <Shot src={src} alt={alt} fit="contain" className={className} />;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      className={`h-auto w-full object-contain ${className}`}
+    />
+  );
 }
 
-/** Two photographs, equal weight: same width, height, ratio, radius and gap. */
-function ShotPair({ children }: { children: React.ReactNode }) {
-  return <div className="grid max-w-[1000px] gap-6 sm:grid-cols-2">{children}</div>;
+/** Two square photographs, equal displayed size, top-aligned. */
+function SquarePair({ children }: { children: React.ReactNode }) {
+  return <div className="grid max-w-[720px] items-start gap-6 sm:grid-cols-2">{children}</div>;
 }
+
 
 /**
  * The section kicker, identical to the one on /why-we-exist: uppercase label
@@ -186,7 +188,7 @@ function Founder() {
               <Shot
                 src={curvesTruck}
                 alt="Shane James with two colleagues in front of a Curves for Women transport trailer, America's Largest Fitness Franchise"
-                className="my-8 max-w-[600px]"
+                className="my-8 max-w-[520px]"
               />
 
               <p className="type-body text-ink/70">
@@ -198,8 +200,8 @@ function Founder() {
                 books, allowing me to continue sharing ideas beyond the businesses I was building.
               </p>
 
-              {/* Archival clippings: shown whole, never cropped. */}
-              <div className="mt-8 grid max-w-[1000px] gap-6 sm:grid-cols-2">
+              {/* Archival clippings: on the cream page itself, whole, no card. */}
+              <div className="mt-8 grid max-w-[820px] items-start gap-8 sm:grid-cols-2">
                 <Archival
                   src={pressCn}
                   alt="Chinese-language newspaper feature on Shane James losing 65 pounds in six months"
@@ -284,8 +286,9 @@ function Founder() {
                 continue to hold equity in several of the companies I helped build.
               </p>
 
+              {/* Both sources are 1:1; shown square, side by side, restrained. */}
               <div className="my-8">
-                <ShotPair>
+                <SquarePair>
                   <Shot
                     src={harrington}
                     alt="Shane James with Kevin Harrington on a film set, teleprompter and camera rig behind them"
@@ -294,7 +297,7 @@ function Founder() {
                     src={satnam}
                     alt="Shane James and Satnam Singh, the first Indian-born NBA draftee, flexing together off camera"
                   />
-                </ShotPair>
+                </SquarePair>
               </div>
 
               <p className="type-body text-ink/70">
@@ -347,9 +350,9 @@ function Founder() {
               </p>
 
               <Shot
-                src={conversations}
-                alt="Four frames of Shane James in conversation, on a desert road and in a diner booth"
-                className="my-8 max-w-[600px]"
+                src={diner}
+                alt="Shane James in conversation with a woman across a red diner booth"
+                className="my-8 max-w-[560px]"
               />
 
               <p className="type-body text-ink/70">
@@ -393,7 +396,15 @@ function Founder() {
                 Show. Those experiences reinforced something I&rsquo;ve always believed: meaningful
                 change begins with ordinary people making intentional choices to help someone else.
               </p>
-              <p className="type-body mt-6 text-ink/70">
+
+              {/* Portrait source, kept portrait and narrow. */}
+              <Shot
+                src={mentoring}
+                alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
+                className="my-8 max-w-[380px]"
+              />
+
+              <p className="type-body text-ink/70">
                 Alongside my entrepreneurial career, I&rsquo;ve remained committed to serving my
                 community. I&rsquo;ve volunteered with Ronald McDonald House, served on the board of
                 the Maple Ridge Food Bank, acted as President of the Ridge Meadows Business
@@ -401,18 +412,11 @@ function Founder() {
                 longtime mentor, John Volken, founder of United Furniture Warehouse.
               </p>
 
-              <div className="mt-8">
-                <ShotPair>
-                  <Shot
-                    src={mentoring}
-                    alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
-                  />
-                  <Shot
-                    src={aocFoodDrive}
-                    alt="Actions of Compassion volunteers with boxes of donated food at a food drive"
-                  />
-                </ShotPair>
-              </div>
+              <Shot
+                src={aocFoodDrive}
+                alt="Actions of Compassion volunteers with boxes of donated food at a food drive"
+                className="mt-8 max-w-[520px]"
+              />
             </div>
           </div>
         </div>
