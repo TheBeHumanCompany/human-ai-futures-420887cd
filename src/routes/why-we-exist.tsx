@@ -162,7 +162,11 @@ function WhyWeExist() {
       {/* ══════ 03 — THE QUESTION UNDERNEATH IT ALL (ink) ══════ */}
       <section className="section-ink border-t border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-32">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.25fr] lg:gap-20">
+          <p className="type-label-caps text-lime">The question underneath</p>
+          <span className="type-eyebrow-rule block" aria-hidden />
+
+          <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.25fr] lg:gap-20">
+
             <div className="max-w-[52ch]">
               <p className="type-body text-muted-foreground">
                 It isn't really a story about technology.
