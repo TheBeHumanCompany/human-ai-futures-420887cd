@@ -75,48 +75,45 @@ export const Route = createFileRoute("/about-the-founder")({
 });
 
 /**
- * A standard supporting photograph: 4:3, cropped to fill, capped so it never
- * spans the full measure. `alt` is required by the type rather than optional —
- * every one of these is a photograph of real people doing real things.
+ * A supporting photograph at its OWN aspect ratio. No `aspect-*`, no cover
+ * crop: the file's proportions decide the height, the caller decides only how
+ * wide it may get. `alt` is required by the type rather than optional — every
+ * one of these is a photograph of real people doing real things.
  */
-function Shot({
-  src,
-  alt,
-  fit = "cover",
-  className = "",
-}: {
-  src: string;
-  alt: string;
-  fit?: "cover" | "contain";
-  className?: string;
-}) {
+function Shot({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
   return (
     <img
       src={src}
       alt={alt}
       loading="lazy"
       decoding="async"
-      className={`aspect-[4/3] w-full rounded-sm ${
-        fit === "contain" ? "bg-ink/5 object-contain p-3" : "object-cover"
-      } ${className}`}
+      className={`h-auto w-full rounded-sm ${className}`}
     />
   );
 }
 
 /**
- * Archival document: the same frame and radius as a photograph, but shown
- * whole (`object-contain`) so a clipping is never cropped. It is `Shot` with
- * one prop rather than a second component, so every picture on the page keeps
- * going through a single `<img>`.
+ * Archival document: no card, no beige field, no radius — a scan sitting
+ * directly on the cream page at its natural proportions, sized to stay
+ * readable as archival material.
  */
 function Archival({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
-  return <Shot src={src} alt={alt} fit="contain" className={className} />;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      className={`h-auto w-full object-contain ${className}`}
+    />
+  );
 }
 
-/** Two photographs, equal weight: same width, height, ratio, radius and gap. */
-function ShotPair({ children }: { children: React.ReactNode }) {
-  return <div className="grid max-w-[1000px] gap-6 sm:grid-cols-2">{children}</div>;
+/** Two square photographs, equal displayed size, top-aligned. */
+function SquarePair({ children }: { children: React.ReactNode }) {
+  return <div className="grid max-w-[720px] items-start gap-6 sm:grid-cols-2">{children}</div>;
 }
+
 
 /**
  * The section kicker, identical to the one on /why-we-exist: uppercase label
