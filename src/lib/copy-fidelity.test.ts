@@ -147,6 +147,13 @@ const CASES: Case[] = [
           "'Indigenous-founded' is a superseded variant that layering.test.ts bans outright; the " +
           "page says 'Indigenous-led', matching INDIGENOUS_LINE. Flagged to Maya, not silent.",
       },
+      {
+        startsWith: "right now that infrastructure is four connected pieces",
+        instead: "Four parts. One mission.",
+        because:
+          "The 2026-08-20 redesign of the four-pieces section replaces this heading with a shorter " +
+          "editorial statement while keeping the four offerings and closing paragraph intact.",
+      },
     ],
   },
 ];
