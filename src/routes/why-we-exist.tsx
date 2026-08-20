@@ -254,7 +254,7 @@ function WhyWeExist() {
 
       {/* ══════ 06 — GENERATIONS, NOT QUARTERS (ink) ══════ Text only. */}
       <section className="section-ink">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">Generations, not quarters</SectionLabel>
           {/* Her document uses a superseded variant of this line; the page reads
               "Indigenous-led" — the canonical voice. Flagged to Maya. */}
