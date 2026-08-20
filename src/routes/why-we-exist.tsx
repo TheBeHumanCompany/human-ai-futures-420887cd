@@ -56,13 +56,13 @@ function WhyWeExist() {
     <>
       {/* ══════ 01 — HERO (cream) ══════ */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 sm:py-28 lg:py-40">
+        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20 lg:py-24">
           <SectionLabel tone="dark">Why we exist</SectionLabel>
           <h1 className="type-h1-prose mt-10 max-w-[16ch] text-ink">
             Being human is what we're born with. Humanity is what we{" "}
             <span className="text-lime-dark">practice</span>.
           </h1>
-          <p className="type-body mt-12 max-w-[46ch] text-ink/70">
+          <p className="type-body mt-10 max-w-[46ch] text-ink/70">
             As technology becomes more powerful, humanity has to become more intentional. We exist
             to help people and organizations become more capable with AI while becoming more
             deliberate about their humanity.
@@ -76,10 +76,10 @@ function WhyWeExist() {
       {/* ══════ 02 — THE HUMAN STORY (cream) ══════
           One portrait, one column of text. No collage, no staggered rail. */}
       <section className="section-cream border-t border-hairline-dark">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
           <SectionLabel tone="dark">The human story</SectionLabel>
 
-          <div className="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+          <div className="mt-10 grid gap-12 lg:mt-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
             <div className="max-w-[52ch]">
               <h2 className="type-h2-prose text-ink">
                 There's a moment from The Human Archive we haven't stopped thinking about.
@@ -112,7 +112,7 @@ function WhyWeExist() {
           </div>
 
           {/* Lindsay, quiet: a rule, a sentence, a name. */}
-          <figure className="mt-16 max-w-[46ch] border-t border-hairline-dark pt-10 lg:mt-20">
+          <figure className="mt-12 max-w-[46ch] border-t border-hairline-dark pt-10 lg:mt-14">
             <blockquote className="type-h3-prose text-ink">
               &ldquo;To love one another. Treat each other, and yourself, with respect and
               compassion.&rdquo;
@@ -127,12 +127,12 @@ function WhyWeExist() {
       {/* ══════ 03 — THE QUESTION UNDERNEATH IT ALL (ink) ══════
           Typography only. The first of four ink moments on the page. */}
       <section className="section-ink">
-        <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-36">
+        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
           <SectionLabel tone="light">The question underneath it all</SectionLabel>
           <h2 className="type-h1-prose mt-12 max-w-[18ch] lg:mt-16">
             What kind of humans are these systems actually helping us become?
           </h2>
-          <div className="mt-14 max-w-[52ch] lg:mt-20">
+          <div className="mt-10 max-w-[52ch] lg:mt-14">
             <p className="type-body text-muted-foreground">
               It isn't really a story about technology.
             </p>
@@ -155,10 +155,10 @@ function WhyWeExist() {
 
       {/* ══════ 04 — THE OPPORTUNITY / TIME (cream) ══════ */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
           <SectionLabel tone="dark">The opportunity</SectionLabel>
 
-          <div className="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
+          <div className="mt-10 grid gap-12 lg:mt-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
             <div className="max-w-[46ch] self-center">
               <p className="type-body text-ink/70">
                 Now we're in the middle of one of the biggest transitions in human history. For the
@@ -184,7 +184,7 @@ function WhyWeExist() {
           </div>
 
           {/* Three lines, divided rather than boxed. */}
-          <div className="mt-16 grid border-t border-hairline-dark lg:mt-20 lg:grid-cols-3">
+          <div className="mt-12 grid border-t border-hairline-dark lg:mt-14 lg:grid-cols-3">
             <p className="type-h4-prose border-b border-hairline-dark py-6 pr-8 text-ink lg:border-b-0 lg:border-r">
               Time to be present with the people we love.
             </p>
@@ -205,7 +205,7 @@ function WhyWeExist() {
       {/* ══════ 05 — THE REAL QUESTION (ink) ══════
           The turning point: the largest statement on the page after the hero. */}
       <section className="section-ink">
-        <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-36">
+        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
           <SectionLabel tone="light">The real question</SectionLabel>
 
           <p className="type-body mt-12 max-w-[52ch] text-muted-foreground">
@@ -214,7 +214,7 @@ function WhyWeExist() {
             matters, is who we become because of it.
           </p>
 
-          <h2 className="type-h1-prose mt-14 max-w-[16ch] lg:mt-20">
+          <h2 className="type-h1-prose mt-12 max-w-[16ch] lg:mt-14">
             Being human isn't something you're born finished with.
           </h2>
         </div>
@@ -222,7 +222,7 @@ function WhyWeExist() {
 
       {/* ══════ 06 — HUMAN REPS + HUMAN WEALTH (cream) ══════ */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
           <SectionLabel tone="dark">What we practice</SectionLabel>
 
           <h2 className="type-h2-prose mt-12 max-w-[20ch] text-ink">
@@ -230,7 +230,7 @@ function WhyWeExist() {
             <span className="text-lime-dark">practice</span>.
           </h2>
 
-          <div className="mt-12 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-20">
+          <div className="mt-10 grid gap-10 lg:mt-12 lg:grid-cols-2 lg:gap-20">
             <p className="type-body max-w-[52ch] text-ink/70">
               You practice it in the conversations you choose to have instead of scrolling past. In
               the promises you keep when breaking them would be easier. In the moments you think for
@@ -248,7 +248,7 @@ function WhyWeExist() {
           </div>
 
           {/* What the reps compound into: a quiet line of words, not a framework. */}
-          <ul className="mt-16 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-hairline-dark pt-8 lg:mt-20 lg:gap-x-10">
+          <ul className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-hairline-dark pt-8 lg:mt-14 lg:gap-x-10">
             {COMPOUNDS.map((item, i) => (
               <li key={item} className="flex items-center gap-6 lg:gap-10">
                 {i > 0 ? (
@@ -259,7 +259,7 @@ function WhyWeExist() {
             ))}
           </ul>
 
-          <div className="mt-16 max-w-[56ch] lg:mt-24">
+          <div className="mt-12 max-w-[56ch] lg:mt-16">
             <p className="type-body-lg text-ink/55">We call that</p>
             <h3 className="type-h1-prose mt-3 text-ink">
               Human <span className="text-lime-dark">Wealth</span>.
@@ -276,7 +276,7 @@ function WhyWeExist() {
 
       {/* ══════ 07 — GENERATIONS, NOT QUARTERS (ink) ══════ */}
       <section className="section-ink">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20 lg:py-28">
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-14 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20 lg:py-20">
           <div className="max-w-[52ch]">
             <SectionLabel tone="light">Generations, not quarters</SectionLabel>
             {/* Her document uses a different adjective here than the site does.
@@ -310,7 +310,7 @@ function WhyWeExist() {
 
       {/* ══════ 08 — HUMAN INFRASTRUCTURE (cream) ══════ */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
           <SectionLabel tone="dark">The infrastructure</SectionLabel>
 
           <p className="type-body mt-12 max-w-[52ch] text-ink/70">
@@ -322,7 +322,7 @@ function WhyWeExist() {
             We're building the human infrastructure for the age of artificial intelligence.
           </h2>
 
-          <div className="mt-14 grid gap-12 lg:mt-20 lg:grid-cols-[1fr_1fr] lg:gap-20">
+          <div className="mt-14 grid gap-12 lg:mt-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
             <ul className="border-t border-hairline-dark">
               {INFRASTRUCTURE_PARTS.map((part) => (
                 <li key={part} className="border-b border-hairline-dark py-4">
@@ -344,7 +344,7 @@ function WhyWeExist() {
           Two-column editorial layout: intro on the left, four linked rows on
           the right, separated by quiet hairlines. */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-20">
+        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:py-20">
           <div className="grid gap-12 lg:grid-cols-[35%_1fr] lg:gap-16">
             <div className="max-w-[36ch]">
               <SectionLabel tone="dark">How it comes to life</SectionLabel>
@@ -384,7 +384,7 @@ function WhyWeExist() {
             </ul>
           </div>
 
-          <p className="type-body mt-12 max-w-[62ch] text-ink/70 lg:mt-16">
+          <p className="type-body mt-10 max-w-[62ch] text-ink/70 lg:mt-12">
             This is just the beginning. The infrastructure keeps growing, through education,
             research, media, community, and whatever this transition ends up asking of us next,
             because it isn't finished asking yet.
@@ -395,10 +395,10 @@ function WhyWeExist() {
       {/* ══════ 10 — THE PLAN (ink) ══════
           Calm, centered manifesto close. Everything on one vertical axis. */}
       <section className="section-ink">
-        <div className="mx-auto flex max-w-[1100px] flex-col items-center px-5 py-24 text-center sm:px-8 lg:py-40">
+        <div className="mx-auto flex max-w-[1100px] flex-col items-center px-5 py-16 text-center sm:px-8 lg:py-24">
           <SectionLabel tone="light">The plan</SectionLabel>
 
-          <p className="type-body mt-14 max-w-[52ch] text-muted-foreground lg:mt-18">
+          <p className="type-body mt-10 max-w-[52ch] text-muted-foreground lg:mt-12">
             We're not building this because we're afraid of artificial intelligence.
           </p>
           <p className="type-body mt-5 max-w-[52ch] text-muted-foreground">
@@ -406,7 +406,7 @@ function WhyWeExist() {
             what's at risk if it doesn't.
           </p>
 
-          <h2 className="type-h1-prose mt-18 max-w-[18ch] lg:mt-24">
+          <h2 className="type-h1-prose mt-12 max-w-[18ch] lg:mt-16">
             Technology will keep advancing whether we're ready or not.
           </h2>
 
@@ -414,7 +414,7 @@ function WhyWeExist() {
             Humanity has to advance with it.
           </p>
 
-          <p className="type-body mt-16 max-w-[46ch] text-foreground/80 lg:mt-20">
+          <p className="type-body mt-12 max-w-[46ch] text-foreground/80 lg:mt-14">
             One Human Rep won't change the world. Millions of them will.
           </p>
 
