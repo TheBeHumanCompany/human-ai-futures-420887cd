@@ -355,7 +355,15 @@ function Founder() {
                 wasn&rsquo;t simply teaching performance. I was trying to understand what helps
                 people become the best version of themselves.
               </p>
-              <p className="type-body mt-6 text-ink/70">
+
+              {/* Moved out of the two-up grid: shown whole, at its own proportions. */}
+              <Shot
+                src={conversations}
+                alt="Four frames of Shane James in conversation, on a desert road and in a diner booth"
+                className="my-10"
+              />
+
+              <p className="type-body text-ink/70">
                 One lesson stayed with me throughout every company I built.
               </p>
               <p className="type-body mt-6 text-ink/70">
@@ -375,20 +383,20 @@ function Founder() {
                 enough to become their best selves.
               </p>
 
-              <div className="mt-10 grid gap-6 sm:grid-cols-2">
-                <Shot
-                  src={filming}
-                  alt="Shane James being filmed on location in front of a painted mural"
-                  className="aspect-[4/3]"
-                />
-                <Shot
-                  src={conversations}
-                  alt="Four frames of Shane James in conversation, on a desert road and in a diner booth"
-                  className="aspect-[4/3]"
-                />
-              </div>
+              <Shot
+                src={mentoring}
+                alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
+                className="my-10"
+              />
+
+              <Shot
+                src={filming}
+                alt="Shane James being filmed on location in front of a painted mural"
+                className="mt-10"
+              />
 
             </div>
+
           </div>
         </div>
       </section>
