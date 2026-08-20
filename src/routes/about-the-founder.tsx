@@ -188,7 +188,7 @@ function Founder() {
               <Shot
                 src={curvesTruck}
                 alt="Shane James with two colleagues in front of a Curves for Women transport trailer, America's Largest Fitness Franchise"
-                className="my-8 max-w-[600px]"
+                className="my-8 max-w-[520px]"
               />
 
               <p className="type-body text-ink/70">
