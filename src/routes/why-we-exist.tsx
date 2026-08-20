@@ -297,24 +297,24 @@ function WhyWeExist() {
 
       {/* ══════ 08 — HOW IT COMES TO LIFE (cream) ══════ */}
       <section className="section-cream">
-        <div className={`${SHELL} py-16 lg:py-24`}>
-          <div className="grid gap-12 lg:grid-cols-[35%_1fr] lg:gap-16">
+        <div className={`${SHELL} pt-8 pb-14 lg:py-24`}>
+          <div className="grid gap-10 lg:grid-cols-[35%_1fr] lg:gap-16">
             <div className="flex flex-col">
               <SectionLabel tone="dark">How it comes to life</SectionLabel>
 
-              <h2 className="type-h2-condensed mt-12 text-ink">
+              <h2 className="type-h2-condensed mt-5 text-ink lg:mt-12">
                 Four parts.
                 <br />
                 One mission.
               </h2>
 
-              <p className="type-body mt-10 max-w-[36ch] text-ink/70">
+              <p className="type-body mt-7 max-w-[36ch] text-ink/70 lg:mt-10">
                 Everything we do is connected by one belief: humanity is our greatest advantage.
               </p>
 
-              <span className="mt-12 block w-full border-t border-ink/10" aria-hidden />
+              <span className="mt-10 block w-full border-t border-ink/10 lg:mt-12" aria-hidden />
 
-              <p className="type-body mt-12 max-w-[40ch] text-ink/70">
+              <p className="type-body mt-10 max-w-[40ch] text-ink/70 lg:mt-12">
                 This is just the beginning. The infrastructure keeps growing, through education,
                 research, media, community, and whatever this transition ends up asking of us next,
                 because it isn't finished asking yet.
@@ -328,7 +328,7 @@ function WhyWeExist() {
                   <li
                     key={piece.to}
                     className={[
-                      "py-8 first:pt-0",
+                      "py-5 first:pt-0 lg:py-8",
                       !isLast ? "border-b border-ink/10" : "",
                     ].join(" ")}
                   >
@@ -339,7 +339,7 @@ function WhyWeExist() {
                           &rarr;
                         </span>
                       </h3>
-                      <p className="type-body-sm mt-2 max-w-[56ch] text-ink/60">{piece.body}</p>
+                      <p className="type-body-sm mt-8 max-w-[56ch] text-ink/60 lg:mt-2">{piece.body}</p>
                     </Link>
                   </li>
                 );
