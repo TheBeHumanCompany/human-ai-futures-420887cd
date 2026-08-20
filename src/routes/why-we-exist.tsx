@@ -478,3 +478,10 @@ const INFRASTRUCTURE = [
     body: "The People-Driven CEO Podcast is where we sit down with founders and leaders and ask them to say the honest version out loud, the one that doesn't usually make it into a keynote.",
   },
 ] as const;
+
+/** The three supporting statements in The Plan section. */
+const PLAN_THOUGHTS = [
+  "We're not building this because we're afraid of artificial intelligence.",
+  "We're building it because we've seen what's possible if humanity leads this well, and what's at risk if it doesn't.",
+  "One Human Rep won't change the world. Millions of them will.",
+] as const;
