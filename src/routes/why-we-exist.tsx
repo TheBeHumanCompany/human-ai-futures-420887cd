@@ -97,7 +97,7 @@ function WhyWeExist() {
 
       {/* ══════ 02 — THE QUESTION UNDERNEATH IT ALL (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">The question underneath it all</SectionLabel>
           <h2 className="type-h2-prose mt-10 max-w-[20ch]">
             What kind of humans are these systems actually helping us become?
