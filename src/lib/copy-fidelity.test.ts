@@ -267,7 +267,14 @@ describe("/about-the-founder ships photographs, not placeholders", () => {
   test("no photograph ships without alt text", () => {
     // A decorative-image exemption would be wrong here: every one of these is a
     // photograph of real people, and none is decoration.
-    const shots = [...code.matchAll(/<Shot\b[\s\S]*?\/>/g)].map((m) => m[0]);
+    // `Archival` forwards its own props to `<Shot ... alt={alt} />`; that call
+    // site carries no literal to check, and the two <Archival> tags it renders
+    // are checked as literals below.
+    const shots = [
+      ...code.matchAll(/<(?:Shot|Archival)\b[\s\S]*?\/>/g),
+    ]
+      .map((m) => m[0])
+      .filter((tag) => !tag.includes("alt={alt}"));
     expect(shots.length).toBeGreaterThanOrEqual(7);
     for (const shot of shots) {
       const alt = /alt="([^"]*)"/.exec(shot)?.[1] ?? "";
