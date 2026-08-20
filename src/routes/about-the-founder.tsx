@@ -375,11 +375,19 @@ function Founder() {
                 enough to become their best selves.
               </p>
 
-              <Shot
-                src={filming}
-                alt="Shane James being filmed on location in front of a painted mural"
-                className="mt-10 aspect-[16/10]"
-              />
+              <div className="mt-10 grid gap-6 sm:grid-cols-2">
+                <Shot
+                  src={filming}
+                  alt="Shane James being filmed on location in front of a painted mural"
+                  className="aspect-[4/3]"
+                />
+                <Shot
+                  src={conversations}
+                  alt="Four frames of Shane James in conversation, on a desert road and in a diner booth"
+                  className="aspect-[4/3]"
+                />
+              </div>
+
             </div>
           </div>
         </div>
