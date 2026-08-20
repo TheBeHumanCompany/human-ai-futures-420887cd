@@ -341,42 +341,48 @@ function WhyWeExist() {
       </section>
 
       {/* ══════ 09 — FOUR CONNECTED PIECES (cream) ══════
-          Each piece is a real destination, so each row is a link: editorial
-          rows with hairline dividers, not four cards. */}
-      <section className="section-cream border-t border-hairline-dark">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <h2 className="type-h2-prose max-w-[24ch] text-ink">
-            Right now, that infrastructure is four connected pieces.
-          </h2>
+          Two-column editorial layout: intro on the left, four linked rows on
+          the right, separated by quiet hairlines. */}
+      <section className="section-cream">
+        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-20">
+          <div className="grid gap-12 lg:grid-cols-[35%_1fr] lg:gap-16">
+            <div className="max-w-[36ch]">
+              <SectionLabel tone="dark">How it comes to life</SectionLabel>
+              <h2 className="type-h2-prose mt-10 text-ink">
+                Four parts.
+                <br />
+                One mission.
+              </h2>
+              <p className="type-body mt-6 text-ink/70">
+                Everything we do is connected by one belief: humanity is our greatest advantage.
+              </p>
+            </div>
 
-          <ul className="mt-12 lg:mt-16">
-            {INFRASTRUCTURE.map((piece, i) => (
-              <li key={piece.to} className="border-t border-hairline-dark last:border-b">
-                <Link
-                  to={piece.to}
-                  className="group grid gap-4 py-8 lg:grid-cols-[auto_1fr_1.4fr_auto] lg:items-baseline lg:gap-12 lg:py-10"
-                >
-                  <span className="type-body-sm text-ink/45">0{i + 1}</span>
-                  <h3 className="type-h4-prose text-ink transition-colors group-hover:text-lime-dark">
-                    {piece.name}
-                  </h3>
-                  <span className="type-body-sm block max-w-[62ch] text-ink/60">{piece.body}</span>
-                  <span
-                    aria-hidden
-                    className="type-body-sm text-ink/40 transition-transform group-hover:translate-x-1 lg:justify-self-end"
+            <ul>
+              {INFRASTRUCTURE.map((piece, i) => (
+                <li key={piece.to} className="border-t border-hairline-dark first:border-t-0">
+                  <Link
+                    to={piece.to}
+                    className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-5 py-7 lg:gap-10 lg:py-8"
                   >
-                    &rarr;
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <p className="type-body mt-12 max-w-[62ch] text-ink/70">
-            This is just the beginning. The infrastructure keeps growing, through education,
-            research, media, community, and whatever this transition ends up asking of us next,
-            because it isn't finished asking yet.
-          </p>
+                    <span className="type-h3-prose w-8 text-ink/25 lg:w-12">0{i + 1}</span>
+                    <div className="min-w-0">
+                      <h3 className="type-h4-prose text-ink transition-colors group-hover:text-lime-dark">
+                        {piece.name}
+                      </h3>
+                      <p className="type-body-sm mt-1 max-w-[52ch] text-ink/60">{piece.body}</p>
+                    </div>
+                    <span
+                      aria-hidden
+                      className="type-body-sm text-ink/40 transition-transform group-hover:translate-x-1"
+                    >
+                      &rarr;
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
