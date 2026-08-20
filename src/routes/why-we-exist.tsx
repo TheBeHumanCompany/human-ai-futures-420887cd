@@ -351,7 +351,7 @@ function WhyWeExist() {
 
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">The plan</SectionLabel>
 
           <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -380,7 +380,7 @@ function WhyWeExist() {
                   <div
                     key={thought}
                     className={[
-                      "flex items-start gap-5 py-8 first:pt-0",
+                      "flex items-start gap-6 py-7 first:pt-0 lg:gap-5 lg:py-8",
                       !isLast ? "border-b border-foreground/10" : "",
                     ].join(" ")}
                   >
@@ -398,7 +398,7 @@ function WhyWeExist() {
           </div>
 
           {/* BOTTOM CLOSING LINE */}
-          <div className="mt-16 lg:mt-20">
+          <div className="mt-8 lg:mt-20">
             <span className="block w-full border-t border-foreground/10" aria-hidden />
             <div className="mt-10 flex items-start gap-5">
               <span className="mt-2 block h-10 w-0.5 bg-lime" aria-hidden />
