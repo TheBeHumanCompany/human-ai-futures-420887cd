@@ -33,19 +33,24 @@ import satnam from "@/assets/founder-satnam.webp";
  * Backgrounds: warm cream throughout, with exactly one ink section — the belief
  * pause after BUILDING AT SCALE, deliberately short and quiet.
  *
- * ── The image system ──────────────────────────────────────────────────────
+ * ── The image system (revised 2026-08-20) ────────────────────────────────
  *
- * Two treatments only, so no photograph outweighs the story:
+ * Photographs keep their OWN orientation. Nothing is squeezed into a shared
+ * ratio, because a fixed 4:3 was cropping heads and turning the biography into
+ * a gallery. Consistency comes from restrained widths, matching radius and a
+ * shared vertical rhythm instead:
  *
- *   · `Shot` — standard supporting photography. Fixed 4:3, `object-fit: cover`,
- *     the same radius and the same 600px ceiling everywhere, single or paired.
- *   · `Archival` — magazine scans and clippings. Same frame and radius, but
- *     `object-fit: contain` on a soft field so the document is never cropped.
+ *   · `Shot` — a supporting photograph at its natural ratio (`h-auto`,
+ *     no forced `aspect-*`), capped so it sits at roughly half the measure.
+ *   · `Archival` — magazine scans, shown whole on the cream page itself:
+ *     no beige card, no padding box, just the document at its own proportions.
  *
  * Three photographs were removed entirely at Maya's request: the KITV studio
  * shot (BUILDING AT SCALE is intentionally text-led), the mural/cameraman
  * filming frame, and the posed three-person Actions of Compassion portrait.
- * Their containers went with them; no blank space was left behind.
+ * The four-frame conversations collage went too; HUMAN PERFORMANCE now shows
+ * only the single diner frame cut from it.
+
  */
 export const Route = createFileRoute("/about-the-founder")({
   head: () => ({
