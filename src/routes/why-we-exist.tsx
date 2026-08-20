@@ -48,7 +48,7 @@ function WhyWeExist() {
     <>
       {/* ══════ 01 — THE HUMAN STORY (cream) ══════ */}
       <section className="section-cream">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
             <div className="max-w-[52ch]">
               <SectionLabel tone="dark">The human story</SectionLabel>
