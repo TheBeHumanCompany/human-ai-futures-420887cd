@@ -443,7 +443,7 @@ function NewHumanEra() {
           }
         >
           <div className={SPLIT}>
-            <h3 className="type-h2-caps">
+            <h3 className="type-h3-caps">
               Technology is advancing, and humanity has to advance with it
             </h3>
             <div>
