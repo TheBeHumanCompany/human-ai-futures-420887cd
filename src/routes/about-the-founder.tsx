@@ -74,29 +74,38 @@ export const Route = createFileRoute("/about-the-founder")({
  * spans the full measure. `alt` is required by the type rather than optional —
  * every one of these is a photograph of real people doing real things.
  */
-function Shot({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+function Shot({
+  src,
+  alt,
+  fit = "cover",
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  fit?: "cover" | "contain";
+  className?: string;
+}) {
   return (
     <img
       src={src}
       alt={alt}
       loading="lazy"
       decoding="async"
-      className={`aspect-[4/3] w-full rounded-sm object-cover ${className}`}
+      className={`aspect-[4/3] w-full rounded-sm ${
+        fit === "contain" ? "bg-ink/5 object-contain p-3" : "object-cover"
+      } ${className}`}
     />
   );
 }
 
-/** Archival document: same frame, but shown whole rather than cropped. */
+/**
+ * Archival document: the same frame and radius as a photograph, but shown
+ * whole (`object-contain`) so a clipping is never cropped. It is `Shot` with
+ * one prop rather than a second component, so every picture on the page keeps
+ * going through a single `<img>`.
+ */
 function Archival({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      className={`aspect-[4/3] w-full rounded-sm bg-ink/5 object-contain p-3 ${className}`}
-    />
-  );
+  return <Shot src={src} alt={alt} fit="contain" className={className} />;
 }
 
 /** Two photographs, equal weight: same width, height, ratio, radius and gap. */
