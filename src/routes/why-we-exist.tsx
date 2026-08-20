@@ -381,33 +381,34 @@ function WhyWeExist() {
       </section>
 
       {/* ══════ 10 — THE PLAN (ink) ══════
-          Quiet close, with room to breathe before the footer. */}
+          Calm, centered manifesto close. Everything on one vertical axis. */}
       <section className="section-ink">
-        <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-36">
+        <div className="mx-auto flex max-w-[1100px] flex-col items-center px-5 py-24 text-center sm:px-8 lg:py-40">
           <SectionLabel tone="light">The plan</SectionLabel>
 
-          <div className="mt-12 max-w-[52ch]">
-            <p className="type-body text-muted-foreground">
-              We're not building this because we're afraid of artificial intelligence.
-            </p>
-            <p className="type-body mt-6 text-muted-foreground">
-              We're building it because we've seen what's possible if humanity leads this well, and
-              what's at risk if it doesn't.
-            </p>
-          </div>
+          <p className="type-body mt-14 max-w-[52ch] text-muted-foreground lg:mt-18">
+            We're not building this because we're afraid of artificial intelligence.
+          </p>
+          <p className="type-body mt-5 max-w-[52ch] text-muted-foreground">
+            We're building it because we've seen what's possible if humanity leads this well, and
+            what's at risk if it doesn't.
+          </p>
 
-          <h2 className="type-h2-prose mt-16 max-w-[20ch] lg:mt-20">
+          <h2 className="type-h1-prose mt-18 max-w-[18ch] lg:mt-24">
             Technology will keep advancing whether we're ready or not.
           </h2>
 
-          <div className="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
-            <p className="type-h1-prose max-w-[14ch] text-lime">Humanity has to advance with it.</p>
+          <p className="type-h1-prose mt-8 max-w-[16ch] text-lime lg:mt-10">
+            Humanity has to advance with it.
+          </p>
 
-            <div className="max-w-[36ch] self-end">
-              <p className="type-h3-prose">One Human Rep won't change the world. Millions of them will.</p>
-              <p className="type-h3-prose mt-6 text-lime">That's not a hope. That's the plan.</p>
-            </div>
-          </div>
+          <p className="type-body mt-16 max-w-[46ch] text-foreground/80 lg:mt-20">
+            One Human Rep won't change the world. Millions of them will.
+          </p>
+
+          <p className="type-h3-prose mt-10 max-w-[36ch] lg:mt-12">
+            That's not a hope. <span className="text-lime">That's the plan.</span>
+          </p>
         </div>
       </section>
     </>
