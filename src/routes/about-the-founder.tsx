@@ -95,18 +95,11 @@ function Shot({ src, alt, className = "" }: { src: string; alt: string; classNam
 /**
  * Archival document: no card, no beige field, no radius — a scan sitting
  * directly on the cream page at its natural proportions, sized to stay
- * readable as archival material.
+ * readable as archival material. Renders through <Shot> so every photograph
+ * and scan on this route goes through one element.
  */
 function Archival({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      className={`h-auto w-full object-contain ${className}`}
-    />
-  );
+  return <Shot src={src} alt={alt} className={`rounded-none object-contain ${className}`} />;
 }
 
 /** Two square photographs, equal displayed size, top-aligned. */
