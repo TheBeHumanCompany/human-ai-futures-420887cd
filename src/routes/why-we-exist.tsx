@@ -48,7 +48,7 @@ function WhyWeExist() {
     <>
       {/* ══════ 01 — THE HUMAN STORY (cream) ══════ */}
       <section className="section-cream">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
             <div className="max-w-[52ch]">
               <SectionLabel tone="dark">The human story</SectionLabel>
@@ -97,7 +97,7 @@ function WhyWeExist() {
 
       {/* ══════ 02 — THE QUESTION UNDERNEATH IT ALL (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">The question underneath it all</SectionLabel>
           <h2 className="type-h2-prose mt-10 max-w-[20ch]">
             What kind of humans are these systems actually helping us become?
@@ -126,7 +126,7 @@ function WhyWeExist() {
       {/* ══════ 03 — THE OPPORTUNITY (cream) ══════
           Same split, same rhythm as The Human Story. */}
       <section className="section-cream">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
             <div className="max-w-[52ch]">
               <SectionLabel tone="dark">The opportunity</SectionLabel>
@@ -190,7 +190,7 @@ function WhyWeExist() {
 
       {/* ══════ 04 — THE REAL QUESTION (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">The real question</SectionLabel>
 
           <h2 className="type-h2-prose mt-10 max-w-[18ch]">
@@ -207,7 +207,7 @@ function WhyWeExist() {
 
       {/* ══════ 05 — WHAT WE PRACTICE (cream) ══════ */}
       <section className="section-cream">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="dark">What we practice</SectionLabel>
 
           <h2 className="type-h2-prose mt-10 max-w-[20ch] text-ink">
@@ -254,7 +254,7 @@ function WhyWeExist() {
 
       {/* ══════ 06 — GENERATIONS, NOT QUARTERS (ink) ══════ Text only. */}
       <section className="section-ink">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">Generations, not quarters</SectionLabel>
           {/* Her document uses a superseded variant of this line; the page reads
               "Indigenous-led" — the canonical voice. Flagged to Maya. */}
@@ -274,7 +274,7 @@ function WhyWeExist() {
 
       {/* ══════ 07 — THE INFRASTRUCTURE (cream) ══════ */}
       <section className="section-cream">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} pt-14 pb-8 lg:py-24`}>
           <SectionLabel tone="dark">The infrastructure</SectionLabel>
 
           <h2 className="type-h2-prose mt-10 max-w-[22ch] text-ink">
@@ -297,24 +297,24 @@ function WhyWeExist() {
 
       {/* ══════ 08 — HOW IT COMES TO LIFE (cream) ══════ */}
       <section className="section-cream">
-        <div className={`${SHELL} py-16 lg:py-24`}>
-          <div className="grid gap-12 lg:grid-cols-[35%_1fr] lg:gap-16">
+        <div className={`${SHELL} pt-8 pb-14 lg:py-24`}>
+          <div className="grid gap-10 lg:grid-cols-[35%_1fr] lg:gap-16">
             <div className="flex flex-col">
               <SectionLabel tone="dark">How it comes to life</SectionLabel>
 
-              <h2 className="type-h2-condensed mt-12 text-ink">
+              <h2 className="type-h2-condensed mt-5 text-ink lg:mt-12">
                 Four parts.
                 <br />
                 One mission.
               </h2>
 
-              <p className="type-body mt-10 max-w-[36ch] text-ink/70">
+              <p className="type-body mt-7 max-w-[36ch] text-ink/70 lg:mt-10">
                 Everything we do is connected by one belief: humanity is our greatest advantage.
               </p>
 
-              <span className="mt-12 block w-full border-t border-ink/10" aria-hidden />
+              <span className="mt-10 block w-full border-t border-ink/10 lg:mt-12" aria-hidden />
 
-              <p className="type-body mt-12 max-w-[40ch] text-ink/70">
+              <p className="type-body mt-10 max-w-[40ch] text-ink/70 lg:mt-12">
                 This is just the beginning. The infrastructure keeps growing, through education,
                 research, media, community, and whatever this transition ends up asking of us next,
                 because it isn't finished asking yet.
@@ -328,7 +328,7 @@ function WhyWeExist() {
                   <li
                     key={piece.to}
                     className={[
-                      "py-8 first:pt-0",
+                      "py-5 first:pt-0 lg:py-8",
                       !isLast ? "border-b border-ink/10" : "",
                     ].join(" ")}
                   >
@@ -339,7 +339,7 @@ function WhyWeExist() {
                           &rarr;
                         </span>
                       </h3>
-                      <p className="type-body-sm mt-2 max-w-[56ch] text-ink/60">{piece.body}</p>
+                      <p className="type-body-sm mt-8 max-w-[56ch] text-ink/60 lg:mt-2">{piece.body}</p>
                     </Link>
                   </li>
                 );
@@ -351,7 +351,7 @@ function WhyWeExist() {
 
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">The plan</SectionLabel>
 
           <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -380,7 +380,7 @@ function WhyWeExist() {
                   <div
                     key={thought}
                     className={[
-                      "flex items-start gap-5 py-8 first:pt-0",
+                      "flex items-start gap-6 py-7 first:pt-0 lg:gap-5 lg:py-8",
                       !isLast ? "border-b border-foreground/10" : "",
                     ].join(" ")}
                   >
@@ -398,7 +398,7 @@ function WhyWeExist() {
           </div>
 
           {/* BOTTOM CLOSING LINE */}
-          <div className="mt-16 lg:mt-20">
+          <div className="mt-8 lg:mt-20">
             <span className="block w-full border-t border-foreground/10" aria-hidden />
             <div className="mt-10 flex items-start gap-5">
               <span className="mt-2 block h-10 w-0.5 bg-lime" aria-hidden />
