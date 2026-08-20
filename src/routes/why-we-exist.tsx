@@ -190,7 +190,7 @@ function WhyWeExist() {
 
       {/* ══════ 04 — THE REAL QUESTION (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-16 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">The real question</SectionLabel>
 
           <h2 className="type-h2-prose mt-10 max-w-[18ch]">
