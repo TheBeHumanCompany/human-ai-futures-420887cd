@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import aocFoodDrive from "@/assets/founder-aoc-fooddrive.webp";
-import conversations from "@/assets/founder-conversations.webp";
 import curvesTruck from "@/assets/founder-curves-truck.webp";
+import diner from "@/assets/founder-diner.webp";
 import harrington from "@/assets/founder-harrington.webp";
 import mentoring from "@/assets/founder-mentoring.webp";
 
