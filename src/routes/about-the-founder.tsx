@@ -396,7 +396,15 @@ function Founder() {
                 Show. Those experiences reinforced something I&rsquo;ve always believed: meaningful
                 change begins with ordinary people making intentional choices to help someone else.
               </p>
-              <p className="type-body mt-6 text-ink/70">
+
+              {/* Portrait source, kept portrait and narrow. */}
+              <Shot
+                src={mentoring}
+                alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
+                className="my-8 max-w-[380px]"
+              />
+
+              <p className="type-body text-ink/70">
                 Alongside my entrepreneurial career, I&rsquo;ve remained committed to serving my
                 community. I&rsquo;ve volunteered with Ronald McDonald House, served on the board of
                 the Maple Ridge Food Bank, acted as President of the Ridge Meadows Business
@@ -404,18 +412,11 @@ function Founder() {
                 longtime mentor, John Volken, founder of United Furniture Warehouse.
               </p>
 
-              <div className="mt-8">
-                <ShotPair>
-                  <Shot
-                    src={mentoring}
-                    alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
-                  />
-                  <Shot
-                    src={aocFoodDrive}
-                    alt="Actions of Compassion volunteers with boxes of donated food at a food drive"
-                  />
-                </ShotPair>
-              </div>
+              <Shot
+                src={aocFoodDrive}
+                alt="Actions of Compassion volunteers with boxes of donated food at a food drive"
+                className="mt-8 max-w-[520px]"
+              />
             </div>
           </div>
         </div>
