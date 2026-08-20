@@ -382,11 +382,23 @@ function SectionLabel({ children, tone }: { children: string; tone: "dark" | "li
   );
 }
 
-/** The three Time lines, exactly as her screens trim them. */
+/** The three Time lines, each paired with a human-centered icon. */
 const TIME_LINES = [
-  "Time to be present with the people we love.",
-  "Time to think instead of react.",
-  "Time to actually experience the life we've spent so long building.",
+  {
+    text: "Time to be present with the people we love.",
+    icon: Users,
+    label: "Presence",
+  },
+  {
+    text: "Time to think instead of react.",
+    icon: Lightbulb,
+    label: "Thought",
+  },
+  {
+    text: "Time to actually experience the life we've spent so long building.",
+    icon: Heart,
+    label: "Experience",
+  },
 ] as const;
 
 /** What Human Reps compound into — read straight off the paragraph above them. */
