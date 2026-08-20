@@ -299,30 +299,26 @@ function WhyWeExist() {
       <section className="section-cream">
         <div className={`${SHELL} py-16 lg:py-24`}>
           <div className="grid gap-12 lg:grid-cols-[35%_1fr] lg:gap-16">
-            <div className="flex flex-col lg:justify-between">
-              <div>
-                <SectionLabel tone="dark">How it comes to life</SectionLabel>
+            <div className="flex flex-col">
+              <SectionLabel tone="dark">How it comes to life</SectionLabel>
 
-                <h2 className="type-h2-condensed mt-10 text-ink">
-                  Four parts.
-                  <br />
-                  One mission.
-                </h2>
+              <h2 className="type-h2-condensed mt-12 text-ink">
+                Four parts.
+                <br />
+                One mission.
+              </h2>
 
-                <p className="type-body mt-8 max-w-[36ch] text-ink/70">
-                  Everything we do is connected by one belief: humanity is our greatest advantage.
-                </p>
-              </div>
+              <p className="type-body mt-10 max-w-[36ch] text-ink/70">
+                Everything we do is connected by one belief: humanity is our greatest advantage.
+              </p>
 
-              <div className="mt-10 lg:mt-0">
-                <span className="block w-full border-t border-ink/10" aria-hidden />
+              <span className="mt-12 block w-full border-t border-ink/10" aria-hidden />
 
-                <p className="type-body mt-10 max-w-[40ch] text-ink/70">
-                  This is just the beginning. The infrastructure keeps growing, through education,
-                  research, media, community, and whatever this transition ends up asking of us next,
-                  because it isn't finished asking yet.
-                </p>
-              </div>
+              <p className="type-body mt-12 max-w-[40ch] text-ink/70">
+                This is just the beginning. The infrastructure keeps growing, through education,
+                research, media, community, and whatever this transition ends up asking of us next,
+                because it isn't finished asking yet.
+              </p>
             </div>
 
             <ul className="flex flex-col">
