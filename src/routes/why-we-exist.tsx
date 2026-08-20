@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Heart, Lightbulb, Users } from "lucide-react";
 
 import manifestoImage from "@/assets/manifesto.jpg";
 import humanStoryPortrait from "@/assets/human-story-portrait.webp";
