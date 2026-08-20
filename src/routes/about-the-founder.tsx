@@ -200,8 +200,8 @@ function Founder() {
                 books, allowing me to continue sharing ideas beyond the businesses I was building.
               </p>
 
-              {/* Archival clippings: shown whole, never cropped. */}
-              <div className="mt-8 grid max-w-[1000px] gap-6 sm:grid-cols-2">
+              {/* Archival clippings: on the cream page itself, whole, no card. */}
+              <div className="mt-8 grid max-w-[820px] items-start gap-8 sm:grid-cols-2">
                 <Archival
                   src={pressCn}
                   alt="Chinese-language newspaper feature on Shane James losing 65 pounds in six months"
