@@ -302,16 +302,16 @@ function WhyWeExist() {
       </section>
 
 
-      {/* ══════ 07 — THE INFRASTRUCTURE (cream) ══════ */}
+      {/* ══════ 07 — THE INFRASTRUCTURE (cream) ══════ Standalone; ends before 08. */}
       <section className="section-cream">
-        <div className={`${SHELL} pt-14 pb-8 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-28`}>
           <SectionLabel tone="dark">The infrastructure</SectionLabel>
 
-          <h2 className="type-h2-condensed mt-10 max-w-[22ch] text-ink">
+          <h2 className="type-h2-condensed mt-10 w-full max-w-[26ch] text-ink lg:w-[70%] lg:max-w-none">
             We're building the human infrastructure for the age of artificial intelligence.
           </h2>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-20">
+          <div className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-2 lg:gap-20">
             <p className="type-body max-w-[52ch] text-ink/70">
               That's why we created The Be Human Company. Not simply to help organizations adopt AI.
               Not to launch another movement with a hashtag attached.
@@ -325,59 +325,55 @@ function WhyWeExist() {
         </div>
       </section>
 
-      {/* ══════ 08 — HOW IT COMES TO LIFE (cream) ══════ */}
-      <section className="section-cream">
-        <div className={`${SHELL} pt-8 pb-14 lg:py-24`}>
-          <div className="grid gap-10 lg:grid-cols-[35%_1fr] lg:gap-16">
-            <div className="flex flex-col">
-              <SectionLabel tone="dark">How it comes to life</SectionLabel>
+      {/* ══════ 08 — HOW IT COMES TO LIFE (ink) ══════ Editorial 2×2, no cards. */}
+      <section className="section-ink">
+        <div className={`${SHELL} py-14 lg:py-28`}>
+          <SectionLabel tone="light" rule={false}>
+            How it comes to life
+          </SectionLabel>
 
-              <h2 className="type-h2-condensed mt-5 text-ink lg:mt-12">
-                Four parts.
-                <br />
-                One mission.
-              </h2>
+          <h2 className="type-h2-condensed mt-8 max-w-[16ch] lg:mt-10">Four parts. One mission.</h2>
 
-              <p className="type-body mt-7 max-w-[36ch] text-ink/70 lg:mt-10">
-                Everything we do is connected by one belief: humanity is our greatest advantage.
-              </p>
+          <p className="type-body mt-8 max-w-[52ch] text-muted-foreground">
+            Everything we do is connected by one belief: humanity is our greatest advantage.
+          </p>
 
-              <span className="mt-10 block w-full border-t border-ink/10 lg:mt-12" aria-hidden />
+          <ul className="mt-14 grid gap-0 lg:mt-20 lg:grid-cols-2 lg:gap-x-20">
+            {INFRASTRUCTURE.map((piece, i) => (
+              <li
+                key={piece.to}
+                className="border-t border-foreground/10 py-8 first:border-t-0 first:pt-0 lg:border-t lg:py-10 lg:nth-[-n+2]:border-t-0 lg:nth-[-n+2]:pt-0"
+              >
+                <Link to={piece.to} className="group block">
+                  <div className="flex items-baseline gap-5">
+                    <span aria-hidden className="type-h4-condensed text-lime">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="type-h4-condensed text-foreground transition-opacity group-hover:opacity-60">
+                      {piece.name}
+                      <span aria-hidden className="type-body-sm ml-3 text-lime">
+                        &rarr;
+                      </span>
+                    </h3>
+                  </div>
+                  <p className="type-body-sm mt-4 max-w-[52ch] text-muted-foreground">
+                    {piece.body}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-              <p className="type-body mt-10 max-w-[40ch] text-ink/70 lg:mt-12">
-                This is just the beginning. The infrastructure keeps growing, through education,
-                research, media, community, and whatever this transition ends up asking of us next,
-                because it isn't finished asking yet.
-              </p>
-            </div>
+          <span className="mt-14 block w-full border-t border-foreground/10 lg:mt-20" aria-hidden />
 
-            <ul className="flex flex-col">
-              {INFRASTRUCTURE.map((piece, i) => {
-                const isLast = i === INFRASTRUCTURE.length - 1;
-                return (
-                  <li
-                    key={piece.to}
-                    className={[
-                      "py-5 first:pt-0 lg:py-8",
-                      !isLast ? "border-b border-ink/10" : "",
-                    ].join(" ")}
-                  >
-                    <Link to={piece.to} className="group block">
-                      <h3 className="type-h4-condensed text-ink transition-opacity group-hover:opacity-60">
-                        {piece.name}
-                        <span aria-hidden className="type-body-sm ml-3 text-ink/40">
-                          &rarr;
-                        </span>
-                      </h3>
-                      <p className="type-body-sm mt-8 max-w-[56ch] text-ink/60 lg:mt-2">{piece.body}</p>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <p className="type-body mt-10 max-w-[56ch] text-muted-foreground lg:mt-12">
+            This is just the beginning. The infrastructure keeps growing, through education,
+            research, media, community, and whatever this transition ends up asking of us next,
+            because it isn't finished asking yet.
+          </p>
         </div>
       </section>
+
 
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
