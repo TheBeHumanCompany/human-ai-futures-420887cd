@@ -3,6 +3,8 @@ import { ArrowUpRight, Heart, Lightbulb, Users } from "lucide-react";
 
 import manifestoImage from "@/assets/manifesto.jpg";
 import humanStoryPortrait from "@/assets/human-story-portrait.webp";
+import generationsPortrait from "@/assets/generations-portrait.png.asset.json";
+import questionPortrait from "@/assets/question-portrait.png.asset.json";
 
 export const Route = createFileRoute("/why-we-exist")({
   head: () => ({
@@ -97,33 +99,45 @@ function WhyWeExist() {
         </div>
       </section>
 
-      {/* ══════ 02 — THE QUESTION UNDERNEATH IT ALL (ink) ══════ */}
+      {/* ══════ 02 — THE QUESTION UNDERNEATH IT ALL (ink) ══════ Text left, photo right. */}
       <section className="section-ink">
         <div className={`${SHELL} py-14 lg:py-24`}>
-          <SectionLabel tone="light">The question underneath it all</SectionLabel>
-          <h2 className="type-h2-condensed mt-10 max-w-[20ch]">
-            What kind of humans are these systems actually helping us become?
-          </h2>
-          <div className="mt-10 max-w-[52ch]">
-            <p className="type-body text-muted-foreground">
-              It isn't really a story about technology.
-            </p>
-            <p className="type-body mt-6 text-muted-foreground">
-              It's a story about attention. About time. About the people we love getting whatever's
-              left of us after the day has already taken everything else.
-            </p>
-            <p className="type-body mt-6 text-muted-foreground">
-              We think that's our generation's story. And it started long before artificial
-              intelligence arrived.
-            </p>
-            <p className="type-body mt-6 text-muted-foreground">
-              For generations, we've gotten remarkably good at building the world around us &mdash;
-              businesses, economies, systems capable of extraordinary things. But somewhere in that
-              process, a lot of us stopped asking the simpler question underneath it.
-            </p>
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-center lg:gap-20">
+            <div className="max-w-[48ch]">
+              <SectionLabel tone="light">The question underneath it all</SectionLabel>
+              <h2 className="type-h2-condensed mt-10 max-w-[20ch]">
+                What kind of humans are these systems actually helping us become?
+              </h2>
+              <div className="mt-10">
+                <p className="type-body text-muted-foreground">
+                  It isn't really a story about technology.
+                </p>
+                <p className="type-body mt-6 text-muted-foreground">
+                  It's a story about attention. About time. About the people we love getting whatever's
+                  left of us after the day has already taken everything else.
+                </p>
+                <p className="type-body mt-6 text-muted-foreground">
+                  We think that's our generation's story. And it started long before artificial
+                  intelligence arrived.
+                </p>
+                <p className="type-body mt-6 text-muted-foreground">
+                  For generations, we've gotten remarkably good at building the world around us &mdash;
+                  businesses, economies, systems capable of extraordinary things. But somewhere in that
+                  process, a lot of us stopped asking the simpler question underneath it.
+                </p>
+              </div>
+            </div>
+
+            <img
+              src={questionPortrait.url}
+              alt="A woman in a red shirt smiling as she holds a small Be Human token"
+              loading="lazy"
+              className="aspect-4/5 w-full object-cover"
+            />
           </div>
         </div>
       </section>
+
 
       {/* ══════ 03 — THE OPPORTUNITY (cream) ══════
           Same split, same rhythm as The Human Story. */}
@@ -254,25 +268,37 @@ function WhyWeExist() {
         </div>
       </section>
 
-      {/* ══════ 06 — GENERATIONS, NOT QUARTERS (ink) ══════ Text only. */}
+      {/* ══════ 06 — GENERATIONS, NOT QUARTERS (ink) ══════ Text left, photo right. */}
       <section className="section-ink">
         <div className={`${SHELL} py-14 lg:py-24`}>
-          <SectionLabel tone="light">Generations, not quarters</SectionLabel>
-          {/* Her document uses a superseded variant of this line; the page reads
-              "Indigenous-led" — the canonical voice. Flagged to Maya. */}
-          <h2 className="type-h2-condensed mt-10 max-w-[22ch]">
-            The decisions we make today are inherited by the people who come after us.
-          </h2>
-          <p className="type-body mt-10 max-w-[52ch] text-muted-foreground">
-            That belief didn't start with AI, either. It's older than that. As an Indigenous-led
-            company, we grew up understanding something the rest of the world is only now circling
-            back to: the decisions we make today are inherited by the people who come after us.
-            That's not a metaphor we borrowed for a pitch deck. It's the actual starting point this
-            company was built from, and it's why we think about this transition in generations, not
-            quarters.
-          </p>
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-center lg:gap-20">
+            <div className="max-w-[48ch]">
+              <SectionLabel tone="light">Generations, not quarters</SectionLabel>
+              {/* Her document uses a superseded variant of this line; the page reads
+                  "Indigenous-led" — the canonical voice. Flagged to Maya. */}
+              <h2 className="type-h2-condensed mt-10 max-w-[22ch]">
+                The decisions we make today are inherited by the people who come after us.
+              </h2>
+              <p className="type-body mt-10 text-muted-foreground">
+                That belief didn't start with AI, either. It's older than that. As an Indigenous-led
+                company, we grew up understanding something the rest of the world is only now circling
+                back to: the decisions we make today are inherited by the people who come after us.
+                That's not a metaphor we borrowed for a pitch deck. It's the actual starting point this
+                company was built from, and it's why we think about this transition in generations, not
+                quarters.
+              </p>
+            </div>
+
+            <img
+              src={generationsPortrait.url}
+              alt="A young girl looking toward the camera, lit against a dark background"
+              loading="lazy"
+              className="aspect-4/5 w-full object-cover"
+            />
+          </div>
         </div>
       </section>
+
 
       {/* ══════ 07 — THE INFRASTRUCTURE (cream) ══════ */}
       <section className="section-cream">
