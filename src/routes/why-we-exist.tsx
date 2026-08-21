@@ -254,25 +254,37 @@ function WhyWeExist() {
         </div>
       </section>
 
-      {/* ══════ 06 — GENERATIONS, NOT QUARTERS (ink) ══════ Text only. */}
+      {/* ══════ 06 — GENERATIONS, NOT QUARTERS (ink) ══════ Text left, photo right. */}
       <section className="section-ink">
         <div className={`${SHELL} py-14 lg:py-24`}>
-          <SectionLabel tone="light">Generations, not quarters</SectionLabel>
-          {/* Her document uses a superseded variant of this line; the page reads
-              "Indigenous-led" — the canonical voice. Flagged to Maya. */}
-          <h2 className="type-h2-condensed mt-10 max-w-[22ch]">
-            The decisions we make today are inherited by the people who come after us.
-          </h2>
-          <p className="type-body mt-10 max-w-[52ch] text-muted-foreground">
-            That belief didn't start with AI, either. It's older than that. As an Indigenous-led
-            company, we grew up understanding something the rest of the world is only now circling
-            back to: the decisions we make today are inherited by the people who come after us.
-            That's not a metaphor we borrowed for a pitch deck. It's the actual starting point this
-            company was built from, and it's why we think about this transition in generations, not
-            quarters.
-          </p>
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-center lg:gap-20">
+            <div className="max-w-[48ch]">
+              <SectionLabel tone="light">Generations, not quarters</SectionLabel>
+              {/* Her document uses a superseded variant of this line; the page reads
+                  "Indigenous-led" — the canonical voice. Flagged to Maya. */}
+              <h2 className="type-h2-condensed mt-10 max-w-[22ch]">
+                The decisions we make today are inherited by the people who come after us.
+              </h2>
+              <p className="type-body mt-10 text-muted-foreground">
+                That belief didn't start with AI, either. It's older than that. As an Indigenous-led
+                company, we grew up understanding something the rest of the world is only now circling
+                back to: the decisions we make today are inherited by the people who come after us.
+                That's not a metaphor we borrowed for a pitch deck. It's the actual starting point this
+                company was built from, and it's why we think about this transition in generations, not
+                quarters.
+              </p>
+            </div>
+
+            <img
+              src={generationsPortrait.url}
+              alt="A young girl looking toward the camera, lit against a dark background"
+              loading="lazy"
+              className="aspect-4/5 w-full object-cover"
+            />
+          </div>
         </div>
       </section>
+
 
       {/* ══════ 07 — THE INFRASTRUCTURE (cream) ══════ */}
       <section className="section-cream">
