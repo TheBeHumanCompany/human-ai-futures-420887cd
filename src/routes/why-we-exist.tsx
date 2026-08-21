@@ -146,7 +146,7 @@ function WhyWeExist() {
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
             <div className="max-w-[52ch]">
               <SectionLabel tone="dark">The opportunity</SectionLabel>
-              <h2 className="type-h3-condensed mt-10 text-ink">Time.</h2>
+              <h2 className="type-h1-condensed mt-10 text-ink">Time.</h2>
               <p className="type-body mt-8 text-ink/70">
                 Now we're in the middle of one of the biggest transitions in human history. For the
                 first time, we're building technology that can think alongside us, create alongside
