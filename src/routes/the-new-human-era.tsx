@@ -953,23 +953,34 @@ function NewHumanEra() {
             </p>
           </div>
         </Statement>
-
-        <DividerDot />
-
-        <Manifesto
-          intro="Start where you are. Start with the human directly in front of you. Ask yourself one question:"
-          headline={<h3 className="type-h2-condensed">What&rsquo;s my Human Rep today?</h3>}
-          response={
-            <>
-              <p>
-                Then do it. That is how this starts. One rep. One human. One life made a little
-                better. And eventually, millions.
-              </p>
-              <p className="type-h3-caps mt-10 text-ink">Welcome to the New Human Era</p>
-            </>
-          }
-        />
       </Band>
+
+      {/* ---------- 18. Closing (ink) — Centered manifesto ---------- */}
+      <Band>
+        <div className="py-10 lg:py-24">
+          <Manifesto
+            tone="ink"
+            intro="Start where you are. Start with the human directly in front of you. Ask yourself one question:"
+            headline={
+              <p className="type-body-xl my-12 text-foreground lg:my-16">
+                What&rsquo;s my Human Rep today?
+              </p>
+            }
+            response={
+              <>
+                <p>
+                  Then do it. That is how this starts. One rep. One human. One life made a little
+                  better. And eventually, millions.
+                </p>
+              </>
+            }
+          />
+          <p className="type-h2-caps mx-auto mt-24 max-w-4xl text-center text-foreground lg:mt-32">
+            Welcome to the New Human Era
+          </p>
+        </div>
+      </Band>
+
     </Bands>
   );
 }
