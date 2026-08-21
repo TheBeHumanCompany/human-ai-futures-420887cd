@@ -587,11 +587,8 @@ function NewHumanEra() {
               <p className="type-h4-caps mt-8 text-ink">We call that Human Wealth</p>
             </>
           }
-        >
-          <div className={COLS_2}>
-            <ArchiveQuote entry={ANTON} />
-          </div>
-        </Split>
+        />
+
       </Band>
 
       {/* ---------- 10. Human Debt (ink) — Statement ---------- */}
