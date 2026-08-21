@@ -198,7 +198,7 @@ function WhyWeExist() {
             })}
           </div>
 
-          <p className="type-body mx-auto mt-12 max-w-[52ch] text-center text-ink/70">
+          <p className="type-body mx-auto mt-12 max-w-[52ch] text-center font-bold text-ink/70">
             We believe that future is worth building toward.
           </p>
         </div>
