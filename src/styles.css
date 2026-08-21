@@ -496,6 +496,18 @@
   text-transform: none;
 }
 
+/* One step above body, still unmistakably paragraph typography. Used for a
+   bold concluding question that must read as copy, not as a headline. */
+@utility type-body-xl {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(1.375rem, 1.7vw, 1.625rem);
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+
 /* Captions, quote attributions, footnotes. Present so that pages under AC-4.5's
    ban on raw sizes still have a legitimate step below body — without it the ban
    just pushes authors back to `text-sm`. */

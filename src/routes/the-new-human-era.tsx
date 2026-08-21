@@ -29,7 +29,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Children, isValidElement, cloneElement, type ReactNode, type ReactElement } from "react";
 
-import archiveStill from "@/assets/human-archive-still.webp";
 import { ARCHIVE, HOME_PRINCIPLES } from "@/lib/content";
 
 export const Route = createFileRoute("/the-new-human-era")({
@@ -62,7 +61,7 @@ export const Route = createFileRoute("/the-new-human-era")({
 // attributes a quote to "Lindsay / Vancouver" and mockup 1 shows five portrait
 // slots; both are illustrative. The archive is four entries, and no fifth is
 // invented here.
-const [ADEWOLF, , ANTON, ARLINA] = ARCHIVE;
+const [ADEWOLF, , , ARLINA] = ARCHIVE;
 
 /* ── Band alternation, made structural ────────────────────────────────────── */
 
@@ -218,14 +217,8 @@ function Manifesto({
   );
 }
 
-/** Lime job — a centred hairline with a lime dot at its midpoint. */
-function DividerDot() {
-  return (
-    <div className="mx-auto my-4 max-w-3xl py-4">
-      <div className="type-divider-dot" />
-    </div>
-  );
-}
+
+
 
 /** Lime job — quote glyphs on an archive quote. */
 function ArchiveQuote({ entry, tone = "cream" }: { entry: (typeof ARCHIVE)[number]; tone?: Tone }) {
@@ -587,11 +580,8 @@ function NewHumanEra() {
               <p className="type-h4-caps mt-8 text-ink">We call that Human Wealth</p>
             </>
           }
-        >
-          <div className={COLS_2}>
-            <ArchiveQuote entry={ANTON} />
-          </div>
-        </Split>
+        />
+
       </Band>
 
       {/* ---------- 10. Human Debt (ink) — Statement ---------- */}
@@ -733,9 +723,9 @@ function NewHumanEra() {
               <p className="type-body-lg mt-6 text-ink/70">
                 And that is why one of the simplest Human Reps may also be one of the most powerful:
               </p>
-              <h3 className="type-h3-condensed mt-8">
+              <p className="type-body-lg mt-10 font-bold text-ink">
                 How can I make one person&rsquo;s life a little better today?
-              </h3>
+              </p>
               <p className="type-body-lg mt-6 text-ink/70">
                 A thoughtful message. A genuine compliment. A phone call. Encouragement. A laugh.
                 Five minutes of undivided attention. Nobody would call most of those things
@@ -773,10 +763,10 @@ function NewHumanEra() {
                 that will make life better. But not every kind of friction should disappear. So the
                 question is not whether we should use AI. We should. The question is:
               </p>
-              <h3 className="type-h3-condensed mt-8">
+              <p className="type-body-lg mt-10 font-bold text-foreground">
                 Is this technology freeing me to become more human, or replacing something in myself
                 I still need to practice?
-              </h3>
+              </p>
             </>
           }
         />
@@ -865,14 +855,6 @@ function NewHumanEra() {
               <h2 className="type-h2-caps">
                 We are not here to add more to your life. We are here to develop who you are being
               </h2>
-              <img
-                src={archiveStill}
-                alt="A young girl shelters under a rainbow umbrella at a street gathering, looking down at a pin held in an adult's hand."
-                width={738}
-                height={955}
-                loading="lazy"
-                className="mt-8 w-full max-w-[460px] rounded-xl object-cover"
-              />
             </>
           }
           right={
@@ -953,23 +935,34 @@ function NewHumanEra() {
             </p>
           </div>
         </Statement>
-
-        <DividerDot />
-
-        <Manifesto
-          intro="Start where you are. Start with the human directly in front of you. Ask yourself one question:"
-          headline={<h3 className="type-h2-condensed">What&rsquo;s my Human Rep today?</h3>}
-          response={
-            <>
-              <p>
-                Then do it. That is how this starts. One rep. One human. One life made a little
-                better. And eventually, millions.
-              </p>
-              <p className="type-h3-caps mt-10 text-ink">Welcome to the New Human Era</p>
-            </>
-          }
-        />
       </Band>
+
+      {/* ---------- 18. Closing (ink) — Centered manifesto ---------- */}
+      <Band>
+        <div className="py-10 lg:py-24">
+          <Manifesto
+            tone="ink"
+            intro="Start where you are. Start with the human directly in front of you. Ask yourself one question:"
+            headline={
+              <p className="type-body-xl my-12 text-foreground lg:my-16">
+                What&rsquo;s my Human Rep today?
+              </p>
+            }
+            response={
+              <>
+                <p>
+                  Then do it. That is how this starts. One rep. One human. One life made a little
+                  better. And eventually, millions.
+                </p>
+              </>
+            }
+          />
+          <p className="type-h2-caps mx-auto mt-24 max-w-4xl text-center text-foreground lg:mt-32">
+            Welcome to the New Human Era
+          </p>
+        </div>
+      </Band>
+
     </Bands>
   );
 }
