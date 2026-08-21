@@ -518,10 +518,10 @@ function NewHumanEra() {
             </>
           }
         >
-          <div className="border-t border-ink/15 pt-10">
-            <h3 className="type-h3-caps">It is part of how you build one</h3>
-            <p className="type-h4-caps mt-6 text-ink/70">
-              Your humanity is not separate from those outcomes. It is underneath them
+          <div className="mt-8 text-center lg:mt-16">
+            <h3 className="type-h2-caps">It is part of how you build one</h3>
+            <p className="type-body-lg mt-6 text-ink/70">
+              Your humanity is not separate from those outcomes. It is underneath them.
             </p>
           </div>
         </Split>
