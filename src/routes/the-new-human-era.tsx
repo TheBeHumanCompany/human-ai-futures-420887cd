@@ -217,14 +217,8 @@ function Manifesto({
   );
 }
 
-/** Lime job — a centred hairline with a lime dot at its midpoint. */
-function DividerDot() {
-  return (
-    <div className="mx-auto my-4 max-w-3xl py-4">
-      <div className="type-divider-dot" />
-    </div>
-  );
-}
+
+
 
 /** Lime job — quote glyphs on an archive quote. */
 function ArchiveQuote({ entry, tone = "cream" }: { entry: (typeof ARCHIVE)[number]; tone?: Tone }) {
