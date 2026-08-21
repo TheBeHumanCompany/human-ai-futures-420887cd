@@ -114,7 +114,7 @@ function Band({
  * 1. section label      — `type-label-caps` + lime rule (see `Opener`)
  * 2. manifesto headline — bold condensed caps: `type-h2-caps` (major),
  *                         `type-h3-caps` (medium), `type-h4-caps` (closing line)
- * 3. reflective headline— clean thin display: `type-h2-condensed` / `type-h3-prose`
+ * 3. reflective headline— clean thin display: `type-h2-condensed` / `type-h3-condensed`
  * 4. body copy          — `type-body-lg`
  *
  * Nothing else. No condensed register, no decorative in-sentence underlines,
@@ -738,7 +738,7 @@ function NewHumanEra() {
               <p className="type-body-lg mt-6 text-ink/70">
                 And that is why one of the simplest Human Reps may also be one of the most powerful:
               </p>
-              <h3 className="type-h3-prose mt-8">
+              <h3 className="type-h3-condensed mt-8">
                 How can I make one person&rsquo;s life a little better today?
               </h3>
               <p className="type-body-lg mt-6 text-ink/70">
@@ -778,7 +778,7 @@ function NewHumanEra() {
                 that will make life better. But not every kind of friction should disappear. So the
                 question is not whether we should use AI. We should. The question is:
               </p>
-              <h3 className="type-h3-prose mt-8">
+              <h3 className="type-h3-condensed mt-8">
                 Is this technology freeing me to become more human, or replacing something in myself
                 I still need to practice?
               </h3>

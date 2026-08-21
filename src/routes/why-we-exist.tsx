@@ -37,7 +37,7 @@ export const Route = createFileRoute("/why-we-exist")({
  * Lime is an accent, never a headline: `SectionLabel` (uppercase label + thin
  * rule) is the only lime on the page. Headlines are ink on cream and foreground
  * on ink, at two disciplined sizes — `type-h2-condensed` for a section's statement,
- * `type-h3-prose` for anything subordinate to it.
+ * `type-h3-condensed` for anything subordinate to it.
  *
  * Copy is her document, complete, and `src/lib/copy-fidelity.test.ts` holds this
  * file to `docs/source/why-we-exist.txt` sentence by sentence. Paragraphs may be
@@ -132,7 +132,7 @@ function WhyWeExist() {
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
             <div className="max-w-[52ch]">
               <SectionLabel tone="dark">The opportunity</SectionLabel>
-              <h2 className="type-h3-prose mt-10 text-ink">Time.</h2>
+              <h2 className="type-h3-condensed mt-10 text-ink">Time.</h2>
               <p className="type-body mt-8 text-ink/70">
                 Now we're in the middle of one of the biggest transitions in human history. For the
                 first time, we're building technology that can think alongside us, create alongside
@@ -243,7 +243,7 @@ function WhyWeExist() {
           </ul>
 
           <div className="mt-14 max-w-[56ch]">
-            <h3 className="type-h3-prose text-ink">We call that Human Wealth.</h3>
+            <h3 className="type-h3-condensed text-ink">We call that Human Wealth.</h3>
             <p className="type-body mt-6 max-w-[52ch] text-ink/70">
               We believe the world gets measurably better every time someone chooses to practice
               their humanity. Not because we say it does. Because it's true every single time it
@@ -404,7 +404,7 @@ function WhyWeExist() {
             <span className="block w-full border-t border-foreground/10" aria-hidden />
             <div className="mt-10 flex items-start gap-5">
               <span className="mt-2 block h-10 w-0.5 bg-lime" aria-hidden />
-              <p className="type-h3-prose text-foreground">
+              <p className="type-h3-condensed text-foreground">
                 That's not a hope. <span className="text-lime">That's the plan.</span>
               </p>
             </div>
