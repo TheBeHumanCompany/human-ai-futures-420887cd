@@ -446,16 +446,25 @@ const SHELL = "mx-auto max-w-[1180px] px-5 sm:px-8";
  * The one section-kicker treatment on this page: uppercase label above a short
  * lime rule. The only lime on the page, by design.
  */
-function SectionLabel({ children, tone }: { children: string; tone: "dark" | "light" }) {
+function SectionLabel({
+  children,
+  tone,
+  rule = true,
+}: {
+  children: string;
+  tone: "dark" | "light";
+  rule?: boolean;
+}) {
   return (
     <>
       <p className={`type-label-caps ${tone === "light" ? "text-lime" : "text-ink/50"}`}>
         {children}
       </p>
-      <span className="type-eyebrow-rule block" aria-hidden />
+      {rule ? <span className="type-eyebrow-rule block" aria-hidden /> : null}
     </>
   );
 }
+
 
 /** The three Time lines, each paired with a human-centered icon. */
 const TIME_LINES = [
