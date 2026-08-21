@@ -148,6 +148,14 @@ const CASES: Case[] = [
           "page says 'Indigenous-led', matching INDIGENOUS_LINE. Flagged to Maya, not silent.",
       },
       {
+        startsWith: "what kind of humans are these systems actually helping us become",
+        instead: "What kind of humans are we becoming?",
+        because:
+          "The 2026-08-21 redesign of The Real Question lifts this sentence out of the body copy " +
+          "and shortens it into the section's display heading, at Maya's request.",
+      },
+      {
+
         startsWith: "right now that infrastructure is four connected pieces",
         instead: "Four parts. One mission.",
         because:

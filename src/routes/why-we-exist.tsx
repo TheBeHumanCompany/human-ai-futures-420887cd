@@ -4,7 +4,7 @@ import { ArrowUpRight, Heart, Lightbulb, Users } from "lucide-react";
 import manifestoImage from "@/assets/manifesto.jpg";
 import humanStoryPortrait from "@/assets/human-story-portrait.webp";
 import generationsPortrait from "@/assets/generations-portrait.png.asset.json";
-import questionPortrait from "@/assets/question-portrait.png.asset.json";
+
 
 export const Route = createFileRoute("/why-we-exist")({
   head: () => ({
@@ -99,44 +99,46 @@ function WhyWeExist() {
         </div>
       </section>
 
-      {/* ══════ 02 — THE QUESTION UNDERNEATH IT ALL (ink) ══════ Text left, photo right. */}
+      {/* ══════ 02 — THE REAL QUESTION (ink) ══════ Type only, two body columns. */}
       <section className="section-ink">
         <div className={`${SHELL} py-14 lg:py-24`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-center lg:gap-20">
-            <div className="max-w-[48ch]">
-              <SectionLabel tone="light">The question underneath it all</SectionLabel>
-              <h2 className="type-h2-condensed mt-10 max-w-[20ch]">
-                What kind of humans are these systems actually helping us become?
-              </h2>
-              <div className="mt-10">
-                <p className="type-body text-muted-foreground">
-                  It isn't really a story about technology.
-                </p>
-                <p className="type-body mt-6 text-muted-foreground">
-                  It's a story about attention. About time. About the people we love getting whatever's
-                  left of us after the day has already taken everything else.
-                </p>
-                <p className="type-body mt-6 text-muted-foreground">
-                  We think that's our generation's story. And it started long before artificial
-                  intelligence arrived.
-                </p>
-                <p className="type-body mt-6 text-muted-foreground">
-                  For generations, we've gotten remarkably good at building the world around us &mdash;
-                  businesses, economies, systems capable of extraordinary things. But somewhere in that
-                  process, a lot of us stopped asking the simpler question underneath it.
-                </p>
-              </div>
-            </div>
+          <SectionLabel tone="light">The real question</SectionLabel>
 
-            <img
-              src={questionPortrait.url}
-              alt="A woman in a red shirt smiling as she holds a small Be Human token"
-              loading="lazy"
-              className="aspect-4/5 w-full object-cover"
-            />
+          <h2 className="type-h2-condensed mt-10 w-full max-w-[16ch] lg:w-[65%] lg:max-w-none">
+            What kind of humans are we becoming?
+          </h2>
+
+          <div className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-2 lg:gap-20">
+            <div className="max-w-[52ch]">
+              <p className="type-body text-muted-foreground">
+                It isn't really a story about technology.
+              </p>
+              <p className="type-body mt-6 text-muted-foreground">
+                It's a story about attention. About time. About the people we love getting
+                whatever's left of us after the day has already taken everything else.
+              </p>
+              <p className="type-body mt-6 text-muted-foreground">
+                We think that's our generation's story. And it started long before artificial
+                intelligence arrived.
+              </p>
+            </div>
+            <div className="max-w-[52ch]">
+              <p className="type-body text-muted-foreground">
+                For generations, we've gotten remarkably good at building the world around us
+                &mdash; businesses, economies, systems capable of extraordinary things. But
+                somewhere in that process, a lot of us stopped asking the simpler question
+                underneath it.
+              </p>
+              <p className="type-body mt-6 text-muted-foreground">
+                Now we're in the middle of one of the biggest transitions in human history. For the
+                first time, we're building technology that can think alongside us, create alongside
+                us, and increasingly make decisions that used to belong only to people.
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
 
 
       {/* ══════ 03 — THE OPPORTUNITY (cream) ══════
@@ -148,15 +150,11 @@ function WhyWeExist() {
               <SectionLabel tone="dark">The opportunity</SectionLabel>
               <h2 className="type-h1-condensed mt-10 text-ink">Time.</h2>
               <p className="type-body mt-8 text-ink/70">
-                Now we're in the middle of one of the biggest transitions in human history. For the
-                first time, we're building technology that can think alongside us, create alongside
-                us, and increasingly make decisions that used to belong only to people.
-              </p>
-              <p className="type-body mt-6 text-ink/70">
                 The opportunity in that is real. AI will cure diseases, remove decades of repetitive
                 work, unlock discoveries we haven't imagined yet, and give millions of people
                 something that's become genuinely rare.
               </p>
+
             </div>
 
             <img
@@ -226,11 +224,11 @@ function WhyWeExist() {
         <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="dark">What we practice</SectionLabel>
 
-          <h2 className="type-h2-condensed mt-10 max-w-[20ch] text-ink">
+          <h2 className="type-h2-condensed mt-10 w-full max-w-[28ch] text-ink lg:w-[75%] lg:max-w-none">
             You're born human. Humanity is what you practice.
           </h2>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-20">
+          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-20">
             <p className="type-body max-w-[52ch] text-ink/70">
               You practice it in the conversations you choose to have instead of scrolling past. In
               the promises you keep when breaking them would be easier. In the moments you think for
@@ -243,28 +241,32 @@ function WhyWeExist() {
               themselves. But they compound into trust with your name attached, into relationships
               strong enough to carry real life, into leaders people actually believe, into families
               that feel closer instead of more distant, into organizations that become more human
-              because the people inside them chose to practice being human.
+              because the people inside them chose to practice being human.{" "}
+              <span className="font-bold text-ink">We call that Human Wealth.</span>
             </p>
           </div>
 
-          {/* Quiet category markers: one row on desktop, a neat stack on mobile. */}
-          <ul className="mt-12 grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3 lg:flex lg:flex-wrap lg:gap-x-14">
-            {COMPOUNDS.map((item) => (
-              <li key={item} className="type-label-caps text-ink/55">
-                {item}
+          <p className="type-body mt-12 max-w-[52ch] text-ink/70">
+            We believe the world gets measurably better every time someone chooses to practice
+            their humanity. Not because we say it does. Because it's true every single time it
+            happens &mdash; one conversation. One promise kept &mdash; one moment of real presence
+            instead of performance.
+          </p>
+
+          {/* The compounding progression, centred at the foot of the section. */}
+          <ul className="mt-20 flex flex-wrap items-center justify-center gap-x-5 gap-y-4 lg:mt-28 lg:gap-x-8">
+            {COMPOUNDS.map((item, i) => (
+              <li key={item} className="flex items-center gap-5 lg:gap-8">
+                <span className="type-label-caps text-ink/75">{item}</span>
+                {i < COMPOUNDS.length - 1 ? (
+                  <span aria-hidden className="type-body-sm text-lime-dark">
+                    &rarr;
+                  </span>
+                ) : null}
               </li>
             ))}
           </ul>
 
-          <div className="mt-14 max-w-[56ch]">
-            <h3 className="type-h3-condensed text-ink">We call that Human Wealth.</h3>
-            <p className="type-body mt-6 max-w-[52ch] text-ink/70">
-              We believe the world gets measurably better every time someone chooses to practice
-              their humanity. Not because we say it does. Because it's true every single time it
-              happens &mdash; one conversation. One promise kept &mdash; one moment of real presence
-              instead of performance.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -300,16 +302,16 @@ function WhyWeExist() {
       </section>
 
 
-      {/* ══════ 07 — THE INFRASTRUCTURE (cream) ══════ */}
+      {/* ══════ 07 — THE INFRASTRUCTURE (cream) ══════ Standalone; ends before 08. */}
       <section className="section-cream">
-        <div className={`${SHELL} pt-14 pb-8 lg:py-24`}>
+        <div className={`${SHELL} py-14 lg:py-28`}>
           <SectionLabel tone="dark">The infrastructure</SectionLabel>
 
-          <h2 className="type-h2-condensed mt-10 max-w-[22ch] text-ink">
+          <h2 className="type-h2-condensed mt-10 w-full max-w-[26ch] text-ink lg:w-[70%] lg:max-w-none">
             We're building the human infrastructure for the age of artificial intelligence.
           </h2>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-20">
+          <div className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-2 lg:gap-20">
             <p className="type-body max-w-[52ch] text-ink/70">
               That's why we created The Be Human Company. Not simply to help organizations adopt AI.
               Not to launch another movement with a hashtag attached.
@@ -323,59 +325,55 @@ function WhyWeExist() {
         </div>
       </section>
 
-      {/* ══════ 08 — HOW IT COMES TO LIFE (cream) ══════ */}
-      <section className="section-cream">
-        <div className={`${SHELL} pt-8 pb-14 lg:py-24`}>
-          <div className="grid gap-10 lg:grid-cols-[35%_1fr] lg:gap-16">
-            <div className="flex flex-col">
-              <SectionLabel tone="dark">How it comes to life</SectionLabel>
+      {/* ══════ 08 — HOW IT COMES TO LIFE (ink) ══════ Editorial 2×2, no cards. */}
+      <section className="section-ink">
+        <div className={`${SHELL} py-14 lg:py-28`}>
+          <SectionLabel tone="light" rule={false}>
+            How it comes to life
+          </SectionLabel>
 
-              <h2 className="type-h2-condensed mt-5 text-ink lg:mt-12">
-                Four parts.
-                <br />
-                One mission.
-              </h2>
+          <h2 className="type-h2-condensed mt-8 max-w-[16ch] lg:mt-10">Four parts. One mission.</h2>
 
-              <p className="type-body mt-7 max-w-[36ch] text-ink/70 lg:mt-10">
-                Everything we do is connected by one belief: humanity is our greatest advantage.
-              </p>
+          <p className="type-body mt-8 max-w-[52ch] text-muted-foreground">
+            Everything we do is connected by one belief: humanity is our greatest advantage.
+          </p>
 
-              <span className="mt-10 block w-full border-t border-ink/10 lg:mt-12" aria-hidden />
+          <ul className="mt-14 grid gap-0 lg:mt-20 lg:grid-cols-2 lg:gap-x-20">
+            {INFRASTRUCTURE.map((piece, i) => (
+              <li
+                key={piece.to}
+                className="border-t border-foreground/10 py-8 first:border-t-0 first:pt-0 lg:border-t lg:py-10 lg:nth-[-n+2]:border-t-0 lg:nth-[-n+2]:pt-0"
+              >
+                <Link to={piece.to} className="group block">
+                  <div className="flex items-baseline gap-5">
+                    <span aria-hidden className="type-h4-condensed text-lime">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="type-h4-condensed text-foreground transition-opacity group-hover:opacity-60">
+                      {piece.name}
+                      <span aria-hidden className="type-body-sm ml-3 text-lime">
+                        &rarr;
+                      </span>
+                    </h3>
+                  </div>
+                  <p className="type-body-sm mt-4 max-w-[52ch] text-muted-foreground">
+                    {piece.body}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-              <p className="type-body mt-10 max-w-[40ch] text-ink/70 lg:mt-12">
-                This is just the beginning. The infrastructure keeps growing, through education,
-                research, media, community, and whatever this transition ends up asking of us next,
-                because it isn't finished asking yet.
-              </p>
-            </div>
+          <span className="mt-14 block w-full border-t border-foreground/10 lg:mt-20" aria-hidden />
 
-            <ul className="flex flex-col">
-              {INFRASTRUCTURE.map((piece, i) => {
-                const isLast = i === INFRASTRUCTURE.length - 1;
-                return (
-                  <li
-                    key={piece.to}
-                    className={[
-                      "py-5 first:pt-0 lg:py-8",
-                      !isLast ? "border-b border-ink/10" : "",
-                    ].join(" ")}
-                  >
-                    <Link to={piece.to} className="group block">
-                      <h3 className="type-h4-condensed text-ink transition-opacity group-hover:opacity-60">
-                        {piece.name}
-                        <span aria-hidden className="type-body-sm ml-3 text-ink/40">
-                          &rarr;
-                        </span>
-                      </h3>
-                      <p className="type-body-sm mt-8 max-w-[56ch] text-ink/60 lg:mt-2">{piece.body}</p>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <p className="type-body mt-10 max-w-[56ch] text-muted-foreground lg:mt-12">
+            This is just the beginning. The infrastructure keeps growing, through education,
+            research, media, community, and whatever this transition ends up asking of us next,
+            because it isn't finished asking yet.
+          </p>
         </div>
       </section>
+
 
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
@@ -448,16 +446,25 @@ const SHELL = "mx-auto max-w-[1180px] px-5 sm:px-8";
  * The one section-kicker treatment on this page: uppercase label above a short
  * lime rule. The only lime on the page, by design.
  */
-function SectionLabel({ children, tone }: { children: string; tone: "dark" | "light" }) {
+function SectionLabel({
+  children,
+  tone,
+  rule = true,
+}: {
+  children: string;
+  tone: "dark" | "light";
+  rule?: boolean;
+}) {
   return (
     <>
       <p className={`type-label-caps ${tone === "light" ? "text-lime" : "text-ink/50"}`}>
         {children}
       </p>
-      <span className="type-eyebrow-rule block" aria-hidden />
+      {rule ? <span className="type-eyebrow-rule block" aria-hidden /> : null}
     </>
   );
 }
+
 
 /** The three Time lines, each paired with a human-centered icon. */
 const TIME_LINES = [
