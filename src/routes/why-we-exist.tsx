@@ -150,15 +150,11 @@ function WhyWeExist() {
               <SectionLabel tone="dark">The opportunity</SectionLabel>
               <h2 className="type-h1-condensed mt-10 text-ink">Time.</h2>
               <p className="type-body mt-8 text-ink/70">
-                Now we're in the middle of one of the biggest transitions in human history. For the
-                first time, we're building technology that can think alongside us, create alongside
-                us, and increasingly make decisions that used to belong only to people.
-              </p>
-              <p className="type-body mt-6 text-ink/70">
                 The opportunity in that is real. AI will cure diseases, remove decades of repetitive
                 work, unlock discoveries we haven't imagined yet, and give millions of people
                 something that's become genuinely rare.
               </p>
+
             </div>
 
             <img
