@@ -114,7 +114,7 @@ function Band({
  * 1. section label      — `type-label-caps` + lime rule (see `Opener`)
  * 2. manifesto headline — bold condensed caps: `type-h2-caps` (major),
  *                         `type-h3-caps` (medium), `type-h4-caps` (closing line)
- * 3. reflective headline— clean thin display: `type-h2-prose` / `type-h3-prose`
+ * 3. reflective headline— clean thin display: `type-h2-condensed` / `type-h3-condensed`
  * 4. body copy          — `type-body-lg`
  *
  * Nothing else. No condensed register, no decorative in-sentence underlines,
@@ -325,7 +325,7 @@ function NewHumanEra() {
           label="The Human Archive"
           left={
             <>
-              <h2 className="type-h2-prose">
+              <h2 className="type-h2-condensed">
                 So we started asking one question: what does it mean to be human?
               </h2>
               <p className="type-body-lg mt-8 text-ink/70">
@@ -418,48 +418,43 @@ function NewHumanEra() {
 
       {/* ---------- 5. The Bridge Generation (cream) — Split editorial ---------- */}
       <Band>
-        <Split
+        <Statement
           label="The Bridge Generation"
-          left={<h2 className="type-h2-caps">We are the Bridge Generation</h2>}
-          right={
-            <>
-              <p className="type-body-lg text-ink/70">
-                We are the Bridge Generation, standing between the world we inherited and the world
-                that comes after it. Behind us is a system built largely around scarcity and
-                exchanging huge portions of human life for work. Ahead of us may be a world of
-                abundance and technological capability generations before us could barely imagine.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                Our job is not simply to cross that bridge. It is to decide what we bring with us.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                Do we bring our ability to think for ourselves? Relationships strong enough to carry
-                real life? Trust, curiosity, laughter and the ability to actually experience the
-                people standing in front of us? Or do we arrive with extraordinary machines and
-                underdeveloped humans?
-              </p>
-            </>
-          }
+          headline={<h2 className="type-h2-caps max-w-6xl">We are the Bridge Generation</h2>}
         >
-          <div className={SPLIT}>
-            <h3 className="type-h3-caps">
-              Technology is advancing, and humanity has to advance with it
-            </h3>
-            <div>
-              <p className="type-body-lg text-ink/70">
-                Governments cannot practice your humanity for you. Companies cannot do your
-                relationships for you. AI cannot decide what kind of parent, friend, leader or human
-                being you become.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                That part still belongs to you. And that may be the opportunity hidden inside this
-                whole transition. While technology becomes more capable, we can deliberately become
-                more human. Not through another philosophy we agree with and forget.{" "}
-                <strong className="font-semibold text-ink">Through practice.</strong>
-              </p>
-            </div>
+          <div>
+            <p className="type-body-lg text-ink/70">
+              We are the Bridge Generation, standing between the world we inherited and the world
+              that comes after it. Behind us is a system built largely around scarcity and
+              exchanging huge portions of human life for work. Ahead of us may be a world of
+              abundance and technological capability generations before us could barely imagine.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              Our job is not simply to cross that bridge. It is to decide what we bring with us.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              Do we bring our ability to think for ourselves? Relationships strong enough to carry
+              real life? Trust, curiosity, laughter and the ability to actually experience the
+              people standing in front of us? Or do we arrive with extraordinary machines and
+              underdeveloped humans?
+            </p>
           </div>
-        </Split>
+          <div>
+            <p className="type-body-lg text-ink/70">
+              Governments cannot practice your humanity for you. Companies cannot do your
+              relationships for you. AI cannot decide what kind of parent, friend, leader or human
+              being you become.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              Technology is advancing, and humanity has to advance with it.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              That part still belongs to you. And that may be the opportunity hidden inside this
+              whole transition. While technology becomes more capable, we can deliberately become
+              more human. Not through another philosophy we agree with and forget. Through practice.
+            </p>
+          </div>
+        </Statement>
       </Band>
 
       {/* ---------- 6. The bigger question (ink) — Split editorial ---------- */}
@@ -468,7 +463,7 @@ function NewHumanEra() {
           tone="ink"
           label="The bigger question"
           left={
-            <h2 className="type-h2-prose">
+            <h2 className="type-h2-condensed">
               What if practicing your humanity is how you build the life you want?
             </h2>
           }
@@ -502,7 +497,7 @@ function NewHumanEra() {
         <Split
           label="Not the reward"
           left={
-            <h2 className="type-h2-prose">
+            <h2 className="type-h2-condensed">
               But what if your humanity is not the reward at the end of a good life?
             </h2>
           }
@@ -523,10 +518,10 @@ function NewHumanEra() {
             </>
           }
         >
-          <div className="border-t border-ink/15 pt-10">
-            <h3 className="type-h3-caps">It is part of how you build one</h3>
-            <p className="type-h4-caps mt-6 text-ink/70">
-              Your humanity is not separate from those outcomes. It is underneath them
+          <div className="mt-8 text-center lg:mt-16">
+            <h3 className="type-h2-caps">It is part of how you build one</h3>
+            <p className="type-body-lg mt-6 text-ink/70">
+              Your humanity is not separate from those outcomes. It is underneath them.
             </p>
           </div>
         </Split>
@@ -738,7 +733,7 @@ function NewHumanEra() {
               <p className="type-body-lg mt-6 text-ink/70">
                 And that is why one of the simplest Human Reps may also be one of the most powerful:
               </p>
-              <h3 className="type-h3-prose mt-8">
+              <h3 className="type-h3-condensed mt-8">
                 How can I make one person&rsquo;s life a little better today?
               </h3>
               <p className="type-body-lg mt-6 text-ink/70">
@@ -778,7 +773,7 @@ function NewHumanEra() {
                 that will make life better. But not every kind of friction should disappear. So the
                 question is not whether we should use AI. We should. The question is:
               </p>
-              <h3 className="type-h3-prose mt-8">
+              <h3 className="type-h3-condensed mt-8">
                 Is this technology freeing me to become more human, or replacing something in myself
                 I still need to practice?
               </h3>
@@ -963,7 +958,7 @@ function NewHumanEra() {
 
         <Manifesto
           intro="Start where you are. Start with the human directly in front of you. Ask yourself one question:"
-          headline={<h3 className="type-h2-prose">What&rsquo;s my Human Rep today?</h3>}
+          headline={<h3 className="type-h2-condensed">What&rsquo;s my Human Rep today?</h3>}
           response={
             <>
               <p>
