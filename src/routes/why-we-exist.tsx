@@ -99,44 +99,46 @@ function WhyWeExist() {
         </div>
       </section>
 
-      {/* ══════ 02 — THE QUESTION UNDERNEATH IT ALL (ink) ══════ Text left, photo right. */}
+      {/* ══════ 02 — THE REAL QUESTION (ink) ══════ Type only, two body columns. */}
       <section className="section-ink">
         <div className={`${SHELL} py-14 lg:py-24`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-center lg:gap-20">
-            <div className="max-w-[48ch]">
-              <SectionLabel tone="light">The question underneath it all</SectionLabel>
-              <h2 className="type-h2-condensed mt-10 max-w-[20ch]">
-                What kind of humans are these systems actually helping us become?
-              </h2>
-              <div className="mt-10">
-                <p className="type-body text-muted-foreground">
-                  It isn't really a story about technology.
-                </p>
-                <p className="type-body mt-6 text-muted-foreground">
-                  It's a story about attention. About time. About the people we love getting whatever's
-                  left of us after the day has already taken everything else.
-                </p>
-                <p className="type-body mt-6 text-muted-foreground">
-                  We think that's our generation's story. And it started long before artificial
-                  intelligence arrived.
-                </p>
-                <p className="type-body mt-6 text-muted-foreground">
-                  For generations, we've gotten remarkably good at building the world around us &mdash;
-                  businesses, economies, systems capable of extraordinary things. But somewhere in that
-                  process, a lot of us stopped asking the simpler question underneath it.
-                </p>
-              </div>
-            </div>
+          <SectionLabel tone="light">The real question</SectionLabel>
 
-            <img
-              src={questionPortrait.url}
-              alt="A woman in a red shirt smiling as she holds a small Be Human token"
-              loading="lazy"
-              className="aspect-4/5 w-full object-cover"
-            />
+          <h2 className="type-h2-condensed mt-10 w-full max-w-[16ch] lg:w-[65%] lg:max-w-none">
+            What kind of humans are we becoming?
+          </h2>
+
+          <div className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-2 lg:gap-20">
+            <div className="max-w-[52ch]">
+              <p className="type-body text-muted-foreground">
+                It isn't really a story about technology.
+              </p>
+              <p className="type-body mt-6 text-muted-foreground">
+                It's a story about attention. About time. About the people we love getting
+                whatever's left of us after the day has already taken everything else.
+              </p>
+              <p className="type-body mt-6 text-muted-foreground">
+                We think that's our generation's story. And it started long before artificial
+                intelligence arrived.
+              </p>
+            </div>
+            <div className="max-w-[52ch]">
+              <p className="type-body text-muted-foreground">
+                For generations, we've gotten remarkably good at building the world around us
+                &mdash; businesses, economies, systems capable of extraordinary things. But
+                somewhere in that process, a lot of us stopped asking the simpler question
+                underneath it.
+              </p>
+              <p className="type-body mt-6 text-muted-foreground">
+                Now we're in the middle of one of the biggest transitions in human history. For the
+                first time, we're building technology that can think alongside us, create alongside
+                us, and increasingly make decisions that used to belong only to people.
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
 
 
       {/* ══════ 03 — THE OPPORTUNITY (cream) ══════
