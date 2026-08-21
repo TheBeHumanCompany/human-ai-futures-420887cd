@@ -224,11 +224,11 @@ function WhyWeExist() {
         <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="dark">What we practice</SectionLabel>
 
-          <h2 className="type-h2-condensed mt-10 max-w-[20ch] text-ink">
+          <h2 className="type-h2-condensed mt-10 w-full max-w-[28ch] text-ink lg:w-[75%] lg:max-w-none">
             You're born human. Humanity is what you practice.
           </h2>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-20">
+          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-20">
             <p className="type-body max-w-[52ch] text-ink/70">
               You practice it in the conversations you choose to have instead of scrolling past. In
               the promises you keep when breaking them would be easier. In the moments you think for
@@ -241,28 +241,32 @@ function WhyWeExist() {
               themselves. But they compound into trust with your name attached, into relationships
               strong enough to carry real life, into leaders people actually believe, into families
               that feel closer instead of more distant, into organizations that become more human
-              because the people inside them chose to practice being human.
+              because the people inside them chose to practice being human.{" "}
+              <span className="font-bold text-ink">We call that Human Wealth.</span>
             </p>
           </div>
 
-          {/* Quiet category markers: one row on desktop, a neat stack on mobile. */}
-          <ul className="mt-12 grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3 lg:flex lg:flex-wrap lg:gap-x-14">
-            {COMPOUNDS.map((item) => (
-              <li key={item} className="type-label-caps text-ink/55">
-                {item}
+          <p className="type-body mt-12 max-w-[52ch] text-ink/70">
+            We believe the world gets measurably better every time someone chooses to practice
+            their humanity. Not because we say it does. Because it's true every single time it
+            happens &mdash; one conversation. One promise kept &mdash; one moment of real presence
+            instead of performance.
+          </p>
+
+          {/* The compounding progression, centred at the foot of the section. */}
+          <ul className="mt-20 flex flex-wrap items-center justify-center gap-x-5 gap-y-4 lg:mt-28 lg:gap-x-8">
+            {COMPOUNDS.map((item, i) => (
+              <li key={item} className="flex items-center gap-5 lg:gap-8">
+                <span className="type-label-caps text-ink/75">{item}</span>
+                {i < COMPOUNDS.length - 1 ? (
+                  <span aria-hidden className="type-body-sm text-lime-dark">
+                    &rarr;
+                  </span>
+                ) : null}
               </li>
             ))}
           </ul>
 
-          <div className="mt-14 max-w-[56ch]">
-            <h3 className="type-h3-condensed text-ink">We call that Human Wealth.</h3>
-            <p className="type-body mt-6 max-w-[52ch] text-ink/70">
-              We believe the world gets measurably better every time someone chooses to practice
-              their humanity. Not because we say it does. Because it's true every single time it
-              happens &mdash; one conversation. One promise kept &mdash; one moment of real presence
-              instead of performance.
-            </p>
-          </div>
         </div>
       </section>
 
