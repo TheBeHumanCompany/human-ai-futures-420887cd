@@ -368,52 +368,52 @@ function NewHumanEra() {
 
       </Band>
 
-      {/* ---------- 4. The harder question / bigger than AI (ink) ---------- */}
+      {/* ---------- 4. The bigger question (ink) — Split editorial ---------- */}
       <Band>
-        {/* Beat 1 — the harder question */}
-        <Opener label="The harder question" tone="ink" />
-        <div className="max-w-3xl">
-          <p className="type-body-lg font-semibold text-foreground">
-            If these are the things people tell us make life human, why have we built a world that
-            keeps pushing them aside?
-          </p>
-          <p className="type-body-lg mt-6 text-muted-foreground">
-            Now AI is powerful enough to change that system again. That could be extraordinary. But
-            it raises a question that may matter just as much as what the technology itself can do:
-          </p>
-        </div>
-
-        {/* Beat 2 — the main question */}
-        <h2 className="type-h2-prose mt-12 max-w-5xl">
-          If technology finally gives us more of our lives back, will we know what to do with them?
-        </h2>
-
-
-        {/* Beat 3 — this is bigger than AI */}
-        <div className={`mt-16 ${SPLIT}`}>
-
-          <div>
-            <h3 className="type-h3-caps">This is bigger than AI</h3>
-            <p className="type-body-lg mt-8 text-muted-foreground">
-              It is about who we are as human beings and what kind of world we build next.
-            </p>
-          </div>
-          <div>
-            <p className="type-body-lg text-muted-foreground">
-              More time does not automatically create a better life. More abundance does not
-              automatically create connection. We already have more ways to communicate than any
-              generation in history and can still struggle to have the conversations that matter
-              most. We can be surrounded by people and feel alone. We can have unlimited information
-              while becoming increasingly dependent on something outside ourselves to tell us what
-              to think, what to want and where to place our attention.
-            </p>
-            <p className="type-body-lg mt-6 text-muted-foreground">
-              AI could free us from parts of the old system. It could also magnify its worst
-              qualities: concentrating more power in fewer hands, making millions of people feel
-              replaceable and deepening our dependence on systems we do not control.
-            </p>
-          </div>
-        </div>
+        <Split
+          tone="ink"
+          label="The bigger question"
+          left={
+            <>
+              <h2 className="type-h2-caps">This is bigger than AI</h2>
+              <p className="type-body-lg mt-8 text-foreground">
+                If these are the things people tell us make life human, why have we built a world
+                that keeps pushing them aside?
+              </p>
+            </>
+          }
+          right={
+            <>
+              <p className="type-body-lg text-muted-foreground">
+                Now AI is powerful enough to change that system again. That could be extraordinary.
+                But it raises a question that may matter just as much as what the technology itself
+                can do:
+              </p>
+              <p className="type-body-lg mt-6 text-muted-foreground">
+                <strong className="font-semibold text-foreground">
+                  If technology finally gives us more of our lives back, will we know what to do
+                  with them?
+                </strong>
+              </p>
+              <p className="type-body-lg mt-6 text-muted-foreground">
+                More time does not automatically create a better life. More abundance does not
+                automatically create connection. We already have more ways to communicate than any
+                generation in history and can still struggle to have the conversations that matter
+                most. We can be surrounded by people and feel alone. We can have unlimited
+                information while becoming increasingly dependent on something outside ourselves
+                to tell us what to think, what to want and where to place our attention.
+              </p>
+              <p className="type-body-lg mt-6 text-muted-foreground">
+                AI could free us from parts of the old system. It could also magnify its worst
+                qualities: concentrating more power in fewer hands, making millions of people feel
+                replaceable and deepening our dependence on systems we do not control.
+              </p>
+              <p className="type-body-lg mt-6 text-muted-foreground">
+                It is about who we are as human beings and what kind of world we build next.
+              </p>
+            </>
+          }
+        />
       </Band>
 
       {/* ---------- 5. The Bridge Generation (cream) — Split editorial ---------- */}
