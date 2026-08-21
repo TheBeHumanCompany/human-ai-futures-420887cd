@@ -114,7 +114,7 @@ function Band({
  * 1. section label      — `type-label-caps` + lime rule (see `Opener`)
  * 2. manifesto headline — bold condensed caps: `type-h2-caps` (major),
  *                         `type-h3-caps` (medium), `type-h4-caps` (closing line)
- * 3. reflective headline— clean thin display: `type-h2-prose` / `type-h3-prose`
+ * 3. reflective headline— clean thin display: `type-h2-condensed` / `type-h3-prose`
  * 4. body copy          — `type-body-lg`
  *
  * Nothing else. No condensed register, no decorative in-sentence underlines,
@@ -325,7 +325,7 @@ function NewHumanEra() {
           label="The Human Archive"
           left={
             <>
-              <h2 className="type-h2-prose">
+              <h2 className="type-h2-condensed">
                 So we started asking one question: what does it mean to be human?
               </h2>
               <p className="type-body-lg mt-8 text-ink/70">
@@ -468,7 +468,7 @@ function NewHumanEra() {
           tone="ink"
           label="The bigger question"
           left={
-            <h2 className="type-h2-prose">
+            <h2 className="type-h2-condensed">
               What if practicing your humanity is how you build the life you want?
             </h2>
           }
@@ -502,7 +502,7 @@ function NewHumanEra() {
         <Split
           label="Not the reward"
           left={
-            <h2 className="type-h2-prose">
+            <h2 className="type-h2-condensed">
               But what if your humanity is not the reward at the end of a good life?
             </h2>
           }
@@ -963,7 +963,7 @@ function NewHumanEra() {
 
         <Manifesto
           intro="Start where you are. Start with the human directly in front of you. Ask yourself one question:"
-          headline={<h3 className="type-h2-prose">What&rsquo;s my Human Rep today?</h3>}
+          headline={<h3 className="type-h2-condensed">What&rsquo;s my Human Rep today?</h3>}
           response={
             <>
               <p>

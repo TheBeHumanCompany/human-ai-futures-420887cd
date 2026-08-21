@@ -36,7 +36,7 @@ export const Route = createFileRoute("/why-we-exist")({
  *
  * Lime is an accent, never a headline: `SectionLabel` (uppercase label + thin
  * rule) is the only lime on the page. Headlines are ink on cream and foreground
- * on ink, at two disciplined sizes — `type-h2-prose` for a section's statement,
+ * on ink, at two disciplined sizes — `type-h2-condensed` for a section's statement,
  * `type-h3-prose` for anything subordinate to it.
  *
  * Copy is her document, complete, and `src/lib/copy-fidelity.test.ts` holds this
@@ -53,7 +53,7 @@ function WhyWeExist() {
             <div className="max-w-[52ch]">
               <SectionLabel tone="dark">The human story</SectionLabel>
 
-              <h1 className="type-h2-prose mt-10 text-ink">
+              <h1 className="type-h2-condensed mt-10 text-ink">
                 There's a moment from The Human Archive we haven't stopped thinking about.
               </h1>
 
@@ -101,7 +101,7 @@ function WhyWeExist() {
       <section className="section-ink">
         <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">The question underneath it all</SectionLabel>
-          <h2 className="type-h2-prose mt-10 max-w-[20ch]">
+          <h2 className="type-h2-condensed mt-10 max-w-[20ch]">
             What kind of humans are these systems actually helping us become?
           </h2>
           <div className="mt-10 max-w-[52ch]">
@@ -178,7 +178,7 @@ function WhyWeExist() {
                   >
                     <Icon size={22} strokeWidth={1.25} />
                   </span>
-                  <p className="type-h4-prose text-ink">{line.text}</p>
+                  <p className="type-h4-condensed text-ink">{line.text}</p>
                 </div>
               );
             })}
@@ -195,7 +195,7 @@ function WhyWeExist() {
         <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">The real question</SectionLabel>
 
-          <h2 className="type-h2-prose mt-10 max-w-[18ch]">
+          <h2 className="type-h2-condensed mt-10 max-w-[18ch]">
             Being human isn't something you're born finished with.
           </h2>
 
@@ -212,7 +212,7 @@ function WhyWeExist() {
         <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="dark">What we practice</SectionLabel>
 
-          <h2 className="type-h2-prose mt-10 max-w-[20ch] text-ink">
+          <h2 className="type-h2-condensed mt-10 max-w-[20ch] text-ink">
             You're born human. Humanity is what you practice.
           </h2>
 
@@ -260,7 +260,7 @@ function WhyWeExist() {
           <SectionLabel tone="light">Generations, not quarters</SectionLabel>
           {/* Her document uses a superseded variant of this line; the page reads
               "Indigenous-led" — the canonical voice. Flagged to Maya. */}
-          <h2 className="type-h2-prose mt-10 max-w-[22ch]">
+          <h2 className="type-h2-condensed mt-10 max-w-[22ch]">
             The decisions we make today are inherited by the people who come after us.
           </h2>
           <p className="type-body mt-10 max-w-[52ch] text-muted-foreground">
@@ -279,7 +279,7 @@ function WhyWeExist() {
         <div className={`${SHELL} pt-14 pb-8 lg:py-24`}>
           <SectionLabel tone="dark">The infrastructure</SectionLabel>
 
-          <h2 className="type-h2-prose mt-10 max-w-[22ch] text-ink">
+          <h2 className="type-h2-condensed mt-10 max-w-[22ch] text-ink">
             We're building the human infrastructure for the age of artificial intelligence.
           </h2>
 
@@ -335,7 +335,7 @@ function WhyWeExist() {
                     ].join(" ")}
                   >
                     <Link to={piece.to} className="group block">
-                      <h3 className="type-h4-prose text-ink transition-opacity group-hover:opacity-60">
+                      <h3 className="type-h4-condensed text-ink transition-opacity group-hover:opacity-60">
                         {piece.name}
                         <span aria-hidden className="type-body-sm ml-3 text-ink/40">
                           &rarr;
@@ -359,7 +359,7 @@ function WhyWeExist() {
           <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
             {/* LEFT COLUMN: main statement */}
             <div>
-              <h2 className="type-h2-prose max-w-[16ch] text-foreground">
+              <h2 className="type-h2-condensed max-w-[16ch] text-foreground">
                 Technology will
                 <br />
                 keep advancing
