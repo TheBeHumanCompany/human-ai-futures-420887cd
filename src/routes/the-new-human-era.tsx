@@ -366,33 +366,32 @@ function NewHumanEra() {
           </div>
         </Split>
 
-        <div className="mt-16">
-          <Statement
-            label="The harder question"
-            headline={
-              <h3 className="type-h2-prose max-w-4xl">
-                If these are the things people tell us make life human, why have we built a world
-                that keeps pushing them aside?
-              </h3>
-            }
-          />
-        </div>
       </Band>
 
-      {/* ---------- 4. This is bigger than AI (ink) — Manifesto ---------- */}
+      {/* ---------- 4. The harder question / bigger than AI (ink) ---------- */}
       <Band>
-        <Manifesto
-          tone="ink"
-          intro="Now AI is powerful enough to change that system again. That could be extraordinary. But it raises a question that may matter just as much as what the technology itself can do:"
-          headline={
-            <h2 className="type-h2-prose">
-              If technology finally gives us more of our lives back, will we know what to do with
-              them?
-            </h2>
-          }
-        />
+        {/* Beat 1 — the harder question */}
+        <Opener label="The harder question" tone="ink" />
+        <div className="max-w-3xl">
+          <p className="type-body-lg font-semibold text-foreground">
+            If these are the things people tell us make life human, why have we built a world that
+            keeps pushing them aside?
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            Now AI is powerful enough to change that system again. That could be extraordinary. But
+            it raises a question that may matter just as much as what the technology itself can do:
+          </p>
+        </div>
 
+        {/* Beat 2 — the main question */}
+        <h2 className="type-h2-prose mt-12 max-w-5xl">
+          If technology finally gives us more of our lives back, will we know what to do with them?
+        </h2>
+
+
+        {/* Beat 3 — this is bigger than AI */}
         <div className={`mt-16 ${SPLIT}`}>
+
           <div>
             <h3 className="type-h3-caps">This is bigger than AI</h3>
             <p className="type-body-lg mt-8 text-muted-foreground">
