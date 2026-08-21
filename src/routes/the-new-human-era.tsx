@@ -418,48 +418,43 @@ function NewHumanEra() {
 
       {/* ---------- 5. The Bridge Generation (cream) — Split editorial ---------- */}
       <Band>
-        <Split
+        <Statement
           label="The Bridge Generation"
-          left={<h2 className="type-h2-caps">We are the Bridge Generation</h2>}
-          right={
-            <>
-              <p className="type-body-lg text-ink/70">
-                We are the Bridge Generation, standing between the world we inherited and the world
-                that comes after it. Behind us is a system built largely around scarcity and
-                exchanging huge portions of human life for work. Ahead of us may be a world of
-                abundance and technological capability generations before us could barely imagine.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                Our job is not simply to cross that bridge. It is to decide what we bring with us.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                Do we bring our ability to think for ourselves? Relationships strong enough to carry
-                real life? Trust, curiosity, laughter and the ability to actually experience the
-                people standing in front of us? Or do we arrive with extraordinary machines and
-                underdeveloped humans?
-              </p>
-            </>
-          }
+          headline={<h2 className="type-h2-caps max-w-6xl">We are the Bridge Generation</h2>}
         >
-          <div className={SPLIT}>
-            <h3 className="type-h3-caps">
-              Technology is advancing, and humanity has to advance with it
-            </h3>
-            <div>
-              <p className="type-body-lg text-ink/70">
-                Governments cannot practice your humanity for you. Companies cannot do your
-                relationships for you. AI cannot decide what kind of parent, friend, leader or human
-                being you become.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                That part still belongs to you. And that may be the opportunity hidden inside this
-                whole transition. While technology becomes more capable, we can deliberately become
-                more human. Not through another philosophy we agree with and forget.{" "}
-                <strong className="font-semibold text-ink">Through practice.</strong>
-              </p>
-            </div>
+          <div>
+            <p className="type-body-lg text-ink/70">
+              We are the Bridge Generation, standing between the world we inherited and the world
+              that comes after it. Behind us is a system built largely around scarcity and
+              exchanging huge portions of human life for work. Ahead of us may be a world of
+              abundance and technological capability generations before us could barely imagine.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              Our job is not simply to cross that bridge. It is to decide what we bring with us.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              Do we bring our ability to think for ourselves? Relationships strong enough to carry
+              real life? Trust, curiosity, laughter and the ability to actually experience the
+              people standing in front of us? Or do we arrive with extraordinary machines and
+              underdeveloped humans?
+            </p>
           </div>
-        </Split>
+          <div>
+            <p className="type-body-lg text-ink/70">
+              Governments cannot practice your humanity for you. Companies cannot do your
+              relationships for you. AI cannot decide what kind of parent, friend, leader or human
+              being you become.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              Technology is advancing, and humanity has to advance with it.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              That part still belongs to you. And that may be the opportunity hidden inside this
+              whole transition. While technology becomes more capable, we can deliberately become
+              more human. Not through another philosophy we agree with and forget. Through practice.
+            </p>
+          </div>
+        </Statement>
       </Band>
 
       {/* ---------- 6. The bigger question (ink) — Split editorial ---------- */}
