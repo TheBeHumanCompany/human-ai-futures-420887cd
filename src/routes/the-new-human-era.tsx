@@ -389,7 +389,9 @@ function NewHumanEra() {
         </h2>
 
 
+        {/* Beat 3 — this is bigger than AI */}
         <div className={`mt-16 ${SPLIT}`}>
+
           <div>
             <h3 className="type-h3-caps">This is bigger than AI</h3>
             <p className="type-body-lg mt-8 text-muted-foreground">
