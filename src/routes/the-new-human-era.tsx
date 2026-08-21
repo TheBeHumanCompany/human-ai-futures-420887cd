@@ -29,7 +29,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Children, isValidElement, cloneElement, type ReactNode, type ReactElement } from "react";
 
-import archiveStill from "@/assets/human-archive-still.webp";
 import { ARCHIVE, HOME_PRINCIPLES } from "@/lib/content";
 
 export const Route = createFileRoute("/the-new-human-era")({
@@ -62,7 +61,7 @@ export const Route = createFileRoute("/the-new-human-era")({
 // attributes a quote to "Lindsay / Vancouver" and mockup 1 shows five portrait
 // slots; both are illustrative. The archive is four entries, and no fifth is
 // invented here.
-const [ADEWOLF, , ANTON, ARLINA] = ARCHIVE;
+const [ADEWOLF, , , ARLINA] = ARCHIVE;
 
 /* ── Band alternation, made structural ────────────────────────────────────── */
 
@@ -730,9 +729,9 @@ function NewHumanEra() {
               <p className="type-body-lg mt-6 text-ink/70">
                 And that is why one of the simplest Human Reps may also be one of the most powerful:
               </p>
-              <h3 className="type-h3-condensed mt-8">
+              <p className="type-body-lg mt-10 font-bold text-ink">
                 How can I make one person&rsquo;s life a little better today?
-              </h3>
+              </p>
               <p className="type-body-lg mt-6 text-ink/70">
                 A thoughtful message. A genuine compliment. A phone call. Encouragement. A laugh.
                 Five minutes of undivided attention. Nobody would call most of those things
@@ -770,10 +769,10 @@ function NewHumanEra() {
                 that will make life better. But not every kind of friction should disappear. So the
                 question is not whether we should use AI. We should. The question is:
               </p>
-              <h3 className="type-h3-condensed mt-8">
+              <p className="type-body-lg mt-10 font-bold text-foreground">
                 Is this technology freeing me to become more human, or replacing something in myself
                 I still need to practice?
-              </h3>
+              </p>
             </>
           }
         />
@@ -862,14 +861,6 @@ function NewHumanEra() {
               <h2 className="type-h2-caps">
                 We are not here to add more to your life. We are here to develop who you are being
               </h2>
-              <img
-                src={archiveStill}
-                alt="A young girl shelters under a rainbow umbrella at a street gathering, looking down at a pin held in an adult's hand."
-                width={738}
-                height={955}
-                loading="lazy"
-                className="mt-8 w-full max-w-[460px] rounded-xl object-cover"
-              />
             </>
           }
           right={
