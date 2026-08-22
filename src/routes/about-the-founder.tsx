@@ -31,8 +31,8 @@ import founderBikeBehumn from "@/assets/founder-bike-behumn.webp";
  * body size and body line-height. No lime backgrounds, no <mark>, no pull-out
  * callouts. Whole-sentence beliefs are bold paragraphs in the same register.
  *
- * The "Businesses don't grow because of products…" line was removed entirely
- * on request; it lives nowhere else on the page.
+ * The "Businesses don't grow because of products…" line is included in the
+ * Human Performance section as a quiet, regular-weight reflective paragraph.
  */
 export const Route = createFileRoute("/about-the-founder")({
   head: () => ({
