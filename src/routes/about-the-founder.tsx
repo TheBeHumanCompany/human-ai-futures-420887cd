@@ -21,9 +21,9 @@ import kitvInterview from "@/assets/founder-kitv-interview.webp";
  *
  * ── The 2026-08-22 emphasis + tone pass ───────────────────────────────────
  *
- * Chapters now open on CREAM and alternate cream → ink → cream …, so the
- * sequence the brief calls out (cream, black, cream) is the top of the page.
- * `Chapter` still owns the tone: on ink the eyebrow label goes lime and the
+ * Chapters now open on INK and alternate ink → cream → ink …, so the
+ * sequence the brief calls out (cream, black, cream) is reversed across the
+ * page. `Chapter` still owns the tone: on ink the eyebrow label goes lime and the
  * copy goes off-white; on cream both keep the light-section treatment.
  *
  * Emphasis is plain bold body copy — `<strong>` inside the paragraph flow, at
@@ -132,21 +132,21 @@ function heading(tone: Tone) {
 function Founder() {
   return (
     <>
-      {/* ══════ 01 — MEET THE FOUNDER (cream) ══════ */}
-      <Chapter tone="cream" first>
+      {/* ══════ 01 — MEET THE FOUNDER (ink) ══════ */}
+      <Chapter tone="ink" first>
         <div className={CHAPTER_GRID}>
           <div className="max-w-[56ch]">
-            <SectionLabel tone="cream">Meet the Founder</SectionLabel>
-            <h1 className={`type-h2-condensed mt-6 max-w-[20ch] ${heading("cream")}`}>
+            <SectionLabel tone="ink">Meet the Founder</SectionLabel>
+            <h1 className={`type-h2-condensed mt-6 max-w-[20ch] ${heading("ink")}`}>
               A life spent building
             </h1>
 
-            <p className={`type-body mt-8 ${body("cream")}`}>
+            <p className={`type-body mt-8 ${body("ink")}`}>
               Looking back, I realize every business I&rsquo;ve built, every leader I&rsquo;ve worked
               with, every team I&rsquo;ve trained, and every movement I&rsquo;ve been part of was
               preparing me for this. At the time, they felt like separate chapters.
             </p>
-            <p className={`type-body mt-6 ${body("cream")}`}>
+            <p className={`type-body mt-6 ${body("ink")}`}>
               Today, I see one story unfolding &mdash; a journey that taught me about leadership,
               human performance, technology, compassion, and how lasting change happens. Together,
               those experiences prepared me to build what I believe is the most important work of my
@@ -161,29 +161,29 @@ function Founder() {
         </div>
       </Chapter>
 
-      {/* ══════ 02 — EARLY YEARS (ink) ══════ */}
-      <Chapter tone="ink">
+      {/* ══════ 02 — EARLY YEARS (cream) ══════ */}
+      <Chapter tone="cream">
         <div className={CHAPTER_GRID}>
           <div className="max-w-[56ch]">
-            <SectionLabel tone="ink">Early years</SectionLabel>
-            <h2 className={`type-h2-condensed mt-6 max-w-[22ch] ${heading("ink")}`}>
+            <SectionLabel tone="cream">Early years</SectionLabel>
+            <h2 className={`type-h2-condensed mt-6 max-w-[22ch] ${heading("cream")}`}>
               The entrepreneurial journey started early
             </h2>
 
-            <p className={`type-body mt-8 ${body("ink")}`}>
+            <p className={`type-body mt-8 ${body("cream")}`}>
               My entrepreneurial journey started early. At sixteen, I asked for yearly subscriptions
               to Entrepreneur magazine for my birthday instead of gifts, and I wrote letters to
               business leaders I admired, hoping one of them would write back. Some did, and those
               relationships became my first mentors.
             </p>
-            <p className={`type-body mt-6 ${body("ink")}`}>
+            <p className={`type-body mt-6 ${body("cream")}`}>
               My first business became possible through funding from <B>Aboriginal Business Canada</B>,
               which allowed me to become the first person to bring <B>Curves for Women</B> from the
               United States to Canada. My family invested alongside me, and together we built it
               into a family business. Curves would later become one of the fastest-growing franchise
               companies in history, growing into a multi-billion-dollar company within a decade.
             </p>
-            <p className={`type-body mt-6 ${body("ink")}`}>
+            <p className={`type-body mt-6 ${body("cream")}`}>
               Building that business opened doors I never expected. I went on to build a national
               fitness brand, author four books in the health and fitness industry, coach thousands
               of people, and have my work featured internationally on television, magazine covers,
@@ -207,16 +207,16 @@ function Founder() {
         </div>
       </Chapter>
 
-      {/* ══════ 03 — BUILDING AT SCALE (cream) ══════ */}
-      <Chapter tone="cream">
+      {/* ══════ 03 — BUILDING AT SCALE (ink) ══════ */}
+      <Chapter tone="ink">
         <div className={CHAPTER_GRID}>
           <div className="max-w-[56ch]">
-            <SectionLabel tone="cream">Building at scale</SectionLabel>
-            <h2 className={`type-h2-condensed mt-6 max-w-[24ch] ${heading("cream")}`}>
+            <SectionLabel tone="ink">Building at scale</SectionLabel>
+            <h2 className={`type-h2-condensed mt-6 max-w-[24ch] ${heading("ink")}`}>
               From fitness to leadership to building organizations
             </h2>
 
-            <p className={`type-body mt-8 ${body("cream")}`}>
+            <p className={`type-body mt-8 ${body("ink")}`}>
               Throughout my career, I&rsquo;ve often found myself drawn to industries just before
               they reached mainstream adoption. Recognizing the growing demand for healthier
               consumer products, I introduced a healthy energy drink brand from the United States
@@ -225,7 +225,7 @@ function Founder() {
               firsthand experience leading at scale and understanding how leadership, systems,
               culture, and duplication come together to build high-performing organizations.
             </p>
-            <p className={`type-body mt-6 ${body("cream")}`}>
+            <p className={`type-body mt-6 ${body("ink")}`}>
               As that organization grew, I was invited to train many of the largest leaders and
               teams in the direct sales industry. While products brought people into the room, the
               conversations quickly became about leadership, culture, systems, growth, and how to
@@ -235,10 +235,10 @@ function Founder() {
                 great organizations aren&rsquo;t built by products alone &mdash; people build them.
               </B>
             </p>
-            <p className={`type-body mt-6 ${body("cream")}`}>
+            <p className={`type-body mt-6 ${body("ink")}`}>
               Around the same time, another shift was beginning to reshape business: social media.
             </p>
-            <p className={`type-body mt-6 ${body("cream")}`}>
+            <p className={`type-body mt-6 ${body("ink")}`}>
               Long before most organizations understood its potential, I immersed myself in learning
               how digital platforms would transform communication, marketing, and business. Over the
               following years, I worked with entrepreneurs and small business owners across North
@@ -251,7 +251,7 @@ function Founder() {
               evolved into long-term partnerships, and I continue to hold equity in several of the
               companies I helped build.
             </p>
-            <p className={`type-body mt-6 ${body("cream")}`}>
+            <p className={`type-body mt-6 ${body("ink")}`}>
               That work also created opportunities to collaborate on projects with people already
               influencing millions worldwide. I helped launch the social media campaign for{" "}
               <B>Eckhart Tolle&rsquo;s</B> feature film, Milton&rsquo;s Secret. I helped build the
@@ -261,13 +261,12 @@ function Founder() {
               helping build several of his personal brands and gaining a front-row seat to how
               world-class brands, media, and influence are created.
             </p>
-            <p className={`type-body mt-6 ${body("cream")}`}>
+            <p className={`type-body mt-6 ${body("ink")}`}>
               Looking back, those years taught me far more than marketing. They taught me how trust
               is built, how ideas spread, how leaders influence culture, and how businesses grow.
               Those lessons continue to shape how I build organizations today.
             </p>
           </div>
-
 
           <div className="grid items-start gap-10">
             <Shot
@@ -282,16 +281,16 @@ function Founder() {
         </div>
       </Chapter>
 
-      {/* ══════ 04 — HUMAN PERFORMANCE (ink) ══════ */}
-      <Chapter tone="ink">
+      {/* ══════ 04 — HUMAN PERFORMANCE (cream) ══════ */}
+      <Chapter tone="cream">
         <div className={CHAPTER_GRID}>
           <div className="max-w-[56ch]">
-            <SectionLabel tone="ink">Human performance</SectionLabel>
-            <h2 className={`type-h2-condensed mt-6 max-w-[24ch] ${heading("ink")}`}>
+            <SectionLabel tone="cream">Human performance</SectionLabel>
+            <h2 className={`type-h2-condensed mt-6 max-w-[24ch] ${heading("cream")}`}>
               Understanding what helps people become their best
             </h2>
 
-            <p className={`type-body mt-8 ${body("ink")}`}>
+            <p className={`type-body mt-8 ${body("cream")}`}>
               As my businesses grew, so did my curiosity about people. I became fascinated by human
               performance &mdash; how people think, learn, adapt, and perform under pressure. That
               curiosity led me into years of studying neuro-linguistic programming (NLP), brainwave
@@ -299,7 +298,7 @@ function Founder() {
               read over a thousand books on business, leadership, psychology, health, and human
               potential.
             </p>
-            <p className={`type-body mt-6 ${body("ink")}`}>
+            <p className={`type-body mt-6 ${body("cream")}`}>
               That journey led me to create <B>Brainwave Synergy</B>, where I developed brainwave
               training programs and guided meditations designed to help people improve focus,
               performance, and well-being. The programs reached people from all walks of life
@@ -312,21 +311,21 @@ function Founder() {
                 what helps people become the best version of themselves.
               </B>
             </p>
-            <p className={`type-body mt-6 ${body("ink")}`}>
+            <p className={`type-body mt-6 ${body("cream")}`}>
               One lesson stayed with me throughout every company I built.
             </p>
-            <p className={`type-body mt-6 ${body("ink")}`}>
+            <p className={`type-body mt-6 ${body("cream")}`}>
               Over the course of my career, I&rsquo;ve directly managed more than{" "}
               <B>150 employees</B>, led a direct sales organization of well over{" "}
               <B>5,000 independent business owners and distributors</B>, and trained leadership
               teams across North America. Every experience reinforced one belief that has shaped how
               I&rsquo;ve led ever since:
             </p>
-            <p className={`type-body mt-6 font-bold ${heading("ink")}`}>
+            <p className={`type-body mt-6 font-bold ${heading("cream")}`}>
               The only way I truly win is if my people win first.
             </p>
 
-            <p className={`type-body mt-6 ${body("ink")}`}>
+            <p className={`type-body mt-6 ${body("cream")}`}>
               Long before &ldquo;people-first leadership&rdquo; became a popular phrase, I was
               intentionally building cultures where people felt valued, challenged, healthy, and
               capable of becoming more than they believed they could be. Health has always been a
@@ -354,19 +353,19 @@ function Founder() {
         </div>
       </Chapter>
 
-      {/* ══════ 05 — COMMUNITY + COMPASSION (cream) ══════ */}
-      <Chapter tone="cream">
+      {/* ══════ 05 — COMMUNITY + COMPASSION (ink) ══════ */}
+      <Chapter tone="ink">
         <div className={CHAPTER_GRID}>
           <div className="max-w-[56ch]">
-            <SectionLabel tone="cream">Community + compassion</SectionLabel>
-            <h2 className={`type-h2-condensed mt-6 max-w-[24ch] ${heading("cream")}`}>
+            <SectionLabel tone="ink">Community + compassion</SectionLabel>
+            <h2 className={`type-h2-condensed mt-6 max-w-[24ch] ${heading("ink")}`}>
               Building something that reaches beyond business
             </h2>
 
-            <p className={`type-body mt-8 ${body("cream")}`}>
+            <p className={`type-body mt-8 ${body("ink")}`}>
               That philosophy naturally extended beyond business.
             </p>
-            <p className={`type-body mt-6 ${body("cream")}`}>
+            <p className={`type-body mt-6 ${body("ink")}`}>
               Long before founding <B>The Be Human Company</B>, I founded{" "}
               <B>Actions of Compassion</B>, a movement dedicated to encouraging acts of kindness,
               supporting food drives, helping people through addiction, and bringing communities
@@ -376,7 +375,7 @@ function Founder() {
               always believed: meaningful change begins with ordinary people making intentional
               choices to help someone else.
             </p>
-            <p className={`type-body mt-6 ${body("cream")}`}>
+            <p className={`type-body mt-6 ${body("ink")}`}>
               Alongside my entrepreneurial career, I&rsquo;ve remained committed to serving my
               community. I&rsquo;ve volunteered with <B>Ronald McDonald House</B>, served on the
               board of the <B>Maple Ridge Food Bank</B>, acted as{" "}
@@ -393,47 +392,33 @@ function Founder() {
         </div>
       </Chapter>
 
-      {/* ══════ 06 — WHAT I'VE LEARNED (ink) ══════ */}
-      <Chapter tone="ink">
-        <SectionLabel tone="ink">What I&rsquo;ve learned</SectionLabel>
-        <h2 className={`type-h2-condensed mt-6 max-w-[28ch] ${heading("ink")}`}>
-          When I look back, I don&rsquo;t see a resume. I see a lot of lessons.
-        </h2>
+      {/* ══════ 06 — WHAT I'VE LEARNED (cream) ══════ */}
+      <Chapter tone="cream">
+        <SectionLabel tone="cream">What I&rsquo;ve learned</SectionLabel>
 
-        <div className="mt-12 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-          <ul className="grid gap-5">
-            {[
-              "When I look back today, I don't see a résumé. I see preparation.",
-              "Every business taught me how to build.",
-              "Every leader taught me something new.",
-              "Every team taught me how culture shapes performance.",
-              "Every success and every setback deepened my understanding of people.",
-            ].map((lesson) => (
-              <li key={lesson} className="type-body border-t border-hairline pt-5 text-cream/75">
-                {lesson}
-              </li>
-            ))}
-          </ul>
-
-          <div>
-            <p className="type-body text-cream/75">
-              Together, those experiences led me to one belief:
-            </p>
-            <p className="type-body mt-6 font-bold text-cream">
-              The greatest opportunity of our generation isn&rsquo;t simply building more
-              intelligent technology. It&rsquo;s helping people become more intentional about
-              practicing their humanity alongside it.
-            </p>
-            <p className="type-body mt-6 text-cream/75">
-              That&rsquo;s the work I&rsquo;ve devoted my life to.
-            </p>
-            <p className="type-body mt-6 text-cream/75">
-              And it&rsquo;s the work I&rsquo;m committed to building through{" "}
-              <B>The Be Human Company</B>.
-            </p>
-          </div>
+        <div className="mt-12 max-w-none space-y-8 lg:max-w-[75%]">
+          <p className={`type-body ${body("cream")}`}>
+            When I look back today, I don&rsquo;t see a r&eacute;sum&eacute;. I see preparation.
+          </p>
+          <p className={`type-body ${body("cream")}`}>
+            Every business taught me how to build. Every leader taught me something new. Every team
+            taught me how culture shapes performance. Every success and every setback deepened my
+            understanding of people.
+          </p>
+          <p className={`type-body ${body("cream")}`}>
+            Together, those experiences led me to one belief:
+          </p>
+          <p className={`type-body font-bold ${heading("cream")}`}>
+            The greatest opportunity of our generation isn&rsquo;t simply building more intelligent
+            technology. It&rsquo;s helping people become more intentional about practicing their
+            humanity alongside it.
+          </p>
+          <p className={`type-body ${body("cream")}`}>That&rsquo;s the work I&rsquo;ve devoted my life to.</p>
+          <p className={`type-body ${body("cream")}`}>
+            And it&rsquo;s the work I&rsquo;m committed to building through{" "}
+            <B>The Be Human Company</B>.
+          </p>
         </div>
-
       </Chapter>
     </>
   );
