@@ -11,6 +11,7 @@ import satnam from "@/assets/founder-satnam.webp";
 
 import pressCanIndia2011 from "@/assets/founder-press-canindia-2011.webp";
 import kitvInterview from "@/assets/founder-kitv-interview.webp";
+import founderBikeBehumn from "@/assets/founder-bike-behumn.webp";
 
 /**
  * `/about-the-founder` — "Meet the Founder", built from Maya's 2026-08-18 brief.
