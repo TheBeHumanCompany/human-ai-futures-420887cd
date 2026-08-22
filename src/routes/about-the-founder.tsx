@@ -403,38 +403,47 @@ function Founder() {
 
       {/* ══════ 06 — WHAT I'VE LEARNED (cream) ══════ */}
       <Chapter tone="cream">
-        <div className="max-w-[820px]">
-          <SectionLabel tone="cream">What I&rsquo;ve learned</SectionLabel>
-          <h2 className={`type-h2-condensed mt-6 max-w-[20ch] ${heading("cream")}`}>
-            What matters now
-          </h2>
+        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+          <div className="max-w-[820px]">
+            <SectionLabel tone="cream">What I&rsquo;ve learned</SectionLabel>
+            <h2 className={`type-h2-condensed mt-6 max-w-[20ch] ${heading("cream")}`}>
+              What matters now
+            </h2>
 
-          <div className="mt-12 space-y-8">
-            <p className={`type-body ${body("cream")}`}>
-              When I look back today, I don&rsquo;t see a r&eacute;sum&eacute;. I see preparation.
-            </p>
-            <p className={`type-body ${body("cream")}`}>
-              Every business taught me how to build. Every leader taught me something new. Every team
-              taught me how culture shapes performance. Every success and every setback deepened my
-              understanding of people.
-            </p>
-            <p className={`type-body ${body("cream")}`}>
-              Together, those experiences led me to one belief:
-            </p>
-            <p className="type-body">
-              <strong className="font-bold">
-                The greatest opportunity of our generation isn&rsquo;t simply building more intelligent
-                technology. It&rsquo;s helping people become more intentional about practicing their
-                humanity alongside it.
-              </strong>
-            </p>
-            <p className={`type-body ${body("cream")}`}>
-              That&rsquo;s the work I&rsquo;ve devoted my life to.
-            </p>
-            <p className={`type-body ${body("cream")}`}>
-              And it&rsquo;s the work I&rsquo;m committed to building through{" "}
-              <strong className="font-bold">The Be Human Company</strong>.
-            </p>
+            <div className="mt-12 space-y-8">
+              <p className={`type-body ${body("cream")}`}>
+                When I look back today, I don&rsquo;t see a r&eacute;sum&eacute;. I see preparation.
+              </p>
+              <p className={`type-body ${body("cream")}`}>
+                Every business taught me how to build. Every leader taught me something new. Every team
+                taught me how culture shapes performance. Every success and every setback deepened my
+                understanding of people.
+              </p>
+              <p className={`type-body ${body("cream")}`}>
+                Together, those experiences led me to one belief:
+              </p>
+              <p className="type-body">
+                <strong className="font-bold">
+                  The greatest opportunity of our generation isn&rsquo;t simply building more intelligent
+                  technology. It&rsquo;s helping people become more intentional about practicing their
+                  humanity alongside it.
+                </strong>
+              </p>
+              <p className={`type-body ${body("cream")}`}>
+                That&rsquo;s the work I&rsquo;ve devoted my life to.
+              </p>
+              <p className={`type-body ${body("cream")}`}>
+                And it&rsquo;s the work I&rsquo;m committed to building through{" "}
+                <strong className="font-bold">The Be Human Company</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12 lg:mt-0">
+            <Shot
+              src={founderBikeBehumn}
+              alt="Shane James kneeling beside a motorcycle with a BEHUMN license plate, city lights behind him"
+            />
           </div>
         </div>
       </Chapter>
