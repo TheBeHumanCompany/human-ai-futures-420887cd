@@ -96,6 +96,16 @@ type Case = {
    * the replacement proves it is still the AGREED one.
    */
   accepted: Array<{ startsWith: string; instead: string; because: string }>;
+  /**
+   * Whole passages the page no longer carries at all.
+   *
+   * A deletion has no replacement, so it cannot be described by `accepted`
+   * (whose third check demands the approved substitute be on the page). It is
+   * still held to two directions: every span must name real source sentences,
+   * and each of those sentences must genuinely be absent — so the exemption
+   * dies the moment the copy comes back.
+   */
+  removed?: Array<{ from: string; to: string; because: string }>;
 };
 
 const CASES: Case[] = [
@@ -103,9 +113,27 @@ const CASES: Case[] = [
     label: "/about-the-founder",
     source: "docs/source/meet-the-founder.txt",
     route: "src/routes/about-the-founder.tsx",
-    // Nothing. Her document is the page, in full, in Shane's own voice.
+    // Nothing rewritten. Her document is the page, in Shane's own voice.
     accepted: [],
+    removed: [
+      {
+        from: "around the same time another shift was beginning to reshape business",
+        to: "those lessons continue to shape how i build organizations today",
+        because:
+          "The 2026-08-22 restructure cuts the page to four chapters (hero, early years, " +
+          "building at scale, human performance + compassion). The MEDIA · LEADERSHIP · " +
+          "TRAINING chapter came off the page whole, at Maya's request.",
+      },
+      {
+        from: "when i look back i don't see a resume",
+        to: "and i'm grateful to be doing it alongside people who care about where we go from here",
+        because:
+          "Same pass: everything below the ink 'Businesses don't grow because of products' " +
+          "pause was removed, including that pause and the closing 'What I've learned' chapter.",
+      },
+    ],
   },
+
   {
     label: "/why-we-exist",
     source: "docs/source/why-we-exist.txt",
