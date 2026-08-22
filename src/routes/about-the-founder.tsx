@@ -9,8 +9,8 @@ import mentoring from "@/assets/founder-mentoring.webp";
 import pressCn from "@/assets/founder-press-cn.webp";
 import satnam from "@/assets/founder-satnam.webp";
 
-import pressCanIndia2011 from "@/assets/founder-press-canindia-2011.jpg.asset.json";
-import kitvInterview from "@/assets/founder-kitv-interview.jpg.asset.json";
+import pressCanIndia2011 from "@/assets/founder-press-canindia-2011.webp";
+import kitvInterview from "@/assets/founder-kitv-interview.webp";
 
 /**
  * `/about-the-founder` — "Meet the Founder", built from Maya's 2026-08-18 brief.
@@ -192,7 +192,7 @@ function Founder() {
               alt="Chinese-language newspaper feature on Shane James losing 65 pounds in six months"
             />
             <Archival
-              src={pressCanIndia2011.url}
+              src={pressCanIndia2011}
               alt="Can-India Plus fitness feature headlined Think, Act, Love, Lose Weight! interviewing Shane James"
             />
           </div>
@@ -300,7 +300,7 @@ function Founder() {
             />
             <div className="grid items-start gap-6 sm:grid-cols-2">
               <Shot
-                src={kitvInterview.url}
+                src={kitvInterview}
                 alt="Shane James interviewed at the anchor desk of KITV 4 Morning News"
               />
               <Shot
