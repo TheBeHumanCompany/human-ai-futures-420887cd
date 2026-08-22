@@ -329,6 +329,64 @@ function Founder() {
           </div>
         </div>
       </section>
+
+      {/* ══════ 05 — THE PAUSE (cream) ══════
+          A calm, centred reflective beat. No card, no banner, no button. */}
+      <section className="section-cream border-t border-hairline-dark">
+        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+          <blockquote className="mx-auto max-w-[24ch] text-center">
+            <p className="type-h2-prose text-ink">
+              Businesses don&rsquo;t grow because of products. They grow because of people.
+            </p>
+            <p className="type-body mt-8 text-ink/70">
+              The only way I truly win is if my people win first.
+            </p>
+            <footer className="type-label-caps mt-5 text-ink/50">Shane</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      {/* ══════ 06 — WHAT I'VE LEARNED (cream) ══════
+          The close: lessons left, reflection right. */}
+      <section className="section-cream border-t border-hairline-dark">
+        <div className={CHAPTER_PAD}>
+          <SectionLabel>What I&rsquo;ve learned</SectionLabel>
+          <h2 className="type-h3-prose mt-6 max-w-[26ch] text-ink">
+            When I look back, I don&rsquo;t see a resume. I see a lot of lessons.
+          </h2>
+
+          <div className="mt-12 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+            <ul className="grid gap-5">
+              {[
+                "Every business taught me something about building.",
+                "Every leader taught me something about people.",
+                "Every team showed me how much culture matters.",
+                "Every success, and every mistake, gave me more to learn.",
+              ].map((lesson) => (
+                <li key={lesson} className="type-body border-t border-hairline-dark pt-5 text-ink/70">
+                  {lesson}
+                </li>
+              ))}
+            </ul>
+
+            <div>
+              <h3 className="type-h4-prose text-ink">I don&rsquo;t have all the answers.</h3>
+              <p className="type-body mt-6 text-ink/70">
+                Technology is moving quickly, and I think the choices we make around it will shape
+                how we work, lead, connect, and live.
+              </p>
+              <p className="type-body mt-6 text-ink/70">
+                The Be Human Company is my attempt to bring the lessons I&rsquo;ve learned together
+                and contribute something useful to that transition.
+              </p>
+              <p className="type-body mt-6 text-ink/70">
+                I&rsquo;m still learning. I&rsquo;m still building. And I&rsquo;m grateful to be
+                doing it alongside people who care about where we go from here.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
