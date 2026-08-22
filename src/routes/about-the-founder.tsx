@@ -225,7 +225,39 @@ function Founder() {
               I&rsquo;ve believed ever since: great organizations aren&rsquo;t built by products
               alone &mdash; people build them.
             </p>
+            <p className={`type-body mt-6 ${body("ink")}`}>
+              Around the same time, another shift was beginning to reshape business: social media.
+            </p>
+            <p className={`type-body mt-6 ${body("ink")}`}>
+              Long before most organizations understood its potential, I immersed myself in learning
+              how digital platforms would transform communication, marketing, and business. Over the
+              following years, I worked with entrepreneurs and small business owners across North
+              America through workshops, online programs, one-on-one consulting, Zoom coaching, and
+              live events. While social media often opened the door, the work quickly expanded far
+              beyond marketing. I found myself helping founders strengthen leadership, improve
+              operations, build healthier workplace cultures, refine financial strategy, develop
+              customer acquisition systems, implement email marketing, and build businesses that
+              could scale without losing the people at their center. Many of those relationships
+              evolved into long-term partnerships, and I continue to hold equity in several of the
+              companies I helped build.
+            </p>
+            <p className={`type-body mt-6 ${body("ink")}`}>
+              That work also created opportunities to collaborate on projects with people already
+              influencing millions worldwide. I helped launch the social media campaign for Eckhart
+              Tolle&rsquo;s feature film, Milton&rsquo;s Secret. I helped build the social media
+              presence of Satnam Singh, the first Indian-born player ever drafted into the NBA and
+              later featured in Netflix&rsquo;s One in a Billion. I also travelled extensively with
+              Kevin Harrington, the original Shark on Shark Tank, helping build several of his
+              personal brands and gaining a front-row seat to how world-class brands, media, and
+              influence are created.
+            </p>
+            <p className={`type-body mt-6 ${body("ink")}`}>
+              Looking back, those years taught me far more than marketing. They taught me how trust
+              is built, how ideas spread, how leaders influence culture, and how businesses grow.
+              Those lessons continue to shape how I build organizations today.
+            </p>
           </div>
+
 
           <div className="grid items-start gap-10">
             <Shot
@@ -279,9 +311,12 @@ function Founder() {
               Over the course of my career, I&rsquo;ve directly managed more than 150 employees, led
               a direct sales organization of well over 5,000 independent business owners and
               distributors, and trained leadership teams across North America. Every experience
-              reinforced one belief that has shaped how I&rsquo;ve led ever since: the only way I
-              truly win is if my people win first.
+              reinforced one belief that has shaped how I&rsquo;ve led ever since:
             </p>
+            <p className={`type-body mt-6 font-bold ${heading("cream")}`}>
+              The only way I truly win is if my people win first.
+            </p>
+
             <p className={`type-body mt-6 ${body("cream")}`}>
               Long before &ldquo;people-first leadership&rdquo; became a popular phrase, I was
               intentionally building cultures where people felt valued, challenged, healthy, and
@@ -322,6 +357,10 @@ function Founder() {
             </h2>
 
             <p className={`type-body mt-8 ${body("ink")}`}>
+              That philosophy naturally extended beyond business.
+            </p>
+            <p className={`type-body mt-6 ${body("ink")}`}>
+
               Long before founding The Be Human Company, I founded Actions of Compassion, a movement
               dedicated to encouraging acts of kindness, supporting food drives, helping people
               through addiction, and bringing communities together. The movement attracted
@@ -359,10 +398,11 @@ function Founder() {
         <div className="mt-12 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <ul className="grid gap-5">
             {[
-              "Every business taught me something about building.",
-              "Every leader taught me something about people.",
-              "Every team showed me how much culture matters.",
-              "Every success, and every mistake, gave me more to learn.",
+              "When I look back today, I don't see a résumé. I see preparation.",
+              "Every business taught me how to build.",
+              "Every leader taught me something new.",
+              "Every team taught me how culture shapes performance.",
+              "Every success and every setback deepened my understanding of people.",
             ].map((lesson) => (
               <li key={lesson} className="type-body border-t border-hairline-dark pt-5 text-ink/70">
                 {lesson}
@@ -371,21 +411,23 @@ function Founder() {
           </ul>
 
           <div>
-            <h3 className="type-h4-prose text-ink">I don&rsquo;t have all the answers.</h3>
-            <p className="type-body mt-6 text-ink/70">
-              Technology is moving quickly, and I think the choices we make around it will shape how
-              we work, lead, connect, and live.
+            <p className="type-body text-ink/70">
+              Together, those experiences led me to one belief:
+            </p>
+            <p className="type-body mt-6 font-bold text-ink">
+              The greatest opportunity of our generation isn&rsquo;t simply building more
+              intelligent technology. It&rsquo;s helping people become more intentional about
+              practicing their humanity alongside it.
             </p>
             <p className="type-body mt-6 text-ink/70">
-              The Be Human Company is my attempt to bring the lessons I&rsquo;ve learned together
-              and contribute something useful to that transition.
+              That&rsquo;s the work I&rsquo;ve devoted my life to.
             </p>
             <p className="type-body mt-6 text-ink/70">
-              I&rsquo;m still learning. I&rsquo;m still building. And I&rsquo;m grateful to be doing
-              it alongside people who care about where we go from here.
+              And it&rsquo;s the work I&rsquo;m committed to building through The Be Human Company.
             </p>
           </div>
         </div>
+
       </Chapter>
     </>
   );
