@@ -6,11 +6,11 @@ import { POSITIONING_DISCLAIMER } from "@/lib/brand";
 export const Route = createFileRoute("/be-human-ai/governance")({
   head: () => ({
     meta: [
-      { title: "Governance & Sovereignty — Protect Your Organization | Be Human AI" },
+      { title: "Governance & Sovereignty — Protect Your Organization | Be Human Intelligence" },
       {
         name: "description",
         content:
-          "Governance gaps, shadow AI exposure, data flows, and the data-handling practices that keep an organization in control as AI enters it.",
+          "Governance gaps, shadow tool exposure, data flows, and the data-handling practices that keep an organization in control as these systems enter it.",
       },
       { property: "og:title", content: "Governance & Sovereignty — Protect Your Organization" },
       {
@@ -50,8 +50,9 @@ const SECTIONS: readonly PillarSection[] = [
     body: (
       <>
         <p>
-          As AI spreads through an organization, it becomes harder to see where information is
-          going, which systems touch it, and who is accountable for the decisions it influences.
+          As these systems spread through an organization, it becomes harder to see where
+          information is going, which systems touch it, and who is accountable for the decisions it
+          influences.
         </p>
         <p>
           Most organizations do not discover how much visibility they have lost. They find out when
@@ -62,12 +63,12 @@ const SECTIONS: readonly PillarSection[] = [
   },
   {
     id: "shadow-ai",
-    heading: "Shadow AI is a data-flow question",
+    heading: "Shadow tooling is a data-flow question",
     body: (
       <p>
         Tools adopted without review are not a discipline problem. They are an unmapped path
-        business information now travels along. We trace how data actually moves through the AI
-        systems in use — approved or not — and define the safeguards that close the gaps we find.
+        business information now travels along. We trace how data actually moves through the systems
+        in use — approved or not — and define the safeguards that close the gaps we find.
       </p>
     ),
   },
@@ -96,7 +97,7 @@ const SECTIONS: readonly PillarSection[] = [
           </li>
           <li>
             <strong className="text-ink">Key management</strong> — control of the encryption keys
-            that ultimately decide who can read your AI data.
+            that ultimately decide who can read your data.
           </li>
           <li>
             <strong className="text-ink">Exit and portability</strong> — the ability to retrieve
@@ -117,17 +118,17 @@ const SECTIONS: readonly PillarSection[] = [
     heading: "These are leadership questions before they are technical ones",
     body: (
       <>
-        <p>As AI becomes part of everyday business, leaders face real questions:</p>
+        <p>As these systems become part of everyday business, leaders face real questions:</p>
         <ul className="mt-2 space-y-1.5">
           <li>Where is our data going?</li>
           <li>Who controls it?</li>
           <li>Which systems have access to it?</li>
-          <li>Who is accountable when AI influences a decision, or gets one wrong?</li>
+          <li>Who is accountable when a machine influences a decision, or gets one wrong?</li>
           <li>What information should never leave our organization?</li>
         </ul>
         <p>
           That is why every engagement begins by mapping governance, data flows, and exposure before
-          a single AI agent is designed or deployed.
+          a single agent is designed or deployed.
         </p>
       </>
     ),
@@ -154,7 +155,7 @@ const SECTIONS: readonly PillarSection[] = [
 const FOCUS = [
   "Governance",
   "Security",
-  "Shadow AI exposure",
+  "Shadow tool exposure",
   "Data flows",
   "Sovereignty practices",
 ] as const;
@@ -162,9 +163,9 @@ const FOCUS = [
 function Governance() {
   return (
     <PillarPage
-      kicker="Be Human AI · Protect your organization"
+      kicker="Be Human Intelligence · Protect your organization"
       title="Governance & Sovereignty"
-      lede="We uncover governance gaps, trace how data actually moves through AI systems, and define the safeguards that close them — before AI is embedded in the business, not after."
+      lede="We uncover governance gaps, trace how data actually moves through these systems, and define the safeguards that close them — before the technology is embedded in the business, not after."
       question="Are you still in control of your data, your decisions, and your future?"
       sections={SECTIONS}
       focusAreas={FOCUS}

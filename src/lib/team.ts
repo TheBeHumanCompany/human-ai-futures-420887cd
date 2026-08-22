@@ -55,16 +55,21 @@ export const TEAM: readonly TeamMember[] = [
     role: "Founder & CEO",
     descriptors: ["Entrepreneur", "Business strategist", "Executive advisor"],
     bio: [
-      "As a multi-business entrepreneur, Shane brings an operator's perspective to AI transformation. He works directly with founders and leadership teams to determine where AI can create lasting business advantage — and where human judgment must remain central.",
+      "As a multi-business entrepreneur, Shane brings an operator's perspective to this transformation. He works directly with founders and leadership teams to determine where machine intelligence can create lasting business advantage — and where human judgment must remain central.",
     ],
   },
   {
     id: "sid",
     name: "Sid",
-    role: "AI, Cybersecurity & Governance",
-    descriptors: ["AI implementation", "Cybersecurity", "Governance", "Data sovereignty"],
+    role: "Machine Intelligence, Cybersecurity & Governance",
+    descriptors: [
+      "Machine intelligence implementation",
+      "Cybersecurity",
+      "Governance",
+      "Data sovereignty",
+    ],
     bio: [
-      "Sid leads AI implementation, cybersecurity, governance, and data sovereignty. As a certified cybersecurity professional, he brings the discipline most AI adoption is missing entirely — the same rigor that protects a network, now applied to protecting your data, your decisions, and your systems as AI enters them.",
+      "Sid leads machine intelligence implementation, cybersecurity, governance, and data sovereignty. As a certified cybersecurity professional, he brings the discipline most adoption is missing entirely — the same rigor that protects a network, now applied to protecting your data, your decisions, and your systems as these tools enter them.",
       "He builds the secure foundation, defines the guardrails, and protects the information, systems, and decisions that matter most.",
     ],
   },
@@ -74,7 +79,7 @@ export const TEAM: readonly TeamMember[] = [
     role: "Human Readiness & Organizational Change",
     descriptors: ["Behaviour", "Communication", "Trust", "Change adoption"],
     bio: [
-      "Maya leads the human side of transformation. As a certified counsellor, she brings a deep understanding of behaviour, communication, trust, and resistance to change — helping leaders and employees build the confidence and alignment that make AI adoption stick.",
+      "Maya leads the human side of transformation. As a certified counsellor, she brings a deep understanding of behaviour, communication, trust, and resistance to change — helping leaders and employees build the confidence and alignment that make adoption stick.",
     ],
   },
 ] as const;

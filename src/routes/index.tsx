@@ -49,13 +49,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "AI readiness, governance, agents and leadership. We help organizations become AI-ready without losing what makes them human.",
+          "Human readiness, governance, agents and leadership. We help organizations get ready for machine intelligence without losing what makes them human.",
       },
       { property: "og:title", content: "The Be Human Company — The Future Is Human." },
       {
         property: "og:description",
         content:
-          "AI readiness, governance, agents and leadership. We help organizations become AI-ready without losing what makes them human.",
+          "Human readiness, governance, agents and leadership. We help organizations get ready for machine intelligence without losing what makes them human.",
       },
     ],
   }),
@@ -100,7 +100,8 @@ function Home() {
               artificial.
             </p>
             <p className="mt-4 max-w-md text-base leading-relaxed text-foreground/70 sm:text-lg lg:max-w-xl">
-              Through AI strategy, human readiness, governance, and transformation.
+              Through machine intelligence strategy, human readiness, governance, and
+              transformation.
             </p>
           </div>
         </div>
@@ -153,7 +154,7 @@ function Home() {
         </div>
       </section>
 
-      {/* ---------- BE HUMAN AI ---------- */}
+      {/* ---------- BE HUMAN INTELLIGENCE ---------- */}
       <section
         id="be-human-ai"
         className="section-ink relative isolate overflow-hidden border-t border-border"
@@ -181,17 +182,17 @@ function Home() {
           <div className="flex max-w-xl flex-col justify-center">
             <p className="type-label-caps text-lime">OUR SOLUTION</p>
             <h2 className="type-h2-caps-light mt-5 sm:mt-6 lg:mt-8">
-              BE HUMAN <span className="text-lime">AI</span>
+              BE HUMAN <span className="text-lime">INTELLIGENCE</span>
             </h2>
             <p className="mt-6 max-w-[17.5rem] text-base leading-relaxed text-foreground/80 sm:max-w-sm">
-              We help organizations prepare for the AI era by strengthening their people, protecting
-              what matters, and transforming how work gets done.
+              We help organizations prepare for the age of machine intelligence by strengthening
+              their people, protecting what matters, and transforming how work gets done.
             </p>
             <Link
               to="/be-human-ai"
               className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-xs font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink sm:mt-8 sm:px-8 sm:py-3.5 sm:text-sm"
             >
-              EXPLORE BE HUMAN AI{" "}
+              EXPLORE BE HUMAN INTELLIGENCE{" "}
               <span aria-hidden className="text-lime transition-colors group-hover:text-ink">
                 →
               </span>
@@ -212,7 +213,7 @@ function Home() {
                   </h3>
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/75">
                     Prepare your team with the skills, mindset, and confidence to thrive alongside
-                    AI.
+                    the machines.
                   </p>
                 </div>
               </div>
@@ -226,7 +227,7 @@ function Home() {
                     <br />& SOVEREIGNTY
                   </h3>
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/75">
-                    Protect your data, reduce risk, and build AI on a foundation of trust.
+                    Protect your data, reduce risk, and build on a foundation of trust.
                   </p>
                 </div>
               </div>
@@ -236,10 +237,10 @@ function Home() {
                 <Target className="mt-0.5 h-6 w-6 shrink-0 text-lime" strokeWidth={1.5} />
                 <div>
                   <h3 className="font-display text-base font-semibold uppercase tracking-[0.04em] text-lime">
-                    AI STRATEGY & TRANSFORMATION
+                    INTELLIGENCE STRATEGY & TRANSFORMATION
                   </h3>
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/75">
-                    Identify opportunities, redesign workflows, and implement AI that delivers
+                    Identify opportunities, redesign workflows, and implement systems that deliver
                     measurable business results.
                   </p>
                 </div>
@@ -357,8 +358,8 @@ function Home() {
               CEO <span className="text-lime">Podcast</span>
             </h2>
             <p className="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground">
-              Conversations on leadership, AI and culture — where humanity becomes the competitive
-              advantage.
+              Conversations on leadership, technology and culture — where humanity becomes the
+              competitive advantage.
             </p>
           </div>
 

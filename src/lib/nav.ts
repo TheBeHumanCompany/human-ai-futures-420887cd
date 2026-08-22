@@ -6,7 +6,7 @@
  *
  *   ABOUT ⌄ (Why We Exist · Who We Are) | THE NEW HUMAN ERA | THE HUMAN ARCHIVE
  *   | PODCAST | CONTACT | [BLUEPRINT ⌄ pill] (Human Readiness ·
- *   Governance & Sovereignty · AI Strategy)
+ *   Governance & Sovereignty · Intelligence Strategy)
  *
  * Six top-level items, in that order. Exactly two of them have children.
  * `nav.test.ts` deep-equals the whole tree rather than checking a length,
@@ -132,7 +132,7 @@ export const NAV: readonly NavItem[] = [
     children: [
       { to: "/be-human-ai/human-readiness", label: "Human Readiness" },
       { to: "/be-human-ai/governance", label: "Governance & Sovereignty" },
-      { to: "/be-human-ai/ai-strategy", label: "AI Strategy" },
+      { to: "/be-human-ai/ai-strategy", label: "Intelligence Strategy" },
     ],
   },
 ] as const;

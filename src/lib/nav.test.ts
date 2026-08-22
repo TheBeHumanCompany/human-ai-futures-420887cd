@@ -34,7 +34,11 @@ const BINDING_TREE: NavItem[] = [
     children: [
       { to: "/be-human-ai/human-readiness", label: "Human Readiness" },
       { to: "/be-human-ai/governance", label: "Governance & Sovereignty" },
-      { to: "/be-human-ai/ai-strategy", label: "AI Strategy" },
+      // Renamed with the 2026-08-22 rebrand. The ROUTE is deliberately still
+      // /be-human-ai/ai-strategy: changing it needs redirects, and a rename that
+      // silently 404s every existing link to this pillar is a worse outcome than
+      // a path that no longer matches its label.
+      { to: "/be-human-ai/ai-strategy", label: "Intelligence Strategy" },
     ],
   },
 ];

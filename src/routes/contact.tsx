@@ -13,13 +13,13 @@ import { BOOKING_URL_15MIN } from "@/lib/booking";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Work With Be Human AI" },
+      { title: "Contact — Work With Be Human Intelligence" },
       {
         name: "description",
         content:
-          "Talk to us about AI readiness, governance, agents and leadership programs for your organization.",
+          "Talk to us about human readiness, governance, agents and leadership programs for your organization.",
       },
-      { property: "og:title", content: "Contact — Work With Be Human AI" },
+      { property: "og:title", content: "Contact — Work With Be Human Intelligence" },
       {
         property: "og:description",
         content: "Prepare your organization for the New Human Era.",
@@ -83,8 +83,8 @@ function Contact() {
             Prepare your organization for the New Human Era.
           </h1>
           <p className="mt-8 max-w-md text-lg leading-relaxed text-ink/70">
-            Tell us where you are with AI and what you're trying to protect. We'll come back with a
-            point of view, not a pitch deck.
+            Tell us where you are with machine intelligence and what you're trying to protect. We'll
+            come back with a point of view, not a pitch deck.
           </p>
           <dl className="mt-12 space-y-4 border-t border-hairline-dark pt-6 text-sm text-ink/70">
             <div>
@@ -157,7 +157,7 @@ function Contact() {
             disabled={pending}
             className="eyebrow inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 text-cream transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-60"
           >
-            {pending ? "Sending\u2026" : "Work With Be Human AI"}{" "}
+            {pending ? "Sending\u2026" : "Work With Be Human Intelligence"}{" "}
             <span aria-hidden>{pending ? "" : "\u2192"}</span>
           </button>
 

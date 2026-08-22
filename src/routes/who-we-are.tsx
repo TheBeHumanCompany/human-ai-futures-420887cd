@@ -9,12 +9,12 @@ export const Route = createFileRoute("/who-we-are")({
       {
         name: "description",
         content:
-          "Business leadership, cybersecurity and governance, and human behaviour — the three disciplines behind every Be Human AI engagement.",
+          "Business leadership, cybersecurity and governance, and human behaviour — the three disciplines behind every Be Human Intelligence engagement.",
       },
       { property: "og:title", content: "Who We Are — The Be Human Company" },
       {
         property: "og:description",
-        content: "No single discipline can lead AI transformation alone.",
+        content: "No single discipline can lead this transformation alone.",
       },
     ],
   }),
