@@ -311,9 +311,12 @@ function Founder() {
               Over the course of my career, I&rsquo;ve directly managed more than 150 employees, led
               a direct sales organization of well over 5,000 independent business owners and
               distributors, and trained leadership teams across North America. Every experience
-              reinforced one belief that has shaped how I&rsquo;ve led ever since: the only way I
-              truly win is if my people win first.
+              reinforced one belief that has shaped how I&rsquo;ve led ever since:
             </p>
+            <p className={`type-body mt-6 font-bold ${heading("cream")}`}>
+              The only way I truly win is if my people win first.
+            </p>
+
             <p className={`type-body mt-6 ${body("cream")}`}>
               Long before &ldquo;people-first leadership&rdquo; became a popular phrase, I was
               intentionally building cultures where people felt valued, challenged, healthy, and
