@@ -114,17 +114,10 @@ const CASES: Case[] = [
     source: "docs/source/meet-the-founder.txt",
     route: "src/routes/about-the-founder.tsx",
     // Nothing rewritten. Her document is the page, in Shane's own voice.
+    // 2026-08-22: the full approved bio was restored, so the MEDIA · LEADERSHIP ·
+    // TRAINING removal exemption is gone — every source sentence is on the page.
     accepted: [],
-    removed: [
-      {
-        from: "around the same time another shift was beginning to reshape business",
-        to: "those lessons continue to shape how i build organizations today",
-        because:
-          "The 2026-08-22 restructure cuts the page to four chapters (hero, early years, " +
-          "building at scale, human performance + compassion). The MEDIA · LEADERSHIP · " +
-          "TRAINING chapter came off the page whole, at Maya's request.",
-      },
-    ],
+
   },
 
   {
