@@ -416,7 +416,7 @@ function Founder() {
                 When I look back today, I don&rsquo;t see a r&eacute;sum&eacute;. I see preparation.
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <p className={`type-body leading-relaxed ${body("cream")}`}>
                   Every business taught me how to build.
                 </p>
