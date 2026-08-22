@@ -32,7 +32,8 @@ import founderBikeBehumn from "@/assets/founder-bike-behumn.webp";
  * callouts. Whole-sentence beliefs are bold paragraphs in the same register.
  *
  * The "Businesses don't grow because of products…" line is included in the
- * Human Performance section as a quiet, regular-weight reflective paragraph.
+ * Human Performance section as a bold sentence within the same paragraph as its
+ * lead-in sentence.
  */
 export const Route = createFileRoute("/about-the-founder")({
   head: () => ({
@@ -101,7 +102,7 @@ const CHAPTER_PAD = "mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-24";
 
 /** One chapter: owns its background, its divider and its text tone.
  *  Strong emphasis inside body copy is rendered in a soft warm white on ink
- *  and a deep charcoal on cream so it stands apart from muted paragraph text
+ *  and a near-black charcoal on cream so it stands apart from muted paragraph text
  *  without the harshness of pure black or pure white. */
 function Chapter({
   tone,
@@ -117,7 +118,7 @@ function Chapter({
       className={
         tone === "ink"
           ? `section-ink${first ? "" : " border-t border-hairline"} [&_strong]:text-[#F2F0EA]`
-          : `section-cream${first ? "" : " border-t border-hairline-dark"} [&_strong]:text-[#1A1A1A]`
+          : `section-cream${first ? "" : " border-t border-hairline-dark"} [&_strong]:text-[#111111]`
       }
     >
       <div className={CHAPTER_PAD}>{children}</div>
@@ -316,10 +317,10 @@ function Founder() {
               what helps people become the best version of themselves.
             </p>
             <p className={`type-body mt-6 ${body("cream")}`}>
-              One lesson stayed with me throughout every company I built.
-            </p>
-            <p className={`type-body mt-6 ${body("cream")}`}>
-              Businesses don&rsquo;t grow because of products. They grow because of people.
+              One lesson stayed with me throughout every company I built.{" "}
+              <strong className="font-bold">
+                Businesses don&rsquo;t grow because of products. They grow because of people.
+              </strong>
             </p>
             <p className={`type-body mt-6 ${body("cream")}`}>
               Over the course of my career, I&rsquo;ve directly managed more than{" "}
@@ -401,27 +402,39 @@ function Founder() {
         </div>
       </Chapter>
 
-      {/* ══════ 06 — WHAT I'VE LEARNED (cream) ══════ */}
+      {/* ══════ 06 — WHAT I’VE LEARNED (cream) ══════ */}
       <Chapter tone="cream">
-        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
-          <div className="max-w-[820px]">
+        <div className="grid items-start gap-12 pb-24 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:pb-36">
+          <div className="max-w-[56ch]">
             <SectionLabel tone="cream">What I&rsquo;ve learned</SectionLabel>
             <h2 className={`type-h2-condensed mt-6 max-w-[20ch] ${heading("cream")}`}>
               What matters now
             </h2>
 
-            <div className="mt-12 space-y-8">
+            <div className="mt-16 space-y-14">
               <p className={`type-body ${body("cream")}`}>
                 When I look back today, I don&rsquo;t see a r&eacute;sum&eacute;. I see preparation.
               </p>
-              <p className={`type-body ${body("cream")}`}>
-                Every business taught me how to build. Every leader taught me something new. Every team
-                taught me how culture shapes performance. Every success and every setback deepened my
-                understanding of people.
-              </p>
+
+              <div className="space-y-4">
+                <p className={`type-body leading-relaxed ${body("cream")}`}>
+                  Every business taught me how to build.
+                </p>
+                <p className={`type-body leading-relaxed ${body("cream")}`}>
+                  Every leader taught me something new.
+                </p>
+                <p className={`type-body leading-relaxed ${body("cream")}`}>
+                  Every team taught me how culture shapes performance.
+                </p>
+                <p className={`type-body leading-relaxed ${body("cream")}`}>
+                  Every success and every setback deepened my understanding of people.
+                </p>
+              </div>
+
               <p className={`type-body ${body("cream")}`}>
                 Together, those experiences led me to one belief:
               </p>
+
               <p className="type-body">
                 <strong className="font-bold">
                   The greatest opportunity of our generation isn&rsquo;t simply building more intelligent
@@ -429,6 +442,7 @@ function Founder() {
                   humanity alongside it.
                 </strong>
               </p>
+
               <p className={`type-body ${body("cream")}`}>
                 That&rsquo;s the work I&rsquo;ve devoted my life to.
               </p>
