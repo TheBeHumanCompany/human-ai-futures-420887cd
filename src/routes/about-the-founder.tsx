@@ -309,14 +309,17 @@ function Founder() {
               &mdash; entrepreneurs, executives, professional athletes, parents, and public figures.
               Participants included <B>Bonnie-Jill Laflin</B>, the first female scout in NBA history
               and an accomplished sports broadcaster, who later joined <B>Actions of Compassion</B>{" "}
-              and appeared on <B>The Everyday Compassion Show</B>.{" "}
-              <B>
-                Looking back, I wasn&rsquo;t simply teaching performance. I was trying to understand
-                what helps people become the best version of themselves.
-              </B>
+              and appeared on <B>The Everyday Compassion Show</B>.
+            </p>
+            <p className={`type-body mt-6 ${body("cream")}`}>
+              Looking back, I wasn&rsquo;t simply teaching performance. I was trying to understand
+              what helps people become the best version of themselves.
             </p>
             <p className={`type-body mt-6 ${body("cream")}`}>
               One lesson stayed with me throughout every company I built.
+            </p>
+            <p className={`type-body mt-6 ${body("cream")}`}>
+              Businesses don&rsquo;t grow because of products. They grow because of people.
             </p>
             <p className={`type-body mt-6 ${body("cream")}`}>
               Over the course of my career, I&rsquo;ve directly managed more than{" "}
