@@ -316,10 +316,10 @@ function Founder() {
               what helps people become the best version of themselves.
             </p>
             <p className={`type-body mt-6 ${body("cream")}`}>
-              One lesson stayed with me throughout every company I built.
-            </p>
-            <p className={`type-body mt-6 ${body("cream")}`}>
-              Businesses don&rsquo;t grow because of products. They grow because of people.
+              One lesson stayed with me throughout every company I built.{" "}
+              <strong className="font-bold">
+                Businesses don&rsquo;t grow because of products. They grow because of people.
+              </strong>
             </p>
             <p className={`type-body mt-6 ${body("cream")}`}>
               Over the course of my career, I&rsquo;ve directly managed more than{" "}
