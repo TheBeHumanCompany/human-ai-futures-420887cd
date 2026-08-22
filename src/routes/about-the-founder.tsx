@@ -98,7 +98,9 @@ const CHAPTER_GRID =
   "grid items-start gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16";
 const CHAPTER_PAD = "mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-24";
 
-/** One chapter: owns its background, its divider and its text tone. */
+/** One chapter: owns its background, its divider and its text tone.
+ *  Strong emphasis inside body copy is forced to pure white on ink and
+ *  pure black on cream so it stands apart from muted paragraph text. */
 function Chapter({
   tone,
   first = false,
@@ -112,8 +114,8 @@ function Chapter({
     <section
       className={
         tone === "ink"
-          ? `section-ink${first ? "" : " border-t border-hairline"}`
-          : `section-cream${first ? "" : " border-t border-hairline-dark"}`
+          ? `section-ink${first ? "" : " border-t border-hairline"} [&_strong]:text-white`
+          : `section-cream${first ? "" : " border-t border-hairline-dark"} [&_strong]:text-black`
       }
     >
       <div className={CHAPTER_PAD}>{children}</div>
@@ -321,8 +323,10 @@ function Founder() {
               teams across North America. Every experience reinforced one belief that has shaped how
               I&rsquo;ve led ever since:
             </p>
-            <p className={`type-body mt-6 font-bold ${heading("cream")}`}>
-              The only way I truly win is if my people win first.
+            <p className="type-body mt-6">
+              <strong className="font-bold">
+                The only way I truly win is if my people win first.
+              </strong>
             </p>
 
             <p className={`type-body mt-6 ${body("cream")}`}>
