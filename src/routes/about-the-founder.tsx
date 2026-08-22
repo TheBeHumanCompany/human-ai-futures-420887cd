@@ -398,10 +398,11 @@ function Founder() {
         <div className="mt-12 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <ul className="grid gap-5">
             {[
-              "Every business taught me something about building.",
-              "Every leader taught me something about people.",
-              "Every team showed me how much culture matters.",
-              "Every success, and every mistake, gave me more to learn.",
+              "When I look back today, I don't see a résumé. I see preparation.",
+              "Every business taught me how to build.",
+              "Every leader taught me something new.",
+              "Every team taught me how culture shapes performance.",
+              "Every success and every setback deepened my understanding of people.",
             ].map((lesson) => (
               <li key={lesson} className="type-body border-t border-hairline-dark pt-5 text-ink/70">
                 {lesson}
@@ -410,21 +411,23 @@ function Founder() {
           </ul>
 
           <div>
-            <h3 className="type-h4-prose text-ink">I don&rsquo;t have all the answers.</h3>
-            <p className="type-body mt-6 text-ink/70">
-              Technology is moving quickly, and I think the choices we make around it will shape how
-              we work, lead, connect, and live.
+            <p className="type-body text-ink/70">
+              Together, those experiences led me to one belief:
+            </p>
+            <p className="type-body mt-6 font-bold text-ink">
+              The greatest opportunity of our generation isn&rsquo;t simply building more
+              intelligent technology. It&rsquo;s helping people become more intentional about
+              practicing their humanity alongside it.
             </p>
             <p className="type-body mt-6 text-ink/70">
-              The Be Human Company is my attempt to bring the lessons I&rsquo;ve learned together
-              and contribute something useful to that transition.
+              That&rsquo;s the work I&rsquo;ve devoted my life to.
             </p>
             <p className="type-body mt-6 text-ink/70">
-              I&rsquo;m still learning. I&rsquo;m still building. And I&rsquo;m grateful to be doing
-              it alongside people who care about where we go from here.
+              And it&rsquo;s the work I&rsquo;m committed to building through The Be Human Company.
             </p>
           </div>
         </div>
+
       </Chapter>
     </>
   );
