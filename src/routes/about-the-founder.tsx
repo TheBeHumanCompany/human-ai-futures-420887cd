@@ -357,6 +357,10 @@ function Founder() {
             </h2>
 
             <p className={`type-body mt-8 ${body("ink")}`}>
+              That philosophy naturally extended beyond business.
+            </p>
+            <p className={`type-body mt-6 ${body("ink")}`}>
+
               Long before founding The Be Human Company, I founded Actions of Compassion, a movement
               dedicated to encouraging acts of kindness, supporting food drives, helping people
               through addiction, and bringing communities together. The movement attracted
