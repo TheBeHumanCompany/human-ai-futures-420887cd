@@ -115,10 +115,10 @@ function Founder() {
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <SectionLabel>Meet the Founder</SectionLabel>
-              <h1 className="type-h1-prose mt-6 max-w-[14ch] text-ink">A life spent building</h1>
+              <h1 className="type-h2-prose mt-6 max-w-[16ch] text-ink">A life spent building</h1>
 
               {/* Two equal columns, both starting on the same baseline. */}
-              <div className="mt-10 grid items-start gap-8 sm:grid-cols-2 lg:gap-12">
+              <div className="mt-10 grid items-start gap-8 sm:grid-cols-2 sm:[&>p]:mt-0 lg:gap-12">
                 <p className="type-body text-ink/70">
                   Looking back, I realize every business I&rsquo;ve built, every leader I&rsquo;ve
                   worked with, every team I&rsquo;ve trained, and every movement I&rsquo;ve been
