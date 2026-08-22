@@ -100,8 +100,9 @@ const CHAPTER_GRID =
 const CHAPTER_PAD = "mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-24";
 
 /** One chapter: owns its background, its divider and its text tone.
- *  Strong emphasis inside body copy is forced to pure white on ink and
- *  pure black on cream so it stands apart from muted paragraph text. */
+ *  Strong emphasis inside body copy is rendered in a soft warm white on ink
+ *  and a deep charcoal on cream so it stands apart from muted paragraph text
+ *  without the harshness of pure black or pure white. */
 function Chapter({
   tone,
   first = false,
@@ -115,8 +116,8 @@ function Chapter({
     <section
       className={
         tone === "ink"
-          ? `section-ink${first ? "" : " border-t border-hairline"} [&_strong]:text-white`
-          : `section-cream${first ? "" : " border-t border-hairline-dark"} [&_strong]:text-black`
+          ? `section-ink${first ? "" : " border-t border-hairline"} [&_strong]:text-[#F2F0EA]`
+          : `section-cream${first ? "" : " border-t border-hairline-dark"} [&_strong]:text-[#1A1A1A]`
       }
     >
       <div className={CHAPTER_PAD}>{children}</div>
