@@ -109,31 +109,29 @@ function Founder() {
   return (
     <>
       {/* ══════ 01 — MEET THE FOUNDER (cream) ══════
-          Text left (60%), empty portrait field right (40%). */}
+          One text column left, the truck photograph right. */}
       <section className="section-cream">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-24">
-          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-16">
-            <div>
+        <div className={CHAPTER_PAD}>
+          <div className={CHAPTER_GRID}>
+            <div className="max-w-[56ch]">
               <SectionLabel>Meet the Founder</SectionLabel>
-              <h1 className="type-h3-prose mt-6 max-w-[18ch] text-ink">A life spent building</h1>
+              <h1 className="type-h2-condensed mt-6 max-w-[20ch] text-ink">
+                A life spent building
+              </h1>
 
-              {/* Two equal columns, both starting on the same baseline. */}
-              <div className="mt-10 grid items-start gap-8 sm:grid-cols-2 sm:[&>p]:mt-0 lg:gap-12">
-                <p className="type-body text-ink/70">
-                  Looking back, I realize every business I&rsquo;ve built, every leader I&rsquo;ve
-                  worked with, every team I&rsquo;ve trained, and every movement I&rsquo;ve been
-                  part of was preparing me for this. At the time, they felt like separate chapters.
-                </p>
-                <p className="type-body text-ink/70">
-                  Today, I see one story unfolding &mdash; a journey that taught me about
-                  leadership, human performance, technology, compassion, and how lasting change
-                  happens. Together, those experiences prepared me to build what I believe is the
-                  most important work of my life: The Be Human Company.
-                </p>
-              </div>
+              <p className="type-body mt-8 text-ink/70">
+                Looking back, I realize every business I&rsquo;ve built, every leader I&rsquo;ve
+                worked with, every team I&rsquo;ve trained, and every movement I&rsquo;ve been part
+                of was preparing me for this. At the time, they felt like separate chapters.
+              </p>
+              <p className="type-body mt-6 text-ink/70">
+                Today, I see one story unfolding &mdash; a journey that taught me about leadership,
+                human performance, technology, compassion, and how lasting change happens. Together,
+                those experiences prepared me to build what I believe is the most important work of
+                my life: The Be Human Company.
+              </p>
             </div>
 
-            {/* Temporary stand-in until Shane's portrait arrives. */}
             <Shot
               src={curvesTruck}
               alt="Shane James with two colleagues in front of a Curves for Women transport trailer"
@@ -142,13 +140,15 @@ function Founder() {
         </div>
       </section>
 
-      {/* ══════ 02 — EARLY YEARS (cream) ══════ */}
+      {/* ══════ 02 — EARLY YEARS (cream) ══════
+          The truck lives in the hero now, so this chapter's gallery is the two
+          press scans, stacked full column width rather than as thumbnails. */}
       <section className="section-cream border-t border-hairline-dark">
         <div className={CHAPTER_PAD}>
           <div className={CHAPTER_GRID}>
-            <div>
+            <div className="max-w-[56ch]">
               <SectionLabel>Early years</SectionLabel>
-              <h2 className="type-h3-prose mt-6 max-w-[20ch] text-ink">
+              <h2 className="type-h2-condensed mt-6 max-w-[22ch] text-ink">
                 The entrepreneurial journey started early
               </h2>
 
@@ -176,10 +176,7 @@ function Founder() {
               </p>
             </div>
 
-            {/* Gallery: the two press scans, side by side at full column width.
-                The Curves trailer moved to the hero on 2026-08-22, so it is no
-                longer repeated here. */}
-            <div className="grid items-start gap-8 sm:grid-cols-2">
+            <div className="grid items-start gap-10">
               <Archival
                 src={pressCn}
                 alt="Chinese-language newspaper feature on Shane James losing 65 pounds in six months"
@@ -197,9 +194,9 @@ function Founder() {
       <section className="section-cream border-t border-hairline-dark">
         <div className={CHAPTER_PAD}>
           <div className={CHAPTER_GRID}>
-            <div>
+            <div className="max-w-[56ch]">
               <SectionLabel>Building at scale</SectionLabel>
-              <h2 className="type-h3-prose mt-6 max-w-[22ch] text-ink">
+              <h2 className="type-h2-condensed mt-6 max-w-[24ch] text-ink">
                 From fitness to leadership to building organizations
               </h2>
 
@@ -222,8 +219,8 @@ function Founder() {
               </p>
             </div>
 
-            {/* Both sources are 1:1; shown as one square pair. */}
-            <div className="grid items-start gap-8 sm:grid-cols-2">
+            {/* One large frame, one supporting frame beneath it at a calmer width. */}
+            <div className="grid items-start gap-10">
               <Shot
                 src={harrington}
                 alt="Shane James with Kevin Harrington on a film set, teleprompter and camera rig behind them"
@@ -231,21 +228,20 @@ function Founder() {
               <Shot
                 src={satnam}
                 alt="Shane James and Satnam Singh, the first Indian-born NBA draftee, flexing together off camera"
+                className="sm:w-[72%]"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════ 04 — HUMAN PERFORMANCE + COMPASSION (cream) ══════
-          The former HUMAN PERFORMANCE and ACTIONS OF COMPASSION chapters, merged
-          on 2026-08-22 with their copy untouched. */}
+      {/* ══════ 04 — HUMAN PERFORMANCE (cream) ══════ */}
       <section className="section-cream border-t border-hairline-dark">
         <div className={CHAPTER_PAD}>
           <div className={CHAPTER_GRID}>
-            <div>
-              <SectionLabel>Human performance + compassion</SectionLabel>
-              <h2 className="type-h3-prose mt-6 max-w-[22ch] text-ink">
+            <div className="max-w-[56ch]">
+              <SectionLabel>Human performance</SectionLabel>
+              <h2 className="type-h2-condensed mt-6 max-w-[24ch] text-ink">
                 Understanding what helps people become their best
               </h2>
 
@@ -287,7 +283,29 @@ function Founder() {
                 are built by people who are healthy enough to do their best work and supported
                 enough to become their best selves.
               </p>
-              <p className="type-body mt-6 text-ink/70">
+            </div>
+
+            <Shot
+              src={diner}
+              alt="Shane James in conversation with a woman across a red diner booth"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ 05 — COMMUNITY + COMPASSION (cream) ══════
+          The two Actions of Compassion paragraphs, lifted out of the human
+          performance chapter on 2026-08-22 and given their own room. */}
+      <section className="section-cream border-t border-hairline-dark">
+        <div className={CHAPTER_PAD}>
+          <div className={CHAPTER_GRID}>
+            <div className="max-w-[56ch]">
+              <SectionLabel>Community + compassion</SectionLabel>
+              <h2 className="type-h2-condensed mt-6 max-w-[24ch] text-ink">
+                Building something that reaches beyond business
+              </h2>
+
+              <p className="type-body mt-8 text-ink/70">
                 Long before founding The Be Human Company, I founded Actions of Compassion, a
                 movement dedicated to encouraging acts of kindness, supporting food drives, helping
                 people through addiction, and bringing communities together. The movement attracted
@@ -305,49 +323,42 @@ function Founder() {
               </p>
             </div>
 
-            {/* Curated three-picture gallery from the two former chapters. */}
-            <div className="grid items-start gap-8">
+            <div className="grid items-start gap-10">
               <Shot
-                src={diner}
-                alt="Shane James in conversation with a woman across a red diner booth"
+                src={aocFoodDrive}
+                alt="Actions of Compassion volunteers with boxes of donated food at a food drive"
               />
-              <div className="grid items-start gap-8 sm:grid-cols-2">
-                <Shot
-                  src={mentoring}
-                  alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
-                />
-                <Shot
-                  src={aocFoodDrive}
-                  alt="Actions of Compassion volunteers with boxes of donated food at a food drive"
-                />
-              </div>
+              <Shot
+                src={mentoring}
+                alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
+                className="sm:w-[72%]"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════ 05 — THE PAUSE (cream) ══════
-          A calm, centred reflective beat. No card, no banner, no button. */}
+      {/* ══════ 06 — THE PAUSE (cream) ══════
+          A calm, narrow, centred reflective beat. No card, no banner. */}
       <section className="section-cream border-t border-hairline-dark">
-        <div className="mx-auto max-w-[1100px] px-5 py-[100px] text-center sm:px-8 lg:py-[130px]">
+        <div className="mx-auto max-w-[760px] px-5 py-[110px] text-center sm:px-8">
           <blockquote>
-            <p className="font-display text-[clamp(2rem,4.2vw,3.5rem)] font-light leading-[1.07] text-ink">
+            <p className="type-h2-condensed text-ink">
               Businesses don&rsquo;t grow because of products. They grow because of people.
             </p>
-            <p className="mt-8 text-[1.125rem] leading-relaxed text-ink/70">
+            <p className="mt-7 text-[1.125rem] leading-relaxed text-ink/70">
               The only way I truly win is if my people win first.
             </p>
-            <footer className="mt-5 text-sm text-ink/45">&mdash; Shane</footer>
+            <footer className="mt-4 text-sm text-ink/45">&mdash; Shane</footer>
           </blockquote>
         </div>
       </section>
 
-      {/* ══════ 06 — WHAT I'VE LEARNED (cream) ══════
-          The close: lessons left, reflection right. */}
+      {/* ══════ 07 — WHAT I'VE LEARNED (cream) ══════ */}
       <section className="section-cream border-t border-hairline-dark">
         <div className={CHAPTER_PAD}>
           <SectionLabel>What I&rsquo;ve learned</SectionLabel>
-          <h2 className="type-h3-prose mt-6 max-w-[26ch] text-ink">
+          <h2 className="type-h2-condensed mt-6 max-w-[28ch] text-ink">
             When I look back, I don&rsquo;t see a resume. I see a lot of lessons.
           </h2>
 
