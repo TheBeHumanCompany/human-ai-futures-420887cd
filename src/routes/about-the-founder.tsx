@@ -411,7 +411,7 @@ function Founder() {
               What matters now
             </h2>
 
-            <div className="mt-16 space-y-14">
+            <div className="mt-8 space-y-8">
               <p className={`type-body ${body("cream")}`}>
                 When I look back today, I don&rsquo;t see a r&eacute;sum&eacute;. I see preparation.
               </p>
