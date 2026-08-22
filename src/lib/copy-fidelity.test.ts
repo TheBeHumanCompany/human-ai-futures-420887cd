@@ -124,13 +124,6 @@ const CASES: Case[] = [
           "building at scale, human performance + compassion). The MEDIA · LEADERSHIP · " +
           "TRAINING chapter came off the page whole, at Maya's request.",
       },
-      {
-        from: "when i look back i don't see a resume",
-        to: "and i'm grateful to be doing it alongside people who care about where we go from here",
-        because:
-          "Same pass: everything below the ink 'Businesses don't grow because of products' " +
-          "pause was removed, including that pause and the closing 'What I've learned' chapter.",
-      },
     ],
   },
 

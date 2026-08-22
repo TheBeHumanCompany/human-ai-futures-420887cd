@@ -115,10 +115,10 @@ function Founder() {
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <SectionLabel>Meet the Founder</SectionLabel>
-              <h1 className="type-h1-prose mt-6 max-w-[14ch] text-ink">A life spent building</h1>
+              <h1 className="type-h2-prose mt-6 max-w-[16ch] text-ink">A life spent building</h1>
 
               {/* Two equal columns, both starting on the same baseline. */}
-              <div className="mt-10 grid items-start gap-8 sm:grid-cols-2 lg:gap-12">
+              <div className="mt-10 grid items-start gap-8 sm:grid-cols-2 sm:[&>p]:mt-0 lg:gap-12">
                 <p className="type-body text-ink/70">
                   Looking back, I realize every business I&rsquo;ve built, every leader I&rsquo;ve
                   worked with, every team I&rsquo;ve trained, and every movement I&rsquo;ve been
@@ -133,10 +133,10 @@ function Founder() {
               </div>
             </div>
 
-            {/* Shane's portrait goes here. Left empty on purpose — no stock stand-in. */}
-            <div
-              className="aspect-[4/5] w-full rounded-sm border border-hairline-dark bg-ink/[0.04]"
-              aria-hidden
+            {/* Temporary stand-in until Shane's portrait arrives. */}
+            <Shot
+              src={curvesTruck}
+              alt="Shane James with two colleagues in front of a Curves for Women transport trailer"
             />
           </div>
         </div>
@@ -325,6 +325,64 @@ function Founder() {
                   alt="Actions of Compassion volunteers with boxes of donated food at a food drive"
                 />
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ 05 — THE PAUSE (cream) ══════
+          A calm, centred reflective beat. No card, no banner, no button. */}
+      <section className="section-cream border-t border-hairline-dark">
+        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
+          <blockquote className="mx-auto max-w-[24ch] text-center">
+            <p className="type-h2-prose text-ink">
+              Businesses don&rsquo;t grow because of products. They grow because of people.
+            </p>
+            <p className="type-body mt-8 text-ink/70">
+              The only way I truly win is if my people win first.
+            </p>
+            <footer className="type-label-caps mt-5 text-ink/50">Shane</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      {/* ══════ 06 — WHAT I'VE LEARNED (cream) ══════
+          The close: lessons left, reflection right. */}
+      <section className="section-cream border-t border-hairline-dark">
+        <div className={CHAPTER_PAD}>
+          <SectionLabel>What I&rsquo;ve learned</SectionLabel>
+          <h2 className="type-h3-prose mt-6 max-w-[26ch] text-ink">
+            When I look back, I don&rsquo;t see a resume. I see a lot of lessons.
+          </h2>
+
+          <div className="mt-12 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+            <ul className="grid gap-5">
+              {[
+                "Every business taught me something about building.",
+                "Every leader taught me something about people.",
+                "Every team showed me how much culture matters.",
+                "Every success, and every mistake, gave me more to learn.",
+              ].map((lesson) => (
+                <li key={lesson} className="type-body border-t border-hairline-dark pt-5 text-ink/70">
+                  {lesson}
+                </li>
+              ))}
+            </ul>
+
+            <div>
+              <h3 className="type-h4-prose text-ink">I don&rsquo;t have all the answers.</h3>
+              <p className="type-body mt-6 text-ink/70">
+                Technology is moving quickly, and I think the choices we make around it will shape
+                how we work, lead, connect, and live.
+              </p>
+              <p className="type-body mt-6 text-ink/70">
+                The Be Human Company is my attempt to bring the lessons I&rsquo;ve learned together
+                and contribute something useful to that transition.
+              </p>
+              <p className="type-body mt-6 text-ink/70">
+                I&rsquo;m still learning. I&rsquo;m still building. And I&rsquo;m grateful to be
+                doing it alongside people who care about where we go from here.
+              </p>
             </div>
           </div>
         </div>
