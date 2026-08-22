@@ -115,7 +115,7 @@ function Founder() {
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <SectionLabel>Meet the Founder</SectionLabel>
-              <h1 className="type-h2-prose mt-6 max-w-[16ch] text-ink">A life spent building</h1>
+              <h1 className="type-h3-prose mt-6 max-w-[18ch] text-ink">A life spent building</h1>
 
               {/* Two equal columns, both starting on the same baseline. */}
               <div className="mt-10 grid items-start gap-8 sm:grid-cols-2 sm:[&>p]:mt-0 lg:gap-12">
@@ -176,22 +176,18 @@ function Founder() {
               </p>
             </div>
 
-            {/* Gallery: the trailer, then the two press scans as one row. */}
-            <div className="grid max-w-[560px] items-start gap-6">
-              <Shot
-                src={curvesTruck}
-                alt="Shane James with two colleagues in front of a Curves for Women transport trailer, America's Largest Fitness Franchise"
+            {/* Gallery: the two press scans, side by side at full column width.
+                The Curves trailer moved to the hero on 2026-08-22, so it is no
+                longer repeated here. */}
+            <div className="grid items-start gap-8 sm:grid-cols-2">
+              <Archival
+                src={pressCn}
+                alt="Chinese-language newspaper feature on Shane James losing 65 pounds in six months"
               />
-              <div className="grid items-start gap-6 sm:grid-cols-2">
-                <Archival
-                  src={pressCn}
-                  alt="Chinese-language newspaper feature on Shane James losing 65 pounds in six months"
-                />
-                <Archival
-                  src={pressCanIndia}
-                  alt="CanIndia Plus newspaper interview headlined Think, Act, Love, Lose Weight!"
-                />
-              </div>
+              <Archival
+                src={pressCanIndia}
+                alt="CanIndia Plus newspaper interview headlined Think, Act, Love, Lose Weight!"
+              />
             </div>
           </div>
         </div>
@@ -227,7 +223,7 @@ function Founder() {
             </div>
 
             {/* Both sources are 1:1; shown as one square pair. */}
-            <div className="grid max-w-[560px] items-start gap-6 sm:grid-cols-2">
+            <div className="grid items-start gap-8 sm:grid-cols-2">
               <Shot
                 src={harrington}
                 alt="Shane James with Kevin Harrington on a film set, teleprompter and camera rig behind them"
@@ -310,12 +306,12 @@ function Founder() {
             </div>
 
             {/* Curated three-picture gallery from the two former chapters. */}
-            <div className="grid max-w-[560px] items-start gap-6">
+            <div className="grid items-start gap-8">
               <Shot
                 src={diner}
                 alt="Shane James in conversation with a woman across a red diner booth"
               />
-              <div className="grid items-start gap-6 sm:grid-cols-2">
+              <div className="grid items-start gap-8 sm:grid-cols-2">
                 <Shot
                   src={mentoring}
                   alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
@@ -333,15 +329,15 @@ function Founder() {
       {/* ══════ 05 — THE PAUSE (cream) ══════
           A calm, centred reflective beat. No card, no banner, no button. */}
       <section className="section-cream border-t border-hairline-dark">
-        <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
-          <blockquote className="mx-auto max-w-[24ch] text-center">
-            <p className="type-h2-prose text-ink">
+        <div className="mx-auto max-w-[1100px] px-5 py-[100px] text-center sm:px-8 lg:py-[130px]">
+          <blockquote>
+            <p className="font-display text-[clamp(2rem,4.2vw,3.5rem)] font-light leading-[1.07] text-ink">
               Businesses don&rsquo;t grow because of products. They grow because of people.
             </p>
-            <p className="type-body mt-8 text-ink/70">
+            <p className="mt-8 text-[1.125rem] leading-relaxed text-ink/70">
               The only way I truly win is if my people win first.
             </p>
-            <footer className="type-label-caps mt-5 text-ink/50">Shane</footer>
+            <footer className="mt-5 text-sm text-ink/45">&mdash; Shane</footer>
           </blockquote>
         </div>
       </section>
