@@ -11,6 +11,7 @@ import satnam from "@/assets/founder-satnam.webp";
 
 import pressCanIndia2011 from "@/assets/founder-press-canindia-2011.webp";
 import kitvInterview from "@/assets/founder-kitv-interview.webp";
+import founderBikeBehumn from "@/assets/founder-bike-behumn.webp";
 
 /**
  * `/about-the-founder` — "Meet the Founder", built from Maya's 2026-08-18 brief.
@@ -30,8 +31,8 @@ import kitvInterview from "@/assets/founder-kitv-interview.webp";
  * body size and body line-height. No lime backgrounds, no <mark>, no pull-out
  * callouts. Whole-sentence beliefs are bold paragraphs in the same register.
  *
- * The "Businesses don't grow because of products…" line was removed entirely
- * on request; it lives nowhere else on the page.
+ * The "Businesses don't grow because of products…" line is included in the
+ * Human Performance section as a quiet, regular-weight reflective paragraph.
  */
 export const Route = createFileRoute("/about-the-founder")({
   head: () => ({
@@ -99,8 +100,9 @@ const CHAPTER_GRID =
 const CHAPTER_PAD = "mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-24";
 
 /** One chapter: owns its background, its divider and its text tone.
- *  Strong emphasis inside body copy is forced to pure white on ink and
- *  pure black on cream so it stands apart from muted paragraph text. */
+ *  Strong emphasis inside body copy is rendered in a soft warm white on ink
+ *  and a deep charcoal on cream so it stands apart from muted paragraph text
+ *  without the harshness of pure black or pure white. */
 function Chapter({
   tone,
   first = false,
@@ -114,8 +116,8 @@ function Chapter({
     <section
       className={
         tone === "ink"
-          ? `section-ink${first ? "" : " border-t border-hairline"} [&_strong]:text-white`
-          : `section-cream${first ? "" : " border-t border-hairline-dark"} [&_strong]:text-black`
+          ? `section-ink${first ? "" : " border-t border-hairline"} [&_strong]:text-[#F2F0EA]`
+          : `section-cream${first ? "" : " border-t border-hairline-dark"} [&_strong]:text-[#1A1A1A]`
       }
     >
       <div className={CHAPTER_PAD}>{children}</div>
@@ -307,14 +309,17 @@ function Founder() {
               &mdash; entrepreneurs, executives, professional athletes, parents, and public figures.
               Participants included <B>Bonnie-Jill Laflin</B>, the first female scout in NBA history
               and an accomplished sports broadcaster, who later joined <B>Actions of Compassion</B>{" "}
-              and appeared on <B>The Everyday Compassion Show</B>.{" "}
-              <B>
-                Looking back, I wasn&rsquo;t simply teaching performance. I was trying to understand
-                what helps people become the best version of themselves.
-              </B>
+              and appeared on <B>The Everyday Compassion Show</B>.
+            </p>
+            <p className={`type-body mt-6 ${body("cream")}`}>
+              Looking back, I wasn&rsquo;t simply teaching performance. I was trying to understand
+              what helps people become the best version of themselves.
             </p>
             <p className={`type-body mt-6 ${body("cream")}`}>
               One lesson stayed with me throughout every company I built.
+            </p>
+            <p className={`type-body mt-6 ${body("cream")}`}>
+              Businesses don&rsquo;t grow because of products. They grow because of people.
             </p>
             <p className={`type-body mt-6 ${body("cream")}`}>
               Over the course of my career, I&rsquo;ve directly managed more than{" "}
@@ -398,38 +403,47 @@ function Founder() {
 
       {/* ══════ 06 — WHAT I'VE LEARNED (cream) ══════ */}
       <Chapter tone="cream">
-        <div className="max-w-[820px]">
-          <SectionLabel tone="cream">What I&rsquo;ve learned</SectionLabel>
-          <h2 className={`type-h2-condensed mt-6 max-w-[20ch] ${heading("cream")}`}>
-            What matters now
-          </h2>
+        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+          <div className="max-w-[820px]">
+            <SectionLabel tone="cream">What I&rsquo;ve learned</SectionLabel>
+            <h2 className={`type-h2-condensed mt-6 max-w-[20ch] ${heading("cream")}`}>
+              What matters now
+            </h2>
 
-          <div className="mt-12 space-y-8">
-            <p className={`type-body ${body("cream")}`}>
-              When I look back today, I don&rsquo;t see a r&eacute;sum&eacute;. I see preparation.
-            </p>
-            <p className={`type-body ${body("cream")}`}>
-              Every business taught me how to build. Every leader taught me something new. Every team
-              taught me how culture shapes performance. Every success and every setback deepened my
-              understanding of people.
-            </p>
-            <p className={`type-body ${body("cream")}`}>
-              Together, those experiences led me to one belief:
-            </p>
-            <p className="type-body">
-              <strong className="font-bold">
-                The greatest opportunity of our generation isn&rsquo;t simply building more intelligent
-                technology. It&rsquo;s helping people become more intentional about practicing their
-                humanity alongside it.
-              </strong>
-            </p>
-            <p className={`type-body ${body("cream")}`}>
-              That&rsquo;s the work I&rsquo;ve devoted my life to.
-            </p>
-            <p className={`type-body ${body("cream")}`}>
-              And it&rsquo;s the work I&rsquo;m committed to building through{" "}
-              <strong className="font-bold">The Be Human Company</strong>.
-            </p>
+            <div className="mt-12 space-y-8">
+              <p className={`type-body ${body("cream")}`}>
+                When I look back today, I don&rsquo;t see a r&eacute;sum&eacute;. I see preparation.
+              </p>
+              <p className={`type-body ${body("cream")}`}>
+                Every business taught me how to build. Every leader taught me something new. Every team
+                taught me how culture shapes performance. Every success and every setback deepened my
+                understanding of people.
+              </p>
+              <p className={`type-body ${body("cream")}`}>
+                Together, those experiences led me to one belief:
+              </p>
+              <p className="type-body">
+                <strong className="font-bold">
+                  The greatest opportunity of our generation isn&rsquo;t simply building more intelligent
+                  technology. It&rsquo;s helping people become more intentional about practicing their
+                  humanity alongside it.
+                </strong>
+              </p>
+              <p className={`type-body ${body("cream")}`}>
+                That&rsquo;s the work I&rsquo;ve devoted my life to.
+              </p>
+              <p className={`type-body ${body("cream")}`}>
+                And it&rsquo;s the work I&rsquo;m committed to building through{" "}
+                <strong className="font-bold">The Be Human Company</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12 lg:mt-0">
+            <Shot
+              src={founderBikeBehumn}
+              alt="Shane James kneeling beside a motorcycle with a BEHUMN license plate, city lights behind him"
+            />
           </div>
         </div>
       </Chapter>
