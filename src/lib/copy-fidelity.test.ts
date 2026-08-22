@@ -96,6 +96,16 @@ type Case = {
    * the replacement proves it is still the AGREED one.
    */
   accepted: Array<{ startsWith: string; instead: string; because: string }>;
+  /**
+   * Whole passages the page no longer carries at all.
+   *
+   * A deletion has no replacement, so it cannot be described by `accepted`
+   * (whose third check demands the approved substitute be on the page). It is
+   * still held to two directions: every span must name real source sentences,
+   * and each of those sentences must genuinely be absent — so the exemption
+   * dies the moment the copy comes back.
+   */
+  removed?: Array<{ from: string; to: string; because: string }>;
 };
 
 const CASES: Case[] = [
@@ -103,9 +113,27 @@ const CASES: Case[] = [
     label: "/about-the-founder",
     source: "docs/source/meet-the-founder.txt",
     route: "src/routes/about-the-founder.tsx",
-    // Nothing. Her document is the page, in full, in Shane's own voice.
+    // Nothing rewritten. Her document is the page, in Shane's own voice.
     accepted: [],
+    removed: [
+      {
+        from: "around the same time another shift was beginning to reshape business",
+        to: "those lessons continue to shape how i build organizations today",
+        because:
+          "The 2026-08-22 restructure cuts the page to four chapters (hero, early years, " +
+          "building at scale, human performance + compassion). The MEDIA · LEADERSHIP · " +
+          "TRAINING chapter came off the page whole, at Maya's request.",
+      },
+      {
+        from: "when i look back i don't see a resume",
+        to: "and i'm grateful to be doing it alongside people who care about where we go from here",
+        because:
+          "Same pass: everything below the ink 'Businesses don't grow because of products' " +
+          "pause was removed, including that pause and the closing 'What I've learned' chapter.",
+      },
+    ],
   },
+
   {
     label: "/why-we-exist",
     source: "docs/source/why-we-exist.txt",
@@ -166,6 +194,18 @@ const CASES: Case[] = [
   },
 ];
 
+/** The source sentences covered by a named `removed` span, in document order. */
+function removedSentences(c: Case, sentences: string[]): string[] {
+  const out: string[] = [];
+  for (const span of c.removed ?? []) {
+    const start = sentences.findIndex((s) => s.startsWith(normalise(span.from)));
+    const end = sentences.findIndex((s) => s.startsWith(normalise(span.to)));
+    if (start === -1 || end === -1 || end < start) continue;
+    out.push(...sentences.slice(start, end + 1));
+  }
+  return out;
+}
+
 for (const c of CASES) {
   describe(`${c.label} carries its source document`, () => {
     const page = renderedText(c.route);
@@ -179,13 +219,28 @@ for (const c of CASES) {
 
     test("every sentence is on the page, except the ones named as divergent", () => {
       const accepted = c.accepted.map((a) => normalise(a.startsWith));
+      const cut = new Set(removedSentences(c, sentences));
       const missing = sentences
         .filter((s) => !page.includes(s))
-        .filter((s) => !accepted.some((a) => s.startsWith(a)));
+        .filter((s) => !accepted.some((a) => s.startsWith(a)))
+        .filter((s) => !cut.has(s));
       expect(missing, `unaccounted copy drift in ${c.label}:\n  ${missing.join("\n  ")}`).toEqual(
         [],
       );
     });
+
+    test("each removed passage is real, and is genuinely gone", () => {
+      for (const span of c.removed ?? []) {
+        const start = sentences.findIndex((s) => s.startsWith(normalise(span.from)));
+        const end = sentences.findIndex((s) => s.startsWith(normalise(span.to)));
+        expect(start, `no source sentence starts with "${span.from}"`).toBeGreaterThanOrEqual(0);
+        expect(end, `no source sentence starts with "${span.to}"`).toBeGreaterThanOrEqual(start);
+      }
+      for (const s of removedSentences(c, sentences)) {
+        expect(page.includes(s), `back on the page, so drop its removal entry: ${s}`).toBe(false);
+      }
+    });
+
 
     test("each named divergence is still real, and its replacement still stands", () => {
       // Three directions, not two. The source sentence must still be absent;
