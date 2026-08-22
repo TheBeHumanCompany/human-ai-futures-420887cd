@@ -157,7 +157,15 @@ function Statement({
       {label ? <Opener label={label} tone={tone} /> : null}
       {headline}
       {children ? (
-        <div className={headline ? `mt-8 ${cols === 2 ? COLS_2 : "max-w-3xl"}` : cols === 2 ? COLS_2 : "max-w-3xl"}>
+        <div
+          className={
+            headline
+              ? `mt-8 ${cols === 2 ? COLS_2 : "max-w-3xl"}`
+              : cols === 2
+                ? COLS_2
+                : "max-w-3xl"
+          }
+        >
           {children}
         </div>
       ) : null}
@@ -216,9 +224,6 @@ function Manifesto({
     </div>
   );
 }
-
-
-
 
 /** Lime job — quote glyphs on an archive quote. */
 function ArchiveQuote({ entry, tone = "cream" }: { entry: (typeof ARCHIVE)[number]; tone?: Tone }) {
@@ -358,7 +363,6 @@ function NewHumanEra() {
             </p>
           </div>
         </Split>
-
       </Band>
 
       {/* ---------- 4. The bigger question (ink) — Split editorial ---------- */}
@@ -393,8 +397,8 @@ function NewHumanEra() {
                 automatically create connection. We already have more ways to communicate than any
                 generation in history and can still struggle to have the conversations that matter
                 most. We can be surrounded by people and feel alone. We can have unlimited
-                information while becoming increasingly dependent on something outside ourselves
-                to tell us what to think, what to want and where to place our attention.
+                information while becoming increasingly dependent on something outside ourselves to
+                tell us what to think, what to want and where to place our attention.
               </p>
               <p className="type-body-lg mt-6 text-muted-foreground">
                 AI could free us from parts of the old system. It could also magnify its worst
@@ -581,7 +585,6 @@ function NewHumanEra() {
             </>
           }
         />
-
       </Band>
 
       {/* ---------- 10. Human Debt (ink) — Statement ---------- */}
@@ -589,7 +592,9 @@ function NewHumanEra() {
         <Statement
           tone="ink"
           label="Human Debt"
-          headline={<h2 className="type-h2-caps max-w-4xl">There is a cost. We call it Human Debt</h2>}
+          headline={
+            <h2 className="type-h2-caps max-w-4xl">There is a cost. We call it Human Debt</h2>
+          }
         >
           <div>
             <p className="type-body-lg text-muted-foreground">
@@ -962,7 +967,6 @@ function NewHumanEra() {
           </p>
         </div>
       </Band>
-
     </Bands>
   );
 }

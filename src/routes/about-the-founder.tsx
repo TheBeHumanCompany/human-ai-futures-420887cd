@@ -147,9 +147,9 @@ function Founder() {
             </h1>
 
             <p className={`type-body mt-8 ${body("ink")}`}>
-              Looking back, I realize every business I&rsquo;ve built, every leader I&rsquo;ve worked
-              with, every team I&rsquo;ve trained, and every movement I&rsquo;ve been part of was
-              preparing me for this. At the time, they felt like separate chapters.
+              Looking back, I realize every business I&rsquo;ve built, every leader I&rsquo;ve
+              worked with, every team I&rsquo;ve trained, and every movement I&rsquo;ve been part of
+              was preparing me for this. At the time, they felt like separate chapters.
             </p>
             <p className={`type-body mt-6 ${body("ink")}`}>
               Today, I see one story unfolding &mdash; a journey that taught me about leadership,
@@ -182,11 +182,12 @@ function Founder() {
               relationships became my first mentors.
             </p>
             <p className={`type-body mt-6 ${body("cream")}`}>
-              My first business became possible through funding from <B>Aboriginal Business Canada</B>,
-              which allowed me to become the first person to bring <B>Curves for Women</B> from the
-              United States to Canada. My family invested alongside me, and together we built it
-              into a family business. Curves would later become one of the fastest-growing franchise
-              companies in history, growing into a multi-billion-dollar company within a decade.
+              My first business became possible through funding from{" "}
+              <B>Aboriginal Business Canada</B>, which allowed me to become the first person to
+              bring <B>Curves for Women</B> from the United States to Canada. My family invested
+              alongside me, and together we built it into a family business. Curves would later
+              become one of the fastest-growing franchise companies in history, growing into a
+              multi-billion-dollar company within a decade.
             </p>
             <p className={`type-body mt-6 ${body("cream")}`}>
               Building that business opened doors I never expected. I went on to build a national
@@ -437,9 +438,9 @@ function Founder() {
 
               <p className="type-body">
                 <strong className="font-bold">
-                  The greatest opportunity of our generation isn&rsquo;t simply building more intelligent
-                  technology. It&rsquo;s helping people become more intentional about practicing their
-                  humanity alongside it.
+                  The greatest opportunity of our generation isn&rsquo;t simply building more
+                  intelligent technology. It&rsquo;s helping people become more intentional about
+                  practicing their humanity alongside it.
                 </strong>
               </p>
 
