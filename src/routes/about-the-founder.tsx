@@ -225,7 +225,39 @@ function Founder() {
               I&rsquo;ve believed ever since: great organizations aren&rsquo;t built by products
               alone &mdash; people build them.
             </p>
+            <p className={`type-body mt-6 ${body("ink")}`}>
+              Around the same time, another shift was beginning to reshape business: social media.
+            </p>
+            <p className={`type-body mt-6 ${body("ink")}`}>
+              Long before most organizations understood its potential, I immersed myself in learning
+              how digital platforms would transform communication, marketing, and business. Over the
+              following years, I worked with entrepreneurs and small business owners across North
+              America through workshops, online programs, one-on-one consulting, Zoom coaching, and
+              live events. While social media often opened the door, the work quickly expanded far
+              beyond marketing. I found myself helping founders strengthen leadership, improve
+              operations, build healthier workplace cultures, refine financial strategy, develop
+              customer acquisition systems, implement email marketing, and build businesses that
+              could scale without losing the people at their center. Many of those relationships
+              evolved into long-term partnerships, and I continue to hold equity in several of the
+              companies I helped build.
+            </p>
+            <p className={`type-body mt-6 ${body("ink")}`}>
+              That work also created opportunities to collaborate on projects with people already
+              influencing millions worldwide. I helped launch the social media campaign for Eckhart
+              Tolle&rsquo;s feature film, Milton&rsquo;s Secret. I helped build the social media
+              presence of Satnam Singh, the first Indian-born player ever drafted into the NBA and
+              later featured in Netflix&rsquo;s One in a Billion. I also travelled extensively with
+              Kevin Harrington, the original Shark on Shark Tank, helping build several of his
+              personal brands and gaining a front-row seat to how world-class brands, media, and
+              influence are created.
+            </p>
+            <p className={`type-body mt-6 ${body("ink")}`}>
+              Looking back, those years taught me far more than marketing. They taught me how trust
+              is built, how ideas spread, how leaders influence culture, and how businesses grow.
+              Those lessons continue to shape how I build organizations today.
+            </p>
           </div>
+
 
           <div className="grid items-start gap-10">
             <Shot
