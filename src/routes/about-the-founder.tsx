@@ -293,21 +293,19 @@ function Founder() {
             </p>
           </div>
 
-          <div className="grid items-start gap-6">
+          <div className="grid items-start gap-8">
             <Shot
               src={diner}
               alt="Shane James in conversation with a woman across a red diner booth"
             />
-            <div className="grid items-start gap-6 sm:grid-cols-2">
-              <Shot
-                src={kitvInterview}
-                alt="Shane James interviewed at the anchor desk of KITV 4 Morning News"
-              />
-              <Shot
-                src={mentoring}
-                alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
-              />
-            </div>
+            <Shot
+              src={kitvInterview}
+              alt="Shane James interviewed at the anchor desk of KITV 4 Morning News"
+            />
+            <Shot
+              src={mentoring}
+              alt="Shane James beside a student holding up the vision board he built at an Actions of Compassion workshop"
+            />
           </div>
         </div>
       </Chapter>
