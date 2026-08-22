@@ -177,7 +177,7 @@ function Founder() {
             </div>
 
             {/* Gallery: the trailer, then the two press scans as one row. */}
-            <div className="grid items-start gap-6">
+            <div className="grid max-w-[560px] items-start gap-6">
               <Shot
                 src={curvesTruck}
                 alt="Shane James with two colleagues in front of a Curves for Women transport trailer, America's Largest Fitness Franchise"
@@ -227,7 +227,7 @@ function Founder() {
             </div>
 
             {/* Both sources are 1:1; shown as one square pair. */}
-            <div className="grid items-start gap-6 sm:grid-cols-2">
+            <div className="grid max-w-[560px] items-start gap-6 sm:grid-cols-2">
               <Shot
                 src={harrington}
                 alt="Shane James with Kevin Harrington on a film set, teleprompter and camera rig behind them"
@@ -310,7 +310,7 @@ function Founder() {
             </div>
 
             {/* Curated three-picture gallery from the two former chapters. */}
-            <div className="grid items-start gap-6">
+            <div className="grid max-w-[560px] items-start gap-6">
               <Shot
                 src={diner}
                 alt="Shane James in conversation with a woman across a red diner booth"
