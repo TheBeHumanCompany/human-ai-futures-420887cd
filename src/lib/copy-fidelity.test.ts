@@ -194,6 +194,18 @@ const CASES: Case[] = [
   },
 ];
 
+/** The source sentences covered by a named `removed` span, in document order. */
+function removedSentences(c: Case, sentences: string[]): string[] {
+  const out: string[] = [];
+  for (const span of c.removed ?? []) {
+    const start = sentences.findIndex((s) => s.startsWith(normalise(span.from)));
+    const end = sentences.findIndex((s) => s.startsWith(normalise(span.to)));
+    if (start === -1 || end === -1 || end < start) continue;
+    out.push(...sentences.slice(start, end + 1));
+  }
+  return out;
+}
+
 for (const c of CASES) {
   describe(`${c.label} carries its source document`, () => {
     const page = renderedText(c.route);
@@ -207,13 +219,28 @@ for (const c of CASES) {
 
     test("every sentence is on the page, except the ones named as divergent", () => {
       const accepted = c.accepted.map((a) => normalise(a.startsWith));
+      const cut = new Set(removedSentences(c, sentences));
       const missing = sentences
         .filter((s) => !page.includes(s))
-        .filter((s) => !accepted.some((a) => s.startsWith(a)));
+        .filter((s) => !accepted.some((a) => s.startsWith(a)))
+        .filter((s) => !cut.has(s));
       expect(missing, `unaccounted copy drift in ${c.label}:\n  ${missing.join("\n  ")}`).toEqual(
         [],
       );
     });
+
+    test("each removed passage is real, and is genuinely gone", () => {
+      for (const span of c.removed ?? []) {
+        const start = sentences.findIndex((s) => s.startsWith(normalise(span.from)));
+        const end = sentences.findIndex((s) => s.startsWith(normalise(span.to)));
+        expect(start, `no source sentence starts with "${span.from}"`).toBeGreaterThanOrEqual(0);
+        expect(end, `no source sentence starts with "${span.to}"`).toBeGreaterThanOrEqual(start);
+      }
+      for (const s of removedSentences(c, sentences)) {
+        expect(page.includes(s), `back on the page, so drop its removal entry: ${s}`).toBe(false);
+      }
+    });
+
 
     test("each named divergence is still real, and its replacement still stands", () => {
       // Three directions, not two. The source sentence must still be absent;
