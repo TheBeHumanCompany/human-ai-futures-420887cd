@@ -5,10 +5,7 @@ import path from "node:path";
 import {
   BLUEPRINT_SECTIONS,
   CONTENT_IDS,
-  FOUNDING_RATE,
-  FUTURE_RATE,
   SECTION_IDS,
-  TURNAROUND,
   blockText,
   isSecondary,
   normalize,
@@ -22,11 +19,25 @@ import claims from "../../docs/blueprint-claims.json";
  * The Blueprint page, asserted against its own content fixture.
  *
  * These run over the fixture rather than the rendered DOM, and that is the
- * stronger choice for every rule here. Half the page is collapsed by default,
- * so a DOM sweep would have to open sixteen disclosures before it could see the
- * copy — and the copy most likely to overclaim is exactly the copy sitting
- * inside the governance section nobody expanded. The fixture is what renders,
+ * stronger choice for every rule here. Two sections are collapsed by default,
+ * so a DOM sweep would have to open them before it could see the copy — and
+ * that copy is where every traceable claim lives. The fixture is what renders,
  * so scanning it sees everything, open or closed.
+ *
+ * ── What changed on 2026-08-22, and what deliberately did not ────────────────
+ *
+ * This file used to assert sixteen sections in the source PDF's order, a
+ * seven/seven/two tier split, a price, a turnaround, and three "Book Your
+ * Blueprint" calls to action. Those rules were not wrong — they were built so
+ * that sections could not be deleted to make the page feel shorter, and that
+ * guard held for as long as the page was a sales page.
+ *
+ * The page stopped being one. It no longer quotes a price, no longer sells the
+ * Blueprint, and exists to establish credibility for a referral-led sales
+ * cycle. So the section-count rules are superseded rather than circumvented,
+ * and they are replaced here by rules that pin the NEW direction — because the
+ * expensive failure now runs the other way: a price or a second CTA creeping
+ * back onto a page whose whole positioning is that nothing on it can be bought.
  */
 
 const ALL_TEXT = BLUEPRINT_SECTIONS.flatMap((s) => [
@@ -39,33 +50,24 @@ describe("fixture sanity — floors before any rule claims a clean result", () =
   test("the page has real content in it", () => {
     // Every assertion below is a filter or a ratio over these, and all of them
     // pass trivially against an empty page.
-    expect(BLUEPRINT_SECTIONS.length).toBe(16);
-    expect(ALL_TEXT.length).toBeGreaterThanOrEqual(80);
-    expect(proseChars(BLUEPRINT_SECTIONS)).toBeGreaterThanOrEqual(10_000);
+    expect(BLUEPRINT_SECTIONS.length).toBe(7);
+    expect(ALL_TEXT.length).toBeGreaterThanOrEqual(60);
+    expect(proseChars(BLUEPRINT_SECTIONS)).toBeGreaterThanOrEqual(6_500);
   });
 });
 
-describe("the sixteen sections", () => {
-  test("are present, named, and in the source document's order", () => {
-    // Ordered array equality, not a count. Counting sixteen `id` attributes
-    // passes against sixteen unrelated divs, and passes again after two
+describe("the seven sections", () => {
+  test("are present, named, and in render order", () => {
+    // Ordered array equality, not a count. Counting seven `id` attributes
+    // passes against seven unrelated divs, and passes again after two
     // sections are swapped.
     expect(SECTION_IDS).toEqual([
-      "hero",
       "the-problem",
-      "our-approach",
+      "the-blueprint",
       "canadian-trust",
       "our-commitments",
-      "the-blueprint",
-      "who-it-is-for",
-      "what-youll-receive",
       "client-proof",
-      "how-it-works",
-      "what-waiting-costs",
-      "the-offer",
-      "the-team",
       "who-we-work-best-with",
-      "faq",
       "closing-cta",
     ]);
   });
@@ -80,20 +82,12 @@ describe("the sixteen sections", () => {
     expect(new Set(SECTION_IDS).size).toBe(SECTION_IDS.length);
   });
 
-  test("the tier split is 7 visible / 7 collapsed / 2 relocated", () => {
+  test("the tier split is 5 visible / 2 collapsed", () => {
     const byTier = (t: number) => BLUEPRINT_SECTIONS.filter((s) => s.tier === t).length;
 
-    expect(byTier(1)).toBe(7);
-    expect(byTier(2)).toBe(7);
-    expect(byTier(3)).toBe(2);
-    expect(byTier(1) + byTier(2) + byTier(3)).toBe(16);
-  });
-
-  test("collapsed sections clear the six-section floor", () => {
-    // Counted as whole sections, never as `[data-state]` attributes — an
-    // earlier version of this gate counted eight matches for two sections and
-    // would have passed on two empty ones.
-    expect(BLUEPRINT_SECTIONS.filter((s) => s.tier === 2).length).toBeGreaterThanOrEqual(6);
+    expect(byTier(1)).toBe(5);
+    expect(byTier(2)).toBe(2);
+    expect(byTier(1) + byTier(2)).toBe(BLUEPRINT_SECTIONS.length);
   });
 
   test("every collapsed section says what is inside it before you open it", () => {
@@ -106,76 +100,113 @@ describe("the sixteen sections", () => {
 });
 
 describe("digestibility, measured", () => {
-  test("default-visible prose is at most 40% of the page's prose", () => {
-    const total = proseChars(BLUEPRINT_SECTIONS);
+  /**
+   * The old rule was a RATIO — visible prose at most 40% of total — and it was
+   * the right rule for a page carrying more than ten thousand characters, where
+   * the only way to make it readable was to put most of it behind a disclosure.
+   *
+   * A ratio is the wrong instrument now. This page is roughly two-thirds
+   * shorter, and on a short page a ratio rewards padding: adding a thousand
+   * characters of collapsed copy improves the score without a reader
+   * benefiting. So the ceiling is absolute — what a reader actually faces on
+   * arrival — with a floor underneath it so "digestible" still cannot be
+   * achieved by deletion.
+   */
+  test("what a reader meets on arrival stays under four thousand characters", () => {
     const visible = visibleProseChars(BLUEPRINT_SECTIONS);
 
-    // Both floors asserted, because the ratio alone is perfect on an empty
-    // page: 0/0 guarded, and a stub page would score beautifully.
-    expect(total).toBeGreaterThanOrEqual(10_000);
     expect(visible).toBeGreaterThanOrEqual(2_000);
-    expect(visible / total).toBeLessThanOrEqual(0.4);
+    expect(visible).toBeLessThanOrEqual(4_000);
   });
 
   test("hiding is never deletion — the hidden text is still in the fixture", () => {
-    // The whole risk of a ratio target is that the cheapest way to hit it is to
-    // delete paragraphs. This asserts the opposite happened: the text excluded
-    // from the visible count is present, substantial, and still rendered.
-    const secondary = BLUEPRINT_SECTIONS.flatMap((s) => s.blocks).filter(isSecondary);
+    // The whole risk of any digestibility target is that the cheapest way to
+    // hit it is to delete paragraphs. This asserts the opposite happened.
     const collapsed = BLUEPRINT_SECTIONS.filter((s) => s.tier === 2);
 
-    expect(secondary.length).toBeGreaterThanOrEqual(8);
-    expect(proseChars(collapsed)).toBeGreaterThanOrEqual(5_000);
+    expect(proseChars(collapsed)).toBeGreaterThanOrEqual(3_000);
     expect(proseChars(BLUEPRINT_SECTIONS) - visibleProseChars(BLUEPRINT_SECTIONS)).toBeGreaterThan(
-      6_000,
+      3_000,
     );
-  });
-
-  test("the two relocated sections still carry a promise and a way through", () => {
-    // "Present" for a tier-3 section means a titled section with real summary
-    // cards that link onward — not a heading over an empty div.
-    for (const section of BLUEPRINT_SECTIONS.filter((s) => s.tier === 3)) {
-      const cards = section.blocks.find((b) => b.kind === "cards");
-      expect(cards).toBeDefined();
-      expect(cards!.kind === "cards" && cards!.items.length).toBe(3);
-      expect(cards!.kind === "cards" && cards!.items.every((i) => Boolean(i.to))).toBe(true);
-    }
+    expect(BLUEPRINT_SECTIONS.flatMap((s) => s.blocks).filter(isSecondary).length).toBeGreaterThan(
+      0,
+    );
   });
 });
 
-describe("pricing", () => {
-  test("the three facts are exact", () => {
-    expect(FOUNDING_RATE).toBe("$795 CAD");
-    expect(FUTURE_RATE).toBe("$1,500 CAD");
-    expect(TURNAROUND).toBe("3 business days");
+describe("the three pillars are stated as outcomes, not as a method", () => {
+  const outcomes = BLUEPRINT_SECTIONS.flatMap((s) => s.blocks).filter((b) => b.kind === "outcomes");
+
+  test("there is exactly one outcomes block, carrying three pillars", () => {
+    expect(outcomes.length).toBe(1);
+    expect(outcomes[0].kind === "outcomes" && outcomes[0].pillars.length).toBe(3);
   });
 
-  test("no price is typed a second time in the prose", () => {
-    // The expensive failure is mundane: the rate changes, three of four
-    // mentions get updated, and the page quotes two prices for one thing.
-    //
-    // Scoped to everything EXCEPT the pricing blocks, which render the
-    // constants and are supposed to contain them. Scanning those too would be
-    // asserting that the price never appears, which is a different and useless
-    // claim — the rule is that it appears in exactly one *source*.
-    const prose = BLUEPRINT_SECTIONS.flatMap((s) => s.blocks)
-      .filter((b) => b.kind !== "pricing")
-      .flatMap(blockText)
-      .join(" ");
+  test("each pillar names its question and at least three outcomes", () => {
+    const block = outcomes[0];
+    if (block.kind !== "outcomes") throw new Error("unreachable");
 
-    expect(prose).not.toContain("795");
-    expect(prose).not.toContain("1,500");
-    expect(prose).not.toContain("$");
+    for (const pillar of block.pillars) {
+      expect(normalize(pillar.question).endsWith("?")).toBe(true);
+      expect(pillar.items.length).toBeGreaterThanOrEqual(3);
+    }
   });
 
-  test("both rates and the turnaround reach the page", () => {
-    const pricing = BLUEPRINT_SECTIONS.flatMap((s) => s.blocks).filter((b) => b.kind === "pricing");
-    expect(pricing.length).toBeGreaterThanOrEqual(1);
+  test("every pillar links to the page that holds the depth", () => {
+    /**
+     * This is what stops the withheld method turning the page into a
+     * philosophy page. The outcomes are all a visitor gets here; the substance
+     * behind them is one click away and already written.
+     */
+    const block = outcomes[0];
+    if (block.kind !== "outcomes") throw new Error("unreachable");
 
-    const rendered = pricing.flatMap(blockText);
-    expect(rendered).toContain(FOUNDING_RATE);
-    expect(rendered).toContain(FUTURE_RATE);
-    expect(rendered).toContain(TURNAROUND);
+    expect(block.pillars.map((p) => p.to)).toEqual([
+      "/be-human-ai/human-readiness",
+      "/be-human-ai/governance",
+      "/be-human-ai/ai-strategy",
+    ]);
+  });
+});
+
+describe("nothing on this page can be bought", () => {
+  /**
+   * The direction this page now carries was described on the call as a one-way
+   * door: going from secretive to public is easy, and going back is not. These
+   * three rules are that door's latch. Each one fails on the specific way the
+   * old page would grow back.
+   */
+  const PROSE = ALL_TEXT.join(" ");
+
+  test("no price, in any form, anywhere in the copy", () => {
+    expect(PROSE).not.toContain("$");
+    expect(PROSE).not.toMatch(/\bCAD\b/);
+    expect(PROSE).not.toMatch(/\b\d{3,4}\s*(?:dollars|CAD)\b/i);
+  });
+
+  test("no turnaround promise", () => {
+    // "3 business days" was a delivery commitment attached to a purchase. With
+    // nothing being purchased, a turnaround is a promise with no contract
+    // behind it. The 90-day plan is a client outcome, not a delivery date, and
+    // is deliberately not caught by this.
+    expect(PROSE).not.toMatch(/\b\d+\s+business\s+days?\b/i);
+  });
+
+  test("there is exactly one call to action, and it asks for a conversation", () => {
+    const ctas = BLUEPRINT_SECTIONS.flatMap((s) => s.blocks).filter((b) => b.kind === "cta");
+
+    expect(ctas.length).toBe(1);
+    expect(ctas.map((b) => (b.kind === "cta" ? b.label : ""))).toEqual(["Start a conversation"]);
+  });
+
+  test("no call to action is worded as a purchase", () => {
+    const labels = BLUEPRINT_SECTIONS.flatMap((s) => s.blocks)
+      .filter((b) => b.kind === "cta")
+      .map((b) => (b.kind === "cta" ? b.label : ""));
+
+    for (const label of labels) {
+      expect(label).not.toMatch(/\b(buy|order|purchase|checkout|get started|book your)\b/i);
+    }
   });
 });
 
@@ -190,9 +221,9 @@ describe("nothing is fabricated", () => {
   });
 
   test("the client proof section renders, with its slot honestly empty", () => {
-    // The section is not omitted while the quote is missing — omitting it would
-    // break "all sixteen present" — and the slot is not filled with an invented
-    // endorsement attributed to a real, named person at a real, named company.
+    // The section is not omitted while the quote is missing, and the slot is
+    // not filled with an invented endorsement attributed to a real, named
+    // person at a real, named company.
     const section = BLUEPRINT_SECTIONS.find((s) => s.id === "client-proof");
 
     expect(section).toBeDefined();
@@ -226,16 +257,15 @@ describe("positioning — what this page may not claim", () => {
 
   test("the rule catches every form it is meant to catch", () => {
     // Pinned as a table, because a regex that silently stops matching one form
-    // is indistinguishable from copy that stopped containing it. An earlier
-    // version missed four of these.
+    // is indistinguishable from copy that stopped containing it.
     const shouldMatch = [
       "we make your organization compliant",
       "this guarantees compliance with PIPEDA",
       "a compliance guarantee",
       "government approved framework",
       "government-recognized assessment",
-      "we are certifying your AI systems",
-      "an accredited AI certification",
+      "we are certifying your systems",
+      "an accredited certification",
       "your organization is certified",
     ];
 
@@ -244,34 +274,20 @@ describe("positioning — what this page may not claim", () => {
     }
   });
 
-  test("the rule does not ban legitimate personal credentials", () => {
-    // People hold real qualifications. A rule that erased them to protect the
-    // product's positioning would be a worse error than the one it prevents,
-    // so the boundary is pinned in both directions.
-    expect(PROHIBITED.test("a certified cybersecurity professional")).toBe(true);
-    // ...which is why product copy is scanned and bios are not. The team cards
-    // on this page carry exactly those credentials, and they are allowed.
-    const team = BLUEPRINT_SECTIONS.find((s) => s.id === "the-team")!;
-    const teamText = team.blocks.flatMap(blockText).join(" ");
-
-    expect(teamText).toContain("certified cybersecurity professional");
-    expect(teamText).toContain("certified counsellor");
-  });
-
   test("no product or offer copy makes a prohibited claim", () => {
     /**
-     * Two exemptions, both of which are the rule working rather than being
-     * weakened.
+     * One exemption, and it is the rule working rather than being weakened:
+     * the disclaimer necessarily contains the banned words, because denying a
+     * claim requires naming it — "it is not a certification, it is not a
+     * compliance guarantee" would otherwise be flagged as the very overclaim it
+     * exists to prevent. Exempting it by block kind rather than by matching its
+     * text means a *second* piece of copy cannot smuggle a claim through by
+     * resembling the disclaimer.
      *
-     * The team bios carry real personal credentials, per the boundary pinned
-     * above. And the disclaimer necessarily contains the banned words, because
-     * denying a claim requires naming it — "it is not a certification, it is
-     * not a compliance guarantee" would otherwise be flagged as the very
-     * overclaim it exists to prevent. Exempting it by block kind rather than by
-     * matching its text means a *second* piece of copy cannot smuggle a claim
-     * through by resembling the disclaimer.
+     * The team-bio exemption is gone with the team section, which now lives at
+     * /who-we-are. Real personal credentials are no longer this page's problem.
      */
-    const productText = BLUEPRINT_SECTIONS.filter((s) => s.id !== "the-team").flatMap((s) => [
+    const productText = BLUEPRINT_SECTIONS.flatMap((s) => [
       s.title,
       s.summary ?? "",
       ...s.blocks.filter((b) => b.kind !== "disclaimer").flatMap(blockText),
@@ -289,7 +305,7 @@ describe("positioning — what this page may not claim", () => {
       blockText(b).some((t) => PROHIBITED.test(t)),
     );
 
-    expect(carriers.map((b) => b.kind)).toEqual(["disclaimer", "cards"]);
+    expect(carriers.map((b) => b.kind)).toEqual(["disclaimer"]);
   });
 
   test("the disclaimer renders, from the shared constant", () => {
@@ -317,8 +333,7 @@ describe("positioning — what this page may not claim", () => {
      *
      * The page says "We do not hand you a definition of sovereignty to agree
      * with", which is the position itself — a blanket ban on the phrase would
-     * flag the sentence that establishes the very thing being asserted. What
-     * must not appear is a construction that completes the definition.
+     * flag the sentence that establishes the very thing being asserted.
      */
     expect(text).not.toMatch(/sovereignty\s+(is|means)\s+\w/i);
     expect(text).not.toMatch(/we define sovereignty/i);
@@ -361,9 +376,6 @@ describe("claim traceability", () => {
   const available = controlIds();
 
   test("the framework was actually read", () => {
-    // Floor: every assertion below is a lookup against this list, and all of
-    // them would fail loudly rather than silently — but a mis-parsed file would
-    // make the domain-coverage count wrong in a confusing way instead.
     expect(available.length).toBeGreaterThanOrEqual(50);
     expect(available).toContain("sov-01");
   });
@@ -384,7 +396,18 @@ describe("claim traceability", () => {
     expect(dangling).toEqual([]);
   });
 
-  test("all eight domains are represented", () => {
+  test("all eight domains are still represented after the page was cut down", () => {
+    /**
+     * This is the assertion that made the section cut safe to do at all.
+     *
+     * Nine sections were removed on 2026-08-22. Three claims went with
+     * `what-youll-receive`, because they named deliverables the page no longer
+     * describes and remapping them would have asserted coverage that is not on
+     * the page. One of those three was the only claim citing all eight domains
+     * by itself — so if the two remaining sections had not covered the full
+     * spread between them, this test would have caught the page silently
+     * dropping a domain it still claims to assess.
+     */
     const domains = new Set(claims.claims.flatMap((c) => c.domains));
 
     expect([...domains].sort()).toEqual([
@@ -403,22 +426,15 @@ describe("claim traceability", () => {
     const orphans = claims.claims.filter((c) => !SECTION_IDS.includes(c.section));
     expect(orphans).toEqual([]);
   });
-});
 
-describe("booking CTAs", () => {
-  test("there are exactly three, in three different sections", () => {
-    const withCta = BLUEPRINT_SECTIONS.filter((s) => s.blocks.some((b) => b.kind === "cta"));
-    const total = BLUEPRINT_SECTIONS.flatMap((s) => s.blocks).filter((b) => b.kind === "cta");
+  test("the sections carrying the claims are the ones that survived the cut", () => {
+    // Both are tier 2. That is the deliberate shape: the traceable content is
+    // present and openable, without competing with the outcomes for attention.
+    const carrying = [...new Set(claims.claims.map((c) => c.section))].sort();
 
-    expect(total.length).toBe(3);
-    expect(withCta.map((s) => s.id)).toEqual(["hero", "the-offer", "closing-cta"]);
-  });
-
-  test("every one is labelled the same thing", () => {
-    const labels = BLUEPRINT_SECTIONS.flatMap((s) => s.blocks)
-      .filter((b) => b.kind === "cta")
-      .map((b) => (b.kind === "cta" ? b.label : ""));
-
-    expect(labels).toEqual(["Book Your Blueprint", "Book Your Blueprint", "Book Your Blueprint"]);
+    expect(carrying).toEqual(["canadian-trust", "our-commitments"]);
+    for (const id of carrying) {
+      expect(BLUEPRINT_SECTIONS.find((s) => s.id === id)!.tier).toBe(2);
+    }
   });
 });

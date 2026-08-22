@@ -25,8 +25,16 @@
 # ── 6. blueprint-page ──────────────────────────────────────────────────────
 bp="$(body_of /be-human-ai)"
 if [ -f docs/blueprint-sections.json ]; then
-  # AC-6.2: all 16 sections present, in PDF order. Ordered, not just present —
-  # a set check passes on a scrambled page.
+  # AC-6.2: every declared section present, in fixture order. Ordered, not just
+  # present — a set check passes on a scrambled page.
+  #
+  # The count is read from the fixture rather than hardcoded. It used to be
+  # pinned at 16 to stop sections being deleted to make the page feel shorter,
+  # and on 2026-08-22 that is exactly what happened — deliberately, because the
+  # page stopped selling the Blueprint. A hardcoded number here would have to be
+  # re-edited on every editorial call, so what the gate holds is the invariant:
+  # every section the fixture declares is in the DOM, in order, with exactly the
+  # tier-2 ones collapsed. The floor below is what stops that becoming vacuous.
   #
   # Both the section list AND the expected collapsed count are read from the
   # fixture. Amendment 2 decision 2 approved tiering as "3 summary cards / 7
@@ -37,7 +45,7 @@ if [ -f docs/blueprint-sections.json ]; then
   # the DOM, in order, and exactly the tier-2 ones collapsed.
   ids="$(jq -r '.sections[].id' docs/blueprint-sections.json)"
   id_n="$(printf '%s\n' "$ids" | grep -c .)"
-  assert_eq "$id_n" "16" "AC-6.2: the fixture declares 16 sections"
+  assert_ge "$id_n" "5" "AC-6.2: the fixture declares a realistic number of sections"
 
   prev_pos=-1
   while IFS= read -r id; do
@@ -80,15 +88,27 @@ EOF
 
   # AC-6.9c/d floor: a <details> present but empty passes a count and fails the
   # thing the count stands for.
-  assert_ge "${#bp}" 20000 "AC-6.9d: the Blueprint page carries real prose, not just section shells"
+  # Sized for the seven-section page. Still a real floor — the rendered body runs
+# well above it — and still the thing that stops the count above passing on a
+# page of empty <details> shells.
+  assert_ge "${#bp}" 12000 "AC-6.9d: the Blueprint page carries real prose, not just section shells"
   pass "AC-6.2/AC-6.9b/AC-6.9c: $id_n sections present and ordered, $details collapsed as declared"
 else
   echo "SKIP[AC-6.2]: docs/blueprint-sections.json does not exist yet (Phase 6, S6.0)" >&2
 fi
 
-assert_contains "$bp" "795" "AC-6.3: the founding rate renders"
-assert_contains "$bp" "1,500" "AC-6.3: the future rate renders"
-assert_contains "$bp" "3 business days" "AC-6.3: the turnaround renders"
+# AC-6.3 (superseded 2026-08-22): this page used to be required to render the
+# founding rate, the future rate and the turnaround. The Blueprint is no longer
+# sold from the website — the sales cycle is referral- and conversation-led —
+# so the criterion is inverted rather than dropped. A price reappearing here is
+# now the regression, and it is the one this direction cannot take back.
+# Matched as rendered money, not as bare digits. "795" on its own matches the
+# hash in a bundle filename, which is how the first version of this inverted
+# gate failed against a page that quotes no price at all.
+assert_not_contains "$bp" '$795' "AC-6.3: no founding rate on the page"
+assert_not_contains "$bp" '$1,500' "AC-6.3: no future rate on the page"
+assert_not_contains "$bp" "3 business days" "AC-6.3: no turnaround promise on the page"
+assert_contains "$bp" "small number of organizations" "AC-6.3: the exclusivity line renders"
 
 # AC-6.11a: sovereignty copy describes practices and asserts no domain
 # definition — no compliance guarantee, no certification claim (controls.yaml:5).

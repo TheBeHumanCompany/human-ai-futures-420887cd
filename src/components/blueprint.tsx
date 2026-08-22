@@ -3,14 +3,7 @@ import { useEffect, useState } from "react";
 
 import { BOOKING_URL_30MIN } from "@/lib/booking";
 import { POSITIONING_DISCLAIMER } from "@/lib/brand";
-import {
-  FOUNDING_RATE,
-  FUTURE_RATE,
-  TURNAROUND,
-  isSecondary,
-  type Block,
-  type Section,
-} from "@/lib/blueprint";
+import { isSecondary, type Block, type Section } from "@/lib/blueprint";
 
 /**
  * Rendering for the Blueprint page.
@@ -41,6 +34,15 @@ import {
 
 const PROSE = "type-body max-w-2xl text-ink/75";
 
+/**
+ * The page's single call to action.
+ *
+ * Deliberately a text link on a lime rule rather than the lime pill it used to
+ * be. The pill was a conversion control on a page that sold something; this
+ * page does not, and a pill here would reintroduce the "buy now" reading that
+ * the exclusive positioning exists to remove. It still points at the same
+ * 30-minute booking link, which is the one destination AC-2.6 allows.
+ */
 function CtaLink({ label }: { label: string }) {
   return (
     <a
@@ -48,27 +50,13 @@ function CtaLink({ label }: { label: string }) {
       target="_blank"
       rel="noreferrer"
       data-blueprint-cta="true"
-      className="eyebrow mt-8 inline-flex items-center gap-2 rounded-full bg-lime px-8 py-4 text-ink transition-transform hover:-translate-y-0.5"
+      className="mt-10 inline-flex w-fit items-center gap-2.5 border-b border-lime-dark pb-1 text-sm font-semibold uppercase leading-none tracking-[0.12em] text-ink"
     >
-      {label} <span aria-hidden>→</span>
+      {label}{" "}
+      <span aria-hidden className="text-lime-dark transition-transform">
+        &rarr;
+      </span>
     </a>
-  );
-}
-
-function Pricing() {
-  return (
-    <dl className="mt-8 grid gap-px border border-hairline-dark bg-hairline-dark sm:grid-cols-3">
-      {[
-        { term: FOUNDING_RATE, detail: "Founding organization rate" },
-        { term: TURNAROUND, detail: "From discovery to clarity" },
-        { term: FUTURE_RATE, detail: "Future rate" },
-      ].map((row) => (
-        <div key={row.detail} className="bg-cream p-6 text-center">
-          <dt className="type-h3-caps text-ink">{row.term}</dt>
-          <dd className="eyebrow mt-2 text-ink/50">{row.detail}</dd>
-        </div>
-      ))}
-    </dl>
   );
 }
 
@@ -124,77 +112,64 @@ function BlockView({ block }: { block: Block }) {
         </div>
       );
 
-    case "deliverables":
+    /**
+     * The three pillars, as outcomes.
+     *
+     * The question sits in the left rail and the outcomes stack to its right,
+     * each on its own hairline, so a reader scanning the page gets three
+     * questions and nine statements rather than a wall. The link at the foot of
+     * each pillar is the one route to the method: withheld here, written in
+     * full on the pillar page.
+     */
+    case "outcomes":
       return (
-        <ol className="mt-8 grid gap-px bg-hairline-dark sm:grid-cols-2">
-          {block.items.map((item) => (
-            <li key={item.n} className="bg-cream p-6 lg:p-8">
-              <span className="eyebrow text-ink/40">{item.n}</span>
-              <h3 className="type-h4-caps mt-4 text-ink">{item.title}</h3>
-              <p className="type-h4-prose mt-3 text-lime-dark">{item.q}</p>
-              <p className="type-body-sm mt-3 text-ink/70">{item.text}</p>
-            </li>
-          ))}
-        </ol>
-      );
-
-    case "cards":
-      return (
-        <div className="mt-8 grid gap-px bg-hairline-dark lg:grid-cols-3">
-          {block.items.map((item) => {
-            const body = (
-              <>
-                <h3 className="type-h4-caps text-ink">{item.title}</h3>
-                <p className="type-body-sm mt-3 text-ink/70">{item.text}</p>
-                {item.to && (
-                  <span className="eyebrow link-underline mt-5 inline-flex items-center gap-2 text-ink">
-                    Read more <span aria-hidden>→</span>
-                  </span>
-                )}
-              </>
-            );
-            return item.to ? (
-              <Link
-                key={item.title}
-                to={item.to}
-                className="block bg-cream p-6 transition-colors hover:bg-cream-deep lg:p-8"
-              >
-                {body}
-              </Link>
-            ) : (
-              <div key={item.title} className="bg-cream p-6 lg:p-8">
-                {body}
+        <div className="mt-12 space-y-14 lg:space-y-16">
+          {block.pillars.map((pillar) => (
+            <article
+              key={pillar.title}
+              className="grid gap-8 border-t border-hairline-dark pt-8 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-14"
+            >
+              <div>
+                <span className="eyebrow text-lime-dark">{pillar.n}</span>
+                <h3 className="type-h3-caps mt-4 text-ink">{pillar.title}</h3>
+                <p className="type-h4-prose mt-5 text-lime-dark">{pillar.question}</p>
               </div>
-            );
-          })}
-        </div>
-      );
 
-    case "faq":
-      return (
-        <div className="mt-8 max-w-3xl">
-          {block.items.map((item) => (
-            // Nested `<details>` deliberately carry no `data-section-id`. The
-            // collapsed-section count is taken from that attribute, and nine FAQ
-            // entries inflating it to eighteen is exactly the miscount that let
-            // an earlier gate pass on empty sections.
-            <details key={item.q} className="group border-b border-hairline-dark">
-              <summary className="type-h4-prose cursor-pointer list-none py-4 text-ink marker:hidden [&::-webkit-details-marker]:hidden">
-                <span className="inline-flex w-full items-center justify-between gap-4">
-                  {item.q}
-                  <span aria-hidden className="text-lime transition-transform group-open:rotate-45">
-                    +
-                  </span>
-                </span>
-              </summary>
-              <p className="type-body-sm pb-5 text-ink/70">{item.a}</p>
-            </details>
+              <div className="min-w-0">
+                <p className="eyebrow text-ink/45">What is different afterwards</p>
+                <ul className="mt-5">
+                  {pillar.items.map((item) => (
+                    <li
+                      key={item}
+                      className="type-h4-condensed border-t border-hairline-dark py-5 text-ink"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to={pillar.to}
+                  className="eyebrow mt-6 inline-flex w-fit items-center gap-2 border-b border-lime-dark pb-1 text-ink"
+                >
+                  {pillar.linkLabel} <span aria-hidden>&rarr;</span>
+                </Link>
+              </div>
+            </article>
           ))}
         </div>
       );
 
-    case "pricing":
-      return <Pricing />;
+    case "criteria":
+      return (
+        <div className="mt-8 grid gap-px bg-hairline-dark sm:grid-cols-2">
+          {block.items.map((item) => (
+            <div key={item.title} className="bg-cream p-6 lg:p-8">
+              <h3 className="type-h4-caps text-ink">{item.title}</h3>
+              <p className="type-body-sm mt-3 text-ink/70">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      );
 
     case "cta":
       return <CtaLink label={block.label} />;

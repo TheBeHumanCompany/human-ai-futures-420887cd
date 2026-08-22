@@ -95,44 +95,8 @@
       "domains": ["governance", "operational_risk", "transparency_audit"]
     },
     {
-      "claim": "The Risk & Governance Review covers shadow AI exposure, data flows, governance gaps, cybersecurity concerns, and sovereignty considerations — with what to address first.",
-      "section": "what-youll-receive",
-      "controls": [
-        "gov-01",
-        "priv-02",
-        "cyber-03",
-        "vendor-07",
-        "sov-08",
-        "ops-01",
-        "work-01",
-        "trans-01"
-      ],
-      "domains": [
-        "governance",
-        "privacy_data",
-        "cybersecurity",
-        "vendor_risk",
-        "sovereignty",
-        "operational_risk",
-        "workforce_readiness",
-        "transparency_audit"
-      ]
-    },
-    {
-      "claim": "Executive Findings covers leadership readiness and employee AI usage.",
-      "section": "what-youll-receive",
-      "controls": ["work-01", "work-06", "gov-03"],
-      "domains": ["workforce_readiness", "governance"]
-    },
-    {
-      "claim": "Each ranked AI opportunity carries a recommended human owner.",
-      "section": "what-youll-receive",
-      "controls": ["gov-02", "ops-01", "ops-08"],
-      "domains": ["governance", "operational_risk"]
-    },
-    {
       "claim": "Your information is used solely to complete your Blueprint. It is not used to train our systems or anyone else's.",
-      "section": "faq",
+      "section": "our-commitments",
       "controls": ["sov-01", "vendor-01", "priv-04"],
       "domains": ["sovereignty", "vendor_risk", "privacy_data"]
     }
