@@ -133,10 +133,10 @@ function Founder() {
               </div>
             </div>
 
-            {/* Shane's portrait goes here. Left empty on purpose — no stock stand-in. */}
-            <div
-              className="aspect-[4/5] w-full rounded-sm border border-hairline-dark bg-ink/[0.04]"
-              aria-hidden
+            {/* Temporary stand-in until Shane's portrait arrives. */}
+            <Shot
+              src={curvesTruck}
+              alt="Shane James with two colleagues in front of a Curves for Women transport trailer"
             />
           </div>
         </div>
