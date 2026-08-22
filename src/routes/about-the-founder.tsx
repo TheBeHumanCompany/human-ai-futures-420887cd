@@ -404,19 +404,19 @@ function Founder() {
 
       {/* ══════ 06 — WHAT I’VE LEARNED (cream) ══════ */}
       <Chapter tone="cream">
-        <div className="grid items-start gap-12 pb-24 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:pb-36">
+        <div className="grid items-start gap-12 pb-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:pb-24">
           <div className="max-w-[56ch]">
             <SectionLabel tone="cream">What I&rsquo;ve learned</SectionLabel>
             <h2 className={`type-h2-condensed mt-6 max-w-[20ch] ${heading("cream")}`}>
               What matters now
             </h2>
 
-            <div className="mt-16 space-y-14">
+            <div className="mt-8 space-y-8">
               <p className={`type-body ${body("cream")}`}>
                 When I look back today, I don&rsquo;t see a r&eacute;sum&eacute;. I see preparation.
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <p className={`type-body leading-relaxed ${body("cream")}`}>
                   Every business taught me how to build.
                 </p>
