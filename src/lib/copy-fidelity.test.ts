@@ -117,7 +117,6 @@ const CASES: Case[] = [
     // 2026-08-22: the full approved bio was restored, so the MEDIA · LEADERSHIP ·
     // TRAINING removal exemption is gone — every source sentence is on the page.
     accepted: [],
-
   },
 
   {
@@ -169,7 +168,17 @@ const CASES: Case[] = [
           "and shortens it into the section's display heading, at Maya's request.",
       },
       {
-
+        startsWith: "be human ai helps organizations adopt ai",
+        instead:
+          "Be Human Intelligence helps organizations adopt these systems through strategy, human readiness, governance, and transformation",
+        because:
+          "The 2026-08-22 rebrand drops the word AI: the practice is named Be Human Intelligence, " +
+          "and the technology is referred to by name rather than by initials. The source document " +
+          "still carries the old brand and has not been revised, so this is declared rather than " +
+          "silent. The rest of this page's prose still says AI and is deliberately untouched — " +
+          "rewriting Maya's essay copy is an editorial change, not a rename.",
+      },
+      {
         startsWith: "right now that infrastructure is four connected pieces",
         instead: "Four parts. One mission.",
         because:
@@ -226,7 +235,6 @@ for (const c of CASES) {
         expect(page.includes(s), `back on the page, so drop its removal entry: ${s}`).toBe(false);
       }
     });
-
 
     test("each named divergence is still real, and its replacement still stands", () => {
       // Three directions, not two. The source sentence must still be absent;
@@ -319,9 +327,7 @@ describe("/about-the-founder ships photographs, not placeholders", () => {
     // `Archival` forwards its own props to `<Shot ... alt={alt} />`; that call
     // site carries no literal to check, and the two <Archival> tags it renders
     // are checked as literals below.
-    const shots = [
-      ...code.matchAll(/<(?:Shot|Archival)\b[\s\S]*?\/>/g),
-    ]
+    const shots = [...code.matchAll(/<(?:Shot|Archival)\b[\s\S]*?\/>/g)]
       .map((m) => m[0])
       .filter((tag) => !tag.includes("alt={alt}"));
     expect(shots.length).toBeGreaterThanOrEqual(7);

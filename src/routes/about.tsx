@@ -8,7 +8,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "An AI strategy and transformation company, and a cultural movement. Being human is what we're born with. Humanity is what we practice.",
+          "A machine intelligence strategy and transformation company, and a cultural movement. Being human is what we're born with. Humanity is what we practice.",
       },
       { property: "og:title", content: "About — The Be Human Company" },
       {
@@ -32,8 +32,8 @@ function About() {
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">
             As technology becomes more powerful, humanity must become more intentional. We exist to
-            help people and organizations become more capable with AI while becoming more deliberate
-            about their humanity.
+            help people and organizations become more capable with these tools while becoming more
+            deliberate about their humanity.
           </p>
           <p className="font-hand mt-10 text-3xl text-ink/70">Stay Human.</p>
         </div>
@@ -45,8 +45,8 @@ function About() {
             <p className="type-label-caps text-lime">One company, two halves</p>
             <h2 className="type-h3-caps-light mt-6">A practice and a movement.</h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              Be Human AI is our commercial practice: AI readiness, governance, agents and
-              leadership work for organizations preparing for the AI era.
+              Be Human Intelligence is our commercial practice: human readiness, governance, agents
+              and leadership work for organizations preparing for the age of machine intelligence.
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               The New Human Era is our cultural work: the archive, the podcast and the ideas that
@@ -56,7 +56,7 @@ function About() {
               to="/be-human-ai"
               className="eyebrow link-underline mt-8 inline-flex items-center gap-2"
             >
-              Explore Be Human AI <span aria-hidden>→</span>
+              Explore Be Human Intelligence <span aria-hidden>→</span>
             </Link>
           </div>
           <img

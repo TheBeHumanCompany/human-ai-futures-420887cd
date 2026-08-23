@@ -5,7 +5,6 @@ import manifestoImage from "@/assets/manifesto.jpg";
 import humanStoryPortrait from "@/assets/human-story-portrait.webp";
 import generationsPortrait from "@/assets/generations-portrait.png.asset.json";
 
-
 export const Route = createFileRoute("/why-we-exist")({
   head: () => ({
     meta: [
@@ -139,8 +138,6 @@ function WhyWeExist() {
         </div>
       </section>
 
-
-
       {/* ══════ 03 — THE OPPORTUNITY (cream) ══════
           Same split, same rhythm as The Human Story. */}
       <section className="section-cream">
@@ -154,7 +151,6 @@ function WhyWeExist() {
                 work, unlock discoveries we haven't imagined yet, and give millions of people
                 something that's become genuinely rare.
               </p>
-
             </div>
 
             <img
@@ -179,9 +175,7 @@ function WhyWeExist() {
                   className={[
                     "flex items-center gap-5 py-8 lg:py-0",
                     isFirst ? "lg:pr-10" : isLast ? "lg:pl-10" : "lg:px-10",
-                    !isLast
-                      ? "border-b border-ink/10 lg:border-b-0 lg:border-r"
-                      : "",
+                    !isLast ? "border-b border-ink/10 lg:border-b-0 lg:border-r" : "",
                   ].join(" ")}
                 >
                   <span
@@ -247,10 +241,10 @@ function WhyWeExist() {
           </div>
 
           <p className="type-body mt-12 max-w-[52ch] text-ink/70">
-            We believe the world gets measurably better every time someone chooses to practice
-            their humanity. Not because we say it does. Because it's true every single time it
-            happens &mdash; one conversation. One promise kept &mdash; one moment of real presence
-            instead of performance.
+            We believe the world gets measurably better every time someone chooses to practice their
+            humanity. Not because we say it does. Because it's true every single time it happens
+            &mdash; one conversation. One promise kept &mdash; one moment of real presence instead
+            of performance.
           </p>
 
           {/* The compounding progression, centred at the foot of the section. */}
@@ -266,7 +260,6 @@ function WhyWeExist() {
               </li>
             ))}
           </ul>
-
         </div>
       </section>
 
@@ -283,11 +276,11 @@ function WhyWeExist() {
               </h2>
               <p className="type-body mt-10 text-muted-foreground">
                 That belief didn't start with AI, either. It's older than that. As an Indigenous-led
-                company, we grew up understanding something the rest of the world is only now circling
-                back to: the decisions we make today are inherited by the people who come after us.
-                That's not a metaphor we borrowed for a pitch deck. It's the actual starting point this
-                company was built from, and it's why we think about this transition in generations, not
-                quarters.
+                company, we grew up understanding something the rest of the world is only now
+                circling back to: the decisions we make today are inherited by the people who come
+                after us. That's not a metaphor we borrowed for a pitch deck. It's the actual
+                starting point this company was built from, and it's why we think about this
+                transition in generations, not quarters.
               </p>
             </div>
 
@@ -300,7 +293,6 @@ function WhyWeExist() {
           </div>
         </div>
       </section>
-
 
       {/* ══════ 07 — THE INFRASTRUCTURE (cream) ══════ Standalone; ends before 08. */}
       <section className="section-cream">
@@ -373,7 +365,6 @@ function WhyWeExist() {
           </p>
         </div>
       </section>
-
 
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
@@ -465,7 +456,6 @@ function SectionLabel({
   );
 }
 
-
 /** The three Time lines, each paired with a human-centered icon. */
 const TIME_LINES = [
   {
@@ -494,8 +484,8 @@ const COMPOUNDS = ["Trust", "Relationships", "Leadership", "Families", "Organiza
 const INFRASTRUCTURE = [
   {
     to: "/be-human-ai",
-    name: "Be Human AI",
-    body: "Be Human AI helps organizations adopt AI through strategy, human readiness, governance, and transformation, keeping a person accountable for every judgment that matters. Hence, the technology strengthens both the business and the people inside it.",
+    name: "Be Human Intelligence",
+    body: "Be Human Intelligence helps organizations adopt these systems through strategy, human readiness, governance, and transformation, keeping a person accountable for every judgment that matters. Hence, the technology strengthens both the business and the people inside it.",
   },
   {
     to: "/the-new-human-era",

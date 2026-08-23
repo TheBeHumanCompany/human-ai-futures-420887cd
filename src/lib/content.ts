@@ -6,15 +6,15 @@ import portrait4 from "@/assets/archive-arlina.png";
 export const SERVICES = [
   {
     n: "01",
-    title: "AI Readiness & Strategy",
+    title: "Human Readiness & Strategy",
     body: "We assess where your organization actually stands, then build a sequenced roadmap tied to business outcomes rather than experiments.",
     points: ["Readiness assessment", "Use-case prioritisation", "Investment roadmap"],
   },
   {
     n: "02",
-    title: "Human + AI Transformation",
-    body: "We redesign how work gets done so people and AI complement each other — with adoption that survives the pilot phase.",
-    points: ["Operating model design", "Change & adoption", "AI literacy programs"],
+    title: "Human + Machine Transformation",
+    body: "We redesign how work gets done so people and machines complement each other — with adoption that survives the pilot phase.",
+    points: ["Operating model design", "Change & adoption", "Machine intelligence literacy"],
   },
   {
     n: "03",
@@ -24,7 +24,7 @@ export const SERVICES = [
   },
   {
     n: "04",
-    title: "AI Agents & Workflow Design",
+    title: "Agents & Workflow Design",
     body: "We design, build and deploy agents into real workflows, measured on cycle time, quality and cost — not novelty.",
     points: ["Agent architecture", "Workflow automation", "Measurement & ROI"],
   },

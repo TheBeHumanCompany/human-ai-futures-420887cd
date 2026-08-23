@@ -49,8 +49,8 @@ export function SiteFooter() {
         <div className="min-w-0">
           <Wordmark />
           <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            An AI strategy and transformation company, and a cultural movement for practicing what
-            keeps us human.
+            A machine intelligence strategy and transformation company, and a cultural movement for
+            practicing what keeps us human.
           </p>
 
           <p
@@ -109,7 +109,7 @@ export function SiteFooter() {
 
       <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 border-t border-border px-5 py-6 sm:px-8">
         <p className="eyebrow text-muted-foreground">© 2026 The Be Human Company</p>
-        <p className="eyebrow text-muted-foreground">Human + AI · Better together</p>
+        <p className="eyebrow text-muted-foreground">Human + machine · Better together</p>
       </div>
     </footer>
   );

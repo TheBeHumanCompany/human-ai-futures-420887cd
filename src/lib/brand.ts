@@ -59,9 +59,14 @@ export const CONTACT_EMAIL = "info@thebehumancompany.ca";
  *
  * Rendered within two DOM levels of every Maturity Score mention, and
  * compared to this literal by identity, not by keyword.
+ *
+ * The leading qualifier was "AI Governance" until 2026-08-22. The rebrand drops
+ * the word AI from public copy, and dropping it here moves this line TOWARDS its
+ * source rather than away from it: `controls.yaml` calls the instrument "the
+ * Maturity Score", and the "AI" was added on this side, not taken from there.
  */
 export const POSITIONING_DISCLAIMER =
-  "The AI Governance Maturity Score is a readiness and assurance tool. It is not a certification, it is not a compliance guarantee, and it is not recognized by any government.";
+  "The Governance Maturity Score is a readiness and assurance tool. It is not a certification, it is not a compliance guarantee, and it is not recognized by any government.";
 
 /** A social destination the footer and the social section both render. */
 export type SocialLink = {

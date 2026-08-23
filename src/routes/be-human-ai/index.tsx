@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { BlueprintSectionView, BlueprintSubnav } from "@/components/blueprint";
 import { MapleLeaf } from "@/components/maple-leaf";
-import { BLUEPRINT_SECTIONS, FOUNDING_RATE, FUTURE_RATE, TURNAROUND } from "@/lib/blueprint";
+import { BLUEPRINT_SECTIONS } from "@/lib/blueprint";
 import { INDIGENOUS_LINE } from "@/lib/brand";
 
 /**
@@ -20,32 +20,32 @@ import { INDIGENOUS_LINE } from "@/lib/brand";
  *
  * ── Why the page is assembled from data ───────────────────────────────────────
  *
- * All sixteen sections must be present and in the order the source document
- * puts them, and they must not all be equally loud — the previous version was
- * described as information overload, and a flat wall of sixteen would be worse.
- * Those are only compatible if presence and prominence are separate concerns,
- * so the section spine and every word of copy live in `src/lib/blueprint.ts`
- * and `docs/blueprint-sections.json`, and this file is layout.
+ * The section spine and every word of copy live in `src/lib/blueprint.ts` and
+ * `docs/blueprint-sections.json`, and this file is layout.
  *
- * The practical effect is that "digestible" cannot be achieved by deletion. The
- * tests read the same fixture the page renders, and the ordered-id assertion
- * goes red the moment a section is dropped to make the page feel shorter.
+ * That split was originally there to stop sections being deleted to make the
+ * page feel shorter. As of 2026-08-22 the page is deliberately shorter — it no
+ * longer sells the Blueprint — and the split earns its keep for a different
+ * reason: `docs/blueprint-claims.json` maps public claims onto section ids and
+ * on to controls in the framework, so a section that disappears orphans its
+ * claims loudly in the tests rather than quietly on the page.
  */
 export const Route = createFileRoute("/be-human-ai/")({
   head: () => ({
     meta: [
-      { title: "The Be Human AI Blueprint — Executive AI Assessment & 90-Day Plan" },
+      { title: "The Be Human Intelligence Blueprint — For Select Organizations" },
       {
         name: "description",
-        content: `An executive AI assessment and 90-day transformation plan in ${TURNAROUND}. Founding organization rate ${FOUNDING_RATE}, future rate ${FUTURE_RATE}.`,
+        content:
+          "Human readiness, governance and sovereignty, and intelligence strategy. We work with a small number of organizations at a time.",
       },
       {
         property: "og:title",
-        content: "The Be Human AI Blueprint — Executive AI Assessment & 90-Day Plan",
+        content: "The Be Human Intelligence Blueprint — For Select Organizations",
       },
       {
         property: "og:description",
-        content: "Human judgment leads. AI accelerates execution.",
+        content: "Human judgment leads. The machines accelerate execution.",
       },
     ],
   }),
@@ -57,17 +57,39 @@ function Blueprint() {
     <>
       <section className="section-ink grain border-b border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-24">
-          <p className="type-label-caps text-lime">Human + AI transformation</p>
-          <span className="type-eyebrow-rule block" aria-hidden />
-          <h1 className="type-h1-caps mt-6 max-w-5xl">
-            Artificial intelligence will change every business.
+          <div className="flex flex-wrap items-start justify-between gap-6">
+            <div>
+              <p className="type-label-caps text-lime">Be Human Intelligence</p>
+              <span className="type-eyebrow-rule block" aria-hidden />
+            </div>
+
+            {/*
+              The exclusivity line, and the reason this page stopped selling.
+              It sits in the hero rather than only in the closing section so a
+              visitor who never scrolls still learns that engagements are
+              limited — which is the whole positioning, not a footnote to it.
+            */}
+            <p
+              data-blueprint-exclusivity="true"
+              className="eyebrow max-w-[17rem] leading-loose text-muted-foreground sm:text-right"
+            >
+              We work with a small number of organizations at a time
+            </p>
+          </div>
+
+          <h1 className="type-h1-caps mt-10 max-w-5xl">
+            Machine intelligence will change every business.
           </h1>
+
+          <p className="type-body-lg mt-8 max-w-2xl text-foreground/85">
+            The Blueprint is how we take an organization from scattered, unmanaged use of these
+            systems to one clear position on them &mdash; across the people who have to change, the
+            data that has to stay protected, and the work that has to get faster.
+          </p>
 
           {/* The leaf is a sibling of the text node, not a decoration parked
               elsewhere in the hero — it marks this specific line, and the DOM
-              distance between the two is measured to prove it still does. The
-              copy comes from the shared constant, which supersedes the source
-              PDF's own wording of this line. */}
+              distance between the two is measured to prove it still does. */}
           <p
             data-brand="indigenous-line"
             className="type-body-lg mt-8 inline-flex items-center gap-2 text-foreground/85"

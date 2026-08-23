@@ -118,7 +118,11 @@ function goodPage(pathname: string): string {
     : ["adewolf", "bella", "anton", "arlina"]
         .map((n) => `<img src="/assets/archive-${n}-a1b2c3d4.png" alt="${n}">`)
         .join("");
-  const pricing = `<p>$795 CAD founding rate, $1,500 CAD thereafter, 3 business days.</p>`;
+  // The good page carries NO price. AC-6.3 was inverted on 2026-08-22: the
+  // Blueprint is no longer sold from the website, so a rate rendering here is
+  // the regression rather than the requirement. What the page must carry
+  // instead is the exclusivity line, which is what replaced the offer.
+  const positioning = `<p>We work with a small number of organizations at a time.</p>`;
   const footer = brand ? `<footer><p>🍁 ${brand.INDIGENOUS_LINE}</p></footer>` : "";
   const principleList = principles
     ? `<ul>${principles.map((p) => `<li>${p}</li>`).join("")}</ul>`
@@ -151,7 +155,7 @@ function goodPage(pathname: string): string {
     images,
     portraits,
     archive,
-    pricing,
+    positioning,
     principleList,
     sections,
     filler,
@@ -374,11 +378,25 @@ describe("prod-acceptance.sh fails on seeded faults", () => {
     TEST_TIMEOUT,
   );
 
+  /**
+   * The inverse of the case this replaced.
+   *
+   * It used to seed a WRONG price and prove the gate caught the drift. With
+   * nothing on the page to buy, the failure that matters runs the other way:
+   * the old offer growing back. That is the one-way door this direction cannot
+   * take back — going public later is easy, going exclusive again is not — so
+   * the gate is proven against a price reappearing, not against a wrong one.
+   */
   test(
-    "pricing drifting from the approved figures is rejected (AC-6.3)",
+    "a price reappearing on the Blueprint page is rejected (AC-6.3)",
     async () => {
       const r = await runAgainstFixture((pathname, html) =>
-        pathname === "/be-human-ai" ? html.replace("$795 CAD", "$695 CAD") : html,
+        pathname === "/be-human-ai"
+          ? html.replace(
+              "<p>We work with a small number",
+              "<p>$795 CAD founding rate.</p><p>We work with a small number",
+            )
+          : html,
       );
       expectRejected(r, "AC-6.3");
     },
