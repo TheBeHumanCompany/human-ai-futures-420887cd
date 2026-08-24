@@ -162,18 +162,22 @@ function Statement({
   label,
   tone = "cream",
   headline,
+  mobileHeadline,
   cols = 2,
   children,
 }: {
   label?: string;
   tone?: Tone;
   headline?: ReactNode;
+  /** Rendered below `lg` only — see `MobileHeading`. */
+  mobileHeadline?: ReactNode;
   cols?: 1 | 2;
   children?: ReactNode;
 }) {
   return (
     <>
       {label ? <Opener label={label} tone={tone} /> : null}
+      {mobileHeadline ? <MobileHeading tone={tone}>{mobileHeadline}</MobileHeading> : null}
       {headline}
       {children ? (
         <div
@@ -191,6 +195,7 @@ function Statement({
     </>
   );
 }
+
 
 /* ── Layout 2 — Split editorial ───────────────────────────────────────────
  * 35/65 desktop grid: headline or thesis left, supporting copy or image right.
