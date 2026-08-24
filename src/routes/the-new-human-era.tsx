@@ -136,6 +136,25 @@ function Opener({ label, tone = "cream" }: { label: string; tone?: Tone }) {
   );
 }
 
+/**
+ * Mobile-only section heading.
+ *
+ * On phones and small tablets the page reads eyebrow → strong heading → body.
+ * Several sections go straight from eyebrow into copy on desktop by design, so
+ * this heading is rendered only below `lg`, using language already present in
+ * the section it introduces.
+ */
+function MobileHeading({ tone = "cream", children }: { tone?: Tone; children: ReactNode }) {
+  return (
+    <h2
+      className={`type-h2-caps mb-8 lg:hidden ${tone === "cream" ? "text-ink" : "text-foreground"}`}
+    >
+      {children}
+    </h2>
+  );
+}
+
+
 /* ── Layout 1 — Statement ─────────────────────────────────────────────────
  * label · one headline · one or two body columns beneath.
  */
