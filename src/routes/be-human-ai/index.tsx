@@ -338,30 +338,28 @@ function BlueprintPage() {
 
       {/* ── Blueprint intro, ink ──────────────────────────────────────── */}
       <section id="blueprint-intro" className="section-ink">
-        <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.45fr)] lg:gap-20">
+        <div className={`${SHELL} py-14 lg:py-16`}>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
             <div>
               <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps mt-8 max-w-[12ch]">
+              <h2 className="type-h3-caps mt-5 max-w-[10ch]">
                 Three pillars.
                 <br />
                 One position
               </h2>
-              <p className="type-body mt-8 max-w-[44ch] text-foreground/70">
+              <p className="type-body-sm mt-5 max-w-[42ch] text-foreground/70">
                 Together, these three areas show where the organization stands, what needs
-                protecting, and where machine intelligence can create the greatest value. We do not
-                publish the method. What we will tell you is what is different in your organization
-                when the work is done.
+                protecting, and where machine intelligence can create the greatest value.
               </p>
             </div>
 
             <div className="grid gap-px bg-border sm:grid-cols-3">
               {PILLAR_OVERVIEW.map((pillar) => (
-                <div key={pillar.n} className="bg-background py-8 sm:px-6 sm:py-2 lg:px-8">
-                  <pillar.icon className="h-8 w-8 text-lime" strokeWidth={1.25} />
-                  <p className="type-label-caps mt-6 text-lime">{pillar.n}</p>
-                  <h3 className="type-h4-caps mt-3 text-foreground">{pillar.title}</h3>
-                  <p className="type-body-sm mt-4 max-w-[26ch] text-foreground/70">
+                <div key={pillar.n} className="bg-background py-6 sm:px-5 sm:py-1 lg:px-6">
+                  <pillar.icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
+                  <p className="type-label-caps mt-4 text-[0.8125rem] text-lime">{pillar.n}</p>
+                  <h3 className="type-h4-caps mt-2 text-[1rem] text-foreground">{pillar.title}</h3>
+                  <p className="type-body-sm mt-3 max-w-[24ch] text-[0.875rem] text-foreground/70">
                     {pillar.question}
                   </p>
                 </div>
