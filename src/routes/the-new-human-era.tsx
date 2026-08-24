@@ -319,7 +319,7 @@ function NewHumanEra() {
         <Statement
           tone="ink"
           label="The risk"
-          headline={<h2 className="type-h2-caps">None of that is guaranteed</h2>}
+          headline={<h2 className="type-h2-caps">What’s at stake</h2>}
         >
           <p className="type-body-lg text-muted-foreground">
             If we get this transition wrong, we could become more technologically advanced than any
