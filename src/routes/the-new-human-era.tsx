@@ -125,7 +125,6 @@ function Band({
 const COLS_2 = "grid gap-10 lg:grid-cols-2 lg:gap-16";
 const SPLIT = "grid gap-10 lg:grid-cols-[minmax(0,35fr)_minmax(0,65fr)] lg:gap-16";
 
-const bodyTone = (tone: Tone) => (tone === "ink" ? "text-muted-foreground" : "text-ink/70");
 
 /** Eyebrow + short lime rule. Every section opens with this. */
 function Opener({ label, tone = "cream" }: { label: string; tone?: Tone }) {
