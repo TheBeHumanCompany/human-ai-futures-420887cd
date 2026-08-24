@@ -108,7 +108,7 @@ function BlueprintPage() {
       {/* ── Hero, ink ─────────────────────────────────────────────────── */}
       <section className="section-ink grain border-b border-border">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-6">
+          <div className="flex flex-col gap-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
             <Eyebrow>Be Human Intelligence</Eyebrow>
             <p className="eyebrow max-w-[17rem] leading-loose text-muted-foreground sm:text-right">
               We work with a small number of organizations at a time
