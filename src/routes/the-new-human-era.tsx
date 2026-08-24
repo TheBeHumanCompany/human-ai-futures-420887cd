@@ -784,10 +784,6 @@ function NewHumanEra() {
       </Band>
 
       {/* ---------- 15. The framework (cream) — Statement, one column ---------- */
-      /* Only the explanatory copy stays here. The progression, archive quote, and
-       * principles have been moved into their own bands so each idea gets its own
-       * background and its own breathing room.
-       */
       <Band id="the-framework">
         <Statement label="The framework" cols={1}>
           <p className="type-body-lg text-ink/70">
