@@ -802,7 +802,7 @@ function NewHumanEra() {
         </Statement>
       </Band>
 
-      {/* ---------- 16. How it compounds (ink) — progression + archive quote ---------- */
+      {/* ---------- 16. How it compounds (ink) — progression + archive quote ---------- */}
       <Band id="how-it-compounds">
         <Opener label="How it compounds" tone="ink" />
 
