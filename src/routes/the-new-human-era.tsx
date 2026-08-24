@@ -512,7 +512,8 @@ function NewHumanEra() {
         <Split
           label="Not the reward"
           left={
-            <h2 className="type-h2-condensed">
+            <h2 className="type-h2-caps lg:type-h2-condensed">
+
               But what if your humanity is not the reward at the end of a good life?
             </h2>
           }
