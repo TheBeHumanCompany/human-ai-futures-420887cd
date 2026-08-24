@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ClipboardCheck,
-  Crown,
   Globe,
   ListChecks,
   Lock,
@@ -46,9 +45,34 @@ export const Route = createFileRoute("/be-human-ai/")({
 const SHELL = "mx-auto max-w-[1400px] px-5 sm:px-8";
 
 /** Section label. No rule underneath — hierarchy comes from scale and space. */
-function Label({ children, tone = "lime" }: { children: string; tone?: "lime" | "ink" }) {
+function Label({
+  children,
+  tone = "lime",
+}: {
+  children: string;
+  tone?: "lime" | "ink" | "muted";
+}) {
+  const color = tone === "lime" ? "text-lime" : tone === "muted" ? "text-ink/45" : "text-ink";
+  return <p className={`type-label-caps ${color}`}>{children}</p>;
+}
+
+/** Chess-knight mark for the strategy pillar (no lucide equivalent). */
+function KnightIcon({ className }: { className?: string; strokeWidth?: number }) {
   return (
-    <p className={`type-label-caps ${tone === "lime" ? "text-lime" : "text-ink"}`}>{children}</p>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.25}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="M9 3.5 8 6 5.5 8.2A3.5 3.5 0 0 0 4.3 11l-.3 2 2.2-1.1 1.4 1.6L6 15.5c-1.2 1.4-2 3-2 4.5h13c0-4-.6-7-1.7-9.4C14.1 8 12 6.3 9.6 5.6" />
+      <path d="M8.8 9.2h.01" />
+      <path d="M4 20h15" />
+    </svg>
   );
 }
 
@@ -76,7 +100,7 @@ const PILLAR_OVERVIEW = [
   {
     n: "03",
     title: "Intelligence Strategy & Transformation",
-    icon: Crown,
+    icon: KnightIcon,
     question: "Where does machine intelligence create the greatest business leverage?",
   },
 ] as const;
@@ -285,8 +309,8 @@ function BlueprintPage() {
         <div className={`${SHELL} py-20 lg:py-28`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-24">
             <div>
-              <Label tone="lime">Where organizations are</Label>
-              <h2 className="type-h1-caps mt-8 max-w-[14ch] text-ink">
+              <Label tone="muted">Where organizations are</Label>
+              <h2 className="type-h2-caps mt-6 max-w-[15ch] text-ink">
                 Adoption is already ahead of direction
               </h2>
             </div>
@@ -314,30 +338,28 @@ function BlueprintPage() {
 
       {/* ── Blueprint intro, ink ──────────────────────────────────────── */}
       <section id="blueprint-intro" className="section-ink">
-        <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.45fr)] lg:gap-20">
+        <div className={`${SHELL} py-14 lg:py-16`}>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
             <div>
               <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps mt-8 max-w-[12ch]">
+              <h2 className="type-h3-caps mt-5 max-w-[26rem]">
                 Three pillars.
                 <br />
                 One position
               </h2>
-              <p className="type-body mt-8 max-w-[44ch] text-foreground/70">
+              <p className="type-body-sm mt-5 max-w-[42ch] text-foreground/70">
                 Together, these three areas show where the organization stands, what needs
-                protecting, and where machine intelligence can create the greatest value. We do not
-                publish the method. What we will tell you is what is different in your organization
-                when the work is done.
+                protecting, and where machine intelligence can create the greatest value.
               </p>
             </div>
 
             <div className="grid gap-px bg-border sm:grid-cols-3">
               {PILLAR_OVERVIEW.map((pillar) => (
-                <div key={pillar.n} className="bg-background py-8 sm:px-6 sm:py-2 lg:px-8">
-                  <pillar.icon className="h-8 w-8 text-lime" strokeWidth={1.25} />
-                  <p className="type-label-caps mt-6 text-lime">{pillar.n}</p>
-                  <h3 className="type-h4-caps mt-3 text-foreground">{pillar.title}</h3>
-                  <p className="type-body-sm mt-4 max-w-[26ch] text-foreground/70">
+                <div key={pillar.n} className="bg-background py-6 sm:px-5 sm:py-1 lg:px-6">
+                  <pillar.icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
+                  <p className="type-label-caps mt-4 text-[0.8125rem] text-lime">{pillar.n}</p>
+                  <h3 className="type-h4-caps mt-2 text-[1rem] text-foreground">{pillar.title}</h3>
+                  <p className="type-body-sm mt-3 max-w-[24ch] text-[0.875rem] text-foreground/70">
                     {pillar.question}
                   </p>
                 </div>
