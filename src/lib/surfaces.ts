@@ -87,8 +87,8 @@ export const SURFACES: readonly Surface[] = [
   },
   {
     path: "/be-human-ai",
-    kind: "blueprint",
-    expectsSingleNav: false,
+    kind: "page",
+    expectsSingleNav: true,
     sitemap: { changefreq: "monthly", priority: "0.9" },
   },
   {
