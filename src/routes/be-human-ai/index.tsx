@@ -309,8 +309,8 @@ function BlueprintPage() {
         <div className={`${SHELL} py-20 lg:py-28`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-24">
             <div>
-              <Label tone="lime">Where organizations are</Label>
-              <h2 className="type-h1-caps mt-8 max-w-[14ch] text-ink">
+              <Label tone="muted">Where organizations are</Label>
+              <h2 className="type-h2-caps mt-6 max-w-[15ch] text-ink">
                 Adoption is already ahead of direction
               </h2>
             </div>
