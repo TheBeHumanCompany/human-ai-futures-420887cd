@@ -92,24 +92,6 @@ export const SURFACES: readonly Surface[] = [
     sitemap: { changefreq: "monthly", priority: "0.9" },
   },
   {
-    path: "/be-human-ai/human-readiness",
-    kind: "page",
-    expectsSingleNav: true,
-    sitemap: { changefreq: "monthly", priority: "0.8" },
-  },
-  {
-    path: "/be-human-ai/governance",
-    kind: "page",
-    expectsSingleNav: true,
-    sitemap: { changefreq: "monthly", priority: "0.8" },
-  },
-  {
-    path: "/be-human-ai/ai-strategy",
-    kind: "page",
-    expectsSingleNav: true,
-    sitemap: { changefreq: "monthly", priority: "0.8" },
-  },
-  {
     // Maya's 2026-08-18 brief. Not in the nav tree — AC-3.1a deep-equals that
     // tree, so a seventh top-level item is an amendment, not an edit. Reachable
     // from /who-we-are until that is decided.
