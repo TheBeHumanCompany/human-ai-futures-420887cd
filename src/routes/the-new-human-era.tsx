@@ -800,41 +800,51 @@ function NewHumanEra() {
             ask them to confirm our beliefs. We asked them to tell us theirs.
           </p>
         </Statement>
+      </Band>
 
+      {/* ---------- 16. How it compounds (ink) — progression + archive quote ---------- */}
+      <Band id="how-it-compounds">
+        <Opener label="How it compounds" tone="ink" />
 
-        <ol
-          data-framework-chain
-          className="mt-16 flex flex-wrap items-center gap-x-4 gap-y-4 border-y border-ink/15 py-8"
-        >
-          {["Practice Humanity", "Human Reps", "Human Wealth", "Better Life", "Better World"].map(
-            (node, i, all) => (
-              <li key={node} className="flex items-center gap-4">
-                <span className="type-h4-caps">{node}</span>
-                {i < all.length - 1 ? (
-                  <span aria-hidden className="text-lime-dark">
-                    &rarr;
-                  </span>
-                ) : null}
-              </li>
-            ),
-          )}
+        <ol className="flex flex-wrap items-center gap-x-4 gap-y-3">
+          {[
+            "PRACTISE HUMANITY",
+            "HUMAN REPS",
+            "HUMAN WEALTH",
+            "BETTER LIFE",
+            "BETTER WORLD",
+          ].map((node, i, all) => (
+            <li key={node} className="flex items-center gap-4">
+              <span className="type-h4-caps text-foreground">{node}</span>
+              {i < all.length - 1 ? (
+                <span aria-hidden className="text-lime">
+                  &rarr;
+                </span>
+              ) : null}
+            </li>
+          ))}
         </ol>
 
         <div className={`mt-16 ${COLS_2}`}>
-          <ArchiveQuote entry={ARLINA} />
-          <p className="type-body-lg self-center text-ink/70">
+          <ArchiveQuote entry={ARLINA} tone="ink" />
+          <p className="type-body-lg self-center text-muted-foreground">
             And we listened for what kept appearing: love, family, connection, laughter, being
             present, helping someone, thinking for yourself, being there when another person needs
             you and actually experiencing your life while you still have it. Those answers helped
             shape the principles we believe matter more as technology becomes more capable:
           </p>
         </div>
+      </Band>
 
-        <ol data-principles className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {/* ---------- 17. The six principles (cream) — 3x2 grid ---------- */}
+      <Band id="the-six-principles">
+        <Opener label="The six principles" tone="cream" />
+
+        <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {HOME_PRINCIPLES.map((p) => (
-            <li key={p.n} className="border-t border-ink/15 pt-5">
+            <li key={p.n}>
               <span className="eyebrow text-lime-dark">{p.n}</span>
-              <h3 className="type-h4-caps mt-3">{p.title}</h3>
+              <h3 className="type-h4-caps mt-3 text-ink">{p.title}</h3>
               <p className="type-body mt-2 text-ink/65">{p.body}</p>
             </li>
           ))}
@@ -849,7 +859,8 @@ function NewHumanEra() {
         </p>
       </Band>
 
-      {/* ---------- 16. What we are actually building (ink) — Statement, one column ---------- */}
+
+      {/* ---------- 18. What we are actually building (ink) — Statement, one column ---------- */}
       <Band id="what-we-are-actually-building">
         <Statement tone="ink" label="What we are actually building" cols={1}>
           <p className="type-body-lg text-muted-foreground">
@@ -886,7 +897,7 @@ function NewHumanEra() {
       </Band>
 
 
-      {/* ---------- 17. The invitation (cream) — Statement + Manifesto ---------- */}
+      {/* ---------- 19. The invitation (cream) — Statement + Manifesto ---------- */}
       <Band id="the-invitation">
         <Statement
           label="The invitation"
@@ -929,7 +940,7 @@ function NewHumanEra() {
         </Statement>
       </Band>
 
-      {/* ---------- 18. Closing (ink) — Centered manifesto ---------- */}
+      {/* ---------- 20. Closing (ink) — Centered manifesto ---------- */}
       <Band>
         <div className="py-10 lg:py-24">
           <Manifesto
