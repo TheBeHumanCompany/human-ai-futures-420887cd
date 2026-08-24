@@ -82,6 +82,9 @@ const PILLARS = [
       "The gaps are named and the safeguards that close them are defined before the technology is embedded in the business, not after.",
       "Where your data lives, and under whose jurisdiction, becomes a decision you made rather than one you inherited.",
     ],
+    lookAt: undefined,
+    insight: undefined,
+    pathForward: undefined,
   },
   {
     n: "03",
@@ -99,6 +102,7 @@ const PILLARS = [
       "Human ownership",
       "Recommended priorities",
     ],
+    insight: undefined,
     pathForward: {
       title: "A clear path forward",
       body: "The Blueprint does not end with a list of possibilities. We bring the findings together into a clear set of priorities: what deserves attention first, what should wait, who should own the next decision, and where implementation can create the greatest value. You can move forward internally, bring in another partner, or continue with us. The Blueprint is built around your organization and gives leadership clarity on what to do next.",
