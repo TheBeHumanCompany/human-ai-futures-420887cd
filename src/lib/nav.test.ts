@@ -31,15 +31,6 @@ const BINDING_TREE: NavItem[] = [
     to: "/be-human-ai",
     triggerNavigates: true,
     cta: true,
-    children: [
-      { to: "/be-human-ai/human-readiness", label: "Human Readiness" },
-      { to: "/be-human-ai/governance", label: "Governance & Sovereignty" },
-      // Renamed with the 2026-08-22 rebrand. The ROUTE is deliberately still
-      // /be-human-ai/ai-strategy: changing it needs redirects, and a rename that
-      // silently 404s every existing link to this pillar is a worse outcome than
-      // a path that no longer matches its label.
-      { to: "/be-human-ai/ai-strategy", label: "Intelligence Strategy" },
-    ],
   },
 ];
 
@@ -59,9 +50,11 @@ describe("the binding nav tree", () => {
     ]);
   });
 
-  test("exactly two items have children", () => {
+  test("exactly one item has children", () => {
+    // 2026-08-24: the Blueprint dropdown was removed with its subpages, so
+    // About is the only parent left.
     const parents = NAV.filter(hasChildren);
-    expect(parents.map((item) => item.label)).toEqual(["About", "Blueprint"]);
+    expect(parents.map((item) => item.label)).toEqual(["About"]);
   });
 
   test("exactly one item is the pill", () => {
@@ -101,12 +94,12 @@ describe("the split-control invariant", () => {
     expect(about?.children?.length).toBe(2);
   });
 
-  test("Blueprint is a page AND a parent, so it is the split control", () => {
+  test("Blueprint is one page and links straight to it, with no dropdown", () => {
     const blueprint = NAV.find((item) => item.label === "Blueprint");
 
     expect(blueprint?.to).toBe("/be-human-ai");
     expect(blueprint?.triggerNavigates).toBe(true);
-    expect(blueprint?.children?.length).toBe(3);
+    expect(blueprint?.children).toBeUndefined();
   });
 
   test("the non-navigating shape is still reachable by changing one field", () => {
@@ -133,11 +126,11 @@ describe("mobileNavChildren", () => {
    * with no route to it on a phone, which is where most of the traffic is.
    */
   test("a navigating parent leads its own sub-list", () => {
-    const blueprint = NAV.find((item) => item.label === "Blueprint")!;
-    const children = mobileNavChildren(blueprint);
+    const about = NAV.find((item) => item.label === "About")!;
+    const children = mobileNavChildren(about);
 
-    expect(children[0]).toEqual({ to: "/be-human-ai", label: "Blueprint" });
-    expect(children).toHaveLength(4);
+    expect(children[0]).toEqual({ to: "/about", label: "About" });
+    expect(children).toHaveLength(3);
   });
 
   test("About leads its own sub-list too, since it is also a page", () => {
@@ -169,21 +162,19 @@ describe("navDestinations", () => {
   test("flattens parents and children without losing or duplicating either", () => {
     const destinations = navDestinations();
 
-    // 4 flat items + About + Blueprint + 2 About children + 3 pillars.
-    expect(destinations).toHaveLength(11);
+    // 4 flat items + Blueprint + About + 2 About children.
+    expect(destinations).toHaveLength(8);
     expect(new Set(destinations.map((d) => d.to)).size).toBe(destinations.length);
     expect(destinations.map((d) => d.to)).toContain("/who-we-are");
-    expect(destinations.map((d) => d.to)).toContain("/be-human-ai/governance");
+    expect(destinations.map((d) => d.to)).toContain("/be-human-ai");
   });
 
-  test("both parents appear ahead of their own children", () => {
+  test("a parent appears ahead of its own children", () => {
     // Document order, so the footer's Navigate column reads as the nav does
     // rather than as an arbitrary flattening.
     const order = navDestinations().map((d) => d.to);
 
     expect(order.indexOf("/about")).toBeLessThan(order.indexOf("/why-we-exist"));
-    expect(order.indexOf("/be-human-ai")).toBeLessThan(
-      order.indexOf("/be-human-ai/human-readiness"),
-    );
+    expect(order.indexOf("/about")).toBeLessThan(order.indexOf("/who-we-are"));
   });
 });

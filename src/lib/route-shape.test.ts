@@ -84,28 +84,16 @@ describe("generated route ids", () => {
     expect(episodeRoutes).toEqual(["/podcast_/$slug"]);
   });
 
-  test("the Blueprint is a directory index, and the three pillars are its siblings", () => {
-    // The trap this guards is the same one the podcast escape guards, in the
-    // other direction. `be-human-ai.tsx` was a leaf with no `<Outlet/>`;
-    // creating `be-human-ai/<pillar>.tsx` beside it would have promoted it to
-    // their layout route, and a layout that renders no outlet renders its
-    // children nowhere. All three pillars would have mounted and displayed
-    // nothing — with a 200, a title, and an empty body.
-    //
-    // Converting it to `be-human-ai/index.tsx` keeps it a leaf and makes the
-    // pillars siblings instead. The generated ids are what record that: an
-    // index route is `/be-human-ai/` with the trailing slash, and the pillars
-    // sit alongside it rather than under it.
+  test("the Blueprint is a directory index with no children", () => {
+    // Kept as `be-human-ai/index.tsx` after the 2026-08-24 rebuild so the
+    // public URL is unchanged. The three pillar subpages were deleted with the
+    // dropdown; a reappearing pillar id here means a subpage came back.
     const ids = fileRouteIds();
 
     expect(ids).toContain("/be-human-ai/");
-    expect(ids).toContain("/be-human-ai/human-readiness");
-    expect(ids).toContain("/be-human-ai/governance");
-    expect(ids).toContain("/be-human-ai/ai-strategy");
-
-    // And the file it replaced is gone. A leftover `be-human-ai.tsx` would
-    // generate a bare `/be-human-ai` id beside the index and reintroduce the
-    // layout nesting while every assertion above still passed.
+    expect(ids.filter((id) => id.startsWith("/be-human-ai/") && id !== "/be-human-ai/")).toEqual(
+      [],
+    );
     expect(ids).not.toContain("/be-human-ai");
   });
 
@@ -159,12 +147,12 @@ describe("SURFACES agrees with the generated router", () => {
     expect(surfacePaths()).toEqual(generatedPublicPaths());
   });
 
-  test("exactly one surface is exempt from the single-nav rule", () => {
-    // AC-3.4 grants the Blueprint page a second, in-page sub-nav. Every other
-    // page gets exactly one nav; a second exemption would be a page quietly
-    // opting out of the rule rather than a decision.
+  test("no page surface is exempt from the single-nav rule", () => {
+    // AC-3.4's sub-nav exemption died with the old Blueprint architecture: the
+    // rebuilt Blueprint has no in-page sub-nav, so every page now gets exactly
+    // one nav and an exemption would be a page quietly opting out of the rule.
     const exempt = SURFACES.filter((s) => s.kind !== "machine" && !s.expectsSingleNav);
-    expect(exempt.map((s) => s.path)).toEqual(["/be-human-ai"]);
+    expect(exempt.map((s) => s.path)).toEqual([]);
   });
 });
 
