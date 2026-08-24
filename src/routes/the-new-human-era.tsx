@@ -928,7 +928,12 @@ function NewHumanEra() {
 
       {/* ---------- 19. The invitation (cream) — two balanced text columns ---------- */}
       <Band id="the-invitation">
-        <Statement label="The invitation" cols={2}>
+        <Statement
+          label="The invitation"
+          mobileHeadline="We get to decide how we show up"
+          cols={2}
+        >
+
           <div>
             <p className="type-body-lg text-ink/70">
               We are living through one of the biggest transitions humanity has ever faced, and none
