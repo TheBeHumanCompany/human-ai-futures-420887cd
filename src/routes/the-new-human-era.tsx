@@ -542,43 +542,32 @@ function NewHumanEra() {
         </Split>
       </Band>
 
-      {/* ---------- 8. What status becomes (ink) — Split editorial ---------- */}
+      {/* ---------- 8. What status becomes (ink) — Statement, one column ---------- */}
       <Band>
-        <Split
-          tone="ink"
-          label="When the performance becomes cheap"
-          left={
-            <h2 className="type-h3-caps">
-              When the performance becomes cheap, the human behind it becomes valuable
-            </h2>
-          }
-          right={
-            <>
-              <p className="type-body-lg text-muted-foreground">
-                This matters even more because AI is making many of the old signals of advantage
-                easier to manufacture. Knowledge can be accessed in seconds. Content can be produced
-                endlessly. Confidence can be performed. An impressive image can be generated.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                For generations, status has largely been something we display: the money, the title,
-                the appearance of winning. But real status has never needed that much explanation.
-                It is the person whose Word Carries Weight because they have kept it. The person
-                people want beside them when something important happens. The parent whose child
-                knows they are actually listening. The leader who makes people more capable instead
-                of more afraid.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                And what one generation learns to admire, the next learns to chase. If status begins
-                attaching itself to humans who are Fully Here, who Keep Their Own Mind, whose Word
-                Carries Weight, we begin changing more than individual lives.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                We begin changing what success means.
-              </p>
-            </>
-          }
-        />
+        <Statement tone="ink" label="When the performance becomes cheap" cols={1}>
+          <p className="type-body-lg text-muted-foreground">
+            Our humanity matters even more because AI is making many of the old signals of advantage
+            easier to manufacture. Knowledge can be accessed in seconds. Content can be produced
+            endlessly. Confidence can be performed. An impressive image can be generated.
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            For generations, status has largely been something we display: the money, the title, the
+            appearance of winning. But real status has never needed that much explanation. It is the
+            person whose Word Carries Weight because they have kept it. The person people want beside
+            them when something important happens. The parent whose child knows they are actually
+            listening. The leader who makes people more capable instead of more afraid.
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            And what one generation learns to admire, the next learns to chase. If status begins
+            attaching itself to humans who are Fully Here, who Keep Their Own Mind, whose Word
+            Carries Weight, we begin changing more than individual lives.
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            We begin changing what success means.
+          </p>
+        </Statement>
       </Band>
+
 
       {/* ---------- 9. Human Wealth (cream) — Split editorial ---------- */}
       <Band id="human-wealth">
