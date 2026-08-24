@@ -201,30 +201,6 @@ function Split({
   );
 }
 
-/* ── Layout 3 — Centered manifesto ────────────────────────────────────────
- * Narrow intro · one centred reflective statement · one supporting response.
- * Reserved for the page's major philosophical turns.
- */
-function Manifesto({
-  intro,
-  headline,
-  response,
-  tone = "cream",
-}: {
-  intro?: ReactNode;
-  headline: ReactNode;
-  response?: ReactNode;
-  tone?: Tone;
-}) {
-  return (
-    <div className="mx-auto max-w-3xl text-center">
-      {intro ? <div className={`type-body-lg mb-8 ${bodyTone(tone)}`}>{intro}</div> : null}
-      {headline}
-      {response ? <div className={`type-body-lg mt-8 ${bodyTone(tone)}`}>{response}</div> : null}
-    </div>
-  );
-}
-
 /** Lime job — quote glyphs on an archive quote. */
 function ArchiveQuote({ entry, tone = "cream" }: { entry: (typeof ARCHIVE)[number]; tone?: Tone }) {
   const limeText = tone === "cream" ? "text-lime-dark" : "text-lime";
