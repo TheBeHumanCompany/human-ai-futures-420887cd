@@ -923,9 +923,9 @@ function NewHumanEra() {
         <div className="py-10 lg:py-24">
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="type-h3-caps text-foreground">
-              <span className="block">There are no perfect humans</span>
+              There are no perfect humans
               <br />
-              <span className="block">There are only humans practicing</span>
+              There are only humans practicing
             </h2>
             <p className="type-body-lg mt-16 text-muted-foreground">
               Start where you are. Start with the human directly in front of you. Ask yourself one
