@@ -342,7 +342,7 @@ function BlueprintPage() {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-14">
             <div>
               <Label>The Blueprint</Label>
-              <h2 className="type-h3-caps mt-5 max-w-[18ch]">
+              <h2 className="type-h3-caps mt-5 max-w-[26rem]">
                 Three pillars.
                 <br />
                 One position
