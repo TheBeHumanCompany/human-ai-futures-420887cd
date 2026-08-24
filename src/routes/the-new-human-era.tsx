@@ -841,44 +841,43 @@ function NewHumanEra() {
       <Band id="what-we-are-actually-building">
         <Opener label="What we are actually building" tone="ink" />
 
-        <div className="mx-auto max-w-6xl">
-          <div className={COLS_2}>
-            <div>
-              <p className="type-body-lg text-muted-foreground">
-                The goal of the New Human Era is not another philosophy people read, agree with and
-                forget. We want to help millions of people understand how to practice their humanity
-                deliberately — and understand what it can build in their own lives and in the lives
-                around them.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                Imagine a world where more people begin asking themselves: what is my Human Rep today?
-                For one person, that rep might be as simple as asking: how can I make one
-                person&rsquo;s life a little better today?
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                Now imagine that becoming normal in homes, companies, schools and communities. A parent
-                puts the phone down. A leader listens before reacting. A child notices somebody standing
-                alone and brings them in. A friend makes the call. A person thinks through the question
-                before handing it away. Individually, these moments look small. Together, they begin to
-                shape culture.
-              </p>
-            </div>
-            <div>
-              <p className="type-body-lg text-muted-foreground">
-                One person practices differently. Another human experiences the difference. Enough
-                changed experiences shape relationships. Relationships shape families, teams, schools
-                and communities. Eventually, what people repeatedly experience begins changing what a
-                culture considers normal.
-              </p>
-              <p className="type-h4-caps mt-8 text-foreground">That is how humanity compounds</p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                That is the scale of the ambition. Not millions of people following one philosophy.
-                Millions of people learning how to practice their humanity in a world becoming more
-                artificial.
-              </p>
-            </div>
+        <div className={COLS_2}>
+          <div>
+            <p className="type-body-lg text-muted-foreground">
+              The goal of the New Human Era is not another philosophy people read, agree with and
+              forget. We want to help millions of people understand how to practice their humanity
+              deliberately — and understand what it can build in their own lives and in the lives
+              around them.
+            </p>
+            <p className="type-body-lg mt-6 text-muted-foreground">
+              Imagine a world where more people begin asking themselves: what is my Human Rep today?
+              For one person, that rep might be as simple as asking: how can I make one
+              person&rsquo;s life a little better today?
+            </p>
+            <p className="type-body-lg mt-6 text-muted-foreground">
+              Now imagine that becoming normal in homes, companies, schools and communities. A parent
+              puts the phone down. A leader listens before reacting. A child notices somebody standing
+              alone and brings them in. A friend makes the call. A person thinks through the question
+              before handing it away. Individually, these moments look small. Together, they begin to
+              shape culture.
+            </p>
+          </div>
+          <div>
+            <p className="type-body-lg text-muted-foreground">
+              One person practices differently. Another human experiences the difference. Enough
+              changed experiences shape relationships. Relationships shape families, teams, schools
+              and communities. Eventually, what people repeatedly experience begins changing what a
+              culture considers normal.
+            </p>
+            <p className="type-h4-caps mt-8 text-foreground">That is how humanity compounds</p>
+            <p className="type-body-lg mt-6 text-muted-foreground">
+              That is the scale of the ambition. Not millions of people following one philosophy.
+              Millions of people learning how to practice their humanity in a world becoming more
+              artificial.
+            </p>
           </div>
         </div>
+
       </Band>
 
 
@@ -922,7 +921,7 @@ function NewHumanEra() {
       <Band>
         <div className="py-10 lg:py-24">
           <div className="mx-auto max-w-5xl text-center">
-            <h2 className="type-h4-caps sm:type-h3-caps text-foreground">
+            <h2 className="type-h2-caps text-foreground">
               <span className="block">There are no perfect humans</span>
               <span className="block">There are only humans practicing</span>
             </h2>
