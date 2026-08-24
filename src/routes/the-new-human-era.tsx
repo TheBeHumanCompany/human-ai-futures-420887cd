@@ -921,7 +921,7 @@ function NewHumanEra() {
       <Band>
         <div className="py-10 lg:py-24">
           <div className="mx-auto max-w-5xl text-center">
-            <h2 className="type-h4-caps sm:type-h3-caps text-foreground">
+            <h2 className="type-h2-caps text-foreground">
               <span className="block">There are no perfect humans</span>
               <span className="block">There are only humans practicing</span>
             </h2>
