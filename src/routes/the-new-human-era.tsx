@@ -29,6 +29,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Children, isValidElement, cloneElement, type ReactNode, type ReactElement } from "react";
 
+import collageImage from "@/assets/new-human-era-collage.png";
 import { ARCHIVE, HOME_PRINCIPLES } from "@/lib/content";
 
 export const Route = createFileRoute("/the-new-human-era")({
@@ -294,14 +295,31 @@ function NewHumanEra() {
             more of their lives doing what actually matters to them.
           </p>
         </Statement>
+
+        <figure className="mt-16">
+          <img
+            src={collageImage}
+            alt="Four people photographed at street level, side by side as one continuous portrait"
+            loading="lazy"
+            width={1786}
+            height={886}
+            className="h-auto w-full"
+          />
+          <figcaption className="mt-6">
+            <p className="type-label-caps text-ink/50">REAL PEOPLE, REAL VOICES</p>
+            <p className="type-body-lg mt-3 text-ink/70">
+              This era belongs to people. The New Human Era is built with and for all of us.
+            </p>
+          </figcaption>
+        </figure>
       </Band>
 
-      {/* ---------- 2. None of that is guaranteed (ink) — Statement ---------- */}
+      {/* ---------- 2. What’s at stake (ink) — Statement ---------- */}
       <Band>
         <Statement
           tone="ink"
           label="The risk"
-          headline={<h2 className="type-h2-caps">None of that is guaranteed</h2>}
+          headline={<h2 className="type-h2-caps">What’s at stake</h2>}
         >
           <p className="type-body-lg text-muted-foreground">
             If we get this transition wrong, we could become more technologically advanced than any
