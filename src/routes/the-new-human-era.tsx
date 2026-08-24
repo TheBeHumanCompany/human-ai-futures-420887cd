@@ -29,6 +29,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Children, isValidElement, cloneElement, type ReactNode, type ReactElement } from "react";
 
+import collageImage from "@/assets/new-human-era-collage.png";
 import { ARCHIVE, HOME_PRINCIPLES } from "@/lib/content";
 
 export const Route = createFileRoute("/the-new-human-era")({
