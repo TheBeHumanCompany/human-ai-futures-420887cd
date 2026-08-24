@@ -314,7 +314,7 @@ function NewHumanEra() {
         </figure>
       </Band>
 
-      {/* ---------- 2. None of that is guaranteed (ink) — Statement ---------- */}
+      {/* ---------- 2. What’s at stake (ink) — Statement ---------- */}
       <Band>
         <Statement
           tone="ink"
