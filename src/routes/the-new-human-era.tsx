@@ -868,54 +868,42 @@ function NewHumanEra() {
         </p>
       </Band>
 
-      {/* ---------- 16. What we are actually building (ink) — Split editorial ---------- */}
+      {/* ---------- 16. What we are actually building (ink) — Statement, one column ---------- */}
       <Band id="what-we-are-actually-building">
-        <Split
-          tone="ink"
-          label="What we are actually building"
-          left={
-            <>
-              <h2 className="type-h2-caps">
-                We are not here to add more to your life. We are here to develop who you are being
-              </h2>
-            </>
-          }
-          right={
-            <>
-              <p className="type-body-lg text-muted-foreground">
-                The goal of the New Human Era is not another philosophy people read, agree with and
-                forget. We want to help millions of people understand how to practice their humanity
-                deliberately — and understand what it can build in their own lives and in the lives
-                around them.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                Imagine a world where more people begin asking themselves: what is my Human Rep
-                today? For one person, that rep might be as simple as asking: how can I make one
-                person&rsquo;s life a little better today?
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                Now imagine that becoming normal in homes, companies, schools and communities. A
-                parent puts the phone down. A leader listens before reacting. A child notices
-                somebody standing alone and brings them in. A friend makes the call. A person thinks
-                through the question before handing it away. Individually, these moments look small.
-                Together, they begin to shape culture.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                One person practices differently. Another human experiences the difference. Enough
-                changed experiences shape relationships. Relationships shape families, teams,
-                schools and communities. Eventually, what people repeatedly experience begins
-                changing what a culture considers normal.
-              </p>
-              <p className="type-h4-caps mt-8 text-foreground">That is how humanity compounds</p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                That is the scale of the ambition. Not millions of people following one philosophy.
-                Millions of people learning how to practice their humanity in a world becoming more
-                artificial.
-              </p>
-            </>
-          }
-        />
+        <Statement tone="ink" label="What we are actually building" cols={1}>
+          <p className="type-body-lg text-muted-foreground">
+            The goal of the New Human Era is not another philosophy people read, agree with and
+            forget. We want to help millions of people understand how to practice their humanity
+            deliberately — and understand what it can build in their own lives and in the lives
+            around them.
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            Imagine a world where more people begin asking themselves: what is my Human Rep today?
+            For one person, that rep might be as simple as asking: how can I make one
+            person&rsquo;s life a little better today?
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            Now imagine that becoming normal in homes, companies, schools and communities. A parent
+            puts the phone down. A leader listens before reacting. A child notices somebody standing
+            alone and brings them in. A friend makes the call. A person thinks through the question
+            before handing it away. Individually, these moments look small. Together, they begin to
+            shape culture.
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            One person practices differently. Another human experiences the difference. Enough
+            changed experiences shape relationships. Relationships shape families, teams, schools
+            and communities. Eventually, what people repeatedly experience begins changing what a
+            culture considers normal.
+          </p>
+          <p className="type-h4-caps mt-8 text-foreground">That is how humanity compounds</p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            That is the scale of the ambition. Not millions of people following one philosophy.
+            Millions of people learning how to practice their humanity in a world becoming more
+            artificial.
+          </p>
+        </Statement>
       </Band>
+
 
       {/* ---------- 17. The invitation (cream) — Statement + Manifesto ---------- */}
       <Band id="the-invitation">
