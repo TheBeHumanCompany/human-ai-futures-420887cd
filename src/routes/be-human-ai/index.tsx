@@ -319,7 +319,11 @@ function BlueprintPage() {
           <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.45fr)] lg:gap-20">
             <div>
               <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps mt-8 max-w-[12ch]">Three pillars One position</h2>
+              <h2 className="type-h2-caps mt-8 max-w-[12ch]">
+                Three pillars.
+                <br />
+                One position
+              </h2>
               <p className="type-body mt-8 max-w-[44ch] text-foreground/70">
                 Together, these three areas show where the organization stands, what needs
                 protecting, and where machine intelligence can create the greatest value. We do not
