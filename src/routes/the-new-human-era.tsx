@@ -924,6 +924,7 @@ function NewHumanEra() {
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="type-h3-caps text-foreground">
               <span className="block">There are no perfect humans</span>
+              <br />
               <span className="block">There are only humans practicing</span>
             </h2>
             <p className="type-body-lg mt-16 text-muted-foreground">
