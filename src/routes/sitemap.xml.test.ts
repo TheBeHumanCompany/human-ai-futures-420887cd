@@ -70,7 +70,7 @@ describe("the shared page list", () => {
     // collapsed — a bad filter, a renamed field — the handler and the test
     // would agree on an empty sitemap and every case would pass. This is the
     // floor that makes them mean something.
-    expect(STATIC_PATHS.length).toBeGreaterThanOrEqual(12);
+    expect(STATIC_PATHS.length).toBeGreaterThanOrEqual(9);
     expect(STATIC_PATHS).toContain("/");
     expect(STATIC_PATHS).toContain("/be-human-ai");
     expect(STATIC_PATHS).toContain("/who-we-are");

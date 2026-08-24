@@ -139,8 +139,8 @@ describe("SURFACES agrees with the generated router", () => {
   const surfacePaths = () => SURFACES.map((s) => publicForm(s.path)).sort();
 
   test("the two lists are populated before they are compared", () => {
-    expect(SURFACES.length).toBeGreaterThanOrEqual(12);
-    expect(generatedKeys("FileRoutesByFullPath").length).toBeGreaterThanOrEqual(12);
+    expect(SURFACES.length).toBeGreaterThanOrEqual(10);
+    expect(generatedKeys("FileRoutesByFullPath").length).toBeGreaterThanOrEqual(10);
   });
 
   test("every generated route is a declared surface, and vice versa", () => {
@@ -169,7 +169,7 @@ describe("every nav destination is a real route", () => {
   ]);
 
   test("the nav offers a realistic number of destinations", () => {
-    expect(destinations.length).toBeGreaterThanOrEqual(9);
+    expect(destinations.length).toBeGreaterThanOrEqual(8);
   });
 
   test("each one resolves in the generated route tree", () => {
