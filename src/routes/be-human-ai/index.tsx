@@ -72,6 +72,7 @@ const PILLARS = [
       title: "Confidence is part of the adoption problem",
       body: "Resistance to AI is not always a technology problem. It can come from low confidence, unclear expectations, distrust, job uncertainty, poor communication, or simply not understanding where the technology fits into someone's work. We look at what is actually getting in the way, rather than assuming another tool or training session will solve it.",
     },
+    pathForward: undefined,
   },
   {
     n: "02",
