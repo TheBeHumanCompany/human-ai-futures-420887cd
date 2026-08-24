@@ -783,7 +783,7 @@ function NewHumanEra() {
         />
       </Band>
 
-      {/* ---------- 15. The framework (cream) — Statement, one column ---------- */
+      {/* ---------- 15. The framework (cream) — Statement, one column ---------- */}
       <Band id="the-framework">
         <Statement label="The framework" cols={1}>
           <p className="type-body-lg text-ink/70">
