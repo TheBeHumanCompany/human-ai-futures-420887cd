@@ -719,7 +719,12 @@ function NewHumanEra() {
 
       {/* ---------- 13. The Double Return (cream) — Statement, two body columns ---------- */}
       <Band id="the-double-return">
-        <Statement label="The Double Return" cols={2}>
+        <Statement
+          label="The Double Return"
+          mobileHeadline="There is another human on the other side"
+          cols={2}
+        >
+
           <div>
             <p className="type-body-lg text-ink/70">
               This is where Human Reps become bigger than self-improvement. There is usually another
