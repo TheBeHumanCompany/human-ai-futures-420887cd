@@ -295,6 +295,23 @@ function NewHumanEra() {
             more of their lives doing what actually matters to them.
           </p>
         </Statement>
+
+        <figure className="mt-16">
+          <img
+            src={collageImage}
+            alt="Four people photographed at street level, side by side as one continuous portrait"
+            loading="lazy"
+            width={1786}
+            height={886}
+            className="h-auto w-full"
+          />
+          <figcaption className="mt-6">
+            <p className="type-label-caps text-ink/50">REAL PEOPLE, REAL VOICES</p>
+            <p className="type-body-lg mt-3 text-ink/70">
+              This era belongs to people. The New Human Era is built with and for all of us.
+            </p>
+          </figcaption>
+        </figure>
       </Band>
 
       {/* ---------- 2. None of that is guaranteed (ink) — Statement ---------- */}
