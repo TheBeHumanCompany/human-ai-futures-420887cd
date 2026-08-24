@@ -542,43 +542,32 @@ function NewHumanEra() {
         </Split>
       </Band>
 
-      {/* ---------- 8. What status becomes (ink) — Split editorial ---------- */}
+      {/* ---------- 8. What status becomes (ink) — Statement, one column ---------- */}
       <Band>
-        <Split
-          tone="ink"
-          label="When the performance becomes cheap"
-          left={
-            <h2 className="type-h3-caps">
-              When the performance becomes cheap, the human behind it becomes valuable
-            </h2>
-          }
-          right={
-            <>
-              <p className="type-body-lg text-muted-foreground">
-                This matters even more because AI is making many of the old signals of advantage
-                easier to manufacture. Knowledge can be accessed in seconds. Content can be produced
-                endlessly. Confidence can be performed. An impressive image can be generated.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                For generations, status has largely been something we display: the money, the title,
-                the appearance of winning. But real status has never needed that much explanation.
-                It is the person whose Word Carries Weight because they have kept it. The person
-                people want beside them when something important happens. The parent whose child
-                knows they are actually listening. The leader who makes people more capable instead
-                of more afraid.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                And what one generation learns to admire, the next learns to chase. If status begins
-                attaching itself to humans who are Fully Here, who Keep Their Own Mind, whose Word
-                Carries Weight, we begin changing more than individual lives.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                We begin changing what success means.
-              </p>
-            </>
-          }
-        />
+        <Statement tone="ink" label="When the performance becomes cheap" cols={1}>
+          <p className="type-body-lg text-muted-foreground">
+            Our humanity matters even more because AI is making many of the old signals of advantage
+            easier to manufacture. Knowledge can be accessed in seconds. Content can be produced
+            endlessly. Confidence can be performed. An impressive image can be generated.
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            For generations, status has largely been something we display: the money, the title, the
+            appearance of winning. But real status has never needed that much explanation. It is the
+            person whose Word Carries Weight because they have kept it. The person people want beside
+            them when something important happens. The parent whose child knows they are actually
+            listening. The leader who makes people more capable instead of more afraid.
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            And what one generation learns to admire, the next learns to chase. If status begins
+            attaching itself to humans who are Fully Here, who Keep Their Own Mind, whose Word
+            Carries Weight, we begin changing more than individual lives.
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            We begin changing what success means.
+          </p>
+        </Statement>
       </Band>
+
 
       {/* ---------- 9. Human Wealth (cream) — Split editorial ---------- */}
       <Band id="human-wealth">
@@ -721,45 +710,44 @@ function NewHumanEra() {
         </Statement>
       </Band>
 
-      {/* ---------- 13. The Double Return (cream) — Split editorial ---------- */}
+      {/* ---------- 13. The Double Return (cream) — Statement, two body columns ---------- */}
       <Band id="the-double-return">
-        <Split
-          label="The Double Return"
-          left={<h2 className="type-h2-caps">That is the Double Return</h2>}
-          right={
-            <>
-              <p className="type-body-lg text-ink/70">
-                And this is where Human Reps become bigger than self-improvement. There is usually
-                another human on the other side of one.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                When you put your phone down, somebody feels heard. When you keep your word,
-                somebody learns they can trust you. When you call the friend, somebody feels
-                remembered. The rep strengthens something in you while changing something for
-                another person at the same time.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                A real Human Rep can build something in you while creating something better for
-                another human in the same act. That is why practicing your humanity is not simply a
-                private project. Its effect begins moving outward the moment you do it.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                And that is why one of the simplest Human Reps may also be one of the most powerful:
-              </p>
-              <p className="type-body-lg mt-10 font-bold text-ink">
-                How can I make one person&rsquo;s life a little better today?
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                A thoughtful message. A genuine compliment. A phone call. Encouragement. A laugh.
-                Five minutes of undivided attention. Nobody would call most of those things
-                world-changing. But the world does not always change through one enormous act.
-                Sometimes it changes because enough people begin behaving differently toward the
-                human directly in front of them.
-              </p>
-            </>
-          }
-        />
+        <Statement label="The Double Return" cols={2}>
+          <div>
+            <p className="type-body-lg text-ink/70">
+              This is where Human Reps become bigger than self-improvement. There is usually another
+              human on the other side of one.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              When you put your phone down, somebody feels heard. When you keep your word, somebody
+              learns they can trust you. When you call the friend, somebody feels remembered. The rep
+              strengthens something in you while changing something for another person at the same
+              time.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              A real Human Rep can build something in you while creating something better for another
+              human in the same act. That is why practicing your humanity is not simply a private
+              project. Its effect begins moving outward the moment you do it.
+            </p>
+          </div>
+          <div>
+            <p className="type-body-lg text-ink/70">
+              And that is why one of the simplest Human Reps may also be one of the most powerful:
+            </p>
+            <p className="type-body-lg mt-6 font-bold text-ink">
+              How can I make one person&rsquo;s life a little better today?
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              A thoughtful message. A genuine compliment. A phone call. Encouragement. A laugh. Five
+              minutes of undivided attention. Nobody would call most of those things world-changing.
+              But the world does not always change through one enormous act. Sometimes it changes
+              because enough people begin behaving differently toward the human directly in front of
+              them.
+            </p>
+          </div>
+        </Statement>
       </Band>
+
 
       {/* ---------- 14. Friction (ink) — Split editorial ---------- */}
       <Band id="some-friction-is-where-humans-are-built">
@@ -795,24 +783,16 @@ function NewHumanEra() {
         />
       </Band>
 
-      {/* ---------- 15. The framework (cream) — Statement ---------- */}
+      {/* ---------- 15. The framework (cream) — Statement, one column ---------- */}
       <Band id="the-framework">
-        <Statement
-          label="The framework"
-          headline={
-            <h2 className="type-h2-caps max-w-4xl">
-              In the New Human Era, more of the advantage shifts toward who you become
-            </h2>
-          }
-        >
+        <Statement label="The framework" cols={1}>
           <p className="type-body-lg text-ink/70">
-            You practice your humanity through small choices. Those choices become Human Reps.
-            Repeated reps build Human Wealth. Human Wealth helps you build a richer life. And
-            because those reps so often affect another human at the same time, the effect moves
-            outward too. A better life for the person practicing it. A more human world because they
-            did.
+            We practice our humanity through small choices. Those choices become Human Reps. Repeated
+            reps build Human Wealth. Human Wealth helps us build a richer life. And because those
+            reps so often affect another human at the same time, the effect moves outward too. A
+            better life for the person practicing it. A more human world because they did.
           </p>
-          <p className="type-body-lg text-ink/70">
+          <p className="type-body-lg mt-6 text-ink/70">
             We did not want to build this framework by sitting in a room and deciding what humanity
             should mean for everyone else. We have enough people in the world telling us that their
             philosophy is the philosophy. So we started by listening. Through the Human Archive, we
@@ -820,6 +800,7 @@ function NewHumanEra() {
             ask them to confirm our beliefs. We asked them to tell us theirs.
           </p>
         </Statement>
+
 
         <ol
           data-framework-chain
@@ -868,54 +849,42 @@ function NewHumanEra() {
         </p>
       </Band>
 
-      {/* ---------- 16. What we are actually building (ink) — Split editorial ---------- */}
+      {/* ---------- 16. What we are actually building (ink) — Statement, one column ---------- */}
       <Band id="what-we-are-actually-building">
-        <Split
-          tone="ink"
-          label="What we are actually building"
-          left={
-            <>
-              <h2 className="type-h2-caps">
-                We are not here to add more to your life. We are here to develop who you are being
-              </h2>
-            </>
-          }
-          right={
-            <>
-              <p className="type-body-lg text-muted-foreground">
-                The goal of the New Human Era is not another philosophy people read, agree with and
-                forget. We want to help millions of people understand how to practice their humanity
-                deliberately — and understand what it can build in their own lives and in the lives
-                around them.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                Imagine a world where more people begin asking themselves: what is my Human Rep
-                today? For one person, that rep might be as simple as asking: how can I make one
-                person&rsquo;s life a little better today?
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                Now imagine that becoming normal in homes, companies, schools and communities. A
-                parent puts the phone down. A leader listens before reacting. A child notices
-                somebody standing alone and brings them in. A friend makes the call. A person thinks
-                through the question before handing it away. Individually, these moments look small.
-                Together, they begin to shape culture.
-              </p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                One person practices differently. Another human experiences the difference. Enough
-                changed experiences shape relationships. Relationships shape families, teams,
-                schools and communities. Eventually, what people repeatedly experience begins
-                changing what a culture considers normal.
-              </p>
-              <p className="type-h4-caps mt-8 text-foreground">That is how humanity compounds</p>
-              <p className="type-body-lg mt-6 text-muted-foreground">
-                That is the scale of the ambition. Not millions of people following one philosophy.
-                Millions of people learning how to practice their humanity in a world becoming more
-                artificial.
-              </p>
-            </>
-          }
-        />
+        <Statement tone="ink" label="What we are actually building" cols={1}>
+          <p className="type-body-lg text-muted-foreground">
+            The goal of the New Human Era is not another philosophy people read, agree with and
+            forget. We want to help millions of people understand how to practice their humanity
+            deliberately — and understand what it can build in their own lives and in the lives
+            around them.
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            Imagine a world where more people begin asking themselves: what is my Human Rep today?
+            For one person, that rep might be as simple as asking: how can I make one
+            person&rsquo;s life a little better today?
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            Now imagine that becoming normal in homes, companies, schools and communities. A parent
+            puts the phone down. A leader listens before reacting. A child notices somebody standing
+            alone and brings them in. A friend makes the call. A person thinks through the question
+            before handing it away. Individually, these moments look small. Together, they begin to
+            shape culture.
+          </p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            One person practices differently. Another human experiences the difference. Enough
+            changed experiences shape relationships. Relationships shape families, teams, schools
+            and communities. Eventually, what people repeatedly experience begins changing what a
+            culture considers normal.
+          </p>
+          <p className="type-h4-caps mt-8 text-foreground">That is how humanity compounds</p>
+          <p className="type-body-lg mt-6 text-muted-foreground">
+            That is the scale of the ambition. Not millions of people following one philosophy.
+            Millions of people learning how to practice their humanity in a world becoming more
+            artificial.
+          </p>
+        </Statement>
       </Band>
+
 
       {/* ---------- 17. The invitation (cream) — Statement + Manifesto ---------- */}
       <Band id="the-invitation">
