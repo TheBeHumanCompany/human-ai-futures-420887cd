@@ -882,6 +882,9 @@ function NewHumanEra() {
       {/* ---------- 18. What we are actually building (ink) — two columns ---------- */}
       <Band id="what-we-are-actually-building">
         <Opener label="What we are actually building" tone="ink" />
+        <MobileHeading tone="ink">Practice your humanity deliberately</MobileHeading>
+
+
 
         <div className={COLS_2}>
           <div>
