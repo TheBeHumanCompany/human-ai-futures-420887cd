@@ -933,29 +933,28 @@ function NewHumanEra() {
         </Statement>
       </Band>
 
-      {/* ---------- 20. Closing (ink) — Centered manifesto ---------- */}
+      {/* ---------- 20. Closing (ink) — emotional close ---------- */}
       <Band>
         <div className="py-10 lg:py-24">
-          <Manifesto
-            tone="ink"
-            intro="Start where you are. Start with the human directly in front of you. Ask yourself one question:"
-            headline={
-              <p className="type-body-xl my-12 text-foreground lg:my-16">
-                What&rsquo;s my Human Rep today?
-              </p>
-            }
-            response={
-              <>
-                <p>
-                  Then do it. That is how this starts. One rep. One human. One life made a little
-                  better. And eventually, millions.
-                </p>
-              </>
-            }
-          />
-          <p className="type-h2-caps mx-auto mt-24 max-w-4xl text-center text-foreground lg:mt-32">
-            Welcome to the New Human Era
-          </p>
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="type-h2-caps text-foreground">
+              There are no perfect humans here. There are only humans practicing.
+            </h2>
+            <p className="type-body-lg mt-10 text-muted-foreground">
+              Start where you are. Start with the human directly in front of you. Ask yourself one
+              question:
+            </p>
+            <p className="type-body-xl mt-8 font-bold text-foreground">
+              What&rsquo;s my Human Rep today?
+            </p>
+            <p className="type-body-lg mt-8 text-muted-foreground">
+              Then do it. That is how this starts. One rep. One human. One life made a little
+              better. And eventually, millions.
+            </p>
+            <p className="type-h3-caps mt-20 text-center text-foreground lg:mt-24">
+              Welcome to the New Human Era
+            </p>
+          </div>
         </div>
       </Band>
     </Bands>
