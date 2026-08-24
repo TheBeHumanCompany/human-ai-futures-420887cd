@@ -795,24 +795,16 @@ function NewHumanEra() {
         />
       </Band>
 
-      {/* ---------- 15. The framework (cream) — Statement ---------- */}
+      {/* ---------- 15. The framework (cream) — Statement, one column ---------- */}
       <Band id="the-framework">
-        <Statement
-          label="The framework"
-          headline={
-            <h2 className="type-h2-caps max-w-4xl">
-              In the New Human Era, more of the advantage shifts toward who you become
-            </h2>
-          }
-        >
+        <Statement label="The framework" cols={1}>
           <p className="type-body-lg text-ink/70">
-            You practice your humanity through small choices. Those choices become Human Reps.
-            Repeated reps build Human Wealth. Human Wealth helps you build a richer life. And
-            because those reps so often affect another human at the same time, the effect moves
-            outward too. A better life for the person practicing it. A more human world because they
-            did.
+            We practice our humanity through small choices. Those choices become Human Reps. Repeated
+            reps build Human Wealth. Human Wealth helps us build a richer life. And because those
+            reps so often affect another human at the same time, the effect moves outward too. A
+            better life for the person practicing it. A more human world because they did.
           </p>
-          <p className="type-body-lg text-ink/70">
+          <p className="type-body-lg mt-6 text-ink/70">
             We did not want to build this framework by sitting in a room and deciding what humanity
             should mean for everyone else. We have enough people in the world telling us that their
             philosophy is the philosophy. So we started by listening. Through the Human Archive, we
@@ -820,6 +812,7 @@ function NewHumanEra() {
             ask them to confirm our beliefs. We asked them to tell us theirs.
           </p>
         </Statement>
+
 
         <ol
           data-framework-chain
