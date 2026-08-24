@@ -477,10 +477,11 @@ function NewHumanEra() {
           tone="ink"
           label="The bigger question"
           left={
-            <h2 className="type-h2-condensed">
+            <h2 className="type-h2-caps lg:type-h2-condensed">
               What if practicing your humanity is how you build the life you want?
             </h2>
           }
+
           right={
             <>
               <p className="type-body-lg text-muted-foreground">
