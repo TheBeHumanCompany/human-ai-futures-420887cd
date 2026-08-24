@@ -545,7 +545,13 @@ function NewHumanEra() {
 
       {/* ---------- 8. What status becomes (ink) — Statement, one column ---------- */}
       <Band>
-        <Statement tone="ink" label="When the performance becomes cheap" cols={1}>
+        <Statement
+          tone="ink"
+          label="When the performance becomes cheap"
+          mobileHeadline="Our humanity matters even more"
+          cols={1}
+        >
+
           <p className="type-body-lg text-muted-foreground">
             Our humanity matters even more because AI is making many of the old signals of advantage
             easier to manufacture. Knowledge can be accessed in seconds. Content can be produced
