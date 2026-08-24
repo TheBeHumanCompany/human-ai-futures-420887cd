@@ -940,7 +940,7 @@ function NewHumanEra() {
         </Statement>
       </Band>
 
-      {/* ---------- 18. Closing (ink) — Centered manifesto ---------- */}
+      {/* ---------- 20. Closing (ink) — Centered manifesto ---------- */}
       <Band>
         <div className="py-10 lg:py-24">
           <Manifesto
