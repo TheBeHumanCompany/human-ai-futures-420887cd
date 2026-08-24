@@ -973,7 +973,8 @@ function NewHumanEra() {
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="type-h2-caps text-foreground">
               <span className="block">There are no perfect humans</span>
-              <span className="block">There are only humans practicing</span>
+              <span className="mt-6 block sm:mt-8 lg:mt-10">There are only humans practicing</span>
+
             </h2>
             <p className="type-body-lg mt-16 text-muted-foreground">
               Start where you are. Start with the human directly in front of you. Ask yourself one
