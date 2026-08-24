@@ -55,32 +55,69 @@ const PILLARS = [
     n: "01",
     title: "Human Readiness",
     question: "Are your leaders and employees ready for the way machine intelligence is changing work?",
-    items: [
-      "Leadership holds one position on where machine intelligence belongs — and where judgment does not bend.",
-      "What your people are already doing with these tools is known, not guessed at — without it becoming an audit they learn to hide from.",
-      "Adoption still holds a quarter after the training ends, because what got built was confidence rather than attendance.",
+    outcomes: [
+      "Leadership holds one clear position on where machine intelligence belongs and where human judgment still leads.",
+      "What your people are already doing with these tools is known, not guessed at.",
+      "Leadership understands where employees are ready, where confidence or trust is weak, and what needs to change before adoption can succeed.",
     ],
+    lookAt: [
+      "Leadership readiness",
+      "Employee AI usage",
+      "Human judgment",
+      "Trust and psychological readiness",
+      "Change readiness",
+      "Role and workflow readiness",
+    ],
+    insight: {
+      title: "Confidence is part of the adoption problem",
+      body: "Resistance to AI is not always a technology problem. It can come from low confidence, unclear expectations, distrust, job uncertainty, poor communication, or simply not understanding where the technology fits into someone's work. We look at what is actually getting in the way, rather than assuming another tool or training session will solve it.",
+    },
+    pathForward: undefined,
   },
   {
     n: "02",
     title: "Governance & Sovereignty",
     question: "Are you still in control of your data, your decisions, and your future?",
-    items: [
+    outcomes: [
       "You can trace how data actually moves through every one of these systems in use — including the ones nobody approved.",
       "The gaps are named and the safeguards that close them are defined before the technology is embedded in the business, not after.",
       "Where your data lives, and under whose jurisdiction, becomes a decision you made rather than one you inherited.",
     ],
+    lookAt: undefined,
+    insight: undefined,
+    pathForward: undefined,
   },
   {
     n: "03",
     title: "Intelligence Strategy & Transformation",
     question: "Where does machine intelligence create the greatest business leverage?",
-    items: [
+    outcomes: [
       "The opportunities are ranked against each other, not listed — so the argument about what to do first is already settled.",
       "The work itself is redesigned around that ranking, rather than the same work with a chatbot beside it.",
-      "A 90-day plan your own leadership team can run without us in the room.",
+      "Most organizations start by asking what they can automate. The more useful question is what humans should still own.",
     ],
+    lookAt: [
+      "Opportunity ranking",
+      "Workflow transformation",
+      "Business value and implementation effort",
+      "Human ownership",
+      "Recommended priorities",
+    ],
+    insight: undefined,
+    pathForward: {
+      title: "A clear path forward",
+      body: "The Blueprint does not end with a list of possibilities. We bring the findings together into a clear set of priorities: what deserves attention first, what should wait, who should own the next decision, and where implementation can create the greatest value. You can move forward internally, bring in another partner, or continue with us. The Blueprint is built around your organization and gives leadership clarity on what to do next.",
+    },
   },
+] as const;
+
+const LEAVES_WITH = [
+  "A clear picture of leadership and employee readiness",
+  "Visibility into how AI is already being used across the organization",
+  "The highest-priority business opportunities",
+  "The most important governance, data, security, and sovereignty gaps",
+  "Clear recommendations on what to address first",
+  "Named ownership for the decisions and systems that matter",
 ] as const;
 
 const CRITERIA = [
@@ -195,7 +232,7 @@ function BlueprintPage() {
                 <div className="min-w-0">
                   <p className="eyebrow text-muted-foreground">What is different afterwards</p>
                   <ul className="mt-4">
-                    {pillar.items.map((item) => (
+                    {pillar.outcomes.map((item) => (
                       <li
                         key={item}
                         className="type-body max-w-[60ch] border-t border-border py-6 text-foreground/80"
@@ -204,9 +241,66 @@ function BlueprintPage() {
                       </li>
                     ))}
                   </ul>
+
+                  {pillar.lookAt && (
+                    <>
+                      <p className="eyebrow mt-12 text-muted-foreground">What we look at</p>
+                      <ul className="mt-4">
+                        {pillar.lookAt.map((item) => (
+                          <li
+                            key={item}
+                            className="type-body max-w-[60ch] border-t border-border py-6 text-foreground/80"
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+
+                  {pillar.insight && (
+                    <>
+                      <p className="eyebrow mt-12 text-muted-foreground">{pillar.insight.title}</p>
+                      <p className="type-body mt-4 max-w-[60ch] text-foreground/80">
+                        {pillar.insight.body}
+                      </p>
+                    </>
+                  )}
+
+                  {pillar.pathForward && (
+                    <>
+                      <p className="eyebrow mt-12 text-muted-foreground">{pillar.pathForward.title}</p>
+                      <p className="type-body mt-4 max-w-[60ch] text-foreground/80">
+                        {pillar.pathForward.body}
+                      </p>
+                    </>
+                  )}
                 </div>
               </article>
             ))}
+          </div>
+
+          {/* ── What leadership leaves with ─────────────────────────────── */}
+          <div className="mt-20 border-t border-border pt-12">
+            <p className="eyebrow text-muted-foreground">What leadership leaves with</p>
+            <p className="type-body mt-6 max-w-[60ch] text-foreground/70">
+              The Blueprint gives your leadership team one clear view of where the organization
+              stands and what deserves attention next.
+            </p>
+            <p className="eyebrow mt-10 text-muted-foreground">You leave with</p>
+            <ul className="mt-4">
+              {LEAVES_WITH.map((item) => (
+                <li
+                  key={item}
+                  className="type-body max-w-[60ch] border-t border-border py-6 text-foreground/80"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="type-body mt-10 max-w-[60ch] text-foreground/70">
+              Not a generic AI report. A Blueprint built around your organization.
+            </p>
           </div>
         </div>
       </section>
@@ -262,13 +356,16 @@ function BlueprintPage() {
 
           <div className="mt-10 max-w-[54ch] space-y-6 text-ink/75">
             <p className="type-body">
-              That is a statement about capacity, not scarcity marketing. The work only holds when
-              we are in the room often enough to see it through, and there is a limit to how many
-              rooms that is.
+              That is a statement about how we work, not scarcity marketing.
+            </p>
+            <p className="type-body">
+              Every Blueprint receives direct senior attention. We want to understand the
+              organization properly, challenge what needs challenging, and make recommendations
+              we are prepared to stand behind.
             </p>
             <p className="type-body">
               If that sounds like your organization, the next step is a conversation, not a
-              purchase. We will tell you honestly whether this is the right year for it.
+              purchase. We will tell you honestly whether the Blueprint is the right place to start.
             </p>
           </div>
 
