@@ -860,7 +860,7 @@ function NewHumanEra() {
       </Band>
 
 
-      {/* ---------- 18. What we are actually building (ink) — Statement, one column ---------- */}}
+      {/* ---------- 18. What we are actually building (ink) — Statement, one column ---------- */}
       <Band id="what-we-are-actually-building">
         <Statement tone="ink" label="What we are actually building" cols={1}>
           <p className="type-body-lg text-muted-foreground">
