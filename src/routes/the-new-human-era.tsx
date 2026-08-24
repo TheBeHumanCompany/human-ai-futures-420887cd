@@ -836,7 +836,7 @@ function NewHumanEra() {
         </div>
       </Band>
 
-      {/* ---------- 17. The six principles (cream) — 3x2 grid ---------- */
+      {/* ---------- 17. The six principles (cream) — 3x2 grid ---------- */}
       <Band id="the-six-principles">
         <Opener label="The six principles" tone="cream" />
 
@@ -860,7 +860,7 @@ function NewHumanEra() {
       </Band>
 
 
-      {/* ---------- 18. What we are actually building (ink) — Statement, one column ---------- */}
+      {/* ---------- 18. What we are actually building (ink) — Statement, one column ---------- */}}
       <Band id="what-we-are-actually-building">
         <Statement tone="ink" label="What we are actually building" cols={1}>
           <p className="type-body-lg text-muted-foreground">
