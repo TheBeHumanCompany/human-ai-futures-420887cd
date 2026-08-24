@@ -127,7 +127,6 @@ const GOVERNANCE_LOOK_AT = [
   "Data flows & storage",
   "Access, identity & permissions",
   "Third-party & vendor risk",
-  "Jurisdiction & data residency",
 ] as const;
 
 const STRATEGY_OUTCOMES: Outcome[] = [
