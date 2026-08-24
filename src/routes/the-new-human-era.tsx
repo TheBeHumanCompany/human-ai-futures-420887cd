@@ -922,10 +922,9 @@ function NewHumanEra() {
       <Band>
         <div className="py-10 lg:py-24">
           <div className="mx-auto max-w-5xl text-center">
-            <h2 className="type-h3-caps text-foreground">
-              There are no perfect humans
-              <br />
-              There are only humans practicing
+            <h2 className="type-h3-caps text-balance text-foreground">
+              <span className="block">There are no perfect humans</span>
+              <span className="block">There are only humans practicing</span>
             </h2>
             <p className="type-body-lg mt-16 text-muted-foreground">
               Start where you are. Start with the human directly in front of you. Ask yourself one
