@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ClipboardCheck,
-  Crown,
   Globe,
   ListChecks,
   Lock,
@@ -58,7 +57,7 @@ function Label({
 }
 
 /** Chess-knight mark for the strategy pillar (no lucide equivalent). */
-function KnightIcon({ className }: { className?: string }) {
+function KnightIcon({ className }: { className?: string; strokeWidth?: number }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -101,7 +100,7 @@ const PILLAR_OVERVIEW = [
   {
     n: "03",
     title: "Intelligence Strategy & Transformation",
-    icon: Crown,
+    icon: KnightIcon,
     question: "Where does machine intelligence create the greatest business leverage?",
   },
 ] as const;
