@@ -125,7 +125,6 @@ function Band({
 const COLS_2 = "grid gap-10 lg:grid-cols-2 lg:gap-16";
 const SPLIT = "grid gap-10 lg:grid-cols-[minmax(0,35fr)_minmax(0,65fr)] lg:gap-16";
 
-const bodyTone = (tone: Tone) => (tone === "ink" ? "text-muted-foreground" : "text-ink/70");
 
 /** Eyebrow + short lime rule. Every section opens with this. */
 function Opener({ label, tone = "cream" }: { label: string; tone?: Tone }) {
@@ -199,30 +198,6 @@ function Split({
       </div>
       {children ? <div className="mt-16">{children}</div> : null}
     </>
-  );
-}
-
-/* ── Layout 3 — Centered manifesto ────────────────────────────────────────
- * Narrow intro · one centred reflective statement · one supporting response.
- * Reserved for the page's major philosophical turns.
- */
-function Manifesto({
-  intro,
-  headline,
-  response,
-  tone = "cream",
-}: {
-  intro?: ReactNode;
-  headline: ReactNode;
-  response?: ReactNode;
-  tone?: Tone;
-}) {
-  return (
-    <div className="mx-auto max-w-3xl text-center">
-      {intro ? <div className={`type-body-lg mb-8 ${bodyTone(tone)}`}>{intro}</div> : null}
-      {headline}
-      {response ? <div className={`type-body-lg mt-8 ${bodyTone(tone)}`}>{response}</div> : null}
-    </div>
   );
 }
 
@@ -897,16 +872,9 @@ function NewHumanEra() {
       </Band>
 
 
-      {/* ---------- 19. The invitation (cream) — Statement + Manifesto ---------- */}
+      {/* ---------- 19. The invitation (cream) — two balanced text columns ---------- */}
       <Band id="the-invitation">
-        <Statement
-          label="The invitation"
-          headline={
-            <h2 className="type-h2-caps max-w-4xl">
-              There are no perfect humans here. There are only humans practicing
-            </h2>
-          }
-        >
+        <Statement label="The invitation" cols={2}>
           <div>
             <p className="type-body-lg text-ink/70">
               We are living through one of the biggest transitions humanity has ever faced, and none
@@ -940,29 +908,28 @@ function NewHumanEra() {
         </Statement>
       </Band>
 
-      {/* ---------- 20. Closing (ink) — Centered manifesto ---------- */}
+      {/* ---------- 20. Closing (ink) — emotional close ---------- */}
       <Band>
         <div className="py-10 lg:py-24">
-          <Manifesto
-            tone="ink"
-            intro="Start where you are. Start with the human directly in front of you. Ask yourself one question:"
-            headline={
-              <p className="type-body-xl my-12 text-foreground lg:my-16">
-                What&rsquo;s my Human Rep today?
-              </p>
-            }
-            response={
-              <>
-                <p>
-                  Then do it. That is how this starts. One rep. One human. One life made a little
-                  better. And eventually, millions.
-                </p>
-              </>
-            }
-          />
-          <p className="type-h2-caps mx-auto mt-24 max-w-4xl text-center text-foreground lg:mt-32">
-            Welcome to the New Human Era
-          </p>
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="type-h2-caps text-foreground">
+              There are no perfect humans here. There are only humans practicing.
+            </h2>
+            <p className="type-body-lg mt-10 text-muted-foreground">
+              Start where you are. Start with the human directly in front of you. Ask yourself one
+              question:
+            </p>
+            <p className="type-body-xl mt-8 font-bold text-foreground">
+              What&rsquo;s my Human Rep today?
+            </p>
+            <p className="type-body-lg mt-8 text-muted-foreground">
+              Then do it. That is how this starts. One rep. One human. One life made a little
+              better. And eventually, millions.
+            </p>
+            <p className="type-h3-caps mt-20 text-center text-foreground lg:mt-24">
+              Welcome to the New Human Era
+            </p>
+          </div>
         </div>
       </Band>
     </Bands>
