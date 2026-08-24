@@ -797,7 +797,12 @@ function NewHumanEra() {
 
       {/* ---------- 15. The framework (cream) — Statement, one column ---------- */}
       <Band id="the-framework">
-        <Statement label="The framework" cols={1}>
+        <Statement
+          label="The framework"
+          mobileHeadline="Small choices become Human Reps"
+          cols={1}
+        >
+
           <p className="type-body-lg text-ink/70">
             We practice our humanity through small choices. Those choices become Human Reps. Repeated
             reps build Human Wealth. Human Wealth helps us build a richer life. And because those
