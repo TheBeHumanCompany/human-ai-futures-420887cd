@@ -897,7 +897,7 @@ function NewHumanEra() {
       </Band>
 
 
-      {/* ---------- 17. The invitation (cream) — Statement + Manifesto ---------- */}
+      {/* ---------- 19. The invitation (cream) — Statement + Manifesto ---------- */}
       <Band id="the-invitation">
         <Statement
           label="The invitation"
