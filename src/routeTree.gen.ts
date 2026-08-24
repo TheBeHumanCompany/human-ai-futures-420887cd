@@ -22,9 +22,6 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BeHumanAiIndexRouteImport } from './routes/be-human-ai/index'
 import { Route as PodcastSlugRouteImport } from './routes/podcast_.$slug'
-import { Route as BeHumanAiHumanReadinessRouteImport } from './routes/be-human-ai/human-readiness'
-import { Route as BeHumanAiGovernanceRouteImport } from './routes/be-human-ai/governance'
-import { Route as BeHumanAiAiStrategyRouteImport } from './routes/be-human-ai/ai-strategy'
 
 const WhyWeExistRoute = WhyWeExistRouteImport.update({
   id: '/why-we-exist',
@@ -91,21 +88,6 @@ const PodcastSlugRoute = PodcastSlugRouteImport.update({
   path: '/podcast/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BeHumanAiHumanReadinessRoute = BeHumanAiHumanReadinessRouteImport.update({
-  id: '/be-human-ai/human-readiness',
-  path: '/be-human-ai/human-readiness',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BeHumanAiGovernanceRoute = BeHumanAiGovernanceRouteImport.update({
-  id: '/be-human-ai/governance',
-  path: '/be-human-ai/governance',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BeHumanAiAiStrategyRoute = BeHumanAiAiStrategyRouteImport.update({
-  id: '/be-human-ai/ai-strategy',
-  path: '/be-human-ai/ai-strategy',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -119,9 +101,6 @@ export interface FileRoutesByFullPath {
   '/type-specimen': typeof TypeSpecimenRoute
   '/who-we-are': typeof WhoWeAreRoute
   '/why-we-exist': typeof WhyWeExistRoute
-  '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
-  '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
-  '/be-human-ai/human-readiness': typeof BeHumanAiHumanReadinessRoute
   '/podcast/$slug': typeof PodcastSlugRoute
   '/be-human-ai/': typeof BeHumanAiIndexRoute
 }
@@ -137,9 +116,6 @@ export interface FileRoutesByTo {
   '/type-specimen': typeof TypeSpecimenRoute
   '/who-we-are': typeof WhoWeAreRoute
   '/why-we-exist': typeof WhyWeExistRoute
-  '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
-  '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
-  '/be-human-ai/human-readiness': typeof BeHumanAiHumanReadinessRoute
   '/podcast/$slug': typeof PodcastSlugRoute
   '/be-human-ai': typeof BeHumanAiIndexRoute
 }
@@ -156,9 +132,6 @@ export interface FileRoutesById {
   '/type-specimen': typeof TypeSpecimenRoute
   '/who-we-are': typeof WhoWeAreRoute
   '/why-we-exist': typeof WhyWeExistRoute
-  '/be-human-ai/ai-strategy': typeof BeHumanAiAiStrategyRoute
-  '/be-human-ai/governance': typeof BeHumanAiGovernanceRoute
-  '/be-human-ai/human-readiness': typeof BeHumanAiHumanReadinessRoute
   '/podcast_/$slug': typeof PodcastSlugRoute
   '/be-human-ai/': typeof BeHumanAiIndexRoute
 }
@@ -176,9 +149,6 @@ export interface FileRouteTypes {
     | '/type-specimen'
     | '/who-we-are'
     | '/why-we-exist'
-    | '/be-human-ai/ai-strategy'
-    | '/be-human-ai/governance'
-    | '/be-human-ai/human-readiness'
     | '/podcast/$slug'
     | '/be-human-ai/'
   fileRoutesByTo: FileRoutesByTo
@@ -194,9 +164,6 @@ export interface FileRouteTypes {
     | '/type-specimen'
     | '/who-we-are'
     | '/why-we-exist'
-    | '/be-human-ai/ai-strategy'
-    | '/be-human-ai/governance'
-    | '/be-human-ai/human-readiness'
     | '/podcast/$slug'
     | '/be-human-ai'
   id:
@@ -212,9 +179,6 @@ export interface FileRouteTypes {
     | '/type-specimen'
     | '/who-we-are'
     | '/why-we-exist'
-    | '/be-human-ai/ai-strategy'
-    | '/be-human-ai/governance'
-    | '/be-human-ai/human-readiness'
     | '/podcast_/$slug'
     | '/be-human-ai/'
   fileRoutesById: FileRoutesById
@@ -231,9 +195,6 @@ export interface RootRouteChildren {
   TypeSpecimenRoute: typeof TypeSpecimenRoute
   WhoWeAreRoute: typeof WhoWeAreRoute
   WhyWeExistRoute: typeof WhyWeExistRoute
-  BeHumanAiAiStrategyRoute: typeof BeHumanAiAiStrategyRoute
-  BeHumanAiGovernanceRoute: typeof BeHumanAiGovernanceRoute
-  BeHumanAiHumanReadinessRoute: typeof BeHumanAiHumanReadinessRoute
   PodcastSlugRoute: typeof PodcastSlugRoute
   BeHumanAiIndexRoute: typeof BeHumanAiIndexRoute
 }
@@ -331,27 +292,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PodcastSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/be-human-ai/human-readiness': {
-      id: '/be-human-ai/human-readiness'
-      path: '/be-human-ai/human-readiness'
-      fullPath: '/be-human-ai/human-readiness'
-      preLoaderRoute: typeof BeHumanAiHumanReadinessRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/be-human-ai/governance': {
-      id: '/be-human-ai/governance'
-      path: '/be-human-ai/governance'
-      fullPath: '/be-human-ai/governance'
-      preLoaderRoute: typeof BeHumanAiGovernanceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/be-human-ai/ai-strategy': {
-      id: '/be-human-ai/ai-strategy'
-      path: '/be-human-ai/ai-strategy'
-      fullPath: '/be-human-ai/ai-strategy'
-      preLoaderRoute: typeof BeHumanAiAiStrategyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -367,9 +307,6 @@ const rootRouteChildren: RootRouteChildren = {
   TypeSpecimenRoute: TypeSpecimenRoute,
   WhoWeAreRoute: WhoWeAreRoute,
   WhyWeExistRoute: WhyWeExistRoute,
-  BeHumanAiAiStrategyRoute: BeHumanAiAiStrategyRoute,
-  BeHumanAiGovernanceRoute: BeHumanAiGovernanceRoute,
-  BeHumanAiHumanReadinessRoute: BeHumanAiHumanReadinessRoute,
   PodcastSlugRoute: PodcastSlugRoute,
   BeHumanAiIndexRoute: BeHumanAiIndexRoute,
 }

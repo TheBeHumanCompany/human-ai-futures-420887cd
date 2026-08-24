@@ -87,27 +87,9 @@ export const SURFACES: readonly Surface[] = [
   },
   {
     path: "/be-human-ai",
-    kind: "blueprint",
-    expectsSingleNav: false,
+    kind: "page",
+    expectsSingleNav: true,
     sitemap: { changefreq: "monthly", priority: "0.9" },
-  },
-  {
-    path: "/be-human-ai/human-readiness",
-    kind: "page",
-    expectsSingleNav: true,
-    sitemap: { changefreq: "monthly", priority: "0.8" },
-  },
-  {
-    path: "/be-human-ai/governance",
-    kind: "page",
-    expectsSingleNav: true,
-    sitemap: { changefreq: "monthly", priority: "0.8" },
-  },
-  {
-    path: "/be-human-ai/ai-strategy",
-    kind: "page",
-    expectsSingleNav: true,
-    sitemap: { changefreq: "monthly", priority: "0.8" },
   },
   {
     // Maya's 2026-08-18 brief. Not in the nav tree — AC-3.1a deep-equals that

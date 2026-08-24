@@ -57,19 +57,34 @@ export function Wordmark({ tone = "light" }: { tone?: "light" | "dark" }) {
 const DESKTOP_LINK =
   "eyebrow link-underline text-muted-foreground transition-colors hover:text-foreground";
 
-/** A top-level item with no panel: an ordinary link. */
+/**
+ * A top-level item with no panel: an ordinary link — or the lime pill.
+ *
+ * The pill used to live only on the split control, because the one item
+ * carrying `cta` also had a dropdown. Blueprint lost its dropdown in the
+ * 2026-08-24 rebuild, so the treatment has to be available here too or the one
+ * visually distinct item in the bar would silently become a text link.
+ */
 function FlatItem({ item }: { item: NavigatingItem }) {
+  const pill = item.cta === true;
+
   return (
     <Link
       to={item.to}
       data-nav-item={item.label}
-      className={DESKTOP_LINK}
-      activeProps={{ className: "text-foreground" }}
+      {...(pill ? { "data-nav-cta": "true" } : {})}
+      className={
+        pill
+          ? "eyebrow inline-flex items-center rounded-full bg-lime px-4 py-2 text-ink"
+          : DESKTOP_LINK
+      }
+      activeProps={pill ? undefined : { className: "text-foreground" }}
     >
       {item.label}
     </Link>
   );
 }
+
 
 /** The panel contents, shared by both parent shapes. */
 function Panel({ item, onNavigate }: { item: WithChildren<NavItem>; onNavigate?: () => void }) {

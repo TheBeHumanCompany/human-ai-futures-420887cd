@@ -51,10 +51,7 @@ export type NavRoute =
   | "/the-human-archive"
   | "/podcast"
   | "/contact"
-  | "/be-human-ai"
-  | "/be-human-ai/human-readiness"
-  | "/be-human-ai/governance"
-  | "/be-human-ai/ai-strategy";
+  | "/be-human-ai";
 
 /** An entry inside a dropdown panel. Always a real destination. */
 export type NavChild = {
@@ -129,11 +126,9 @@ export const NAV: readonly NavItem[] = [
     to: "/be-human-ai",
     triggerNavigates: true,
     cta: true,
-    children: [
-      { to: "/be-human-ai/human-readiness", label: "Human Readiness" },
-      { to: "/be-human-ai/governance", label: "Governance & Sovereignty" },
-      { to: "/be-human-ai/ai-strategy", label: "Intelligence Strategy" },
-    ],
+    // 2026-08-24: the dropdown is gone. The three pillar subpages were removed
+    // and the Blueprint is one page, so this is a plain navigating item with no
+    // children — the header renders it as the lime pill, not a split control.
   },
 ] as const;
 
