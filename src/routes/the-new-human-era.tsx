@@ -721,45 +721,44 @@ function NewHumanEra() {
         </Statement>
       </Band>
 
-      {/* ---------- 13. The Double Return (cream) — Split editorial ---------- */}
+      {/* ---------- 13. The Double Return (cream) — Statement, two body columns ---------- */}
       <Band id="the-double-return">
-        <Split
-          label="The Double Return"
-          left={<h2 className="type-h2-caps">That is the Double Return</h2>}
-          right={
-            <>
-              <p className="type-body-lg text-ink/70">
-                And this is where Human Reps become bigger than self-improvement. There is usually
-                another human on the other side of one.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                When you put your phone down, somebody feels heard. When you keep your word,
-                somebody learns they can trust you. When you call the friend, somebody feels
-                remembered. The rep strengthens something in you while changing something for
-                another person at the same time.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                A real Human Rep can build something in you while creating something better for
-                another human in the same act. That is why practicing your humanity is not simply a
-                private project. Its effect begins moving outward the moment you do it.
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                And that is why one of the simplest Human Reps may also be one of the most powerful:
-              </p>
-              <p className="type-body-lg mt-10 font-bold text-ink">
-                How can I make one person&rsquo;s life a little better today?
-              </p>
-              <p className="type-body-lg mt-6 text-ink/70">
-                A thoughtful message. A genuine compliment. A phone call. Encouragement. A laugh.
-                Five minutes of undivided attention. Nobody would call most of those things
-                world-changing. But the world does not always change through one enormous act.
-                Sometimes it changes because enough people begin behaving differently toward the
-                human directly in front of them.
-              </p>
-            </>
-          }
-        />
+        <Statement label="The Double Return" cols={2}>
+          <div>
+            <p className="type-body-lg text-ink/70">
+              This is where Human Reps become bigger than self-improvement. There is usually another
+              human on the other side of one.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              When you put your phone down, somebody feels heard. When you keep your word, somebody
+              learns they can trust you. When you call the friend, somebody feels remembered. The rep
+              strengthens something in you while changing something for another person at the same
+              time.
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              A real Human Rep can build something in you while creating something better for another
+              human in the same act. That is why practicing your humanity is not simply a private
+              project. Its effect begins moving outward the moment you do it.
+            </p>
+          </div>
+          <div>
+            <p className="type-body-lg text-ink/70">
+              And that is why one of the simplest Human Reps may also be one of the most powerful:
+            </p>
+            <p className="type-body-lg mt-6 font-bold text-ink">
+              How can I make one person&rsquo;s life a little better today?
+            </p>
+            <p className="type-body-lg mt-6 text-ink/70">
+              A thoughtful message. A genuine compliment. A phone call. Encouragement. A laugh. Five
+              minutes of undivided attention. Nobody would call most of those things world-changing.
+              But the world does not always change through one enormous act. Sometimes it changes
+              because enough people begin behaving differently toward the human directly in front of
+              them.
+            </p>
+          </div>
+        </Statement>
       </Band>
+
 
       {/* ---------- 14. Friction (ink) — Split editorial ---------- */}
       <Band id="some-friction-is-where-humans-are-built">
