@@ -46,9 +46,34 @@ export const Route = createFileRoute("/be-human-ai/")({
 const SHELL = "mx-auto max-w-[1400px] px-5 sm:px-8";
 
 /** Section label. No rule underneath — hierarchy comes from scale and space. */
-function Label({ children, tone = "lime" }: { children: string; tone?: "lime" | "ink" }) {
+function Label({
+  children,
+  tone = "lime",
+}: {
+  children: string;
+  tone?: "lime" | "ink" | "muted";
+}) {
+  const color = tone === "lime" ? "text-lime" : tone === "muted" ? "text-ink/45" : "text-ink";
+  return <p className={`type-label-caps ${color}`}>{children}</p>;
+}
+
+/** Chess-knight mark for the strategy pillar (no lucide equivalent). */
+function KnightIcon({ className }: { className?: string }) {
   return (
-    <p className={`type-label-caps ${tone === "lime" ? "text-lime" : "text-ink"}`}>{children}</p>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.25}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="M9 3.5 8 6 5.5 8.2A3.5 3.5 0 0 0 4.3 11l-.3 2 2.2-1.1 1.4 1.6L6 15.5c-1.2 1.4-2 3-2 4.5h13c0-4-.6-7-1.7-9.4C14.1 8 12 6.3 9.6 5.6" />
+      <path d="M8.8 9.2h.01" />
+      <path d="M4 20h15" />
+    </svg>
   );
 }
 
