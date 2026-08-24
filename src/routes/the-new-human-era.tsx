@@ -136,6 +136,25 @@ function Opener({ label, tone = "cream" }: { label: string; tone?: Tone }) {
   );
 }
 
+/**
+ * Mobile-only section heading.
+ *
+ * On phones and small tablets the page reads eyebrow → strong heading → body.
+ * Several sections go straight from eyebrow into copy on desktop by design, so
+ * this heading is rendered only below `lg`, using language already present in
+ * the section it introduces.
+ */
+function MobileHeading({ tone = "cream", children }: { tone?: Tone; children: ReactNode }) {
+  return (
+    <h2
+      className={`type-h2-caps mb-8 lg:hidden ${tone === "cream" ? "text-ink" : "text-foreground"}`}
+    >
+      {children}
+    </h2>
+  );
+}
+
+
 /* ── Layout 1 — Statement ─────────────────────────────────────────────────
  * label · one headline · one or two body columns beneath.
  */
@@ -143,18 +162,22 @@ function Statement({
   label,
   tone = "cream",
   headline,
+  mobileHeadline,
   cols = 2,
   children,
 }: {
   label?: string;
   tone?: Tone;
   headline?: ReactNode;
+  /** Rendered below `lg` only — see `MobileHeading`. */
+  mobileHeadline?: ReactNode;
   cols?: 1 | 2;
   children?: ReactNode;
 }) {
   return (
     <>
       {label ? <Opener label={label} tone={tone} /> : null}
+      {mobileHeadline ? <MobileHeading tone={tone}>{mobileHeadline}</MobileHeading> : null}
       {headline}
       {children ? (
         <div
@@ -172,6 +195,7 @@ function Statement({
     </>
   );
 }
+
 
 /* ── Layout 2 — Split editorial ───────────────────────────────────────────
  * 35/65 desktop grid: headline or thesis left, supporting copy or image right.
@@ -453,10 +477,11 @@ function NewHumanEra() {
           tone="ink"
           label="The bigger question"
           left={
-            <h2 className="type-h2-condensed">
+            <h2 className="type-h2-caps lg:type-h2-condensed">
               What if practicing your humanity is how you build the life you want?
             </h2>
           }
+
           right={
             <>
               <p className="type-body-lg text-muted-foreground">
@@ -487,7 +512,8 @@ function NewHumanEra() {
         <Split
           label="Not the reward"
           left={
-            <h2 className="type-h2-condensed">
+            <h2 className="type-h2-caps lg:type-h2-condensed">
+
               But what if your humanity is not the reward at the end of a good life?
             </h2>
           }
@@ -519,7 +545,13 @@ function NewHumanEra() {
 
       {/* ---------- 8. What status becomes (ink) — Statement, one column ---------- */}
       <Band>
-        <Statement tone="ink" label="When the performance becomes cheap" cols={1}>
+        <Statement
+          tone="ink"
+          label="When the performance becomes cheap"
+          mobileHeadline="Our humanity matters even more"
+          cols={1}
+        >
+
           <p className="type-body-lg text-muted-foreground">
             Our humanity matters even more because AI is making many of the old signals of advantage
             easier to manufacture. Knowledge can be accessed in seconds. Content can be produced
@@ -687,7 +719,12 @@ function NewHumanEra() {
 
       {/* ---------- 13. The Double Return (cream) — Statement, two body columns ---------- */}
       <Band id="the-double-return">
-        <Statement label="The Double Return" cols={2}>
+        <Statement
+          label="The Double Return"
+          mobileHeadline="There is another human on the other side"
+          cols={2}
+        >
+
           <div>
             <p className="type-body-lg text-ink/70">
               This is where Human Reps become bigger than self-improvement. There is usually another
@@ -760,7 +797,12 @@ function NewHumanEra() {
 
       {/* ---------- 15. The framework (cream) — Statement, one column ---------- */}
       <Band id="the-framework">
-        <Statement label="The framework" cols={1}>
+        <Statement
+          label="The framework"
+          mobileHeadline="Small choices become Human Reps"
+          cols={1}
+        >
+
           <p className="type-body-lg text-ink/70">
             We practice our humanity through small choices. Those choices become Human Reps. Repeated
             reps build Human Wealth. Human Wealth helps us build a richer life. And because those
@@ -840,6 +882,9 @@ function NewHumanEra() {
       {/* ---------- 18. What we are actually building (ink) — two columns ---------- */}
       <Band id="what-we-are-actually-building">
         <Opener label="What we are actually building" tone="ink" />
+        <MobileHeading tone="ink">Practice your humanity deliberately</MobileHeading>
+
+
 
         <div className={COLS_2}>
           <div>
@@ -883,7 +928,12 @@ function NewHumanEra() {
 
       {/* ---------- 19. The invitation (cream) — two balanced text columns ---------- */}
       <Band id="the-invitation">
-        <Statement label="The invitation" cols={2}>
+        <Statement
+          label="The invitation"
+          mobileHeadline="We get to decide how we show up"
+          cols={2}
+        >
+
           <div>
             <p className="type-body-lg text-ink/70">
               We are living through one of the biggest transitions humanity has ever faced, and none
@@ -923,7 +973,8 @@ function NewHumanEra() {
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="type-h2-caps text-foreground">
               <span className="block">There are no perfect humans</span>
-              <span className="block">There are only humans practicing</span>
+              <span className="mt-6 block sm:mt-8 lg:mt-10">There are only humans practicing</span>
+
             </h2>
             <p className="type-body-lg mt-16 text-muted-foreground">
               Start where you are. Start with the human directly in front of you. Ask yourself one
