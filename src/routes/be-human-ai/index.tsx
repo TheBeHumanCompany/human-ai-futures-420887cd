@@ -333,7 +333,7 @@ function BlueprintPage() {
 
             <div className="grid gap-px bg-border sm:grid-cols-3">
               {PILLAR_OVERVIEW.map((pillar) => (
-                <div key={pillar.n} className="bg-background px-0 pb-2 sm:px-6 lg:px-8">
+                <div key={pillar.n} className="bg-background py-8 sm:px-6 sm:py-2 lg:px-8">
                   <pillar.icon className="h-8 w-8 text-lime" strokeWidth={1.25} />
                   <p className="type-label-caps mt-6 text-lime">{pillar.n}</p>
                   <h3 className="type-h4-caps mt-3 text-foreground">{pillar.title}</h3>
