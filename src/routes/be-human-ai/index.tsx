@@ -374,19 +374,18 @@ function BlueprintPage() {
       {/* ── 02 The Blueprint + The Question, side by side on desktop, cream ─ */}
       <section id="blueprint-introduction" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
+          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-20 xl:gap-28">
             {/* LEFT COLUMN — THE BLUEPRINT */}
             <div className="max-w-[58ch]">
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
-                THE BLUEPRINT
-              </p>
-              <h2 className="type-h3-caps text-[1.625rem] sm:text-[1.875rem] lg:text-[2.375rem] mt-5 text-ink">
+              <Label tone="muted">THE BLUEPRINT</Label>
+              <h2 className="type-h2-caps mt-4 text-ink">
                 THE BE HUMAN INTELLIGENCE
                 <br />
                 BLUEPRINT IS WHERE WE START
               </h2>
+              <div className="mt-5 h-px w-16 bg-lime" aria-hidden="true" />
 
-              <div className="mt-8 space-y-6 text-ink/85">
+              <div className="mt-10 space-y-6 text-ink/85">
                 <p className="type-body">
                   We look across your leadership, your people, your current use of machine
                   intelligence, your workflows, your data, your governance, and the opportunities
@@ -402,14 +401,17 @@ function BlueprintPage() {
 
             {/* RIGHT COLUMN — THE QUESTION */}
             <div className="max-w-[52ch]">
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
-                THE QUESTION
-              </p>
-              <h2 className="type-h3-caps-light mt-5 text-ink">
-                The question is whether leadership is shaping that change
+              <Label tone="muted">THE QUESTION</Label>
+              <h2 className="type-h2-caps-light mt-4 text-ink">
+                BY ASKING WHO IS ACTUALLY
+                <br />
+                SHAPING HOW AI ENTERS
+                <br />
+                YOUR BUSINESS
               </h2>
+              <div className="mt-5 h-px w-16 bg-lime" aria-hidden="true" />
 
-              <div className="mt-8 space-y-5 text-ink/85">
+              <div className="mt-10 space-y-5 text-ink/85">
                 <p className="type-body">
                   Artificial intelligence will change every business. The question is whether leadership
                   is shaping that change, or whether it is happening to one employee, one tool, and
@@ -421,10 +423,10 @@ function BlueprintPage() {
                 </p>
               </div>
 
-              <ol className="mt-10 border-t border-border">
+              <ol className="mt-12 border-t border-border">
                 {OBSERVATIONS.map((line, i) => (
                   <li key={line} className="flex gap-5 border-b border-border py-4">
-                    <span className="mt-0.5 shrink-0 font-sans text-sm font-semibold text-ink/40">
+                    <span className="mt-0.5 shrink-0 font-sans text-sm font-semibold text-lime">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="type-body text-ink/80">{line}</span>
