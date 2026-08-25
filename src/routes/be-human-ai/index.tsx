@@ -922,31 +922,31 @@ function BlueprintPage() {
       <section id="blueprint-closing" className="section-ink grain">
         <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <Label>The position</Label>
-          <h2 className="type-h1-caps-light mt-8 max-w-[16ch]">The future belongs to the most human</h2>
+          <h2 className="type-h3-caps-light mt-8 max-w-[22ch]">
+            The future belongs to the most human
+          </h2>
 
-          <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-24">
-            <div className="max-w-[52ch] space-y-6 text-foreground/80">
-              <p className="type-body-lg text-foreground">
-                Artificial intelligence will become increasingly available to everyone. Human judgment
-                will not.
-              </p>
-              <p className="type-body">
-                The organizations that thrive will not simply be the ones that adopted AI fastest.
-                They will be the ones that aligned the organization first, redesigned the work
-                intelligently, protected what mattered, and clarified what their people should still
-                own.
-              </p>
-            </div>
-
-            <div className="self-end">
-              <p className="type-h3-condensed max-w-[22ch] text-foreground">
-                Technology will keep accelerating. Build the organization that is ready for it.
-              </p>
-              <div className="mt-10">
-                <ConversationCta tone="ink" />
-              </div>
-            </div>
+          <div className="mt-12 max-w-[64ch] space-y-6 text-foreground/80">
+            <p className="type-body-lg text-foreground">
+              Artificial intelligence will become increasingly available to everyone. Human judgment
+              will not.
+            </p>
+            <p className="type-body">
+              The organizations that thrive will not simply be the ones that adopted AI fastest.
+              They will be the ones that aligned the organization first, redesigned the work
+              intelligently, protected what mattered, and clarified what their people should still
+              own.
+            </p>
           </div>
+
+          <p className="type-h3-condensed mt-14 max-w-[30ch] text-foreground">
+            Technology will keep accelerating. Build the organization that is ready for it.
+          </p>
+
+          <div className="mt-12">
+            <ConversationCta tone="ink" />
+          </div>
+
         </div>
       </section>
       </>
