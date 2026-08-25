@@ -847,9 +847,13 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label>Trust</Label>
-              <h2 className="type-h2-caps-light mt-6 max-w-[12ch]">
-                Canadian trust. Human accountability
+              <h2 className="mt-6 max-w-[20ch]">
+                <span className="type-h3-caps-light block">Canadian trust</span>
+                <span className="type-h3-caps mt-1 block text-foreground">
+                  Human accountability
+                </span>
               </h2>
+
               <p className="type-body mt-8 inline-flex items-center gap-3 text-foreground/85">
                 <MapleLeaf className="h-5 w-5 shrink-0 text-lime" />
                 <span>{INDIGENOUS_LINE}</span>
