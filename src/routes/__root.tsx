@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Human readiness, governance, agents and leadership. We help organizations get ready for machine intelligence without losing what makes them human.",
+          "Human readiness, governance, agents and leadership. We help organizations get ready for artificial intelligence without losing what makes them human.",
       },
       { name: "author", content: "The Be Human Company" },
       { property: "og:type", content: "website" },
@@ -93,12 +93,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Human readiness, governance, agents and leadership. We help organizations get ready for machine intelligence without losing what makes them human.",
+          "Human readiness, governance, agents and leadership. We help organizations get ready for artificial intelligence without losing what makes them human.",
       },
       {
         name: "twitter:description",
         content:
-          "Human readiness, governance, agents and leadership. We help organizations get ready for machine intelligence without losing what makes them human.",
+          "Human readiness, governance, agents and leadership. We help organizations get ready for artificial intelligence without losing what makes them human.",
       },
       {
         property: "og:image",

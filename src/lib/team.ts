@@ -55,21 +55,21 @@ export const TEAM: readonly TeamMember[] = [
     role: "Founder & CEO",
     descriptors: ["Entrepreneur", "Business strategist", "Executive advisor"],
     bio: [
-      "As a multi-business entrepreneur, Shane brings an operator's perspective to this transformation. He works directly with founders and leadership teams to determine where machine intelligence can create lasting business advantage — and where human judgment must remain central.",
+      "As a multi-business entrepreneur, Shane brings an operator's perspective to this transformation. He works directly with founders and leadership teams to determine where artificial intelligence can create lasting business advantage — and where human judgment must remain central.",
     ],
   },
   {
     id: "sid",
     name: "Sid",
-    role: "Machine Intelligence, Cybersecurity & Governance",
+    role: "Artificial Intelligence, Cybersecurity & Governance",
     descriptors: [
-      "Machine intelligence implementation",
+      "Artificial intelligence implementation",
       "Cybersecurity",
       "Governance",
       "Data sovereignty",
     ],
     bio: [
-      "Sid leads machine intelligence implementation, cybersecurity, governance, and data sovereignty. As a certified cybersecurity professional, he brings the discipline most adoption is missing entirely — the same rigor that protects a network, now applied to protecting your data, your decisions, and your systems as these tools enter them.",
+      "Sid leads artificial intelligence implementation, cybersecurity, governance, and data sovereignty. As a certified cybersecurity professional, he brings the discipline most adoption is missing entirely — the same rigor that protects a network, now applied to protecting your data, your decisions, and your systems as these tools enter them.",
       "He builds the secure foundation, defines the guardrails, and protects the information, systems, and decisions that matter most.",
     ],
   },

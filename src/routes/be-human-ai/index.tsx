@@ -22,12 +22,12 @@ export const Route = createFileRoute("/be-human-ai/")({
       {
         name: "description",
         content:
-          "Human readiness, governance and sovereignty, and intelligence strategy. One clear position on machine intelligence, for a small number of organizations at a time.",
+          "Human readiness, governance and sovereignty, and intelligence strategy. One clear position on artificial intelligence, for a small number of organizations at a time.",
       },
       { property: "og:title", content: "The Blueprint — Be Human Intelligence" },
       {
         property: "og:description",
-        content: "Human judgment leads. Machine intelligence expands what is possible.",
+        content: "Human judgment leads. Artificial intelligence expands what is possible.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -158,7 +158,7 @@ const PILLARS: readonly Pillar[] = [
   {
     n: "03",
     title: "Intelligence Strategy & Transformation",
-    question: "Where does machine intelligence create the greatest business leverage?",
+    question: "Where does artificial intelligence create the greatest business leverage?",
     icon: KnightIcon,
     lookAtIntro: "We do not begin with tools. We begin with the work.",
     lookAt: [
@@ -171,11 +171,11 @@ const PILLARS: readonly Pillar[] = [
     changes: [
       "The opportunities are ranked instead of simply listed.",
       "The work is redesigned around that ranking, rather than adding a chatbot to the same process.",
-      "Where people create the greatest advantage is identified first, then where machine intelligence creates the greatest leverage.",
+      "Where people create the greatest advantage is identified first, then where artificial intelligence creates the greatest leverage.",
     ],
     insightTitle: "Adding AI to a poor process can make a poor process faster",
     insight: [
-      "We identify where people create the greatest advantage first, then determine where machine intelligence creates the greatest leverage.",
+      "We identify where people create the greatest advantage first, then determine where artificial intelligence creates the greatest leverage.",
     ],
   },
 ];
@@ -350,16 +350,19 @@ function BlueprintPage() {
 
           <div className="lg:pl-[76px] xl:pl-[84px]">
             <h1 className="type-h1-caps mt-12 max-w-5xl">
-              Machine intelligence will change every business
+              ARTIFICIAL INTELLIGENCE
+              <br />
+              WILL CHANGE EVERY
+              <br />
+              BUSINESS
             </h1>
 
-            <p className="type-body-lg mt-6 font-semibold text-foreground">
-              Human judgment leads. Machine intelligence expands what is possible.
+            <p className="type-body-lg mt-14 font-semibold text-foreground">
+              Human judgment leads. Artificial intelligence expands what is possible.
             </p>
 
             <div className="mt-5 pt-1">
               <ConversationCta tone="ink" />
-              <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
             </div>
           </div>
         </div>
@@ -410,7 +413,7 @@ function BlueprintPage() {
 
               <div className="mt-8 space-y-5 text-ink/85">
                 <p className="type-body">
-                  Machine intelligence will change every business. The question is whether leadership
+                  Artificial intelligence will change every business. The question is whether leadership
                   is shaping that change, or whether it is happening to one employee, one tool, and
                   one decision at a time.
                 </p>
@@ -521,7 +524,7 @@ function BlueprintPage() {
             <div className="max-w-[64ch]">
               <div className="space-y-6 text-ink/75">
                 <p className="type-body">
-                  We built The Be Human Company while machine intelligence was changing how companies
+                  We built The Be Human Company while artificial intelligence was changing how companies
                   operate, so we ran the questions on our own business first.
                 </p>
                 <p className="type-body">
@@ -854,7 +857,7 @@ function BlueprintPage() {
             <div className="max-w-[58ch] space-y-6 text-foreground/80">
               <p className="type-body">
                 The Be Human Company is an Indigenous-led Canadian company. Trust, responsibility,
-                and stewardship shape how we approach machine intelligence from the beginning.
+                and stewardship shape how we approach artificial intelligence from the beginning.
               </p>
               <p className="type-body">
                 As AI becomes embedded in everyday business, leadership needs clear answers about
@@ -912,7 +915,7 @@ function BlueprintPage() {
           <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-24">
             <div className="max-w-[52ch] space-y-6 text-foreground/80">
               <p className="type-body-lg text-foreground">
-                Machine intelligence will become increasingly available to everyone. Human judgment
+                Artificial intelligence will become increasingly available to everyone. Human judgment
                 will not.
               </p>
               <p className="type-body">

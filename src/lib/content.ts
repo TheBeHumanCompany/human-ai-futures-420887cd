@@ -14,7 +14,7 @@ export const SERVICES = [
     n: "02",
     title: "Human + Machine Transformation",
     body: "We redesign how work gets done so people and machines complement each other — with adoption that survives the pilot phase.",
-    points: ["Operating model design", "Change & adoption", "Machine intelligence literacy"],
+    points: ["Operating model design", "Change & adoption", "Artificial intelligence literacy"],
   },
   {
     n: "03",
