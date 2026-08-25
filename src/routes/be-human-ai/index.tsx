@@ -882,9 +882,10 @@ function BlueprintPage() {
       <section id="blueprint-small-number" className="section-cream">
         <div className={`${SHELL} py-24 lg:py-32`}>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-            <h2 className="type-h2-caps-light max-w-[14ch] text-ink">
+            <h2 className="type-h3-caps-light max-w-[20ch] text-ink">
               We work with a small number of organizations at a time
             </h2>
+
 
             <div className="max-w-[52ch] space-y-6 self-center text-ink/75">
               <p className="type-body-lg text-ink">
