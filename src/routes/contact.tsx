@@ -83,7 +83,7 @@ function Contact() {
             Prepare your organization for the New Human Era.
           </h1>
           <p className="mt-8 max-w-md text-lg leading-relaxed text-ink/70">
-            Tell us where you are with machine intelligence and what you're trying to protect. We'll
+            Tell us where you are with artificial intelligence and what you're trying to protect. We'll
             come back with a point of view, not a pitch deck.
           </p>
           <dl className="mt-12 space-y-4 border-t border-hairline-dark pt-6 text-sm text-ink/70">

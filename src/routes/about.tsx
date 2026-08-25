@@ -8,7 +8,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "A machine intelligence strategy and transformation company, and a cultural movement. Being human is what we're born with. Humanity is what we practice.",
+          "A artificial intelligence strategy and transformation company, and a cultural movement. Being human is what we're born with. Humanity is what we practice.",
       },
       { property: "og:title", content: "About — The Be Human Company" },
       {
@@ -46,7 +46,7 @@ function About() {
             <h2 className="type-h3-caps-light mt-6">A practice and a movement.</h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
               Be Human Intelligence is our commercial practice: human readiness, governance, agents
-              and leadership work for organizations preparing for the age of machine intelligence.
+              and leadership work for organizations preparing for the age of artificial intelligence.
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               The New Human Era is our cultural work: the archive, the podcast and the ideas that

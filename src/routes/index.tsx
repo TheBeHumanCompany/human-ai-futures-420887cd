@@ -49,13 +49,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Human readiness, governance, agents and leadership. We help organizations get ready for machine intelligence without losing what makes them human.",
+          "Human readiness, governance, agents and leadership. We help organizations get ready for artificial intelligence without losing what makes them human.",
       },
       { property: "og:title", content: "The Be Human Company — The Future Is Human." },
       {
         property: "og:description",
         content:
-          "Human readiness, governance, agents and leadership. We help organizations get ready for machine intelligence without losing what makes them human.",
+          "Human readiness, governance, agents and leadership. We help organizations get ready for artificial intelligence without losing what makes them human.",
       },
     ],
   }),
@@ -100,7 +100,7 @@ function Home() {
               artificial.
             </p>
             <p className="mt-4 max-w-md text-base leading-relaxed text-foreground/70 sm:text-lg lg:max-w-xl">
-              Through machine intelligence strategy, human readiness, governance, and
+              Through artificial intelligence strategy, human readiness, governance, and
               transformation.
             </p>
           </div>
@@ -185,7 +185,7 @@ function Home() {
               BE HUMAN <span className="text-lime">INTELLIGENCE</span>
             </h2>
             <p className="mt-6 max-w-[17.5rem] text-base leading-relaxed text-foreground/80 sm:max-w-sm">
-              We help organizations prepare for the age of machine intelligence by strengthening
+              We help organizations prepare for the age of artificial intelligence by strengthening
               their people, protecting what matters, and transforming how work gets done.
             </p>
             <Link
