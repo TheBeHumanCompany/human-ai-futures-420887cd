@@ -704,32 +704,25 @@ function BlueprintPage() {
       {/* ── 08 What you walk away with, cream ────────────────────────── */}
       <section id="blueprint-deliverables" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-20">
-            <div>
-              <Label tone="muted">Deliverables</Label>
-              <h2 className="type-h2-caps mt-6 max-w-[12ch] text-ink">What you walk away with</h2>
-              <p className="type-body mt-6 max-w-[34ch] text-ink/70">
-                At the end of the Blueprint, leadership receives:
-              </p>
-            </div>
+          <Label tone="muted">Deliverables</Label>
+          <h2 className="type-h2-caps mt-6 text-ink">What you walk away with</h2>
+          <p className="type-body mt-6 text-ink/70">
+            At the end of the Blueprint, leadership receives:
+          </p>
 
-            <ol className="border-t border-border">
-              {DELIVERABLES.map((item, i) => (
-                <li
-                  key={item.title}
-                  className="grid gap-4 border-b border-border py-7 sm:grid-cols-[4rem_minmax(0,1fr)]"
-                >
-                  <p className="type-label-caps text-ink/35">{String(i + 1).padStart(2, "0")}</p>
-                  <div>
-                    <h3 className="type-h4-caps text-ink">{item.title}</h3>
-                    <p className="type-body-sm mt-3 max-w-[64ch] text-ink/75">{item.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
+          <ol className="mt-10 border-t border-border">
+            {DELIVERABLES.map((item, i) => (
+              <li key={item.title} className="border-b border-border py-8">
+                <p className="type-label-caps text-ink/35">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="type-h4-caps mt-3 text-ink">{item.title}</h3>
+                <p className="type-body-sm mt-3 max-w-[64ch] text-ink/75">{item.body}</p>
+              </li>
+            ))}
+          </ol>
 
-          <p className="type-body-lg mt-12 max-w-[64ch] text-ink">
+          <p className="type-body-lg mt-14 max-w-[64ch] text-ink">
             You leave knowing where you stand, what matters most, what needs protecting, and what we
             believe you should do first.
           </p>
