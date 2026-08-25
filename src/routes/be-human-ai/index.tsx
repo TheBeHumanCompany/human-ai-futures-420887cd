@@ -367,17 +367,17 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label tone="muted">Introduction</Label>
-              <h2 className="type-h2-caps mt-6 max-w-[14ch] text-ink">
+              <h2 className="type-h3-caps mt-6 max-w-[20ch] text-ink">
                 The question is whether leadership is shaping that change
               </h2>
             </div>
 
             <div className="max-w-[56ch] space-y-6 text-ink/75">
               <p className="type-body">
-                Machine intelligence will change every business. The question is whether leadership
-                is shaping that change, or whether it is happening to one employee, one tool, and
-                one decision at a time.
+                Machine intelligence will change every business &mdash; or it is happening to one
+                employee, one tool, and one decision at a time.
               </p>
+
               <p className="type-body">
                 Your people are already experimenting. New systems are entering the business. Work
                 is changing. Information is moving through tools leadership may not fully see.
