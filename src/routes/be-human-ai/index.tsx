@@ -350,16 +350,19 @@ function BlueprintPage() {
 
           <div className="lg:pl-[76px] xl:pl-[84px]">
             <h1 className="type-h1-caps mt-12 max-w-5xl">
-              Machine intelligence will change every business
+              ARTIFICIAL INTELLIGENCE
+              <br />
+              WILL CHANGE EVERY
+              <br />
+              BUSINESS
             </h1>
 
-            <p className="type-body-lg mt-6 font-semibold text-foreground">
-              Human judgment leads. Machine intelligence expands what is possible.
+            <p className="type-body-lg mt-14 font-semibold text-foreground">
+              Human judgment leads. Artificial intelligence expands what is possible.
             </p>
 
             <div className="mt-5 pt-1">
               <ConversationCta tone="ink" />
-              <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
             </div>
           </div>
         </div>
