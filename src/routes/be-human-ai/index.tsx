@@ -367,9 +367,9 @@ function BlueprintPage() {
       {/* ── 02 The Blueprint + The Question, side by side on desktop, cream ─ */}
       <section id="blueprint-introduction" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
+          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
             {/* LEFT COLUMN — THE BLUEPRINT */}
-            <div className="flex max-w-[58ch] flex-col">
+            <div className="max-w-[58ch]">
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 THE BLUEPRINT
               </p>
@@ -390,19 +390,16 @@ function BlueprintPage() {
                   stands, what needs protecting, where intelligence can create the greatest leverage,
                   and what deserves to happen next.
                 </p>
-              </div>
-
-              <div className="mt-14 lg:mt-auto lg:pt-16">
                 <p className="type-body-lg font-semibold text-ink">
                   Human judgment leads. Machine intelligence expands what is possible.
                 </p>
-                <div className="mt-8">
-                  <ConversationCta tone="cream" />
-                  <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
-                </div>
+              </div>
+
+              <div className="mt-2 pt-2">
+                <ConversationCta tone="cream" />
+                <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
               </div>
             </div>
-
 
             {/* RIGHT COLUMN — THE QUESTION */}
             <div className="max-w-[52ch]">
@@ -471,21 +468,17 @@ function BlueprintPage() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ── 03b That changes the leadership question, cream ───────────── */}
-      <section className="section-cream">
-        <div className={`${SHELL} py-20 lg:py-24`}>
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
+          {/* The leadership question, restated */}
+          <div className="mt-16 grid gap-12 border-t border-border pt-14 lg:grid-cols-2 lg:gap-24">
             <div>
-              <p className="eyebrow text-ink/45">That changes the leadership question</p>
-              <p className="type-body mt-6 text-ink/70">It is no longer simply:</p>
-              <p className="type-h4-condensed mt-2 max-w-[26ch] text-ink/60">
+              <p className="eyebrow text-muted-foreground">That changes the leadership question</p>
+              <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
+              <p className="type-h4-condensed mt-2 max-w-[26ch] text-foreground/60">
                 Are our employees using AI?
               </p>
-              <p className="type-body mt-8 text-ink/70">It becomes:</p>
-              <p className="type-h4-condensed mt-2 max-w-[38ch] text-ink">
+              <p className="type-body mt-8 text-foreground/70">It becomes:</p>
+              <p className="type-h4-condensed mt-2 max-w-[38ch] text-foreground">
                 What work are we delegating? Who supervises it? What authority are we giving these
                 systems? Where must a human step back in? And who owns the outcome?
               </p>
@@ -493,10 +486,10 @@ function BlueprintPage() {
 
             <div className="space-y-8">
               <div className="border-l-2 border-lime pl-6">
-                <p className="type-h4-caps text-ink">AI does not automatically improve an organization</p>
-                <p className="type-h4-caps mt-2 text-lime-dark">It reveals it</p>
+                <p className="type-h4-caps">AI does not automatically improve an organization</p>
+                <p className="type-h4-caps mt-2 text-lime">It reveals it</p>
               </div>
-              <div className="max-w-[52ch] space-y-5 text-ink/80">
+              <div className="max-w-[52ch] space-y-5 text-foreground/80">
                 <p className="type-body">
                   Align the organization first, and the technology compounds that alignment. Leave
                   it fragmented, and it compounds the fragmentation just as quickly.
@@ -512,24 +505,23 @@ function BlueprintPage() {
         </div>
       </section>
 
-
       {/* ── 04 Before we brought this to anyone else, cream ──────────── */}
-      <section id="blueprint-before-anyone-else" className="section-ink">
+      <section id="blueprint-before-anyone-else" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-16 xl:gap-20">
             {/* LEFT COLUMN — statement */}
             <div>
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 Before we brought this to anyone else
               </p>
-              <h2 className="type-h3-condensed mt-6 max-w-[22ch] text-foreground">
+              <h2 className="type-h3-condensed mt-6 max-w-[22ch] text-ink">
                 Before we offered this, we needed it ourselves.
               </h2>
             </div>
 
             {/* RIGHT COLUMN — explanation and proof */}
             <div className="max-w-[64ch]">
-              <div className="space-y-6 text-foreground/75">
+              <div className="space-y-6 text-ink/75">
                 <p className="type-body">
                   We built The Be Human Company while machine intelligence was changing how companies
                   operate, so we ran the questions on our own business first.
@@ -545,10 +537,10 @@ function BlueprintPage() {
               </div>
 
               <div className="mt-10 border-t border-border pt-8">
-                <p className="type-body-lg max-w-[52ch] font-semibold text-foreground">
+                <p className="type-body-lg max-w-[52ch] font-semibold text-ink">
                   Every principle inside this Blueprint is one we use to run our own business.
                 </p>
-                <p className="type-body mt-4 max-w-[52ch] text-foreground/70">
+                <p className="type-body mt-4 max-w-[52ch] text-ink/70">
                   Not a framework we studied from the outside. A way of working we live inside every
                   day.
                 </p>
@@ -557,7 +549,6 @@ function BlueprintPage() {
           </div>
         </div>
       </section>
-
 
 
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
