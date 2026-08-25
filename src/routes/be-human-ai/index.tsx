@@ -508,39 +508,48 @@ function BlueprintPage() {
       {/* ── 04 Before we brought this to anyone else, cream ──────────── */}
       <section id="blueprint-before-anyone-else" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="mx-auto max-w-[80ch]">
-            <Label tone="muted">Before we brought this to anyone else</Label>
-            <h2 className="type-h3-condensed mt-6 max-w-[22ch] text-ink">
-              Before we offered this, we needed it ourselves.
-            </h2>
-
-            <div className="mt-10 max-w-[64ch] space-y-6 text-ink/75">
-              <p className="type-body">
-                We built The Be Human Company while machine intelligence was changing how companies
-                operate, so we ran the questions on our own business first.
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-16 xl:gap-20">
+            {/* LEFT COLUMN — statement */}
+            <div>
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
+                Before we brought this to anyone else
               </p>
-              <p className="type-body">
-                What should we automate? What should we protect? Where should human judgment still
-                lead? Where should intelligence take work off our plate?
-              </p>
-              <p className="type-body">
-                We tested systems, found gaps, changed workflows, and learned where things break
-                before bringing this work into a client organization.
-              </p>
+              <h2 className="type-h3-condensed mt-6 max-w-[22ch] text-ink">
+                Before we offered this, we needed it ourselves.
+              </h2>
             </div>
 
-            <div className="mt-10 border-t border-border pt-8">
-              <p className="type-body-lg max-w-[52ch] text-ink">
-                Every principle inside this Blueprint is one we use to run our own business.
-              </p>
-              <p className="type-body mt-4 max-w-[52ch] text-ink/70">
-                Not a framework we studied from the outside. A way of working we live inside every
-                day.
-              </p>
+            {/* RIGHT COLUMN — explanation and proof */}
+            <div className="max-w-[64ch]">
+              <div className="space-y-6 text-ink/75">
+                <p className="type-body">
+                  We built The Be Human Company while machine intelligence was changing how companies
+                  operate, so we ran the questions on our own business first.
+                </p>
+                <p className="type-body">
+                  What should we automate? What should we protect? Where should human judgment still
+                  lead? Where should intelligence take work off our plate?
+                </p>
+                <p className="type-body">
+                  We tested systems, found gaps, changed workflows, and learned where things break
+                  before bringing this work into a client organization.
+                </p>
+              </div>
+
+              <div className="mt-10 border-t border-border pt-8">
+                <p className="type-body-lg max-w-[52ch] font-semibold text-ink">
+                  Every principle inside this Blueprint is one we use to run our own business.
+                </p>
+                <p className="type-body mt-4 max-w-[52ch] text-ink/70">
+                  Not a framework we studied from the outside. A way of working we live inside every
+                  day.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
