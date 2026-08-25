@@ -474,14 +474,15 @@ function BlueprintPage() {
             <div>
               <p className="eyebrow text-muted-foreground">That changes the leadership question</p>
               <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
-              <p className="type-h4-condensed mt-2 max-w-[26ch] text-foreground/60">
+              <p className="type-body mt-2 max-w-[38ch] font-bold text-foreground">
                 Are our employees using AI?
               </p>
               <p className="type-body mt-8 text-foreground/70">It becomes:</p>
-              <p className="type-h4-condensed mt-2 max-w-[38ch] text-foreground">
+              <p className="type-body mt-2 max-w-[52ch] font-bold text-foreground">
                 What work are we delegating? Who supervises it? What authority are we giving these
                 systems? Where must a human step back in? And who owns the outcome?
               </p>
+
             </div>
 
             <div className="space-y-8">
