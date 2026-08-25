@@ -556,10 +556,9 @@ function BlueprintPage() {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-20">
             <div>
               <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps-light mt-6 max-w-[12ch]">
-                Three pillars
-                <br />
-                One organization
+              <h2 className="mt-6 max-w-[16ch]">
+                <span className="type-h2-caps block">The three pillars</span>
+                <span className="type-h2-caps-light mt-1 block">One organization</span>
               </h2>
             </div>
 
@@ -574,7 +573,8 @@ function BlueprintPage() {
                   >
                     <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
                     <p className="type-label-caps mt-4 text-[0.8125rem] text-lime">{pillar.n}</p>
-                    <h3 className="type-h4-caps mt-2 text-[1rem]">{pillar.title}</h3>
+                    <h3 className="type-h4-caps-light mt-2 text-[1.125rem]">{pillar.title}</h3>
+
                     <p className="type-body-sm mt-3 max-w-[26ch] text-foreground/70">
                       {pillar.question}
                     </p>
