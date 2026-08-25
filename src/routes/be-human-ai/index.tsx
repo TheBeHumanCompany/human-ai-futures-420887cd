@@ -365,20 +365,17 @@ function BlueprintPage() {
           collapsed "on this page" rail so no section content sits under it. */}
       <div className="lg:pl-[76px] xl:pl-[84px]">
       {/* ── 02 The question, cream ────────────────────────────────────── */}
-
       <section id="blueprint-introduction" className="section-cream">
-        <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
-            <div>
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
-                THE QUESTION
-              </p>
-              <h2 className="type-h3-caps text-[1.625rem] sm:text-[1.875rem] lg:text-[2.375rem] mt-5 text-ink">
-                The question is whether leadership is shaping that change
-              </h2>
-            </div>
+        <div className={`${SHELL} pt-20 pb-14 lg:pt-28 lg:pb-16`}>
+          <div className="max-w-[52ch]">
+            <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
+              THE QUESTION
+            </p>
+            <h2 className="type-h3-condensed mt-5 text-ink">
+              The question is whether leadership is shaping that change
+            </h2>
 
-            <div className="max-w-[58ch] space-y-6 text-ink/85">
+            <div className="mt-8 space-y-5 text-ink/85">
               <p className="type-body">
                 Machine intelligence will change every business. The question is whether leadership
                 is shaping that change, or whether it is happening to one employee, one tool, and
@@ -388,26 +385,34 @@ function BlueprintPage() {
                 Your people are already experimenting. New systems are entering the business. Work
                 is changing. Information is moving through tools leadership may not fully see.
               </p>
-              <ol className="grid border-t border-border">
-                {OBSERVATIONS.map((line, i) => (
-                  <li key={line} className="flex gap-5 border-b border-border py-4">
-                    <span className="mt-0.5 shrink-0 font-sans text-sm font-semibold text-ink/40">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="type-body-sm text-ink/80">{line}</span>
-                  </li>
-                ))}
-              </ol>
             </div>
-          </div>
 
-          <div className="mt-20 lg:mt-24 grid gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
+            <ol className="mt-10 border-t border-border">
+              {OBSERVATIONS.map((line, i) => (
+                <li key={line} className="flex gap-5 border-b border-border py-4">
+                  <span className="mt-0.5 shrink-0 font-sans text-sm font-semibold text-ink/40">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="type-body text-ink/80">{line}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 03 The Blueprint, cream ─────────────────────────────────────── */}
+      <section className="section-cream">
+        <div className={`${SHELL} pt-14 pb-20 lg:pt-16 lg:pb-28`}>
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 THE BLUEPRINT
               </p>
               <h3 className="type-h3-caps text-[1.625rem] sm:text-[1.875rem] lg:text-[2.375rem] mt-5 text-ink">
-                The Be Human Intelligence Blueprint is where we start
+                THE BE HUMAN INTELLIGENCE
+                <br />
+                BLUEPRINT IS WHERE WE START
               </h3>
             </div>
 
@@ -425,10 +430,6 @@ function BlueprintPage() {
               <p className="type-body-lg font-semibold text-ink">
                 Human judgment leads. Machine intelligence expands what is possible.
               </p>
-              <p className="type-body inline-flex items-center gap-3 text-ink/80">
-                <MapleLeaf className="h-5 w-5 shrink-0 text-lime-dark" />
-                <span>Indigenous led. Canadian-built.</span>
-              </p>
               <div className="pt-2">
                 <ConversationCta tone="cream" />
               </div>
@@ -436,6 +437,7 @@ function BlueprintPage() {
           </div>
         </div>
       </section>
+
 
       {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
       <section id="blueprint-adoption" className="section-ink">
