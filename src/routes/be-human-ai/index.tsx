@@ -444,9 +444,10 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label>Why this matters</Label>
-              <h2 className="type-h2-caps-light mt-6 max-w-[16ch]">
+              <h2 className="type-h2-caps mt-6 max-w-[16ch]">
                 AI adoption is moving faster than organizational readiness
               </h2>
+
             </div>
 
             <div className="max-w-[58ch] space-y-6 text-foreground/80">
