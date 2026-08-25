@@ -400,14 +400,6 @@ function BlueprintPage() {
                   stands, what needs protecting, where intelligence can create the greatest leverage,
                   and what deserves to happen next.
                 </p>
-                <p className="type-body-lg font-semibold text-ink">
-                  Human judgment leads. Machine intelligence expands what is possible.
-                </p>
-              </div>
-
-              <div className="mt-2 pt-2">
-                <ConversationCta tone="cream" />
-                <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
               </div>
             </div>
 
