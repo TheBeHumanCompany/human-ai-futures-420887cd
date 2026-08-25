@@ -333,7 +333,16 @@ function BlueprintPage() {
       <section id="blueprint-hero" className="section-ink grain border-b border-border">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <div className="flex flex-col gap-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
-            <Label>Be Human Intelligence</Label>
+            <div>
+              <Label>Be Human Intelligence</Label>
+              <p
+                data-brand="indigenous-line"
+                className="type-body mt-4 inline-flex items-center gap-3 text-foreground/85"
+              >
+                <MapleLeaf className="h-5 w-5 shrink-0 text-lime" />
+                <span>{INDIGENOUS_LINE}</span>
+              </p>
+            </div>
             <p className="eyebrow max-w-[17rem] leading-loose text-muted-foreground sm:text-right">
               We work with a small number of organizations at a time
             </p>
@@ -349,13 +358,14 @@ function BlueprintPage() {
             data that has to stay protected, and the work that has to get faster.
           </p>
 
-          <p
-            data-brand="indigenous-line"
-            className="type-body mt-10 inline-flex items-center gap-3 text-foreground/85"
-          >
-            <MapleLeaf className="h-5 w-5 shrink-0 text-lime" />
-            <span>{INDIGENOUS_LINE}</span>
+          <p className="type-body-lg mt-10 font-semibold text-foreground">
+            Human judgment leads. Machine intelligence expands what is possible.
           </p>
+
+          <div className="mt-2 pt-2">
+            <ConversationCta tone="ink" />
+            <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
+          </div>
         </div>
       </section>
 
@@ -390,14 +400,6 @@ function BlueprintPage() {
                   stands, what needs protecting, where intelligence can create the greatest leverage,
                   and what deserves to happen next.
                 </p>
-                <p className="type-body-lg font-semibold text-ink">
-                  Human judgment leads. Machine intelligence expands what is possible.
-                </p>
-              </div>
-
-              <div className="mt-2 pt-2">
-                <ConversationCta tone="cream" />
-                <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
               </div>
             </div>
 
