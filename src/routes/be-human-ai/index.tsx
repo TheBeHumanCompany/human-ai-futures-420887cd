@@ -279,7 +279,7 @@ function PillarModule({ pillar }: { pillar: Pillar }) {
             <p className="type-label-caps text-lime">{pillar.n}</p>
             <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
           </div>
-          <h3 className="type-h3-caps mt-5 max-w-[14ch]">{pillar.title}</h3>
+          <h3 className="type-h3-caps-light mt-5 max-w-[14ch]">{pillar.title}</h3>
           <p className="type-body mt-5 max-w-[30ch] text-foreground/70">{pillar.question}</p>
         </div>
 
