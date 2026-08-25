@@ -709,8 +709,11 @@ function BlueprintPage() {
       {/* ── 08 What you walk away with, cream ────────────────────────── */}
       <section id="blueprint-deliverables" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <Label tone="muted">Deliverables</Label>
-          <h2 className="type-h2-caps-light mt-6 text-ink">What you walk away with</h2>
+          <h2 className="type-h2-caps text-ink">What you walk away with</h2>
+          <p className="type-body mt-6 max-w-[64ch] text-ink/75">
+            You leave knowing where you stand, what matters most, what needs protecting, and what we
+            believe you should do first.
+          </p>
           <p className="type-body mt-6 text-ink/70">
             At the end of the Blueprint, leadership receives:
           </p>
@@ -722,15 +725,11 @@ function BlueprintPage() {
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="type-h4-caps mt-3 text-ink">{item.title}</h3>
-                <p className="type-body-sm mt-3 max-w-[64ch] text-ink/75">{item.body}</p>
+                <p className="type-body mt-3 max-w-[64ch] text-ink/75">{item.body}</p>
               </li>
             ))}
           </ol>
 
-          <p className="type-body-lg mt-14 max-w-[64ch] text-ink">
-            You leave knowing where you stand, what matters most, what needs protecting, and what we
-            believe you should do first.
-          </p>
         </div>
       </section>
 
