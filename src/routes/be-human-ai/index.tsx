@@ -369,7 +369,7 @@ function BlueprintPage() {
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 THE QUESTION
               </p>
-              <h2 className="type-h3-caps text-[1.75rem] sm:text-[2rem] lg:text-[2.375rem] mt-5 text-ink">
+              <h2 className="type-h3-caps text-[1.625rem] sm:text-[1.875rem] lg:text-[2.375rem] mt-5 text-ink">
                 The question is whether leadership is shaping that change
               </h2>
             </div>
