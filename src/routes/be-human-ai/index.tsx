@@ -674,9 +674,12 @@ function BlueprintPage() {
       <section id="blueprint-readiness-gap" className="section-ink">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <Label>The gap</Label>
-          <h2 className="type-h2-caps-light mt-6 max-w-[18ch]">
-            Sometimes the most important finding is the gap
-          </h2>
+          <h2 className="type-h2-caps mt-6 max-w-[18ch]">Finding the gap</h2>
+          <p className="type-body mt-6 max-w-[64ch] text-foreground/80">
+            Sometimes the most important finding is the gap. Organizations do not transform based on
+            what leadership assumes is true. They transform based on what is actually true.
+          </p>
+
 
           <div className="mt-14 border-t border-border">
             {GAPS.map((gap) => (
