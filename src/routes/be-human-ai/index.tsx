@@ -38,6 +38,10 @@ export const Route = createFileRoute("/be-human-ai/")({
 
 const SHELL = "mx-auto max-w-[1400px] px-5 sm:px-8";
 
+/** Same shell, plus the reserved left gutter for the "on this page" rail.
+ *  Applied to the CONTENT so section backgrounds still span the full width. */
+const SHELL_IN = "mx-auto max-w-[1400px] px-5 sm:px-8 lg:pl-[84px] xl:pl-[92px]";
+
 const PAGE_NAV: readonly PageNavItem[] = [
   { id: "blueprint-introduction", label: "Introduction" },
   { id: "blueprint-adoption", label: "AI Readiness" },
@@ -370,10 +374,10 @@ function BlueprintPage() {
 
       {/* Page-wide left gutter (desktop/large tablet) reserving space for the
           collapsed "on this page" rail so no section content sits under it. */}
-      <div className="lg:pl-[76px] xl:pl-[84px]">
+      <>
       {/* ── 02 The Blueprint + The Question, side by side on desktop, cream ─ */}
       <section id="blueprint-introduction" className="section-cream">
-        <div className={`${SHELL} py-20 lg:py-28`}>
+        <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-20 xl:gap-28">
             {/* LEFT COLUMN — THE BLUEPRINT */}
             <div className="max-w-[58ch]">
@@ -442,7 +446,7 @@ function BlueprintPage() {
 
       {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
       <section id="blueprint-adoption" className="section-ink">
-        <div className={`${SHELL} py-20 lg:py-28`}>
+        <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label>Why this matters</Label>
@@ -510,7 +514,7 @@ function BlueprintPage() {
 
       {/* ── 04 Before we brought this to anyone else, cream ──────────── */}
       <section id="blueprint-before-anyone-else" className="section-cream">
-        <div className={`${SHELL} py-20 lg:py-28`}>
+        <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-16 xl:gap-20">
             {/* LEFT COLUMN — statement */}
             <div>
@@ -556,7 +560,7 @@ function BlueprintPage() {
 
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
-        <div className={`${SHELL} py-20 lg:pt-28`}>
+        <div className={`${SHELL_IN} py-20 lg:pt-28`}>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-20">
             <div>
               <Label>The Blueprint</Label>
@@ -600,7 +604,7 @@ function BlueprintPage() {
 
       {/* ── 06 Scorecard, cream ──────────────────────────────────────── */}
       <section id="blueprint-scorecard" className="section-cream">
-        <div className={`${SHELL} py-20 lg:py-28`}>
+        <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <Label tone="muted">Example Blueprint Scorecard</Label>
           <h2 className="type-h2-caps-light mt-6 max-w-[16ch] text-ink">
             Your Blueprint makes readiness visible
@@ -676,7 +680,7 @@ function BlueprintPage() {
 
       {/* ── 07 The readiness gap, ink ────────────────────────────────── */}
       <section id="blueprint-readiness-gap" className="section-ink">
-        <div className={`${SHELL} py-20 lg:py-28`}>
+        <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <Label>The gap</Label>
           <h2 className="type-h2-caps mt-6 max-w-[18ch]">Finding the gap</h2>
           <p className="type-body mt-6 max-w-[64ch] text-foreground/80">
@@ -712,7 +716,7 @@ function BlueprintPage() {
 
       {/* ── 08 What you walk away with, cream ────────────────────────── */}
       <section id="blueprint-deliverables" className="section-cream">
-        <div className={`${SHELL} py-20 lg:py-28`}>
+        <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <h2 className="type-h2-caps text-ink">What you walk away with</h2>
           <p className="type-body mt-6 max-w-[64ch] text-ink/75">
             You leave knowing where you stand, what matters most, what needs protecting, and what we
@@ -739,7 +743,7 @@ function BlueprintPage() {
 
       {/* ── 09 Client proof, cream ───────────────────────────────────── */}
       <section id="blueprint-client-proof" className="section-cream border-t border-ink/20">
-        <div className={`${SHELL} py-20 lg:py-24`}>
+        <div className={`${SHELL_IN} py-20 lg:py-24`}>
           <Label tone="muted">From finding to business decision</Label>
           <h2 className="type-h3-caps mt-6 text-ink">All Y&rsquo;all Foods</h2>
           <p className="type-body mt-4 text-ink/70">
@@ -811,7 +815,7 @@ function BlueprintPage() {
 
       {/* ── 10 + 11 Relationship and Canadian trust, ink ─────────────── */}
       <section id="blueprint-relationship" className="section-ink">
-        <div className={`${SHELL} py-20 lg:py-28`}>
+        <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label>Before this page</Label>
@@ -846,7 +850,7 @@ function BlueprintPage() {
       </section>
 
       <section id="blueprint-canadian-trust" className="section-ink border-t border-border">
-        <div className={`${SHELL} py-20 lg:py-28`}>
+        <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label>Trust</Label>
@@ -887,7 +891,7 @@ function BlueprintPage() {
 
       {/* ── 12 A small number of organizations, cream ────────────────── */}
       <section id="blueprint-small-number" className="section-cream">
-        <div className={`${SHELL} py-24 lg:py-32`}>
+        <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
             <h2 className="type-h3-caps-light max-w-[20ch] text-ink">
               We work with a small number of organizations at a time
@@ -918,7 +922,7 @@ function BlueprintPage() {
 
       {/* ── 13 Final positioning, ink ────────────────────────────────── */}
       <section id="blueprint-closing" className="section-ink grain">
-        <div className={`${SHELL} py-24 lg:py-32`}>
+        <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <Label>The position</Label>
           <h2 className="type-h1-caps-light mt-8 max-w-[16ch]">The future belongs to the most human</h2>
 
@@ -947,7 +951,7 @@ function BlueprintPage() {
           </div>
         </div>
       </section>
-      </div>
+      </>
     </>
 
   );
