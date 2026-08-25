@@ -279,7 +279,7 @@ function PillarModule({ pillar }: { pillar: Pillar }) {
             <p className="type-label-caps text-lime">{pillar.n}</p>
             <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
           </div>
-          <h3 className="type-h3-caps mt-5 max-w-[14ch]">{pillar.title}</h3>
+          <h3 className="type-h3-caps-light mt-5 max-w-[14ch]">{pillar.title}</h3>
           <p className="type-body mt-5 max-w-[30ch] text-foreground/70">{pillar.question}</p>
         </div>
 
@@ -444,9 +444,10 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label>Why this matters</Label>
-              <h2 className="type-h2-caps-light mt-6 max-w-[16ch]">
+              <h2 className="type-h2-caps mt-6 max-w-[16ch]">
                 AI adoption is moving faster than organizational readiness
               </h2>
+
             </div>
 
             <div className="max-w-[58ch] space-y-6 text-foreground/80">
@@ -473,14 +474,15 @@ function BlueprintPage() {
             <div>
               <p className="eyebrow text-muted-foreground">That changes the leadership question</p>
               <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
-              <p className="type-h4-condensed mt-2 max-w-[26ch] text-foreground/60">
+              <p className="type-body mt-2 max-w-[38ch] font-bold text-foreground">
                 Are our employees using AI?
               </p>
               <p className="type-body mt-8 text-foreground/70">It becomes:</p>
-              <p className="type-h4-condensed mt-2 max-w-[38ch] text-foreground">
+              <p className="type-body mt-2 max-w-[52ch] font-bold text-foreground">
                 What work are we delegating? Who supervises it? What authority are we giving these
                 systems? Where must a human step back in? And who owns the outcome?
               </p>
+
             </div>
 
             <div className="space-y-8">
@@ -556,10 +558,9 @@ function BlueprintPage() {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-20">
             <div>
               <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps-light mt-6 max-w-[12ch]">
-                Three pillars
-                <br />
-                One organization
+              <h2 className="mt-6 max-w-[16ch]">
+                <span className="type-h2-caps block">The three pillars</span>
+                <span className="type-h2-caps-light mt-1 block">One organization</span>
               </h2>
             </div>
 
@@ -574,7 +575,8 @@ function BlueprintPage() {
                   >
                     <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
                     <p className="type-label-caps mt-4 text-[0.8125rem] text-lime">{pillar.n}</p>
-                    <h3 className="type-h4-caps mt-2 text-[1rem]">{pillar.title}</h3>
+                    <h3 className="type-h4-caps-light mt-2 text-[1.125rem]">{pillar.title}</h3>
+
                     <p className="type-body-sm mt-3 max-w-[26ch] text-foreground/70">
                       {pillar.question}
                     </p>
@@ -674,9 +676,12 @@ function BlueprintPage() {
       <section id="blueprint-readiness-gap" className="section-ink">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <Label>The gap</Label>
-          <h2 className="type-h2-caps-light mt-6 max-w-[18ch]">
-            Sometimes the most important finding is the gap
-          </h2>
+          <h2 className="type-h2-caps mt-6 max-w-[18ch]">Finding the gap</h2>
+          <p className="type-body mt-6 max-w-[64ch] text-foreground/80">
+            Sometimes the most important finding is the gap. Organizations do not transform based on
+            what leadership assumes is true. They transform based on what is actually true.
+          </p>
+
 
           <div className="mt-14 border-t border-border">
             {GAPS.map((gap) => (
@@ -696,21 +701,21 @@ function BlueprintPage() {
             ))}
           </div>
 
-          <div className="mt-12 max-w-[56ch] space-y-4">
-            <p className="type-body text-foreground/80">
-              Organizations do not transform based on what leadership assumes is true. They
-              transform based on what is actually true.
-            </p>
+          <div className="mt-12 max-w-[56ch]">
             <p className="type-h4-caps text-lime">The Blueprint is built to find the difference</p>
           </div>
+
         </div>
       </section>
 
       {/* ── 08 What you walk away with, cream ────────────────────────── */}
       <section id="blueprint-deliverables" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <Label tone="muted">Deliverables</Label>
-          <h2 className="type-h2-caps-light mt-6 text-ink">What you walk away with</h2>
+          <h2 className="type-h2-caps text-ink">What you walk away with</h2>
+          <p className="type-body mt-6 max-w-[64ch] text-ink/75">
+            You leave knowing where you stand, what matters most, what needs protecting, and what we
+            believe you should do first.
+          </p>
           <p className="type-body mt-6 text-ink/70">
             At the end of the Blueprint, leadership receives:
           </p>
@@ -722,15 +727,11 @@ function BlueprintPage() {
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="type-h4-caps mt-3 text-ink">{item.title}</h3>
-                <p className="type-body-sm mt-3 max-w-[64ch] text-ink/75">{item.body}</p>
+                <p className="type-body mt-3 max-w-[64ch] text-ink/75">{item.body}</p>
               </li>
             ))}
           </ol>
 
-          <p className="type-body-lg mt-14 max-w-[64ch] text-ink">
-            You leave knowing where you stand, what matters most, what needs protecting, and what we
-            believe you should do first.
-          </p>
         </div>
       </section>
 
@@ -847,9 +848,13 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label>Trust</Label>
-              <h2 className="type-h2-caps-light mt-6 max-w-[12ch]">
-                Canadian trust. Human accountability
+              <h2 className="mt-6 max-w-[20ch]">
+                <span className="type-h3-caps-light block">Canadian trust</span>
+                <span className="type-h3-caps mt-1 block text-foreground">
+                  Human accountability
+                </span>
               </h2>
+
               <p className="type-body mt-8 inline-flex items-center gap-3 text-foreground/85">
                 <MapleLeaf className="h-5 w-5 shrink-0 text-lime" />
                 <span>{INDIGENOUS_LINE}</span>
@@ -882,9 +887,10 @@ function BlueprintPage() {
       <section id="blueprint-small-number" className="section-cream">
         <div className={`${SHELL} py-24 lg:py-32`}>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-            <h2 className="type-h2-caps-light max-w-[14ch] text-ink">
+            <h2 className="type-h3-caps-light max-w-[20ch] text-ink">
               We work with a small number of organizations at a time
             </h2>
+
 
             <div className="max-w-[52ch] space-y-6 self-center text-ink/75">
               <p className="type-body-lg text-ink">
