@@ -367,9 +367,9 @@ function BlueprintPage() {
       {/* ── 02 The Blueprint + The Question, side by side on desktop, cream ─ */}
       <section id="blueprint-introduction" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
+          <div className="grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
             {/* LEFT COLUMN — THE BLUEPRINT */}
-            <div className="max-w-[58ch]">
+            <div className="flex max-w-[58ch] flex-col">
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 THE BLUEPRINT
               </p>
@@ -390,16 +390,19 @@ function BlueprintPage() {
                   stands, what needs protecting, where intelligence can create the greatest leverage,
                   and what deserves to happen next.
                 </p>
+              </div>
+
+              <div className="mt-14 lg:mt-auto lg:pt-16">
                 <p className="type-body-lg font-semibold text-ink">
                   Human judgment leads. Machine intelligence expands what is possible.
                 </p>
-              </div>
-
-              <div className="mt-2 pt-2">
-                <ConversationCta tone="cream" />
-                <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
+                <div className="mt-8">
+                  <ConversationCta tone="cream" />
+                  <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
+                </div>
               </div>
             </div>
+
 
             {/* RIGHT COLUMN — THE QUESTION */}
             <div className="max-w-[52ch]">
