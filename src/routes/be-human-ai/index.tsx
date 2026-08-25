@@ -361,34 +361,33 @@ function BlueprintPage() {
 
       <BlueprintPageNav items={PAGE_NAV} />
 
-      {/* ── 02 Introduction, cream ────────────────────────────────────── */}
+      {/* ── 02 The question, cream ────────────────────────────────────── */}
       <section id="blueprint-introduction" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
-            <div>
-              <Label tone="muted">Introduction</Label>
-              <h2 className="type-h3-caps mt-6 max-w-[20ch] text-ink">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
+            <div className="max-w-[22ch]">
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
+                THE QUESTION
+              </p>
+              <h2 className="type-h3-caps text-[2rem] lg:text-[2.375rem] mt-5 text-ink">
                 The question is whether leadership is shaping that change
               </h2>
             </div>
 
-            <div className="max-w-[56ch] space-y-6 text-ink/75">
+            <div className="max-w-[58ch] space-y-6 text-ink/85">
               <p className="type-body">
                 Machine intelligence will change every business. The question is whether leadership
                 is shaping that change, or whether it is happening to one employee, one tool, and
                 one decision at a time.
               </p>
-
-
               <p className="type-body">
                 Your people are already experimenting. New systems are entering the business. Work
                 is changing. Information is moving through tools leadership may not fully see.
               </p>
-
               <ol className="grid border-t border-border">
                 {OBSERVATIONS.map((line, i) => (
                   <li key={line} className="flex gap-5 border-b border-border py-4">
-                    <span className="type-label-caps mt-1 shrink-0 text-ink/35">
+                    <span className="mt-0.5 shrink-0 font-sans text-sm font-semibold text-ink/40">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="type-body-sm text-ink/80">{line}</span>
@@ -398,12 +397,17 @@ function BlueprintPage() {
             </div>
           </div>
 
-          <div className="mt-16 grid gap-12 border-t border-border pt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
-            <h3 className="type-h3-caps max-w-[16ch] text-ink">
-              The Be Human Intelligence Blueprint is where we start
-            </h3>
+          <div className="mt-20 lg:mt-24 grid gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
+            <div className="max-w-[22ch]">
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
+                THE BLUEPRINT
+              </p>
+              <h3 className="type-h3-caps text-[2rem] lg:text-[2.375rem] mt-5 text-ink">
+                The Be Human Intelligence Blueprint is where we start
+              </h3>
+            </div>
 
-            <div className="max-w-[56ch] space-y-6 text-ink/75">
+            <div className="max-w-[58ch] space-y-6 text-ink/85">
               <p className="type-body">
                 We look across your leadership, your people, your current use of machine
                 intelligence, your workflows, your data, your governance, and the opportunities
@@ -414,7 +418,7 @@ function BlueprintPage() {
                 stands, what needs protecting, where intelligence can create the greatest leverage,
                 and what deserves to happen next.
               </p>
-              <p className="type-body-lg text-ink">
+              <p className="type-body-lg font-semibold text-ink">
                 Human judgment leads. Machine intelligence expands what is possible.
               </p>
               <p className="type-body inline-flex items-center gap-3 text-ink/80">
