@@ -361,7 +361,11 @@ function BlueprintPage() {
 
       <BlueprintPageNav items={PAGE_NAV} />
 
+      {/* Page-wide left gutter (desktop/large tablet) reserving space for the
+          collapsed "on this page" rail so no section content sits under it. */}
+      <div className="lg:pl-[76px] xl:pl-[84px]">
       {/* ── 02 The question, cream ────────────────────────────────────── */}
+
       <section id="blueprint-introduction" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
@@ -928,6 +932,8 @@ function BlueprintPage() {
           </div>
         </div>
       </section>
+      </div>
     </>
+
   );
 }
