@@ -468,17 +468,21 @@ function BlueprintPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* The leadership question, restated */}
-          <div className="mt-16 grid gap-12 border-t border-border pt-14 lg:grid-cols-2 lg:gap-24">
+      {/* ── 03b That changes the leadership question, cream ───────────── */}
+      <section className="section-cream">
+        <div className={`${SHELL} py-20 lg:py-24`}>
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
             <div>
-              <p className="eyebrow text-muted-foreground">That changes the leadership question</p>
-              <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
-              <p className="type-h4-condensed mt-2 max-w-[26ch] text-foreground/60">
+              <p className="eyebrow text-ink/45">That changes the leadership question</p>
+              <p className="type-body mt-6 text-ink/70">It is no longer simply:</p>
+              <p className="type-h4-condensed mt-2 max-w-[26ch] text-ink/60">
                 Are our employees using AI?
               </p>
-              <p className="type-body mt-8 text-foreground/70">It becomes:</p>
-              <p className="type-h4-condensed mt-2 max-w-[38ch] text-foreground">
+              <p className="type-body mt-8 text-ink/70">It becomes:</p>
+              <p className="type-h4-condensed mt-2 max-w-[38ch] text-ink">
                 What work are we delegating? Who supervises it? What authority are we giving these
                 systems? Where must a human step back in? And who owns the outcome?
               </p>
@@ -486,10 +490,10 @@ function BlueprintPage() {
 
             <div className="space-y-8">
               <div className="border-l-2 border-lime pl-6">
-                <p className="type-h4-caps">AI does not automatically improve an organization</p>
-                <p className="type-h4-caps mt-2 text-lime">It reveals it</p>
+                <p className="type-h4-caps text-ink">AI does not automatically improve an organization</p>
+                <p className="type-h4-caps mt-2 text-lime-dark">It reveals it</p>
               </div>
-              <div className="max-w-[52ch] space-y-5 text-foreground/80">
+              <div className="max-w-[52ch] space-y-5 text-ink/80">
                 <p className="type-body">
                   Align the organization first, and the technology compounds that alignment. Leave
                   it fragmented, and it compounds the fragmentation just as quickly.
@@ -504,6 +508,7 @@ function BlueprintPage() {
           </div>
         </div>
       </section>
+
 
       {/* ── 04 Before we brought this to anyone else, cream ──────────── */}
       <section id="blueprint-before-anyone-else" className="section-ink">
