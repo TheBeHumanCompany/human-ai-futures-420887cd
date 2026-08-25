@@ -365,11 +365,11 @@ function BlueprintPage() {
       <section id="blueprint-introduction" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
-            <div className="max-w-[22ch]">
+            <div>
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 THE QUESTION
               </p>
-              <h2 className="type-h3-caps text-[2rem] lg:text-[2.375rem] mt-5 text-ink">
+              <h2 className="type-h3-caps text-[1.75rem] sm:text-[2rem] lg:text-[2.375rem] mt-5 text-ink">
                 The question is whether leadership is shaping that change
               </h2>
             </div>
@@ -398,11 +398,11 @@ function BlueprintPage() {
           </div>
 
           <div className="mt-20 lg:mt-24 grid gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
-            <div className="max-w-[22ch]">
+            <div>
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 THE BLUEPRINT
               </p>
-              <h3 className="type-h3-caps text-[2rem] lg:text-[2.375rem] mt-5 text-ink">
+              <h3 className="type-h3-caps text-[1.75rem] sm:text-[2rem] lg:text-[2.375rem] mt-5 text-ink">
                 The Be Human Intelligence Blueprint is where we start
               </h3>
             </div>
