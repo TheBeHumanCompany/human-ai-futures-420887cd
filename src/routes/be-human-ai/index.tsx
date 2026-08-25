@@ -329,11 +329,11 @@ function PillarModule({ pillar }: { pillar: Pillar }) {
 function BlueprintPage() {
   return (
     <>
-      {/* ── Hero, ink — unchanged ─────────────────────────────────────── */}
+      {/* ── Hero, ink ─────────────────────────────────────────────────── */}
       <section id="blueprint-hero" className="section-ink grain border-b border-border">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <div className="flex flex-col gap-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
-            <div>
+            <div className="lg:pl-[76px] xl:pl-[84px]">
               <Label>Be Human Intelligence</Label>
               <p
                 data-brand="indigenous-line"
@@ -348,23 +348,19 @@ function BlueprintPage() {
             </p>
           </div>
 
-          <h1 className="type-h1-caps mt-12 max-w-5xl">
-            Machine intelligence will change every business
-          </h1>
+          <div className="lg:pl-[76px] xl:pl-[84px]">
+            <h1 className="type-h1-caps mt-12 max-w-5xl">
+              Machine intelligence will change every business
+            </h1>
 
-          <p className="type-body-lg mt-8 max-w-2xl text-foreground/85">
-            The Blueprint is how we take an organization from scattered, unmanaged use of these
-            systems to one clear position on them &mdash; across the people who have to change, the
-            data that has to stay protected, and the work that has to get faster.
-          </p>
+            <p className="type-body-lg mt-6 font-semibold text-foreground">
+              Human judgment leads. Machine intelligence expands what is possible.
+            </p>
 
-          <p className="type-body-lg mt-10 font-semibold text-foreground">
-            Human judgment leads. Machine intelligence expands what is possible.
-          </p>
-
-          <div className="mt-2 pt-2">
-            <ConversationCta tone="ink" />
-            <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
+            <div className="mt-5 pt-1">
+              <ConversationCta tone="ink" />
+              <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
+            </div>
           </div>
         </div>
       </section>
