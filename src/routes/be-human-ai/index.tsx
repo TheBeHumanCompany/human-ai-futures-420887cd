@@ -337,7 +337,7 @@ function BlueprintPage() {
       <section id="blueprint-hero" className="section-ink grain border-b border-border">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <div className="flex flex-col gap-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
-            <div className="lg:pl-[76px] xl:pl-[84px]">
+            <div className="lg:pl-[84px] xl:pl-[92px]">
               <Label>Be Human Intelligence</Label>
             </div>
             <p className="eyebrow max-w-[17rem] leading-loose text-muted-foreground sm:text-right">
@@ -345,7 +345,7 @@ function BlueprintPage() {
             </p>
           </div>
 
-          <div className="lg:pl-[76px] xl:pl-[84px]">
+          <div className="lg:pl-[84px] xl:pl-[92px]">
             <h1 className="type-h1-caps mt-12 max-w-5xl">
               ARTIFICIAL INTELLIGENCE
               <br />
@@ -543,7 +543,7 @@ function BlueprintPage() {
                 </p>
               </div>
 
-              <div className="mt-10 border-t border-border pt-8">
+              <div className="mt-10">
                 <p className="type-body-lg max-w-[52ch] font-semibold text-ink">
                   Every principle inside this Blueprint is one we use to run our own business.
                 </p>
@@ -561,27 +561,27 @@ function BlueprintPage() {
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:pt-28`}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-20">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] lg:gap-16">
             <div>
               <Label>The Blueprint</Label>
-              <h2 className="mt-6 max-w-[16ch]">
+              <h2 className="mt-6 max-w-[22ch]">
                 <span className="type-h2-caps block">The three pillars</span>
-                <span className="type-h2-caps-light mt-1 block">One organization</span>
+                <span className="type-h3-caps-light mt-2 block">One organization</span>
               </h2>
             </div>
 
-            <div className="grid gap-px self-end bg-border sm:grid-cols-3">
+            <div className="grid gap-10 self-end sm:grid-cols-3 sm:gap-8 lg:gap-12">
               {PILLARS.map((pillar) => {
                 const Icon = pillar.icon;
                 return (
                   <a
                     key={pillar.n}
                     href={`#blueprint-pillar-${pillar.n}`}
-                    className="bg-background py-6 sm:px-5 sm:py-4 lg:px-6"
+                    className="block"
                   >
                     <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
                     <p className="type-label-caps mt-4 text-[0.8125rem] text-lime">{pillar.n}</p>
-                    <h3 className="type-h4-caps-light mt-2 text-[1.125rem]">{pillar.title}</h3>
+                    <h3 className="type-h4-caps mt-2 max-w-[16ch]">{pillar.title}</h3>
 
                     <p className="type-body-sm mt-3 max-w-[26ch] text-foreground/70">
                       {pillar.question}
@@ -606,11 +606,12 @@ function BlueprintPage() {
       <section id="blueprint-scorecard" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <Label tone="muted">Example Blueprint Scorecard</Label>
-          <h2 className="type-h2-caps-light mt-6 max-w-[16ch] text-ink">
+          <h2 className="type-h3-caps-light mt-6 max-w-[20ch] text-ink">
             Your Blueprint makes readiness visible
           </h2>
-          <p className="type-body mt-6 max-w-[56ch] text-ink/75">
-            The Blueprint turns what we uncover into a scored executive view of the organization.
+          <p className="type-body mt-6 max-w-[62ch] text-ink/75">
+            You leave knowing where you stand, what matters most, what needs protecting, and what we
+            believe you should do first.
           </p>
 
           <div className="mt-14 border-t border-ink/25 pt-10">
@@ -720,15 +721,12 @@ function BlueprintPage() {
           <h2 className="type-h2-caps text-ink">What you walk away with</h2>
           <p className="type-body mt-6 max-w-[64ch] text-ink/75">
             You leave knowing where you stand, what matters most, what needs protecting, and what we
-            believe you should do first.
-          </p>
-          <p className="type-body mt-6 text-ink/70">
-            At the end of the Blueprint, leadership receives:
+            believe you should do first. At the end of the Blueprint, leadership receives:
           </p>
 
-          <ol className="mt-10 border-t border-border">
+          <ol className="mt-14 space-y-12">
             {DELIVERABLES.map((item, i) => (
-              <li key={item.title} className="border-b border-border py-8">
+              <li key={item.title}>
                 <p className="type-label-caps text-ink/35">
                   {String(i + 1).padStart(2, "0")}
                 </p>
@@ -820,7 +818,7 @@ function BlueprintPage() {
             <div>
               <Label>Before this page</Label>
               <h2 className="type-h3-caps-light mt-6 max-w-[18ch]">
-                If we have already been looking at your business
+                We have already been looking at your business
               </h2>
             </div>
 
@@ -893,13 +891,13 @@ function BlueprintPage() {
       <section id="blueprint-small-number" className="section-cream">
         <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-            <h2 className="type-h3-caps-light max-w-[20ch] text-ink">
-              We work with a small number of organizations at a time
-            </h2>
+            <h2 className="type-h3-caps-light max-w-[16ch] text-ink">How we work</h2>
 
-
-            <div className="max-w-[52ch] space-y-6 self-center text-ink/75">
-              <p className="type-body-lg text-ink">
+            <div className="max-w-[56ch] space-y-6 text-ink/75">
+              <p className="type-body">
+                <strong className="font-semibold text-ink">
+                  We work with a small number of organizations at a time.
+                </strong>{" "}
                 This is not manufactured scarcity. It is how we protect the quality of the work.
               </p>
               <p className="type-body">
