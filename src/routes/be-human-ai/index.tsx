@@ -440,62 +440,81 @@ function BlueprintPage() {
       {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
       <section id="blueprint-adoption" className="section-ink">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
-            <div>
-              <Label>Why this matters</Label>
-              <h2 className="type-h2-caps mt-6 max-w-[16ch]">
-                AI adoption is moving faster than organizational readiness
-              </h2>
-            </div>
+          {/* Opening */}
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <h2 className="type-h2-caps text-foreground">
+              ORGANIZATIONAL
+              <br />
+              READINESS
+            </h2>
 
-            <div className="max-w-[58ch] space-y-6 text-foreground/80">
-              <p className="type-body">
+            <div className="max-w-[58ch] lg:ml-auto">
+              <p className="type-body-lg text-foreground/70">
                 Most organizations no longer have an AI access problem. They have an organizational
                 readiness problem.
               </p>
-              <p className="type-body">
+              <p className="type-body-lg mt-5 text-foreground/70">
                 Employees are already using ChatGPT, Copilot, Claude, Gemini, and AI-enabled
                 systems. Leadership may not be aligned on what AI is actually for. Managers may not
                 know how roles and workflows should change. Employees may be using AI every day
                 without a shared standard for what good use looks like.
               </p>
-              <p className="type-body">
-                And technology is moving beyond answering questions. Agents can increasingly
-                complete tasks, move between systems, coordinate parts of workflows, and act with
-                less human prompting.
+              <p className="type-body-lg mt-5 text-foreground/70">
+                And technology is moving beyond answering questions. Agents can increasingly complete
+                tasks, move between systems, coordinate parts of workflows, and act with less human
+                prompting.
               </p>
             </div>
           </div>
 
-          {/* The leadership question, restated */}
-          <div className="mt-16 grid gap-12 border-t border-border pt-14 lg:grid-cols-2 lg:gap-24">
+          {/* Divider */}
+          <div className="mt-16 h-px w-full bg-foreground/15 lg:mt-20" />
+
+          {/* Lower content */}
+          <div className="mt-14 grid gap-12 lg:mt-16 lg:grid-cols-2 lg:gap-16">
+            {/* Left column */}
             <div>
-              <p className="eyebrow text-muted-foreground">That changes the leadership question</p>
-              <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
-              <p className="type-h4-condensed mt-2 max-w-[26ch] text-foreground/60">
-                Are our employees using AI?
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-foreground/50">
+                THAT CHANGES THE LEADERSHIP QUESTION
               </p>
-              <p className="type-body mt-8 text-foreground/70">It becomes:</p>
-              <p className="type-h4-condensed mt-2 max-w-[38ch] text-foreground">
-                What work are we delegating? Who supervises it? What authority are we giving these
-                systems? Where must a human step back in? And who owns the outcome?
-              </p>
+
+              <div className="mt-8 space-y-8">
+                <div>
+                  <p className="type-body text-foreground/60">It is no longer simply:</p>
+                  <p className="font-sans mt-2 text-[1.625rem] font-medium leading-snug text-foreground/80 sm:text-[1.75rem]">
+                    Are our employees using AI?
+                  </p>
+                </div>
+                <div>
+                  <p className="type-body text-foreground/60">It becomes:</p>
+                  <p className="font-sans mt-2 text-[1.625rem] font-medium leading-snug text-foreground sm:text-[1.75rem]">
+                    What work are we delegating? Who supervises it? What authority are we giving
+                    these systems? Where must a human step back in? And who owns the outcome?
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-8">
+            {/* Right column */}
+            <div>
               <div className="border-l-2 border-lime pl-6">
-                <p className="type-h4-caps">AI does not automatically improve an organization</p>
-                <p className="type-h4-caps mt-2 text-lime">It reveals it</p>
+                <p className="font-sans text-[1.5rem] font-semibold uppercase leading-tight text-foreground sm:text-[1.625rem]">
+                  AI does not automatically improve an organization
+                </p>
+                <p className="font-sans mt-1 text-[1.5rem] font-semibold uppercase leading-tight text-lime sm:text-[1.625rem]">
+                  It reveals it
+                </p>
               </div>
-              <div className="max-w-[52ch] space-y-5 text-foreground/80">
-                <p className="type-body">
+
+              <div className="mt-8 max-w-[56ch] space-y-5">
+                <p className="type-body-lg text-foreground/75">
                   Align the organization first, and the technology compounds that alignment. Leave
                   it fragmented, and it compounds the fragmentation just as quickly.
                 </p>
-                <p className="type-body">
+                <p className="type-body-lg text-foreground/75">
                   Organizational readiness means aligning leadership, people, governance, data,
-                  workflows, and priorities around one clear direction. That is what the Blueprint
-                  is designed to establish.
+                  workflows, and priorities around one clear direction. That is what the Blueprint is
+                  designed to establish.
                 </p>
               </div>
             </div>
