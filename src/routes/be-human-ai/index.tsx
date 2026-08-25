@@ -374,9 +374,11 @@ function BlueprintPage() {
 
             <div className="max-w-[56ch] space-y-6 text-ink/75">
               <p className="type-body">
-                Machine intelligence will change every business &mdash; or it is happening to one
-                employee, one tool, and one decision at a time.
+                Machine intelligence will change every business. The question is whether leadership
+                is shaping that change, or whether it is happening to one employee, one tool, and
+                one decision at a time.
               </p>
+
 
               <p className="type-body">
                 Your people are already experimenting. New systems are entering the business. Work
