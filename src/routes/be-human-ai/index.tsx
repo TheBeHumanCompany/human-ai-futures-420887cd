@@ -364,79 +364,79 @@ function BlueprintPage() {
       {/* Page-wide left gutter (desktop/large tablet) reserving space for the
           collapsed "on this page" rail so no section content sits under it. */}
       <div className="lg:pl-[76px] xl:pl-[84px]">
-      {/* ── 02 The question, cream ────────────────────────────────────── */}
+      {/* ── 02 The Blueprint + The Question, side by side on desktop, cream ─ */}
       <section id="blueprint-introduction" className="section-cream">
-        <div className={`${SHELL} pt-20 pb-14 lg:pt-28 lg:pb-16`}>
-          <div className="max-w-[52ch]">
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
-              THE QUESTION
-            </p>
-            <h2 className="type-h3-condensed mt-5 text-ink">
-              The question is whether leadership is shaping that change
-            </h2>
-
-            <div className="mt-8 space-y-5 text-ink/85">
-              <p className="type-body">
-                Machine intelligence will change every business. The question is whether leadership
-                is shaping that change, or whether it is happening to one employee, one tool, and
-                one decision at a time.
-              </p>
-              <p className="type-body">
-                Your people are already experimenting. New systems are entering the business. Work
-                is changing. Information is moving through tools leadership may not fully see.
-              </p>
-            </div>
-
-            <ol className="mt-10 border-t border-border">
-              {OBSERVATIONS.map((line, i) => (
-                <li key={line} className="flex gap-5 border-b border-border py-4">
-                  <span className="mt-0.5 shrink-0 font-sans text-sm font-semibold text-ink/40">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="type-body text-ink/80">{line}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 03 The Blueprint, cream ─────────────────────────────────────── */}
-      <section className="section-cream">
-        <div className={`${SHELL} pt-14 pb-20 lg:pt-16 lg:pb-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16">
-            <div>
+        <div className={`${SHELL} py-20 lg:py-28`}>
+          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
+            {/* LEFT COLUMN — THE BLUEPRINT */}
+            <div className="max-w-[58ch]">
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 THE BLUEPRINT
               </p>
-              <h3 className="type-h3-caps text-[1.625rem] sm:text-[1.875rem] lg:text-[2.375rem] mt-5 text-ink">
+              <h2 className="type-h3-caps text-[1.625rem] sm:text-[1.875rem] lg:text-[2.375rem] mt-5 text-ink">
                 THE BE HUMAN INTELLIGENCE
                 <br />
                 BLUEPRINT IS WHERE WE START
-              </h3>
+              </h2>
+
+              <div className="mt-8 space-y-6 text-ink/85">
+                <p className="type-body">
+                  We look across your leadership, your people, your current use of machine
+                  intelligence, your workflows, your data, your governance, and the opportunities
+                  inside the business.
+                </p>
+                <p className="type-body">
+                  Then we bring leadership back to one clear position on where the organization
+                  stands, what needs protecting, where intelligence can create the greatest leverage,
+                  and what deserves to happen next.
+                </p>
+                <p className="type-body-lg font-semibold text-ink">
+                  Human judgment leads. Machine intelligence expands what is possible.
+                </p>
+              </div>
+
+              <div className="mt-2 pt-2">
+                <ConversationCta tone="cream" />
+                <div className="mt-2 h-px w-44 bg-lime" aria-hidden />
+              </div>
             </div>
 
-            <div className="max-w-[58ch] space-y-6 text-ink/85">
-              <p className="type-body">
-                We look across your leadership, your people, your current use of machine
-                intelligence, your workflows, your data, your governance, and the opportunities
-                inside the business.
+            {/* RIGHT COLUMN — THE QUESTION */}
+            <div className="max-w-[52ch]">
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
+                THE QUESTION
               </p>
-              <p className="type-body">
-                Then we bring leadership back to one clear position on where the organization
-                stands, what needs protecting, where intelligence can create the greatest leverage,
-                and what deserves to happen next.
-              </p>
-              <p className="type-body-lg font-semibold text-ink">
-                Human judgment leads. Machine intelligence expands what is possible.
-              </p>
-              <div className="pt-2">
-                <ConversationCta tone="cream" />
+              <h2 className="type-h3-condensed mt-5 text-ink">
+                The question is whether leadership is shaping that change
+              </h2>
+
+              <div className="mt-8 space-y-5 text-ink/85">
+                <p className="type-body">
+                  Machine intelligence will change every business. The question is whether leadership
+                  is shaping that change, or whether it is happening to one employee, one tool, and
+                  one decision at a time.
+                </p>
+                <p className="type-body">
+                  Your people are already experimenting. New systems are entering the business. Work
+                  is changing. Information is moving through tools leadership may not fully see.
+                </p>
               </div>
+
+              <ol className="mt-10 border-t border-border">
+                {OBSERVATIONS.map((line, i) => (
+                  <li key={line} className="flex gap-5 border-b border-border py-4">
+                    <span className="mt-0.5 shrink-0 font-sans text-sm font-semibold text-ink/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="type-body text-ink/80">{line}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </div>
       </section>
+
 
 
       {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
