@@ -928,6 +928,8 @@ function BlueprintPage() {
           </div>
         </div>
       </section>
+      </div>
     </>
+
   );
 }
