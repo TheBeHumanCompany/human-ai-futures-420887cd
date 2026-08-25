@@ -335,13 +335,6 @@ function BlueprintPage() {
           <div className="flex flex-col gap-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
             <div className="lg:pl-[76px] xl:pl-[84px]">
               <Label>Be Human Intelligence</Label>
-              <p
-                data-brand="indigenous-line"
-                className="type-body mt-4 inline-flex items-center gap-3 text-foreground/85"
-              >
-                <MapleLeaf className="h-5 w-5 shrink-0 text-lime" />
-                <span>{INDIGENOUS_LINE}</span>
-              </p>
             </div>
             <p className="eyebrow max-w-[17rem] leading-loose text-muted-foreground sm:text-right">
               We work with a small number of organizations at a time
@@ -361,7 +354,12 @@ function BlueprintPage() {
               Human judgment leads. Artificial intelligence expands what is possible.
             </p>
 
-            <div className="mt-5 pt-1">
+            <p className="type-body mt-3 inline-flex items-center gap-3 text-foreground/70">
+              <MapleLeaf className="h-5 w-5 shrink-0 text-lime" />
+              <span>{INDIGENOUS_LINE}</span>
+            </p>
+
+            <div className="mt-11">
               <ConversationCta tone="ink" />
             </div>
           </div>
