@@ -402,7 +402,7 @@ function BlueprintPage() {
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 THE BLUEPRINT
               </p>
-              <h3 className="type-h3-caps text-[1.75rem] sm:text-[2rem] lg:text-[2.375rem] mt-5 text-ink">
+              <h3 className="type-h3-caps text-[1.625rem] sm:text-[1.875rem] lg:text-[2.375rem] mt-5 text-ink">
                 The Be Human Intelligence Blueprint is where we start
               </h3>
             </div>
