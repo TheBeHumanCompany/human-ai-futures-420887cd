@@ -506,22 +506,22 @@ function BlueprintPage() {
       </section>
 
       {/* ── 04 Before we brought this to anyone else, cream ──────────── */}
-      <section id="blueprint-before-anyone-else" className="section-cream">
+      <section id="blueprint-before-anyone-else" className="section-ink">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-16 xl:gap-20">
             {/* LEFT COLUMN — statement */}
             <div>
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                 Before we brought this to anyone else
               </p>
-              <h2 className="type-h3-condensed mt-6 max-w-[22ch] text-ink">
+              <h2 className="type-h3-condensed mt-6 max-w-[22ch] text-foreground">
                 Before we offered this, we needed it ourselves.
               </h2>
             </div>
 
             {/* RIGHT COLUMN — explanation and proof */}
             <div className="max-w-[64ch]">
-              <div className="space-y-6 text-ink/75">
+              <div className="space-y-6 text-foreground/75">
                 <p className="type-body">
                   We built The Be Human Company while machine intelligence was changing how companies
                   operate, so we ran the questions on our own business first.
@@ -537,10 +537,10 @@ function BlueprintPage() {
               </div>
 
               <div className="mt-10 border-t border-border pt-8">
-                <p className="type-body-lg max-w-[52ch] font-semibold text-ink">
+                <p className="type-body-lg max-w-[52ch] font-semibold text-foreground">
                   Every principle inside this Blueprint is one we use to run our own business.
                 </p>
-                <p className="type-body mt-4 max-w-[52ch] text-ink/70">
+                <p className="type-body mt-4 max-w-[52ch] text-foreground/70">
                   Not a framework we studied from the outside. A way of working we live inside every
                   day.
                 </p>
@@ -549,6 +549,7 @@ function BlueprintPage() {
           </div>
         </div>
       </section>
+
 
 
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
