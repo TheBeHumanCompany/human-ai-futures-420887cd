@@ -699,13 +699,10 @@ function BlueprintPage() {
             ))}
           </div>
 
-          <div className="mt-12 max-w-[56ch] space-y-4">
-            <p className="type-body text-foreground/80">
-              Organizations do not transform based on what leadership assumes is true. They
-              transform based on what is actually true.
-            </p>
+          <div className="mt-12 max-w-[56ch]">
             <p className="type-h4-caps text-lime">The Blueprint is built to find the difference</p>
           </div>
+
         </div>
       </section>
 
