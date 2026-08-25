@@ -405,7 +405,7 @@ function BlueprintPage() {
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 THE QUESTION
               </p>
-              <h2 className="type-h3-condensed mt-5 text-ink">
+              <h2 className="type-h3-caps-light mt-5 text-ink">
                 The question is whether leadership is shaping that change
               </h2>
 
@@ -444,7 +444,7 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label>Why this matters</Label>
-              <h2 className="type-h2-caps mt-6 max-w-[16ch]">
+              <h2 className="type-h2-caps-light mt-6 max-w-[16ch]">
                 AI adoption is moving faster than organizational readiness
               </h2>
             </div>
@@ -513,7 +513,7 @@ function BlueprintPage() {
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
                 Before we brought this to anyone else
               </p>
-              <h2 className="type-h3-condensed mt-6 max-w-[22ch] text-ink">
+              <h2 className="type-h3-caps-light mt-6 max-w-[22ch] text-ink">
                 Before we offered this, we needed it ourselves.
               </h2>
             </div>
@@ -556,7 +556,11 @@ function BlueprintPage() {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-20">
             <div>
               <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps mt-6 max-w-[12ch]">Three pillars. One organization</h2>
+              <h2 className="type-h2-caps-light mt-6 max-w-[12ch]">
+                Three pillars
+                <br />
+                One organization
+              </h2>
             </div>
 
             <div className="grid gap-px self-end bg-border sm:grid-cols-3">
@@ -594,7 +598,7 @@ function BlueprintPage() {
       <section id="blueprint-scorecard" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <Label tone="muted">Example Blueprint Scorecard</Label>
-          <h2 className="type-h2-caps mt-6 max-w-[16ch] text-ink">
+          <h2 className="type-h2-caps-light mt-6 max-w-[16ch] text-ink">
             Your Blueprint makes readiness visible
           </h2>
           <p className="type-body mt-6 max-w-[56ch] text-ink/75">
@@ -670,7 +674,7 @@ function BlueprintPage() {
       <section id="blueprint-readiness-gap" className="section-ink">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <Label>The gap</Label>
-          <h2 className="type-h2-caps mt-6 max-w-[18ch]">
+          <h2 className="type-h2-caps-light mt-6 max-w-[18ch]">
             Sometimes the most important finding is the gap
           </h2>
 
@@ -706,7 +710,7 @@ function BlueprintPage() {
       <section id="blueprint-deliverables" className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <Label tone="muted">Deliverables</Label>
-          <h2 className="type-h2-caps mt-6 text-ink">What you walk away with</h2>
+          <h2 className="type-h2-caps-light mt-6 text-ink">What you walk away with</h2>
           <p className="type-body mt-6 text-ink/70">
             At the end of the Blueprint, leadership receives:
           </p>
@@ -808,7 +812,7 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label>Before this page</Label>
-              <h2 className="type-h3-caps mt-6 max-w-[18ch]">
+              <h2 className="type-h3-caps-light mt-6 max-w-[18ch]">
                 If we have already been looking at your business
               </h2>
             </div>
@@ -843,7 +847,7 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
               <Label>Trust</Label>
-              <h2 className="type-h2-caps mt-6 max-w-[12ch]">
+              <h2 className="type-h2-caps-light mt-6 max-w-[12ch]">
                 Canadian trust. Human accountability
               </h2>
               <p className="type-body mt-8 inline-flex items-center gap-3 text-foreground/85">
@@ -878,7 +882,7 @@ function BlueprintPage() {
       <section id="blueprint-small-number" className="section-cream">
         <div className={`${SHELL} py-24 lg:py-32`}>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-            <h2 className="type-h2-caps max-w-[14ch] text-ink">
+            <h2 className="type-h2-caps-light max-w-[14ch] text-ink">
               We work with a small number of organizations at a time
             </h2>
 
@@ -908,7 +912,7 @@ function BlueprintPage() {
       <section id="blueprint-closing" className="section-ink grain">
         <div className={`${SHELL} py-24 lg:py-32`}>
           <Label>The position</Label>
-          <h2 className="type-h1-caps mt-8 max-w-[16ch]">The future belongs to the most human</h2>
+          <h2 className="type-h1-caps-light mt-8 max-w-[16ch]">The future belongs to the most human</h2>
 
           <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-24">
             <div className="max-w-[52ch] space-y-6 text-foreground/80">
