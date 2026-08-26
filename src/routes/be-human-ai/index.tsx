@@ -774,9 +774,9 @@ function BlueprintPage() {
             </div>
           </div>
 
-          {/* The leadership question, restated */}
-          <div className="mt-16 grid gap-12 border-t border-border pt-10 md:pt-14 lg:grid-cols-2 lg:gap-24">
-            <div>
+          {/* The leadership question, restated — desktop only below lg */}
+          <div className="mt-16 hidden gap-12 border-t border-border pt-10 md:grid md:pt-14 lg:grid-cols-2 lg:gap-24">
+            <div className="hidden lg:block">
               {/* Desktop / tablet version — unchanged */}
               <div className="hidden md:block">
                 <Label>That changes the leadership question</Label>
