@@ -838,6 +838,33 @@ function BlueprintPage() {
         </div>
       </section>
 
+      {/* ── 03b The new leadership question, ink (tablet/mobile only) ── */}
+      <section id="blueprint-leadership-question" className="section-ink border-t border-foreground/10 lg:hidden">
+        <div className={`${SHELL_IN} py-16 md:py-20`}>
+          <div className="max-w-[58ch]">
+            <Label>THE SHIFT</Label>
+            <h2 className="type-h2-caps mt-4">THE NEW LEADERSHIP QUESTION</h2>
+
+            <div className="mt-12">
+              <p className="type-label-caps text-foreground/50">BEFORE</p>
+              <p className="type-body mt-3 text-foreground/90">Are our employees using AI?</p>
+            </div>
+
+            <div className="mt-12">
+              <p className="type-label-caps text-foreground/50">NOW</p>
+              <div className="mt-3 space-y-3">
+                <p className="type-body text-foreground/90">What work are we delegating?</p>
+                <p className="type-body text-foreground/90">Who supervises it?</p>
+                <p className="type-body text-foreground/90">What authority are we giving these systems?</p>
+                <p className="type-body text-foreground/90">Where must a human step back in?</p>
+                <p className="type-body text-foreground/90">And who owns the outcome?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       {/* ── 04 Before we brought this to anyone else, cream ──────────── */}
       <section id="blueprint-before-anyone-else" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
