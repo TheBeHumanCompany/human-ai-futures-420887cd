@@ -895,7 +895,11 @@ function BlueprintPage() {
       <section id="blueprint-small-number" className="section-cream">
         <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-            <h2 className="type-h3-caps-light max-w-[16ch] text-ink">How we work</h2>
+            <div>
+              <Label tone="muted">The process</Label>
+              <h2 className="type-h3-caps-light mt-4 max-w-[16ch] text-ink">How we work</h2>
+            </div>
+
 
             <div className="max-w-[56ch] space-y-6 text-ink/75">
               <p className="type-body">
