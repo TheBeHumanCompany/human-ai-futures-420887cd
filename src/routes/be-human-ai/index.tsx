@@ -339,7 +339,7 @@ function BlueprintPage() {
     <>
       {/* ── Hero, ink ─────────────────────────────────────────────────── */}
       <section id="blueprint-hero" className="section-ink grain border-b border-border">
-        <div className={`${SHELL} pt-20 pb-16 lg:pt-36 lg:pb-32`}>
+        <div className={`${SHELL} pt-14 pb-10 lg:pt-24 lg:pb-20`}>
           <div className="flex flex-col gap-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
             <div className="lg:pl-[84px] xl:pl-[92px]">
               <Label>Be Human Intelligence</Label>
