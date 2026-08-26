@@ -447,16 +447,18 @@ function BlueprintPage() {
       {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
       <section id="blueprint-adoption" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
+          <Label>Why this matters</Label>
+          <div className="mt-6 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
-              <Label>Why this matters</Label>
-              <h2 className="type-h2-caps mt-6 max-w-[16ch]">
-                AI adoption is moving faster than organizational readiness
+              <h2 className="max-w-[16ch]">
+                <span className="type-h2-caps block">AI adoption is moving faster than</span>
+                <span className="type-h2-caps-light block">Organizational readiness</span>
               </h2>
 
             </div>
 
             <div className="max-w-[58ch] space-y-6 text-foreground/80">
+
               <p className="type-body">
                 Most organizations no longer have an AI access problem. They have an organizational
                 readiness problem.
@@ -478,7 +480,7 @@ function BlueprintPage() {
           {/* The leadership question, restated */}
           <div className="mt-16 grid gap-12 border-t border-border pt-14 lg:grid-cols-2 lg:gap-24">
             <div>
-              <p className="eyebrow text-muted-foreground">That changes the leadership question</p>
+              <Label>That changes the leadership question</Label>
               <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
               <p className="type-body mt-2 max-w-[38ch] font-bold text-foreground">
                 Are our employees using AI?
@@ -577,11 +579,11 @@ function BlueprintPage() {
                   <a
                     key={pillar.n}
                     href={`#blueprint-pillar-${pillar.n}`}
-                    className="block"
+                    className="block sm:border-l sm:border-border sm:pl-6 sm:first:border-l-0 sm:first:pl-0"
                   >
                     <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
                     <p className="type-label-caps mt-4 text-[0.8125rem] text-lime">{pillar.n}</p>
-                    <h3 className="type-h4-caps mt-2 max-w-[16ch]">{pillar.title}</h3>
+                    <h3 className="type-h4-caps-light mt-2 max-w-[16ch]">{pillar.title}</h3>
 
                     <p className="type-body-sm mt-3 max-w-[26ch] text-foreground/70">
                       {pillar.question}
@@ -709,7 +711,7 @@ function BlueprintPage() {
           </div>
 
           <div className="mt-12 max-w-[56ch]">
-            <p className="type-h4-caps text-lime">The Blueprint is built to find the difference</p>
+            <p className="type-h4-caps text-[1.0625rem] text-lime">The Blueprint is built to find the difference</p>
           </div>
 
         </div>
@@ -818,8 +820,9 @@ function BlueprintPage() {
             <div>
               <Label>Before this page</Label>
               <h2 className="type-h3-caps-light mt-6 max-w-[18ch]">
-                We have already been looking at your business
+                We may have already been looking at your business
               </h2>
+
             </div>
 
             <div className="max-w-[58ch] space-y-6 text-foreground/80">
@@ -879,9 +882,10 @@ function BlueprintPage() {
                 For Canadian organizations, that also means understanding privacy, cross-border
                 processing, provider jurisdiction, and sovereignty.
               </p>
-              <p className="type-h4-caps text-lime">
-                Speed without trust is not transformation. It is exposure
+              <p className="type-h4-caps text-[1.0625rem] text-lime">
+                Speed without trust is not transformation. It is exposure.
               </p>
+
             </div>
           </div>
         </div>
@@ -891,7 +895,11 @@ function BlueprintPage() {
       <section id="blueprint-small-number" className="section-cream">
         <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-            <h2 className="type-h3-caps-light max-w-[16ch] text-ink">How we work</h2>
+            <div>
+              <Label tone="muted">The process</Label>
+              <h2 className="type-h3-caps-light mt-4 max-w-[16ch] text-ink">How we work</h2>
+            </div>
+
 
             <div className="max-w-[56ch] space-y-6 text-ink/75">
               <p className="type-body">
@@ -922,9 +930,10 @@ function BlueprintPage() {
       <section id="blueprint-closing" className="section-ink grain">
         <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <Label>The position</Label>
-          <h2 className="type-h3-caps-light mt-8 max-w-[22ch]">
+          <h2 className="type-h2-caps-light mt-8 max-w-[20ch]">
             The future belongs to the most human
           </h2>
+
 
           <div className="mt-12 max-w-[64ch] space-y-6 text-foreground/80">
             <p className="type-body-lg text-foreground">
