@@ -930,7 +930,7 @@ function BlueprintPage() {
       <section id="blueprint-closing" className="section-ink grain">
         <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <Label>The position</Label>
-          <h2 className="type-h2-caps-light mt-8 max-w-[20ch]">
+          <h2 className="type-h1-caps-light mt-8 max-w-[13ch]">
             The future belongs to the most human
           </h2>
 
