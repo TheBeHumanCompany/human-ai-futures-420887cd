@@ -718,13 +718,14 @@ function BlueprintPage() {
       {/* ── 08 What you walk away with, cream ────────────────────────── */}
       <section id="blueprint-deliverables" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <h2 className="type-h2-caps text-ink">What you walk away with</h2>
-          <p className="type-body mt-6 max-w-[64ch] text-ink/75">
+          <Label tone="muted">THE OUTPUT</Label>
+          <h2 className="type-h2-caps mt-4 text-ink">What you receive</h2>
+          <p className="type-body mt-8 max-w-[64ch] text-ink/75">
             You leave knowing where you stand, what matters most, what needs protecting, and what we
-            believe you should do first. At the end of the Blueprint, leadership receives:
+            believe you should do first.
           </p>
 
-          <ol className="mt-14 space-y-12">
+          <ol className="mt-16 space-y-12">
             {DELIVERABLES.map((item, i) => (
               <li key={item.title}>
                 <p className="type-label-caps text-ink/35">
