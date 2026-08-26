@@ -447,16 +447,18 @@ function BlueprintPage() {
       {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
       <section id="blueprint-adoption" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
+          <Label>Why this matters</Label>
+          <div className="mt-6 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
             <div>
-              <Label>Why this matters</Label>
-              <h2 className="type-h2-caps mt-6 max-w-[16ch]">
-                AI adoption is moving faster than organizational readiness
+              <h2 className="max-w-[16ch]">
+                <span className="type-h2-caps block">AI adoption is moving faster than</span>
+                <span className="type-h2-caps-light block">Organizational readiness</span>
               </h2>
 
             </div>
 
             <div className="max-w-[58ch] space-y-6 text-foreground/80">
+
               <p className="type-body">
                 Most organizations no longer have an AI access problem. They have an organizational
                 readiness problem.
