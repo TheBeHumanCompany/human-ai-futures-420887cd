@@ -75,7 +75,7 @@ function FlatItem({ item }: { item: NavigatingItem }) {
       {...(pill ? { "data-nav-cta": "true" } : {})}
       className={
         pill
-          ? "eyebrow inline-flex items-center rounded-full bg-lime px-4 py-2 text-ink"
+          ? "eyebrow inline-flex items-center rounded-full border border-lime px-5 py-2 text-lime transition-colors duration-200 hover:bg-lime hover:text-ink"
           : DESKTOP_LINK
       }
       activeProps={pill ? undefined : { className: "text-foreground" }}
@@ -84,6 +84,7 @@ function FlatItem({ item }: { item: NavigatingItem }) {
     </Link>
   );
 }
+
 
 
 /** The panel contents, shared by both parent shapes. */
