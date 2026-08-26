@@ -540,15 +540,14 @@ function BlueprintPage() {
       {/* ── 04 Before we brought this to anyone else, cream ──────────── */}
       <section id="blueprint-before-anyone-else" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-16 xl:gap-20">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,0.5fr)] lg:gap-14 xl:gap-16">
             {/* LEFT COLUMN — statement */}
             <div>
-              <Label tone="muted">Before we brought this to anyone else</Label>
-              <h2 className="mt-6">
-                <span className="type-h3-condensed block text-ink">Before we offered this</span>
-                <span className="type-h2-caps mt-1 block text-ink">We needed it ourselves</span>
+              <h2 className="type-h1-caps-light max-w-[14ch] text-ink">
+                We needed the Blueprint ourselves
               </h2>
             </div>
+
 
             {/* RIGHT COLUMN — explanation and proof */}
             <div className="max-w-[64ch]">
