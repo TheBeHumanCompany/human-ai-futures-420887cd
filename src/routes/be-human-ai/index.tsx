@@ -579,7 +579,7 @@ function BlueprintPage() {
                   <a
                     key={pillar.n}
                     href={`#blueprint-pillar-${pillar.n}`}
-                    className="block"
+                    className="block sm:border-l sm:border-border sm:pl-6 sm:first:border-l-0 sm:first:pl-0"
                   >
                     <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
                     <p className="type-label-caps mt-4 text-[0.8125rem] text-lime">{pillar.n}</p>
