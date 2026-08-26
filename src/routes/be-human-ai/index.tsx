@@ -95,6 +95,7 @@ type Pillar = {
   n: string;
   title: string;
   question: string;
+  overviewQuestion: string;
   icon: LucideIcon | typeof KnightIcon;
   lookAt: readonly string[];
   lookAtIntro: string;
@@ -107,9 +108,10 @@ const PILLARS: readonly Pillar[] = [
   {
     n: "01",
     title: "Human Readiness",
-    question: "Are your leaders and people ready for the way intelligence is changing work?",
+    question: "A company can have high AI usage and low Human Readiness.",
+    overviewQuestion: "Are your leaders and people ready for the way intelligence is changing work?",
     icon: Users,
-    lookAtIntro: "A company can have high AI usage and low Human Readiness.",
+    lookAtIntro: "Are your leaders and people ready for the way intelligence is changing work?",
     lookAt: [
       "Leadership alignment",
       "Executive readiness",
@@ -135,10 +137,11 @@ const PILLARS: readonly Pillar[] = [
   {
     n: "02",
     title: "Governance & Sovereignty",
-    question: "Do you still control your data, your systems, and your decisions?",
+    question: "As AI becomes more capable, more business information moves through more systems.",
+    overviewQuestion: "Do you still control your data, your systems, and your decisions?",
     icon: ShieldCheck,
     lookAtIntro:
-      "As AI becomes more capable, more business information moves through more systems.",
+      "Do you still control your data, your systems, and your decisions?",
     lookAt: [
       "Governance",
       "Security",
@@ -162,9 +165,10 @@ const PILLARS: readonly Pillar[] = [
   {
     n: "03",
     title: "Intelligence Strategy & Transformation",
-    question: "Where does artificial intelligence create the greatest business leverage?",
+    question: "We do not begin with tools. We begin with the work.",
+    overviewQuestion: "Where does artificial intelligence create the greatest business leverage?",
     icon: KnightIcon,
-    lookAtIntro: "We do not begin with tools. We begin with the work.",
+    lookAtIntro: "Where does artificial intelligence create the greatest business leverage?",
     lookAt: [
       "Where expensive human time is being lost",
       "Where customers are waiting",
@@ -306,7 +310,7 @@ function PillarModule({ pillar }: { pillar: Pillar }) {
           <div className="mt-6 grid gap-8 sm:grid-cols-3 sm:gap-10">
             {pillar.changes.map((change, i) => (
               <div key={change}>
-                <p className="type-label-caps text-[0.8125rem] text-lime">
+                <p className="type-label-caps text-[0.8125rem] text-foreground">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <p className="type-body-sm mt-3 text-foreground/80">{change}</p>
@@ -447,17 +451,36 @@ function BlueprintPage() {
       {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
       <section id="blueprint-adoption" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <Label>Why this matters</Label>
-          <div className="mt-6 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,1fr)] lg:gap-16">
             <div>
-              <h2 className="max-w-[16ch]">
-                <span className="type-h2-caps block">AI adoption is moving faster than</span>
-                <span className="type-h2-caps-light block">Organizational readiness</span>
+              <Label>Why this matters</Label>
+              <h2 className="mt-6 max-w-none">
+                <span
+                  className="type-h2-caps block lg:whitespace-nowrap"
+                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", lineHeight: 0.98 }}
+                >
+                  AI adoption is
+                </span>
+                <span
+                  className="type-h2-caps block lg:whitespace-nowrap"
+                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", lineHeight: 0.98 }}
+                >
+                  moving faster than
+                </span>
+                <span
+                  className="type-h2-caps-light block lg:whitespace-nowrap"
+                  style={{ fontSize: "clamp(2rem, 3.6vw, 3.35rem)", lineHeight: 1 }}
+                >
+                  Organizational readiness
+                </span>
               </h2>
-
             </div>
 
             <div className="max-w-[58ch] space-y-6 text-foreground/80">
+              <p aria-hidden className="type-label-caps invisible hidden lg:block">
+                Why this matters
+              </p>
+
 
               <p className="type-body">
                 Most organizations no longer have an AI access problem. They have an organizational
@@ -561,12 +584,28 @@ function BlueprintPage() {
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:pt-28`}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] lg:gap-16">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.9fr)] lg:gap-14">
             <div>
               <Label>The Blueprint</Label>
-              <h2 className="mt-6 max-w-[22ch]">
-                <span className="type-h2-caps block">The three pillars</span>
-                <span className="type-h3-caps-light mt-2 block">One organization</span>
+              <h2 className="mt-6 max-w-none">
+                <span
+                  className="type-h2-caps block lg:whitespace-nowrap"
+                  style={{ fontSize: "clamp(2rem, 3vw, 2.875rem)", lineHeight: 0.98 }}
+                >
+                  The three
+                </span>
+                <span
+                  className="type-h2-caps block lg:whitespace-nowrap"
+                  style={{ fontSize: "clamp(2rem, 3vw, 2.875rem)", lineHeight: 0.98 }}
+                >
+                  Pillars
+                </span>
+                <span
+                  className="type-h3-caps-light mt-2 block lg:whitespace-nowrap"
+                  style={{ fontSize: "clamp(1.5rem, 2.1vw, 2rem)", lineHeight: 1.04 }}
+                >
+                  One organization
+                </span>
               </h2>
             </div>
 
@@ -584,7 +623,7 @@ function BlueprintPage() {
                     <h3 className="type-h4-caps mt-2 max-w-[16ch] text-foreground">{pillar.title}</h3>
 
                     <p className="type-body-sm mt-3 max-w-[26ch] text-foreground/70">
-                      {pillar.question}
+                      {pillar.overviewQuestion}
                     </p>
                   </a>
                 );
