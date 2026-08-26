@@ -4,25 +4,20 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CONTACT_EMAIL } from "@/lib/brand";
 import { FALLBACK, sendContactEnquiry, type ContactResult } from "@/lib/contact";
 
-import { BOOKING_URL_15MIN } from "@/lib/booking";
-
-// The "Studios" row that used to sit in this list named three cities on three
-// continents. This company has offices in none of them, and a contact page is
-// the last place a plausible-sounding invention belongs. The booking link
-// replaces it with something a reader can actually act on.
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Work With Be Human Intelligence" },
+      { title: "Contact — The Be Human Company" },
       {
         name: "description",
         content:
-          "Talk to us about human readiness, governance, agents and leadership programs for your organization.",
+          "Whether you want to work with us, partner with us, or join the conversation — tell us what's on your mind.",
       },
-      { property: "og:title", content: "Contact — Work With Be Human Intelligence" },
+      { property: "og:title", content: "Contact — The Be Human Company" },
       {
         property: "og:description",
-        content: "Prepare your organization for the New Human Era.",
+        content:
+          "Whether you want to work with us, partner with us, or join the conversation — tell us what's on your mind.",
       },
     ],
   }),
@@ -30,8 +25,8 @@ export const Route = createFileRoute("/contact")({
 });
 
 /**
- * The fields, as data rather than three near-identical blocks — the original
- * shape of this form, kept, with the attributes a real submission needs.
+ * The fields, as data rather than three near-identical blocks. Labels render
+ * uppercase via styling; the values stay sentence case for autofill semantics.
  */
 const FIELDS = [
   { id: "name", label: "Name", type: "text", required: true, autoComplete: "name" },
@@ -65,9 +60,6 @@ function Contact() {
       // the person wrote at the exact moment they need to send it elsewhere.
       if (outcome.ok) form.reset();
     } catch {
-      // The same sentence the server would have sent, imported rather than
-      // retyped — a client-side copy is how the address drifts in one place
-      // only, which is the version nobody notices.
       setResult({ ok: false, reason: "failed", message: FALLBACK.failed });
     } finally {
       setPending(false);
@@ -76,71 +68,85 @@ function Contact() {
 
   return (
     <section className="section-cream grain">
-      <div className="mx-auto grid max-w-[1400px] gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_1fr] lg:py-28">
+      <div className="mx-auto grid max-w-[1400px] gap-14 px-5 py-16 sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-center lg:gap-20 lg:py-24 xl:gap-24">
+        {/* LEFT — editorial column */}
         <div className="min-w-0">
-          <p className="type-label-caps text-ink/50">Contact</p>
-          <h1 className="type-h1-caps-light mt-6 text-ink">
-            Prepare your organization for the New Human Era.
+          <p className="eyebrow text-ink/50">Contact</p>
+          <h1 className="font-display mt-8 text-[clamp(3.375rem,8vw,6.875rem)] leading-[0.95] font-extralight tracking-[0.005em] text-ink uppercase">
+            Let&rsquo;s
+            <br />
+            Connect
           </h1>
-          <p className="mt-8 max-w-md text-lg leading-relaxed text-ink/70">
-            Tell us where you are with artificial intelligence and what you're trying to protect. We'll
-            come back with a point of view, not a pitch deck.
+
+          <div className="mt-11 max-w-[44ch] space-y-7 text-[1.0625rem] leading-relaxed text-ink/80 lg:text-lg">
+            <p>
+              We&rsquo;re building The Be Human Company around a simple belief: the more artificial
+              the world becomes, the more important our humanity becomes.
+            </p>
+            <p>
+              Whether you want to work with us, partner with us, join the conversation, share your
+              story, or simply learn more about what we&rsquo;re building, we&rsquo;d love to hear
+              from you.
+            </p>
+          </div>
+
+          <p className="mt-10 text-[1.0625rem] font-semibold text-ink lg:text-lg">
+            Tell us what&rsquo;s on your mind.
           </p>
-          <dl className="mt-12 space-y-4 border-t border-hairline-dark pt-6 text-sm text-ink/70">
-            <div>
-              <dt className="eyebrow text-ink/45">Email</dt>
-              <dd className="mt-1">
-                <a href={`mailto:${CONTACT_EMAIL}`} className="underline">
-                  {CONTACT_EMAIL}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt className="eyebrow text-ink/45">Book a call</dt>
-              <dd className="mt-1">
-                <a href={BOOKING_URL_15MIN} target="_blank" rel="noreferrer" className="underline">
-                  Fifteen minutes, no deck
-                </a>
-              </dd>
-            </div>
-          </dl>
+
+          <div className="mt-14 border-t border-ink/15 pt-6">
+            <p className="eyebrow text-ink/45">Email</p>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="mt-2 inline-block text-[0.9375rem] text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:decoration-ink"
+            >
+              {CONTACT_EMAIL}
+            </a>
+          </div>
         </div>
 
-        {/* The form actually sends now. Until 2026-08-19 its only submit
-            handler was `preventDefault`, so every enquiry was discarded while
-            the page looked like it had worked. */}
+        {/* RIGHT — dark form panel. The form actually sends; until 2026-08-19
+            its only submit handler was `preventDefault`. */}
         <form
-          className="space-y-6 border border-hairline-dark bg-cream-deep/40 p-8 lg:p-10"
+          className="rounded-xl bg-ink p-7 sm:p-10 lg:p-14"
           onSubmit={onSubmit}
         >
-          {FIELDS.map((f) => (
-            <div key={f.id}>
-              <label htmlFor={f.id} className="eyebrow text-ink/50">
-                {f.label}
+          <div className="space-y-8">
+            {FIELDS.map((f) => (
+              <div key={f.id}>
+                <label
+                  htmlFor={f.id}
+                  className="text-[0.6875rem] font-medium tracking-[0.14em] text-cream/60 uppercase"
+                >
+                  {f.label}
+                </label>
+                <input
+                  id={f.id}
+                  name={f.id}
+                  type={f.type}
+                  required={f.required}
+                  autoComplete={f.autoComplete}
+                  disabled={pending}
+                  className="mt-3 w-full border-b border-cream/25 bg-transparent py-3 text-cream outline-none transition-colors duration-200 focus:border-cream/70 disabled:opacity-60"
+                />
+              </div>
+            ))}
+            <div>
+              <label
+                htmlFor="message"
+                className="text-[0.6875rem] font-medium tracking-[0.14em] text-cream/60 uppercase"
+              >
+                What&rsquo;s on your mind?
               </label>
-              <input
-                id={f.id}
-                name={f.id}
-                type={f.type}
-                required={f.required}
-                autoComplete={f.autoComplete}
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                required
                 disabled={pending}
-                className="mt-2 w-full border-b border-ink/25 bg-transparent py-3 text-ink outline-none transition-colors focus:border-ink disabled:opacity-60"
+                className="mt-3 w-full resize-none border-b border-cream/25 bg-transparent py-3 text-cream outline-none transition-colors duration-200 focus:border-cream/70 disabled:opacity-60"
               />
             </div>
-          ))}
-          <div>
-            <label htmlFor="message" className="eyebrow text-ink/50">
-              What are you working on?
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={4}
-              required
-              disabled={pending}
-              className="mt-2 w-full resize-none border-b border-ink/25 bg-transparent py-3 text-ink outline-none transition-colors focus:border-ink disabled:opacity-60"
-            />
           </div>
 
           {/* Honeypot. Hidden from people and from screen readers; bots fill it
@@ -155,9 +161,9 @@ function Contact() {
           <button
             type="submit"
             disabled={pending}
-            className="eyebrow inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 text-cream transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-60"
+            className="mt-10 inline-flex w-full items-center justify-center gap-3 rounded-full bg-lime px-10 py-4 text-[0.8125rem] font-semibold tracking-[0.14em] text-ink uppercase transition-colors duration-200 hover:bg-lime-dark disabled:opacity-60 sm:w-auto sm:min-w-[65%] lg:min-w-[70%]"
           >
-            {pending ? "Sending\u2026" : "Work With Be Human Intelligence"}{" "}
+            {pending ? "Sending\u2026" : "Start a conversation"}
             <span aria-hidden>{pending ? "" : "\u2192"}</span>
           </button>
 
@@ -167,8 +173,8 @@ function Contact() {
             role="status"
             aria-live="polite"
             className={[
-              "type-body-sm",
-              result?.ok ? "text-ink" : "text-ink/70",
+              "type-body-sm mt-5",
+              result?.ok ? "text-cream" : "text-cream/70",
               result ? "" : "sr-only",
             ].join(" ")}
           >

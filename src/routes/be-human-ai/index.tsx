@@ -1102,13 +1102,22 @@ function BlueprintPage() {
       </section>
 
       {/* ── 09 Client proof, cream ───────────────────────────────────── */}
+      {/* Deliberately narrower than the page shell (~86% of it) so the case
+          study reads as an inset editorial feature, not another full-width
+          section. */}
       <section id="blueprint-client-proof" className="section-cream border-t border-ink/15">
-        <div className={`${SHELL_IN} py-16 lg:py-20`}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 xl:gap-20">
+        <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 lg:py-16">
+          <p className="text-[0.625rem] font-medium tracking-[0.18em] text-ink/40 uppercase">
+            Client story
+          </p>
+
+          <div className="mt-5 grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.5fr)] lg:gap-16 xl:gap-20">
             {/* LEFT — identity, portrait, method */}
             <div>
               <Label tone="muted">From finding to business decision</Label>
-              <h2 className="type-h3-caps mt-4 text-ink">All Y&rsquo;all Foods</h2>
+              <h2 className="type-h3-caps mt-4 text-ink [font-size:clamp(1.55rem,2.8vw,2.4rem)]">
+                All Y&rsquo;all Foods
+              </h2>
               <p className="type-body-sm mt-3 text-ink/60">
                 Real business. Real workflows. Real findings.
               </p>
@@ -1117,10 +1126,10 @@ function BlueprintPage() {
                 src={brettPhoto.url}
                 alt="Brett Christoffel, founder and CEO of All Y’all Foods, holding four packs of plant-based jerky"
                 loading="lazy"
-                className="mt-8 aspect-[4/3] w-full max-w-[26rem] object-cover object-top"
+                className="mt-8 aspect-[4/3] w-full max-w-[22rem] object-cover object-top"
               />
 
-              <p className="type-body-sm mt-6 max-w-[46ch] text-ink/70">
+              <p className="type-body-sm mt-6 max-w-[22rem] text-ink/70">
                 We do not look for ways to force AI into a business. We look at how the organization
                 actually operates: where money is spent, where work is duplicated, where systems
                 overlap, where people lose time, and where intelligence could create leverage.
@@ -1138,7 +1147,7 @@ function BlueprintPage() {
                 </p>
               </div>
 
-              <div className="mt-8 border-t border-ink/12 pt-8">
+              <div className="mt-9 border-t border-ink/12 pt-9">
                 <p className="type-label-caps text-ink/45">What changed</p>
                 <p className="type-body mt-3 max-w-[58ch] text-ink/80">
                   We tightened the AI environment, removed unnecessary tools, and redesigned key
@@ -1147,20 +1156,26 @@ function BlueprintPage() {
                 </p>
               </div>
 
-              <div className="mt-8 border-t border-ink/12 pt-8">
+              <div className="mt-9 border-t border-ink/12 pt-9">
                 <p className="type-label-caps text-ink/45">In Brett&rsquo;s words</p>
-                <blockquote className="mt-3 max-w-[58ch]">
-                  <p className="type-body text-ink">
+                {/* The thin lime rule is the testimonial signal — the quote sits
+                    further in than the factual blocks above it. */}
+                <blockquote className="mt-5 ml-4 border-l-2 border-lime pl-5 sm:ml-7 sm:pl-6">
+                  <p className="max-w-[56ch] text-[1.0625rem] leading-relaxed font-normal text-ink lg:text-[1.1875rem]">
                     &ldquo;I&rsquo;ve worked with Shane for more than three years. He and his team
                     have helped us restructure operations, strengthen our social media, and now
                     build our AI strategy. They found risks and wasted costs we hadn&rsquo;t seen,
                     then helped us put a much stronger system in place. I trust Shane enough that he
                     is now an equity partner in our company.&rdquo;
                   </p>
-                  <footer className="type-body-sm mt-5 text-ink/65">
-                    <span className="font-semibold text-ink">Brett Christoffel</span>
+                  <footer className="mt-5">
+                    <span className="text-[0.9375rem] font-semibold text-ink">
+                      Brett Christoffel
+                    </span>
                     <br />
-                    Founder &amp; CEO, All Y&rsquo;all Foods
+                    <span className="text-[0.8125rem] text-ink/55">
+                      Founder &amp; CEO, All Y&rsquo;all Foods
+                    </span>
                   </footer>
                 </blockquote>
               </div>
