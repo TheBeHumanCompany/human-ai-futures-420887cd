@@ -457,19 +457,19 @@ function BlueprintPage() {
               <h2 className="mt-6 max-w-none">
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.125rem, 3.95vw, 3.7rem)", lineHeight: 0.98 }}
                 >
                   AI adoption is
                 </span>
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.125rem, 3.95vw, 3.7rem)", lineHeight: 0.98 }}
                 >
                   moving faster than
                 </span>
                 <span
                   className="type-h2-caps-light block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2rem, 3.6vw, 3.35rem)", lineHeight: 1 }}
+                  style={{ fontSize: "clamp(2.125rem, 4.15vw, 3.85rem)", lineHeight: 1 }}
                 >
                   Organizational readiness
                 </span>
@@ -590,19 +590,19 @@ function BlueprintPage() {
               <h2 className="mt-6 max-w-none">
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2rem, 3vw, 2.875rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.125rem, 3.4vw, 3.25rem)", lineHeight: 0.98 }}
                 >
                   The three
                 </span>
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2rem, 3vw, 2.875rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.125rem, 3.4vw, 3.25rem)", lineHeight: 0.98 }}
                 >
                   Pillars
                 </span>
                 <span
                   className="type-h3-caps-light mt-2 block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(1.5rem, 2.1vw, 2rem)", lineHeight: 1.04 }}
+                  style={{ fontSize: "clamp(1.625rem, 2.4vw, 2.3rem)", lineHeight: 1.04 }}
                 >
                   One organization
                 </span>
