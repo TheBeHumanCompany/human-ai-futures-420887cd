@@ -107,9 +107,9 @@ const PILLARS: readonly Pillar[] = [
   {
     n: "01",
     title: "Human Readiness",
-    question: "Are your leaders and people ready for the way intelligence is changing work?",
+    question: "A company can have high AI usage and low Human Readiness.",
     icon: Users,
-    lookAtIntro: "A company can have high AI usage and low Human Readiness.",
+    lookAtIntro: "Are your leaders and people ready for the way intelligence is changing work?",
     lookAt: [
       "Leadership alignment",
       "Executive readiness",
@@ -135,10 +135,10 @@ const PILLARS: readonly Pillar[] = [
   {
     n: "02",
     title: "Governance & Sovereignty",
-    question: "Do you still control your data, your systems, and your decisions?",
+    question: "As AI becomes more capable, more business information moves through more systems.",
     icon: ShieldCheck,
     lookAtIntro:
-      "As AI becomes more capable, more business information moves through more systems.",
+      "Do you still control your data, your systems, and your decisions?",
     lookAt: [
       "Governance",
       "Security",
@@ -162,9 +162,9 @@ const PILLARS: readonly Pillar[] = [
   {
     n: "03",
     title: "Intelligence Strategy & Transformation",
-    question: "Where does artificial intelligence create the greatest business leverage?",
+    question: "We do not begin with tools. We begin with the work.",
     icon: KnightIcon,
-    lookAtIntro: "We do not begin with tools. We begin with the work.",
+    lookAtIntro: "Where does artificial intelligence create the greatest business leverage?",
     lookAt: [
       "Where expensive human time is being lost",
       "Where customers are waiting",
@@ -306,7 +306,7 @@ function PillarModule({ pillar }: { pillar: Pillar }) {
           <div className="mt-6 grid gap-8 sm:grid-cols-3 sm:gap-10">
             {pillar.changes.map((change, i) => (
               <div key={change}>
-                <p className="type-label-caps text-[0.8125rem] text-lime">
+                <p className="type-label-caps text-[0.8125rem] text-foreground">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <p className="type-body-sm mt-3 text-foreground/80">{change}</p>
