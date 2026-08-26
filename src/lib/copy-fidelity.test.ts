@@ -185,6 +185,22 @@ const CASES: Case[] = [
           "The 2026-08-20 redesign of the four-pieces section replaces this heading with a shorter " +
           "editorial statement while keeping the four offerings and closing paragraph intact.",
       },
+      {
+        startsWith: "none of them look like much by themselves",
+        instead: "None of them looks like much on its own",
+        because:
+          "The 2026-08-26 What We Practice restructure breaks the dense right column into five " +
+          "paragraphs; Maya supplied this sentence's revised wording with that restructure.",
+      },
+      {
+        startsWith: "but they compound into trust with your name attached",
+        instead:
+          "into leaders people actually believe in, into families that feel closer instead of more distant, and into organizations",
+        because:
+          "Same 2026-08-26 restructure: 'actually believe' reads as truncated, so her revision is " +
+          "'actually believe in', with a serial 'and' before the final clause. Nothing else moved.",
+      },
+
     ],
   },
 ];
