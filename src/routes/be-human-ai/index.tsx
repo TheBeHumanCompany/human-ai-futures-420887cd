@@ -457,19 +457,19 @@ function BlueprintPage() {
               <h2 className="mt-6 max-w-none">
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.125rem, 3.95vw, 3.7rem)", lineHeight: 0.98 }}
                 >
                   AI adoption is
                 </span>
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.125rem, 3.95vw, 3.7rem)", lineHeight: 0.98 }}
                 >
                   moving faster than
                 </span>
                 <span
                   className="type-h2-caps-light block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2rem, 3.6vw, 3.35rem)", lineHeight: 1 }}
+                  style={{ fontSize: "clamp(2.125rem, 4.15vw, 3.85rem)", lineHeight: 1 }}
                 >
                   Organizational readiness
                 </span>
@@ -590,19 +590,19 @@ function BlueprintPage() {
               <h2 className="mt-6 max-w-none">
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2rem, 3vw, 2.875rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.125rem, 3.4vw, 3.25rem)", lineHeight: 0.98 }}
                 >
                   The three
                 </span>
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2rem, 3vw, 2.875rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.125rem, 3.4vw, 3.25rem)", lineHeight: 0.98 }}
                 >
                   Pillars
                 </span>
                 <span
                   className="type-h3-caps-light mt-2 block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(1.5rem, 2.1vw, 2rem)", lineHeight: 1.04 }}
+                  style={{ fontSize: "clamp(1.625rem, 2.4vw, 2.3rem)", lineHeight: 1.04 }}
                 >
                   One organization
                 </span>
@@ -968,12 +968,12 @@ function BlueprintPage() {
       <section id="blueprint-closing" className="section-ink grain">
         <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <Label>The position</Label>
-          <h2 className="type-h1-caps-light mt-8 max-w-[13ch]">
+          <h2 className="type-h1-caps-light mt-8 w-full max-w-[24ch]">
             The future belongs to the most human
           </h2>
 
 
-          <div className="mt-12 max-w-[64ch] space-y-6 text-foreground/80">
+          <div className="mt-12 max-w-[46ch] space-y-6 text-foreground/80 lg:max-w-[720px]">
             <p className="type-body-lg text-foreground">
               Artificial intelligence will become increasingly available to everyone. Human judgment
               will not.
@@ -989,6 +989,7 @@ function BlueprintPage() {
           <p className="type-h3-condensed mt-14 max-w-[30ch] text-foreground">
             Technology will keep accelerating. Build the organization that is ready for it.
           </p>
+
 
           <div className="mt-12">
             <ConversationCta tone="ink" />
