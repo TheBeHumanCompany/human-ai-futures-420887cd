@@ -610,7 +610,7 @@ function BlueprintPage() {
               </h2>
             </div>
 
-            <div className="grid gap-10 self-end sm:grid-cols-3 sm:gap-8 lg:gap-8">
+            <div className="grid gap-10 self-end sm:grid-cols-3 sm:gap-8 lg:max-w-[720px] lg:justify-self-start lg:gap-8">
               {PILLARS.map((pillar) => {
                 const Icon = pillar.icon;
                 return (
