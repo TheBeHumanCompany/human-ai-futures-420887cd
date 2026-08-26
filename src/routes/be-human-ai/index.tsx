@@ -645,77 +645,101 @@ function BlueprintPage() {
       {/* ── 06 Scorecard, cream ──────────────────────────────────────── */}
       <section id="blueprint-scorecard" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <Label tone="muted">Example Blueprint Scorecard</Label>
-          <h2 className="type-h3-caps-light mt-6 max-w-[20ch] text-ink">
+          <p className="type-label-caps text-[0.75rem] font-medium tracking-[0.18em] text-ink/50">
+            Example Blueprint Scorecard
+          </p>
+          <h2
+            className="type-h2-caps mt-5 max-w-[18ch] text-ink"
+            style={{ fontSize: "clamp(2.25rem, 5.2vw, 4.25rem)", lineHeight: 0.95 }}
+          >
             Your Blueprint makes readiness visible
           </h2>
-          <p className="type-body mt-6 max-w-[62ch] text-ink/75">
+          <p className="type-body mt-8 max-w-[52ch] text-ink/75">
             You leave knowing where you stand, what matters most, what needs protecting, and what we
             believe you should do first.
           </p>
 
-          <div className="mt-14 border-t border-ink/25 pt-10">
-            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-20">
-              {/* Headline score */}
-              <div>
-                <p className="eyebrow text-ink/50">Organizational readiness</p>
-                <p className="type-hero-caps mt-4 text-ink">
-                  64<span className="type-h2-caps text-ink/40"> / 100</span>
+          <div className="mt-12 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.55fr)] lg:gap-16">
+            {/* Headline score */}
+            <div>
+              <p className="type-label-caps text-[0.75rem] tracking-[0.18em] text-ink/50">
+                Organizational readiness
+              </p>
+              <p className="mt-5 flex items-baseline gap-3 text-ink">
+                <span className="type-hero-caps" style={{ lineHeight: 0.82 }}>
+                  64
+                </span>
+                <span className="type-h1-caps text-ink/30">/ 100</span>
+              </p>
+            </div>
+
+            {/* Category cards */}
+            <div className="grid gap-5 sm:grid-cols-2">
+              {SCORE_CATEGORIES.map((cat) => (
+                <div
+                  key={cat.title}
+                  className="rounded-xl border border-ink/12 bg-ink/[0.02] p-6"
+                >
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3 className="type-h4-caps text-[0.9375rem] text-ink">{cat.title}</h3>
+                    <p className="type-h4-caps text-ink">{cat.score}%</p>
+                  </div>
+                  <p className="type-body-sm mt-3 max-w-[42ch] text-ink/70">{cat.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Priority opportunity strip */}
+          <div className="mt-12 border-t border-ink/15 pt-10">
+            <div className="grid gap-8 rounded-xl bg-ink/[0.05] px-8 py-8 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-0">
+              <div className="lg:pr-8">
+                <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
+                  Priority opportunity
+                </p>
+                <p className="type-h4-caps mt-4 max-w-[14ch] text-ink">Customer Intake Workflow</p>
+              </div>
+              <div className="lg:border-l lg:border-ink/15 lg:px-8">
+                <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
+                  Business value
+                </p>
+                <p className="type-h3-caps mt-4 text-ink">
+                  5 <span className="text-ink/35">/</span> 5
                 </p>
               </div>
-
-              {/* Category scores */}
-              <div className="grid border-t border-border sm:grid-cols-2">
-                {SCORE_CATEGORIES.map((cat) => (
-                  <div key={cat.title} className="border-b border-border py-6 pr-8">
-                    <div className="flex items-baseline justify-between gap-4">
-                      <h3 className="type-h4-caps text-[0.9375rem] text-ink">{cat.title}</h3>
-                      <p className="type-h4-caps text-ink">{cat.score}%</p>
-                    </div>
-                    <div className="mt-3 h-px w-full bg-ink/15">
-                      <div
-                        className="h-px bg-lime-dark"
-                        style={{ width: `${cat.score}%` }}
-                        aria-hidden
-                      />
-                    </div>
-                    <p className="type-body-sm mt-4 max-w-[42ch] text-ink/70">{cat.note}</p>
-                  </div>
-                ))}
+              <div className="lg:border-l lg:border-ink/15 lg:px-8">
+                <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
+                  Implementation effort
+                </p>
+                <p className="type-h3-caps mt-4 text-ink">
+                  4 <span className="text-ink/35">/</span> 5
+                </p>
               </div>
-            </div>
-
-            {/* Priority opportunity */}
-            <div className="mt-12 border-t border-ink/25 pt-10">
-              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-                <div>
-                  <p className="eyebrow text-ink/50">Priority opportunity</p>
-                  <p className="type-h4-caps mt-3 text-ink">Customer Intake Workflow</p>
-                </div>
-                <div>
-                  <p className="eyebrow text-ink/50">Business value</p>
-                  <p className="type-h4-caps mt-3 text-ink">5 / 5</p>
-                </div>
-                <div>
-                  <p className="eyebrow text-ink/50">Implementation effort</p>
-                  <p className="type-h4-caps mt-3 text-ink">4 / 5</p>
-                </div>
-                <div>
-                  <p className="eyebrow text-ink/50">Recommended position</p>
-                  <p className="type-h4-caps mt-3 text-ink">Do now</p>
-                </div>
+              <div className="lg:border-l lg:border-ink/15 lg:pl-8">
+                <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
+                  Recommended position
+                </p>
+                <span className="mt-4 inline-block rounded-lg bg-ink px-7 py-3 type-h4-caps text-cream">
+                  Do now
+                </span>
               </div>
-              <p className="eyebrow mt-10 text-ink/45">Illustrative example only.</p>
             </div>
           </div>
 
-          <div className="mt-14 max-w-[60ch] border-l-2 border-lime-dark pl-6">
-            <p className="type-body-lg text-ink">A number by itself is not the value.</p>
-            <p className="type-body mt-3 text-ink/75">
-              The value is understanding why the organization scored where it did, what sits
-              underneath the number, and what leadership should do about it.
+          {/* Closing insight */}
+          <div className="mt-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-[60ch] border-l-2 border-lime-dark pl-6">
+              <p className="type-body-lg font-bold text-ink">A number by itself is not the value.</p>
+              <p className="type-body mt-2 text-ink/75">
+                The value is understanding why the organization scored where it did, what sits
+                underneath the number, and what leadership should do about it.
+              </p>
+            </div>
+            <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/40">
+              Illustrative example only.
             </p>
           </div>
+
         </div>
       </section>
 
