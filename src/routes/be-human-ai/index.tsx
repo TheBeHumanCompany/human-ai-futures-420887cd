@@ -372,7 +372,7 @@ function BlueprintPage() {
       {/* ── 02 The Blueprint introduction, cream ─────────────────────── */}
       <section id="blueprint-introduction" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 xl:gap-20">
+          <div className="grid h-auto min-h-0 items-start gap-7 md:gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 xl:gap-20">
             {/* LEFT COLUMN — dominant headline and narrative */}
             <div className="max-w-[58ch]">
               <Label tone="muted">BE HUMAN INTELLIGENCE</Label>
@@ -415,16 +415,42 @@ function BlueprintPage() {
             </div>
           </div>
 
-          {/* Transition */}
-          <div className="mt-16 border-t border-ink/15 lg:mt-20" aria-hidden="true" />
-
           {/* BOTTOM — three standalone observations */}
-          <div className="mt-12 grid gap-8 lg:mt-16 lg:grid-cols-[1fr_1fr_1.35fr] lg:gap-12">
-            {OBSERVATIONS.map((line) => (
-              <p key={line} className="type-body font-medium text-ink/90">
-                {line}
-              </p>
-            ))}
+          <div className="relative mt-5 pt-5 md:mt-6 md:border-t md:pt-6 lg:mt-20 lg:border-t lg:pt-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1fr_1.35fr]">
+              {OBSERVATIONS.map((line, i) => (
+                <div
+                  key={line}
+                  className={`relative ${
+                    i === 2 ? "md:col-span-2 lg:col-span-1" : ""
+                  }`}
+                >
+                  {/* Mobile horizontal divider + lime accent */}
+                  <div className="absolute top-0 right-0 left-0 h-px bg-ink/15 md:hidden" />
+                  <span className="absolute top-0 left-0 h-[2px] w-6 bg-lime md:hidden" />
+
+                  {/* Tablet vertical divider + lime accent */}
+                  {i === 1 && (
+                    <>
+                      <div className="absolute top-0 bottom-0 left-0 hidden w-px bg-ink/15 md:block lg:hidden" />
+                      <span className="absolute top-0 left-0 hidden h-6 w-[2px] bg-lime md:block lg:hidden" />
+                    </>
+                  )}
+
+                  {/* Tablet horizontal divider above spanning third item */}
+                  {i === 2 && (
+                    <>
+                      <div className="absolute top-0 right-0 left-0 hidden h-px bg-ink/15 md:block lg:hidden" />
+                      <span className="absolute top-0 left-0 hidden h-[2px] w-6 bg-lime md:block lg:hidden" />
+                    </>
+                  )}
+
+                  <p className="type-body py-5 font-medium leading-snug text-ink/90 md:py-0 md:pl-6 lg:py-0 lg:pl-0">
+                    {line}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -471,22 +497,49 @@ function BlueprintPage() {
           </div>
 
           {/* The leadership question, restated */}
-          <div className="mt-16 grid gap-12 border-t border-border pt-14 lg:grid-cols-2 lg:gap-24">
+          <div className="mt-16 grid gap-12 border-t border-border pt-10 md:pt-14 lg:grid-cols-2 lg:gap-24">
             <div>
-              <Label>That changes the leadership question</Label>
-              <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
-              <p className="type-body mt-2 max-w-[38ch] font-bold text-foreground">
-                Are our employees using AI?
-              </p>
-              <p className="type-body mt-8 text-foreground/70">It becomes:</p>
-              <p className="type-body mt-2 max-w-[52ch] font-bold text-foreground">
-                What work are we delegating? Who supervises it? What authority are we giving these
-                systems? Where must a human step back in? And who owns the outcome?
-              </p>
+              {/* Desktop / tablet version — unchanged */}
+              <div className="hidden md:block">
+                <Label>That changes the leadership question</Label>
+                <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
+                <p className="type-body mt-2 max-w-[38ch] font-bold text-foreground">
+                  Are our employees using AI?
+                </p>
+                <p className="type-body mt-8 text-foreground/70">It becomes:</p>
+                <p className="type-body mt-2 max-w-[52ch] font-bold text-foreground">
+                  What work are we delegating? Who supervises it? What authority are we giving these
+                  systems? Where must a human step back in? And who owns the outcome?
+                </p>
+              </div>
 
+              {/* Mobile version — matches the editorial reference */}
+              <div className="md:hidden">
+                <Label>That changes the leadership question</Label>
+
+                <p className="type-body-sm mt-6 font-medium uppercase tracking-[0.12em] text-foreground/45">
+                  BEFORE
+                </p>
+                <p className="type-body mt-2 text-foreground/75">
+                  Are our employees using AI?
+                </p>
+
+                <p className="type-body-sm mt-8 font-medium uppercase tracking-[0.12em] text-foreground/45">
+                  NOW
+                </p>
+                <div className="mt-3 space-y-3">
+                  <p className="type-body text-foreground/75">What work are we delegating?</p>
+                  <p className="type-body text-foreground/75">Who supervises it?</p>
+                  <p className="type-body text-foreground/75">What authority are we giving these systems?</p>
+                  <p className="type-body text-foreground/75">Where must a human step back in?</p>
+                  <p className="type-body text-foreground/75">And who owns the outcome?</p>
+                </div>
+
+                <div className="mt-11 border-t border-border" aria-hidden="true" />
+              </div>
             </div>
 
-            <div className="space-y-8">
+            <div className="hidden space-y-8 md:block">
               <div className="border-l-2 border-lime pl-6">
                 <p className="type-h4-caps">AI does not automatically improve an organization</p>
                 <p className="type-h4-caps mt-2 text-lime">It reveals it</p>
@@ -556,11 +609,11 @@ function BlueprintPage() {
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-16 lg:py-20`}>
           <div className="grid items-start gap-10 lg:grid-cols-[max-content_1fr] lg:gap-8">
-            <div>
+            <div className="max-md:-mx-1">
               <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps mt-4 text-[clamp(2.5rem,5vw,4rem)] leading-[0.95]">
-                <span className="block lg:whitespace-nowrap">The three</span>
-                <span className="block lg:whitespace-nowrap">pillars</span>
+              <h2 className="type-h2-caps mt-4 whitespace-nowrap text-[clamp(1.875rem,6vw,4rem)] leading-[0.95] md:text-[clamp(2.5rem,5vw,4rem)]">
+                <span className="inline md:block lg:whitespace-nowrap">The three</span>{' '}
+                <span className="inline md:block lg:whitespace-nowrap">pillars</span>
               </h2>
             </div>
 
