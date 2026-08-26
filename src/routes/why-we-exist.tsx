@@ -47,43 +47,29 @@ export const Route = createFileRoute("/why-we-exist")({
 function WhyWeExist() {
   return (
     <>
-      {/* ══════ 01 — THE HUMAN STORY (cream) ══════ */}
+      {/* ══════ 01 — HERO (cream) ══════ Ends on the question; the story follows. */}
       <section className="section-cream">
-        <div className={`${SHELL} pt-14 pb-10 lg:pt-24 lg:pb-24`}>
-          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
-            <div className="max-w-[52ch]">
-              <SectionLabel tone="dark">The human story</SectionLabel>
+        <div className={`${SHELL} pt-16 pb-16 lg:pt-28 lg:pb-28`}>
+          <div className="grid gap-12 lg:grid-cols-[56fr_36fr] lg:items-center lg:gap-24">
+            <div className="min-w-0">
+              <p className="type-label-caps text-ink/45">Why we exist</p>
 
-              <h1 className="type-h2-condensed mt-10 text-ink">
-                There's a moment from The Human Archive we haven't stopped thinking about.
+              <h1 className="type-h1-condensed mt-8 max-w-[20ch] text-ink lg:mt-10">
+                There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking
+                about
               </h1>
 
-              <p className="type-body mt-6 text-ink/70">
-                Actually, it's not one moment. It's a pattern. We started asking people one
-                question:
-              </p>
-              <p className="type-body mt-5 font-semibold text-ink/90">
-                What does it mean to be human?
-              </p>
-              <p className="type-body mt-5 text-ink/70">
-                Almost nobody talks about their job title, how productive they've been, or what
-                they've built.
-              </p>
-              <p className="type-body mt-5 text-ink/70">
-                They talk about feeling things. Laughing. Crying. Showing up for someone when it was
-                hard. Being kind when it would've been easier not to be.
+              <p className="type-body mt-10 max-w-[46ch] text-ink/60 lg:mt-14">
+                Actually, it&rsquo;s not one moment. It&rsquo;s a pattern. We started asking people
+                one question:
               </p>
 
-              {/* Quiet pull quote — no rule above it, no isolated block. */}
-              <figure className="mt-8 max-w-[44ch]">
-                <blockquote className="type-body font-semibold text-ink/90">
-                  &ldquo;To love one another. Treat each other, and yourself, with respect and
-                  compassion.&rdquo;
-                </blockquote>
-                <figcaption className="type-body mt-3 text-ink/55">
-                  &mdash; Lindsay, Vancouver
-                </figcaption>
-              </figure>
+              <div className="mt-8 flex items-center gap-5 lg:mt-10">
+                <span aria-hidden className="h-[3px] w-9 shrink-0 bg-lime" />
+                <p className="type-body-lg font-semibold text-ink">
+                  What does it mean to be human?
+                </p>
+              </div>
             </div>
 
             <img
@@ -92,11 +78,43 @@ function WhyWeExist() {
               loading="lazy"
               width={1000}
               height={1752}
-              className="aspect-4/5 w-full object-cover"
+              className="aspect-4/5 w-full object-cover lg:mx-auto lg:max-w-[380px]"
             />
           </div>
         </div>
       </section>
+
+      {/* ══════ 01b — THE PATTERN (cream) ══════ The story, out of the hero. */}
+      <section className="section-cream border-t border-ink/10">
+        <div className={`${SHELL} py-16 lg:py-28`}>
+          <p className="type-label-caps text-ink/45">The pattern</p>
+
+          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-24">
+            <p className="type-body-lg max-w-[46ch] text-ink/75">
+              Almost nobody talks about their job title, how productive they&rsquo;ve been, or what
+              they&rsquo;ve built.
+            </p>
+            <p className="type-body-lg max-w-[46ch] text-ink/75">
+              They talk about feeling things. Laughing. Crying. Showing up for someone when it was
+              hard. Being kind when it would&rsquo;ve been easier not to be.
+            </p>
+          </div>
+
+          <figure className="mt-16 flex max-w-[62ch] items-stretch gap-6 lg:mt-24">
+            <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
+            <div>
+              <blockquote className="type-h4-prose font-semibold text-ink">
+                &ldquo;To love one another. Treat each other, and yourself, with respect and
+                compassion.&rdquo;
+              </blockquote>
+              <figcaption className="type-body mt-4 text-ink/55">
+                &mdash; Lindsay, Vancouver
+              </figcaption>
+            </div>
+          </figure>
+        </div>
+      </section>
+
 
       {/* ══════ 02 — THE REAL QUESTION (ink) ══════ Type only, two body columns. */}
       <section className="section-ink">
