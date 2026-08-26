@@ -590,11 +590,11 @@ function BlueprintPage() {
                 </p>
               </div>
 
-              <div className="mt-10">
+              <div className="mt-6 lg:mt-10">
                 <p className="type-body-lg max-w-[52ch] font-semibold text-ink">
                   Every principle inside this Blueprint is one we use to run our own business.
                 </p>
-                <p className="type-body mt-4 max-w-[52ch] text-ink/70">
+                <p className="type-body mt-3 max-w-[52ch] text-ink/70 lg:mt-4">
                   Not a framework we studied from the outside. A way of working we live inside every
                   day.
                 </p>
