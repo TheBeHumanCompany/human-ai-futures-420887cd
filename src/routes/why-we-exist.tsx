@@ -47,44 +47,30 @@ export const Route = createFileRoute("/why-we-exist")({
 function WhyWeExist() {
   return (
     <>
-      {/* ══════ 01 — HERO (cream) ══════ Ends on the question; the story follows. */}
+      {/* ══════ 01 — HERO (cream) ══════ Type only; the portrait now lives in The Pattern. */}
       <section className="section-cream">
         <div className={`${SHELL} pt-16 pb-16 lg:pt-28 lg:pb-28`}>
-          <div className="grid gap-12 lg:grid-cols-[56fr_36fr] lg:items-center lg:gap-24">
-            <div className="min-w-0">
-              <p className="type-label-caps text-ink/45">Why we exist</p>
+          <div className="max-w-[24ch]">
+            <p className="type-label-caps text-ink/45">Why we exist</p>
 
-              <h1 className="type-h1-condensed mt-8 max-w-[20ch] text-ink lg:mt-10">
-                There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking
-                about
-              </h1>
+            <h1 className="type-h1-caps-light mt-8 text-ink lg:mt-10">
+              There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking about
+            </h1>
+          </div>
 
-              <p className="type-body mt-10 max-w-[46ch] text-ink/60 lg:mt-14">
-                Actually, it&rsquo;s not one moment. It&rsquo;s a pattern. We started asking people
-                one question:
-              </p>
+          <p className="type-body mt-10 max-w-[46ch] text-ink/60 lg:mt-14">
+            Actually, it&rsquo;s not one moment. It&rsquo;s a pattern. We started asking people one
+            question:
+          </p>
 
-              <div className="mt-8 flex items-center gap-5 lg:mt-10">
-                <span aria-hidden className="h-[3px] w-9 shrink-0 bg-lime" />
-                <p className="type-body-lg font-semibold text-ink">
-                  What does it mean to be human?
-                </p>
-              </div>
-            </div>
-
-            <img
-              src={humanStoryPortrait}
-              alt="A woman in a blue cap smiling as she holds up a small Be Human token"
-              loading="lazy"
-              width={1000}
-              height={1752}
-              className="aspect-4/5 w-full object-cover lg:mx-auto lg:max-w-[380px]"
-            />
+          <div className="mt-8 flex items-center gap-5 lg:mt-10">
+            <span aria-hidden className="h-[3px] w-9 shrink-0 bg-lime" />
+            <p className="type-body-lg font-semibold text-ink">What does it mean to be human?</p>
           </div>
         </div>
       </section>
 
-      {/* ══════ 01b — THE PATTERN (cream) ══════ The story, out of the hero. */}
+      {/* ══════ 01b — THE PATTERN (cream) ══════ The story, plus the portrait. */}
       <section className="section-cream border-t border-ink/10">
         <div className={`${SHELL} py-16 lg:py-28`}>
           <p className="type-label-caps text-ink/45">The pattern</p>
@@ -100,20 +86,32 @@ function WhyWeExist() {
             </p>
           </div>
 
-          <figure className="mt-16 flex max-w-[62ch] items-stretch gap-6 lg:mt-24">
-            <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
-            <div>
-              <blockquote className="type-h4-prose font-semibold text-ink">
-                &ldquo;To love one another. Treat each other, and yourself, with respect and
-                compassion.&rdquo;
-              </blockquote>
-              <figcaption className="type-body mt-4 text-ink/55">
-                &mdash; Lindsay, Vancouver
-              </figcaption>
-            </div>
-          </figure>
+          <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-[1fr_minmax(0,320px)] lg:items-center lg:gap-20">
+            <figure className="flex max-w-[52ch] items-stretch gap-6">
+              <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
+              <div>
+                <blockquote className="type-h3-prose text-ink">
+                  &ldquo;To love one another. Treat each other, and yourself, with respect and
+                  compassion.&rdquo;
+                </blockquote>
+                <figcaption className="type-body mt-6 text-ink/55">
+                  &mdash; Lindsay, Vancouver
+                </figcaption>
+              </div>
+            </figure>
+
+            <img
+              src={humanStoryPortrait}
+              alt="A woman in a blue cap smiling as she holds up a small Be Human token"
+              loading="lazy"
+              width={1000}
+              height={1752}
+              className="aspect-4/5 w-full object-cover lg:max-w-[320px]"
+            />
+          </div>
         </div>
       </section>
+
 
 
       {/* ══════ 02 — THE REAL QUESTION (ink) ══════ Type only, two body columns. */}
@@ -236,11 +234,11 @@ function WhyWeExist() {
         <div className={`${SHELL} py-14 lg:py-24`}>
           <p className="type-label-caps text-ink/45">What we practice</p>
 
-          <h2 className="type-h2-condensed mt-8 w-full max-w-[28ch] text-ink lg:mt-10 lg:w-[75%] lg:max-w-none">
+          <h2 className="type-h2-caps-light mt-8 w-full max-w-[24ch] text-ink lg:mt-10">
             You&rsquo;re born human. Humanity is what you practice
           </h2>
 
-          <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-2 lg:gap-24">
+          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-24">
             <div className="max-w-[52ch] space-y-6">
               <p className="type-body text-ink/70">
                 You practice it in the conversations you choose to have instead of scrolling past.
@@ -269,7 +267,7 @@ function WhyWeExist() {
             </div>
           </div>
 
-          <div className="mt-16 max-w-[62ch] space-y-6 lg:mt-24">
+          <div className="mt-12 max-w-[62ch] space-y-6">
             <p className="type-body text-ink/70">
               We believe the world gets measurably better every time someone chooses to practice
               their humanity.
@@ -283,9 +281,8 @@ function WhyWeExist() {
             </p>
           </div>
 
-
-          {/* The compounding progression, centred at the foot of the section. */}
-          <ul className="mt-20 flex flex-wrap items-center justify-center gap-x-5 gap-y-4 lg:mt-28 lg:gap-x-8">
+          {/* The compounding progression, at the foot of the section. */}
+          <ul className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-4 lg:mt-14 lg:gap-x-8">
             {COMPOUNDS.map((item, i) => (
               <li key={item} className="flex items-center gap-5 lg:gap-8">
                 <span className="type-label-caps text-ink/75">{item}</span>
@@ -297,6 +294,7 @@ function WhyWeExist() {
               </li>
             ))}
           </ul>
+
         </div>
       </section>
 
@@ -405,48 +403,37 @@ function WhyWeExist() {
 
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-20 lg:py-36`}>
-          <p className="type-label-caps text-lime">The plan</p>
+        <div className={`${SHELL} py-20 lg:py-32`}>
+          <SectionLabel tone="light">The plan</SectionLabel>
 
           <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-2 lg:gap-28">
-            {/* LEFT COLUMN: main statement */}
-            <h2 className="type-h1-condensed max-w-[14ch] text-foreground">
-              Technology will keep advancing whether we&rsquo;re ready or not. Humanity has to
-              advance with it.
-            </h2>
+            {/* LEFT COLUMN: main statement + closing line */}
+            <div>
+              <h2 className="type-h2-caps-light max-w-[18ch] text-foreground">
+                Technology will keep advancing whether we&rsquo;re ready or not. Humanity has to
+                advance with it.
+              </h2>
+
+              <p className="type-body mt-16 font-bold text-foreground lg:mt-24">
+                That&rsquo;s not a hope. That&rsquo;s the plan.
+              </p>
+            </div>
 
             {/* RIGHT COLUMN: three supporting thoughts */}
-            <div className="flex flex-col lg:pt-2">
-              {PLAN_THOUGHTS.map((thought, i) => {
-                const isLast = i === PLAN_THOUGHTS.length - 1;
-                return (
-                  <div
-                    key={thought}
-                    className={[
-                      "flex items-start gap-6 py-8 first:pt-0 lg:gap-8 lg:py-10",
-                      !isLast ? "border-b border-foreground/10" : "",
-                    ].join(" ")}
-                  >
-                    <span aria-hidden className="type-label-caps shrink-0 text-lime">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <p className="type-body-lg max-w-[46ch] text-foreground/85">{thought}</p>
-                  </div>
-                );
-              })}
+            <div className="flex flex-col gap-10 lg:gap-14 lg:pt-2">
+              {PLAN_THOUGHTS.map((thought, i) => (
+                <div key={thought} className="flex items-start gap-6 lg:gap-8">
+                  <span aria-hidden className="type-label-caps shrink-0 text-lime">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="type-body-lg max-w-[46ch] text-foreground/85">{thought}</p>
+                </div>
+              ))}
             </div>
           </div>
-
-          {/* BOTTOM CLOSING LINE */}
-          <div className="mt-20 lg:mt-32">
-            <span className="block w-full border-t border-foreground/10" aria-hidden />
-            <p className="type-h1-condensed mt-16 max-w-[22ch] text-foreground lg:mt-24">
-              That&rsquo;s not a hope. <span className="text-lime">That&rsquo;s the plan.</span>
-            </p>
-          </div>
-
         </div>
       </section>
+
     </>
   );
 }
