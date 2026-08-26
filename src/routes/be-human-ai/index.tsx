@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, Users, type LucideIcon } from "lucide-react";
+import * as React from "react";
 
 import { BlueprintPageNav, type PageNavItem } from "@/components/blueprint-page-nav";
 import { MapleLeaf } from "@/components/maple-leaf";
