@@ -405,48 +405,37 @@ function WhyWeExist() {
 
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-20 lg:py-36`}>
-          <p className="type-label-caps text-lime">The plan</p>
+        <div className={`${SHELL} py-20 lg:py-32`}>
+          <SectionLabel tone="light">The plan</SectionLabel>
 
           <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-2 lg:gap-28">
-            {/* LEFT COLUMN: main statement */}
-            <h2 className="type-h1-condensed max-w-[14ch] text-foreground">
-              Technology will keep advancing whether we&rsquo;re ready or not. Humanity has to
-              advance with it.
-            </h2>
+            {/* LEFT COLUMN: main statement + closing line */}
+            <div>
+              <h2 className="type-h2-caps-light max-w-[18ch] text-foreground">
+                Technology will keep advancing whether we&rsquo;re ready or not. Humanity has to
+                advance with it.
+              </h2>
+
+              <p className="type-body mt-16 font-bold text-foreground lg:mt-24">
+                That&rsquo;s not a hope. That&rsquo;s the plan.
+              </p>
+            </div>
 
             {/* RIGHT COLUMN: three supporting thoughts */}
-            <div className="flex flex-col lg:pt-2">
-              {PLAN_THOUGHTS.map((thought, i) => {
-                const isLast = i === PLAN_THOUGHTS.length - 1;
-                return (
-                  <div
-                    key={thought}
-                    className={[
-                      "flex items-start gap-6 py-8 first:pt-0 lg:gap-8 lg:py-10",
-                      !isLast ? "border-b border-foreground/10" : "",
-                    ].join(" ")}
-                  >
-                    <span aria-hidden className="type-label-caps shrink-0 text-lime">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <p className="type-body-lg max-w-[46ch] text-foreground/85">{thought}</p>
-                  </div>
-                );
-              })}
+            <div className="flex flex-col gap-10 lg:gap-14 lg:pt-2">
+              {PLAN_THOUGHTS.map((thought, i) => (
+                <div key={thought} className="flex items-start gap-6 lg:gap-8">
+                  <span aria-hidden className="type-label-caps shrink-0 text-lime">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="type-body-lg max-w-[46ch] text-foreground/85">{thought}</p>
+                </div>
+              ))}
             </div>
           </div>
-
-          {/* BOTTOM CLOSING LINE */}
-          <div className="mt-20 lg:mt-32">
-            <span className="block w-full border-t border-foreground/10" aria-hidden />
-            <p className="type-h1-condensed mt-16 max-w-[22ch] text-foreground lg:mt-24">
-              That&rsquo;s not a hope. <span className="text-lime">That&rsquo;s the plan.</span>
-            </p>
-          </div>
-
         </div>
       </section>
+
     </>
   );
 }
