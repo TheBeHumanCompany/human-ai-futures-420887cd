@@ -842,7 +842,9 @@ function BlueprintPage() {
             <h2 className="type-h2-caps mt-4 whitespace-nowrap">THE THREE PILLARS</h2>
           </div>
 
-          <div className="mt-16">
+          <MobilePillarAccordion />
+
+          <div className="mt-16 max-lg:hidden">
             {PILLARS.map((pillar, i) => (
               <div key={pillar.n} id={`blueprint-pillar-${pillar.n}`}>
                 <PillarModule pillar={pillar} isFirst={i === 0} />
