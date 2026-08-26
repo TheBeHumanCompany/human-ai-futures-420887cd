@@ -68,17 +68,15 @@ function Contact() {
 
   return (
     <section className="section-cream grain">
-      <div className="mx-auto grid max-w-[1400px] gap-14 px-5 py-16 sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-center lg:gap-20 lg:py-24 xl:gap-24">
+      <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-10 sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-center lg:gap-16 lg:py-14 xl:gap-20">
         {/* LEFT — editorial column */}
         <div className="min-w-0">
           <p className="eyebrow text-ink/50">Contact</p>
-          <h1 className="font-display mt-8 text-[clamp(3.375rem,8vw,6.875rem)] leading-[0.95] font-extralight tracking-[0.005em] text-ink uppercase">
-            Let&rsquo;s
-            <br />
-            Connect
+          <h1 className="font-display mt-5 whitespace-nowrap text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] font-extralight tracking-[0.005em] text-ink uppercase">
+            Let&rsquo;s Connect
           </h1>
 
-          <div className="mt-11 max-w-[44ch] space-y-7 text-[1.0625rem] leading-relaxed text-ink/80 lg:text-lg">
+          <div className="mt-7 max-w-[44ch] space-y-5 text-[1.0625rem] leading-relaxed text-ink/80 lg:text-lg">
             <p>
               We&rsquo;re building The Be Human Company around a simple belief: the more artificial
               the world becomes, the more important our humanity becomes.
@@ -90,11 +88,11 @@ function Contact() {
             </p>
           </div>
 
-          <p className="mt-10 text-[1.0625rem] font-semibold text-ink lg:text-lg">
+          <p className="mt-6 text-[1.0625rem] font-semibold text-ink lg:text-lg">
             Tell us what&rsquo;s on your mind.
           </p>
 
-          <div className="mt-14 border-t border-ink/15 pt-6">
+          <div className="mt-6 lg:mt-8 lg:border-t lg:border-ink/15 lg:pt-5">
             <p className="eyebrow text-ink/45">Email</p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
@@ -108,10 +106,10 @@ function Contact() {
         {/* RIGHT — dark form panel. The form actually sends; until 2026-08-19
             its only submit handler was `preventDefault`. */}
         <form
-          className="rounded-xl bg-ink p-7 sm:p-10 lg:p-14"
+          className="rounded-xl bg-ink p-6 sm:p-8 lg:p-10"
           onSubmit={onSubmit}
         >
-          <div className="space-y-8">
+          <div className="space-y-5">
             {FIELDS.map((f) => (
               <div key={f.id}>
                 <label
@@ -127,7 +125,7 @@ function Contact() {
                   required={f.required}
                   autoComplete={f.autoComplete}
                   disabled={pending}
-                  className="mt-3 w-full border-b border-cream/25 bg-transparent py-3 text-cream outline-none transition-colors duration-200 focus:border-cream/70 disabled:opacity-60"
+                  className="mt-2 w-full border-b border-cream/25 bg-transparent py-2 text-cream outline-none transition-colors duration-200 focus:border-cream/70 disabled:opacity-60"
                 />
               </div>
             ))}
@@ -141,10 +139,10 @@ function Contact() {
               <textarea
                 id="message"
                 name="message"
-                rows={4}
+                rows={3}
                 required
                 disabled={pending}
-                className="mt-3 w-full resize-none border-b border-cream/25 bg-transparent py-3 text-cream outline-none transition-colors duration-200 focus:border-cream/70 disabled:opacity-60"
+                className="mt-2 w-full resize-none border-b border-cream/25 bg-transparent py-2 text-cream outline-none transition-colors duration-200 focus:border-cream/70 disabled:opacity-60"
               />
             </div>
           </div>
@@ -161,7 +159,7 @@ function Contact() {
           <button
             type="submit"
             disabled={pending}
-            className="mt-10 inline-flex w-full items-center justify-center gap-3 rounded-full bg-lime px-10 py-4 text-[0.8125rem] font-semibold tracking-[0.14em] text-ink uppercase transition-colors duration-200 hover:bg-lime-dark disabled:opacity-60 sm:w-auto sm:min-w-[65%] lg:min-w-[70%]"
+            className="mt-8 inline-flex w-full items-center justify-center gap-3 whitespace-nowrap rounded-full bg-lime px-6 py-3.5 text-[0.75rem] font-semibold tracking-[0.14em] text-ink uppercase transition-colors duration-200 hover:bg-lime-dark disabled:opacity-60 sm:w-auto sm:min-w-[240px]"
           >
             {pending ? "Sending\u2026" : "Start a conversation"}
             <span aria-hidden>{pending ? "" : "\u2192"}</span>
@@ -173,7 +171,7 @@ function Contact() {
             role="status"
             aria-live="polite"
             className={[
-              "type-body-sm mt-5",
+              "type-body-sm mt-4",
               result?.ok ? "text-cream" : "text-cream/70",
               result ? "" : "sr-only",
             ].join(" ")}
