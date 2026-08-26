@@ -640,9 +640,9 @@ function BlueprintPage() {
           </div>
 
           <div className="mt-16">
-            {PILLARS.map((pillar) => (
+            {PILLARS.map((pillar, i) => (
               <div key={pillar.n} id={`blueprint-pillar-${pillar.n}`}>
-                <PillarModule pillar={pillar} />
+                <PillarModule pillar={pillar} isFirst={i === 0} />
               </div>
             ))}
           </div>
