@@ -5,23 +5,13 @@ import { NAV, hasChildren, mobileNavChildren, navDestinations, type NavItem } fr
 /**
  * The nav tree, pinned by deep equality rather than by shape.
  *
- * This tree is a user decision that was reversed once already: an earlier
- * round flattened it on the premise that About would be a dropdown with a
- * single child, which turned out to be false. What ships now is the corrected
- * structure, and the thing worth protecting is not "there are six items" but
- * "these six items, these labels, this order, these children" — every drift
- * that matters here is invisible to a count.
+ * 2026-08-26: the About dropdown was removed. Why We Exist and Who We Are are
+ * now top-level items, so the bar is flat — seven navigating items, the last
+ * of which is the Blueprint pill.
  */
 const BINDING_TREE: NavItem[] = [
-  {
-    label: "About",
-    to: "/about",
-    triggerNavigates: true,
-    children: [
-      { to: "/why-we-exist", label: "Why We Exist" },
-      { to: "/who-we-are", label: "Who We Are" },
-    ],
-  },
+  { label: "Why We Exist", to: "/why-we-exist", triggerNavigates: true },
+  { label: "Who We Are", to: "/who-we-are", triggerNavigates: true },
   { label: "The New Human Era", to: "/the-new-human-era", triggerNavigates: true },
   { label: "The Human Archive", to: "/the-human-archive", triggerNavigates: true },
   { label: "Podcast", to: "/podcast", triggerNavigates: true },
@@ -39,9 +29,10 @@ describe("the binding nav tree", () => {
     expect(NAV).toEqual(BINDING_TREE);
   });
 
-  test("six top-level items, in order", () => {
+  test("seven top-level items, in order", () => {
     expect(NAV.map((item) => item.label)).toEqual([
-      "About",
+      "Why We Exist",
+      "Who We Are",
       "The New Human Era",
       "The Human Archive",
       "Podcast",
@@ -50,29 +41,17 @@ describe("the binding nav tree", () => {
     ]);
   });
 
-  test("exactly one item has children", () => {
-    // 2026-08-24: the Blueprint dropdown was removed with its subpages, so
-    // About is the only parent left.
-    const parents = NAV.filter(hasChildren);
-    expect(parents.map((item) => item.label)).toEqual(["About"]);
+  test("no item has children — the bar is flat", () => {
+    expect(NAV.filter(hasChildren)).toEqual([]);
   });
 
   test("exactly one item is the pill", () => {
-    // AC-3.7a asserts the Blueprint pill is *visually distinct*, which means
-    // exactly one item carries the treatment. Every item being a pill passes a
-    // "the pill is lime" check and fails the thing it was checking for.
     const pills = NAV.filter((item) => item.cta);
     expect(pills.map((item) => item.label)).toEqual(["Blueprint"]);
   });
 });
 
 describe("the split-control invariant", () => {
-  /**
-   * A Radix dropdown trigger is a `<button>` that opens a panel — it does not
-   * navigate. So a parent that is also a page needs a second control, or its
-   * own page becomes unreachable from the bar. `triggerNavigates` is what the
-   * header branches on, and this is what keeps the flag honest.
-   */
   test("triggerNavigates is set if and only if the item has a destination", () => {
     for (const item of NAV) {
       expect({ label: item.label, navigates: item.triggerNavigates }).toEqual({
@@ -80,18 +59,6 @@ describe("the split-control invariant", () => {
         navigates: item.to !== undefined,
       });
     }
-  });
-
-  test("About links to /about, so the page is not orphaned from navigation", () => {
-    // `/about` stays live and unredirected. Nothing else in the tree points at
-    // it — Why We Exist and Who We Are are separate pages — so if the About
-    // parent were a pure menu label, a live page would be reachable only by
-    // typing its URL.
-    const about = NAV.find((item) => item.label === "About");
-
-    expect(about?.to).toBe("/about");
-    expect(about?.triggerNavigates).toBe(true);
-    expect(about?.children?.length).toBe(2);
   });
 
   test("Blueprint is one page and links straight to it, with no dropdown", () => {
@@ -103,11 +70,6 @@ describe("the split-control invariant", () => {
   });
 
   test("the non-navigating shape is still reachable by changing one field", () => {
-    // Nothing in the tree sets `triggerNavigates: false` today, so the pure
-    // menu label would rot unnoticed. It is kept deliberately: folding
-    // `/about` into `/why-we-exist` behind a redirect later is meant to be a
-    // redirect plus this one field, not a rebuild. Exercised here so it cannot
-    // quietly stop compiling.
     const label: NavItem = {
       label: "Pure label",
       triggerNavigates: false,
@@ -120,33 +82,7 @@ describe("the split-control invariant", () => {
 });
 
 describe("mobileNavChildren", () => {
-  /**
-   * On mobile the row IS the toggle — there is no pill beside a chevron. A
-   * navigating parent whose own destination were not listed would be a page
-   * with no route to it on a phone, which is where most of the traffic is.
-   */
-  test("a navigating parent leads its own sub-list", () => {
-    const about = NAV.find((item) => item.label === "About")!;
-    const children = mobileNavChildren(about);
-
-    expect(children[0]).toEqual({ to: "/about", label: "About" });
-    expect(children).toHaveLength(3);
-  });
-
-  test("About leads its own sub-list too, since it is also a page", () => {
-    const about = NAV.find((item) => item.label === "About")!;
-
-    expect(mobileNavChildren(about)).toEqual([
-      { to: "/about", label: "About" },
-      { to: "/why-we-exist", label: "Why We Exist" },
-      { to: "/who-we-are", label: "Who We Are" },
-    ]);
-  });
-
   test("the rule is derived from the flag, not from the label", () => {
-    // The behaviour above must hold for a parent nobody has written yet. If
-    // this were special-cased by name, a third parent added later would
-    // silently get the wrong shape.
     const invented: NavItem = {
       label: "Invented",
       to: "/contact",
@@ -156,25 +92,27 @@ describe("mobileNavChildren", () => {
 
     expect(mobileNavChildren(invented)[0]).toEqual({ to: "/contact", label: "Invented" });
   });
+
+  test("a flat item lists only itself", () => {
+    const podcast = NAV.find((item) => item.label === "Podcast")!;
+    expect(mobileNavChildren(podcast)).toEqual([{ to: "/podcast", label: "Podcast" }]);
+  });
 });
 
 describe("navDestinations", () => {
-  test("flattens parents and children without losing or duplicating either", () => {
+  test("flattens without losing or duplicating anything", () => {
     const destinations = navDestinations();
 
-    // 4 flat items + Blueprint + About + 2 About children.
-    expect(destinations).toHaveLength(8);
+    expect(destinations).toHaveLength(7);
     expect(new Set(destinations.map((d) => d.to)).size).toBe(destinations.length);
     expect(destinations.map((d) => d.to)).toContain("/who-we-are");
     expect(destinations.map((d) => d.to)).toContain("/be-human-ai");
   });
 
-  test("a parent appears ahead of its own children", () => {
-    // Document order, so the footer's Navigate column reads as the nav does
-    // rather than as an arbitrary flattening.
+  test("order follows the bar", () => {
     const order = navDestinations().map((d) => d.to);
 
-    expect(order.indexOf("/about")).toBeLessThan(order.indexOf("/why-we-exist"));
-    expect(order.indexOf("/about")).toBeLessThan(order.indexOf("/who-we-are"));
+    expect(order.indexOf("/why-we-exist")).toBeLessThan(order.indexOf("/who-we-are"));
+    expect(order.indexOf("/who-we-are")).toBeLessThan(order.indexOf("/be-human-ai"));
   });
 });
