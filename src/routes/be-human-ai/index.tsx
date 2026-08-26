@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, Users, type LucideIcon } from "lucide-react";
+import * as React from "react";
 
 import { BlueprintPageNav, type PageNavItem } from "@/components/blueprint-page-nav";
 import { MapleLeaf } from "@/components/maple-leaf";
@@ -335,6 +336,234 @@ function PillarModule({ pillar, isFirst }: { pillar: Pillar; isFirst?: boolean }
   );
 }
 
+/* ── Mobile pillars: one accordion, full approved copy ───────────────────── */
+
+type MobilePillar = {
+  n: string;
+  title: string;
+  icon: LucideIcon | typeof KnightIcon;
+  intro: readonly string[];
+  lookAtIntro: readonly string[];
+  lookAt: readonly string[];
+  insightTitle: string;
+  insight: readonly string[];
+  outcomes: readonly { title?: string; body: string }[];
+  closing?: readonly string[];
+};
+
+const MOBILE_PILLARS: readonly MobilePillar[] = [
+  {
+    n: "01",
+    title: "Human Readiness",
+    icon: Users,
+    intro: ["A company can have high AI usage and low Human Readiness."],
+    lookAtIntro: [
+      "Are your leaders and people ready for the way intelligence is changing work?",
+    ],
+    lookAt: [
+      "Leadership readiness",
+      "Employee AI usage",
+      "Human judgment",
+      "Trust and psychological readiness",
+      "Change readiness",
+      "Role and workflow readiness",
+    ],
+    insightTitle: "Confidence is part of the adoption problem",
+    insight: [
+      "Resistance to AI is not always a technology problem.",
+      "It can come from low confidence, unclear expectations, distrust, job uncertainty, poor communication, or simply not understanding where the technology fits into someone’s work.",
+      "We look at what is actually getting in the way, rather than assuming another tool or training session will solve it.",
+    ],
+    outcomes: [
+      {
+        body: "Leadership holds one clear position on where machine intelligence belongs and where human judgment still leads.",
+      },
+      {
+        body: "What your people are already doing with these tools is known, not guessed at.",
+      },
+      {
+        body: "Leadership understands where employees are ready, where confidence or trust is weak, and what needs to change before adoption can succeed.",
+      },
+    ],
+  },
+  {
+    n: "02",
+    title: "Governance & Sovereignty",
+    icon: ShieldCheck,
+    intro: [
+      "As AI becomes more capable, more business information moves through more systems.",
+    ],
+    lookAtIntro: ["Do you still control your data, your systems, and your decisions?"],
+    lookAt: [
+      "Data flows & storage",
+      "Access, identity & permissions",
+      "Third-party & vendor risk",
+      "Data residency & sovereignty",
+      "Governance maturity & accountability",
+    ],
+    insightTitle: "Accountability should never belong to software",
+    insight: [
+      "Leadership needs to know what information enters those systems, where it goes, who has access, what providers can do with it, and who remains accountable for the outcome.",
+      "The goal is simple: make important gaps visible before more intelligence becomes embedded into the business.",
+    ],
+    outcomes: [
+      {
+        title: "Control",
+        body: "You can trace how data actually moves through every system in use — including the ones nobody approved.",
+      },
+      {
+        title: "Defined guardrails",
+        body: "The gaps are named and the safeguards that close them are defined before the technology is embedded.",
+      },
+      {
+        title: "Decisions you make",
+        body: "Where your data lives, and under whose jurisdiction, becomes a decision you made rather than one you inherited.",
+      },
+    ],
+  },
+  {
+    n: "03",
+    title: "Intelligence Strategy & Transformation",
+    icon: KnightIcon,
+    intro: [
+      "Where should AI create the greatest business value, and what needs to change in the organization to capture it?",
+      "We do not begin with tools. We begin with the work.",
+      "Where is expensive human time being lost? Where are customers waiting? Where is information being repeatedly moved between disconnected systems? Where does work bottleneck? Where could intelligence create meaningful capacity?",
+    ],
+    lookAtIntro: [],
+    lookAt: [
+      "Opportunity ranking",
+      "Workflow transformation",
+      "Business value & implementation effort",
+      "Human ownership",
+      "Recommended priorities",
+    ],
+    insightTitle: "What humans should still own",
+    insight: [
+      "Most organizations start by asking what they can automate.",
+      "The more useful question is what humans should still own.",
+    ],
+    outcomes: [
+      {
+        title: "Prioritized opportunity",
+        body: "The opportunities are ranked against each other, not simply listed.",
+      },
+      {
+        title: "Work redesigned",
+        body: "The work itself is redesigned around that ranking, rather than the same work with a chatbot beside it.",
+      },
+    ],
+    closing: [
+      "Adding AI to a poor process can make a poor process faster.",
+      "We identify where people create the greatest advantage first, then determine where machine intelligence creates the greatest leverage.",
+    ],
+  },
+];
+
+function MobilePillarAccordion() {
+  const [open, setOpen] = React.useState("01");
+
+  return (
+    <div className="mt-8 lg:hidden">
+      {MOBILE_PILLARS.map((pillar) => {
+        const Icon = pillar.icon;
+        const isOpen = open === pillar.n;
+        return (
+          <div key={pillar.n} className="border-t border-border last:border-b">
+            <button
+              type="button"
+              aria-expanded={isOpen}
+              onClick={() => setOpen(isOpen ? "" : pillar.n)}
+              className="flex w-full items-start gap-3 py-5 text-left"
+            >
+              <span className="type-label-caps mt-[3px] text-lime">{pillar.n}</span>
+              <Icon className="mt-[1px] h-5 w-5 shrink-0 text-lime" strokeWidth={1.25} />
+              <span className="type-h4-caps min-w-0 flex-1 text-foreground">{pillar.title}</span>
+              <span aria-hidden className="mt-[1px] text-lg leading-none text-lime">
+                {isOpen ? "–" : "+"}
+              </span>
+            </button>
+
+            <div
+              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="pb-10">
+                  <div className="space-y-3">
+                    {pillar.intro.map((line) => (
+                      <p key={line} className="type-body-sm text-foreground/75">
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 border-t border-border pt-7">
+                    <p className="type-label-caps text-lime">What we look at</p>
+                    {pillar.lookAtIntro.map((line) => (
+                      <p key={line} className="type-body-sm mt-3 text-foreground/75">
+                        {line}
+                      </p>
+                    ))}
+                    <div className="mt-5 border-t border-border">
+                      {pillar.lookAt.map((item) => (
+                        <p
+                          key={item}
+                          className="type-body-sm border-b border-border py-3 text-foreground/75"
+                        >
+                          {item}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-8 border-t border-border pt-7">
+                    <p className="type-label-caps text-lime">{pillar.insightTitle}</p>
+                    <div className="mt-3 space-y-3">
+                      {pillar.insight.map((line) => (
+                        <p key={line} className="type-body-sm text-foreground/75">
+                          {line}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-8 border-t border-border pt-7">
+                    <p className="type-label-caps text-lime">What changes afterwards</p>
+                    <div className="mt-5 space-y-6">
+                      {pillar.outcomes.map((outcome, i) => (
+                        <div key={outcome.body}>
+                          <p className="type-label-caps text-[0.8125rem] text-lime">
+                            {String(i + 1).padStart(2, "0")}
+                          </p>
+                          {outcome.title ? (
+                            <p className="type-h4-caps mt-2 text-foreground">{outcome.title}</p>
+                          ) : null}
+                          <p className="type-body-sm mt-2 text-foreground/75">{outcome.body}</p>
+                        </div>
+                      ))}
+                    </div>
+                    {pillar.closing ? (
+                      <div className="mt-6 space-y-3">
+                        {pillar.closing.map((line) => (
+                          <p key={line} className="type-body-sm text-foreground/75">
+                            {line}
+                          </p>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function BlueprintPage() {
   return (
     <>
@@ -613,7 +842,9 @@ function BlueprintPage() {
             <h2 className="type-h2-caps mt-4 whitespace-nowrap">THE THREE PILLARS</h2>
           </div>
 
-          <div className="mt-16">
+          <MobilePillarAccordion />
+
+          <div className="mt-16 max-lg:hidden">
             {PILLARS.map((pillar, i) => (
               <div key={pillar.n} id={`blueprint-pillar-${pillar.n}`}>
                 <PillarModule pillar={pillar} isFirst={i === 0} />
