@@ -72,7 +72,7 @@ function Contact() {
         {/* LEFT — editorial column */}
         <div className="min-w-0">
           <p className="eyebrow text-ink/50">Contact</p>
-          <h1 className="font-display mt-5 whitespace-nowrap text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] font-extralight tracking-[0.005em] text-ink uppercase">
+          <h1 className="font-display mt-5 whitespace-nowrap text-[clamp(3rem,8vw,6rem)] leading-[0.95] font-extralight tracking-[0.005em] text-ink uppercase">
             Let&rsquo;s Connect
           </h1>
 
@@ -92,7 +92,7 @@ function Contact() {
             Tell us what&rsquo;s on your mind.
           </p>
 
-          <div className="mt-6 lg:mt-8 lg:border-t lg:border-ink/15 lg:pt-5">
+          <div className="mt-8 lg:mt-10">
             <p className="eyebrow text-ink/45">Email</p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
