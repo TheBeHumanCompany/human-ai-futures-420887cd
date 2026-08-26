@@ -584,27 +584,33 @@ function BlueprintPage() {
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:pt-28`}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1.85fr)] lg:gap-12">
-            <div>
+          <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1.85fr)] lg:gap-12">
+            <div className="self-end">
               <Label>The Blueprint</Label>
               <h2 className="mt-6 max-w-none">
                 <span
-                  className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.125rem, 4.3vw, 3.875rem)", lineHeight: 0.95 }}
+                  className="type-h2-caps block"
+                  style={{ fontSize: "clamp(2.5rem, 5.2vw, 4.5rem)" }}
                 >
                   The three
                 </span>
                 <span
-                  className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.125rem, 4.3vw, 3.875rem)", lineHeight: 0.95 }}
+                  className="type-h2-caps block"
+                  style={{ fontSize: "clamp(2.5rem, 5.2vw, 4.5rem)" }}
                 >
                   Pillars
                 </span>
                 <span
-                  className="type-h3-caps-light mt-2 block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(1.625rem, 3.2vw, 2.875rem)", lineHeight: 1 }}
+                  className="type-h3-caps-light mt-1 block"
+                  style={{ fontSize: "clamp(2rem, 3.8vw, 3.25rem)" }}
                 >
-                  One organization
+                  One
+                </span>
+                <span
+                  className="type-h3-caps-light block"
+                  style={{ fontSize: "clamp(2rem, 3.8vw, 3.25rem)" }}
+                >
+                  Organization
                 </span>
               </h2>
             </div>
