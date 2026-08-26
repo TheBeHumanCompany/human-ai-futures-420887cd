@@ -608,35 +608,9 @@ function BlueprintPage() {
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-16 lg:py-20`}>
-          <div className="grid items-start gap-10 lg:grid-cols-[max-content_1fr] lg:gap-8">
-            <div className="max-md:-mx-1">
-              <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps mt-4 whitespace-nowrap text-[clamp(1.875rem,6vw,4rem)] leading-[0.95] md:text-[clamp(2.5rem,5vw,4rem)]">
-                <span className="inline md:block lg:whitespace-nowrap">The three</span>{' '}
-                <span className="inline md:block lg:whitespace-nowrap">pillars</span>
-              </h2>
-            </div>
-
-            <div className="grid gap-10 self-start sm:grid-cols-3 sm:gap-8 lg:max-w-[760px] lg:justify-self-start lg:gap-8">
-              {PILLARS.map((pillar) => {
-                const Icon = pillar.icon;
-                return (
-                  <a
-                    key={pillar.n}
-                    href={`#blueprint-pillar-${pillar.n}`}
-                    className="block sm:border-l sm:border-border sm:pl-6 sm:first:border-l-0 sm:first:pl-0"
-                  >
-                    <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
-                    <p className="type-label-caps mt-4 text-[0.8125rem] text-lime">{pillar.n}</p>
-                    <h3 className="type-h4-caps mt-2 max-w-[16ch] text-foreground">{pillar.title}</h3>
-
-                    <p className="type-body-sm mt-3 max-w-[26ch] text-foreground/70">
-                      {pillar.overviewQuestion}
-                    </p>
-                  </a>
-                );
-              })}
-            </div>
+          <div className="max-md:-mx-1">
+            <Label>The Blueprint</Label>
+            <h2 className="type-h2-caps mt-4 whitespace-nowrap">THE THREE PILLARS</h2>
           </div>
 
           <div className="mt-16">
