@@ -642,9 +642,15 @@ function BlueprintPage() {
 
             {/* RIGHT COLUMN — supporting narrative */}
             <div className="max-w-[54ch]">
+              {/* Desktop-only spacer that mirrors the left eyebrow + its margin so the
+                  bold opening statement aligns with the top of the large headline. */}
+              <div aria-hidden className="hidden lg:block lg:mb-4 lg:invisible">
+                <Label tone="muted">BE HUMAN INTELLIGENCE</Label>
+              </div>
               <p className="type-body font-semibold text-ink">
                 We start by asking who is actually shaping how AI enters your business.
               </p>
+
               <div className="mt-5 space-y-5 text-ink/85">
                 <p className="type-body">
                   Artificial intelligence will change every business. The question is whether leadership
