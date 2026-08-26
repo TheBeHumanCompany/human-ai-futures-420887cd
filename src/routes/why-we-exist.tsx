@@ -236,11 +236,11 @@ function WhyWeExist() {
         <div className={`${SHELL} py-14 lg:py-24`}>
           <p className="type-label-caps text-ink/45">What we practice</p>
 
-          <h2 className="type-h2-condensed mt-8 w-full max-w-[28ch] text-ink lg:mt-10 lg:w-[75%] lg:max-w-none">
+          <h2 className="type-h2-caps-light mt-8 w-full max-w-[24ch] text-ink lg:mt-10">
             You&rsquo;re born human. Humanity is what you practice
           </h2>
 
-          <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-2 lg:gap-24">
+          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-24">
             <div className="max-w-[52ch] space-y-6">
               <p className="type-body text-ink/70">
                 You practice it in the conversations you choose to have instead of scrolling past.
@@ -269,7 +269,7 @@ function WhyWeExist() {
             </div>
           </div>
 
-          <div className="mt-16 max-w-[62ch] space-y-6 lg:mt-24">
+          <div className="mt-12 max-w-[62ch] space-y-6">
             <p className="type-body text-ink/70">
               We believe the world gets measurably better every time someone chooses to practice
               their humanity.
@@ -283,9 +283,8 @@ function WhyWeExist() {
             </p>
           </div>
 
-
-          {/* The compounding progression, centred at the foot of the section. */}
-          <ul className="mt-20 flex flex-wrap items-center justify-center gap-x-5 gap-y-4 lg:mt-28 lg:gap-x-8">
+          {/* The compounding progression, at the foot of the section. */}
+          <ul className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-4 lg:mt-14 lg:gap-x-8">
             {COMPOUNDS.map((item, i) => (
               <li key={item} className="flex items-center gap-5 lg:gap-8">
                 <span className="type-label-caps text-ink/75">{item}</span>
@@ -297,6 +296,7 @@ function WhyWeExist() {
               </li>
             ))}
           </ul>
+
         </div>
       </section>
 
