@@ -447,17 +447,36 @@ function BlueprintPage() {
       {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
       <section id="blueprint-adoption" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <Label>Why this matters</Label>
-          <div className="mt-6 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,1fr)] lg:gap-16">
             <div>
-              <h2 className="max-w-[16ch]">
-                <span className="type-h2-caps block">AI adoption is moving faster than</span>
-                <span className="type-h2-caps-light block">Organizational readiness</span>
+              <Label>Why this matters</Label>
+              <h2 className="mt-6 max-w-none">
+                <span
+                  className="type-h2-caps block whitespace-nowrap"
+                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", lineHeight: 0.98 }}
+                >
+                  AI adoption is
+                </span>
+                <span
+                  className="type-h2-caps block whitespace-nowrap"
+                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", lineHeight: 0.98 }}
+                >
+                  moving faster than
+                </span>
+                <span
+                  className="type-h2-caps-light block whitespace-nowrap"
+                  style={{ fontSize: "clamp(2rem, 3.6vw, 3.35rem)", lineHeight: 1 }}
+                >
+                  Organizational readiness
+                </span>
               </h2>
-
             </div>
 
             <div className="max-w-[58ch] space-y-6 text-foreground/80">
+              <p aria-hidden className="type-label-caps invisible hidden lg:block">
+                Why this matters
+              </p>
+
 
               <p className="type-body">
                 Most organizations no longer have an AI access problem. They have an organizational
