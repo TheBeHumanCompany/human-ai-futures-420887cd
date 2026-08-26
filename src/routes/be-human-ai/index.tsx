@@ -372,7 +372,7 @@ function BlueprintPage() {
       {/* ── 02 The Blueprint introduction, cream ─────────────────────── */}
       <section id="blueprint-introduction" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 xl:gap-20">
+          <div className="grid h-auto min-h-0 items-start gap-7 md:gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 xl:gap-20">
             {/* LEFT COLUMN — dominant headline and narrative */}
             <div className="max-w-[58ch]">
               <Label tone="muted">BE HUMAN INTELLIGENCE</Label>
@@ -415,16 +415,34 @@ function BlueprintPage() {
             </div>
           </div>
 
-          {/* Transition */}
-          <div className="mt-16 border-t border-ink/15 lg:mt-20" aria-hidden="true" />
-
           {/* BOTTOM — three standalone observations */}
-          <div className="mt-12 grid gap-8 lg:mt-16 lg:grid-cols-[1fr_1fr_1.35fr] lg:gap-12">
-            {OBSERVATIONS.map((line) => (
-              <p key={line} className="type-body font-medium text-ink/90">
-                {line}
-              </p>
-            ))}
+          <div className="mt-5 border-t border-ink/15 pt-5 md:mt-6 md:pt-6 lg:mt-20 lg:pt-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1fr_1.35fr]">
+              {OBSERVATIONS.map((line, i) => (
+                <div
+                  key={line}
+                  className={`relative ${
+                    i === 2 ? "md:col-span-2 lg:col-span-1" : ""
+                  }`}
+                >
+                  {/* Mobile horizontal divider + lime accent */}
+                  <div className="absolute top-0 right-0 left-0 h-px bg-ink/15 md:hidden" />
+                  <span className="absolute top-0 left-0 h-[2px] w-6 bg-lime md:hidden" />
+
+                  {/* Tablet+ vertical divider + lime accent */}
+                  {i > 0 && (
+                    <>
+                      <div className="absolute top-0 bottom-0 left-0 hidden w-px bg-ink/15 md:block lg:hidden" />
+                      <span className="absolute top-0 left-0 hidden h-6 w-[2px] bg-lime md:block lg:hidden" />
+                    </>
+                  )}
+
+                  <p className="type-body py-5 font-medium leading-snug text-ink/90 md:py-0 md:pl-6 lg:py-0 lg:pl-0">
+                    {line}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
