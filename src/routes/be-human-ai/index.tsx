@@ -550,10 +550,11 @@ function MobilePillarAccordion() {
                             {String(i + 1).padStart(2, "0")}
                           </p>
                           {outcome.title ? (
-                            <p className="type-h4-caps mt-2 text-[1rem] text-foreground">
+                            <p className="type-body mt-2 text-[1.0625rem] leading-snug font-semibold text-foreground/90">
                               {outcome.title}
                             </p>
                           ) : null}
+
                           <p className="type-body-sm mt-2 text-foreground/65">{outcome.body}</p>
                         </div>
                       ))}
