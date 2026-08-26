@@ -520,9 +520,7 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-16 xl:gap-20">
             {/* LEFT COLUMN — statement */}
             <div>
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
-                Before we brought this to anyone else
-              </p>
+              <Label tone="muted">Before we brought this to anyone else</Label>
               <h2 className="type-h3-caps-light mt-6 max-w-[22ch] text-ink">
                 Before we offered this, we needed it ourselves.
               </h2>
