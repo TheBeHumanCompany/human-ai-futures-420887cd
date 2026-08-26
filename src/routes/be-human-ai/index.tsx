@@ -491,26 +491,29 @@ function MobilePillarAccordion() {
             >
               <div className="overflow-hidden">
                 <div className="pb-10">
-                  <div className="space-y-3">
+                  {/* short lime accent line — the recurring open-pillar detail */}
+                  <div className="mt-1 h-[2px] w-8 bg-lime" />
+
+                  <div className="mt-5 space-y-3">
                     {pillar.intro.map((line) => (
-                      <p key={line} className="type-body-sm text-foreground/75">
+                      <p key={line} className="type-body-sm text-foreground/65">
                         {line}
                       </p>
                     ))}
                   </div>
 
-                  <div className="mt-8 border-t border-border pt-7">
-                    <p className="type-label-caps text-lime">What we look at</p>
+                  <div className="mt-8">
+                    <p className="type-label-caps text-[0.8125rem] text-lime">What we look at</p>
                     {pillar.lookAtIntro.map((line) => (
-                      <p key={line} className="type-body-sm mt-3 text-foreground/75">
+                      <p key={line} className="type-body-sm mt-3 text-foreground/65">
                         {line}
                       </p>
                     ))}
-                    <div className="mt-5 border-t border-border">
+                    <div className="mt-4 border-t border-border/60">
                       {pillar.lookAt.map((item) => (
                         <p
                           key={item}
-                          className="type-body-sm border-b border-border py-3 text-foreground/75"
+                          className="type-body-sm border-b border-border/60 py-3 text-foreground/65"
                         >
                           {item}
                         </p>
@@ -518,36 +521,42 @@ function MobilePillarAccordion() {
                     </div>
                   </div>
 
-                  <div className="mt-8 border-t border-border pt-7">
-                    <p className="type-label-caps text-lime">{pillar.insightTitle}</p>
+                  <div className="mt-8">
+                    <p className="type-label-caps text-[0.8125rem] text-lime">
+                      {pillar.insightTitle}
+                    </p>
                     <div className="mt-3 space-y-3">
                       {pillar.insight.map((line) => (
-                        <p key={line} className="type-body-sm text-foreground/75">
+                        <p key={line} className="type-body-sm text-foreground/65">
                           {line}
                         </p>
                       ))}
                     </div>
                   </div>
 
-                  <div className="mt-8 border-t border-border pt-7">
-                    <p className="type-label-caps text-lime">What changes afterwards</p>
+                  <div className="mt-8 border-t border-border/60 pt-7">
+                    <p className="type-label-caps text-[0.8125rem] text-lime">
+                      What changes afterwards
+                    </p>
                     <div className="mt-5 space-y-6">
                       {pillar.outcomes.map((outcome, i) => (
                         <div key={outcome.body}>
-                          <p className="type-label-caps text-[0.8125rem] text-lime">
+                          <p className="type-label-caps text-[0.75rem] text-lime">
                             {String(i + 1).padStart(2, "0")}
                           </p>
                           {outcome.title ? (
-                            <p className="type-h4-caps mt-2 text-foreground">{outcome.title}</p>
+                            <p className="type-h4-caps mt-2 text-[1rem] text-foreground">
+                              {outcome.title}
+                            </p>
                           ) : null}
-                          <p className="type-body-sm mt-2 text-foreground/75">{outcome.body}</p>
+                          <p className="type-body-sm mt-2 text-foreground/65">{outcome.body}</p>
                         </div>
                       ))}
                     </div>
                     {pillar.closing ? (
-                      <div className="mt-6 space-y-3">
+                      <div className="mt-7 space-y-3">
                         {pillar.closing.map((line) => (
-                          <p key={line} className="type-body-sm text-foreground/75">
+                          <p key={line} className="type-body-sm text-foreground/65">
                             {line}
                           </p>
                         ))}
@@ -557,6 +566,7 @@ function MobilePillarAccordion() {
                 </div>
               </div>
             </div>
+
           </div>
         );
       })}
