@@ -916,11 +916,14 @@ function BlueprintPage() {
           <div className="max-md:-mx-1">
             <Label>The Blueprint</Label>
             <h2 className="type-h2-caps mt-4 whitespace-nowrap">THE THREE PILLARS</h2>
+            <p className="type-body mt-6 max-w-[58ch] text-foreground/80">
+              The three pillars show where your organization stands, where it is exposed, and where intelligence can create the greatest leverage.
+            </p>
           </div>
 
           <MobilePillarAccordion />
 
-          <div className="mt-16 max-lg:hidden">
+          <div className="mt-0 max-lg:hidden">
             {PILLARS.map((pillar, i) => (
               <div key={pillar.n} id={`blueprint-pillar-${pillar.n}`}>
                 <PillarModule pillar={pillar} isFirst={i === 0} />

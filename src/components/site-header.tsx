@@ -252,7 +252,7 @@ export function SiteHeader() {
           <Wordmark />
 
           <ul className="hidden items-center justify-center gap-5 xl:gap-6 lg:flex">
-            {NAV.map((item) => (
+            {NAV.filter((item) => !item.cta).map((item) => (
               <li key={item.label}>
                 <DesktopItem item={item} />
               </li>
@@ -260,6 +260,17 @@ export function SiteHeader() {
           </ul>
 
           <div className="flex items-center justify-end gap-3">
+            {NAV.filter((item): item is NavigatingItem => item.cta === true).map((cta) => (
+              <Link
+                key={cta.label}
+                to={cta.to}
+                data-nav-item={cta.label}
+                data-nav-cta="true"
+                className="eyebrow hidden lg:inline-flex items-center rounded-full border border-lime px-5 py-2 text-lime transition-colors duration-200 hover:bg-lime hover:text-ink"
+              >
+                {cta.label}
+              </Link>
+            ))}
             <button
               type="button"
               aria-label="Toggle menu"
