@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Heart, Lightbulb, Users } from "lucide-react";
+import { Heart, Lightbulb, Users } from "lucide-react";
 
 import manifestoImage from "@/assets/manifesto.jpg";
 import humanStoryPortrait from "@/assets/human-story-portrait.webp";
@@ -47,43 +47,29 @@ export const Route = createFileRoute("/why-we-exist")({
 function WhyWeExist() {
   return (
     <>
-      {/* ══════ 01 — THE HUMAN STORY (cream) ══════ */}
+      {/* ══════ 01 — HERO (cream) ══════ Ends on the question; the story follows. */}
       <section className="section-cream">
-        <div className={`${SHELL} pt-14 pb-10 lg:pt-24 lg:pb-24`}>
-          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
-            <div className="max-w-[52ch]">
-              <SectionLabel tone="dark">The human story</SectionLabel>
+        <div className={`${SHELL} pt-16 pb-16 lg:pt-28 lg:pb-28`}>
+          <div className="grid gap-12 lg:grid-cols-[56fr_36fr] lg:items-center lg:gap-24">
+            <div className="min-w-0">
+              <p className="type-label-caps text-ink/45">Why we exist</p>
 
-              <h1 className="type-h2-condensed mt-10 text-ink">
-                There's a moment from The Human Archive we haven't stopped thinking about.
+              <h1 className="type-h1-condensed mt-8 max-w-[20ch] text-ink lg:mt-10">
+                There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking
+                about
               </h1>
 
-              <p className="type-body mt-6 text-ink/70">
-                Actually, it's not one moment. It's a pattern. We started asking people one
-                question:
-              </p>
-              <p className="type-body mt-5 font-semibold text-ink/90">
-                What does it mean to be human?
-              </p>
-              <p className="type-body mt-5 text-ink/70">
-                Almost nobody talks about their job title, how productive they've been, or what
-                they've built.
-              </p>
-              <p className="type-body mt-5 text-ink/70">
-                They talk about feeling things. Laughing. Crying. Showing up for someone when it was
-                hard. Being kind when it would've been easier not to be.
+              <p className="type-body mt-10 max-w-[46ch] text-ink/60 lg:mt-14">
+                Actually, it&rsquo;s not one moment. It&rsquo;s a pattern. We started asking people
+                one question:
               </p>
 
-              {/* Quiet pull quote — no rule above it, no isolated block. */}
-              <figure className="mt-8 max-w-[44ch]">
-                <blockquote className="type-body font-semibold text-ink/90">
-                  &ldquo;To love one another. Treat each other, and yourself, with respect and
-                  compassion.&rdquo;
-                </blockquote>
-                <figcaption className="type-body mt-3 text-ink/55">
-                  &mdash; Lindsay, Vancouver
-                </figcaption>
-              </figure>
+              <div className="mt-8 flex items-center gap-5 lg:mt-10">
+                <span aria-hidden className="h-[3px] w-9 shrink-0 bg-lime" />
+                <p className="type-body-lg font-semibold text-ink">
+                  What does it mean to be human?
+                </p>
+              </div>
             </div>
 
             <img
@@ -92,11 +78,43 @@ function WhyWeExist() {
               loading="lazy"
               width={1000}
               height={1752}
-              className="aspect-4/5 w-full object-cover"
+              className="aspect-4/5 w-full object-cover lg:mx-auto lg:max-w-[380px]"
             />
           </div>
         </div>
       </section>
+
+      {/* ══════ 01b — THE PATTERN (cream) ══════ The story, out of the hero. */}
+      <section className="section-cream border-t border-ink/10">
+        <div className={`${SHELL} py-16 lg:py-28`}>
+          <p className="type-label-caps text-ink/45">The pattern</p>
+
+          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-24">
+            <p className="type-body-lg max-w-[46ch] text-ink/75">
+              Almost nobody talks about their job title, how productive they&rsquo;ve been, or what
+              they&rsquo;ve built.
+            </p>
+            <p className="type-body-lg max-w-[46ch] text-ink/75">
+              They talk about feeling things. Laughing. Crying. Showing up for someone when it was
+              hard. Being kind when it would&rsquo;ve been easier not to be.
+            </p>
+          </div>
+
+          <figure className="mt-16 flex max-w-[62ch] items-stretch gap-6 lg:mt-24">
+            <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
+            <div>
+              <blockquote className="type-h4-prose font-semibold text-ink">
+                &ldquo;To love one another. Treat each other, and yourself, with respect and
+                compassion.&rdquo;
+              </blockquote>
+              <figcaption className="type-body mt-4 text-ink/55">
+                &mdash; Lindsay, Vancouver
+              </figcaption>
+            </div>
+          </figure>
+        </div>
+      </section>
+
 
       {/* ══════ 02 — THE REAL QUESTION (ink) ══════ Type only, two body columns. */}
       <section className="section-ink">
@@ -216,36 +234,55 @@ function WhyWeExist() {
       {/* ══════ 05 — WHAT WE PRACTICE (cream) ══════ */}
       <section className="section-cream">
         <div className={`${SHELL} py-14 lg:py-24`}>
-          <SectionLabel tone="dark">What we practice</SectionLabel>
+          <p className="type-label-caps text-ink/45">What we practice</p>
 
-          <h2 className="type-h2-condensed mt-10 w-full max-w-[28ch] text-ink lg:w-[75%] lg:max-w-none">
-            You're born human. Humanity is what you practice.
+          <h2 className="type-h2-condensed mt-8 w-full max-w-[28ch] text-ink lg:mt-10 lg:w-[75%] lg:max-w-none">
+            You&rsquo;re born human. Humanity is what you practice
           </h2>
 
-          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-20">
-            <p className="type-body max-w-[52ch] text-ink/70">
-              You practice it in the conversations you choose to have instead of scrolling past. In
-              the promises you keep when breaking them would be easier. In the moments you think for
-              yourself instead of letting something else think for you. In choosing to be fully
-              present with the person in front of you when distraction would cost you nothing.
+          <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-2 lg:gap-24">
+            <div className="max-w-[52ch] space-y-6">
+              <p className="type-body text-ink/70">
+                You practice it in the conversations you choose to have instead of scrolling past.
+                In the promises you keep when breaking them would be easier.
+              </p>
+              <p className="type-body text-ink/70">
+                In the moments you think for yourself instead of letting something else think for
+                you. In choosing to be fully present with the person in front of you when
+                distraction would cost you nothing.
+              </p>
+            </div>
+            <div className="max-w-[52ch] space-y-6">
+              <p className="type-body text-ink/70">We call those moments Human Reps.</p>
+              <p className="type-body text-ink/70">
+                Small, conscious choices where you interrupt the automatic pattern and decide how
+                you want to show up.
+              </p>
+              <p className="type-body text-ink/70">None of them looks like much on its own.</p>
+              <p className="type-body text-ink/70">
+                But they compound into trust with your name attached, into relationships strong
+                enough to carry real life, into leaders people actually believe in, into families
+                that feel closer instead of more distant, and into organizations that become more
+                human because the people inside them chose to practice being human.
+              </p>
+              <p className="type-body font-semibold text-ink">We call that Human Wealth.</p>
+            </div>
+          </div>
+
+          <div className="mt-16 max-w-[62ch] space-y-6 lg:mt-24">
+            <p className="type-body text-ink/70">
+              We believe the world gets measurably better every time someone chooses to practice
+              their humanity.
             </p>
-            <p className="type-body max-w-[52ch] text-ink/70">
-              We call those moments Human Reps. Small, conscious choices where you interrupt the
-              automatic pattern and decide how you want to show up. None of them look like much by
-              themselves. But they compound into trust with your name attached, into relationships
-              strong enough to carry real life, into leaders people actually believe, into families
-              that feel closer instead of more distant, into organizations that become more human
-              because the people inside them chose to practice being human.{" "}
-              <span className="font-bold text-ink">We call that Human Wealth.</span>
+            <p className="type-body text-ink/70">
+              Not because we say it does. Because it&rsquo;s true every single time it happens.
+            </p>
+            <p className="type-body-lg font-semibold text-ink">
+              One conversation. One promise kept. One moment of real presence instead of
+              performance.
             </p>
           </div>
 
-          <p className="type-body mt-12 max-w-[52ch] text-ink/70">
-            We believe the world gets measurably better every time someone chooses to practice their
-            humanity. Not because we say it does. Because it's true every single time it happens
-            &mdash; one conversation. One promise kept &mdash; one moment of real presence instead
-            of performance.
-          </p>
 
           {/* The compounding progression, centred at the foot of the section. */}
           <ul className="mt-20 flex flex-wrap items-center justify-center gap-x-5 gap-y-4 lg:mt-28 lg:gap-x-8">
@@ -368,46 +405,32 @@ function WhyWeExist() {
 
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-14 lg:py-24`}>
-          <SectionLabel tone="light">The plan</SectionLabel>
+        <div className={`${SHELL} py-20 lg:py-36`}>
+          <p className="type-label-caps text-lime">The plan</p>
 
-          <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-2 lg:gap-28">
             {/* LEFT COLUMN: main statement */}
-            <div>
-              <h2 className="type-h2-condensed max-w-[16ch] text-foreground">
-                Technology will
-                <br />
-                keep advancing
-                <br />
-                whether we're
-                <br />
-                ready or not.
-                <br />
-                Humanity has to
-                <br />
-                advance with it.
-              </h2>
-            </div>
+            <h2 className="type-h1-condensed max-w-[14ch] text-foreground">
+              Technology will keep advancing whether we&rsquo;re ready or not. Humanity has to
+              advance with it.
+            </h2>
 
             {/* RIGHT COLUMN: three supporting thoughts */}
-            <div className="flex flex-col">
+            <div className="flex flex-col lg:pt-2">
               {PLAN_THOUGHTS.map((thought, i) => {
                 const isLast = i === PLAN_THOUGHTS.length - 1;
                 return (
                   <div
                     key={thought}
                     className={[
-                      "flex items-start gap-6 py-7 first:pt-0 lg:gap-5 lg:py-8",
+                      "flex items-start gap-6 py-8 first:pt-0 lg:gap-8 lg:py-10",
                       !isLast ? "border-b border-foreground/10" : "",
                     ].join(" ")}
                   >
-                    <span
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-foreground/15"
-                      aria-hidden
-                    >
-                      <ArrowUpRight size={18} className="text-lime" strokeWidth={1.5} />
+                    <span aria-hidden className="type-label-caps shrink-0 text-lime">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                    <p className="type-body-lg pt-1.5 text-foreground/90">{thought}</p>
+                    <p className="type-body-lg max-w-[46ch] text-foreground/85">{thought}</p>
                   </div>
                 );
               })}
@@ -415,15 +438,13 @@ function WhyWeExist() {
           </div>
 
           {/* BOTTOM CLOSING LINE */}
-          <div className="mt-8 lg:mt-20">
+          <div className="mt-20 lg:mt-32">
             <span className="block w-full border-t border-foreground/10" aria-hidden />
-            <div className="mt-10 flex items-start gap-5">
-              <span className="mt-2 block h-10 w-0.5 bg-lime" aria-hidden />
-              <p className="type-h3-condensed text-foreground">
-                That's not a hope. <span className="text-lime">That's the plan.</span>
-              </p>
-            </div>
+            <p className="type-h1-condensed mt-16 max-w-[22ch] text-foreground lg:mt-24">
+              That&rsquo;s not a hope. <span className="text-lime">That&rsquo;s the plan.</span>
+            </p>
           </div>
+
         </div>
       </section>
     </>
