@@ -711,7 +711,7 @@ function BlueprintPage() {
           </div>
 
           <div className="mt-12 max-w-[56ch]">
-            <p className="type-h4-caps text-lime">The Blueprint is built to find the difference</p>
+            <p className="type-h4-caps text-[1.0625rem] text-lime">The Blueprint is built to find the difference</p>
           </div>
 
         </div>
