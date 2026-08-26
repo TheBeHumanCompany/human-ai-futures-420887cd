@@ -344,21 +344,23 @@ function BlueprintPage() {
             <div className="lg:pl-[84px] xl:pl-[92px]">
               <Label>Be Human Intelligence</Label>
             </div>
-            <p className="eyebrow max-w-[17rem] leading-loose text-muted-foreground sm:text-right">
+            <p className="eyebrow hidden max-w-[17rem] leading-loose text-muted-foreground sm:block sm:text-right">
               We work with a small number of organizations at a time
             </p>
           </div>
 
           <div className="lg:pl-[84px] xl:pl-[92px]">
-            <h1 className="type-h1-caps mt-12 max-w-5xl">
-              ARTIFICIAL INTELLIGENCE
+            <h1 className="type-h1-caps-light mt-12 max-w-5xl">
+              <span className="text-foreground">ARTIFICIAL</span>
               <br />
-              WILL CHANGE EVERY
+              <span className="text-lime">INTELLIGENCE</span>
               <br />
-              BUSINESS
+              <span className="text-foreground">WILL CHANGE</span>
+              <br />
+              <span className="text-foreground">EVERY BUSINESS</span>
             </h1>
 
-            <p className="type-body-lg mt-14 font-semibold text-foreground">
+            <p className="type-body mt-10 max-w-3xl font-semibold text-foreground">
               Human judgment leads. Artificial intelligence expands what is possible.
             </p>
 
@@ -367,9 +369,9 @@ function BlueprintPage() {
               <span>{INDIGENOUS_LINE}</span>
             </p>
 
-            <div className="mt-11">
-              <ConversationCta tone="ink" />
-            </div>
+            <p className="eyebrow mt-12 max-w-[17rem] leading-loose text-muted-foreground sm:hidden">
+              We work with a small number of organizations at a time
+            </p>
           </div>
         </div>
       </section>
@@ -454,25 +456,11 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14">
             <div>
               <Label>Why this matters</Label>
-              <h2 className="mt-6 max-w-none">
-                <span
-                  className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.25rem, 5vw, 4.5rem)", lineHeight: 0.95 }}
-                >
-                  AI adoption is
-                </span>
-                <span
-                  className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.25rem, 5vw, 4.5rem)", lineHeight: 0.95 }}
-                >
-                  moving faster than
-                </span>
-                <span
-                  className="type-h2-caps-light block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.125rem, 4.6vw, 4.125rem)", lineHeight: 1 }}
-                >
-                  Organizational readiness
-                </span>
+              <h2 className="type-h2-caps mt-6">
+                <span className="block lg:whitespace-nowrap">AI adoption is</span>
+                <span className="block lg:whitespace-nowrap">moving faster than</span>
+                <span className="block lg:whitespace-nowrap">organizational</span>
+                <span className="block lg:whitespace-nowrap">readiness</span>
               </h2>
             </div>
 
@@ -588,25 +576,11 @@ function BlueprintPage() {
           <div className="grid items-end gap-10 lg:grid-cols-[max-content_1fr] lg:gap-8">
             <div className="self-end">
               <Label>The Blueprint</Label>
-              <h2 className="mt-6 max-w-none">
-                <span
-                  className="type-h2-caps block"
-                  style={{ fontSize: "clamp(2.75rem, 6.2vw, 5rem)" }}
-                >
-                  The three
-                </span>
-                <span
-                  className="type-h2-caps block"
-                  style={{ fontSize: "clamp(2.75rem, 6.2vw, 5rem)" }}
-                >
-                  Pillars
-                </span>
-                <span
-                  className="type-h3-caps-light mt-1 block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
-                >
-                  One organization
-                </span>
+              <h2 className="type-h2-caps mt-6">
+                <span className="block lg:whitespace-nowrap">Three</span>
+                <span className="block lg:whitespace-nowrap">pillars</span>
+                <span className="block lg:whitespace-nowrap">One</span>
+                <span className="block lg:whitespace-nowrap">organization</span>
               </h2>
             </div>
 
