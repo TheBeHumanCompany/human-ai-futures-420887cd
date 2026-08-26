@@ -416,7 +416,7 @@ function BlueprintPage() {
           </div>
 
           {/* BOTTOM — three standalone observations */}
-          <div className="mt-5 border-t border-ink/15 pt-5 md:mt-6 md:pt-6 lg:mt-20 lg:pt-16">
+          <div className="relative mt-5 pt-5 md:mt-6 md:border-t md:pt-6 lg:mt-20 lg:border-t lg:pt-16">
             <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1fr_1.35fr]">
               {OBSERVATIONS.map((line, i) => (
                 <div
@@ -429,11 +429,19 @@ function BlueprintPage() {
                   <div className="absolute top-0 right-0 left-0 h-px bg-ink/15 md:hidden" />
                   <span className="absolute top-0 left-0 h-[2px] w-6 bg-lime md:hidden" />
 
-                  {/* Tablet+ vertical divider + lime accent */}
-                  {i > 0 && (
+                  {/* Tablet vertical divider + lime accent */}
+                  {i === 1 && (
                     <>
                       <div className="absolute top-0 bottom-0 left-0 hidden w-px bg-ink/15 md:block lg:hidden" />
                       <span className="absolute top-0 left-0 hidden h-6 w-[2px] bg-lime md:block lg:hidden" />
+                    </>
+                  )}
+
+                  {/* Tablet horizontal divider above spanning third item */}
+                  {i === 2 && (
+                    <>
+                      <div className="absolute top-0 right-0 left-0 hidden h-px bg-ink/15 md:block lg:hidden" />
+                      <span className="absolute top-0 left-0 hidden h-[2px] w-6 bg-lime md:block lg:hidden" />
                     </>
                   )}
 
