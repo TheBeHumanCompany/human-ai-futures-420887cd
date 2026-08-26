@@ -281,9 +281,9 @@ function PillarModule({ pillar }: { pillar: Pillar }) {
   const Icon = pillar.icon;
   return (
     <div className="border-t border-border py-16 lg:py-20">
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:gap-16">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-12">
         {/* Identity */}
-        <div>
+        <div className="lg:pl-8 xl:pl-12">
           <div className="flex items-center gap-4">
             <p className="type-label-caps text-lime">{pillar.n}</p>
             <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
@@ -340,18 +340,9 @@ function BlueprintPage() {
     <>
       {/* ── Hero, ink ─────────────────────────────────────────────────── */}
       <section id="blueprint-hero" className="section-ink grain border-b border-border">
-        <div className={`${SHELL} pt-14 pb-10 lg:pt-24 lg:pb-20`}>
-          <div className="flex flex-col gap-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
-            <div className="lg:pl-[84px] xl:pl-[92px]">
-              <Label>Be Human Intelligence</Label>
-            </div>
-            <p className="eyebrow hidden max-w-[17rem] leading-loose text-muted-foreground sm:block sm:text-right">
-              We work with a small number of organizations at a time
-            </p>
-          </div>
-
+        <div className={`${SHELL} pt-12 pb-10 lg:pt-16 lg:pb-14`}>
           <div className="lg:pl-[84px] xl:pl-[92px]">
-            <h1 className="type-h1-caps-light mt-16 max-w-5xl lg:mt-24">
+            <h1 className="type-h1-caps-light max-w-5xl lg:mt-4">
               <span className="text-foreground">ARTIFICIAL</span>
               <br />
               <span className="text-lime">INTELLIGENCE</span>
@@ -361,17 +352,13 @@ function BlueprintPage() {
               <span className="text-foreground">EVERY BUSINESS</span>
             </h1>
 
-            <p className="type-body mt-14 max-w-3xl font-semibold text-foreground lg:mt-20">
+            <p className="type-body mt-12 max-w-3xl font-semibold text-foreground lg:mt-16">
               Human judgment leads. Artificial intelligence expands what is possible.
             </p>
 
-            <p className="type-body mt-8 inline-flex items-center gap-3 text-foreground/70 lg:mt-12">
+            <p className="type-body mt-8 inline-flex items-center gap-3 text-foreground/70 lg:mt-10">
               <MapleLeaf className="h-5 w-5 shrink-0 text-lime" />
               <span>{INDIGENOUS_LINE}</span>
-            </p>
-
-            <p className="eyebrow mt-12 max-w-[17rem] leading-loose text-muted-foreground sm:hidden">
-              We work with a small number of organizations at a time
             </p>
           </div>
         </div>
