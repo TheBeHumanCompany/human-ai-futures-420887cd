@@ -968,12 +968,12 @@ function BlueprintPage() {
       <section id="blueprint-closing" className="section-ink grain">
         <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <Label>The position</Label>
-          <h2 className="type-h1-caps-light mt-8 max-w-[13ch]">
+          <h2 className="type-h1-caps-light mt-8 w-full max-w-[24ch]">
             The future belongs to the most human
           </h2>
 
 
-          <div className="mt-12 max-w-[64ch] space-y-6 text-foreground/80">
+          <div className="mt-12 max-w-[46ch] space-y-6 text-foreground/80 lg:max-w-[720px]">
             <p className="type-body-lg text-foreground">
               Artificial intelligence will become increasingly available to everyone. Human judgment
               will not.
@@ -989,6 +989,7 @@ function BlueprintPage() {
           <p className="type-h3-condensed mt-14 max-w-[30ch] text-foreground">
             Technology will keep accelerating. Build the organization that is ready for it.
           </p>
+
 
           <div className="mt-12">
             <ConversationCta tone="ink" />
