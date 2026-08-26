@@ -469,20 +469,25 @@ function MobilePillarAccordion() {
         const Icon = pillar.icon;
         const isOpen = open === pillar.n;
         return (
-          <div key={pillar.n} className="border-t border-border last:border-b">
+          <div key={pillar.n} className="border-t border-border/60 last:border-b">
             <button
               type="button"
               aria-expanded={isOpen}
               onClick={() => setOpen(isOpen ? "" : pillar.n)}
               className="flex w-full items-start gap-3 py-5 text-left"
             >
-              <span className="type-label-caps mt-[3px] text-lime">{pillar.n}</span>
+              <span className="type-label-caps mt-[3px] text-[0.8125rem] text-lime">
+                {pillar.n}
+              </span>
               <Icon className="mt-[1px] h-5 w-5 shrink-0 text-lime" strokeWidth={1.25} />
-              <span className="type-h4-caps min-w-0 flex-1 text-foreground">{pillar.title}</span>
+              <span className="type-h4-caps min-w-0 flex-1 text-[1.0625rem] leading-[1.15] text-foreground">
+                {pillar.title}
+              </span>
               <span aria-hidden className="mt-[1px] text-lg leading-none text-lime">
                 {isOpen ? "–" : "+"}
               </span>
             </button>
+
 
             <div
               className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
