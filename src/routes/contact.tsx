@@ -71,7 +71,7 @@ function Contact() {
       <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-10 sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-center lg:gap-16 lg:py-14 xl:gap-20">
         {/* LEFT — editorial column */}
         <div className="min-w-0">
-          <p className="eyebrow text-ink/50">Contact</p>
+          <p className="type-label-caps text-ink/45">Contact</p>
           <h1 className="font-display mt-5 whitespace-nowrap text-[clamp(3rem,8vw,6rem)] leading-[0.95] font-extralight tracking-[0.005em] text-ink uppercase">
             Let&rsquo;s Connect
           </h1>
