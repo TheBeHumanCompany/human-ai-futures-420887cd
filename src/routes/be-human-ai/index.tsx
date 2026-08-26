@@ -583,7 +583,7 @@ function BlueprintPage() {
                   >
                     <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
                     <p className="type-label-caps mt-4 text-[0.8125rem] text-lime">{pillar.n}</p>
-                    <h3 className="type-h4-caps mt-2 max-w-[16ch]">{pillar.title}</h3>
+                    <h3 className="type-h4-caps-light mt-2 max-w-[16ch]">{pillar.title}</h3>
 
                     <p className="type-body-sm mt-3 max-w-[26ch] text-foreground/70">
                       {pillar.question}
