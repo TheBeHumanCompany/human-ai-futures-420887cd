@@ -489,22 +489,49 @@ function BlueprintPage() {
           </div>
 
           {/* The leadership question, restated */}
-          <div className="mt-16 grid gap-12 border-t border-border pt-14 lg:grid-cols-2 lg:gap-24">
+          <div className="mt-16 grid gap-12 border-t border-border pt-10 md:pt-14 lg:grid-cols-2 lg:gap-24">
             <div>
-              <Label>That changes the leadership question</Label>
-              <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
-              <p className="type-body mt-2 max-w-[38ch] font-bold text-foreground">
-                Are our employees using AI?
-              </p>
-              <p className="type-body mt-8 text-foreground/70">It becomes:</p>
-              <p className="type-body mt-2 max-w-[52ch] font-bold text-foreground">
-                What work are we delegating? Who supervises it? What authority are we giving these
-                systems? Where must a human step back in? And who owns the outcome?
-              </p>
+              {/* Desktop / tablet version — unchanged */}
+              <div className="hidden md:block">
+                <Label>That changes the leadership question</Label>
+                <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
+                <p className="type-body mt-2 max-w-[38ch] font-bold text-foreground">
+                  Are our employees using AI?
+                </p>
+                <p className="type-body mt-8 text-foreground/70">It becomes:</p>
+                <p className="type-body mt-2 max-w-[52ch] font-bold text-foreground">
+                  What work are we delegating? Who supervises it? What authority are we giving these
+                  systems? Where must a human step back in? And who owns the outcome?
+                </p>
+              </div>
 
+              {/* Mobile version — matches the editorial reference */}
+              <div className="md:hidden">
+                <Label>That changes the leadership question</Label>
+
+                <p className="type-body-sm mt-6 font-medium uppercase tracking-[0.12em] text-foreground/45">
+                  BEFORE
+                </p>
+                <p className="type-body mt-2 text-foreground/75">
+                  Are our employees using AI?
+                </p>
+
+                <p className="type-body-sm mt-8 font-medium uppercase tracking-[0.12em] text-foreground/45">
+                  NOW
+                </p>
+                <div className="mt-3 space-y-3">
+                  <p className="type-body text-foreground/75">What work are we delegating?</p>
+                  <p className="type-body text-foreground/75">Who supervises it?</p>
+                  <p className="type-body text-foreground/75">What authority are we giving these systems?</p>
+                  <p className="type-body text-foreground/75">Where must a human step back in?</p>
+                  <p className="type-body text-foreground/75">And who owns the outcome?</p>
+                </div>
+
+                <div className="mt-11 border-t border-border" aria-hidden="true" />
+              </div>
             </div>
 
-            <div className="space-y-8">
+            <div className="hidden space-y-8 md:block">
               <div className="border-l-2 border-lime pl-6">
                 <p className="type-h4-caps">AI does not automatically improve an organization</p>
                 <p className="type-h4-caps mt-2 text-lime">It reveals it</p>
