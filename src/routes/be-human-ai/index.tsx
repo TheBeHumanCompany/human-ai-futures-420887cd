@@ -49,7 +49,7 @@ const PAGE_NAV: readonly PageNavItem[] = [
   { id: "blueprint-three-pillars", label: "Three Pillars" },
   { id: "blueprint-scorecard", label: "Blueprint Scorecard" },
   { id: "blueprint-readiness-gap", label: "The Readiness Gap" },
-  { id: "blueprint-deliverables", label: "What You Walk Away With" },
+  { id: "blueprint-deliverables", label: "What You Receive" },
   { id: "blueprint-client-proof", label: "Client Proof" },
   { id: "blueprint-canadian-trust", label: "Canadian Trust" },
   { id: "blueprint-small-number", label: "Who We Work With" },
