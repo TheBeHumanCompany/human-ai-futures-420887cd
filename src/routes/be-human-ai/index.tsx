@@ -289,7 +289,7 @@ function PillarModule({ pillar }: { pillar: Pillar }) {
 
         {/* Sequence: what we look at → what changes → insight */}
         <div className="min-w-0">
-          <p className="eyebrow text-muted-foreground">What we look at</p>
+          <p className="type-label-caps text-lime">What we look at</p>
           <p className="type-body mt-4 max-w-[62ch] text-foreground/80">{pillar.lookAtIntro}</p>
           <div className="mt-6 grid border-t border-border sm:grid-cols-2 lg:grid-cols-3">
             {pillar.lookAt.map((item) => (
