@@ -268,17 +268,20 @@ function ConversationCta({ tone }: { tone: "ink" | "cream" }) {
       target="_blank"
       rel="noreferrer"
       data-blueprint-cta="true"
-      className={`inline-flex w-fit items-center gap-2.5 border-b pb-1 text-sm font-semibold uppercase leading-none tracking-[0.12em] ${
-        tone === "cream" ? "border-lime-dark text-ink" : "border-lime text-foreground"
+      className={`inline-flex w-fit items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold uppercase leading-none tracking-[0.12em] transition-colors duration-200 ${
+        tone === "cream"
+          ? "bg-lime-dark text-cream hover:bg-ink"
+          : "bg-lime text-ink hover:bg-lime/90"
       }`}
     >
-      Start a conversation{" "}
-      <span aria-hidden className={tone === "cream" ? "text-lime-dark" : "text-lime"}>
+      Book a call
+      <span aria-hidden className="text-[0.9em] opacity-70">
         &rarr;
       </span>
     </a>
   );
 }
+
 
 function PillarModule({ pillar, isFirst }: { pillar: Pillar; isFirst?: boolean }) {
   const Icon = pillar.icon;
