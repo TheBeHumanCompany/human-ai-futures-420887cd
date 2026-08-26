@@ -882,9 +882,10 @@ function BlueprintPage() {
                 For Canadian organizations, that also means understanding privacy, cross-border
                 processing, provider jurisdiction, and sovereignty.
               </p>
-              <p className="type-h4-caps text-lime">
-                Speed without trust is not transformation. It is exposure
+              <p className="type-h4-caps text-[1.0625rem] text-lime">
+                Speed without trust is not transformation. It is exposure.
               </p>
+
             </div>
           </div>
         </div>
