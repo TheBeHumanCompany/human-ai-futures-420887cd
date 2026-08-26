@@ -289,7 +289,7 @@ function PillarModule({ pillar }: { pillar: Pillar }) {
 
         {/* Sequence: what we look at → what changes → insight */}
         <div className="min-w-0">
-          <p className="eyebrow text-muted-foreground">What we look at</p>
+          <p className="type-label-caps text-lime">What we look at</p>
           <p className="type-body mt-4 max-w-[62ch] text-foreground/80">{pillar.lookAtIntro}</p>
           <div className="mt-6 grid border-t border-border sm:grid-cols-2 lg:grid-cols-3">
             {pillar.lookAt.map((item) => (
@@ -302,7 +302,7 @@ function PillarModule({ pillar }: { pillar: Pillar }) {
             ))}
           </div>
 
-          <p className="eyebrow mt-14 text-muted-foreground">What changes afterwards</p>
+          <p className="type-label-caps mt-14 text-lime">What changes afterwards</p>
           <div className="mt-6 grid gap-8 sm:grid-cols-3 sm:gap-10">
             {pillar.changes.map((change, i) => (
               <div key={change}>
@@ -520,9 +520,7 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-16 xl:gap-20">
             {/* LEFT COLUMN — statement */}
             <div>
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/45">
-                Before we brought this to anyone else
-              </p>
+              <Label tone="muted">Before we brought this to anyone else</Label>
               <h2 className="type-h3-caps-light mt-6 max-w-[22ch] text-ink">
                 Before we offered this, we needed it ourselves.
               </h2>
@@ -583,7 +581,7 @@ function BlueprintPage() {
                   >
                     <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
                     <p className="type-label-caps mt-4 text-[0.8125rem] text-lime">{pillar.n}</p>
-                    <h3 className="type-h4-caps-light mt-2 max-w-[16ch]">{pillar.title}</h3>
+                    <h3 className="type-h4-caps mt-2 max-w-[16ch] text-foreground">{pillar.title}</h3>
 
                     <p className="type-body-sm mt-3 max-w-[26ch] text-foreground/70">
                       {pillar.question}
@@ -930,7 +928,7 @@ function BlueprintPage() {
       <section id="blueprint-closing" className="section-ink grain">
         <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <Label>The position</Label>
-          <h2 className="type-h2-caps-light mt-8 max-w-[20ch]">
+          <h2 className="type-h1-caps-light mt-8 max-w-[13ch]">
             The future belongs to the most human
           </h2>
 
