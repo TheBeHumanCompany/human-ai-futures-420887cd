@@ -580,12 +580,28 @@ function BlueprintPage() {
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:pt-28`}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] lg:gap-16">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.9fr)] lg:gap-14">
             <div>
               <Label>The Blueprint</Label>
-              <h2 className="mt-6 max-w-[22ch]">
-                <span className="type-h2-caps block">The three pillars</span>
-                <span className="type-h3-caps-light mt-2 block">One organization</span>
+              <h2 className="mt-6 max-w-none">
+                <span
+                  className="type-h2-caps block whitespace-nowrap"
+                  style={{ fontSize: "clamp(2rem, 3vw, 2.875rem)", lineHeight: 0.98 }}
+                >
+                  The three
+                </span>
+                <span
+                  className="type-h2-caps block whitespace-nowrap"
+                  style={{ fontSize: "clamp(2rem, 3vw, 2.875rem)", lineHeight: 0.98 }}
+                >
+                  Pillars
+                </span>
+                <span
+                  className="type-h3-caps-light mt-2 block whitespace-nowrap"
+                  style={{ fontSize: "clamp(1.5rem, 2.1vw, 2rem)", lineHeight: 1.04 }}
+                >
+                  One organization
+                </span>
               </h2>
             </div>
 
