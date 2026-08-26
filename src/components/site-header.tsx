@@ -252,7 +252,7 @@ export function SiteHeader() {
         <div className="mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-8 lg:grid-cols-[auto_1fr_auto]">
           <Wordmark />
 
-          <ul className="hidden items-center justify-center gap-6 lg:flex">
+          <ul className="hidden items-center justify-center gap-5 xl:gap-6 lg:flex">
             {NAV.map((item) => (
               <li key={item.label}>
                 <DesktopItem item={item} />
@@ -260,19 +260,7 @@ export function SiteHeader() {
             ))}
           </ul>
 
-          <div className="flex items-center gap-3">
-            {/* Not a NAV item — a conversion control. Deliberately an outline
-                pill rather than a lime one, so AC-3.7a's "exactly one lime
-                pill" reads Blueprint and nothing else. */}
-            <a
-              href={BOOKING_URL_15MIN}
-              target="_blank"
-              rel="noreferrer"
-              className="eyebrow hidden rounded-full border border-border px-5 py-2 text-foreground transition-colors hover:border-lime hover:text-lime lg:inline-flex"
-            >
-              Book a call
-            </a>
-
+          <div className="flex items-center justify-end gap-3">
             <button
               type="button"
               aria-label="Toggle menu"
@@ -294,20 +282,19 @@ export function SiteHeader() {
 
         {open && (
           <div className="border-t border-border px-5 pb-6 pt-2 sm:px-8 lg:hidden">
-            {NAV.map((item) => (
+            {NAV.filter((item) => !item.cta).map((item) => (
               <MobileItem key={item.label} item={item} onNavigate={close} />
             ))}
-            <a
-              href={BOOKING_URL_15MIN}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/be-human-ai"
               onClick={close}
-              className="eyebrow mt-6 inline-flex rounded-full border border-border px-5 py-3 text-foreground"
+              className="eyebrow mt-6 inline-flex rounded-full border border-lime px-5 py-3 text-lime"
             >
-              Book a call
-            </a>
+              Blueprint
+            </Link>
           </div>
         )}
+
       </nav>
     </header>
   );
