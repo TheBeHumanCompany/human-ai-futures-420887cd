@@ -339,7 +339,7 @@ function BlueprintPage() {
     <>
       {/* ── Hero, ink ─────────────────────────────────────────────────── */}
       <section id="blueprint-hero" className="section-ink grain border-b border-border">
-        <div className={`${SHELL} py-20 lg:py-28`}>
+        <div className={`${SHELL} pt-20 pb-28 lg:pt-36 lg:pb-56`}>
           <div className="flex flex-col gap-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
             <div className="lg:pl-[84px] xl:pl-[92px]">
               <Label>Be Human Intelligence</Label>
@@ -350,7 +350,7 @@ function BlueprintPage() {
           </div>
 
           <div className="lg:pl-[84px] xl:pl-[92px]">
-            <h1 className="type-h1-caps-light mt-12 max-w-5xl">
+            <h1 className="type-h1-caps-light mt-16 max-w-5xl lg:mt-24">
               <span className="text-foreground">ARTIFICIAL</span>
               <br />
               <span className="text-lime">INTELLIGENCE</span>
@@ -360,11 +360,11 @@ function BlueprintPage() {
               <span className="text-foreground">EVERY BUSINESS</span>
             </h1>
 
-            <p className="type-body mt-10 max-w-3xl font-semibold text-foreground">
+            <p className="type-body mt-14 max-w-3xl font-semibold text-foreground lg:mt-20">
               Human judgment leads. Artificial intelligence expands what is possible.
             </p>
 
-            <p className="type-body mt-3 inline-flex items-center gap-3 text-foreground/70">
+            <p className="type-body mt-8 inline-flex items-center gap-3 text-foreground/70 lg:mt-12">
               <MapleLeaf className="h-5 w-5 shrink-0 text-lime" />
               <span>{INDIGENOUS_LINE}</span>
             </p>
