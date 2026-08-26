@@ -95,6 +95,7 @@ type Pillar = {
   n: string;
   title: string;
   question: string;
+  overviewQuestion: string;
   icon: LucideIcon | typeof KnightIcon;
   lookAt: readonly string[];
   lookAtIntro: string;
@@ -108,6 +109,7 @@ const PILLARS: readonly Pillar[] = [
     n: "01",
     title: "Human Readiness",
     question: "A company can have high AI usage and low Human Readiness.",
+    overviewQuestion: "Are your leaders and people ready for the way intelligence is changing work?",
     icon: Users,
     lookAtIntro: "Are your leaders and people ready for the way intelligence is changing work?",
     lookAt: [
@@ -136,6 +138,7 @@ const PILLARS: readonly Pillar[] = [
     n: "02",
     title: "Governance & Sovereignty",
     question: "As AI becomes more capable, more business information moves through more systems.",
+    overviewQuestion: "Do you still control your data, your systems, and your decisions?",
     icon: ShieldCheck,
     lookAtIntro:
       "Do you still control your data, your systems, and your decisions?",
@@ -163,6 +166,7 @@ const PILLARS: readonly Pillar[] = [
     n: "03",
     title: "Intelligence Strategy & Transformation",
     question: "We do not begin with tools. We begin with the work.",
+    overviewQuestion: "Where does artificial intelligence create the greatest business leverage?",
     icon: KnightIcon,
     lookAtIntro: "Where does artificial intelligence create the greatest business leverage?",
     lookAt: [
@@ -619,7 +623,7 @@ function BlueprintPage() {
                     <h3 className="type-h4-caps mt-2 max-w-[16ch] text-foreground">{pillar.title}</h3>
 
                     <p className="type-body-sm mt-3 max-w-[26ch] text-foreground/70">
-                      {pillar.question}
+                      {pillar.overviewQuestion}
                     </p>
                   </a>
                 );
