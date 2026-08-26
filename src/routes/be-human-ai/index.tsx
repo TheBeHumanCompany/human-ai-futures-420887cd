@@ -601,11 +601,11 @@ function BlueprintPage() {
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-16 lg:py-20`}>
           <div className="grid items-start gap-10 lg:grid-cols-[max-content_1fr] lg:gap-8">
-            <div>
+            <div className="max-md:-mx-1">
               <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps mt-4 text-[clamp(2.5rem,5vw,4rem)] leading-[0.95]">
-                <span className="block lg:whitespace-nowrap">The three</span>
-                <span className="block lg:whitespace-nowrap">pillars</span>
+              <h2 className="type-h2-caps mt-4 whitespace-nowrap text-[clamp(1.875rem,6vw,4rem)] leading-[0.95] md:text-[clamp(2.5rem,5vw,4rem)]">
+                <span className="inline md:block lg:whitespace-nowrap">The three</span>{' '}
+                <span className="inline md:block lg:whitespace-nowrap">pillars</span>
               </h2>
             </div>
 
