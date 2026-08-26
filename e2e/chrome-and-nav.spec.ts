@@ -1,6 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 
-import { BOOKING_URL_15MIN, BOOKING_URL_30MIN } from "../src/lib/booking.ts";
+import { BOOKING_URL_30MIN } from "../src/lib/booking.ts";
 import { INDIGENOUS_LINE } from "../src/lib/brand.ts";
 import { NAV } from "../src/lib/nav.ts";
 
