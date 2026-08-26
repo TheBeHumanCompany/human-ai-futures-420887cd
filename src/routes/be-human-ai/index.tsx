@@ -844,7 +844,7 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,0.5fr)] lg:gap-14 xl:gap-16">
             {/* LEFT COLUMN — statement */}
             <div>
-              <Label tone="muted">The Blueprint</Label>
+              <Label tone="muted">Built from experience</Label>
               <h2 className="type-h3-caps-light mt-4 text-ink">
                 We needed the Blueprint ourselves
               </h2>
