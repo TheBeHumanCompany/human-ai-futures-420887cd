@@ -974,7 +974,7 @@ function BlueprintPage() {
       <section id="blueprint-closing" className="section-ink grain">
         <div className={`${SHELL_IN} py-24 lg:py-32`}>
           <Label>The position</Label>
-          <h2 className="type-h1-caps-light mt-8 w-full max-w-[24ch]">
+          <h2 className="type-h3-caps-light mt-8 w-full max-w-[24ch]">
             The future belongs to the most human
           </h2>
 
@@ -992,8 +992,9 @@ function BlueprintPage() {
             </p>
           </div>
 
-          <p className="type-h3-condensed mt-14 max-w-[30ch] text-foreground">
-            Technology will keep accelerating. Build the organization that is ready for it.
+          <p className="type-h4-caps mt-20 max-w-[34ch] text-[1.0625rem] text-lime">
+            <span className="block">Technology will keep accelerating.</span>
+            <span className="block">Build an organization that is ready for that.</span>
           </p>
 
 
