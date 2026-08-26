@@ -86,10 +86,11 @@ function KnightIcon({ className }: { className?: string; strokeWidth?: number })
 /* ── Content, from the final Blueprint copy ─────────────────────────────── */
 
 const OBSERVATIONS = [
-  "Some of them are creating real value.",
-  "Some of them are creating risks.",
-  "And most organizations are making decisions about AI while only seeing part of what is actually happening inside their own business.",
+  "Some AI use is already creating real value.",
+  "Other AI use is quietly creating risk.",
+  "Most organizations are making decisions about AI while seeing only part of what is happening inside their business.",
 ] as const;
+
 
 type Pillar = {
   n: string;
