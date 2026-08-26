@@ -544,8 +544,9 @@ function BlueprintPage() {
             {/* LEFT COLUMN — statement */}
             <div>
               <Label tone="muted">Before we brought this to anyone else</Label>
-              <h2 className="type-h3-caps-light mt-6 max-w-[22ch] text-ink">
-                Before we offered this, we needed it ourselves.
+              <h2 className="mt-6">
+                <span className="type-h3-condensed block text-ink">Before we offered this</span>
+                <span className="type-h2-caps mt-1 block text-ink">We needed it ourselves</span>
               </h2>
             </div>
 
@@ -584,7 +585,7 @@ function BlueprintPage() {
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:pt-28`}>
-          <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.7fr)] lg:gap-12">
+          <div className="grid items-end gap-10 lg:grid-cols-[max-content_1fr] lg:gap-8">
             <div className="self-end">
               <Label>The Blueprint</Label>
               <h2 className="mt-6 max-w-none">
@@ -601,16 +602,15 @@ function BlueprintPage() {
                   Pillars
                 </span>
                 <span
-                  className="type-h3-caps-light mt-2 block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.875rem)" }}
+                  className="type-h3-caps-light mt-1 block lg:whitespace-nowrap"
+                  style={{ fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
                 >
                   One organization
                 </span>
               </h2>
             </div>
 
-
-            <div className="grid gap-10 self-end sm:grid-cols-3 sm:gap-8 lg:gap-12">
+            <div className="grid gap-10 self-end sm:grid-cols-3 sm:gap-8 lg:max-w-[720px] lg:justify-self-start lg:gap-8">
               {PILLARS.map((pillar) => {
                 const Icon = pillar.icon;
                 return (
@@ -645,9 +645,7 @@ function BlueprintPage() {
       {/* ── 06 Scorecard, cream ──────────────────────────────────────── */}
       <section id="blueprint-scorecard" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <p className="type-label-caps text-[0.75rem] font-medium tracking-[0.18em] text-ink/50">
-            Example Blueprint Scorecard
-          </p>
+          <Label tone="muted">Example Blueprint Scorecard</Label>
           <h2
             className="type-h2-caps mt-5 max-w-[18ch] text-ink"
             style={{ fontSize: "clamp(2.25rem, 5.2vw, 4.25rem)", lineHeight: 0.95 }}
@@ -727,15 +725,13 @@ function BlueprintPage() {
           </div>
 
           {/* Closing insight */}
-          <div className="mt-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div className="max-w-[60ch] border-l-2 border-lime-dark pl-6">
-              <p className="type-body-lg font-bold text-ink">A number by itself is not the value.</p>
-              <p className="type-body mt-2 text-ink/75">
-                The value is understanding why the organization scored where it did, what sits
-                underneath the number, and what leadership should do about it.
-              </p>
-            </div>
-            <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/40">
+          <div className="mt-14 max-w-[60ch] border-l-2 border-lime-dark pl-6">
+            <p className="type-body-lg font-bold text-ink">A number by itself is not the value.</p>
+            <p className="type-body mt-2 text-ink/75">
+              The value is understanding why the organization scored where it did, what sits
+              underneath the number, and what leadership should do about it.
+            </p>
+            <p className="type-label-caps mt-7 text-[0.7rem] tracking-[0.18em] text-ink/40">
               Illustrative example only.
             </p>
           </div>
