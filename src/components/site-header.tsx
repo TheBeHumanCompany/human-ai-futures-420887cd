@@ -260,7 +260,7 @@ export function SiteHeader() {
           </ul>
 
           <div className="flex items-center justify-end gap-3">
-            {NAV.filter((item) => item.cta).map((cta) => (
+            {NAV.filter((item): item is NavigatingItem => item.cta === true).map((cta) => (
               <Link
                 key={cta.label}
                 to={cta.to}
