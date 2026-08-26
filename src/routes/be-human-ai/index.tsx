@@ -302,7 +302,7 @@ function PillarModule({ pillar }: { pillar: Pillar }) {
             ))}
           </div>
 
-          <p className="eyebrow mt-14 text-muted-foreground">What changes afterwards</p>
+          <p className="type-label-caps text-lime">What changes afterwards</p>
           <div className="mt-6 grid gap-8 sm:grid-cols-3 sm:gap-10">
             {pillar.changes.map((change, i) => (
               <div key={change}>
