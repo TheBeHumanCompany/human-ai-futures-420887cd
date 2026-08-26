@@ -543,7 +543,8 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,0.5fr)] lg:gap-14 xl:gap-16">
             {/* LEFT COLUMN — statement */}
             <div>
-              <h2 className="type-h1-caps-light max-w-[14ch] text-ink">
+              <Label tone="muted">The Blueprint</Label>
+              <h2 className="type-h3-caps-light mt-4 text-ink">
                 We needed the Blueprint ourselves
               </h2>
             </div>
@@ -779,7 +780,7 @@ function BlueprintPage() {
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <div className="max-w-[60ch] lg:max-w-[58%]">
             <Label tone="muted">The output</Label>
-            <h2 className="type-h1-caps-light mt-5 text-ink lg:whitespace-nowrap">
+            <h2 className="type-h2-caps mt-5 text-ink lg:whitespace-nowrap">
               What you receive
             </h2>
             <p className="type-body mt-6 max-w-[52ch] text-ink/75">
