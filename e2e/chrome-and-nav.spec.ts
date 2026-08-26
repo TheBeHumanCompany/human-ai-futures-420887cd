@@ -138,13 +138,17 @@ test.describe("AC-2.1 / AC-2.1b / AC-2.8b — the footer", () => {
 });
 
 test.describe("AC-2.6 / AC-2.7a — calls to action", () => {
-  test("the header books the 15-minute call", async ({ page }) => {
+  test("the header ends on the Blueprint CTA", async ({ page }) => {
+    // 2026-08-26: the header booking CTA was removed; Blueprint is the only
+    // conversion control in the bar, and it is an outlined lime pill.
     await page.setViewportSize(DESKTOP);
     await page.goto("/");
 
-    const cta = page.locator("header").locator(`a[href="${BOOKING_URL_15MIN}"]`);
-    await expect(cta, "the header CTA must point at the 15-minute link").toHaveCount(1);
+    const cta = page.locator("header").locator('[data-nav-cta="true"]');
+    await expect(cta, "the header CTA must be the Blueprint pill").toHaveCount(1);
+    await expect(cta).toHaveAttribute("href", "/be-human-ai");
   });
+
 
   test("the Blueprint books the 30-minute call exactly three times, in three sections", async ({
     page,
