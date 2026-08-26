@@ -572,17 +572,17 @@ function BlueprintPage() {
 
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
-        <div className={`${SHELL_IN} py-20 lg:pt-28`}>
-          <div className="grid items-end gap-10 lg:grid-cols-[max-content_1fr] lg:gap-12">
-            <div className="self-end">
+        <div className={`${SHELL_IN} py-16 lg:py-20`}>
+          <div className="grid items-start gap-10 lg:grid-cols-[max-content_1fr] lg:gap-8">
+            <div>
               <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps mt-6 text-[clamp(2.25rem,4.4vw,3.5rem)] leading-[0.95]">
+              <h2 className="type-h2-caps mt-4 text-[clamp(2.5rem,5vw,4rem)] leading-[0.95]">
                 <span className="block lg:whitespace-nowrap">The three</span>
                 <span className="block lg:whitespace-nowrap">pillars</span>
               </h2>
             </div>
 
-            <div className="grid gap-10 self-end sm:grid-cols-3 sm:gap-8 lg:max-w-[760px] lg:justify-self-start lg:gap-8">
+            <div className="grid gap-10 self-start sm:grid-cols-3 sm:gap-8 lg:max-w-[760px] lg:justify-self-start lg:gap-8">
               {PILLARS.map((pillar) => {
                 const Icon = pillar.icon;
                 return (
