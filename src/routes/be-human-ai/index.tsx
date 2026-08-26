@@ -277,13 +277,13 @@ function ConversationCta({ tone }: { tone: "ink" | "cream" }) {
   );
 }
 
-function PillarModule({ pillar }: { pillar: Pillar }) {
+function PillarModule({ pillar, isFirst }: { pillar: Pillar; isFirst?: boolean }) {
   const Icon = pillar.icon;
   return (
     <div className="border-t border-border py-16 lg:py-20">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-12">
         {/* Identity */}
-        <div className="lg:pl-8 xl:pl-12">
+        <div className={`lg:pl-8 xl:pl-12 ${isFirst ? "lg:-mt-11" : ""}`}>
           <div className="flex items-center gap-4">
             <p className="type-label-caps text-lime">{pillar.n}</p>
             <Icon className="h-6 w-6 text-lime" strokeWidth={1.25} />
@@ -640,9 +640,9 @@ function BlueprintPage() {
           </div>
 
           <div className="mt-16">
-            {PILLARS.map((pillar) => (
+            {PILLARS.map((pillar, i) => (
               <div key={pillar.n} id={`blueprint-pillar-${pillar.n}`}>
-                <PillarModule pillar={pillar} />
+                <PillarModule pillar={pillar} isFirst={i === 0} />
               </div>
             ))}
           </div>
