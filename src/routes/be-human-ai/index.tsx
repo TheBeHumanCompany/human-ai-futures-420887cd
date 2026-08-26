@@ -584,7 +584,7 @@ function BlueprintPage() {
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:pt-28`}>
-          <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1.85fr)] lg:gap-12">
+          <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.7fr)] lg:gap-12">
             <div className="self-end">
               <Label>The Blueprint</Label>
               <h2 className="mt-6 max-w-none">
@@ -601,19 +601,14 @@ function BlueprintPage() {
                   Pillars
                 </span>
                 <span
-                  className="type-h3-caps-light mt-2 block"
-                  style={{ fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
+                  className="type-h3-caps-light mt-2 block lg:whitespace-nowrap"
+                  style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.875rem)" }}
                 >
-                  One
-                </span>
-                <span
-                  className="type-h3-caps-light block"
-                  style={{ fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
-                >
-                  Organization
+                  One organization
                 </span>
               </h2>
             </div>
+
 
             <div className="grid gap-10 self-end sm:grid-cols-3 sm:gap-8 lg:gap-12">
               {PILLARS.map((pillar) => {
