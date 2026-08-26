@@ -820,8 +820,9 @@ function BlueprintPage() {
             <div>
               <Label>Before this page</Label>
               <h2 className="type-h3-caps-light mt-6 max-w-[18ch]">
-                We have already been looking at your business
+                We may have already been looking at your business
               </h2>
+
             </div>
 
             <div className="max-w-[58ch] space-y-6 text-foreground/80">
