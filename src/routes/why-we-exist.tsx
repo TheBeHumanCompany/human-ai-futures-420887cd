@@ -47,44 +47,30 @@ export const Route = createFileRoute("/why-we-exist")({
 function WhyWeExist() {
   return (
     <>
-      {/* ══════ 01 — HERO (cream) ══════ Ends on the question; the story follows. */}
+      {/* ══════ 01 — HERO (cream) ══════ Type only; the portrait now lives in The Pattern. */}
       <section className="section-cream">
         <div className={`${SHELL} pt-16 pb-16 lg:pt-28 lg:pb-28`}>
-          <div className="grid gap-12 lg:grid-cols-[56fr_36fr] lg:items-center lg:gap-24">
-            <div className="min-w-0">
-              <p className="type-label-caps text-ink/45">Why we exist</p>
+          <div className="max-w-[24ch]">
+            <p className="type-label-caps text-ink/45">Why we exist</p>
 
-              <h1 className="type-h1-condensed mt-8 max-w-[20ch] text-ink lg:mt-10">
-                There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking
-                about
-              </h1>
+            <h1 className="type-h1-caps-light mt-8 text-ink lg:mt-10">
+              There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking about
+            </h1>
+          </div>
 
-              <p className="type-body mt-10 max-w-[46ch] text-ink/60 lg:mt-14">
-                Actually, it&rsquo;s not one moment. It&rsquo;s a pattern. We started asking people
-                one question:
-              </p>
+          <p className="type-body mt-10 max-w-[46ch] text-ink/60 lg:mt-14">
+            Actually, it&rsquo;s not one moment. It&rsquo;s a pattern. We started asking people one
+            question:
+          </p>
 
-              <div className="mt-8 flex items-center gap-5 lg:mt-10">
-                <span aria-hidden className="h-[3px] w-9 shrink-0 bg-lime" />
-                <p className="type-body-lg font-semibold text-ink">
-                  What does it mean to be human?
-                </p>
-              </div>
-            </div>
-
-            <img
-              src={humanStoryPortrait}
-              alt="A woman in a blue cap smiling as she holds up a small Be Human token"
-              loading="lazy"
-              width={1000}
-              height={1752}
-              className="aspect-4/5 w-full object-cover lg:mx-auto lg:max-w-[380px]"
-            />
+          <div className="mt-8 flex items-center gap-5 lg:mt-10">
+            <span aria-hidden className="h-[3px] w-9 shrink-0 bg-lime" />
+            <p className="type-body-lg font-semibold text-ink">What does it mean to be human?</p>
           </div>
         </div>
       </section>
 
-      {/* ══════ 01b — THE PATTERN (cream) ══════ The story, out of the hero. */}
+      {/* ══════ 01b — THE PATTERN (cream) ══════ The story, plus the portrait. */}
       <section className="section-cream border-t border-ink/10">
         <div className={`${SHELL} py-16 lg:py-28`}>
           <p className="type-label-caps text-ink/45">The pattern</p>
@@ -100,20 +86,32 @@ function WhyWeExist() {
             </p>
           </div>
 
-          <figure className="mt-16 flex max-w-[62ch] items-stretch gap-6 lg:mt-24">
-            <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
-            <div>
-              <blockquote className="type-h4-prose font-semibold text-ink">
-                &ldquo;To love one another. Treat each other, and yourself, with respect and
-                compassion.&rdquo;
-              </blockquote>
-              <figcaption className="type-body mt-4 text-ink/55">
-                &mdash; Lindsay, Vancouver
-              </figcaption>
-            </div>
-          </figure>
+          <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-[1fr_minmax(0,320px)] lg:items-center lg:gap-20">
+            <figure className="flex max-w-[52ch] items-stretch gap-6">
+              <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
+              <div>
+                <blockquote className="type-h3-prose text-ink">
+                  &ldquo;To love one another. Treat each other, and yourself, with respect and
+                  compassion.&rdquo;
+                </blockquote>
+                <figcaption className="type-body mt-6 text-ink/55">
+                  &mdash; Lindsay, Vancouver
+                </figcaption>
+              </div>
+            </figure>
+
+            <img
+              src={humanStoryPortrait}
+              alt="A woman in a blue cap smiling as she holds up a small Be Human token"
+              loading="lazy"
+              width={1000}
+              height={1752}
+              className="aspect-4/5 w-full object-cover lg:max-w-[320px]"
+            />
+          </div>
         </div>
       </section>
+
 
 
       {/* ══════ 02 — THE REAL QUESTION (ink) ══════ Type only, two body columns. */}
