@@ -590,25 +590,25 @@ function BlueprintPage() {
               <h2 className="mt-6 max-w-none">
                 <span
                   className="type-h2-caps block"
-                  style={{ fontSize: "clamp(2.5rem, 5.2vw, 4.5rem)" }}
+                  style={{ fontSize: "clamp(2.75rem, 6.2vw, 5rem)" }}
                 >
                   The three
                 </span>
                 <span
                   className="type-h2-caps block"
-                  style={{ fontSize: "clamp(2.5rem, 5.2vw, 4.5rem)" }}
+                  style={{ fontSize: "clamp(2.75rem, 6.2vw, 5rem)" }}
                 >
                   Pillars
                 </span>
                 <span
-                  className="type-h3-caps-light mt-1 block"
-                  style={{ fontSize: "clamp(2rem, 3.8vw, 3.25rem)" }}
+                  className="type-h3-caps-light mt-2 block"
+                  style={{ fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
                 >
                   One
                 </span>
                 <span
                   className="type-h3-caps-light block"
-                  style={{ fontSize: "clamp(2rem, 3.8vw, 3.25rem)" }}
+                  style={{ fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
                 >
                   Organization
                 </span>
