@@ -451,25 +451,25 @@ function BlueprintPage() {
       {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
       <section id="blueprint-adoption" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,1fr)] lg:gap-16">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14">
             <div>
               <Label>Why this matters</Label>
               <h2 className="mt-6 max-w-none">
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.125rem, 3.95vw, 3.7rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.25rem, 5vw, 4.5rem)", lineHeight: 0.95 }}
                 >
                   AI adoption is
                 </span>
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.125rem, 3.95vw, 3.7rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.25rem, 5vw, 4.5rem)", lineHeight: 0.95 }}
                 >
                   moving faster than
                 </span>
                 <span
                   className="type-h2-caps-light block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.125rem, 4.15vw, 3.85rem)", lineHeight: 1 }}
+                  style={{ fontSize: "clamp(2.125rem, 4.6vw, 4.125rem)", lineHeight: 1 }}
                 >
                   Organizational readiness
                 </span>
@@ -584,25 +584,25 @@ function BlueprintPage() {
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:pt-28`}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.9fr)] lg:gap-14">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1.85fr)] lg:gap-12">
             <div>
               <Label>The Blueprint</Label>
               <h2 className="mt-6 max-w-none">
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.125rem, 3.4vw, 3.25rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.125rem, 4.3vw, 3.875rem)", lineHeight: 0.95 }}
                 >
                   The three
                 </span>
                 <span
                   className="type-h2-caps block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(2.125rem, 3.4vw, 3.25rem)", lineHeight: 0.98 }}
+                  style={{ fontSize: "clamp(2.125rem, 4.3vw, 3.875rem)", lineHeight: 0.95 }}
                 >
                   Pillars
                 </span>
                 <span
                   className="type-h3-caps-light mt-2 block lg:whitespace-nowrap"
-                  style={{ fontSize: "clamp(1.625rem, 2.4vw, 2.3rem)", lineHeight: 1.04 }}
+                  style={{ fontSize: "clamp(1.625rem, 3.2vw, 2.875rem)", lineHeight: 1 }}
                 >
                   One organization
                 </span>
