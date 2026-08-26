@@ -452,19 +452,19 @@ function BlueprintPage() {
               <Label>Why this matters</Label>
               <h2 className="mt-6 max-w-none">
                 <span
-                  className="type-h2-caps block whitespace-nowrap"
+                  className="type-h2-caps block lg:whitespace-nowrap"
                   style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", lineHeight: 0.98 }}
                 >
                   AI adoption is
                 </span>
                 <span
-                  className="type-h2-caps block whitespace-nowrap"
+                  className="type-h2-caps block lg:whitespace-nowrap"
                   style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)", lineHeight: 0.98 }}
                 >
                   moving faster than
                 </span>
                 <span
-                  className="type-h2-caps-light block whitespace-nowrap"
+                  className="type-h2-caps-light block lg:whitespace-nowrap"
                   style={{ fontSize: "clamp(2rem, 3.6vw, 3.35rem)", lineHeight: 1 }}
                 >
                   Organizational readiness
@@ -585,19 +585,19 @@ function BlueprintPage() {
               <Label>The Blueprint</Label>
               <h2 className="mt-6 max-w-none">
                 <span
-                  className="type-h2-caps block whitespace-nowrap"
+                  className="type-h2-caps block lg:whitespace-nowrap"
                   style={{ fontSize: "clamp(2rem, 3vw, 2.875rem)", lineHeight: 0.98 }}
                 >
                   The three
                 </span>
                 <span
-                  className="type-h2-caps block whitespace-nowrap"
+                  className="type-h2-caps block lg:whitespace-nowrap"
                   style={{ fontSize: "clamp(2rem, 3vw, 2.875rem)", lineHeight: 0.98 }}
                 >
                   Pillars
                 </span>
                 <span
-                  className="type-h3-caps-light mt-2 block whitespace-nowrap"
+                  className="type-h3-caps-light mt-2 block lg:whitespace-nowrap"
                   style={{ fontSize: "clamp(1.5rem, 2.1vw, 2rem)", lineHeight: 1.04 }}
                 >
                   One organization
