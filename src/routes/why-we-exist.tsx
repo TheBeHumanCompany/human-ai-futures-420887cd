@@ -234,36 +234,55 @@ function WhyWeExist() {
       {/* ══════ 05 — WHAT WE PRACTICE (cream) ══════ */}
       <section className="section-cream">
         <div className={`${SHELL} py-14 lg:py-24`}>
-          <SectionLabel tone="dark">What we practice</SectionLabel>
+          <p className="type-label-caps text-ink/45">What we practice</p>
 
-          <h2 className="type-h2-condensed mt-10 w-full max-w-[28ch] text-ink lg:w-[75%] lg:max-w-none">
-            You're born human. Humanity is what you practice.
+          <h2 className="type-h2-condensed mt-8 w-full max-w-[28ch] text-ink lg:mt-10 lg:w-[75%] lg:max-w-none">
+            You&rsquo;re born human. Humanity is what you practice
           </h2>
 
-          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-20">
-            <p className="type-body max-w-[52ch] text-ink/70">
-              You practice it in the conversations you choose to have instead of scrolling past. In
-              the promises you keep when breaking them would be easier. In the moments you think for
-              yourself instead of letting something else think for you. In choosing to be fully
-              present with the person in front of you when distraction would cost you nothing.
+          <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-2 lg:gap-24">
+            <div className="max-w-[52ch] space-y-6">
+              <p className="type-body text-ink/70">
+                You practice it in the conversations you choose to have instead of scrolling past.
+                In the promises you keep when breaking them would be easier.
+              </p>
+              <p className="type-body text-ink/70">
+                In the moments you think for yourself instead of letting something else think for
+                you. In choosing to be fully present with the person in front of you when
+                distraction would cost you nothing.
+              </p>
+            </div>
+            <div className="max-w-[52ch] space-y-6">
+              <p className="type-body text-ink/70">We call those moments Human Reps.</p>
+              <p className="type-body text-ink/70">
+                Small, conscious choices where you interrupt the automatic pattern and decide how
+                you want to show up.
+              </p>
+              <p className="type-body text-ink/70">None of them looks like much on its own.</p>
+              <p className="type-body text-ink/70">
+                But they compound into trust with your name attached, into relationships strong
+                enough to carry real life, into leaders people actually believe in, into families
+                that feel closer instead of more distant, and into organizations that become more
+                human because the people inside them chose to practice being human.
+              </p>
+              <p className="type-body font-semibold text-ink">We call that Human Wealth.</p>
+            </div>
+          </div>
+
+          <div className="mt-16 max-w-[62ch] space-y-6 lg:mt-24">
+            <p className="type-body text-ink/70">
+              We believe the world gets measurably better every time someone chooses to practice
+              their humanity.
             </p>
-            <p className="type-body max-w-[52ch] text-ink/70">
-              We call those moments Human Reps. Small, conscious choices where you interrupt the
-              automatic pattern and decide how you want to show up. None of them look like much by
-              themselves. But they compound into trust with your name attached, into relationships
-              strong enough to carry real life, into leaders people actually believe, into families
-              that feel closer instead of more distant, into organizations that become more human
-              because the people inside them chose to practice being human.{" "}
-              <span className="font-bold text-ink">We call that Human Wealth.</span>
+            <p className="type-body text-ink/70">
+              Not because we say it does. Because it&rsquo;s true every single time it happens.
+            </p>
+            <p className="type-body-lg font-semibold text-ink">
+              One conversation. One promise kept. One moment of real presence instead of
+              performance.
             </p>
           </div>
 
-          <p className="type-body mt-12 max-w-[52ch] text-ink/70">
-            We believe the world gets measurably better every time someone chooses to practice their
-            humanity. Not because we say it does. Because it's true every single time it happens
-            &mdash; one conversation. One promise kept &mdash; one moment of real presence instead
-            of performance.
-          </p>
 
           {/* The compounding progression, centred at the foot of the section. */}
           <ul className="mt-20 flex flex-wrap items-center justify-center gap-x-5 gap-y-4 lg:mt-28 lg:gap-x-8">
