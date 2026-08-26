@@ -990,13 +990,10 @@ function BlueprintPage() {
               intelligently, protected what mattered, and clarified what their people should still
               own.
             </p>
+            <p className="type-body lg:whitespace-nowrap">
+              Technology will keep accelerating. Build an organization that is ready for that.
+            </p>
           </div>
-
-          <p className="type-h4-caps mt-20 max-w-[34ch] text-[1.0625rem] text-lime">
-            <span className="block">Technology will keep accelerating.</span>
-            <span className="block">Build an organization that is ready for that.</span>
-          </p>
-
 
           <div className="mt-12">
             <ConversationCta tone="ink" />
