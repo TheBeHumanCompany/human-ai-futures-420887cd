@@ -540,15 +540,14 @@ function BlueprintPage() {
       {/* ── 04 Before we brought this to anyone else, cream ──────────── */}
       <section id="blueprint-before-anyone-else" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-16 xl:gap-20">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,0.5fr)] lg:gap-14 xl:gap-16">
             {/* LEFT COLUMN — statement */}
             <div>
-              <Label tone="muted">Before we brought this to anyone else</Label>
-              <h2 className="mt-6">
-                <span className="type-h3-condensed block text-ink">Before we offered this</span>
-                <span className="type-h2-caps mt-1 block text-ink">We needed it ourselves</span>
+              <h2 className="type-h1-caps-light max-w-[14ch] text-ink">
+                We needed the Blueprint ourselves
               </h2>
             </div>
+
 
             {/* RIGHT COLUMN — explanation and proof */}
             <div className="max-w-[64ch]">
@@ -775,35 +774,40 @@ function BlueprintPage() {
         </div>
       </section>
 
-      {/* ── 08 What you walk away with, cream ────────────────────────── */}
+      {/* ── 08 What you receive, cream ───────────────────────────────── */}
       <section id="blueprint-deliverables" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <p className="type-label-caps text-[0.75rem] font-medium tracking-[0.18em] text-ink/50">
-            The output
-          </p>
-          <h2
-            className="type-h2-caps mt-5 text-ink"
-            style={{ fontSize: "clamp(2rem, 4.5vw, 3.875rem)" }}
-          >
-            What you receive
-          </h2>
-          <p className="type-body mt-10 max-w-[58ch] text-ink/75">
-            You leave knowing where you stand, what matters most, what needs protecting, and what we
-            believe you should do first.
-          </p>
+          <div className="max-w-[60ch] lg:max-w-[58%]">
+            <Label tone="muted">The output</Label>
+            <h2 className="type-h1-caps-light mt-5 text-ink lg:whitespace-nowrap">
+              What you receive
+            </h2>
+            <p className="type-body mt-6 max-w-[52ch] text-ink/75">
+              You leave knowing where you stand, what matters most, what needs protecting, and what
+              we believe you should do first.
+            </p>
 
+            <ol className="mt-14">
+              {DELIVERABLES.map((item, i) => (
+                <li
+                  key={item.title}
+                  className="grid grid-cols-[3.25rem_1fr] gap-x-5 border-t border-ink/12 py-8 first:border-t-0 first:pt-0 sm:grid-cols-[4.5rem_1fr] sm:gap-x-6"
+                >
+                  <span
+                    className="type-h3-caps-light leading-none text-lime-dark"
+                    aria-hidden="true"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="border-l border-ink/15 pl-5 sm:pl-6">
+                    <h3 className="type-h4-caps text-ink">{item.title}</h3>
+                    <p className="type-body mt-3 max-w-[58ch] text-ink/75">{item.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
 
-          <ol className="mt-16 space-y-12">
-            {DELIVERABLES.map((item, i) => (
-              <li key={item.title}>
-                <p className="type-label-caps text-ink/35">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="type-h4-caps mt-3 text-ink">{item.title}</h3>
-                <p className="type-body mt-3 max-w-[64ch] text-ink/75">{item.body}</p>
-              </li>
-            ))}
-          </ol>
 
         </div>
       </section>
