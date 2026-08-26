@@ -169,8 +169,10 @@ describe("every nav destination is a real route", () => {
   ]);
 
   test("the nav offers a realistic number of destinations", () => {
-    expect(destinations.length).toBeGreaterThanOrEqual(8);
+    // 2026-08-26: the About dropdown was flattened, so the bar is seven items.
+    expect(destinations.length).toBeGreaterThanOrEqual(7);
   });
+
 
   test("each one resolves in the generated route tree", () => {
     const routable = new Set(generatedKeys("FileRoutesByFullPath").map(publicForm));

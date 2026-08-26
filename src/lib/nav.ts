@@ -97,26 +97,11 @@ export type DisclosureItem = NavItemBase & {
 export type NavItem = NavigatingItem | DisclosureItem;
 
 export const NAV: readonly NavItem[] = [
-  {
-    label: "About",
-    // `/about` stays live and unredirected — no existing link, bookmark or
-    // search result breaks. The consequence is that it would be orphaned from
-    // navigation if About were a pure menu label, since nothing else in the
-    // tree points at it. So the parent navigates, and About is the second
-    // split control alongside Blueprint.
-    //
-    // This is the switch the whole shape was built around: if `/about` is
-    // later folded into `/why-we-exist` behind a redirect, dropping `to` and
-    // flipping `triggerNavigates` to false is the entire nav change. The
-    // header renders a plain trigger instead of a split control off that flag
-    // alone, with no structural rework and no component edited.
-    to: "/about",
-    triggerNavigates: true,
-    children: [
-      { to: "/why-we-exist", label: "Why We Exist" },
-      { to: "/who-we-are", label: "Who We Are" },
-    ],
-  },
+  // 2026-08-26: the About dropdown was removed. Its two children are now
+  // top-level items of their own, so the bar has no parents left — every item
+  // navigates directly and `/about` stays live, reachable by URL.
+  { label: "Why We Exist", to: "/why-we-exist", triggerNavigates: true },
+  { label: "Who We Are", to: "/who-we-are", triggerNavigates: true },
   { label: "The New Human Era", to: "/the-new-human-era", triggerNavigates: true },
   { label: "The Human Archive", to: "/the-human-archive", triggerNavigates: true },
   { label: "Podcast", to: "/podcast", triggerNavigates: true },
@@ -126,11 +111,9 @@ export const NAV: readonly NavItem[] = [
     to: "/be-human-ai",
     triggerNavigates: true,
     cta: true,
-    // 2026-08-24: the dropdown is gone. The three pillar subpages were removed
-    // and the Blueprint is one page, so this is a plain navigating item with no
-    // children — the header renders it as the lime pill, not a split control.
   },
 ] as const;
+
 
 /**
  * True when the item renders a dropdown panel at all.

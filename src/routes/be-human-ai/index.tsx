@@ -6,6 +6,8 @@ import { BlueprintPageNav, type PageNavItem } from "@/components/blueprint-page-
 import { MapleLeaf } from "@/components/maple-leaf";
 import { BOOKING_URL_30MIN } from "@/lib/booking";
 import { INDIGENOUS_LINE } from "@/lib/brand";
+import brettPhoto from "@/assets/brett-christoffel.png.asset.json";
+
 
 /**
  * `/be-human-ai` — the Blueprint, one editorial page.
@@ -266,17 +268,20 @@ function ConversationCta({ tone }: { tone: "ink" | "cream" }) {
       target="_blank"
       rel="noreferrer"
       data-blueprint-cta="true"
-      className={`inline-flex w-fit items-center gap-2.5 border-b pb-1 text-sm font-semibold uppercase leading-none tracking-[0.12em] ${
-        tone === "cream" ? "border-lime-dark text-ink" : "border-lime text-foreground"
+      className={`inline-flex w-fit items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold uppercase leading-none tracking-[0.12em] transition-colors duration-200 ${
+        tone === "cream"
+          ? "bg-lime-dark text-cream hover:bg-ink"
+          : "bg-lime text-ink hover:bg-lime/90"
       }`}
     >
-      Start a conversation{" "}
-      <span aria-hidden className={tone === "cream" ? "text-lime-dark" : "text-lime"}>
+      Book a call
+      <span aria-hidden className="text-[0.9em] opacity-70">
         &rarr;
       </span>
     </a>
   );
 }
+
 
 function PillarModule({ pillar, isFirst }: { pillar: Pillar; isFirst?: boolean }) {
   const Icon = pillar.icon;
@@ -839,7 +844,7 @@ function BlueprintPage() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,0.5fr)] lg:gap-14 xl:gap-16">
             {/* LEFT COLUMN — statement */}
             <div>
-              <Label tone="muted">The Blueprint</Label>
+              <Label tone="muted">Built from experience</Label>
               <h2 className="type-h3-caps-light mt-4 text-ink">
                 We needed the Blueprint ourselves
               </h2>
@@ -1070,76 +1075,73 @@ function BlueprintPage() {
       </section>
 
       {/* ── 09 Client proof, cream ───────────────────────────────────── */}
-      <section id="blueprint-client-proof" className="section-cream border-t border-ink/20">
-        <div className={`${SHELL_IN} py-20 lg:py-24`}>
-          <Label tone="muted">From finding to business decision</Label>
-          <h2 className="type-h3-caps mt-6 text-ink">All Y&rsquo;all Foods</h2>
-          <p className="type-body mt-4 text-ink/70">
-            Real business. Real workflows. Real findings.
-          </p>
-
-          <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-20">
+      <section id="blueprint-client-proof" className="section-cream border-t border-ink/15">
+        <div className={`${SHELL_IN} py-16 lg:py-20`}>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 xl:gap-20">
+            {/* LEFT — identity, portrait, method */}
             <div>
-              <div
-                data-asset-pending="true"
-                className="flex aspect-[4/3] items-center justify-center border border-dashed border-ink/30 bg-cream-deep/40 p-8"
-              >
-                <p className="eyebrow max-w-[22ch] text-center text-ink/45">
-                  [All Y&rsquo;all Foods logo / Brett photo]
-                </p>
-              </div>
-              <p className="type-body-sm mt-6 max-w-[46ch] text-ink/75">
+              <Label tone="muted">From finding to business decision</Label>
+              <h2 className="type-h3-caps mt-4 text-ink">All Y&rsquo;all Foods</h2>
+              <p className="type-body-sm mt-3 text-ink/60">
+                Real business. Real workflows. Real findings.
+              </p>
+
+              <img
+                src={brettPhoto.url}
+                alt="Brett Christoffel, founder and CEO of All Y’all Foods, holding four packs of plant-based jerky"
+                loading="lazy"
+                className="mt-8 aspect-[4/3] w-full max-w-[26rem] object-cover object-top"
+              />
+
+              <p className="type-body-sm mt-6 max-w-[46ch] text-ink/70">
                 We do not look for ways to force AI into a business. We look at how the organization
                 actually operates: where money is spent, where work is duplicated, where systems
                 overlap, where people lose time, and where intelligence could create leverage.
               </p>
             </div>
 
-            <div className="space-y-8">
-              <div className="border-t border-border pt-6">
-                <p className="eyebrow text-ink/50">What we found</p>
-                <p
-                  data-copy-pending="true"
-                  className="type-body mt-3 border border-dashed border-ink/30 bg-cream-deep/40 px-5 py-4 text-ink/55"
-                >
-                  [Insert verified All Y&rsquo;all Foods finding.]
+            {/* RIGHT — findings, outcome, testimonial */}
+            <div className="lg:pt-2">
+              <div>
+                <p className="type-label-caps text-ink/45">What we found</p>
+                <p className="type-body mt-3 max-w-[58ch] text-ink/80">
+                  We identified AI agents that were not properly configured, creating unnecessary
+                  data and security exposure. We also found overlapping software and plugins that
+                  were adding cost without creating enough value.
                 </p>
               </div>
 
-              <div className="border-t border-border pt-6">
-                <p className="eyebrow text-ink/50">What changed</p>
-                <p
-                  data-copy-pending="true"
-                  className="type-body mt-3 border border-dashed border-ink/30 bg-cream-deep/40 px-5 py-4 text-ink/55"
-                >
-                  [Insert verified business outcome.]
+              <div className="mt-8 border-t border-ink/12 pt-8">
+                <p className="type-label-caps text-ink/45">What changed</p>
+                <p className="type-body mt-3 max-w-[58ch] text-ink/80">
+                  We tightened the AI environment, removed unnecessary tools, and redesigned key
+                  workflows around properly structured agents so the team could work more
+                  efficiently with clearer human ownership and better control.
                 </p>
               </div>
 
-              <div className="border-t border-border pt-6">
-                <p className="eyebrow text-ink/50">In Brett&rsquo;s words</p>
-                <blockquote
-                  data-testimonial-pending="true"
-                  className="mt-3 border border-dashed border-ink/30 bg-cream-deep/40 px-5 py-4"
-                >
-                  <p className="type-body text-ink/55">
-                    &ldquo;[Insert approved testimonial.]&rdquo;
+              <div className="mt-8 border-t border-ink/12 pt-8">
+                <p className="type-label-caps text-ink/45">In Brett&rsquo;s words</p>
+                <blockquote className="mt-3 max-w-[58ch]">
+                  <p className="type-body text-ink">
+                    &ldquo;I&rsquo;ve worked with Shane for more than three years. He and his team
+                    have helped us restructure operations, strengthen our social media, and now
+                    build our AI strategy. They found risks and wasted costs we hadn&rsquo;t seen,
+                    then helped us put a much stronger system in place. I trust Shane enough that he
+                    is now an equity partner in our company.&rdquo;
                   </p>
-                  <footer className="type-body-sm mt-4 text-ink/70">
-                    Brett Christoffel
+                  <footer className="type-body-sm mt-5 text-ink/65">
+                    <span className="font-semibold text-ink">Brett Christoffel</span>
                     <br />
                     Founder &amp; CEO, All Y&rsquo;all Foods
                   </footer>
                 </blockquote>
               </div>
-
-              <p className="type-body-lg text-ink">
-                Find what matters. Make it visible. Make a better decision.
-              </p>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* ── 10 + 11 Relationship and Canadian trust, ink ─────────────── */}
       <section id="blueprint-relationship" className="section-ink">
