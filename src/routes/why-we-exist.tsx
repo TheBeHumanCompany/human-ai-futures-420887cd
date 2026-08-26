@@ -405,46 +405,32 @@ function WhyWeExist() {
 
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-14 lg:py-24`}>
-          <SectionLabel tone="light">The plan</SectionLabel>
+        <div className={`${SHELL} py-20 lg:py-36`}>
+          <p className="type-label-caps text-lime">The plan</p>
 
-          <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-2 lg:gap-28">
             {/* LEFT COLUMN: main statement */}
-            <div>
-              <h2 className="type-h2-condensed max-w-[16ch] text-foreground">
-                Technology will
-                <br />
-                keep advancing
-                <br />
-                whether we're
-                <br />
-                ready or not.
-                <br />
-                Humanity has to
-                <br />
-                advance with it.
-              </h2>
-            </div>
+            <h2 className="type-h1-condensed max-w-[14ch] text-foreground">
+              Technology will keep advancing whether we&rsquo;re ready or not. Humanity has to
+              advance with it.
+            </h2>
 
             {/* RIGHT COLUMN: three supporting thoughts */}
-            <div className="flex flex-col">
+            <div className="flex flex-col lg:pt-2">
               {PLAN_THOUGHTS.map((thought, i) => {
                 const isLast = i === PLAN_THOUGHTS.length - 1;
                 return (
                   <div
                     key={thought}
                     className={[
-                      "flex items-start gap-6 py-7 first:pt-0 lg:gap-5 lg:py-8",
+                      "flex items-start gap-6 py-8 first:pt-0 lg:gap-8 lg:py-10",
                       !isLast ? "border-b border-foreground/10" : "",
                     ].join(" ")}
                   >
-                    <span
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-foreground/15"
-                      aria-hidden
-                    >
-                      <ArrowUpRight size={18} className="text-lime" strokeWidth={1.5} />
+                    <span aria-hidden className="type-label-caps shrink-0 text-lime">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                    <p className="type-body-lg pt-1.5 text-foreground/90">{thought}</p>
+                    <p className="type-body-lg max-w-[46ch] text-foreground/85">{thought}</p>
                   </div>
                 );
               })}
@@ -452,15 +438,13 @@ function WhyWeExist() {
           </div>
 
           {/* BOTTOM CLOSING LINE */}
-          <div className="mt-8 lg:mt-20">
+          <div className="mt-20 lg:mt-32">
             <span className="block w-full border-t border-foreground/10" aria-hidden />
-            <div className="mt-10 flex items-start gap-5">
-              <span className="mt-2 block h-10 w-0.5 bg-lime" aria-hidden />
-              <p className="type-h3-condensed text-foreground">
-                That's not a hope. <span className="text-lime">That's the plan.</span>
-              </p>
-            </div>
+            <p className="type-h1-condensed mt-16 max-w-[22ch] text-foreground lg:mt-24">
+              That&rsquo;s not a hope. <span className="text-lime">That&rsquo;s the plan.</span>
+            </p>
           </div>
+
         </div>
       </section>
     </>
