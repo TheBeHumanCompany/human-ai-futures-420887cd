@@ -780,7 +780,7 @@ function BlueprintPage() {
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
           <div className="max-w-[60ch] lg:max-w-[58%]">
             <Label tone="muted">The output</Label>
-            <h2 className="type-h1-caps-light mt-5 text-ink lg:whitespace-nowrap">
+            <h2 className="type-h2-caps mt-5 text-ink lg:whitespace-nowrap">
               What you receive
             </h2>
             <p className="type-body mt-6 max-w-[52ch] text-ink/75">
