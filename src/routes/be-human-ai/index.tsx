@@ -382,19 +382,18 @@ function BlueprintPage() {
       {/* Page-wide left gutter (desktop/large tablet) reserving space for the
           collapsed "on this page" rail so no section content sits under it. */}
       <>
-      {/* ── 02 The Blueprint + The Question, side by side on desktop, cream ─ */}
+      {/* ── 02 The Blueprint introduction, cream ─────────────────────── */}
       <section id="blueprint-introduction" className="section-cream">
         <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-20 xl:gap-28">
-            {/* LEFT COLUMN — THE BLUEPRINT */}
+          <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 xl:gap-20">
+            {/* LEFT COLUMN — dominant headline and narrative */}
             <div className="max-w-[58ch]">
-              <Label tone="muted">THE BLUEPRINT</Label>
+              <Label tone="muted">BE HUMAN INTELLIGENCE</Label>
               <h2 className="type-h2-caps mt-4 text-ink">
-                THE BE HUMAN INTELLIGENCE
+                THE BLUEPRINT IS
                 <br />
-                BLUEPRINT IS WHERE WE START
+                WHERE WE START
               </h2>
-              <div className="mt-5 h-px w-16 bg-lime" aria-hidden="true" />
 
               <div className="mt-10 space-y-6 text-ink/85">
                 <p className="type-body">
@@ -410,44 +409,39 @@ function BlueprintPage() {
               </div>
             </div>
 
-            {/* RIGHT COLUMN — THE QUESTION */}
-            <div className="max-w-[52ch]">
-              <Label tone="muted">THE QUESTION</Label>
-              <h2 className="type-h2-caps-light mt-4 text-ink">
-                BY ASKING WHO IS ACTUALLY
-                <br />
-                SHAPING HOW AI ENTERS
-                <br />
-                YOUR BUSINESS
-              </h2>
-              <div className="mt-5 h-px w-16 bg-lime" aria-hidden="true" />
-
-              <div className="mt-10 space-y-5 text-ink/85">
+            {/* RIGHT COLUMN — supporting narrative */}
+            <div className="max-w-[54ch]">
+              <p className="type-body font-semibold text-ink">
+                We start by asking who is actually shaping how AI enters your business.
+              </p>
+              <div className="mt-5 space-y-5 text-ink/85">
                 <p className="type-body">
                   Artificial intelligence will change every business. The question is whether leadership
-                  is shaping that change, or whether it is happening to one employee, one tool, and
-                  one decision at a time.
+                  is shaping that change, or whether it is happening one employee, one tool, and one
+                  decision at a time.
                 </p>
                 <p className="type-body">
                   Your people are already experimenting. New systems are entering the business. Work
                   is changing. Information is moving through tools leadership may not fully see.
                 </p>
               </div>
-
-              <ol className="mt-12 border-t border-border">
-                {OBSERVATIONS.map((line, i) => (
-                  <li key={line} className="flex gap-5 border-b border-border py-4">
-                    <span className="mt-0.5 shrink-0 font-sans text-sm font-semibold text-lime">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="type-body text-ink/80">{line}</span>
-                  </li>
-                ))}
-              </ol>
             </div>
+          </div>
+
+          {/* Transition */}
+          <div className="mt-16 border-t border-ink/15 lg:mt-20" aria-hidden="true" />
+
+          {/* BOTTOM — three standalone observations */}
+          <div className="mt-12 grid gap-8 lg:mt-16 lg:grid-cols-[1fr_1fr_1.35fr] lg:gap-12">
+            {OBSERVATIONS.map((line) => (
+              <p key={line} className="type-body font-medium text-ink/90">
+                {line}
+              </p>
+            ))}
           </div>
         </div>
       </section>
+
 
 
 
