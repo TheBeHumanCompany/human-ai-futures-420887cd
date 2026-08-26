@@ -480,7 +480,7 @@ function BlueprintPage() {
           {/* The leadership question, restated */}
           <div className="mt-16 grid gap-12 border-t border-border pt-14 lg:grid-cols-2 lg:gap-24">
             <div>
-              <p className="eyebrow text-muted-foreground">That changes the leadership question</p>
+              <Label>That changes the leadership question</Label>
               <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
               <p className="type-body mt-2 max-w-[38ch] font-bold text-foreground">
                 Are our employees using AI?
