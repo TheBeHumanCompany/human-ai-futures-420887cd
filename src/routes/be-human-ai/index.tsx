@@ -339,7 +339,7 @@ function BlueprintPage() {
     <>
       {/* ── Hero, ink ─────────────────────────────────────────────────── */}
       <section id="blueprint-hero" className="section-ink grain border-b border-border">
-        <div className={`${SHELL} pt-20 pb-28 lg:pt-36 lg:pb-56`}>
+        <div className={`${SHELL} pt-20 pb-16 lg:pt-36 lg:pb-32`}>
           <div className="flex flex-col gap-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
             <div className="lg:pl-[84px] xl:pl-[92px]">
               <Label>Be Human Intelligence</Label>
@@ -573,18 +573,16 @@ function BlueprintPage() {
       {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
       <section id="blueprint-three-pillars" className="section-ink">
         <div className={`${SHELL_IN} py-20 lg:pt-28`}>
-          <div className="grid items-end gap-10 lg:grid-cols-[max-content_1fr] lg:gap-8">
+          <div className="grid items-end gap-10 lg:grid-cols-[max-content_1fr] lg:gap-12">
             <div className="self-end">
               <Label>The Blueprint</Label>
-              <h2 className="type-h2-caps mt-6">
-                <span className="block lg:whitespace-nowrap">Three</span>
+              <h2 className="type-h2-caps mt-6 text-[clamp(2.25rem,4.4vw,3.5rem)] leading-[0.95]">
+                <span className="block lg:whitespace-nowrap">The three</span>
                 <span className="block lg:whitespace-nowrap">pillars</span>
-                <span className="block lg:whitespace-nowrap">One</span>
-                <span className="block lg:whitespace-nowrap">organization</span>
               </h2>
             </div>
 
-            <div className="grid gap-10 self-end sm:grid-cols-3 sm:gap-8 lg:max-w-[720px] lg:justify-self-start lg:gap-8">
+            <div className="grid gap-10 self-end sm:grid-cols-3 sm:gap-8 lg:max-w-[760px] lg:justify-self-start lg:gap-8">
               {PILLARS.map((pillar) => {
                 const Icon = pillar.icon;
                 return (
