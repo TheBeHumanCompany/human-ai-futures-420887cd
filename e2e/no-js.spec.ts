@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { NAV } from "../src/lib/nav.ts";
+
 /**
  * AC-6.9b — collapsed Blueprint sections work with JavaScript disabled.
  *
@@ -167,28 +169,24 @@ test.describe("AC-6.9b — progressive disclosure without JavaScript", () => {
     expect(ids[ids.length - 1]).toBe("closing-cta");
   });
 
-  test("no scripted accordion survives in the Blueprint CONTENT", async ({ page }) => {
+  test("the header needs no dropdown widgets to navigate", async ({ page }) => {
+    // Amendment 8, 2026-08-26: the About and Blueprint dropdowns are gone, so
+    // the old proof — a floor on header `[data-state]` triggers — pins markup
+    // that no longer exists. No-JS navigation now means every destination is
+    // a plain `<a href>` in the served header, with no panel to open.
     await page.goto(BLUEPRINT);
 
-    /**
-     * Scoped past the header, deliberately.
-     *
-     * The site nav uses Radix dropdowns for its two parent items, so `About`
-     * and `Blueprint` legitimately render `data-state="closed"` on every page.
-     * A page-wide `toBe(0)` here would fail against correct markup — and the
-     * obvious "fix" of deleting the assertion would remove the only check that
-     * the superseded accordion has not come back.
-     *
-     * The arithmetic states the real rule: a `data-state` node anywhere OTHER
-     * than the header is a scripted disclosure in the content.
-     */
-    const total = await page.locator("[data-state]").count();
-    const inHeader = await page.locator("header [data-state]").count();
+    const hrefs = await page
+      .locator("header a[href]")
+      .evaluateAll((nodes) => nodes.map((n) => n.getAttribute("href") ?? ""));
 
-    // Floor: if the header stopped rendering its dropdowns entirely, the
-    // subtraction below would still be 0 and this test would pass while
-    // asserting nothing about a real page.
-    expect(inHeader, "the header's dropdown triggers must be present").toBeGreaterThanOrEqual(1);
-    expect(total - inHeader, "no data-state node may appear in the page content").toBe(0);
+    // Wordmark plus the seven flat items, in bar order. A deep-equal, not a
+    // contains: an item demoted back into a dropdown would vanish from this
+    // list while a contains-check kept passing on the survivors.
+    expect(hrefs).toEqual(["/", ...NAV.map((item) => item.to)]);
+
+    // And nothing in the header waits on a script: no panel triggers at all.
+    const triggers = await page.locator("header [aria-haspopup]").count();
+    expect(triggers, "no dropdown trigger may be required").toBe(0);
   });
 });
