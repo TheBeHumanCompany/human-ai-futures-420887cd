@@ -112,8 +112,8 @@
     {
       "id": "AC-2.9a",
       "phase": null,
-      "proof": null,
-      "note": "Amendment 8 (2026-08-26). Planned proof (PEND until e2e/video-facades.spec.ts lands, task 10): bunx playwright test e2e/video-facades.spec.ts -g \"homepage\" — zero iframes at load, click mounts exactly one youtube-nocookie.com/embed/-r011ECKr7M, poster visible before click, reload returns 0, no overflow after activation."
+      "proof": "bunx playwright test e2e/video-facades.spec.ts -g \"homepage\"",
+      "note": "Amendment 8 (2026-08-26). Proven 2026-08-27 (tasks 6+10 landed): 3/3 passed — zero iframes at load, click mounts exactly one youtube-nocookie.com/embed/-r011ECKr7M, poster visible before click, reload returns 0, no overflow after activation."
     },
     {
       "id": "AC-3.1a",
@@ -400,14 +400,14 @@
     {
       "id": "AC-7.4a",
       "phase": null,
-      "proof": null,
-      "note": "Amendment 8 (2026-08-26). Planned proofs (PEND until tasks 7 and 10 land): bun test src/lib/archive.test.ts -t \"HUMAN_ARCHIVE_VIDEOS\" (exact-content unit tests) && bunx playwright test e2e/video-facades.spec.ts (hover/tap/keyboard iframe lifecycle 0→1→0, single-player rule with src swap, unmute seam via data-muted, no overflow after activation at 390/834/1440)."
+      "proof": "bun test src/lib/archive.test.ts -t \"HUMAN_ARCHIVE_VIDEOS\" && bunx playwright test e2e/video-facades.spec.ts",
+      "note": "Amendment 8 (2026-08-26). Proven 2026-08-27 (tasks 7+10 landed): 4/4 unit exact-content tests + full facade spec (hover/tap/keyboard iframe lifecycle 0→1→0, single-player rule with src swap, unmute seam via data-muted, no overflow after activation at 390/834/1440)."
     },
     {
       "id": "AC-7.5a",
       "phase": null,
-      "proof": null,
-      "note": "Amendment 8 (2026-08-26). Planned proof (PEND until task 10 lands): bunx playwright test e2e/video-facades.spec.ts -g \"playlist\" — visible label exactly 'Watch the Human Archives', href the ARCHIVE_PLAYLIST_URL constant (PLdA-mx7SlQ_A), no 'Coming Soon'/'to be released soon' in head or body."
+      "proof": "bunx playwright test e2e/video-facades.spec.ts -g \"playlist\"",
+      "note": "Amendment 8 (2026-08-26). Proven 2026-08-27 (task 10 landed): 3/3 passed — visible label exactly 'Watch the Human Archives', href the ARCHIVE_PLAYLIST_URL constant (PLdA-mx7SlQ_A), no 'Coming Soon'/'to be released soon' in head or body."
     },
     {
       "id": "AC-X.1",
