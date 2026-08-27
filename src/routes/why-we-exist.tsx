@@ -90,10 +90,15 @@ function WhyWeExist() {
               <figure className="mt-10 flex items-stretch gap-5">
                 <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
                 <div>
-                  <blockquote className="type-h3-prose text-ink">
-                    <span aria-hidden className="text-lime-dark">&ldquo;</span>To love one another.
-                    Treat each other, and yourself, with respect and compassion.
-                    <span aria-hidden className="text-lime-dark">&rdquo;</span>
+                  <blockquote className="type-h3-condensed text-ink">
+                    <span aria-hidden className="align-top text-[0.55em] text-ink/40">
+                      &ldquo;
+                    </span>
+                    To love one another. Treat each other, and yourself, with respect and
+                    compassion.
+                    <span aria-hidden className="align-top text-[0.55em] text-ink/40">
+                      &rdquo;
+                    </span>
                   </blockquote>
                   <figcaption className="type-body-sm mt-5 text-ink/55">
                     &mdash; Lindsay, Vancouver
@@ -411,7 +416,7 @@ function WhyWeExist() {
           <div className="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
             {/* LEFT COLUMN: main statement + closing line */}
             <div>
-              <h2 className="type-h1-caps-light max-w-[20ch] text-foreground">
+              <h2 className="type-h1-caps-light max-w-[20ch] normal-case text-foreground">
                 Technology will keep advancing. Humanity has to advance with it.
               </h2>
 
