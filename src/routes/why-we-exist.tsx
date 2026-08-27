@@ -50,7 +50,7 @@ function WhyWeExist() {
       {/* ══════ 01 — HERO (cream) ══════ Type only; the portrait now lives in The Pattern. */}
       <section className="section-cream">
         <div className={`${SHELL} pt-16 pb-16 lg:pt-28 lg:pb-28`}>
-          <div className="max-w-[24ch]">
+          <div className="max-w-[36ch] lg:max-w-[62%]">
             <p className="type-label-caps text-ink/45">Why we exist</p>
 
             <h1 className="type-h1-caps-light mt-8 text-ink lg:mt-10">
@@ -70,35 +70,37 @@ function WhyWeExist() {
         </div>
       </section>
 
-      {/* ══════ 01b — THE PATTERN (cream) ══════ The story, plus the portrait. */}
+      {/* ══════ 01b — THE PATTERN (cream) ══════ Story left, Lindsay's portrait right. */}
       <section className="section-cream border-t border-ink/10">
-        <div className={`${SHELL} py-16 lg:py-28`}>
-          <p className="type-label-caps text-ink/45">The pattern</p>
+        <div className={`${SHELL} py-14 lg:py-20`}>
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20">
+            <div className="max-w-[52ch]">
+              <p className="type-label-caps text-ink/45">The pattern</p>
+              <span className="type-eyebrow-rule block" aria-hidden />
 
-          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-24">
-            <p className="type-body-lg max-w-[46ch] text-ink/75">
-              Almost nobody talks about their job title, how productive they&rsquo;ve been, or what
-              they&rsquo;ve built.
-            </p>
-            <p className="type-body-lg max-w-[46ch] text-ink/75">
-              They talk about feeling things. Laughing. Crying. Showing up for someone when it was
-              hard. Being kind when it would&rsquo;ve been easier not to be.
-            </p>
-          </div>
+              <p className="type-body mt-8 text-ink/70">
+                Almost nobody talks about their job title, how productive they&rsquo;ve been, or
+                what they&rsquo;ve built.
+              </p>
+              <p className="type-body mt-5 text-ink/70">
+                They talk about feeling things. Laughing. Crying. Showing up for someone when it
+                was hard. Being kind when it would&rsquo;ve been easier not to be.
+              </p>
 
-          <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-[1fr_minmax(0,320px)] lg:items-center lg:gap-20">
-            <figure className="flex max-w-[52ch] items-stretch gap-6">
-              <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
-              <div>
-                <blockquote className="type-h3-prose text-ink">
-                  &ldquo;To love one another. Treat each other, and yourself, with respect and
-                  compassion.&rdquo;
-                </blockquote>
-                <figcaption className="type-body mt-6 text-ink/55">
-                  &mdash; Lindsay, Vancouver
-                </figcaption>
-              </div>
-            </figure>
+              <figure className="mt-10 flex items-stretch gap-5">
+                <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
+                <div>
+                  <blockquote className="type-h3-prose text-ink">
+                    <span aria-hidden className="text-lime-dark">&ldquo;</span>To love one another.
+                    Treat each other, and yourself, with respect and compassion.
+                    <span aria-hidden className="text-lime-dark">&rdquo;</span>
+                  </blockquote>
+                  <figcaption className="type-body-sm mt-5 text-ink/55">
+                    &mdash; Lindsay, Vancouver
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
 
             <img
               src={humanStoryPortrait}
@@ -106,7 +108,7 @@ function WhyWeExist() {
               loading="lazy"
               width={1000}
               height={1752}
-              className="aspect-4/5 w-full object-cover lg:max-w-[320px]"
+              className="aspect-4/5 w-full object-cover lg:max-w-[360px] lg:justify-self-end"
             />
           </div>
         </div>
