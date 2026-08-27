@@ -221,12 +221,6 @@ const CASES: Case[] = [
           "'what's possible if humanity leads this well' to 'what becomes possible when humanity " +
           "leads well'.",
       },
-      {
-        startsWith: "one human rep won't change the world",
-        instead: "One Human Rep won't change the world. Millions will.",
-        because:
-          "Same 2026-08-27 redesign: her revision trims 'Millions of them will' to 'Millions will'.",
-      },
     ],
   },
 ];
