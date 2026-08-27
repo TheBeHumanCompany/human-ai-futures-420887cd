@@ -410,5 +410,41 @@
     "bytes": 2436778,
     "content_type": "image/png",
     "source": "recovered"
+  },
+  {
+    "asset_id": "supplied-616fdc151bf0",
+    "filename": "archive-video-lucy.jpg",
+    "sha256": "616fdc151bf072c1784d0a792333514bea91f8fb100c8720b6e47b72fd02893a",
+    "bytes": 120922,
+    "content_type": "image/jpeg",
+    "source": "supplied",
+    "provenance": "YouTube still (maxresdefault, 1280x720) for the Human Archive video of LUCY (No. 056, Manchester, UK) — video https://youtu.be/lDGsG0nu1Ck. Fetched from https://i.ytimg.com/vi/lDGsG0nu1Ck/maxresdefault.jpg on 2026-08-26. Not a Lovable-host recovery: no *.asset.json pointer exists or ever existed, so the recovery drill does not cover it; integrity is checkable against the SHA-256 recorded here."
+  },
+  {
+    "asset_id": "supplied-7a55ea6bd8ca",
+    "filename": "archive-video-farid.jpg",
+    "sha256": "7a55ea6bd8ca9b46d52940332b034c9e5a8422d2dbe62ca0e81dcc301415df05",
+    "bytes": 88018,
+    "content_type": "image/jpeg",
+    "source": "supplied",
+    "provenance": "YouTube still (maxresdefault, 1280x720) for the Human Archive video of FARID (No. 038, Morocco) — video https://youtu.be/ESAw6gJRGhQ. Fetched from https://i.ytimg.com/vi/ESAw6gJRGhQ/maxresdefault.jpg on 2026-08-26. Not a Lovable-host recovery: no *.asset.json pointer exists or ever existed, so the recovery drill does not cover it; integrity is checkable against the SHA-256 recorded here."
+  },
+  {
+    "asset_id": "supplied-d547e1cd8ceb",
+    "filename": "archive-video-abdi.jpg",
+    "sha256": "d547e1cd8ceb648dd002c8d2ec38e789f618060f41e6c0b6d9eb9db51730ba40",
+    "bytes": 109870,
+    "content_type": "image/jpeg",
+    "source": "supplied",
+    "provenance": "YouTube still (maxresdefault, 1280x720) for the Human Archive video of ABDI (No. 041, Calgary, Canada) — video https://youtu.be/xtbZARUHt7s. Fetched from https://i.ytimg.com/vi/xtbZARUHt7s/maxresdefault.jpg on 2026-08-26. Not a Lovable-host recovery: no *.asset.json pointer exists or ever existed, so the recovery drill does not cover it; integrity is checkable against the SHA-256 recorded here."
+  },
+  {
+    "asset_id": "supplied-5a97c09a15a0",
+    "filename": "archive-video-marissa.jpg",
+    "sha256": "5a97c09a15a094b68cd7fe03e1e88fcdb9b868b6b34b523ae298e1a240c2e8ae",
+    "bytes": 111144,
+    "content_type": "image/jpeg",
+    "source": "supplied",
+    "provenance": "YouTube still (maxresdefault, 1280x720) for the Human Archive video of MARISSA (No. 060, Vancouver, Canada) — video https://youtu.be/2sAGALC7Pig. Fetched from https://i.ytimg.com/vi/2sAGALC7Pig/maxresdefault.jpg on 2026-08-26. Not a Lovable-host recovery: no *.asset.json pointer exists or ever existed, so the recovery drill does not cover it; integrity is checkable against the SHA-256 recorded here."
   }
 ]
