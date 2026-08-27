@@ -479,10 +479,10 @@ function FounderVideoFigure() {
         <>
           <img
             src={founderVideoPoster}
-            alt="Shane speaking directly to camera in a warmly lit room with BE HUMAN lettering on the wall"
+            alt="Shane speaking directly to camera in front of a shelf of books"
             loading="lazy"
-            width={1600}
-            height={912}
+            width={1280}
+            height={720}
             className="h-full w-full object-cover object-[38%_center] transition-transform duration-700 group-hover:scale-[1.02] sm:object-center"
           />
           <button

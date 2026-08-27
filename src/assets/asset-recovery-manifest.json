@@ -446,5 +446,14 @@
     "content_type": "image/jpeg",
     "source": "supplied",
     "provenance": "YouTube still (maxresdefault, 1280x720) for the Human Archive video of MARISSA (No. 060, Vancouver, Canada) — video https://youtu.be/2sAGALC7Pig. Fetched from https://i.ytimg.com/vi/2sAGALC7Pig/maxresdefault.jpg on 2026-08-26. Not a Lovable-host recovery: no *.asset.json pointer exists or ever existed, so the recovery drill does not cover it; integrity is checkable against the SHA-256 recorded here."
+  },
+  {
+    "asset_id": "supplied-11b8e18105df",
+    "filename": "why-we-exist-video.jpg",
+    "sha256": "11b8e18105df37160cb18deedfdbdf700be43e3eaaae5ad603c6520be3bec84a",
+    "bytes": 164016,
+    "content_type": "image/jpeg",
+    "source": "supplied",
+    "provenance": "YouTube still (maxresdefault, 1280x720) for the homepage Why We Exist video https://youtu.be/-r011ECKr7M. Fetched from https://i.ytimg.com/vi/-r011ECKr7M/maxresdefault.jpg on 2026-08-27. Replaces the original founder-shoot poster; not a Lovable-host recovery: no *.asset.json pointer exists or ever existed, so the recovery drill does not cover it; integrity is checkable against the SHA-256 recorded here."
   }
 ]
