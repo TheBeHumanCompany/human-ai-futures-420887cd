@@ -410,7 +410,7 @@ function WhyWeExist() {
 
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
-        <div className={`${SHELL} py-20 lg:py-32`}>
+        <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">The plan</SectionLabel>
 
           <div className="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
@@ -520,7 +520,7 @@ const INFRASTRUCTURE = [
 
 /** The three supporting statements in The Plan section. */
 const PLAN_THOUGHTS = [
-  "We're not building this because we're afraid of artificial intelligence.",
-  "We're building it because we've seen what's possible if humanity leads this well, and what's at risk if it doesn't.",
-  "One Human Rep won't change the world. Millions of them will.",
+  "We're not building this because we're afraid of AI.",
+  "We're building it because we've seen what becomes possible when humanity leads well.",
+  "One Human Rep won't change the world. Millions will.",
 ] as const;
