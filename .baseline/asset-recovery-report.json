@@ -457,5 +457,14 @@
     "bytes": 111144,
     "sha256": "5a97c09a15a094b68cd7fe03e1e88fcdb9b868b6b34b523ae298e1a240c2e8ae",
     "url": "https://i.ytimg.com/vi/2sAGALC7Pig/maxresdefault.jpg"
+  },
+  {
+    "asset_id": "supplied-11b8e18105df",
+    "filename": "why-we-exist-video.jpg",
+    "status": "ok",
+    "attempts": 1,
+    "bytes": 164016,
+    "sha256": "11b8e18105df37160cb18deedfdbdf700be43e3eaaae5ad603c6520be3bec84a",
+    "url": "https://i.ytimg.com/vi/-r011ECKr7M/maxresdefault.jpg"
   }
 ]
