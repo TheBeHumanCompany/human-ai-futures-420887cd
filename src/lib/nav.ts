@@ -1,18 +1,22 @@
 /**
  * The site navigation, as data.
  *
- * Written from the binding tree in the spec (Amendment 1), which states it
+ * The binding tree in the spec (Amendment 8, 2026-08-26) states it
  * completely:
  *
- *   ABOUT ⌄ (Why We Exist · Who We Are) | THE NEW HUMAN ERA | THE HUMAN ARCHIVE
- *   | PODCAST | CONTACT | [BLUEPRINT ⌄ pill] (Human Readiness ·
- *   Governance & Sovereignty · Intelligence Strategy)
+ *   WHY WE EXIST | WHO WE ARE | THE NEW HUMAN ERA | THE HUMAN ARCHIVE
+ *   | PODCAST | CONTACT | [BLUEPRINT pill]
  *
- * Six top-level items, in that order. Exactly two of them have children.
- * `nav.test.ts` deep-equals the whole tree rather than checking a length,
- * because every failure this model can have — a reordered item, a child
- * hoisted to the top level, a label drifting from the one the user approved —
- * is invisible to a count.
+ * Seven top-level items, in that order, none with children. The Amendment 1
+ * tree it replaced had six items and two dropdown parents — About over Why We
+ * Exist and Who We Are, Blueprint over the three pillars — and both are gone:
+ * Blueprint's dropdown went first (2026-08-24 rebuild), the About dropdown
+ * followed (2026-08-26), and `/about` itself stopped being a page — `server.ts`
+ * now 301s it permanently to `/who-we-are` (Krisp 2026-08-22 meeting,
+ * user-confirmed 2026-08-26). `nav.test.ts` deep-equals the whole tree rather
+ * than checking a length, because every failure this model can have — a
+ * reordered item, a child hoisted to the top level, a label drifting from the
+ * one the user approved — is invisible to a count.
  *
  * ── The split-control trap ──────────────────────────────────────────────────
  *
@@ -21,17 +25,20 @@
  * that is ALSO a real page, it is a trap: the page becomes unreachable from
  * the bar, and nothing about the markup looks wrong.
  *
- * Both parents here are the second kind. Blueprint is the commercial centre of
- * the site, and About points at `/about`, which stays live and would otherwise
- * be orphaned from navigation entirely. So both render as split controls: the
- * label is a `<Link>`, and a separate chevron button opens the panel.
+ * Both parents of the old tree were the second kind. Blueprint is the
+ * commercial centre of the site, and About pointed at a live `/about`, which
+ * would otherwise have been orphaned from navigation entirely. So both
+ * rendered as split controls: the label is a `<Link>`, and a separate chevron
+ * button opens the panel. No parent remains in the tree; the rationale
+ * survives anyway, because the shapes it produced in the header are kept as
+ * dead-but-tested code for the day a parent returns.
  *
  * The difference is carried by `triggerNavigates`, and both the header and its
  * tests branch on the flag rather than naming an item. Nothing in the tree
  * currently sets it to `false` — the non-navigating shape is kept, tested
  * against a synthetic item, and reachable by changing one field, because that
- * is the switch that makes the `/about` redirect a one-line decision later
- * rather than a rebuild.
+ * is the switch that lets a parent return to the bar as data rather than a
+ * rebuild.
  */
 
 /**
@@ -44,7 +51,6 @@
  */
 export type NavRoute =
   | "/"
-  | "/about"
   | "/why-we-exist"
   | "/who-we-are"
   | "/the-new-human-era"
@@ -99,7 +105,9 @@ export type NavItem = NavigatingItem | DisclosureItem;
 export const NAV: readonly NavItem[] = [
   // 2026-08-26: the About dropdown was removed. Its two children are now
   // top-level items of their own, so the bar has no parents left — every item
-  // navigates directly and `/about` stays live, reachable by URL.
+  // navigates directly. `/about` is no longer a page: `server.ts` 301s it to
+  // `/who-we-are` permanently (Krisp 2026-08-22 meeting, user-confirmed
+  // 2026-08-26 — Amendment 8).
   { label: "Why We Exist", to: "/why-we-exist", triggerNavigates: true },
   { label: "Who We Are", to: "/who-we-are", triggerNavigates: true },
   { label: "The New Human Era", to: "/the-new-human-era", triggerNavigates: true },
@@ -113,7 +121,6 @@ export const NAV: readonly NavItem[] = [
     cta: true,
   },
 ] as const;
-
 
 /**
  * True when the item renders a dropdown panel at all.

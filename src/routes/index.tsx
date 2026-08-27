@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { EpisodeListItem } from "@/lib/podcast/episode";
 import heroImage from "@/assets/hero.png";
@@ -130,27 +131,7 @@ function Home() {
             </h2>
           </div>
 
-          <figure className="group relative aspect-[16/9] overflow-hidden rounded-lg lg:mt-32 lg:self-center">
-            <img
-              src={founderVideoPoster}
-              alt="Shane speaking directly to camera in a warmly lit room with BE HUMAN lettering on the wall"
-              loading="lazy"
-              width={1600}
-              height={912}
-              className="h-full w-full object-cover object-[38%_center] transition-transform duration-700 group-hover:scale-[1.02] sm:object-center"
-            />
-            <button
-              type="button"
-              aria-label="Play video"
-              className="absolute inset-0 grid place-items-center transition-colors hover:bg-ink/10"
-            >
-              <span className="grid h-14 w-14 place-items-center rounded-full border border-cream/70 text-cream transition-colors group-hover:border-cream sm:h-16 sm:w-16">
-                <svg viewBox="0 0 24 24" className="ml-[2px] h-5 w-5 fill-current" aria-hidden>
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </span>
-            </button>
-          </figure>
+          <FounderVideoFigure />
         </div>
       </section>
 
@@ -473,5 +454,51 @@ function Home() {
         </div>
       </section>
     </>
+  );
+}
+
+/**
+ * Why We Exist video, as a click-to-load facade: the YouTube iframe mounts only
+ * after an explicit activation of the play button (click or keyboard), so the
+ * homepage payload stays free of third-party embeds until the visitor asks.
+ */
+function FounderVideoFigure() {
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <figure className="group relative aspect-[16/9] overflow-hidden rounded-lg lg:mt-32 lg:self-center">
+      {playing ? (
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/-r011ECKr7M?autoplay=1&rel=0"
+          title="Welcome To My Channel — Building The Be Human Company"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          className="absolute inset-0 h-full w-full"
+        />
+      ) : (
+        <>
+          <img
+            src={founderVideoPoster}
+            alt="Shane speaking directly to camera in a warmly lit room with BE HUMAN lettering on the wall"
+            loading="lazy"
+            width={1600}
+            height={912}
+            className="h-full w-full object-cover object-[38%_center] transition-transform duration-700 group-hover:scale-[1.02] sm:object-center"
+          />
+          <button
+            type="button"
+            aria-label="Play video"
+            onClick={() => setPlaying(true)}
+            className="absolute inset-0 grid place-items-center transition-colors hover:bg-ink/10"
+          >
+            <span className="grid h-14 w-14 place-items-center rounded-full border border-cream/70 text-cream transition-colors group-hover:border-cream sm:h-16 sm:w-16">
+              <svg viewBox="0 0 24 24" className="ml-[2px] h-5 w-5 fill-current" aria-hidden>
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+          </button>
+        </>
+      )}
+    </figure>
   );
 }

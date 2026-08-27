@@ -421,5 +421,41 @@
     "bytes": 2436778,
     "sha256": "9a8eb8103f4edb150c133bb12a0ac6ddea9d4442c90cac54c02aed8280ecf416",
     "url": "https://id-preview--d03b88e4-8da1-457b-8afc-3c434677b299.lovable.app/__l5e/assets-v1/65520b89-aa90-471c-be3c-c9bd99d25315/new-human-era-collage.png"
+  },
+  {
+    "asset_id": "supplied-616fdc151bf0",
+    "filename": "archive-video-lucy.jpg",
+    "status": "ok",
+    "attempts": 1,
+    "bytes": 120922,
+    "sha256": "616fdc151bf072c1784d0a792333514bea91f8fb100c8720b6e47b72fd02893a",
+    "url": "https://i.ytimg.com/vi/lDGsG0nu1Ck/maxresdefault.jpg"
+  },
+  {
+    "asset_id": "supplied-7a55ea6bd8ca",
+    "filename": "archive-video-farid.jpg",
+    "status": "ok",
+    "attempts": 1,
+    "bytes": 88018,
+    "sha256": "7a55ea6bd8ca9b46d52940332b034c9e5a8422d2dbe62ca0e81dcc301415df05",
+    "url": "https://i.ytimg.com/vi/ESAw6gJRGhQ/maxresdefault.jpg"
+  },
+  {
+    "asset_id": "supplied-d547e1cd8ceb",
+    "filename": "archive-video-abdi.jpg",
+    "status": "ok",
+    "attempts": 1,
+    "bytes": 109870,
+    "sha256": "d547e1cd8ceb648dd002c8d2ec38e789f618060f41e6c0b6d9eb9db51730ba40",
+    "url": "https://i.ytimg.com/vi/xtbZARUHt7s/maxresdefault.jpg"
+  },
+  {
+    "asset_id": "supplied-5a97c09a15a0",
+    "filename": "archive-video-marissa.jpg",
+    "status": "ok",
+    "attempts": 1,
+    "bytes": 111144,
+    "sha256": "5a97c09a15a094b68cd7fe03e1e88fcdb9b868b6b34b523ae298e1a240c2e8ae",
+    "url": "https://i.ytimg.com/vi/2sAGALC7Pig/maxresdefault.jpg"
   }
 ]

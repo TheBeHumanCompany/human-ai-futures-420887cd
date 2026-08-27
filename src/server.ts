@@ -48,6 +48,21 @@ function isH3SwallowedErrorBody(body: string): boolean {
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      // /about permanently redirects to /who-we-are (Krisp 2026-08-22
+      // meeting, user-confirmed 2026-08-26). Read verbs only — everything
+      // else falls through for the framework to answer. One trailing slash is
+      // tolerated; deeper paths ("/about-the-founder") never match.
+      if (request.method === "GET" || request.method === "HEAD") {
+        const url = new URL(request.url);
+        const pathname =
+          url.pathname.endsWith("/") && url.pathname !== "/"
+            ? url.pathname.slice(0, -1)
+            : url.pathname;
+        if (pathname === "/about") {
+          return Response.redirect(new URL(`/who-we-are${url.search}`, request.url), 301);
+        }
+      }
+
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
 

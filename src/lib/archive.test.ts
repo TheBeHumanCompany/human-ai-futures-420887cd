@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
-import { ARCHIVE } from "./content";
+import { ARCHIVE, HUMAN_ARCHIVE_VIDEOS } from "./content";
 import baseline from "../../docs/archive-baseline.json";
 
 /**
@@ -120,19 +120,19 @@ describe("AC-7.2 — the portraits render from committed binaries", () => {
 
 describe("AC-7.3 — every surface that renders the archive reads from one source", () => {
   /**
-   * ── Amended 2026-08-19 (Sid: defer the archive) ──────────────────────────
+   * ── Amended 2026-08-19 (Sid: defer the archive); restored 2026-08-26 ─────
    *
    * AC-7.3 was written when `/the-human-archive` rendered the portrait grid
-   * and `/human-archive/$slug` rendered an entry each. Both are deferred: the
-   * page is now a teaser that says "to be released soon", and the `$slug`
-   * route is deleted. So the criterion's surfaces are no longer those two.
+   * and `/human-archive/$slug` rendered an entry each. Both were deferred on
+   * 2026-08-19 (teaser page, `$slug` deleted), which moved this suite's
+   * consumer set to the two surfaces that still rendered the four entries.
    *
-   * The property it was protecting is unchanged and still worth pinning —
-   * nothing renders a portrait list of its own — so the consumer set moves to
-   * the two surfaces that DO still render the four entries. Rewriting the list
-   * without also pinning the deferral would be the cheap version of this edit:
-   * the grid could quietly come back and the suite would applaud. Hence the
-   * second test.
+   * The 2026-08-26 restore brings the page back — but not the old content:
+   * `/the-human-archive` now renders `HUMAN_ARCHIVE_VIDEOS` (pinned in the
+   * describe below), NOT `ARCHIVE`, so the consumers of the original four are
+   * still exactly the homepage section and the New Human Era row. The `$slug`
+   * route stays deferred with the second test's inverse: pinning the restore
+   * is now the job, where pinning the deferral used to be.
    */
   test("the homepage section and the New Human Era row both consume ARCHIVE", () => {
     // "Zero broken images" is only checkable in a browser, and
@@ -160,22 +160,83 @@ describe("AC-7.3 — every surface that renders the archive reads from one sourc
     }
   });
 
-  test("the deferred archive page renders no entries, and the $slug route is gone", () => {
+  test("the restored archive page renders the video list, and the $slug route is still gone", () => {
     const page = path.join(REPO_ROOT, "src/routes/the-human-archive.tsx");
     const source = readFileSync(page, "utf8");
 
-    // The grid is gone: the page neither imports the entries nor names one.
-    expect(source).not.toContain('from "@/lib/content"');
-    for (const entry of ARCHIVE) {
-      expect(source, `${entry.name} must not be on the deferred page`).not.toContain(entry.name);
-    }
+    // The page is live again: it imports the video entries from the one
+    // content module and renders every one of them. The `.map(` matters as
+    // much as the import — a page can keep the import (a type, one featured
+    // card) while rendering none of the four, and a bare `toContain` stays
+    // green through exactly that.
+    expect(source).toMatch(
+      /import\s+\{[^}]*HUMAN_ARCHIVE_VIDEOS[^}]*\}\s+from\s+"@\/lib\/content"/,
+    );
+    expect(source).toMatch(/HUMAN_ARCHIVE_VIDEOS\.map\(/);
 
-    // And it says so, in the words the deferral was approved in.
-    expect(source.toLowerCase()).toContain("to be released soon");
+    // The deferral wording is gone — head and body alike.
+    expect(source.toLowerCase()).not.toContain("to be released soon");
 
     expect(
       existsSync(path.join(REPO_ROOT, "src/routes/human-archive.$slug.tsx")),
-      "the per-entry route is deferred with the grid",
+      "the per-entry route stays deferred",
     ).toBe(false);
+  });
+});
+
+/**
+ * The four Human Archive VIDEOS added with the 2026-08-26 restore — a
+ * separate list from `ARCHIVE`, pinned by its own exact-content contract.
+ *
+ * There is no "before" to preserve here, so the expectations are literals
+ * from the verified source table (title-checked against YouTube 2026-08-26),
+ * not a copy of whatever `content.ts` currently says. A transposed ID or a
+ * wrong location string is a content error no type checker can see, and the
+ * order is the user-given one, not a sort.
+ */
+describe("HUMAN_ARCHIVE_VIDEOS", () => {
+  test("exactly four entries, in the user-given order", () => {
+    expect(HUMAN_ARCHIVE_VIDEOS.length).toBe(4);
+    expect(HUMAN_ARCHIVE_VIDEOS.map((v) => v.name)).toEqual(["LUCY", "FARID", "ABDI", "MARISSA"]);
+  });
+
+  test("archive numbers, locations and YouTube IDs are exact", () => {
+    expect(HUMAN_ARCHIVE_VIDEOS.map((v) => v.no)).toEqual(["056", "038", "041", "060"]);
+    expect(HUMAN_ARCHIVE_VIDEOS.map((v) => v.location)).toEqual([
+      "Manchester, UK",
+      "Morocco",
+      "Calgary, Canada",
+      "Vancouver, Canada",
+    ]);
+    expect(HUMAN_ARCHIVE_VIDEOS.map((v) => v.youtubeId)).toEqual([
+      "lDGsG0nu1Ck",
+      "ESAw6gJRGhQ",
+      "xtbZARUHt7s",
+      "2sAGALC7Pig",
+    ]);
+  });
+
+  test("numbers are zero-padded, and numbers and YouTube IDs are unique", () => {
+    for (const v of HUMAN_ARCHIVE_VIDEOS) {
+      // "56" would render as "No. 56" next to every portrait-era "No. 046".
+      expect(v.no).toMatch(/^\d{3}$/);
+    }
+    expect(new Set(HUMAN_ARCHIVE_VIDEOS.map((v) => v.no)).size).toBe(HUMAN_ARCHIVE_VIDEOS.length);
+    expect(new Set(HUMAN_ARCHIVE_VIDEOS.map((v) => v.youtubeId)).size).toBe(
+      HUMAN_ARCHIVE_VIDEOS.length,
+    );
+  });
+
+  test("every still is a bundled archive-video asset, never a Lovable pointer", () => {
+    for (const v of HUMAN_ARCHIVE_VIDEOS) {
+      expect(typeof v.still).toBe("string");
+      // Same defect class AC-7.2 guards for the portraits: `/__l5e/...` is
+      // served only by Lovable's own hosting and `.asset.json` is a pointer
+      // to a pointer — both are guaranteed production 404s.
+      expect(v.still).toContain("archive-video-");
+      expect(v.still).not.toContain("__l5e");
+      expect(v.still).not.toContain(".asset.json");
+      expect(v.still).toMatch(/\.(png|jpe?g|webp|avif)$/i);
+    }
   });
 });

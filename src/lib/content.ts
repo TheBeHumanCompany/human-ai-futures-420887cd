@@ -2,6 +2,10 @@ import portrait1 from "@/assets/archive-adewolf.png";
 import portrait2 from "@/assets/archive-bella.png";
 import portrait3 from "@/assets/archive-anton.png";
 import portrait4 from "@/assets/archive-arlina.png";
+import archiveVideoLucy from "@/assets/archive-video-lucy.jpg";
+import archiveVideoFarid from "@/assets/archive-video-farid.jpg";
+import archiveVideoAbdi from "@/assets/archive-video-abdi.jpg";
+import archiveVideoMarissa from "@/assets/archive-video-marissa.jpg";
 
 export const SERVICES = [
   {
@@ -101,6 +105,43 @@ export const ARCHIVE = [
     no: "037",
     slug: "arlina",
     quote: "Empathy.\nWith people and\nanything you do in life.",
+  },
+] as const;
+
+/**
+ * The four Human Archive VIDEOS — a separate list from `ARCHIVE` above, which
+ * stays exactly as it was (its people, order and quotes are pinned by
+ * `archive.test.ts`). IDs are title-verified 2026-08-26; order is the
+ * user-given one (Lucy, Farid, Abdi, Marissa).
+ */
+export const HUMAN_ARCHIVE_VIDEOS = [
+  {
+    name: "LUCY",
+    no: "056",
+    location: "Manchester, UK",
+    youtubeId: "lDGsG0nu1Ck",
+    still: archiveVideoLucy,
+  },
+  {
+    name: "FARID",
+    no: "038",
+    location: "Morocco",
+    youtubeId: "ESAw6gJRGhQ",
+    still: archiveVideoFarid,
+  },
+  {
+    name: "ABDI",
+    no: "041",
+    location: "Calgary, Canada",
+    youtubeId: "xtbZARUHt7s",
+    still: archiveVideoAbdi,
+  },
+  {
+    name: "MARISSA",
+    no: "060",
+    location: "Vancouver, Canada",
+    youtubeId: "2sAGALC7Pig",
+    still: archiveVideoMarissa,
   },
 ] as const;
 

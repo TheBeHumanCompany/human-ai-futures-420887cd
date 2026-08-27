@@ -390,6 +390,30 @@ and every `curl` uses `-fsSL`.
 | AC-3.3 | `B:` for every surface in `SURFACES` with `expectsSingleNav` (all but `/be-human-ai`) — assert exactly **1** `<nav>` descendant of the site header. *(Radix dropdown panels are menus inside that one nav, not additional `<nav>` elements.)* `/about` is checked as a **301**, not a page. | asserts `SURFACES.length` matches `routeTree.gen.ts` and the checked subset is non-empty, before iterating | any page grows a second nav; **or the sweep silently covers fewer routes** |
 | AC-3.4 | `B:` `/be-human-ai` renders the header nav **plus** a second in-page nav; every sub-nav `href="#id"` resolves to an existing element | sub-nav link count `≥ 10` | a dangling anchor or a missing sub-nav |
 
+### Amendment 8 — 2026-08-26 — amended criteria (Krisp "BeHuman Website changes" meeting, user-confirmed)
+
+Four decisions, superseding rows below: (1) `/about` permanently **301**s to `/who-we-are`
+(SEO; the sitemap drops `/about`, `/who-we-are` stays); (2) `/the-human-archive` is restored
+to the pre-deferral grid with four NEW video people (LUCY 056 Manchester, UK; FARID 038
+Morocco; ABDI 041 Calgary, Canada; MARISSA 060 Vancouver, Canada — hover/tap plays each
+person's muted YouTube embed, unmute toggle, never two players at once) plus a "Watch the
+Human Archives" button to playlist `PLdA-mx7SlQ_A`; (3) the homepage archive CTA returns to
+"Explore the archive" (banned wording stays banned); (4) the nav is **seven flat items** —
+About dropdown gone, Blueprint dropdown gone, Blueprint the sole CTA as an outline lime pill
+that fills on hover. The existing four archive people are unchanged; `/human-archive/$slug`
+stays deferred.
+
+| AC | Proof | Non-vacuity floor | Fails when |
+|----|-------|-------------------|-----------|
+| AC-3.1a *(restated)* | `T:` `NAV` deep-equals the Amendment 8 fixture: **7 top-level items** in order `Why We Exist, Who We Are, The New Human Era, The Human Archive, Podcast, Contact, Blueprint`; **exactly 0** dropdown triggers. `B:` desktop bar renders the 7 links and no dropdown | full deep-equal on the tree; trigger count asserted to 0 | any label, order, or nesting drifts, or a dropdown returns |
+| AC-3.2a *(repurposed)* | `B:` Why We Exist and Who We Are are **direct top-level links** to `/why-we-exist` and `/who-we-are`; each fetched for **200** | both fetched, both 200 | either 404s, or either becomes a dropdown child again |
+| AC-3.2b *(inverted)* | `B:` `GET /about` with `maxRedirects: 0` answers **301** with `Location` ending `/who-we-are` (query preserved); `/why-we-exist` and `/who-we-are` still 200 | the redirect is NOT followed — following it would prove a 200, not the 301 | `/about` 200s, redirects elsewhere, or drops the query string |
+| AC-3.7a *(restated)* | `B:` the Blueprint item is the **sole** `data-nav-cta`; at rest it computes a lime **border** with a non-lime background, and on hover the background **fills** `--lime`; `border-radius` ≥ 9999px | exactly **1** CTA among 7 items; at-rest AND hover states both asserted | the pill is filled at rest, a second CTA appears, or hover does not fill |
+| ~~AC-3.8a~~ | **REVERSED by Amendment 8 (2026-08-26).** The About dropdown parent no longer exists; `/about` is a 301. Row deleted from the machine-readable proof table. | — | — |
+| AC-7.4a *(new)* | `B:` the restored grid renders `HUMAN_ARCHIVE_VIDEOS` in order — LUCY 056, FARID 038, ABDI 041, MARISSA 060, with names, numbers, locations; iframe count goes **0 → 1 → 0** on hover/leave; a second card's hover keeps the count at **1** with the src swapped; unmute click reports `data-muted="false"`; no overflow after activation at 390/834/1440. `T:` exact-content unit tests over `HUMAN_ARCHIVE_VIDEOS` | four names + numbers + locations asserted; iframe count asserted at every step | two players live at once, an iframe at load, or a player leaking after leave |
+| AC-7.5a *(new)* | `B:` the playlist link's visible label is exactly **Watch the Human Archives** and its href is the `ARCHIVE_PLAYLIST_URL` constant (`PLdA-mx7SlQ_A`); no "Coming Soon"/"to be released soon" in head or body; live metadata restored | label and href asserted by identity against the constant | teaser wording survives, or the button hardcodes the URL |
+| AC-2.9a *(new)* | `B:` the homepage ships **0** iframes at load; clicking the facade mounts exactly **1** `youtube-nocookie.com/embed/-r011ECKr7M`; poster visible before the click; reload returns 0; no overflow after activation | iframe count asserted before and after activation | an iframe in the initial DOM, or activation stacking a second player |
+
 ### ★★★★★ Amendment 3 — amended criteria
 | AC | Proof | Non-vacuity floor | Fails when |
 |----|-------|-------------------|-----------|
@@ -413,15 +437,15 @@ and every `curl` uses `-fsSL`.
 ### ★★ Amendment 1 — amended criteria
 | AC | Proof | Non-vacuity floor | Fails when |
 |----|-------|-------------------|-----------|
-| AC-3.1a | `T:` `NAV` deep-equals the binding tree fixture: 6 top-level items in order `About, The New Human Era, The Human Archive, Podcast, Contact, Blueprint`; **exactly 2** have `children`; About's children are `[Why We Exist, Who We Are]`; Blueprint's are `[Human Readiness, Governance & Sovereignty, AI Strategy]`. `B:` desktop bar renders 2 dropdown triggers | full deep-equal on the tree, not a length check | any label, order, or nesting drifts from the binding tree |
-| AC-3.2a | `B:` open the About dropdown; assert **2** links resolving to `/why-we-exist` and `/who-we-are`, both returning **200**; **and** the two are distinct URLs | both fetched, both 200 | a child that 404s, or the two collapsing to one destination |
+| AC-3.1a *(amended 2026-08-26 — current row in the Amendment 8 table)* | `T:` `NAV` deep-equals the binding tree fixture: 6 top-level items in order `About, The New Human Era, The Human Archive, Podcast, Contact, Blueprint`; **exactly 2** have `children`; About's children are `[Why We Exist, Who We Are]`; Blueprint's are `[Human Readiness, Governance & Sovereignty, AI Strategy]`. `B:` desktop bar renders 2 dropdown triggers | full deep-equal on the tree, not a length check | any label, order, or nesting drifts from the binding tree |
+| AC-3.2a *(amended 2026-08-26 — current row in the Amendment 8 table)* | `B:` open the About dropdown; assert **2** links resolving to `/why-we-exist` and `/who-we-are`, both returning **200**; **and** the two are distinct URLs | both fetched, both 200 | a child that 404s, or the two collapsing to one destination |
 | AC-3.5a | `B:` `/who-we-are` returns 200 and renders **3** team entries (Shane James · Founder & CEO; Sid · AI, Cybersecurity & Governance; Maya · Human Readiness & Organizational Change) plus the "Built for Human-First AI Transformation" content; `assert_eq` count of `\[Last Name\]` to **0**; **release gate blocks on `.approvals/who-we-are-review.json`** | 3 entries + 3 roles + review artifact present | a surname is invented, a placeholder ships, or it reaches prod without Shane's sign-off |
 | AC-3.6a | `B:` all three pillar destinations return **200** and each renders its own H1: Human Readiness, Governance & Sovereignty, AI Strategy | 3 routes fetched, 3 distinct H1s | a pillar 404s or two share a heading |
-| AC-3.7a | `B:` the Blueprint nav item's computed `background-color` == `--lime` and its `border-radius` ≥ 9999px (pill), **and** no other top-level nav item matches — i.e. it is *visually distinct*, not merely styled | asserts exactly **1** pill among 6 items | Blueprint renders as a plain text link, or every item becomes a pill |
+| AC-3.7a *(amended 2026-08-26 — current row in the Amendment 8 table)* | `B:` the Blueprint nav item's computed `background-color` == `--lime` and its `border-radius` ≥ 9999px (pill), **and** no other top-level nav item matches — i.e. it is *visually distinct*, not merely styled | asserts exactly **1** pill among 6 items | Blueprint renders as a plain text link, or every item becomes a pill |
 | AC-4.6a | covered by the AC-4.1/4.3 rows (two-register scale + both voices on the specimen) | — | — |
 | AC-5.8a | covered by its layout sub-proof row below (band alternation, eyebrow+rule, lime-accent-only, alternating splits, 8 px radii) | — | — |
 | AC-5.9a | `T:` **no** `HOME_PRINCIPLES` title matches `/\.$/`; **and** the rendered principle titles on `/` and `/the-new-human-era` likewise | asserts all **6** titles checked | any trailing period survives in const or render |
-| AC-2.7a | `B:` the archive CTA's accessible name is exactly **"Explore the archive"** and the NHE CTA's is exactly **"Read the New Human Era"**; `assert_eq` occurrences of "Explore the human archive" and "Learn more" to **0** sitewide | both positive strings asserted **and** both negatives | an old label survives anywhere |
+| AC-2.7a *(homepage surface restored 2026-08-26 — Amendment 8)* | `B:` the archive CTA's accessible name is exactly **"Explore the archive"** and the NHE CTA's is exactly **"Read the New Human Era"**; `assert_eq` occurrences of "Explore the human archive" and "Learn more" to **0** sitewide | both positive strings asserted **and** both negatives | an old label survives anywhere |
 | `SUPERSEDED` ~~AC-2.8a~~ | **SUPERSEDED by AC-2.8b.** Original: the maple-leaf node and the "Indigenous-led" text node share a common ancestor **within 2 DOM levels** — i.e. adjacency, not merely co-presence on the page | asserts both nodes found before measuring distance | the leaf floats loose in the hero (the pre-amendment reading) |
 | AC-6.9a | **LIVE — mechanism superseded by AC-6.9b/c/d; these five sub-assertions STAND.** See §5 Phase 6. `B:` (a) **≥6** sections render default-collapsed, counted as `details[data-section-id]` **deduplicated by id** (AC-6.9c — never `[data-state="closed"]`, which counted 8 for 2 sections); (b) the ratio **as defined by AC-6.9d** — visible ÷ complete normalized prose characters against the canonical fixture, with both floors — ≤ **40%**; (c) **scroll depth to the *last* Tier-1 element** ≤ 4 viewport heights at 1440×900 — *re-aimed: the old "first CTA within 2 viewports" was **vacuous**, since S6.6 puts a CTA in the hero and it could never fail*; (d) the 16 AC-6.2 sections are **all still in the DOM**; (e) **heading-size *distribution*, not just variety** — every Tier-1 heading is strictly larger than every Tier-2 heading (computed `font-size`), and the 16 resolve to ≥3 distinct steps. *Re-aimed: with a two-register scale, "≥3 distinct steps" alone was near-vacuous* | every sub-assertion has its own floor; (d) re-runs AC-6.2's ordered-id check so digestibility cannot be bought by deleting content | a flat 16-section wall, **or** a "digestible" page that achieved it by dropping sections |
 
@@ -485,7 +509,7 @@ and every `curl` uses `-fsSL`.
 |----|-------|-------------------|-----------|
 | AC-7.1 | `T:` `ARCHIVE` deep-equals a frozen fixture of the 4 entries — names, locations, `no`, slugs, quotes | full deep-equal on 4×6 fields | any field edited |
 | AC-7.2 | `T:` each `ARCHIVE[n].image` resolves to a file on disk whose SHA-256 is in the recovery manifest; `B:` all 4 render with `naturalWidth > 0` | 4 asserted individually, in DOM | a portrait falls back to a pointer or a broken img |
-| AC-7.3 | `B:` `/the-human-archive` **and** `/` archive section — every `<img>` has `naturalWidth > 0` | asserts `≥4` images found on each surface | zero-image vacuous pass |
+| AC-7.3 *(the `/the-human-archive` half is live again 2026-08-26 — Amendment 8; the page is now proven by AC-7.4a/AC-7.5a)* | `B:` `/the-human-archive` **and** `/` archive section — every `<img>` has `naturalWidth > 0` | asserts `≥4` images found on each surface | zero-image vacuous pass |
 
 ### Cross-cutting
 | AC | Proof | Non-vacuity floor | Fails when |

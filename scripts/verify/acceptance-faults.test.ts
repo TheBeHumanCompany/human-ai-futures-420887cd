@@ -99,22 +99,27 @@ function goodPage(pathname: string): string {
     .map((n) => `<img src="/assets/${n}.webp" alt="${n}">`)
     .join("");
 
-  // ── the archive, as it is actually laid out since the 2026-08-19 deferral ──
+  // ── the archive, as it is actually laid out since the 2026-08-26 restore ──
   //
-  // The four entries render on the homepage section and on /the-new-human-era;
-  // /the-human-archive is a teaser that names none of them. The fixture has to
-  // model that split rather than stamping the entries onto every page: with the
-  // entries everywhere, the component's "the deferred page lists no entries"
-  // assertion would fail the control, and with them nowhere the AC-7.1 case
-  // would pass vacuously.
-  const deferred = pathname === "/the-human-archive";
-  const archive = deferred
-    ? `<p>To be released soon</p>`
+  // The ORIGINAL four entries render on the homepage section and on
+  // /the-new-human-era; /the-human-archive is the restored grid, rendering the
+  // four VIDEO entries and the playlist CTA in their place. The fixture has
+  // to model that split rather than stamping one set everywhere: with the
+  // video people also on the homepage, the drop-a-person fault below could
+  // hide behind an unmutated copy, and with the original four on the archive
+  // page it would model a page that no longer exists.
+  const restored = pathname === "/the-human-archive";
+  const archive = restored
+    ? ["LUCY", "FARID", "ABDI", "MARISSA"].map((n) => `<h3>${n}</h3>`).join("") +
+      `<a href="https://www.youtube.com/playlist?list=PLdA-mx7SlQ_A">` +
+      `Watch the Human Archives</a>`
     : ["ADEWOLF", "BELLA", "ANTON", "ARLINA"].map((n) => `<h3>${n}</h3>`).join("");
   // Fingerprinted the way the bundler emits them — the stem is what the gate
   // counts, because a bare <img> floor passes on the collage alone.
-  const portraits = deferred
-    ? ""
+  const portraits = restored
+    ? ["lucy", "farid", "abdi", "marissa"]
+        .map((n) => `<img src="/assets/archive-video-${n}-a1b2c3d4.png" alt="${n}">`)
+        .join("")
     : ["adewolf", "bella", "anton", "arlina"]
         .map((n) => `<img src="/assets/archive-${n}-a1b2c3d4.png" alt="${n}">`)
         .join("");
@@ -278,18 +283,33 @@ describe("prod-acceptance.sh fails on seeded faults", () => {
   );
 
   test(
-    "the deferred archive page quietly regrowing its entries is rejected (AC-7.3)",
+    "the archive page regressing to deferral wording is rejected (AC-7.5a)",
     async () => {
-      // The deferral is a decision, and the only thing standing between a
+      // The restore is a decision, and the only thing standing between a
       // decision and a silent revert is a check that has been seen failing.
-      // This is that check: the grid coming back on /the-human-archive — the
-      // exact shape of the regression — must be refused.
+      // This is that check: "To be released soon" coming back on
+      // /the-human-archive — the exact shape of the 2026-08-19 state the
+      // 2026-08-26 restore replaced — must be refused.
       const r = await runAgainstFixture((pathname, html) =>
         pathname === "/the-human-archive"
-          ? html.replace("</main>", "<h3>ADEWOLF</h3></main>")
+          ? html.replace("</main>", "<p>To be released soon</p></main>")
           : html,
       );
-      expectRejected(r, "ADEWOLF");
+      expectRejected(r, "AC-7.5a");
+    },
+    TEST_TIMEOUT,
+  );
+
+  test(
+    "the archive page losing a video person is rejected (AC-7.4a)",
+    async () => {
+      // The grid is exactly four people; three-of-four renders is the quiet
+      // failure mode a contains-only gate would wave through, so the fault
+      // the gate must catch is a person disappearing, not a page breaking.
+      const r = await runAgainstFixture((pathname, html) =>
+        pathname === "/the-human-archive" ? html.replace("<h3>MARISSA</h3>", "") : html,
+      );
+      expectRejected(r, "MARISSA");
     },
     TEST_TIMEOUT,
   );

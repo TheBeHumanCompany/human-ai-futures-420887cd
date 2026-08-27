@@ -149,7 +149,6 @@ test.describe("AC-2.6 / AC-2.7a — calls to action", () => {
     await expect(cta).toHaveAttribute("href", "/be-human-ai");
   });
 
-
   test("the Blueprint books the 30-minute call exactly three times, in three sections", async ({
     page,
   }) => {
@@ -198,106 +197,92 @@ test.describe("AC-3.x — the navigation tree", () => {
     await page.setViewportSize(DESKTOP);
   });
 
-  test("AC-3.1a — six top-level items and exactly two dropdown parents", async ({ page }) => {
+  test("AC-3.1a — seven top-level items and no dropdown parents", async ({ page }) => {
+    // Amendment 8, 2026-08-26: the About dropdown was split into two flat
+    // items and Blueprint lost its panel, so the bar is seven leaves.
     await page.goto("/");
 
     const items = page.locator("header [data-nav-item]");
-    await expect(items, "the binding tree has six top-level items").toHaveCount(NAV.length);
-    expect(NAV.length, "floor: the nav model is populated").toBe(6);
+    await expect(items, "the binding tree has seven top-level items").toHaveCount(NAV.length);
+    expect(NAV.length, "floor: the nav model is populated").toBe(7);
 
     const labels = await items.evaluateAll((nodes) =>
       nodes.map((n) => n.getAttribute("data-nav-item")),
     );
     expect(labels).toEqual(NAV.map((i) => i.label));
 
-    // A dropdown parent is the one that owns a panel trigger.
+    // A dropdown parent is the one that owns a panel trigger. The flat bar
+    // has none: the two former parents are now ordinary links.
     const triggers = page.locator(
       "header [aria-label^='Open '][aria-haspopup], header [aria-haspopup='menu']",
     );
-    await expect(triggers, "About and Blueprint, and nothing else").toHaveCount(2);
+    await expect(triggers, "no dropdown parent may remain").toHaveCount(0);
   });
 
-  test("AC-3.2a — About opens onto two distinct, live destinations", async ({ page }) => {
+  test("AC-3.2a — Why We Exist and Who We Are are direct links and live", async ({ page }) => {
+    // Amendment 8, 2026-08-26: the About dropdown is gone, so its two
+    // children prove themselves as top-level links in the bar — not as items
+    // inside any menu panel.
     await page.goto("/");
 
-    // This app is client-rendered, so the trigger exists in the markup before
-    // React has attached anything to it. Clicking in that window does nothing
-    // and the menu never opens — which surfaces as "expected 2 menuitems, got
-    // 0", reading exactly like the nav being broken. It was diagnosed as
-    // parallel-worker contention and is not: it reproduces at --workers=1, and
-    // a run that waits for hydration first finds the menu correct (role=menu,
-    // two menuitems, aria-expanded=true). Same reason the contrast test above
-    // awaits document.fonts.ready.
-    // The first attempt was to wait for `aria-expanded` to exist, which is not
-    // a hydration signal at all — it is in the server-rendered markup already,
-    // so the wait passed instantly and the click still landed too early under
-    // load. Retrying the click until the menu is actually open is the honest
-    // version: it makes no claim about WHEN React attaches, only that a click
-    // eventually does what a click is supposed to do.
-    const trigger = page.locator("header [aria-label='Open About menu']");
-    await expect(trigger).toBeVisible();
-    await expect(async () => {
-      // Guarded, because clicking an already-open Radix menu closes it.
-      if ((await page.getByRole("menuitem").count()) === 0) await trigger.click();
-      await expect(page.getByRole("menuitem")).toHaveCount(2, { timeout: 500 });
-    }).toPass({ timeout: 15_000 });
+    for (const href of ["/why-we-exist", "/who-we-are"]) {
+      // Scoped to the header, because a dropdown panel portals to <body>;
+      // a link that only exists inside a panel would not match here.
+      const link = page.locator("header").locator(`a[href='${href}']`);
+      await expect(link, `${href} must be a direct header link`).toHaveCount(1);
 
-    const links = page.getByRole("menuitem");
-    await expect(links, "About discloses exactly two children").toHaveCount(2);
-
-    const hrefs = await links.evaluateAll((nodes) =>
-      nodes.map((n) => n.getAttribute("href") ?? ""),
-    );
-    expect(hrefs.sort()).toEqual(["/who-we-are", "/why-we-exist"]);
-    expect(new Set(hrefs).size, "the two must be distinct URLs").toBe(2);
-
-    for (const href of hrefs) {
       const res = await page.request.get(href);
       expect(res.status(), `${href} must be live`).toBe(200);
     }
   });
 
-  test("AC-3.2b — /why-we-exist is new and /about is still live, unredirected", async ({
-    page,
-  }) => {
+  test("AC-3.2b — about permanently redirects to who-we-are", async ({ page }) => {
+    // Amendment 8, 2026-08-26: the earlier decision to keep /about live was
+    // reversed — it is now a permanent 301 to /who-we-are.
     const why = await page.request.get("/why-we-exist");
     expect(why.status()).toBe(200);
+    const who = await page.request.get("/who-we-are");
+    expect(who.status()).toBe(200);
 
-    // The decision was explicitly NOT to 301 /about. A redirect here would be
-    // the live-URL change the user declined.
     const about = await page.request.get("/about", { maxRedirects: 0 });
-    expect(about.status(), "/about must answer directly, not redirect").toBe(200);
+    expect(about.status(), "/about must answer with the permanent redirect").toBe(301);
+    const location = about.headers()["location"] ?? "";
+    expect(location, "and it must land on /who-we-are").toMatch(/\/who-we-are$/);
   });
 
-  test("AC-3.8a — the About parent itself links to /about", async ({ page }) => {
-    await page.goto("/");
-    const about = page.locator("header [data-nav-item='About']");
-    await expect(about.locator("a[href='/about']"), "or the page is orphaned").toHaveCount(1);
-  });
-
-  test("AC-3.7a — Blueprint is the one lime pill", async ({ page }) => {
+  test("AC-3.7a — Blueprint is the one outline lime pill", async ({ page }) => {
+    // Amendment 8, 2026-08-26: the pill is an outline at rest — transparent
+    // ground, lime border — that fills lime on hover, per the meeting's
+    // "green outline once we hover".
     await page.goto("/");
 
     const lime = await resolvedVar(page, "--lime");
-    const items = page.locator("header [data-nav-item]");
+    const pill = page.locator("header [data-nav-cta='true']");
+    await expect(pill, "the bar carries exactly one CTA control").toHaveCount(1);
+    await expect(pill).toHaveAttribute("data-nav-item", "Blueprint");
 
-    const styles = await items.evaluateAll((nodes) =>
-      nodes.map((n) => {
-        const s = getComputedStyle(n);
-        return {
-          label: n.getAttribute("data-nav-item"),
-          bg: s.backgroundColor,
-          radius: parseFloat(s.borderTopLeftRadius),
-        };
-      }),
-    );
+    const rest = await pill.evaluate((n) => {
+      const s = getComputedStyle(n);
+      return {
+        bg: s.backgroundColor,
+        border: s.borderTopColor,
+        radius: parseFloat(s.borderTopLeftRadius),
+      };
+    });
+    expect(rest.bg, "transparent ground at rest, not lime").toBe("rgba(0, 0, 0, 0)");
+    expect(rest.border, "the outline is the lime border").toBe(lime);
+    expect(rest.radius, "and it is actually pill-shaped").toBeGreaterThanOrEqual(9999);
 
-    const pills = styles.filter((s) => s.bg === lime);
-    expect(
-      pills.map((p) => p.label),
-      "exactly one item is the pill",
-    ).toEqual(["Blueprint"]);
-    expect(pills[0].radius, "and it is actually pill-shaped").toBeGreaterThanOrEqual(9999);
+    // The hover fill is a 200ms CSS transition, so the computed ground must
+    // be polled until the fade settles — a one-shot read catches it mid-way
+    // and reads as a broken pill. Same retry-not-sleep discipline as the
+    // hydration note that used to live on the About dropdown test.
+    await pill.hover();
+    await expect
+      .poll(async () => pill.evaluate((n) => getComputedStyle(n).backgroundColor), {
+        timeout: 5_000,
+      })
+      .toBe(lime);
   });
 
   test("AC-3.6a — the three pillar destinations exist with distinct headings", async ({ page }) => {

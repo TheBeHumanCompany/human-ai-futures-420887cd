@@ -85,6 +85,14 @@ describe("the shared page list", () => {
     expect(STATIC_PATHS).not.toContain("/sitemap.xml");
     expect(STATIC_PATHS.some((p) => p.includes("$slug"))).toBe(false);
   });
+
+  test("no longer lists /about — it permanently redirects to /who-we-are", () => {
+    // 2026-08-26: /about 301s to /who-we-are (Krisp 2026-08-22 meeting,
+    // user-confirmed 2026-08-26 — Amendment 8). Advertising a redirected URL
+    // points crawlers at a bounce; /who-we-are is the page that stays.
+    expect(STATIC_PATHS).not.toContain("/about");
+    expect(STATIC_PATHS).toContain("/who-we-are");
+  });
 });
 
 describe("reachable Sanity", () => {

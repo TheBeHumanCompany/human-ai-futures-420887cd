@@ -1,9 +1,9 @@
 {
   "description": "Derived from docs/spec/deep-interview-behuman-site-restructure.md by scripts/verify/ac-inventory.ts. Do not hand-edit — regenerate. The live set here is what ac-bijection.sh holds the proof table to, in both directions.",
   "generated_from": "docs/spec/deep-interview-behuman-site-restructure.md",
-  "total": 78,
-  "live": 73,
-  "retired": 5,
+  "total": 81,
+  "live": 75,
+  "retired": 6,
   "criteria": [
     {
       "id": "AC-1.1",
@@ -53,7 +53,7 @@
     {
       "id": "AC-2.1b",
       "text": "The footer renders exactly `Indigenous-led. Canadian-built`. *(supersedes AC-2.1's \"Indigenous and Canadian-owned.\")*",
-      "line": 369,
+      "line": 370,
       "status": "live"
     },
     {
@@ -74,13 +74,13 @@
     {
       "id": "AC-2.3b",
       "text": "These three live in one shared constant module (with `INDIGENOUS_LINE` and the booking URLs); no call site inlines a social URL. *(supersedes AC-2.3's \"no `href=\"#\"` remains\" for these three)*",
-      "line": 431,
+      "line": 432,
       "status": "live"
     },
     {
       "id": "AC-2.3c",
       "text": "`SOCIAL` in `site-footer.tsx:4` and the platform list in `social-section.tsx:101` contain **exactly three** entries — LinkedIn, Instagram, YouTube. TikTok and Snapchat are deleted, along with any now-unused icon components (e.g. `SnapchatIcon`, `social-section.tsx:78`). A test asserts the rendered footer contains no TikTok or Snapchat text and exactly three social links, each with an `https://` href.",
-      "line": 435,
+      "line": 436,
       "status": "live",
       "amended_by": [
         "AC-2.3d"
@@ -89,7 +89,7 @@
     {
       "id": "AC-2.3d",
       "text": "The social list is **exactly four**, all verified HTTP 200 on 2026-08-18: *(supersedes AC-2.3c's \"exactly three\")*",
-      "line": 449,
+      "line": 450,
       "status": "live"
     },
     {
@@ -113,13 +113,13 @@
     {
       "id": "AC-2.7a",
       "text": "CTA labels read **\"Explore the archive\"** (not \"Explore the human archive\") and **\"Read the New Human Era\"** (not \"Learn more\").",
-      "line": 292,
+      "line": 293,
       "status": "live"
     },
     {
       "id": "AC-2.8a",
       "text": "A maple leaf sits **beside the \"Indigenous-led\" line** (Maya, 08-15 18:47) — this locates AC-6.6's leaf.",
-      "line": 293,
+      "line": 294,
       "status": "retired",
       "retired_by": "AC-2.8b",
       "retired_reason": "The parenthetical is unqualified — 'supersedes AC-2.8a'. AC-2.8a located the maple leaf beside a string ('Indigenous-led') that Amendment 3 then replaced outright, so its entire content is restated by AC-2.8b, which additionally requires implementation and proof to share one constant."
@@ -127,7 +127,13 @@
     {
       "id": "AC-2.8b",
       "text": "The maple leaf sits immediately beside that string. Implementation and proof consume **one shared constant** — neither may hardcode the copy independently. *(supersedes AC-2.8a)*",
-      "line": 370,
+      "line": 371,
+      "status": "live"
+    },
+    {
+      "id": "AC-2.9a",
+      "text": "The homepage Why We Exist section ships **zero** iframes in the initial DOM: the video affordance is click-to-load, and the first activation mounts exactly one `youtube-nocookie.com/embed/-r011ECKr7M?autoplay=1` iframe (`allow=\"autoplay\"`, `title=\"Welcome To My Channel — Building The Be Human Company\"`). The poster stays visible until the click, the control is a real button operable by keyboard, reloading returns zero iframes, and no horizontal document overflow appears after activation.",
+      "line": 714,
       "status": "live"
     },
     {
@@ -140,8 +146,8 @@
     },
     {
       "id": "AC-3.1a",
-      "text": "`site-header.tsx` renders the binding nav tree above — About and Blueprint are dropdown parents; the other four are flat top-level items. *(supersedes AC-3.1)*",
-      "line": 284,
+      "text": "`site-header.tsx` renders the **Amendment 8 binding nav tree** — **seven flat top-level items** (Why We Exist, Who We Are, The New Human Era, The Human Archive, Podcast, Contact, Blueprint) with **zero dropdown parents**. *(supersedes AC-3.1; restated 2026-08-26 by Amendment 8 — the About and Blueprint dropdowns are gone)*",
+      "line": 285,
       "status": "live"
     },
     {
@@ -154,14 +160,14 @@
     },
     {
       "id": "AC-3.2a",
-      "text": "\"Why We Exist\" and \"Who We Are\" are reachable as distinct destinations under About. *(supersedes AC-3.2)*",
-      "line": 285,
+      "text": "\"Why We Exist\" and \"Who We Are\" are **direct top-level nav links** to `/why-we-exist` and `/who-we-are`, both live (200). *(supersedes AC-3.2; repurposed 2026-08-26 by Amendment 8 — they are no longer About-dropdown children)*",
+      "line": 286,
       "status": "live"
     },
     {
       "id": "AC-3.2b",
-      "text": "`/why-we-exist` exists as a **new route**. `/about` remains live at its current URL, unredirected. *(supersedes S3.6c's 301 recommendation; closes §11 Q9)*",
-      "line": 466,
+      "text": "`/why-we-exist` exists as a **new route**. ~~`/about` remains live at its current URL, unredirected.~~ **`GET`/`HEAD` `/about` answers a permanent 301 with `Location: /who-we-are`** (search string preserved; non-GET/HEAD passes through to the framework; `/about` leaves the sitemap while `/who-we-are` stays). *(supersedes S3.6c's 301 recommendation; closes §11 Q9; the no-redirect clause reversed 2026-08-26 — see Amendment 8)*",
+      "line": 467,
       "status": "live",
       "amended_by": [
         "AC-3.2c"
@@ -170,7 +176,7 @@
     {
       "id": "AC-3.2c",
       "text": "`/why-we-exist` carries the 08-18 document, ending with the four connected pieces (Be Human AI, The New Human Era, The Human Archive, The People-Driven CEO Podcast — each linking to its own route) and the closing lines through \"That's not a hope. That's the plan.\" Held to `docs/source/why-we-exist.txt` sentence by sentence. It is **not** wholly verbatim, and the exceptions are enumerated rather than averaged away: three sentences her own 08-19 screens shorten or trim, and the `Indigenous-founded` → `Indigenous-led` substitution that `layering.test.ts` enforces. Each exception is asserted to still be a real divergence, so the list cannot become a standing licence to drift. *(clarifies AC-3.2b)*",
-      "line": 609,
+      "line": 615,
       "status": "live"
     },
     {
@@ -188,7 +194,7 @@
     {
       "id": "AC-3.5a",
       "text": "A new `/who-we-are` route exists, drafted from Blueprint PDF v4 pp.9–10 (Shane James · Founder & CEO; Sid · AI, Cybersecurity & Governance; Maya · Human Readiness & Organizational Change) plus the \"Built for Human-First AI Transformation\" section. Shane reviews before production.",
-      "line": 286,
+      "line": 287,
       "status": "live",
       "amended_by": [
         "AC-3.5b"
@@ -197,37 +203,38 @@
     {
       "id": "AC-3.5b",
       "text": "`/who-we-are` renders the **three team cards only** — Shane James (Founder & CEO), Sid (AI, Cybersecurity & Governance), Maya (Human Readiness & Organizational Change) — sourced from Blueprint PDF v4 pp.9–10. **No per-member detail routes in this pass.** *(clarifies AC-3.5a)*",
-      "line": 411,
+      "line": 412,
       "status": "live"
     },
     {
       "id": "AC-3.6a",
       "text": "Blueprint's three pillar destinations exist: Human Readiness, Governance & Sovereignty, AI Strategy.",
-      "line": 287,
-      "status": "live"
-    },
-    {
-      "id": "AC-3.7a",
-      "text": "The Blueprint nav item is a lime pill, visually distinct from the text nav items, per staging.",
       "line": 288,
       "status": "live"
     },
     {
-      "id": "AC-3.8a",
-      "text": "The About dropdown parent **links to `/about`**, so the page is not orphaned from navigation while its two children (Why We Exist, Who We Are) sit beneath it.",
-      "line": 467,
+      "id": "AC-3.7a",
+      "text": "The Blueprint nav item is **the sole CTA** in the nav, rendered as an **outline lime pill at rest that fills lime on hover** (meeting 2026-08-22: \"button with green outline once we hover on it\"), visually distinct from the six text nav items. *(restated 2026-08-26 — Amendment 8)*",
+      "line": 289,
       "status": "live"
+    },
+    {
+      "id": "AC-3.8a",
+      "text": "The About dropdown parent **links to `/about`**, so the page is not orphaned from navigation while its two children (Why We Exist, Who We Are) sit beneath it.~~ *(reversed 2026-08-26 — Amendment 8: the About dropdown no longer exists; `/about` is a 301)*",
+      "line": 468,
+      "status": "retired",
+      "retired_reason": "struck through in the spec (reversed by a later amendment)"
     },
     {
       "id": "AC-3.9a",
       "text": "`/about-the-founder` exists and renders the 08-18 PDF's copy — the hero, five body sections, the \"Businesses don't grow because of products\" band, and the closing belief — verbatim, with **zero** accepted divergences, held to `docs/source/meet-the-founder.txt` sentence by sentence. Ten photographs render, every one a fingerprinted bundle import rather than a hand-written path, each with alt text longer than fifteen characters; there is exactly one `<img>` in the file, inside the shared `Shot` component, so no photograph can bypass the common treatment. No empty `<figure>`, no `placeholder`/`coming soon`/`TODO` string, and the page design she drew is not itself shipped as content. It is reachable from `/who-we-are` (Shane's card), and it is **not** a nav item.",
-      "line": 558,
+      "line": 564,
       "status": "live"
     },
     {
       "id": "AC-3.11a",
       "text": "The `/contact` form submits to a server function that mails the enquiry to `CONTACT_EMAIL`, with `reply_to` set to the sender. No submit path resolves to `preventDefault()` alone. Across **every** reachable outcome — accepted, provider refusal, provider error, network throw, missing key, invalid input, honeypot — the visitor sees a confirmation **only** where the provider answered 2xx; every other outcome renders the direct-email fallback. The honeypot returns `ignored`, not success: nothing is sent, so nothing is confirmed. The confirmation says the message is *on its way*, not that it was delivered, because a 2xx is acceptance for delivery and a message can still bounce or be suppressed afterwards.",
-      "line": 600,
+      "line": 606,
       "status": "live"
     },
     {
@@ -248,7 +255,7 @@
     {
       "id": "AC-4.2b",
       "text": "The consolidation covers exactly the **47** occurrences in decision 1. The derived floor in `docs/type-inventory.md` must be produced by a **string-literal** scanner (not a `className=\"…\"`-attribute regex), because two real call sites are otherwise invisible: `src/routes/podcast_.$slug.tsx:150` (`const SECTION_HEADING = \"section-label …\"`) and `src/components/episode-player.tsx:138` (`className={cn(\"eyebrow …\")}`). *(supersedes AC-4.2's scope ambiguity)*",
-      "line": 343,
+      "line": 344,
       "status": "live"
     },
     {
@@ -269,7 +276,7 @@
     {
       "id": "AC-4.4b",
       "text": "The G1 typography gate is **cleared in advance**. Phases 4, 5 and 6 are unblocked and do not wait on a sign-off round. *(supersedes AC-4.4's blocking behaviour)*",
-      "line": 403,
+      "line": 404,
       "status": "live"
     },
     {
@@ -281,7 +288,7 @@
     {
       "id": "AC-4.6a",
       "text": "The type scale covers **two** display voices: condensed uppercase (Oswald) and large light sentence-case (**Work Sans 300**, already loaded). The AC-4.3 specimen shows both.",
-      "line": 289,
+      "line": 290,
       "status": "live"
     },
     {
@@ -313,7 +320,7 @@
     {
       "id": "AC-5.4b",
       "text": "The six principles render **period-free**, from a single shared fixture consumed by both implementation and proof: `Fully Here · Keep Your Own Mind · Your Word Carries Weight · Real Is Rare · Know What Matters · Built in the Reps`. *(supersedes AC-5.4; AC-5.9a governs)*",
-      "line": 387,
+      "line": 388,
       "status": "live"
     },
     {
@@ -337,13 +344,13 @@
     {
       "id": "AC-5.8a",
       "text": "`/the-new-human-era` is built to the four mockups in `.omc/artifacts/maya-mockups/`: alternating cream/black full-bleed bands; eyebrow above a short lime rule; lime used only as accent (rule, single-word underline, quote glyphs, divider dot); alternating image-left/right splits; ~8px rounded imagery.",
-      "line": 290,
+      "line": 291,
       "status": "live"
     },
     {
       "id": "AC-5.9a",
       "text": "Principle titles carry **no trailing periods** (Maya, 08-15 12:47). `HOME_PRINCIPLES` is updated accordingly.",
-      "line": 291,
+      "line": 292,
       "status": "live"
     },
     {
@@ -397,7 +404,7 @@
     {
       "id": "AC-6.9a",
       "text": "The Blueprint page is built **section by section and digestible** — Maya, 08-15 13:57: *\"it just feels like information overload for the blueprint. We need to make that page more digestible.\"* Rendering all 16 PDF sections at equal weight fails this criterion.",
-      "line": 294,
+      "line": 295,
       "status": "live",
       "amended_by": [
         "AC-6.9b"
@@ -406,37 +413,37 @@
     {
       "id": "AC-6.9b",
       "text": "Collapsed Blueprint sections use **native `<details>/<summary>`**, not Radix accordion. Content is in the DOM and openable with JavaScript disabled. *(supersedes AC-6.9a's mechanism; its five sub-assertions stand)*",
-      "line": 379,
+      "line": 380,
       "status": "live"
     },
     {
       "id": "AC-6.9c",
       "text": "The collapsed-count gate counts **uniquely identified section containers**, not nested state attributes — the previous selector counted 8 for 2 sections.",
-      "line": 380,
+      "line": 381,
       "status": "live"
     },
     {
       "id": "AC-6.9d",
       "text": "The 40% ratio is defined as **visible normalized prose characters ÷ complete normalized prose characters**, measured against a canonical content fixture, with explicit minimum numerator and denominator floors so it cannot pass vacuously.",
-      "line": 381,
+      "line": 382,
       "status": "live"
     },
     {
       "id": "AC-6.10a",
       "text": "The Client Proof section renders with heading and `id`; the testimonial slot is explicitly marked pending. Nothing is fabricated and no section is omitted. *(resolves the AC-6.2 / S6.9 contradiction)*",
-      "line": 344,
+      "line": 345,
       "status": "live"
     },
     {
       "id": "AC-6.11a",
       "text": "Public sovereignty copy asserts **no domain definition** and describes practices only. A prohibited-claim test asserts the rendered page contains no compliance-guarantee or certification claim, per `controls.yaml:5`.",
-      "line": 345,
+      "line": 346,
       "status": "live"
     },
     {
       "id": "AC-6.12a",
       "text": "The Blueprint hero uses the same constant, replacing PDF v4's `\"Indigenous-founded. Canadian-built.\"`",
-      "line": 371,
+      "line": 372,
       "status": "live"
     },
     {
@@ -461,8 +468,20 @@
     },
     {
       "id": "AC-7.3a",
-      "text": "The four entries render with zero broken images on the **homepage archive section** and on the `/the-new-human-era` portrait row, both reading from `ARCHIVE`. `/the-human-archive` carries the deferral notice — the words \"to be released soon\" — and names no entry, and `src/routes/human-archive.$slug.tsx` does not exist. *(supersedes AC-7.3; clarifies AC-2.7a — \"Explore the archive\" is now the `/the-new-human-era` CTA only)*",
-      "line": 495,
+      "text": "The four entries render with zero broken images on the **homepage archive section** and on the `/the-new-human-era` portrait row, both reading from `ARCHIVE`. ~~`/the-human-archive` carries the deferral notice — the words \"to be released soon\" — and names no entry,~~ and `src/routes/human-archive.$slug.tsx` does not exist. *(supersedes AC-7.3; the deferral clauses and the AC-2.7a narrowing reversed 2026-08-26 — see Amendment 8 and AC-7.4a/AC-7.5a)*",
+      "line": 501,
+      "status": "live"
+    },
+    {
+      "id": "AC-7.4a",
+      "text": "`/the-human-archive` renders the restored pre-deferral grid design over `HUMAN_ARCHIVE_VIDEOS` — exactly four entries in order LUCY (No. 056, Manchester, UK), FARID (No. 038, Morocco), ABDI (No. 041, Calgary, Canada), MARISSA (No. 060, Vancouver, Canada), each with its committed still. Zero YouTube iframes exist at load; hover, tap, or keyboard activation of a card mounts exactly one `youtube-nocookie.com/embed/<id>?autoplay=1&mute=1` iframe with `allow=\"autoplay\"` and a meaningful `title`; pointer-leave, blur, or activating another card unmounts it, so the document never holds more than one player; the unmute control reports its state as data (`data-muted=\"false\"`), not via audio hardware; the still returns when the player unmounts. Per-person `/human-archive/$slug` pages remain deferred.",
+      "line": 712,
+      "status": "live"
+    },
+    {
+      "id": "AC-7.5a",
+      "text": "Below the grid, a CTA with visible label exactly **Watch the Human Archives** links to the verified playlist `https://www.youtube.com/playlist?list=PLdA-mx7SlQ_A` — single-sourced as `ARCHIVE_PLAYLIST_URL` in `brand.ts`, never inlined at the call site — opening in a new tab. The page ships live metadata: no \"Coming Soon\" and no \"to be released soon\" anywhere in head or body.",
+      "line": 713,
       "status": "live"
     },
     {
@@ -498,13 +517,13 @@
     {
       "id": "AC-X.6a",
       "text": "The branch is deployed to `staging.thebehumancompany.ca` and both human gates (typography specimen, `/who-we-are` review) are recorded as cleared **before** production promotion.",
-      "line": 346,
+      "line": 347,
       "status": "live"
     },
     {
       "id": "AC-X.7a",
       "text": "**Every** human-review artifact lives under tracked `.approvals/`, is schema-validated, and is bound to both the deployment URL and the commit SHA it approves. No release gate may depend on a gitignored path. A CI check asserts `git check-ignore` rejects nothing under `.approvals/`.",
-      "line": 394,
+      "line": 395,
       "status": "live"
     }
   ]

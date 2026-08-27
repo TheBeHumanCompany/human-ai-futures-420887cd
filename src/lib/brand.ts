@@ -103,3 +103,18 @@ export const SOCIAL_LINKS: readonly SocialLink[] = [
   { name: "YouTube", href: "https://www.youtube.com/@shanejeremyjames" },
   { name: "X", href: "https://x.com/shanejjames" },
 ] as const;
+
+/**
+ * The Human Archive playlist — every conversation in the series, one list.
+ *
+ * The archive page's "Watch the Human Archives" link points here, and any
+ * future gate that mentions the playlist asserts this constant rather than a
+ * hand-typed copy. The list id is the full identity of the URL: the `si=`
+ * parameter YouTube appends when a link is shared from the app encodes the
+ * sharer, not the destination, and would drift with every re-copy, so it is
+ * kept out on purpose.
+ *
+ * Verified live on 2026-08-26 (Krisp meeting 2026-08-22, Shane's pick for
+ * the button wording).
+ */
+export const ARCHIVE_PLAYLIST_URL = "https://www.youtube.com/playlist?list=PLdA-mx7SlQ_A";

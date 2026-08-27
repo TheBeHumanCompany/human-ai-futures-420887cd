@@ -115,10 +115,11 @@ function Panel({ item, onNavigate }: { item: WithChildren<NavItem>; onNavigate?:
  * label, and why the flag is asserted to track the presence of `to`.
  */
 function TriggerOnlyItem({ item }: { item: DisclosureItem }) {
-  // Currently unreached: both parents in the tree navigate. Kept, and covered
-  // by a synthetic item in `nav.test.ts`, because it is the other half of the
-  // switch — if `/about` is ever folded into `/why-we-exist`, About becomes a
-  // pure label and lands here with no component change.
+  // Currently unreached: no parents remain in the tree — every item
+  // navigates, and `/about` is no longer a page to re-parent but a permanent
+  // 301 to `/who-we-are`. Kept, and covered by a synthetic item in
+  // `nav.test.ts`, because it is the other half of the switch — if a parent
+  // ever returns as a pure label, it lands here with no component change.
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -137,14 +138,15 @@ function TriggerOnlyItem({ item }: { item: DisclosureItem }) {
 }
 
 /**
- * A parent that is also a page — the split control. Both parents use it.
+ * A parent that is also a page — the split control. No parent remains to use
+ * it; the shape is kept and tested for the day one returns.
  *
  * The label is a real `<Link>`; the chevron beside it is a separate button
  * that opens the panel. Two controls, one visual unit, so the parent's own
  * page is reachable in one click and its children in two.
  *
- * Only the pill treatment is conditional. Blueprint carries `cta`, so it gets
- * the lime ground; About does not, so it reads as a text item like the four
+ * Only the pill treatment is conditional — whichever parent carries `cta`
+ * gets the lime ground, and one that does not reads as a text item like the
  * flat ones. That distinction is the criterion — the pill has to be the *only*
  * one, or "visually distinct" means nothing — so it is driven by the data and
  * asserted as a count, not applied by hand to whichever item looks important.
