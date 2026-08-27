@@ -110,22 +110,28 @@
       "note": "DOM distance measured to the common ancestor. The proof imports INDIGENOUS_LINE rather than holding a copy; a third hardcoding would defeat the criterion it claims to prove."
     },
     {
+      "id": "AC-2.9a",
+      "phase": null,
+      "proof": null,
+      "note": "Amendment 8 (2026-08-26). Planned proof (PEND until e2e/video-facades.spec.ts lands, task 10): bunx playwright test e2e/video-facades.spec.ts -g \"homepage\" — zero iframes at load, click mounts exactly one youtube-nocookie.com/embed/-r011ECKr7M, poster visible before click, reload returns 0, no overflow after activation."
+    },
+    {
       "id": "AC-3.1a",
       "phase": "3",
-      "proof": "bun test src/lib/nav.test.ts -t \"NAV equals it exactly\" && bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"six top-level items and exactly two dropdown parents\"",
-      "note": "Deep equality over the whole tree, not a length check, then the rendered bar asserted to match the model."
+      "proof": "bun test src/lib/nav.test.ts -t \"NAV equals it exactly\" && bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"seven top-level items and no dropdown parents\"",
+      "note": "Amendment 8 (2026-08-26): deep equality over the whole seven-item FLAT tree, not a length check, then the rendered bar asserted to match the model — zero dropdown triggers."
     },
     {
       "id": "AC-3.2a",
       "phase": "3",
-      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"About opens onto two distinct, live destinations\"",
-      "note": "The panel is actually opened, its two children asserted distinct, and each fetched for a 200."
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"Why We Exist and Who We Are are direct links and live\"",
+      "note": "Amendment 8 (2026-08-26), repurposed: both are direct top-level links, each fetched for a 200 — no About dropdown exists to open."
     },
     {
       "id": "AC-3.2b",
       "phase": "3",
-      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"still live, unredirected\"",
-      "note": "/about is fetched with maxRedirects 0 — a 301 here would be the live-URL change the user explicitly declined."
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"about permanently redirects to who-we-are\"",
+      "note": "Amendment 8 (2026-08-26), inverted: /about is fetched with maxRedirects 0 and MUST answer 301 with Location ending /who-we-are (query preserved) — the live-URL decision the user reversed; /why-we-exist and /who-we-are still 200."
     },
     {
       "id": "AC-3.2c",
@@ -166,14 +172,8 @@
     {
       "id": "AC-3.7a",
       "phase": "3",
-      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"Blueprint is the one lime pill\"",
-      "note": "Computed background-color compared against the resolved --lime, radius >= 9999px, and EXACTLY one item matching — every item being a pill would otherwise pass."
-    },
-    {
-      "id": "AC-3.8a",
-      "phase": "3",
-      "proof": "bun test src/lib/nav.test.ts -t \"About links to /about\" && bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"the About parent itself links to /about\"",
-      "note": "Model and render both asserted. Without this, /about is live but unreachable from the navigation."
+      "proof": "bunx playwright test e2e/chrome-and-nav.spec.ts --project=desktop -g \"Blueprint is the one outline lime pill\"",
+      "note": "Amendment 8 (2026-08-26): outline at rest — lime border, non-lime background — that FILLS lime on hover (meeting 2026-08-22: \"button with green outline once we hover on it\"), radius >= 9999px, and EXACTLY one data-nav-cta among the seven items."
     },
     {
       "id": "AC-3.9a",
@@ -395,7 +395,19 @@
       "id": "AC-7.3a",
       "phase": "2",
       "proof": "bun test src/lib/archive.test.ts && bunx playwright test e2e/surfaces.spec.ts --project=desktop",
-      "note": "Amendment 6, proof strengthened after review: the consumer check now requires `ARCHIVE.map(` rather than the bare token, so dropping the New Human Era four-entry row while keeping an unrelated ARCHIVE reference goes red. Production side proven by scripts/verify/acceptance/human-archive.sh, whose control and injected regression both run green in acceptance-faults.test.ts."
+      "note": "Amendment 6, proof strengthened after review: the consumer check now requires `ARCHIVE.map(` rather than the bare token, so dropping the New Human Era four-entry row while keeping an unrelated ARCHIVE reference goes red. Production side proven by scripts/verify/acceptance/human-archive.sh, whose control and injected regression both run green in acceptance-faults.test.ts. Amendment 8 (2026-08-26): the deferral clauses are struck in the spec — /the-human-archive now asserts the restored grid via AC-7.4a/AC-7.5a, and the deferral unit test is inverted by task 7."
+    },
+    {
+      "id": "AC-7.4a",
+      "phase": null,
+      "proof": null,
+      "note": "Amendment 8 (2026-08-26). Planned proofs (PEND until tasks 7 and 10 land): bun test src/lib/archive.test.ts -t \"HUMAN_ARCHIVE_VIDEOS\" (exact-content unit tests) && bunx playwright test e2e/video-facades.spec.ts (hover/tap/keyboard iframe lifecycle 0→1→0, single-player rule with src swap, unmute seam via data-muted, no overflow after activation at 390/834/1440)."
+    },
+    {
+      "id": "AC-7.5a",
+      "phase": null,
+      "proof": null,
+      "note": "Amendment 8 (2026-08-26). Planned proof (PEND until task 10 lands): bunx playwright test e2e/video-facades.spec.ts -g \"playlist\" — visible label exactly 'Watch the Human Archives', href the ARCHIVE_PLAYLIST_URL constant (PLdA-mx7SlQ_A), no 'Coming Soon'/'to be released soon' in head or body."
     },
     {
       "id": "AC-X.1",

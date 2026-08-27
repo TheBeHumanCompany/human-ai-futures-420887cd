@@ -49,7 +49,7 @@ Cut a fresh branch from `main@a6a377a` and ship seven components to **production
 - **Fonts are already correct** and must not be changed: `styles.css:44-45` — `--font-display: "Oswald", "Arial Narrow"`, `--font-sans: "Work Sans"`, `--font-hand: "Caveat"`.
 - **Blueprint content must be grounded in the real product**, not sales copy alone: `../thebehumancompany/framework/controls.yaml` (single source of truth) plus `framework/checklists/{cybersecurity,privacy_data,transparency_audit}.md`.
 - **Typography requires sign-off before rollout** — a specimen page is approved by the user before the scale is applied to any page.
-- **Archive stays at four entries** this pass. No CMS migration, no ingestion pipeline.
+- **Archive stays at four entries** this pass. No CMS migration, no ingestion pipeline. *(partially superseded 2026-08-26 — see Amendment 8: the `/the-human-archive` page now ships four NEW video people; the `ARCHIVE` const itself stays four, and the CMS/ingestion non-goals stand)*
 - **Booking URLs are fixed values:**
   - 15-min: `https://cal.com/the-be-human-company/15min`
   - 30-min: `https://cal.com/the-be-human-company/30min`
@@ -58,7 +58,7 @@ Cut a fresh branch from `main@a6a377a` and ship seven components to **production
 
 - Merging, rebasing or cherry-picking `feat/podbean-rss-integration`.
 - Podcast / Sanity backend completion (episode ingestion, Studio deploy) — explicitly not selected at Round 0.
-- Expanding the Human Archive beyond the existing four entries.
+- Expanding the Human Archive beyond the existing four entries. *(partially superseded 2026-08-26 — see Amendment 8: `/the-human-archive` now renders four NEW video entries from `HUMAN_ARCHIVE_VIDEOS`; `ARCHIVE` stays four, and per-person `/human-archive/$slug` pages remain deferred)*
 - Migrating the Human Archive to Sanity.
 - A "Why We Exist" nav parent or an About dropdown — **killed in Round 4 (Contrarian)**.
 - A `/why-we-exist` route.
@@ -279,13 +279,14 @@ three. The user re-decided on 2026-08-17 with the corrected premise.
 
 **Binding nav tree:**
 `ABOUT ⌄ (Why We Exist · Who We Are) | THE NEW HUMAN ERA | THE HUMAN ARCHIVE | PODCAST | CONTACT | [BLUEPRINT ⌄ pill] (Human Readiness · Governance & Sovereignty · AI Strategy)`
+*(superseded 2026-08-26 — see Amendment 8 for the binding seven-item flat tree)*
 
 ### Amended acceptance criteria
-- [ ] **AC-3.1a** `site-header.tsx` renders the binding nav tree above — About and Blueprint are dropdown parents; the other four are flat top-level items. *(supersedes AC-3.1)*
-- [ ] **AC-3.2a** "Why We Exist" and "Who We Are" are reachable as distinct destinations under About. *(supersedes AC-3.2)*
+- [ ] **AC-3.1a** `site-header.tsx` renders the **Amendment 8 binding nav tree** — **seven flat top-level items** (Why We Exist, Who We Are, The New Human Era, The Human Archive, Podcast, Contact, Blueprint) with **zero dropdown parents**. *(supersedes AC-3.1; restated 2026-08-26 by Amendment 8 — the About and Blueprint dropdowns are gone)*
+- [ ] **AC-3.2a** "Why We Exist" and "Who We Are" are **direct top-level nav links** to `/why-we-exist` and `/who-we-are`, both live (200). *(supersedes AC-3.2; repurposed 2026-08-26 by Amendment 8 — they are no longer About-dropdown children)*
 - [ ] **AC-3.5a** A new `/who-we-are` route exists, drafted from Blueprint PDF v4 pp.9–10 (Shane James · Founder & CEO; Sid · AI, Cybersecurity & Governance; Maya · Human Readiness & Organizational Change) plus the "Built for Human-First AI Transformation" section. Shane reviews before production.
 - [ ] **AC-3.6a** Blueprint's three pillar destinations exist: Human Readiness, Governance & Sovereignty, AI Strategy.
-- [ ] **AC-3.7a** The Blueprint nav item is a lime pill, visually distinct from the text nav items, per staging.
+- [ ] **AC-3.7a** The Blueprint nav item is **the sole CTA** in the nav, rendered as an **outline lime pill at rest that fills lime on hover** (meeting 2026-08-22: "button with green outline once we hover on it"), visually distinct from the six text nav items. *(restated 2026-08-26 — Amendment 8)*
 - [ ] **AC-4.6a** The type scale covers **two** display voices: condensed uppercase (Oswald) and large light sentence-case (**Work Sans 300**, already loaded). The AC-4.3 specimen shows both.
 - [ ] **AC-5.8a** `/the-new-human-era` is built to the four mockups in `.omc/artifacts/maya-mockups/`: alternating cream/black full-bleed bands; eyebrow above a short lime rule; lime used only as accent (rule, single-word underline, quote glyphs, divider dot); alternating image-left/right splits; ~8px rounded imagery.
 - [ ] **AC-5.9a** Principle titles carry **no trailing periods** (Maya, 08-15 12:47). `HOME_PRINCIPLES` is updated accordingly.
@@ -461,11 +462,11 @@ Two surfaced by worker-3 during Phase 3. Both are visible product changes; neith
 ### Decision 2 — `/about` stays live; `/why-we-exist` is a new page
 The plan recommended repurposing `/about` with a 301. That changes a live URL, and §11 Q9 was never resolved.
 
-**User decision: create `/why-we-exist` fresh, keep `/about` live and reachable.**
+**User decision: create `/why-we-exist` fresh, keep `/about` live and reachable.** *(superseded 2026-08-26 — see Amendment 8: `/about` now permanently 301-redirects to `/who-we-are`)*
 
-- [ ] **AC-3.2b** `/why-we-exist` exists as a **new route**. `/about` remains live at its current URL, unredirected. *(supersedes S3.6c's 301 recommendation; closes §11 Q9)*
-- [ ] **AC-3.8a** The About dropdown parent **links to `/about`**, so the page is not orphaned from navigation while its two children (Why We Exist, Who We Are) sit beneath it.
-- Rationale: zero live-URL risk — no existing link, bookmark, or search result breaks. Reversible to a 301 later via `nav.ts` plus a redirect, with no structural rework.
+- [ ] **AC-3.2b** `/why-we-exist` exists as a **new route**. ~~`/about` remains live at its current URL, unredirected.~~ **`GET`/`HEAD` `/about` answers a permanent 301 with `Location: /who-we-are`** (search string preserved; non-GET/HEAD passes through to the framework; `/about` leaves the sitemap while `/who-we-are` stays). *(supersedes S3.6c's 301 recommendation; closes §11 Q9; the no-redirect clause reversed 2026-08-26 — see Amendment 8)*
+- [ ] ~~**AC-3.8a** The About dropdown parent **links to `/about`**, so the page is not orphaned from navigation while its two children (Why We Exist, Who We Are) sit beneath it.~~ *(reversed 2026-08-26 — Amendment 8: the About dropdown no longer exists; `/about` is a 301)*
+- Rationale: zero live-URL risk — no existing link, bookmark, or search result breaks. Reversible to a 301 later via `nav.ts` plus a redirect, with no structural rework. *(the 301 option was taken 2026-08-26 — Amendment 8)*
 
 ### Also corrected during execution
 - **`brand.ts` vs `booking.ts` conflict.** The lead's brief said all constants live in `brand.ts`, but AC-2.4's layering proof asserts no file outside `src/lib/booking.ts` contains `cal.com`. Resolution: literals in `booking.ts`, re-exported by `brand.ts` (the re-export contains no `cal.com` substring). Both criteria satisfied, neither weakened.
@@ -478,6 +479,7 @@ The plan recommended repurposing `/about` with a 301. That changes a live URL, a
 ## Amendment 6 — 2026-08-19, the Human Archive is deferred
 
 **User decision (Sid, 2026-08-19): hold the Human Archive back — "we can use to be released soon or something similar".**
+*(superseded 2026-08-26 — see Amendment 8: the archive is restored with four video people)*
 
 The four entries are real and stay on the site. The homepage archive section and
 the `/the-new-human-era` portrait row both render them from `ARCHIVE`, unchanged.
@@ -485,14 +487,18 @@ What is deferred is the archive as a *destination*: `/the-human-archive` drops
 its portrait grid for a teaser that says **"To be released soon"**, and the
 per-entry route `/human-archive/$slug` — four pages whose own copy read "This
 archive entry is being prepared" — is deleted rather than left promising a
-conversation the site cannot yet show.
+conversation the site cannot yet show. *(the destination-deferral superseded
+2026-08-26 — see Amendment 8: the grid is restored with four NEW video entries;
+the `$slug` deletion stands)*
 
 The route stays live and stays in the nav. It is linked from the bar, from the
 homepage section and from `/the-new-human-era`; a destination that admits it is
 not ready beats three dead ends. The homepage CTA reads **"Coming soon"** rather
 than "Explore the archive", because a label has to match what is behind it.
+*(superseded 2026-08-26 — Amendment 8: the homepage CTA returns to "Explore
+the archive"; the banned wording "Explore the human archive" stays banned)*
 
-- [ ] **AC-7.3a** The four entries render with zero broken images on the **homepage archive section** and on the `/the-new-human-era` portrait row, both reading from `ARCHIVE`. `/the-human-archive` carries the deferral notice — the words "to be released soon" — and names no entry, and `src/routes/human-archive.$slug.tsx` does not exist. *(supersedes AC-7.3; clarifies AC-2.7a — "Explore the archive" is now the `/the-new-human-era` CTA only)*
+- [ ] **AC-7.3a** The four entries render with zero broken images on the **homepage archive section** and on the `/the-new-human-era` portrait row, both reading from `ARCHIVE`. ~~`/the-human-archive` carries the deferral notice — the words "to be released soon" — and names no entry,~~ and `src/routes/human-archive.$slug.tsx` does not exist. *(supersedes AC-7.3; the deferral clauses and the AC-2.7a narrowing reversed 2026-08-26 — see Amendment 8 and AC-7.4a/AC-7.5a)*
 
 AC-7.1 and AC-7.2 are untouched, and that is what makes this a deferral rather
 than a deletion: the entries, their quotes, their archive numbers and their
@@ -628,10 +634,84 @@ so `prod-acceptance.sh` failed at AC-6.9b/c and **every later fault case was
 passing on the wrong rejection**. Fixed; that suite is now 14/14.
 
 ### Open items created by this amendment
-- Whether `/about-the-founder` joins the About dropdown. AC-3.1a deep-equals the nav tree, so a new entry there is an amendment, not an execution-time call.
+- Whether `/about-the-founder` joins the About dropdown. AC-3.1a deep-equals the nav tree, so a new entry there is an amendment, not an execution-time call. *(moot 2026-08-26 — Amendment 8: no About dropdown exists)*
 - `RESEND_API_KEY` is set in `.env.local` (gitignored) and in all three Vercel environments; it takes effect on the next deployment. The key passed through a chat transcript, so rotating it is worth doing.
 - Contact rate limiting is per-instance and in-memory. Durable protection needs the platform firewall or a shared store (Upstash) — an account decision, not code.
 - Delivery is confirmed only to provider acceptance. Consuming an `email.delivered` webhook is the only way to claim more, and the copy deliberately claims no more.
+
+---
+
+## Amendment 8 — 2026-08-26, the Krisp "BeHuman Website changes" meeting, executed
+
+Source: the Krisp meeting "BeHuman Website changes" (2026-08-22), user-confirmed
+2026-08-26. Four decisions supersede earlier pins — the superseded statements are
+struck or tagged in place above, never deleted, per this document's convention.
+
+### Decision 1 — `/about` permanently 301-redirects to `/who-we-are`
+
+Reverses Amendment 5 Decision 2 (AC-3.2b's no-redirect clause is struck there;
+the rationale line is tagged). `GET`/`HEAD /about` answers **301** with
+`Location: /who-we-are`, search string preserved; non-GET/HEAD methods pass
+through to the framework; the `/about` route is deleted; `/about` leaves the
+sitemap while `/who-we-are` stays. **AC-3.8a is struck** — with no About
+dropdown there is no About nav item to link anywhere. This is the one
+irreversible decision of the set: permanent redirects are cached aggressively
+by browsers and search engines, which is the point.
+
+### Decision 2 — The Human Archive is restored
+
+Reverses Amendment 6's destination deferral (the decision line and paragraph are
+tagged above; AC-7.3a's deferral clauses are struck in place). `/the-human-archive`
+returns to the pre-deferral grid design (`0666fda^`: cream hero "Real stories.
+Real humans." + ink 4-up grid, **live** head metadata — no "Coming Soon", no
+"To be released soon" anywhere) rendering `HUMAN_ARCHIVE_VIDEOS` — four NEW
+video people, in this order:
+
+| Person | No. | Location | YouTube id |
+|---|---|---|---|
+| LUCY | 056 | Manchester, UK | `lDGsG0nu1Ck` |
+| FARID | 038 | Morocco | `ESAw6gJRGhQ` |
+| ABDI | 041 | Calgary, Canada | `xtbZARUHt7s` |
+| MARISSA | 060 | Vancouver, Canada | `2sAGALC7Pig` |
+
+Hover (fine pointer), tap (touch), or keyboard activation of a card mounts that
+person's **muted** `youtube-nocookie.com/embed/<id>?autoplay=1&mute=1` iframe;
+leaving or blurring unmounts it; **never two players at once** (YouTube RMF
+policy); an unmute toggle reflects its state as data, not audio hardware. Below
+the grid, a "Watch the Human Archives" button links to the verified playlist
+`https://www.youtube.com/playlist?list=PLdA-mx7SlQ_A`. The existing four —
+ADEWOLF, BELLA, ANTON, ARLINA — are untouched on the homepage section and
+`/the-new-human-era` (AC-7.1, AC-7.2 and AC-7.3a's surviving clauses stand).
+Per-person `/human-archive/$slug` pages **remain deferred**.
+
+### Decision 3 — Homepage archive CTA: "Coming soon" → "Explore the archive"
+
+The archive page is live again, so the label again matches what is behind it
+(the Amendment 6 sentence is tagged above). AC-2.7a governs on the homepage
+surface once more — AC-7.3a's narrowing of it is reversed. The banned wording
+"Explore the human archive" stays banned.
+
+### Decision 4 — The nav is seven flat items
+
+`WHY WE EXIST | WHO WE ARE | THE NEW HUMAN ERA | THE HUMAN ARCHIVE | PODCAST | CONTACT | BLUEPRINT`
+
+No About dropdown, no Blueprint dropdown. AC-3.1a and AC-3.2a are restated in
+place; AC-3.8a is struck. Blueprint is **the sole CTA**, rendered as an
+**outline lime pill at rest that fills lime on hover** (meeting: "button with
+green outline once we hover on it") — AC-3.7a restated in place. Amendment 7's
+open item about `/about-the-founder` joining the About dropdown is moot.
+
+### New scope from the same meeting — homepage video
+
+The Why We Exist section's dead placeholder becomes a click-to-load YouTube
+facade for the "Welcome To My Channel — Building The Be Human Company" video
+(`-r011ECKr7M`): zero iframes in the initial DOM, mounted on explicit click.
+
+### New criteria
+
+- [ ] **AC-7.4a** `/the-human-archive` renders the restored pre-deferral grid design over `HUMAN_ARCHIVE_VIDEOS` — exactly four entries in order LUCY (No. 056, Manchester, UK), FARID (No. 038, Morocco), ABDI (No. 041, Calgary, Canada), MARISSA (No. 060, Vancouver, Canada), each with its committed still. Zero YouTube iframes exist at load; hover, tap, or keyboard activation of a card mounts exactly one `youtube-nocookie.com/embed/<id>?autoplay=1&mute=1` iframe with `allow="autoplay"` and a meaningful `title`; pointer-leave, blur, or activating another card unmounts it, so the document never holds more than one player; the unmute control reports its state as data (`data-muted="false"`), not via audio hardware; the still returns when the player unmounts. Per-person `/human-archive/$slug` pages remain deferred.
+- [ ] **AC-7.5a** Below the grid, a CTA with visible label exactly **Watch the Human Archives** links to the verified playlist `https://www.youtube.com/playlist?list=PLdA-mx7SlQ_A` — single-sourced as `ARCHIVE_PLAYLIST_URL` in `brand.ts`, never inlined at the call site — opening in a new tab. The page ships live metadata: no "Coming Soon" and no "to be released soon" anywhere in head or body.
+- [ ] **AC-2.9a** The homepage Why We Exist section ships **zero** iframes in the initial DOM: the video affordance is click-to-load, and the first activation mounts exactly one `youtube-nocookie.com/embed/-r011ECKr7M?autoplay=1` iframe (`allow="autoplay"`, `title="Welcome To My Channel — Building The Be Human Company"`). The poster stays visible until the click, the control is a real button operable by keyboard, reloading returns zero iframes, and no horizontal document overflow appears after activation.
 
 ---
 **Status: pending approval**
