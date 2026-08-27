@@ -44,7 +44,6 @@
  */
 export type NavRoute =
   | "/"
-  | "/about"
   | "/why-we-exist"
   | "/who-we-are"
   | "/the-new-human-era"
@@ -113,7 +112,6 @@ export const NAV: readonly NavItem[] = [
     cta: true,
   },
 ] as const;
-
 
 /**
  * True when the item renders a dropdown panel at all.

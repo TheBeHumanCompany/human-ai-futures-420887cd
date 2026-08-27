@@ -68,12 +68,6 @@ export const SURFACES: readonly Surface[] = [
     sitemap: { changefreq: "weekly", priority: "1.0" },
   },
   {
-    path: "/about",
-    kind: "page",
-    expectsSingleNav: true,
-    sitemap: { changefreq: "monthly", priority: "0.7" },
-  },
-  {
     path: "/why-we-exist",
     kind: "page",
     expectsSingleNav: true,
