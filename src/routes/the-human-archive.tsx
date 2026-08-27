@@ -170,15 +170,17 @@ function Archive() {
       <section className="section-cream border-b border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
           <p className="type-label-caps text-ink/50">The Human Archive</p>
-          <h1 className="type-h1-caps-light mt-6 text-ink">
-            Real stories.
-            <br />
-            Real humans.
-          </h1>
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">
-            We ask people around the world one question: what does it mean to be human? These are
-            some of the answers.
-          </p>
+            <h1 className="type-h1-caps-light mt-6 text-ink">
+              Real people
+              <br />
+              Real answers
+            </h1>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">
+              The Human Archive keeps real human voices inside the conversation as technology
+              reshapes how we live, work, and connect. It helps us listen to what people across
+              different lives and backgrounds say matters most and allow their answers to help
+              shape the future we’re building. We ask one question: what does it mean to be human?
+            </p>
         </div>
       </section>
 
