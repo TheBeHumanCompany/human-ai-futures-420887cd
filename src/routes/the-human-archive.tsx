@@ -178,8 +178,8 @@ function Archive() {
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">
               The Human Archive keeps real human voices inside the conversation as technology
               reshapes how we live, work, and connect. It helps us listen to what people across
-              different lives and backgrounds say matters most and allow their answers to help
-              shape the future we’re building. We ask one question: what does it mean to be human?
+              different lives and backgrounds say matters most — and allows those answers to help
+              shape the future we’re building. We ask one question: <strong>what does it mean to be human?</strong>
             </p>
         </div>
       </section>
