@@ -152,15 +152,13 @@ export function HumanArchiveSection() {
               <p className="text-base leading-relaxed text-ink/60 md:mt-8 lg:mt-9 lg:whitespace-nowrap lg:text-[17px]">
                 A growing archive of real, human perspective.
               </p>
-              {/* "Coming soon", not "Explore the archive": the archive page is
-                  held back to a teaser (Sid, 2026-08-19), so the label has to
-                  match what is behind it. Still a link — the page explains the
-                  wait, and the nav points there too. */}
+              {/* "Explore the archive" (2026-08-26): the archive page is live
+                   again, so the label matches what is behind it. */}
               <Link
                 to="/the-human-archive"
                 className="group mt-8 inline-flex w-fit items-center gap-2 whitespace-nowrap py-1 text-sm font-semibold uppercase leading-none tracking-[0.12em] text-ink sm:mt-10"
               >
-                <span className="border-b border-lime pb-0.5">Coming soon</span>
+                <span className="border-b border-lime pb-0.5">Explore the archive</span>
                 <span
                   aria-hidden
                   className="text-lime transition-transform group-hover:translate-x-1"
