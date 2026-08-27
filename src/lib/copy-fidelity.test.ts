@@ -200,7 +200,33 @@ const CASES: Case[] = [
           "Same 2026-08-26 restructure: 'actually believe' reads as truncated, so her revision is " +
           "'actually believe in', with a serial 'and' before the final clause. Nothing else moved.",
       },
-
+      {
+        startsWith: "technology will keep advancing whether we're ready or not",
+        instead: "Technology will keep advancing. Humanity has to advance with it.",
+        because:
+          "The 2026-08-27 Plan-section redesign splits her sentence into two display lines at " +
+          "Maya's request, dropping 'whether we're ready or not'.",
+      },
+      {
+        startsWith: "we're not building this because we're afraid of artificial intelligence",
+        instead: "We're not building this because we're afraid of AI.",
+        because:
+          "Same 2026-08-27 redesign: her new right-column statements use the short form 'AI'.",
+      },
+      {
+        startsWith: "we're building it because we've seen what's possible",
+        instead: "We're building it because we've seen what becomes possible when humanity leads well.",
+        because:
+          "Same 2026-08-27 redesign: Maya's revised statement drops the risk clause and rewords " +
+          "'what's possible if humanity leads this well' to 'what becomes possible when humanity " +
+          "leads well'.",
+      },
+      {
+        startsWith: "one human rep won't change the world",
+        instead: "One Human Rep won't change the world. Millions will.",
+        because:
+          "Same 2026-08-27 redesign: her revision trims 'Millions of them will' to 'Millions will'.",
+      },
     ],
   },
 ];
