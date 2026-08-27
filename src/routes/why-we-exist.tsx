@@ -408,27 +408,26 @@ function WhyWeExist() {
         <div className={`${SHELL} py-20 lg:py-32`}>
           <SectionLabel tone="light">The plan</SectionLabel>
 
-          <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-2 lg:gap-28">
+          <div className="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
             {/* LEFT COLUMN: main statement + closing line */}
             <div>
-              <h2 className="type-h2-caps-light max-w-[18ch] text-foreground">
-                Technology will keep advancing whether we&rsquo;re ready or not. Humanity has to
-                advance with it.
+              <h2 className="type-h1-caps-light max-w-[20ch] text-foreground">
+                Technology will keep advancing. Humanity has to advance with it.
               </h2>
 
-              <p className="type-body mt-16 font-bold text-foreground lg:mt-24">
+              <p className="type-body mt-10 font-bold text-foreground lg:mt-14">
                 That&rsquo;s not a hope. That&rsquo;s the plan.
               </p>
             </div>
 
-            {/* RIGHT COLUMN: three supporting thoughts */}
-            <div className="flex flex-col gap-10 lg:gap-14 lg:pt-2">
+            {/* RIGHT COLUMN: three statements, separated by short lime accents */}
+            <div className="flex flex-col lg:pt-2">
               {PLAN_THOUGHTS.map((thought, i) => (
-                <div key={thought} className="flex items-start gap-6 lg:gap-8">
-                  <span aria-hidden className="type-label-caps shrink-0 text-lime">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="type-body-lg max-w-[46ch] text-foreground/85">{thought}</p>
+                <div key={thought}>
+                  {i > 0 ? (
+                    <span aria-hidden className="my-8 block h-[2px] w-9 bg-lime" />
+                  ) : null}
+                  <p className="type-body max-w-[46ch] text-foreground/85">{thought}</p>
                 </div>
               ))}
             </div>
