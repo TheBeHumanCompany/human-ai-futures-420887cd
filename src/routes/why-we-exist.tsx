@@ -76,7 +76,6 @@ function WhyWeExist() {
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20">
             <div className="max-w-[52ch]">
               <p className="type-label-caps text-ink/45">The pattern</p>
-              <span className="type-eyebrow-rule block" aria-hidden />
 
               <p className="type-body mt-8 text-ink/70">
                 Almost nobody talks about their job title, how productive they&rsquo;ve been, or
@@ -483,7 +482,8 @@ function SectionLabel({
       <p className={`type-label-caps ${tone === "light" ? "text-lime" : "text-ink/50"}`}>
         {children}
       </p>
-      {rule ? <span className="type-eyebrow-rule block" aria-hidden /> : null}
+      {/* Cream sections carry no lime accent rule; only ink sections do. */}
+      {rule && tone === "light" ? <span className="type-eyebrow-rule block" aria-hidden /> : null}
     </>
   );
 }
