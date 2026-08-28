@@ -241,10 +241,12 @@ function WhyWeExist() {
         <div className={`${SHELL} py-14 lg:py-24`}>
           <p className="type-label-caps text-ink/45">What we practice</p>
 
-          <h2 className="type-h2-caps-light mt-8 w-full max-w-[24ch] text-ink lg:mt-10">
+          <h2 className="type-h2-condensed mt-8 w-full max-w-[26ch] text-ink lg:mt-10">
             You&rsquo;re born human. Humanity is what you practice
           </h2>
 
+          {/* All body copy lives inside the two columns; reading order is
+              left column top-to-bottom, then right column. */}
           <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-24">
             <div className="max-w-[52ch] space-y-6">
               <p className="type-body text-ink/70">
@@ -256,14 +258,14 @@ function WhyWeExist() {
                 you. In choosing to be fully present with the person in front of you when
                 distraction would cost you nothing.
               </p>
-            </div>
-            <div className="max-w-[52ch] space-y-6">
               <p className="type-body text-ink/70">We call those moments Human Reps.</p>
               <p className="type-body text-ink/70">
                 Small, conscious choices where you interrupt the automatic pattern and decide how
                 you want to show up.
               </p>
               <p className="type-body text-ink/70">None of them looks like much on its own.</p>
+            </div>
+            <div className="max-w-[52ch] space-y-6">
               <p className="type-body text-ink/70">
                 But they compound into trust with your name attached, into relationships strong
                 enough to carry real life, into leaders people actually believe in, into families
@@ -271,36 +273,52 @@ function WhyWeExist() {
                 human because the people inside them chose to practice being human.
               </p>
               <p className="type-body font-semibold text-ink">We call that Human Wealth.</p>
+              <p className="type-body text-ink/70">
+                We believe the world gets measurably better every time someone chooses to practice
+                their humanity.
+              </p>
+              <p className="type-body text-ink/70">
+                Not because we say it does. Because it&rsquo;s true every single time it happens.
+              </p>
+              <p className="type-body-lg font-semibold text-ink">
+                One conversation. One promise kept. One moment of real presence instead of
+                performance.
+              </p>
             </div>
           </div>
 
-          <div className="mt-12 max-w-[62ch] space-y-6">
-            <p className="type-body text-ink/70">
-              We believe the world gets measurably better every time someone chooses to practice
-              their humanity.
-            </p>
-            <p className="type-body text-ink/70">
-              Not because we say it does. Because it&rsquo;s true every single time it happens.
-            </p>
-            <p className="type-body-lg font-semibold text-ink">
-              One conversation. One promise kept. One moment of real presence instead of
-              performance.
-            </p>
+          {/* The compounding progression — the only full-width element here.
+              One centred line on desktop, exactly two centred lines below it. */}
+          <div className="mt-12 flex flex-col items-center justify-center gap-y-3 lg:mt-16 lg:flex-row lg:gap-x-8">
+            <div className="flex items-center justify-center gap-x-4 lg:gap-x-8">
+              {COMPOUNDS.slice(0, 3).map((item, i) => (
+                <span key={item} className="flex items-center gap-x-4 lg:gap-x-8">
+                  <span className="type-label-caps text-ink/75">{item}</span>
+                  {i < 2 ? (
+                    <span aria-hidden className="type-body-sm text-lime-dark">
+                      &rarr;
+                    </span>
+                  ) : null}
+                </span>
+              ))}
+            </div>
+            <span aria-hidden className="type-body-sm hidden text-lime-dark lg:inline">
+              &rarr;
+            </span>
+            <div className="flex items-center justify-center gap-x-4 lg:gap-x-8">
+              {COMPOUNDS.slice(3).map((item, i) => (
+                <span key={item} className="flex items-center gap-x-4 lg:gap-x-8">
+                  <span className="type-label-caps text-ink/75">{item}</span>
+                  {i < 1 ? (
+                    <span aria-hidden className="type-body-sm text-lime-dark">
+                      &rarr;
+                    </span>
+                  ) : null}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* The compounding progression, at the foot of the section. */}
-          <ul className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-4 lg:mt-14 lg:gap-x-8">
-            {COMPOUNDS.map((item, i) => (
-              <li key={item} className="flex items-center gap-5 lg:gap-8">
-                <span className="type-label-caps text-ink/75">{item}</span>
-                {i < COMPOUNDS.length - 1 ? (
-                  <span aria-hidden className="type-body-sm text-lime-dark">
-                    &rarr;
-                  </span>
-                ) : null}
-              </li>
-            ))}
-          </ul>
 
         </div>
       </section>
