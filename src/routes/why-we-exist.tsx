@@ -3,7 +3,7 @@ import { Heart, Lightbulb, Users } from "lucide-react";
 
 import manifestoImage from "@/assets/manifesto.jpg";
 import humanStoryPortrait from "@/assets/human-story-portrait.webp";
-import generationsPortrait from "@/assets/generations-portrait.png.asset.json";
+import generationsPortrait from "@/assets/generations-portrait.png";
 
 export const Route = createFileRoute("/why-we-exist")({
   head: () => ({
