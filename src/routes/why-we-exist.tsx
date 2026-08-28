@@ -47,32 +47,38 @@ export const Route = createFileRoute("/why-we-exist")({
 function WhyWeExist() {
   return (
     <>
-      {/* ══════ 01 — EDITORIAL OPENING (cream) ══════
-          Hero, pattern paragraphs, and Lindsay's quote/image read as one
-          continuous article before the page shifts to the first ink section. */}
-      <section className="section-cream">
-        <div className={`${SHELL} pt-16 pb-16 lg:pt-28 lg:pb-28`}>
-          <h1 className="type-h1-caps-light normal-case text-ink">Why We Exist</h1>
+      {/* ══════ 01 — HERO (ink) ══════
+          Bold black opening: the question that starts everything. */}
+      <section className="section-ink">
+        <div className={`${SHELL} pt-16 pb-12 lg:pt-24 lg:pb-16`}>
+          <h1 className="type-h1-caps-light max-w-[18ch] text-foreground">
+            WHY WE EXIST
+          </h1>
 
-          <p className="type-body mt-6 max-w-[46ch] text-ink/60">
+          <p className="type-body mt-6 max-w-[52ch] text-muted-foreground">
             There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking about.
           </p>
 
-          <p className="type-body mt-4 max-w-[46ch] text-ink/60">
+          <p className="type-body mt-3 max-w-[52ch] text-muted-foreground">
             Actually, it&rsquo;s not one moment. It&rsquo;s a pattern. We started asking people one
             question:
           </p>
 
-          <div className="mt-6 flex items-center gap-5">
+          <div className="mt-5 flex items-center gap-5">
             <span aria-hidden className="h-[3px] w-9 shrink-0 bg-lime" />
-            <p className="type-body-lg font-semibold text-ink">
+            <p className="type-body-lg font-bold text-foreground">
               What does it mean to be human?
             </p>
           </div>
+        </div>
+      </section>
 
-          <span className="mt-12 block w-full border-t border-ink/10 lg:mt-16" aria-hidden />
-
-          <div className="mt-10 max-w-[52ch] space-y-5 lg:mt-12">
+      {/* ══════ 02 — EDITORIAL OPENING (cream) ══════
+          Pattern paragraphs and Lindsay's quote/image read as one continuous
+          article, directly below the black hero with no divider. */}
+      <section className="section-cream">
+        <div className={`${SHELL} pt-14 pb-16 lg:pt-20 lg:pb-28`}>
+          <div className="max-w-[52ch] space-y-5">
             <p className="type-body text-ink/70">
               Almost nobody talks about their job title, how productive they&rsquo;ve been, or
               what they&rsquo;ve built.
@@ -83,7 +89,7 @@ function WhyWeExist() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-20">
+          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:items-start lg:gap-12">
             <figure className="flex items-stretch gap-5">
               <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
               <div>
@@ -109,7 +115,7 @@ function WhyWeExist() {
               loading="lazy"
               width={1000}
               height={1752}
-              className="aspect-4/5 w-full object-cover lg:max-w-[420px] lg:justify-self-end"
+              className="aspect-4/5 w-full object-cover"
             />
           </div>
         </div>
