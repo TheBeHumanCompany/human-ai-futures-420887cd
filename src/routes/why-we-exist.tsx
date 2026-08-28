@@ -3,7 +3,7 @@ import { Heart, Lightbulb, Users } from "lucide-react";
 
 import manifestoImage from "@/assets/manifesto.jpg";
 import humanStoryPortrait from "@/assets/human-story-portrait.webp";
-import generationsPortrait from "@/assets/generations-portrait.png.asset.json";
+import generationsPortrait from "@/assets/generations-portrait.png";
 
 export const Route = createFileRoute("/why-we-exist")({
   head: () => ({
@@ -352,7 +352,7 @@ function WhyWeExist() {
             </div>
 
             <img
-              src={generationsPortrait.url}
+              src={generationsPortrait}
               alt="A young girl looking toward the camera, lit against a dark background"
               loading="lazy"
               className="aspect-4/5 w-full object-cover"
