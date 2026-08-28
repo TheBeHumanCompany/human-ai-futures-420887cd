@@ -47,64 +47,61 @@ export const Route = createFileRoute("/why-we-exist")({
 function WhyWeExist() {
   return (
     <>
-      {/* ══════ 01 — HERO (cream) ══════ Type only; the portrait now lives in The Pattern. */}
+      {/* ══════ 01 — EDITORIAL OPENING (cream) ══════
+          Hero, pattern paragraphs, and Lindsay's quote/image read as one
+          continuous article before the page shifts to the first ink section. */}
       <section className="section-cream">
         <div className={`${SHELL} pt-16 pb-16 lg:pt-28 lg:pb-28`}>
-          <div className="max-w-[36ch] lg:max-w-[62%]">
-            <p className="type-label-caps text-ink/45">Why we exist</p>
+          <h1 className="type-h1-caps-light normal-case text-ink">Why We Exist</h1>
 
-            <h1 className="type-h1-caps-light mt-8 text-ink lg:mt-10">
-              There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking about
-            </h1>
-          </div>
+          <p className="type-body mt-6 max-w-[46ch] text-ink/60">
+            There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking about.
+          </p>
 
-          <p className="type-body mt-10 max-w-[46ch] text-ink/60 lg:mt-14">
+          <p className="type-body mt-4 max-w-[46ch] text-ink/60">
             Actually, it&rsquo;s not one moment. It&rsquo;s a pattern. We started asking people one
             question:
           </p>
 
-          <div className="mt-8 flex items-center gap-5 lg:mt-10">
+          <div className="mt-6 flex items-center gap-5">
             <span aria-hidden className="h-[3px] w-9 shrink-0 bg-lime" />
-            <p className="type-body-lg font-semibold text-ink">What does it mean to be human?</p>
+            <p className="type-body-lg font-semibold text-ink">
+              What does it mean to be human?
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* ══════ 01b — THE PATTERN (cream) ══════ Story left, Lindsay's portrait right. */}
-      <section className="section-cream border-t border-ink/10">
-        <div className={`${SHELL} py-14 lg:py-20`}>
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20">
-            <div className="max-w-[52ch]">
-              <p className="type-label-caps text-ink/45">The pattern</p>
+          <span className="mt-12 block w-full border-t border-ink/10 lg:mt-16" aria-hidden />
 
-              <p className="type-body mt-8 text-ink/70">
-                Almost nobody talks about their job title, how productive they&rsquo;ve been, or
-                what they&rsquo;ve built.
-              </p>
-              <p className="type-body mt-5 text-ink/70">
-                They talk about feeling things. Laughing. Crying. Showing up for someone when it
-                was hard. Being kind when it would&rsquo;ve been easier not to be.
-              </p>
+          <div className="mt-10 max-w-[52ch] space-y-5 lg:mt-12">
+            <p className="type-body text-ink/70">
+              Almost nobody talks about their job title, how productive they&rsquo;ve been, or
+              what they&rsquo;ve built.
+            </p>
+            <p className="type-body text-ink/70">
+              They talk about feeling things. Laughing. Crying. Showing up for someone when it
+              was hard. Being kind when it would&rsquo;ve been easier not to be.
+            </p>
+          </div>
 
-              <figure className="mt-10 flex items-stretch gap-5">
-                <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
-                <div>
-                  <blockquote className="type-h3-condensed text-ink">
-                    <span aria-hidden className="align-top text-[0.55em] text-ink/40">
-                      &ldquo;
-                    </span>
-                    To love one another. Treat each other, and yourself, with respect and
-                    compassion.
-                    <span aria-hidden className="align-top text-[0.55em] text-ink/40">
-                      &rdquo;
-                    </span>
-                  </blockquote>
-                  <figcaption className="type-body-sm mt-5 text-ink/55">
-                    &mdash; Lindsay, Vancouver
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
+          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-20">
+            <figure className="flex items-stretch gap-5">
+              <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
+              <div>
+                <blockquote className="type-h3-condensed text-ink">
+                  <span aria-hidden className="align-top text-[0.55em] text-ink/40">
+                    &ldquo;
+                  </span>
+                  To love one another. Treat each other, and yourself, with respect and
+                  compassion.
+                  <span aria-hidden className="align-top text-[0.55em] text-ink/40">
+                    &rdquo;
+                  </span>
+                </blockquote>
+                <figcaption className="type-body-sm mt-5 text-ink/55">
+                  &mdash; Lindsay, Vancouver
+                </figcaption>
+              </div>
+            </figure>
 
             <img
               src={humanStoryPortrait}
@@ -112,7 +109,7 @@ function WhyWeExist() {
               loading="lazy"
               width={1000}
               height={1752}
-              className="aspect-4/5 w-full object-cover lg:max-w-[360px] lg:justify-self-end"
+              className="aspect-4/5 w-full object-cover lg:max-w-[420px] lg:justify-self-end"
             />
           </div>
         </div>
