@@ -1,14 +1,25 @@
-import { SOCIAL_LINKS } from "@/lib/brand";
+import { SOCIAL_LINKS, type SocialLink } from "@/lib/brand";
 
 import { SocialIcon } from "./social-icons";
 
 /**
- * The accounts that exist.
+ * Follow the Journey — large, full-color branded social logos.
  *
- * This map is keyed on `SocialLink["name"]`, so it is a type error to add a
- * platform to `brand.ts` without giving it an icon here — the failure mode
- * being avoided is an entry that renders as an empty gap in a centred row.
+ * Unlike the footer (white-neutral, one color for every icon), each logo here
+ * renders in its brand color against the ink section, scaling gently on hover.
+ * `BRAND_COLORS` is keyed on `SocialLink["name"]`, so a platform added to
+ * `brand.ts` without a color here is a type error, not a silent grey icon.
  */
+const BRAND_COLORS: Record<SocialLink["name"], string> = {
+  LinkedIn: "#0A66C2",
+  Instagram: "#E4405F",
+  YouTube: "#FF0000",
+  X: "#FFFFFF",
+  TikTok: "#FFFFFF",
+  Snapchat: "#FFFC00",
+  Facebook: "#1877F2",
+};
+
 export function SocialSection() {
   return (
     <section className="section-ink">
@@ -23,7 +34,7 @@ export function SocialSection() {
         </div>
 
         {/* Platform list */}
-        <div className="mx-auto mt-12 flex flex-wrap justify-center gap-6 sm:mt-14 sm:gap-8 lg:mt-20 lg:gap-10">
+        <div className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-7 sm:mt-14 sm:gap-9 lg:mt-20 lg:gap-12">
           {SOCIAL_LINKS.map(({ name, href }) => (
             <a
               key={name}
@@ -31,11 +42,12 @@ export function SocialSection() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={name}
-              className="group text-foreground/80 transition-colors duration-300 hover:text-lime focus-visible:outline-none focus-visible:text-lime"
+              className="group cursor-pointer transition-transform duration-300 hover:scale-110 focus-visible:scale-110 focus-visible:outline-none"
             >
               <SocialIcon
                 name={name}
-                className="h-12 w-12 opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-focus-visible:scale-110 group-focus-visible:opacity-100 sm:h-14 sm:w-14"
+                className="h-14 w-14 transition-opacity duration-300 group-hover:opacity-100 sm:h-16 sm:w-16"
+                style={{ color: BRAND_COLORS[name] }}
               />
             </a>
           ))}
