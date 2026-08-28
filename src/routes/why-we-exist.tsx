@@ -352,7 +352,7 @@ function WhyWeExist() {
             </div>
 
             <img
-              src={generationsPortrait.url}
+              src={generationsPortrait}
               alt="A young girl looking toward the camera, lit against a dark background"
               loading="lazy"
               className="aspect-4/5 w-full object-cover"
