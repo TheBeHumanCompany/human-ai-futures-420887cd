@@ -50,7 +50,7 @@ function WhyWeExist() {
       {/* ══════ 01 — HERO (ink) ══════
           Bold black opening: the question that starts everything. */}
       <section className="section-ink">
-        <div className={`${SHELL} pt-16 pb-14 lg:pt-24 lg:pb-20`}>
+        <div className={`${SHELL} pt-16 pb-12 lg:pt-24 lg:pb-16`}>
           <h1 className="type-h1-caps-light max-w-[18ch] text-foreground">
             WHY WE EXIST
           </h1>
