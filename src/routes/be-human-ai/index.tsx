@@ -1126,7 +1126,7 @@ function BlueprintPage() {
               </p>
 
               <img
-                src={brettPhoto.url}
+                src={brettPhoto}
                 alt="Brett Christoffel, founder and CEO of All Y’all Foods, holding four packs of plant-based jerky"
                 loading="lazy"
                 className="mt-8 aspect-[4/3] w-full max-w-[22rem] object-cover object-top"
