@@ -23,18 +23,18 @@ const BRAND_COLORS: Record<SocialLink["name"], string> = {
 export function SocialSection() {
   return (
     <section className="section-ink">
-      <div className="mx-auto max-w-[1400px] px-6 py-16 text-center sm:px-8 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-[1400px] px-6 py-20 text-center sm:px-8 sm:py-24 lg:py-32">
         {/* Intro */}
         <div className="mx-auto min-w-0 max-w-3xl">
           <h2 className="type-h2-caps-light text-foreground">Follow the journey</h2>
 
-          <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-lime sm:mt-6 sm:text-lg lg:mt-8">
+          <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-lime sm:mt-8 sm:text-lg lg:mt-10">
             Ideas. Conversations. Human stories.
           </p>
         </div>
 
         {/* Platform list */}
-        <div className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-7 sm:mt-14 sm:gap-9 lg:mt-20 lg:gap-12">
+        <div className="mx-auto mt-14 flex flex-wrap items-center justify-center gap-7 sm:mt-18 sm:gap-9 lg:mt-24 lg:gap-12">
           {SOCIAL_LINKS.map(({ name, href }) => (
             <a
               key={name}

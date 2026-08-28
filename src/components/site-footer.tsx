@@ -66,7 +66,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="eyebrow text-muted-foreground">Navigate</h3>
+          <h3 className="eyebrow text-lime">Navigate</h3>
           <ul className="mt-5 space-y-3">
             {navDestinations().map((item) => (
               <li key={item.to}>
@@ -79,12 +79,12 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="eyebrow text-muted-foreground">Follow</h3>
+          <h3 className="eyebrow text-lime">Follow</h3>
           <SocialIconRow className="mt-5" iconClassName="h-5 w-5" />
         </div>
 
         <div>
-          <h3 className="eyebrow text-muted-foreground">Contact</h3>
+          <h3 className="eyebrow text-lime">Contact</h3>
           <ul className="mt-5 space-y-3 text-sm text-foreground/80">
             <li>
               <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-lime">
