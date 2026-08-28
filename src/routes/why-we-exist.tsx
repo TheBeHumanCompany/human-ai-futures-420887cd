@@ -78,36 +78,41 @@ function WhyWeExist() {
           article, directly below the black hero with no divider. */}
       <section className="section-cream">
         <div className={`${SHELL} pt-14 pb-16 lg:pt-20 lg:pb-28`}>
-          <div className="max-w-[52ch] space-y-5">
-            <p className="type-body text-ink/70">
-              Almost nobody talks about their job title, how productive they&rsquo;ve been, or
-              what they&rsquo;ve built.
-            </p>
-            <p className="type-body text-ink/70">
-              They talk about feeling things. Laughing. Crying. Showing up for someone when it
-              was hard. Being kind when it would&rsquo;ve been easier not to be.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:items-start lg:gap-12">
-            <figure className="flex items-stretch gap-5">
-              <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
-              <div>
-                <blockquote className="type-h3-condensed text-ink">
-                  <span aria-hidden className="align-top text-[0.55em] text-ink/40">
-                    &ldquo;
-                  </span>
-                  To love one another. Treat each other, and yourself, with respect and
-                  compassion.
-                  <span aria-hidden className="align-top text-[0.55em] text-ink/40">
-                    &rdquo;
-                  </span>
-                </blockquote>
-                <figcaption className="type-body-sm mt-5 text-ink/55">
-                  &mdash; Lindsay, Vancouver
-                </figcaption>
+          {/* One shared two-column editorial grid: the paragraphs and
+              Lindsay's quote stack in the left column, her portrait fills the
+              right column directly beside them. */}
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+            <div>
+              <div className="max-w-[52ch] space-y-5">
+                <p className="type-body text-ink/70">
+                  Almost nobody talks about their job title, how productive they&rsquo;ve been, or
+                  what they&rsquo;ve built.
+                </p>
+                <p className="type-body text-ink/70">
+                  They talk about feeling things. Laughing. Crying. Showing up for someone when
+                  it was hard. Being kind when it would&rsquo;ve been easier not to be.
+                </p>
               </div>
-            </figure>
+
+              <figure className="mt-10 flex items-stretch gap-5 lg:mt-12">
+                <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
+                <div>
+                  <blockquote className="type-h3-condensed text-ink">
+                    <span aria-hidden className="align-top text-[0.55em] text-ink/40">
+                      &ldquo;
+                    </span>
+                    To love one another. Treat each other, and yourself, with respect and
+                    compassion.
+                    <span aria-hidden className="align-top text-[0.55em] text-ink/40">
+                      &rdquo;
+                    </span>
+                  </blockquote>
+                  <figcaption className="type-body-sm mt-5 text-ink/55">
+                    &mdash; Lindsay, Vancouver
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
 
             <img
               src={humanStoryPortrait}

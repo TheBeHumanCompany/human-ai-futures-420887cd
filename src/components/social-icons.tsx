@@ -1,4 +1,4 @@
-import type { ComponentType, SVGProps } from "react";
+import type { ComponentType, CSSProperties, SVGProps } from "react";
 
 import { SOCIAL_LINKS, type SocialLink } from "@/lib/brand";
 
@@ -68,9 +68,17 @@ export const SOCIAL_ICONS: Record<SocialLink["name"], ComponentType<IconProps>> 
   Facebook: FacebookIcon,
 };
 
-export function SocialIcon({ name, className }: { name: SocialLink["name"]; className?: string }) {
+export function SocialIcon({
+  name,
+  className,
+  style,
+}: {
+  name: SocialLink["name"];
+  className?: string;
+  style?: CSSProperties;
+}) {
   const Icon = SOCIAL_ICONS[name];
-  return <Icon className={className} />;
+  return <Icon className={className} style={style} />;
 }
 
 export function SocialIconRow({ className, iconClassName }: { className?: string; iconClassName?: string }) {
@@ -83,7 +91,7 @@ export function SocialIconRow({ className, iconClassName }: { className?: string
           target="_blank"
           rel="noopener noreferrer"
           aria-label={social.name}
-          className="text-foreground/80 transition-colors duration-300 hover:text-lime focus-visible:outline-none focus-visible:text-lime"
+          className="cursor-pointer text-foreground/80 transition-colors duration-300 hover:text-lime focus-visible:outline-none focus-visible:text-lime"
         >
           <SocialIcon name={social.name} className={iconClassName ?? "h-5 w-5"} />
         </a>
