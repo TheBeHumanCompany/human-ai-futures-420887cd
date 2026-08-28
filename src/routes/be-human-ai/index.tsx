@@ -6,7 +6,7 @@ import { BlueprintPageNav, type PageNavItem } from "@/components/blueprint-page-
 import { MapleLeaf } from "@/components/maple-leaf";
 import { BOOKING_URL_30MIN } from "@/lib/booking";
 import { INDIGENOUS_LINE } from "@/lib/brand";
-import brettPhoto from "@/assets/brett-christoffel.png.asset.json";
+import brettPhoto from "@/assets/brett-christoffel.png";
 
 
 /**
