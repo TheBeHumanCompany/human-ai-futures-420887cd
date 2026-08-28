@@ -125,7 +125,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         // The same is true of Oswald, which is why its weight list is not trimmed.
         href: "https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;700;800&family=Caveat:wght@500&family=Work+Sans:wght@200;300;400;500;600&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,
