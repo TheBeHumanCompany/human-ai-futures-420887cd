@@ -198,7 +198,7 @@ function WhyWeExist() {
                   className={[
                     "flex items-center gap-5 py-8 lg:py-0",
                     isFirst ? "lg:pr-10" : isLast ? "lg:pl-10" : "lg:px-10",
-                    !isLast ? "border-b border-ink/10 lg:border-b-0 lg:border-r" : "",
+                    !isLast ? "lg:border-r lg:border-ink/10" : "",
                   ].join(" ")}
                 >
                   <span
