@@ -27,18 +27,18 @@ export const Route = createFileRoute("/why-we-exist")({
 });
 
 /**
- * `/why-we-exist` — one continuous editorial story (Maya, 2026-08-20 refactor).
+ * `/why-we-exist` — one continuous editorial story.
  *
- * The page now opens on The Human Story; the old poster hero, the "Stay Human."
- * standalone, and every image but two are gone. Two photographs only: the
- * portrait beside The Human Story, the sunset group beside The Opportunity —
- * same column split, same treatment, so the page reads as one grid rather than
- * nine layouts.
+ * The top of the page reads as a single article: a sentence-case "Why We Exist"
+ * headline, the opening narrative, the emphasized question, the pattern
+ * paragraphs, and Lindsay's quote paired with her portrait all share one cream
+ * section. Two photographs only: Lindsay's portrait and the sunset group beside
+ * The Opportunity.
  *
- * Lime is an accent, never a headline: `SectionLabel` (uppercase label + thin
- * rule) is the only lime on the page. Headlines are ink on cream and foreground
- * on ink, at two disciplined sizes — `type-h2-condensed` for a section's statement,
- * `type-h3-condensed` for anything subordinate to it.
+ * Lime is an accent, never a headline: short rules beside the pull question and
+ * quote, plus the `SectionLabel` kicker on ink sections. Headlines are ink on
+ * cream and foreground on ink, using the thin editorial display face for the
+ * major statements.
  *
  * Copy is her document, complete, and `src/lib/copy-fidelity.test.ts` holds this
  * file to `docs/source/why-we-exist.txt` sentence by sentence. Paragraphs may be
