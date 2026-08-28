@@ -115,13 +115,13 @@ function Home() {
             <p className="type-label-caps text-ink">WHY WE EXIST</p>
             <div className="type-eyebrow-rule mt-5 sm:mt-6" aria-hidden />
 
-            <h2 className="type-h2-caps mt-10 text-ink sm:mt-12 lg:mt-14">
+            <h2 className="type-h2-caps max-lg:text-[clamp(2.75rem,6.5vw,3.5rem)] max-lg:leading-[0.96] mt-10 max-lg:mt-12 lg:mt-14 text-ink">
               BEING HUMAN IS
               <br />
               WHAT WE ARE
               <br />
               BORN WITH
-              <span className="mt-10 block sm:mt-12">
+              <span className="mt-10 block max-lg:mt-14 lg:mt-12">
                 HUMANITY IS
                 <br />
                 WHAT WE
@@ -236,9 +236,9 @@ function Home() {
         {/* Top: editorial split — text ~35%, collage ~65% */}
         <div className="lg:grid lg:grid-cols-[35%_65%] lg:items-center">
           <div className="px-6 py-12 sm:px-10 sm:py-14 lg:py-16 lg:pl-[max(2rem,calc((100vw-1500px)/2+2rem))] lg:pr-12">
-            <h2 className="type-h1-caps text-ink">
+            <h2 className="type-h1-caps max-lg:text-[clamp(3.25rem,8vw,4.25rem)] max-lg:leading-[0.92] text-ink">
               THE NEW
-              <br />
+              <br className="md:hidden lg:inline" />
               <span className="text-lime">HUMAN</span> ERA
             </h2>
 
