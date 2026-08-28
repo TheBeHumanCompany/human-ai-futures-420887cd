@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
 
 import { MapleLeaf } from "./maple-leaf";
+import { SocialIconRow } from "./social-icons";
 import { Wordmark } from "./site-header";
-import { CONTACT_EMAIL, INDIGENOUS_LINE, SOCIAL_LINKS } from "@/lib/brand";
+import { CONTACT_EMAIL, INDIGENOUS_LINE } from "@/lib/brand";
 import { navDestinations } from "@/lib/nav";
 
 /**
@@ -79,20 +80,7 @@ export function SiteFooter() {
 
         <div>
           <h3 className="eyebrow text-muted-foreground">Follow</h3>
-          <ul className="mt-5 space-y-3">
-            {SOCIAL_LINKS.map((social) => (
-              <li key={social.name}>
-                <a
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sm text-foreground/80 hover:text-lime"
-                >
-                  {social.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <SocialIconRow className="mt-5" iconClassName="h-5 w-5" />
         </div>
 
         <div>
