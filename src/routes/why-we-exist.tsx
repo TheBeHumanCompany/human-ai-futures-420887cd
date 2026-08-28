@@ -430,20 +430,15 @@ function WhyWeExist() {
         <div className={`${SHELL} py-14 lg:py-24`}>
           <SectionLabel tone="light">The plan</SectionLabel>
 
-          <div className="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
-            {/* LEFT COLUMN: main statement + closing line */}
-            <div>
-              <h2 className="type-h1-caps-light max-w-[20ch] normal-case text-foreground">
-                Technology will keep advancing. Humanity has to advance with it.
-              </h2>
+          {/* Below lg this is a single column: headline → three statements →
+              closing line. On lg the closing line returns to the left column. */}
+          <div className="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-x-20 lg:gap-y-0">
+            <h2 className="type-h1-caps-light max-w-[20ch] normal-case text-foreground lg:col-start-1 lg:row-start-1">
+              Technology will keep advancing. Humanity has to advance with it.
+            </h2>
 
-              <p className="type-body mt-10 font-bold text-foreground lg:mt-14">
-                That&rsquo;s not a hope. That&rsquo;s the plan.
-              </p>
-            </div>
-
-            {/* RIGHT COLUMN: three statements, separated by short lime accents */}
-            <div className="flex flex-col lg:pt-2">
+            {/* Three statements, separated by short lime accents */}
+            <div className="flex flex-col lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:pt-2">
               {PLAN_THOUGHTS.map((thought, i) => (
                 <div key={thought}>
                   {i > 0 ? (
@@ -453,6 +448,10 @@ function WhyWeExist() {
                 </div>
               ))}
             </div>
+
+            <p className="type-body mt-2 font-bold text-foreground lg:col-start-1 lg:row-start-2 lg:mt-14">
+              That&rsquo;s not a hope. That&rsquo;s the plan.
+            </p>
           </div>
         </div>
       </section>
