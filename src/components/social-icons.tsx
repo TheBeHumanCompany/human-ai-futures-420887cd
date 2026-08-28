@@ -68,9 +68,17 @@ export const SOCIAL_ICONS: Record<SocialLink["name"], ComponentType<IconProps>> 
   Facebook: FacebookIcon,
 };
 
-export function SocialIcon({ name, className }: { name: SocialLink["name"]; className?: string }) {
+export function SocialIcon({
+  name,
+  className,
+  style,
+}: {
+  name: SocialLink["name"];
+  className?: string;
+  style?: CSSProperties;
+}) {
   const Icon = SOCIAL_ICONS[name];
-  return <Icon className={className} />;
+  return <Icon className={className} style={style} />;
 }
 
 export function SocialIconRow({ className, iconClassName }: { className?: string; iconClassName?: string }) {
