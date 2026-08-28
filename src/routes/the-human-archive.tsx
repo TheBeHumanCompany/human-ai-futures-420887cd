@@ -93,10 +93,10 @@ function ArchiveVideoCard({
             aria-hidden
             className="pointer-events-none absolute inset-0 flex items-center justify-center"
           >
-            <span className="flex h-14 w-14 items-center justify-center rounded-full border border-cream/25 bg-ink/45 opacity-80 backdrop-blur-[1px] transition-all duration-300 group-hover:scale-105 group-hover:border-lime/60 group-hover:opacity-100 sm:h-16 sm:w-16">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-lime bg-ink/60 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:bg-ink/80 sm:h-16 sm:w-16">
               <svg
                 viewBox="0 0 24 24"
-                className="ml-[3px] h-5 w-5 fill-cream sm:h-6 sm:w-6"
+                className="ml-[3px] h-5 w-5 fill-lime sm:h-6 sm:w-6"
                 focusable="false"
               >
                 <path d="M8 5.5v13l11-6.5z" />
