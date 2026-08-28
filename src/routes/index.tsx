@@ -469,8 +469,8 @@ function FounderVideoFigure() {
     <figure className="group relative aspect-[16/9] overflow-hidden rounded-lg lg:mt-32 lg:self-center">
       {playing ? (
         <iframe
-          src="https://www.youtube-nocookie.com/embed/-r011ECKr7M?autoplay=1&rel=0"
-          title="Welcome To My Channel — Building The Be Human Company"
+          src="https://www.youtube-nocookie.com/embed/nJShKCUuT38?autoplay=1&rel=0"
+          title="Homepage"
           allow="autoplay; encrypted-media"
           allowFullScreen
           className="absolute inset-0 h-full w-full"
