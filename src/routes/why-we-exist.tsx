@@ -164,7 +164,7 @@ function WhyWeExist() {
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
             <div className="max-w-[52ch]">
               <SectionLabel tone="dark">The opportunity</SectionLabel>
-              <h2 className="type-h1-caps-light mt-10 normal-case text-ink">Time</h2>
+              <h2 className="type-h1-caps-light mt-10 text-ink">TIME</h2>
               <p className="type-body mt-8 text-ink/70">
                 The opportunity in that is real. AI will cure diseases, remove decades of repetitive
                 work, unlock discoveries we haven't imagined yet, and give millions of people
@@ -425,7 +425,9 @@ function WhyWeExist() {
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
         <div className={`${SHELL} py-14 lg:py-24`}>
-          <SectionLabel tone="light">The plan</SectionLabel>
+          <SectionLabel tone="light" rule={false}>
+            The plan
+          </SectionLabel>
 
           {/* Below lg this is a single column: headline → three statements →
               closing line. On lg the closing line returns to the left column. */}
@@ -446,7 +448,7 @@ function WhyWeExist() {
               ))}
             </div>
 
-            <p className="type-body mt-2 font-bold text-foreground lg:col-start-1 lg:row-start-2 lg:mt-14">
+            <p className="type-body mt-2 text-center font-bold text-foreground lg:col-start-1 lg:row-start-2 lg:mt-14 lg:text-left">
               That&rsquo;s not a hope. That&rsquo;s the plan.
             </p>
           </div>
