@@ -77,7 +77,7 @@ function ArchiveVideoCard({
       role="button"
       aria-label={`Play ${name}'s Human Archive video`}
     >
-      <div className="relative overflow-hidden">
+      <div className="group relative overflow-hidden">
         <img
           src={still}
           alt={`Video still of ${name} from ${location}`}
@@ -86,6 +86,24 @@ function ArchiveVideoCard({
           height={1000}
           className="aspect-[4/5] w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
         />
+        {/* Rest-state affordance: the thumbnail is a video, not a portrait.
+            Hidden once the embed mounts so it never sits over the player. */}
+        {!active && (
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 flex items-center justify-center"
+          >
+            <span className="flex h-14 w-14 items-center justify-center rounded-full border border-cream/25 bg-ink/45 opacity-80 backdrop-blur-[1px] transition-all duration-300 group-hover:scale-105 group-hover:border-lime/60 group-hover:opacity-100 sm:h-16 sm:w-16">
+              <svg
+                viewBox="0 0 24 24"
+                className="ml-[3px] h-5 w-5 fill-cream sm:h-6 sm:w-6"
+                focusable="false"
+              >
+                <path d="M8 5.5v13l11-6.5z" />
+              </svg>
+            </span>
+          </span>
+        )}
         {active && (
           <>
             <iframe
