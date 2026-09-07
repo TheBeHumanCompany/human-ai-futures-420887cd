@@ -1,8 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { EpisodePlayer } from "@/components/episode-player";
+import { SocialIcon } from "@/components/social-icons";
 import { formatDuration } from "@/lib/podbean/parse";
 import { PodcastDegraded } from "@/components/podcast-degraded";
+import { withContentCorrections } from "@/lib/podcast/content-corrections";
 import {
   DEGRADED_RETRY_AFTER_SECONDS,
   DEGRADED_SOURCE_HEADER,
@@ -61,8 +63,9 @@ export const Route = createFileRoute("/podcast_/$slug")({
     const episode = await fetchEpisodeBySlug({ data: params.slug });
     if (!episode) throw notFound();
 
+    const corrected = withContentCorrections(episode);
     const candidates = await fetchRelatedCandidates();
-    return { episode, related: selectRelatedEpisodes(episode, candidates) };
+    return { episode: corrected, related: selectRelatedEpisodes(corrected, candidates) };
   },
 
   /**
@@ -236,6 +239,36 @@ function EpisodePage() {
                 ))}
               </div>
             )}
+
+            {episode.slug.current === "minting-success-story-plant-based-cleaning-revolutionaries" && (
+              <div className="mt-8 max-w-[58ch] border-t border-hairline-dark pt-5">
+                <p className={SECTION_HEADING}>Connect with Mint Cleaning</p>
+                <ul className="mt-3 flex flex-wrap items-center gap-4">
+                  <li>
+                    <a
+                      href="https://mintcleaningproducts.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="eyebrow inline-flex items-center gap-2 text-ink/80 transition-colors hover:text-ink"
+                    >
+                      <GlobeIcon className="h-4 w-4 text-lime" />
+                      Website
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.instagram.com/mintcleaning_/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="eyebrow inline-flex items-center gap-2 text-ink/80 transition-colors hover:text-ink"
+                    >
+                      <SocialIcon name="Instagram" className="h-4 w-4 text-lime" />
+                      Instagram
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
 
           {episode.guestName && (
@@ -298,6 +331,26 @@ function EpisodePage() {
         )}
       </section>
     </>
+  );
+}
+
+/** Simple globe icon for an external website link. */
+function GlobeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className={className}
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
   );
 }
 
