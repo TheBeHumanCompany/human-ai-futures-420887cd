@@ -239,6 +239,36 @@ function EpisodePage() {
                 ))}
               </div>
             )}
+
+            {episode.slug.current === "minting-success-story-plant-based-cleaning-revolutionaries" && (
+              <div className="mt-8 max-w-[58ch] border-t border-hairline-dark pt-5">
+                <p className={SECTION_HEADING}>Connect with Mint Cleaning</p>
+                <ul className="mt-3 flex flex-wrap items-center gap-4">
+                  <li>
+                    <a
+                      href="https://mintcleaningproducts.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="eyebrow inline-flex items-center gap-2 text-ink/80 transition-colors hover:text-ink"
+                    >
+                      <GlobeIcon className="h-4 w-4 text-lime" />
+                      Website
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.instagram.com/mintcleaning_/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="eyebrow inline-flex items-center gap-2 text-ink/80 transition-colors hover:text-ink"
+                    >
+                      <SocialIcon name="Instagram" className="h-4 w-4 text-lime" />
+                      Instagram
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
 
           {episode.guestName && (
