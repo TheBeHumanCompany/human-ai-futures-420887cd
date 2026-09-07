@@ -1,8 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { EpisodePlayer } from "@/components/episode-player";
+import { SocialIcon } from "@/components/social-icons";
 import { formatDuration } from "@/lib/podbean/parse";
 import { PodcastDegraded } from "@/components/podcast-degraded";
+import { withContentCorrections } from "@/lib/podcast/content-corrections";
 import {
   DEGRADED_RETRY_AFTER_SECONDS,
   DEGRADED_SOURCE_HEADER,
