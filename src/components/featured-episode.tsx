@@ -26,12 +26,13 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         to="/podcast/$slug"
         params={{ slug }}
         aria-label={`Listen to ${displayTitle(episode.title)}`}
-        className="group relative block aspect-[4/5] overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:h-[21rem]"
+        className="group relative block aspect-[4/5] shrink-0 overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:h-[21rem] lg:w-full"
       >
         <img
           src={featuredImage(episode)}
           alt=""
-          className="size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          loading="lazy"
+          className="absolute inset-0 size-full object-cover object-[50%_22%] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
         <span className="absolute left-4 top-4 bg-lime px-2.5 py-1.5 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
           Latest episode
