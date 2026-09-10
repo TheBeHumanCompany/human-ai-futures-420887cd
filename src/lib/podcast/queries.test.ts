@@ -270,10 +270,11 @@ describe("the offline per-episode payload bound", () => {
    * queries.live.test.ts, which fires on catalogue growth. This one fires on a
    * developer's change, which is the thing a developer can act on.
    */
-  // Raised from 1,200 when `guestPhoto` joined the list projection: the
-  // featured-episode lead renders the guest portrait, so the field is part of
-  // the payload by design. The asset ref is ~75 B.
-  const PER_EPISODE_BUDGET_BYTES = 1_300;
+  // Raised from 1,200 when `guestPhoto` (~75 B) joined the list projection:
+  // the featured-episode lead renders the guest portrait, so the field is
+  // part of the payload by design. 1,250 keeps the bound tight enough that a
+  // seventh topic (1,289 B) still breaches it.
+  const PER_EPISODE_BUDGET_BYTES = 1_250;
 
   test("the fixture covers every projected field — this is what a new field breaks", () => {
     const projected = Object.keys(EPISODE_LIST_PROJECTION);
@@ -320,6 +321,7 @@ describe("the offline per-episode payload bound", () => {
     //   placeholder topics, invented slug/url   1,094 B → 106 B spare
     //   shipped taxonomy, invented slug/url     1,144 B →  56 B spare
     //   shipped taxonomy, real corpus maxima    1,161 B →  39 B spare
+    //   + guestPhoto (featured-lead portrait)   1,236 B →  14 B spare @ 1,250
     //
     // The last line is the honest one. The plan's own corrected analysis (§2,
     // "per-episode cost rises toward the ~1,145 B maximal case") predicted this
@@ -377,8 +379,8 @@ describe("the offline per-episode payload bound", () => {
     );
     const bytes = new TextEncoder().encode(JSON.stringify(maximal)).length;
 
-    expect(bytes).toBe(1_161);
-    expect(PER_EPISODE_BUDGET_BYTES - bytes).toBe(39);
+    expect(bytes).toBe(1_236);
+    expect(PER_EPISODE_BUDGET_BYTES - bytes).toBe(14);
   });
 
   /**
