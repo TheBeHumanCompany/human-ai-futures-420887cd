@@ -233,7 +233,7 @@ function EpisodePage() {
                 match. Any divergence here is a bug, not a variant. */}
             <p className={SECTION_HEADING}>Episode summary</p>
             {body.length > 0 && (
-              <div className="mt-3 max-w-[58ch] space-y-3 text-[1.0625rem] leading-[1.55] text-ink/80">
+              <div className="mt-3 max-w-[58ch] space-y-3 whitespace-pre-line text-[1.0625rem] leading-[1.55] text-ink/80">
                 {body.map((paragraph: string) => (
                   <p key={paragraph.slice(0, 48)}>{paragraph}</p>
                 ))}
