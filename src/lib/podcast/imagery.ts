@@ -2,6 +2,7 @@ import studioA from "@/assets/podcast.jpg";
 import studioB from "@/assets/podcast-still-1.jpg";
 import studioC from "@/assets/podcast-still-2.jpg";
 import studioD from "@/assets/podcast-still-3.jpg";
+import guestEp40 from "@/assets/guest-ep40.png";
 import guestEp39 from "@/assets/guest-ep39-jill.png";
 import guestEp38 from "@/assets/guest-ep38.png";
 import guestEp37 from "@/assets/guest-ep37.png";
@@ -49,6 +50,7 @@ import type { EpisodeListItem } from "./episode";
  * edited photographs of the guest, so they outrank every other source.
  */
 const GUEST_PORTRAITS: Record<number, string> = {
+  40: guestEp40,
   39: guestEp39,
   38: guestEp38,
   37: guestEp37,
@@ -121,6 +123,24 @@ export function studioStill(episode: Pick<EpisodeListItem, "episodeNumber">): st
  */
 function shareCardRef(episode: EpisodeListItem): string | null {
   return (episode as { shareCard?: string | null }).shareCard ?? null;
+}
+
+/**
+ * Featured-lead imagery: the guest's portrait only — supplied photograph,
+ * then the Sanity `guestPhoto` field, then a recording still.
+ *
+ * Cover artwork and share cards are deliberately excluded: those are square
+ * Podbean/YouTube assets with episode titles and branding baked into the
+ * pixels, and the featured layout already carries that text beside the image.
+ * This precedence is the permanent rule for every episode, current and
+ * future — the featured image area shows a clean portrait or nothing.
+ */
+export function featuredImage(episode: EpisodeListItem, width = 1200): string {
+  return (
+    suppliedPortrait(episode) ??
+    imageUrl(episode.guestPhoto, { width, fit: "crop" }) ??
+    studioStill(episode)
+  );
 }
 
 /** Grid/card imagery: supplied portrait, artwork, share card, then a still. */
