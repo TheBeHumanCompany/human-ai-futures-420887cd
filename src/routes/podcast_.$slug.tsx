@@ -280,10 +280,12 @@ function EpisodePage() {
               {profile.role && <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>}
               {/* Sanity first, the on-file profile only as a fallback — and
                   nothing at all when neither exists. No filler. */}
-              {(episode.guestBio ?? profile.bio) && (
-                <p className="mt-3 max-w-[55ch] text-[1.0625rem] leading-[1.55] text-ink/75">
-                  {episode.guestBio ?? profile.bio}
-                </p>
+              {bio.length > 0 && (
+                <div className="mt-3 max-w-[55ch] space-y-3 whitespace-pre-line text-[1.0625rem] leading-[1.55] text-ink/75">
+                  {bio.map((paragraph: string) => (
+                    <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                  ))}
+                </div>
               )}
             </div>
           )}
