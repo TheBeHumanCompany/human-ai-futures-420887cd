@@ -246,6 +246,7 @@ const MAXIMAL_VALUES: Record<string, unknown> = {
   // A maximal fixture may exceed the corpus; what it may not do is fall short of
   // it, which is what the slug and audio URL were doing.
   guestName: "A Guest With A Fairly Long Name",
+  guestPhoto: ASSET_REF,
   coverArtwork: ASSET_REF,
   shareCard: ASSET_REF,
   audioUrl: LONGEST_AUDIO_URL,
@@ -269,7 +270,10 @@ describe("the offline per-episode payload bound", () => {
    * queries.live.test.ts, which fires on catalogue growth. This one fires on a
    * developer's change, which is the thing a developer can act on.
    */
-  const PER_EPISODE_BUDGET_BYTES = 1_200;
+  // Raised from 1,200 when `guestPhoto` joined the list projection: the
+  // featured-episode lead renders the guest portrait, so the field is part of
+  // the payload by design. The asset ref is ~75 B.
+  const PER_EPISODE_BUDGET_BYTES = 1_300;
 
   test("the fixture covers every projected field — this is what a new field breaks", () => {
     const projected = Object.keys(EPISODE_LIST_PROJECTION);
