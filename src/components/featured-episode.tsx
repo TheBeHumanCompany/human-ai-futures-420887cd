@@ -69,7 +69,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         <Link
           to="/podcast/$slug"
           params={{ slug }}
-          className="eyebrow mt-6 inline-flex w-fit items-center gap-3 font-semibold tracking-[0.24em] text-ink"
+          className="eyebrow mt-5 inline-flex w-fit items-center gap-3 font-semibold tracking-[0.24em] text-ink lg:mt-6"
         >
           <span className="flex size-9 items-center justify-center rounded-full bg-ink text-cream">
             <Play className="size-3.5 translate-x-px" aria-hidden />
