@@ -147,9 +147,7 @@ export function showNoteParagraphs(description: unknown): string[] {
  * No promotional cleaning: a bio is authored copy, not feed copy. Blank lines
  * become separate paragraphs and single newlines are kept inside them.
  */
-export function prosePararaphs(text: unknown): string[] {
+export function proseParagraphs(text: unknown): string[] {
   return toBlocks(toPlainText(text));
 }
-
-export { prosePararaphs as proseParagraphs };
 
