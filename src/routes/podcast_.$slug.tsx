@@ -16,7 +16,7 @@ import { episodeHeroImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
 import { selectRelatedEpisodes } from "@/lib/podcast/related";
 import { buildEpisodeJsonLd, buildEpisodeMeta } from "@/lib/podcast/seo";
-import { showNoteParagraphs } from "@/lib/podcast/show-notes";
+import { proseParagraphs, showNoteParagraphs } from "@/lib/podcast/show-notes";
 
 /**
  * One episode, at a permanent URL — and the single template every episode uses.
