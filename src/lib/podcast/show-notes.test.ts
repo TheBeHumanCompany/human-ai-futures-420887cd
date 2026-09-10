@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import catalogue from "./catalogue.snapshot.json";
-import { cleanShowNotes, showNoteParagraphs } from "./show-notes";
+import { cleanShowNotes, proseParagraphs, showNoteParagraphs } from "./show-notes";
 
 /**
  * The cleaner is judged against the real catalogue rather than invented copy —
@@ -60,5 +60,34 @@ describe("paragraphing", () => {
   test("an already-clean description passes through untouched", () => {
     const clean = "A conversation about leadership. It runs deep. It ends well.";
     expect(cleanShowNotes(clean)).toBe(clean);
+  });
+});
+
+describe("paragraph structure from the CMS survives", () => {
+  test("a blank line becomes a separate paragraph", () => {
+    const text = "First paragraph.\n\nSecond paragraph.\n\nThird paragraph.";
+    expect(showNoteParagraphs(text)).toEqual([
+      "First paragraph.",
+      "Second paragraph.",
+      "Third paragraph.",
+    ]);
+  });
+
+  test("single line breaks stay inside their paragraph", () => {
+    const text = "Line one.\nLine two.\n\nNext block.";
+    expect(showNoteParagraphs(text)).toEqual(["Line one.\nLine two.", "Next block."]);
+  });
+
+  test("portable text blocks each render as a paragraph", () => {
+    const blocks = [
+      { _type: "block", children: [{ text: "Alpha." }] },
+      { _type: "block", children: [{ text: "Beta " }, { text: "gamma." }] },
+    ];
+    expect(proseParagraphs(blocks)).toEqual(["Alpha.", "Beta gamma."]);
+  });
+
+  test("a guest bio keeps its breaks and needs no promo cleaning", () => {
+    expect(proseParagraphs("Bio one.\n\nBio two.")).toEqual(["Bio one.", "Bio two."]);
+    expect(proseParagraphs(null)).toEqual([]);
   });
 });

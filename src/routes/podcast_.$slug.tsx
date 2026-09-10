@@ -16,7 +16,7 @@ import { episodeHeroImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
 import { selectRelatedEpisodes } from "@/lib/podcast/related";
 import { buildEpisodeJsonLd, buildEpisodeMeta } from "@/lib/podcast/seo";
-import { showNoteParagraphs } from "@/lib/podcast/show-notes";
+import { proseParagraphs, showNoteParagraphs } from "@/lib/podcast/show-notes";
 
 /**
  * One episode, at a permanent URL — and the single template every episode uses.
@@ -159,6 +159,9 @@ function EpisodePage() {
   // Cleaned at render for every episode, present and future: the feed's
   // promotional tail ("Mobile viewers…", hashtags, "Listen on:") is never shown.
   const body = showNoteParagraphs(episode.description);
+  // Guest bio: CMS copy first, the on-file profile only as a fallback. Both go
+  // through the same paragraph splitter so breaks survive either way.
+  const bio = proseParagraphs(episode.guestBio ?? profile.bio ?? "");
 
   return (
     <>
@@ -233,7 +236,7 @@ function EpisodePage() {
                 match. Any divergence here is a bug, not a variant. */}
             <p className={SECTION_HEADING}>Episode summary</p>
             {body.length > 0 && (
-              <div className="mt-3 max-w-[58ch] space-y-3 text-[1.0625rem] leading-[1.55] text-ink/80">
+              <div className="mt-3 max-w-[58ch] space-y-3 whitespace-pre-line text-[1.0625rem] leading-[1.55] text-ink/80">
                 {body.map((paragraph: string) => (
                   <p key={paragraph.slice(0, 48)}>{paragraph}</p>
                 ))}
@@ -280,10 +283,12 @@ function EpisodePage() {
               {profile.role && <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>}
               {/* Sanity first, the on-file profile only as a fallback — and
                   nothing at all when neither exists. No filler. */}
-              {(episode.guestBio ?? profile.bio) && (
-                <p className="mt-3 max-w-[55ch] text-[1.0625rem] leading-[1.55] text-ink/75">
-                  {episode.guestBio ?? profile.bio}
-                </p>
+              {bio.length > 0 && (
+                <div className="mt-3 max-w-[55ch] space-y-3 whitespace-pre-line text-[1.0625rem] leading-[1.55] text-ink/75">
+                  {bio.map((paragraph: string) => (
+                    <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                  ))}
+                </div>
               )}
             </div>
           )}
