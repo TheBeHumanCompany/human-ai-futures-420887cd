@@ -82,20 +82,19 @@ function Podcast() {
   useEffect(() => setPage(1), [browse, isMobile]);
   const archiveRef = useRef<HTMLDivElement>(null);
 
-  const featured =
-    visible.find((row) => row.source.episodeNumber === 5)?.source ?? visible[0]?.source;
+  // The newest episode leads. Previously this pinned episode 5 as "Latest
+  // episode" and forced 39/38 to the head of the grid, so a genuinely new
+  // episode landed mid-grid and read as missing.
+  const featured = visible[0]?.source;
 
-  const gridEpisodes = useMemo<EpisodeListItem[]>(() => {
-    const withoutFeatured = visible.filter((row) => row.source.episodeNumber !== 5);
-    const ep39 = withoutFeatured.find((row) => row.source.episodeNumber === 39)?.source;
-    const ep38 = withoutFeatured.find((row) => row.source.episodeNumber === 38)?.source;
-    const remainder = withoutFeatured.filter(
-      (row) => row.source.episodeNumber !== 39 && row.source.episodeNumber !== 38,
-    );
-    return [ep39, ep38, ...remainder.map((row) => row.source)].filter(
-      (episode): episode is EpisodeListItem => episode !== undefined,
-    );
-  }, [visible]);
+  const gridEpisodes = useMemo<EpisodeListItem[]>(
+    () =>
+      visible
+        .slice(1)
+        .map((row) => row.source)
+        .filter((episode): episode is EpisodeListItem => episode !== undefined),
+    [visible],
+  );
 
   const pageCount = Math.max(1, Math.ceil(gridEpisodes.length / MOBILE_PAGE_SIZE));
   const current = Math.min(page, pageCount);
