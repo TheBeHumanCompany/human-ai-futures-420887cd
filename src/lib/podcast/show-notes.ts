@@ -36,6 +36,42 @@ const PROMO_MARKERS: RegExp[] = [
 /** A whole line that is nothing but promo: a handle, a hashtag row, a link. */
 const PROMO_LINE = /^(?:[@#][\w.]+|\W*https?:\/\/\S+\W*|[\s|·—–-]*)$/;
 
+/**
+ * Any CMS text field as a plain string, with its paragraph structure intact.
+ *
+ * A field may arrive as plain text or as Portable Text block content. Blocks
+ * are joined with a blank line so each stored block stays its own paragraph —
+ * never flattened into one continuous string.
+ */
+export function toPlainText(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (!Array.isArray(value)) return "";
+
+  return value
+    .map((block) => {
+      if (typeof block === "string") return block;
+      const children = (block as { children?: Array<{ text?: unknown }> })?.children;
+      if (!Array.isArray(children)) return "";
+      return children.map((child) => (typeof child?.text === "string" ? child.text : "")).join("");
+    })
+    .filter((block) => block.trim() !== "")
+    .join("\n\n");
+}
+
+/** Split into paragraphs on blank lines; single newlines stay inside a paragraph. */
+function toBlocks(text: string): string[] {
+  return text
+    .split(/\n[ \t]*\n+/)
+    .map((block) =>
+      block
+        .split("\n")
+        .map((line) => line.trim())
+        .join("\n")
+        .trim(),
+    )
+    .filter(Boolean);
+}
+
 function firstPromoIndex(text: string): number {
   let cut = -1;
   for (const marker of PROMO_MARKERS) {
@@ -60,44 +96,60 @@ function toSentenceBoundary(text: string): string {
 }
 
 /** The editorial summary alone, with the promotional tail removed. */
-export function cleanShowNotes(description: string | null | undefined): string {
-  if (!description) return "";
+export function cleanShowNotes(description: unknown): string {
+  const source = toPlainText(description);
+  if (!source) return "";
 
-  const kept = description
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter((line) => line !== "" && !PROMO_LINE.test(line))
-    .map((line) => {
-      const cut = firstPromoIndex(line);
-      return cut === -1 ? line : toSentenceBoundary(line.slice(0, cut));
-    })
-    .filter(Boolean);
+  const blocks = toBlocks(source).map((block) =>
+    block
+      .split("\n")
+      .filter((line) => line !== "" && !PROMO_LINE.test(line))
+      .map((line) => {
+        const cut = firstPromoIndex(line);
+        return cut === -1 ? line : toSentenceBoundary(line.slice(0, cut));
+      })
+      .filter(Boolean)
+      .join("\n"),
+  );
 
-  return kept.join("\n\n").trim();
+  return blocks.filter(Boolean).join("\n\n").trim();
 }
 
 /**
  * Cleaned show notes as readable paragraphs.
  *
- * Blank lines are the feed's own paragraph marks and win when present. A long
- * single block is otherwise grouped roughly three sentences at a time, which is
+ * Blank lines are the CMS's own paragraph marks and always win. Single line
+ * breaks are preserved inside the paragraph they belong to. A long single block
+ * with no breaks at all is grouped roughly three sentences at a time, which is
  * formatting rather than rewriting — no word is added, removed or reordered.
  */
-export function showNoteParagraphs(description: string | null | undefined): string[] {
+export function showNoteParagraphs(description: unknown): string[] {
   const cleaned = cleanShowNotes(description);
   if (!cleaned) return [];
 
-  const blocks = cleaned
-    .split(/\n{2,}/)
-    .map((block) => block.trim())
-    .filter(Boolean);
-
+  const blocks = toBlocks(cleaned);
   if (blocks.length > 1) return blocks;
 
-  const sentences = (blocks[0] ?? "").match(/[^.!?]+[.!?]*\s*/g) ?? [];
+  const single = blocks[0] ?? "";
+  if (single.includes("\n")) return [single];
+
+  const sentences = single.match(/[^.!?]+[.!?]*\s*/g) ?? [];
   const grouped: string[] = [];
   for (let i = 0; i < sentences.length; i += 3) {
     grouped.push(sentences.slice(i, i + 3).join("").trim());
   }
   return grouped.filter(Boolean);
 }
+
+/**
+ * Free CMS prose (a guest bio) as paragraphs.
+ *
+ * No promotional cleaning: a bio is authored copy, not feed copy. Blank lines
+ * become separate paragraphs and single newlines are kept inside them.
+ */
+export function prosePararaphs(text: unknown): string[] {
+  return toBlocks(toPlainText(text));
+}
+
+export { prosePararaphs as proseParagraphs };
+
