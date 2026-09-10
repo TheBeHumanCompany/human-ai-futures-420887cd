@@ -186,7 +186,6 @@ describe("EPISODE_LIST_PROJECTION", () => {
     "_id",
     "description",
     "guestBio",
-    "guestPhoto",
     "guid",
     "podbeanUrl",
     "searchText",

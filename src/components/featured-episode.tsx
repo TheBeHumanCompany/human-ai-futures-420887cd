@@ -4,11 +4,11 @@ import { Play } from "lucide-react";
 import {
   displayTitle,
   episodeDuration,
-  episodeImage,
   EpisodeNumberTag,
   publishedOn,
 } from "@/components/episode-media-card";
 import type { EpisodeListItem } from "@/lib/podcast/episode";
+import { featuredImage } from "@/lib/podcast/imagery";
 
 /**
  * The featured episode: flat, editorial, two columns on desktop.
@@ -29,7 +29,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         className="group relative block aspect-[4/5] overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:h-[21rem]"
       >
         <img
-          src={episodeImage(episode)}
+          src={featuredImage(episode)}
           alt=""
           className="size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
