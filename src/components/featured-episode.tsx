@@ -26,12 +26,13 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         to="/podcast/$slug"
         params={{ slug }}
         aria-label={`Listen to ${displayTitle(episode.title)}`}
-        className="group relative block aspect-[4/5] overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:h-[21rem]"
+        className="group relative block aspect-[4/5] shrink-0 overflow-hidden bg-ink/10 sm:aspect-[16/10] lg:aspect-auto lg:h-[21rem] lg:w-full"
       >
         <img
           src={featuredImage(episode)}
           alt=""
-          className="size-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          loading="lazy"
+          className="absolute inset-0 size-full object-cover object-[50%_22%] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
         <span className="absolute left-4 top-4 bg-lime px-2.5 py-1.5 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
           Latest episode
@@ -41,7 +42,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         </span>
       </Link>
 
-      <div className="flex flex-col justify-center px-6 py-7 sm:px-10 lg:px-12 lg:py-8">
+      <div className="flex min-w-0 flex-col justify-center overflow-hidden px-6 py-7 sm:px-10 lg:h-[21rem] lg:px-12 lg:py-8">
         <p className="inline-flex w-fit items-center gap-1.5 bg-lime px-2 py-1 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
           <EpisodeNumberTag episode={episode} />
           <span aria-hidden>·</span>
@@ -68,7 +69,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         <Link
           to="/podcast/$slug"
           params={{ slug }}
-          className="eyebrow mt-6 inline-flex w-fit items-center gap-3 font-semibold tracking-[0.24em] text-ink"
+          className="eyebrow mt-5 inline-flex w-fit items-center gap-3 font-semibold tracking-[0.24em] text-ink lg:mt-6"
         >
           <span className="flex size-9 items-center justify-center rounded-full bg-ink text-cream">
             <Play className="size-3.5 translate-x-px" aria-hidden />
