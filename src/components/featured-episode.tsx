@@ -42,7 +42,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         </span>
       </Link>
 
-      <div className="flex flex-col justify-center px-6 py-7 sm:px-10 lg:px-12 lg:py-8">
+      <div className="flex min-w-0 flex-col justify-center overflow-hidden px-6 py-7 sm:px-10 lg:h-[21rem] lg:px-12 lg:py-8">
         <p className="inline-flex w-fit items-center gap-1.5 bg-lime px-2 py-1 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">
           <EpisodeNumberTag episode={episode} />
           <span aria-hidden>·</span>
