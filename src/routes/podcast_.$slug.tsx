@@ -159,6 +159,9 @@ function EpisodePage() {
   // Cleaned at render for every episode, present and future: the feed's
   // promotional tail ("Mobile viewers…", hashtags, "Listen on:") is never shown.
   const body = showNoteParagraphs(episode.description);
+  // Guest bio: CMS copy first, the on-file profile only as a fallback. Both go
+  // through the same paragraph splitter so breaks survive either way.
+  const bio = proseParagraphs(episode.guestBio ?? profile.bio ?? "");
 
   return (
     <>
