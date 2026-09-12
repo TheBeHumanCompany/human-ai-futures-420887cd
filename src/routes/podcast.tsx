@@ -171,10 +171,9 @@ function Podcast() {
             <>
               {featured && <FeaturedEpisode episode={featured} />}
 
-              {/* Archive discovery: generous breathing room after the featured
-                  card, then search, then the "More episodes" heading, then the
-                  count/sort row, then the grid. */}
-              <div ref={archiveRef} className="mt-24 scroll-mt-24 lg:mt-32">
+              {/* Archive discovery follows the featured story with a clear but
+                  compact section break, then search, count/sort, and the grid. */}
+              <div ref={archiveRef} className="mt-12 scroll-mt-24 lg:mt-16">
                 <h2 className="type-label-caps text-ink">More episodes</h2>
 
                 <div className="relative mt-5 w-full max-w-[38rem]">
