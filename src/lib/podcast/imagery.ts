@@ -143,10 +143,15 @@ export function featuredImage(episode: EpisodeListItem, width = 1200): string {
   );
 }
 
-/** Grid/card imagery: supplied portrait, artwork, share card, then a still. */
+/**
+ * Grid/card imagery: supplied portrait, Sanity guest portrait, artwork, share
+ * card, then a still. Keeping `guestPhoto` ahead of branded artwork makes the
+ * directory use the same intended portrait as the individual episode page.
+ */
 export function episodeImage(episode: EpisodeListItem, width = 1200): string {
   return (
     suppliedPortrait(episode) ??
+    imageUrl(episode.guestPhoto, { width, fit: "crop" }) ??
     imageUrl(episode.coverArtwork, { width, fit: "crop" }) ??
     imageUrl(shareCardRef(episode), { width, fit: "crop" }) ??
     studioStill(episode)
