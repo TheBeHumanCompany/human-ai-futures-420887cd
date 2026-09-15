@@ -146,7 +146,31 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <ClerkProvider appearance={{ theme: shadcn }}>
+        {/*
+          The shadcn theme already inherits the brand's COLOUR, because it reads
+          the same `--primary`, `--background` and `--border` custom properties
+          `src/styles.css` defines — which is why the sign-in button is lime
+          without anything being said here.
+
+          What it does not inherit is type and geometry: Clerk ships its own font
+          stack and a rounded default, so the card read as a generic auth widget
+          sitting on a Be Human page. These two variables close that gap and
+          nothing else, deliberately — every colour stays delegated to the CSS
+          layer, so a palette change in styles.css keeps flowing through instead
+          of being pinned twice.
+
+          Counterfactual: hardcoding colours here would make styles.css and this
+          file disagree the first time either moves.
+        */}
+        <ClerkProvider
+          appearance={{
+            theme: shadcn,
+            variables: {
+              fontFamily: '"Work Sans", ui-sans-serif, system-ui, sans-serif',
+              borderRadius: "0.125rem",
+            },
+          }}
+        >
           {children}
           <Scripts />
         </ClerkProvider>
