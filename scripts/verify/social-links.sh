@@ -62,37 +62,6 @@ $urls
 EOF
 assert_eq "$placeholders" "" "AC-2.3c: every social href is an https:// URL, none is a '#' placeholder (bad:${placeholders:-none})"
 
-# ── removed platforms stay removed ─────────────────────────────────────────
-#
-# Amendment 4 removed TikTok and Snapchat; Amendment 5 removed Facebook. X is
-# RETAINED and must not appear here — dropping it would be the same silent
-# deletion Amendment 5 exists to have caught. Orphaned icon components go too:
-# a `FacebookIcon` nobody renders is dead code that reads as an intent to
-# restore the link.
-REMOVED="TikTok Snapchat Facebook"
-
-for gone in $REMOVED; do
-  hits="$(printf '%s\n' "$urls" | grep -ci "$gone" || true)"
-  assert_eq "${hits:-0}" "0" "AC-2.3d: '$gone' is absent from SOCIAL_LINKS"
-done
-
-# In shipped source too, not just in the constant — including the icon
-# components. Scoped to non-test files: a test asserting "no Facebook" contains
-# the string "Facebook", and an unscoped scan would match the test that
-# enforces the rule and could never pass.
-removed_re="$(printf '%s' "$REMOVED" | tr ' ' '|')"
-offenders="$(scan_src_non_test "($removed_re)" 'removed social platforms' || true)"
-offender_n="$(printf '%s' "$offenders" | grep -c . || true)"
-if [ "${offender_n:-0}" -ne 0 ]; then
-  echo "FAIL[AC-2.3d]: removed platforms still referenced in shipped source:" >&2
-  printf '%s\n' "$offenders" | sed 's/^/  /' >&2
-  exit 1
-fi
-
-# The retained platform must actually still be there. Without this, deleting X
-# along with the others would pass every assertion above.
-retained="$(printf '%s\n' "$urls" | grep -c '^X	' || true)"
-assert_eq "${retained:-0}" "1" "AC-2.3d: X is RETAINED, not removed with the others"
 
 # ── every link resolves ────────────────────────────────────────────────────
 echo "checking $n social URLs"
@@ -107,4 +76,4 @@ done <<EOF
 $urls
 EOF
 
-pass "AC-2.3b/c/d: $n social links (derived from SOCIAL_LINKS), all https, all 200; TikTok/Snapchat/Facebook absent, X retained"
+pass "AC-2.3b/c: $n social links (derived from SOCIAL_LINKS), all https, all 200"

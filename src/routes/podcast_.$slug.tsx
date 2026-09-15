@@ -1,8 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { EpisodePlayer } from "@/components/episode-player";
+import { SocialIcon } from "@/components/social-icons";
 import { formatDuration } from "@/lib/podbean/parse";
 import { PodcastDegraded } from "@/components/podcast-degraded";
+import { withContentCorrections } from "@/lib/podcast/content-corrections";
 import {
   DEGRADED_RETRY_AFTER_SECONDS,
   DEGRADED_SOURCE_HEADER,
@@ -14,7 +16,7 @@ import { episodeHeroImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
 import { selectRelatedEpisodes } from "@/lib/podcast/related";
 import { buildEpisodeJsonLd, buildEpisodeMeta } from "@/lib/podcast/seo";
-import { showNoteParagraphs } from "@/lib/podcast/show-notes";
+import { proseParagraphs, showNoteParagraphs } from "@/lib/podcast/show-notes";
 
 /**
  * One episode, at a permanent URL — and the single template every episode uses.
@@ -61,8 +63,9 @@ export const Route = createFileRoute("/podcast_/$slug")({
     const episode = await fetchEpisodeBySlug({ data: params.slug });
     if (!episode) throw notFound();
 
+    const corrected = withContentCorrections(episode);
     const candidates = await fetchRelatedCandidates();
-    return { episode, related: selectRelatedEpisodes(episode, candidates) };
+    return { episode: corrected, related: selectRelatedEpisodes(corrected, candidates) };
   },
 
   /**
@@ -156,6 +159,9 @@ function EpisodePage() {
   // Cleaned at render for every episode, present and future: the feed's
   // promotional tail ("Mobile viewers…", hashtags, "Listen on:") is never shown.
   const body = showNoteParagraphs(episode.description);
+  // Guest bio: CMS copy first, the on-file profile only as a fallback. Both go
+  // through the same paragraph splitter so breaks survive either way.
+  const bio = proseParagraphs(episode.guestBio ?? profile.bio ?? "");
 
   return (
     <>
@@ -230,10 +236,40 @@ function EpisodePage() {
                 match. Any divergence here is a bug, not a variant. */}
             <p className={SECTION_HEADING}>Episode summary</p>
             {body.length > 0 && (
-              <div className="mt-3 max-w-[58ch] space-y-3 text-[1.0625rem] leading-[1.55] text-ink/80">
+              <div className="mt-3 max-w-[58ch] space-y-3 whitespace-pre-line text-[1.0625rem] leading-[1.55] text-ink/80">
                 {body.map((paragraph: string) => (
                   <p key={paragraph.slice(0, 48)}>{paragraph}</p>
                 ))}
+              </div>
+            )}
+
+            {episode.slug.current === "minting-success-story-plant-based-cleaning-revolutionaries" && (
+              <div className="mt-8 max-w-[58ch] border-t border-hairline-dark pt-5">
+                <p className={SECTION_HEADING}>Connect with Mint Cleaning</p>
+                <ul className="mt-3 flex flex-wrap items-center gap-4">
+                  <li>
+                    <a
+                      href="https://mintcleaningproducts.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="eyebrow inline-flex items-center gap-2 text-ink/80 transition-colors hover:text-ink"
+                    >
+                      <GlobeIcon className="h-4 w-4 text-lime" />
+                      Website
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.instagram.com/mintcleaning_/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="eyebrow inline-flex items-center gap-2 text-ink/80 transition-colors hover:text-ink"
+                    >
+                      <SocialIcon name="Instagram" className="h-4 w-4 text-lime" />
+                      Instagram
+                    </a>
+                  </li>
+                </ul>
               </div>
             )}
           </div>
@@ -247,10 +283,12 @@ function EpisodePage() {
               {profile.role && <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>}
               {/* Sanity first, the on-file profile only as a fallback — and
                   nothing at all when neither exists. No filler. */}
-              {(episode.guestBio ?? profile.bio) && (
-                <p className="mt-3 max-w-[55ch] text-[1.0625rem] leading-[1.55] text-ink/75">
-                  {episode.guestBio ?? profile.bio}
-                </p>
+              {bio.length > 0 && (
+                <div className="mt-3 max-w-[55ch] space-y-3 whitespace-pre-line text-[1.0625rem] leading-[1.55] text-ink/75">
+                  {bio.map((paragraph: string) => (
+                    <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                  ))}
+                </div>
               )}
             </div>
           )}
@@ -298,6 +336,26 @@ function EpisodePage() {
         )}
       </section>
     </>
+  );
+}
+
+/** Simple globe icon for an external website link. */
+function GlobeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className={className}
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
   );
 }
 

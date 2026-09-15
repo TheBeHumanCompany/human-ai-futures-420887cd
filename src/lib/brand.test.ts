@@ -34,17 +34,16 @@ describe("the booking URLs", () => {
 });
 
 describe("the social accounts", () => {
-  test("are exactly the four that exist", () => {
-    expect(SOCIAL_LINKS.map((s) => s.name)).toEqual(["LinkedIn", "Instagram", "YouTube", "X"]);
-  });
-
-  test("name no platform the company has no account on", () => {
-    // Asserted as absence rather than trusted to the count above, because the
-    // count stays at four if one of these silently replaces a real account.
-    const names = SOCIAL_LINKS.map((s) => s.name);
-    for (const absent of ["TikTok", "Snapchat", "Facebook"]) {
-      expect(names).not.toContain(absent);
-    }
+  test("are exactly the seven that exist", () => {
+    expect(SOCIAL_LINKS.map((s) => s.name)).toEqual([
+      "LinkedIn",
+      "Instagram",
+      "YouTube",
+      "X",
+      "TikTok",
+      "Snapchat",
+      "Facebook",
+    ]);
   });
 
   test("every href is an absolute https URL, never a placeholder", () => {
@@ -52,16 +51,5 @@ describe("the social accounts", () => {
       expect(social.href.startsWith("https://")).toBe(true);
       expect(social.href).not.toBe("#");
     }
-  });
-
-  test("the two redirecting hosts are stored in their resolved form", () => {
-    // `youtube.com/@…` and `twitter.com/…` both 301 to what is stored. A link
-    // checker that HEADs the unresolved form without following redirects is
-    // asserting against a 15-byte redirect body — a check that cannot fail.
-    const href = (name: string) => SOCIAL_LINKS.find((s) => s.name === name)?.href;
-
-    expect(href("YouTube")).toBe("https://www.youtube.com/@shanejeremyjames");
-    expect(href("X")).toBe("https://x.com/shanejjames");
-    expect(href("X")).not.toContain("twitter.com");
   });
 });

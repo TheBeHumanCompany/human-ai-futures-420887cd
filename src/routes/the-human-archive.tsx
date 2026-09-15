@@ -77,7 +77,7 @@ function ArchiveVideoCard({
       role="button"
       aria-label={`Play ${name}'s Human Archive video`}
     >
-      <div className="relative overflow-hidden">
+      <div className="group relative overflow-hidden">
         <img
           src={still}
           alt={`Video still of ${name} from ${location}`}
@@ -86,6 +86,24 @@ function ArchiveVideoCard({
           height={1000}
           className="aspect-[4/5] w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
         />
+        {/* Rest-state affordance: the thumbnail is a video, not a portrait.
+            Hidden once the embed mounts so it never sits over the player. */}
+        {!active && (
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 flex items-center justify-center"
+          >
+            <span className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-lime bg-ink/60 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:bg-ink/80 sm:h-16 sm:w-16">
+              <svg
+                viewBox="0 0 24 24"
+                className="ml-[3px] h-5 w-5 fill-lime sm:h-6 sm:w-6"
+                focusable="false"
+              >
+                <path d="M8 5.5v13l11-6.5z" />
+              </svg>
+            </span>
+          </span>
+        )}
         {active && (
           <>
             <iframe
@@ -170,15 +188,17 @@ function Archive() {
       <section className="section-cream border-b border-border">
         <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-28">
           <p className="type-label-caps text-ink/50">The Human Archive</p>
-          <h1 className="type-h1-caps-light mt-6 text-ink">
-            Real stories.
-            <br />
-            Real humans.
-          </h1>
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">
-            We ask people around the world one question: what does it mean to be human? These are
-            some of the answers.
-          </p>
+            <h1 className="type-h1-caps-light mt-6 text-ink">
+              Real people
+              <br />
+              Real answers
+            </h1>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">
+              The Human Archive keeps real human voices inside the conversation as technology
+              reshapes how we live, work, and connect. It helps us listen to what people across
+              different lives and backgrounds say matters most — and allows those answers to help
+              shape the future we’re building. We ask one question: <strong>what does it mean to be human?</strong>
+            </p>
         </div>
       </section>
 

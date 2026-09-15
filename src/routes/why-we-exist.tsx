@@ -3,7 +3,7 @@ import { Heart, Lightbulb, Users } from "lucide-react";
 
 import manifestoImage from "@/assets/manifesto.jpg";
 import humanStoryPortrait from "@/assets/human-story-portrait.webp";
-import generationsPortrait from "@/assets/generations-portrait.png.asset.json";
+import generationsPortrait from "@/assets/generations-portrait.png";
 
 export const Route = createFileRoute("/why-we-exist")({
   head: () => ({
@@ -27,18 +27,18 @@ export const Route = createFileRoute("/why-we-exist")({
 });
 
 /**
- * `/why-we-exist` — one continuous editorial story (Maya, 2026-08-20 refactor).
+ * `/why-we-exist` — one continuous editorial story.
  *
- * The page now opens on The Human Story; the old poster hero, the "Stay Human."
- * standalone, and every image but two are gone. Two photographs only: the
- * portrait beside The Human Story, the sunset group beside The Opportunity —
- * same column split, same treatment, so the page reads as one grid rather than
- * nine layouts.
+ * The top of the page reads as a single article: a sentence-case "Why We Exist"
+ * headline, the opening narrative, the emphasized question, the pattern
+ * paragraphs, and Lindsay's quote paired with her portrait all share one cream
+ * section. Two photographs only: Lindsay's portrait and the sunset group beside
+ * The Opportunity.
  *
- * Lime is an accent, never a headline: `SectionLabel` (uppercase label + thin
- * rule) is the only lime on the page. Headlines are ink on cream and foreground
- * on ink, at two disciplined sizes — `type-h2-condensed` for a section's statement,
- * `type-h3-condensed` for anything subordinate to it.
+ * Lime is an accent, never a headline: short rules beside the pull question and
+ * quote, plus the `SectionLabel` kicker on ink sections. Headlines are ink on
+ * cream and foreground on ink, using the thin editorial display face for the
+ * major statements.
  *
  * Copy is her document, complete, and `src/lib/copy-fidelity.test.ts` holds this
  * file to `docs/source/why-we-exist.txt` sentence by sentence. Paragraphs may be
@@ -47,47 +47,54 @@ export const Route = createFileRoute("/why-we-exist")({
 function WhyWeExist() {
   return (
     <>
-      {/* ══════ 01 — HERO (cream) ══════ Type only; the portrait now lives in The Pattern. */}
-      <section className="section-cream">
-        <div className={`${SHELL} pt-16 pb-16 lg:pt-28 lg:pb-28`}>
-          <div className="max-w-[36ch] lg:max-w-[62%]">
-            <p className="type-label-caps text-ink/45">Why we exist</p>
+      {/* ══════ 01 — HERO (ink) ══════
+          Bold black opening: the question that starts everything. */}
+      <section className="section-ink">
+        <div className={`${SHELL} pt-16 pb-12 lg:pt-24 lg:pb-16`}>
+          <h1 className="type-h1-caps-light max-w-[18ch] text-foreground">
+            WHY WE EXIST
+          </h1>
 
-            <h1 className="type-h1-caps-light mt-8 text-ink lg:mt-10">
-              There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking about
-            </h1>
-          </div>
+          <p className="type-body mt-6 max-w-[52ch] text-muted-foreground">
+            There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking about.
+          </p>
 
-          <p className="type-body mt-10 max-w-[46ch] text-ink/60 lg:mt-14">
+          <p className="type-body mt-3 max-w-[52ch] text-muted-foreground">
             Actually, it&rsquo;s not one moment. It&rsquo;s a pattern. We started asking people one
             question:
           </p>
 
-          <div className="mt-8 flex items-center gap-5 lg:mt-10">
+          <div className="mt-5 flex items-center gap-5">
             <span aria-hidden className="h-[3px] w-9 shrink-0 bg-lime" />
-            <p className="type-body-lg font-semibold text-ink">What does it mean to be human?</p>
+            <p className="type-body-lg font-bold text-foreground">
+              What does it mean to be human?
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ══════ 01b — THE PATTERN (cream) ══════ Story left, Lindsay's portrait right. */}
-      <section className="section-cream border-t border-ink/10">
-        <div className={`${SHELL} py-14 lg:py-20`}>
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20">
-            <div className="max-w-[52ch]">
-              <p className="type-label-caps text-ink/45">The pattern</p>
-              <span className="type-eyebrow-rule block" aria-hidden />
+      {/* ══════ 02 — EDITORIAL OPENING (cream) ══════
+          Pattern paragraphs and Lindsay's quote/image read as one continuous
+          article, directly below the black hero with no divider. */}
+      <section className="section-cream">
+        <div className={`${SHELL} pt-14 pb-16 lg:pt-20 lg:pb-28`}>
+          {/* One shared two-column editorial grid: the paragraphs and
+              Lindsay's quote stack in the left column, her portrait fills the
+              right column directly beside them. */}
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+            <div>
+              <div className="max-w-[52ch] space-y-5">
+                <p className="type-body text-ink/70">
+                  Almost nobody talks about their job title, how productive they&rsquo;ve been, or
+                  what they&rsquo;ve built.
+                </p>
+                <p className="type-body text-ink/70">
+                  They talk about feeling things. Laughing. Crying. Showing up for someone when
+                  it was hard. Being kind when it would&rsquo;ve been easier not to be.
+                </p>
+              </div>
 
-              <p className="type-body mt-8 text-ink/70">
-                Almost nobody talks about their job title, how productive they&rsquo;ve been, or
-                what they&rsquo;ve built.
-              </p>
-              <p className="type-body mt-5 text-ink/70">
-                They talk about feeling things. Laughing. Crying. Showing up for someone when it
-                was hard. Being kind when it would&rsquo;ve been easier not to be.
-              </p>
-
-              <figure className="mt-10 flex items-stretch gap-5">
+              <figure className="mt-10 flex items-stretch gap-5 lg:mt-12">
                 <span aria-hidden className="w-[2px] shrink-0 bg-lime" />
                 <div>
                   <blockquote className="type-h3-condensed text-ink">
@@ -113,7 +120,7 @@ function WhyWeExist() {
               loading="lazy"
               width={1000}
               height={1752}
-              className="aspect-4/5 w-full object-cover lg:max-w-[360px] lg:justify-self-end"
+              className="aspect-4/5 w-full object-cover"
             />
           </div>
         </div>
@@ -168,7 +175,7 @@ function WhyWeExist() {
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
             <div className="max-w-[52ch]">
               <SectionLabel tone="dark">The opportunity</SectionLabel>
-              <h2 className="type-h1-condensed mt-10 text-ink">Time.</h2>
+              <h2 className="type-h1-caps-light mt-10 text-ink">TIME</h2>
               <p className="type-body mt-8 text-ink/70">
                 The opportunity in that is real. AI will cure diseases, remove decades of repetitive
                 work, unlock discoveries we haven't imagined yet, and give millions of people
@@ -198,7 +205,7 @@ function WhyWeExist() {
                   className={[
                     "flex items-center gap-5 py-8 lg:py-0",
                     isFirst ? "lg:pr-10" : isLast ? "lg:pl-10" : "lg:px-10",
-                    !isLast ? "border-b border-ink/10 lg:border-b-0 lg:border-r" : "",
+                    !isLast ? "lg:border-r lg:border-ink/10" : "",
                   ].join(" ")}
                 >
                   <span
@@ -241,10 +248,12 @@ function WhyWeExist() {
         <div className={`${SHELL} py-14 lg:py-24`}>
           <p className="type-label-caps text-ink/45">What we practice</p>
 
-          <h2 className="type-h2-caps-light mt-8 w-full max-w-[24ch] text-ink lg:mt-10">
+          <h2 className="type-h2-condensed mt-8 w-full max-w-[26ch] text-ink lg:mt-10">
             You&rsquo;re born human. Humanity is what you practice
           </h2>
 
+          {/* All body copy lives inside the two columns; reading order is
+              left column top-to-bottom, then right column. */}
           <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-24">
             <div className="max-w-[52ch] space-y-6">
               <p className="type-body text-ink/70">
@@ -256,14 +265,14 @@ function WhyWeExist() {
                 you. In choosing to be fully present with the person in front of you when
                 distraction would cost you nothing.
               </p>
-            </div>
-            <div className="max-w-[52ch] space-y-6">
               <p className="type-body text-ink/70">We call those moments Human Reps.</p>
               <p className="type-body text-ink/70">
                 Small, conscious choices where you interrupt the automatic pattern and decide how
                 you want to show up.
               </p>
               <p className="type-body text-ink/70">None of them looks like much on its own.</p>
+            </div>
+            <div className="max-w-[52ch] space-y-6">
               <p className="type-body text-ink/70">
                 But they compound into trust with your name attached, into relationships strong
                 enough to carry real life, into leaders people actually believe in, into families
@@ -271,36 +280,52 @@ function WhyWeExist() {
                 human because the people inside them chose to practice being human.
               </p>
               <p className="type-body font-semibold text-ink">We call that Human Wealth.</p>
+              <p className="type-body text-ink/70">
+                We believe the world gets measurably better every time someone chooses to practice
+                their humanity.
+              </p>
+              <p className="type-body text-ink/70">
+                Not because we say it does. Because it&rsquo;s true every single time it happens.
+              </p>
+              <p className="type-body-lg font-semibold text-ink">
+                One conversation. One promise kept. One moment of real presence instead of
+                performance.
+              </p>
             </div>
           </div>
 
-          <div className="mt-12 max-w-[62ch] space-y-6">
-            <p className="type-body text-ink/70">
-              We believe the world gets measurably better every time someone chooses to practice
-              their humanity.
-            </p>
-            <p className="type-body text-ink/70">
-              Not because we say it does. Because it&rsquo;s true every single time it happens.
-            </p>
-            <p className="type-body-lg font-semibold text-ink">
-              One conversation. One promise kept. One moment of real presence instead of
-              performance.
-            </p>
+          {/* The compounding progression — the only full-width element here.
+              One centred line on desktop, exactly two centred lines below it. */}
+          <div className="mt-12 flex flex-col items-center justify-center gap-y-3 lg:mt-16 lg:flex-row lg:gap-x-8">
+            <div className="flex items-center justify-center gap-x-4 lg:gap-x-8">
+              {COMPOUNDS.slice(0, 3).map((item, i) => (
+                <span key={item} className="flex items-center gap-x-4 lg:gap-x-8">
+                  <span className="type-label-caps text-ink/75">{item}</span>
+                  {i < 2 ? (
+                    <span aria-hidden className="type-body-sm text-lime-dark">
+                      &rarr;
+                    </span>
+                  ) : null}
+                </span>
+              ))}
+            </div>
+            <span aria-hidden className="type-body-sm hidden text-lime-dark lg:inline">
+              &rarr;
+            </span>
+            <div className="flex items-center justify-center gap-x-4 lg:gap-x-8">
+              {COMPOUNDS.slice(3).map((item, i) => (
+                <span key={item} className="flex items-center gap-x-4 lg:gap-x-8">
+                  <span className="type-label-caps text-ink/75">{item}</span>
+                  {i < 1 ? (
+                    <span aria-hidden className="type-body-sm text-lime-dark">
+                      &rarr;
+                    </span>
+                  ) : null}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* The compounding progression, at the foot of the section. */}
-          <ul className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-4 lg:mt-14 lg:gap-x-8">
-            {COMPOUNDS.map((item, i) => (
-              <li key={item} className="flex items-center gap-5 lg:gap-8">
-                <span className="type-label-caps text-ink/75">{item}</span>
-                {i < COMPOUNDS.length - 1 ? (
-                  <span aria-hidden className="type-body-sm text-lime-dark">
-                    &rarr;
-                  </span>
-                ) : null}
-              </li>
-            ))}
-          </ul>
 
         </div>
       </section>
@@ -327,7 +352,7 @@ function WhyWeExist() {
             </div>
 
             <img
-              src={generationsPortrait.url}
+              src={generationsPortrait}
               alt="A young girl looking toward the camera, lit against a dark background"
               loading="lazy"
               className="aspect-4/5 w-full object-cover"
@@ -411,22 +436,19 @@ function WhyWeExist() {
       {/* ══════ 09 — THE PLAN (ink) ══════ */}
       <section className="section-ink">
         <div className={`${SHELL} py-14 lg:py-24`}>
-          <SectionLabel tone="light">The plan</SectionLabel>
+          <SectionLabel tone="light" rule={false}>
+            The plan
+          </SectionLabel>
 
-          <div className="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
-            {/* LEFT COLUMN: main statement + closing line */}
-            <div>
-              <h2 className="type-h1-caps-light max-w-[20ch] normal-case text-foreground">
-                Technology will keep advancing. Humanity has to advance with it.
-              </h2>
+          {/* Below lg this is a single column: headline → three statements →
+              closing line. On lg the closing line returns to the left column. */}
+          <div className="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-x-20 lg:gap-y-0">
+            <h2 className="type-h1-caps-light max-w-[20ch] normal-case text-foreground lg:col-start-1 lg:row-start-1">
+              Technology will keep advancing. Humanity has to advance with it.
+            </h2>
 
-              <p className="type-body mt-10 font-bold text-foreground lg:mt-14">
-                That&rsquo;s not a hope. That&rsquo;s the plan.
-              </p>
-            </div>
-
-            {/* RIGHT COLUMN: three statements, separated by short lime accents */}
-            <div className="flex flex-col lg:pt-2">
+            {/* Three statements, separated by short lime accents */}
+            <div className="flex flex-col lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:pt-2">
               {PLAN_THOUGHTS.map((thought, i) => (
                 <div key={thought}>
                   {i > 0 ? (
@@ -436,6 +458,10 @@ function WhyWeExist() {
                 </div>
               ))}
             </div>
+
+            <p className="type-body mt-2 text-center font-bold text-foreground lg:col-start-1 lg:row-start-2 lg:mt-14 lg:text-left">
+              That&rsquo;s not a hope. That&rsquo;s the plan.
+            </p>
           </div>
         </div>
       </section>
@@ -465,7 +491,8 @@ function SectionLabel({
       <p className={`type-label-caps ${tone === "light" ? "text-lime" : "text-ink/50"}`}>
         {children}
       </p>
-      {rule ? <span className="type-eyebrow-rule block" aria-hidden /> : null}
+      {/* Cream sections carry no lime accent rule; only ink sections do. */}
+      {rule && tone === "light" ? <span className="type-eyebrow-rule block" aria-hidden /> : null}
     </>
   );
 }

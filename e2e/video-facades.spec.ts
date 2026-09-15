@@ -48,8 +48,8 @@ const PEOPLE = [
 ] as const;
 
 const HOME_VIDEO = {
-  id: "-r011ECKr7M",
-  title: "Welcome To My Channel — Building The Be Human Company",
+  id: "nJShKCUuT38",
+  title: "Homepage",
 };
 
 /** Navigate and let a client-rendered page finish loading its fonts. */

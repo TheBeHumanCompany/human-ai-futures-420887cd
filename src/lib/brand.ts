@@ -71,27 +71,13 @@ export const POSITIONING_DISCLAIMER =
 /** A social destination the footer and the social section both render. */
 export type SocialLink = {
   /** Display name, and the key both surfaces render. */
-  name: "LinkedIn" | "Instagram" | "YouTube" | "X";
-  /** Absolute `https://` URL. Verified HTTP 200 on 2026-08-18. */
+  name: "LinkedIn" | "Instagram" | "YouTube" | "X" | "TikTok" | "Snapchat" | "Facebook";
+  /** Absolute `https://` URL. */
   href: string;
 };
 
 /**
- * Every social account this company actually has — all four of them.
- *
- * The site shipped seven platform labels, every one of them linking to a bare
- * fragment placeholder rather than to an account. Three of those accounts do
- * not exist: two were searched for and found nowhere, and one was never a
- * company account. The decision was to remove rather than to invent, so the
- * icon components for those three are deleted along with their entries, and a
- * test asserts the count so a placeholder cannot creep back in.
- *
- * Two of these are stored in their **resolved** form rather than the form they
- * were supplied in — `youtube.com/@…` and `twitter.com/…` both 301 to what is
- * written here. That matters beyond tidiness: a link checker that HEADs a URL
- * without following redirects is asserting against a 15-byte redirect body,
- * which is a check that cannot fail. Storing the destination removes the hop
- * and gives the checker something real to assert.
+ * Every social account this company actually has — all seven of them.
  *
  * This list is the single source for both surfaces that render socials and for
  * the link checker, so a platform cannot be dropped from one and survive in
@@ -99,9 +85,12 @@ export type SocialLink = {
  */
 export const SOCIAL_LINKS: readonly SocialLink[] = [
   { name: "LinkedIn", href: "https://www.linkedin.com/company/the-be-human-company/" },
-  { name: "Instagram", href: "https://www.instagram.com/thebehumancompany/" },
-  { name: "YouTube", href: "https://www.youtube.com/@shanejeremyjames" },
-  { name: "X", href: "https://x.com/shanejjames" },
+  { name: "Instagram", href: "https://www.instagram.com/shanejjames?igsh=bTNjd2syZnAxdXB4" },
+  { name: "YouTube", href: "https://m.youtube.com/@shanejeremyjames?ra=m" },
+  { name: "X", href: "https://x.com/shanejjames?lang=en" },
+  { name: "TikTok", href: "https://www.tiktok.com/@shanejjames?_r=1&_t=ZS-98rtTHgscnF" },
+  { name: "Snapchat", href: "https://www.snapchat.com/add/shanejjames?share_id=lkw0bdXiL6I&locale=en-CA" },
+  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61590590709616" },
 ] as const;
 
 /**
