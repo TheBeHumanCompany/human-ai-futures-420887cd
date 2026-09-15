@@ -1,5 +1,7 @@
 import type { ClientPage } from "@/lib/client-portal/tokens";
 
+import { BlueprintSections } from "./blueprint/blueprint-sections";
+
 /**
  * One client's reports under their single URL.
  *
@@ -16,6 +18,21 @@ import type { ClientPage } from "@/lib/client-portal/tokens";
  * document centers itself within it.
  */
 export function ClientReports({ page }: { page: ClientPage }) {
+  // A client with a structured blueprint renders it INSTEAD of the authored
+  // bodies: the sections are the same report, modelled rather than pasted, so
+  // rendering both would show it twice. Clients without sections are unchanged.
+  if (page.sections?.length) {
+    return (
+      <div className="w-full">
+        <div className="mx-auto w-full max-w-[1180px] px-6 pt-12 sm:px-8">
+          <p className="eyebrow">Private client page</p>
+          <h1 className="type-h3-caps-light mt-3">{page.title}</h1>
+        </div>
+        <BlueprintSections sections={page.sections} />
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto w-full max-w-[1180px] px-6 py-12 sm:px-8">
       <p className="eyebrow">Private client page</p>

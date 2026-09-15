@@ -1,3 +1,5 @@
+import type { BlueprintSection } from "./blueprint-schema";
+import { fetchBlueprintSections } from "./blueprint-store";
 import { createServerFn } from "@tanstack/react-start";
 
 import type { SupabasePaidReport } from "./supabase-tokens";
@@ -70,6 +72,20 @@ export type ClientPage = Omit<ClientRecord, "token" | "reports"> & {
    * single report, so the page never renders with no tab selected.
    */
   reports: ClientReport[];
+  /**
+   * The structured blueprint, when this client has one.
+   *
+   * Optional and additive on purpose: the existing clients are authored HTML
+   * bodies in `reports`, and they keep rendering untouched while sections are
+   * built. A client with sections renders them INSTEAD of the HTML bodies —
+   * see `c.$token.tsx`.
+   *
+   * Already gated by the time it lands here. `fetchBlueprintSections` applies
+   * `applyTier` before returning, because the service-role key bypasses RLS on
+   * this path, so withheld bodies are dropped on the server rather than in the
+   * component.
+   */
+  sections?: BlueprintSection[];
 };
 
 /**
@@ -192,7 +208,11 @@ function stripePaidReport(
   return { id: PAID_REPORT_ID, title: paid.title, html: paid.html };
 }
 
-function toClientPage(match: ClientRecord, paid: SupabasePaidReport | null = null): ClientPage {
+function toClientPage(
+  match: ClientRecord,
+  paid: SupabasePaidReport | null = null,
+  sections: BlueprintSection[] = [],
+): ClientPage {
   const reports = [...reportsOf(match)];
   const paidReport = stripePaidReport(match, paid);
   if (paidReport) reports.push(paidReport);
@@ -204,6 +224,9 @@ function toClientPage(match: ClientRecord, paid: SupabasePaidReport | null = nul
     // the whole page. The route renders per-report from `reports`.
     html: reports.map((report) => report.html).join("\n"),
     reports,
+    // Omitted rather than empty, so `sections?.length` is the whole test a
+    // caller needs and an absent blueprint never looks like an empty one.
+    ...(sections.length > 0 ? { sections } : {}),
   };
 }
 
@@ -276,7 +299,24 @@ export async function fetchClientPageByTokenFn(
         `[client-portal] paid-report lookup failed: ${error instanceof Error ? error.message : error}`,
       );
     }
-    return toClientPage(match, paid);
+    // Same degradation rule as the paid tab: a blueprint read that fails must
+    // not take down the page the token already earned. The client sees their
+    // authored reports; the structured sections are simply absent.
+    let sections: BlueprintSection[] = [];
+    try {
+      sections = await fetchBlueprintSections(
+        row.client_id,
+        paid?.unlocked === true,
+        config,
+        deps.fetchImpl ?? fetch,
+      );
+    } catch (error) {
+      console.error(
+        `[client-portal] blueprint lookup failed: ${error instanceof Error ? error.message : error}`,
+      );
+    }
+
+    return toClientPage(match, paid, sections);
   }
 
   const match = lookupClientByToken(token, await readStore());
