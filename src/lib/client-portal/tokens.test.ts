@@ -32,12 +32,15 @@ const MARKER_A2 = "ACME-FIXTURE-MARKER-02c4e8";
 const MARKER_B = "BEACON-FIXTURE-MARKER-44d2c8";
 
 describe("the fixture store both clients live in", () => {
-  test("holds exactly the two fixture clients, each with a well-formed token", () => {
-    // Floor: every isolation row below is vacuous if the store collapses to
-    // one client or the tokens stop matching the documented format.
-    expect(clients.length).toBe(2);
-    expect(new Set(clients.map((c) => c.token)).size).toBe(2);
-    for (const client of clients) {
+  test("holds both fixture clients, each with a distinct well-formed token", () => {
+    // Floor: every isolation row below is vacuous if a fixture goes missing
+    // or the tokens stop matching the documented format. Scoped to the two
+    // fixtures by id — the store legitimately holds further real clients
+    // (e.g. voes-and-co) whose rows these rows must not constrain.
+    const fixtures = clients.filter((c) => c.id === "acme-industrial" || c.id === "beacon-health");
+    expect(fixtures.length).toBe(2);
+    expect(new Set(fixtures.map((c) => c.token)).size).toBe(2);
+    for (const client of fixtures) {
       expect(isTokenFormat(client.token)).toBe(true);
     }
   });
@@ -147,9 +150,9 @@ describe("reportsOf — the tab list for one client's page", () => {
     const report = { id: "one", title: "One", html: "<p>one</p>" };
 
     expect(reportsOf({ ...beacon, reports: [] }).map((r) => r.id)).toEqual(["report"]);
-    expect(
-      reportsOf({ ...beacon, reports: [report, { ...report }] }).map((r) => r.id),
-    ).toEqual(["report"]);
+    expect(reportsOf({ ...beacon, reports: [report, { ...report }] }).map((r) => r.id)).toEqual([
+      "report",
+    ]);
   });
 });
 
