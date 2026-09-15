@@ -1,0 +1,128 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   The Be Human Company — shadcn theme, tweakcn export
+   ───────────────────────────────────────────────────────────────────────────
+   This is a PORTABLE COPY of the brand's shadcn tokens, in the plain
+   `:root` / `.dark` CSS-variable shape tweakcn (https://tweakcn.com/editor/theme)
+   imports and exports. Paste this whole file into tweakcn's "Import" dialog to
+   load the brand there for visual tweaking, or use it as the reference when
+   comparing an exported tweakcn theme back against this one.
+
+   `src/styles.css` in this repo is the SOURCE OF TRUTH — this file is a
+   derived export, not the other way round. Two structural differences from
+   `src/styles.css` are intentional and do not indicate drift:
+
+     1. This site is dark-first: `src/styles.css`'s `:root` IS the dark/ink
+        palette, and light "cream" sections are done with the `section-cream`
+        utility, not a `.dark` class — there is no `.dark` selector in the
+        app at all. tweakcn's editor, by contrast, expects the conventional
+        light-`:root`/dark-`.dark` shape, so THIS file's `:root` holds the
+        cream/light values and `.dark` holds the ink values that `src/styles.css`
+        actually ships as its default. Round-tripping through tweakcn and
+        pasting the result back means re-mapping `.dark` -> `src/styles.css`
+        `:root`, not a literal copy.
+     2. Colour values are written as plain hex here (tweakcn's own export
+        format) rather than the oklch() this repo uses natively. Same colours;
+        `src/styles.css` is the higher-precision original.
+
+   The chart palette (--chart-1..5) is computed, not eyeballed — validated with
+   the dataviz skill's validate_palette.js against each mode's surface. See the
+   matching comment blocks in `src/styles.css` (`:root` for dark/ink, inside
+   the `section-cream` utility for light/cream) for the full pass reports and
+   the documented CVD limitation under `--pairs all` (any scatter/bubble/map/
+   small-multiples chart needs a secondary encoding — direct labels or texture
+   — colour alone is not enough there).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --radius: 0.125rem;
+
+  --background: #f3efe6;
+  --foreground: #1c1b18;
+  --card: #e9e3d5;
+  --card-foreground: #1c1b18;
+  --popover: #e9e3d5;
+  --popover-foreground: #1c1b18;
+  /* Brand lime tuned for black backgrounds drops below readable contrast on
+     cream (see `text-lime-dark` in src/styles.css) — the light-mode primary
+     uses that same darkened step, not the raw --lime hue. */
+  --primary: #7f9200;
+  --primary-foreground: #1c1b18;
+  --secondary: #ded7c5;
+  --secondary-foreground: #1c1b18;
+  --muted: #ded7c5;
+  --muted-foreground: #5c5850;
+  --accent: #7f9200;
+  --accent-foreground: #1c1b18;
+  --destructive: #b3231b;
+  --destructive-foreground: #faf9f7;
+  --border: rgba(28, 27, 24, 0.16);
+  --input: rgba(28, 27, 24, 0.16);
+  --ring: #7f9200;
+
+  /* Chart palette, light/cream surface — validated against #f3efe6.
+     Fixed hue order: olive/lime, blue, orange, purple, magenta. */
+  --chart-1: #6b7a01;
+  --chart-2: #01668f;
+  --chart-3: #b8431f;
+  --chart-4: #4a3aa7;
+  --chart-5: #8c2f6b;
+
+  --sidebar: #e9e3d5;
+  --sidebar-foreground: #1c1b18;
+  --sidebar-primary: #d4f04a;
+  --sidebar-primary-foreground: #1c1b18;
+  --sidebar-border: rgba(28, 27, 24, 0.16);
+  --sidebar-accent: #1c1b18;
+  --sidebar-accent-foreground: #f3efe6;
+  --sidebar-ring: #d4f04a;
+
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
+}
+
+.dark {
+  /* This IS the app's default palette — src/styles.css ships these values
+     unconditionally on `:root`, because the site is dark-first. */
+  --background: #1c1b18;
+  --foreground: #f4f2ec;
+  --card: #232220;
+  --card-foreground: #f4f2ec;
+  --popover: #232220;
+  --popover-foreground: #f4f2ec;
+  --primary: #d4f04a;
+  --primary-foreground: #1c1b18;
+  --secondary: #363531;
+  --secondary-foreground: #f4f2ec;
+  --muted: #363531;
+  --muted-foreground: #b8b3a6;
+  --accent: #d4f04a;
+  --accent-foreground: #1c1b18;
+  --destructive: #e5484d;
+  --destructive-foreground: #fafafa;
+  --border: rgba(255, 255, 255, 0.14);
+  --input: rgba(255, 255, 255, 0.14);
+  --ring: #d4f04a;
+
+  /* Chart palette, dark/ink surface — validated against #1c1b18. Same
+     fixed hue order as light, re-stepped into the narrower dark lightness
+     band (OKLCH L 0.48-0.67) rather than reusing the light values as-is. */
+  --chart-1: #798a02;
+  --chart-2: #018bc7;
+  --chart-3: #c55d3f;
+  --chart-4: #6860c3;
+  --chart-5: #c96598;
+
+  --sidebar: #e9e3d5;
+  --sidebar-foreground: #1c1b18;
+  --sidebar-primary: #d4f04a;
+  --sidebar-primary-foreground: #1c1b18;
+  --sidebar-border: rgba(28, 27, 24, 0.16);
+  --sidebar-accent: #1c1b18;
+  --sidebar-accent-foreground: #f3efe6;
+  --sidebar-ring: #d4f04a;
+
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
+}

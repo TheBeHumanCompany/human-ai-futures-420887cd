@@ -50,10 +50,21 @@
      of the default dark. Nothing else renders these tokens today. */
   --color-sidebar: var(--cream-deep);
   --color-sidebar-foreground: var(--ink);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-border: var(--hairline-dark);
   --color-sidebar-accent: var(--ink);
   --color-sidebar-accent-foreground: var(--cream);
   --color-sidebar-ring: var(--lime);
+  /* Chart tokens (tweakcn parity): a full shadcn theme ships five, mapped
+     through @theme inline exactly like every other token above. The
+     values live on --chart-1..5 below, computed per mode rather than
+     eyeballed — see the dataviz validator note beside :root. */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
   --font-display: "Oswald", "Arial Narrow", sans-serif;
   --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
   --font-hand: "Caveat", cursive;
@@ -90,6 +101,57 @@
   --border: var(--hairline);
   --input: var(--hairline);
   --ring: var(--lime);
+
+  /* Sidebar (US-003 follow-up): the shell above aliased --color-sidebar-*
+     straight to brand vars, skipping the plain --sidebar-* custom
+     properties a tweakcn export expects to find in :root. These reproduce
+     the SAME values @theme inline already used — cream-deep/ink/hairline-
+     dark/lime — so nothing the live site renders changes; they exist so
+     the theme round-trips through tweakcn's import/export without losing
+     the sidebar block. --sidebar-primary/-primary-foreground are new (the
+     shell never defined them): lime-on-ink, matching --primary, is the
+     brand's only "active" treatment and there is no reason to invent a
+     second one for the sidebar's active nav item. */
+  --sidebar: var(--cream-deep);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--lime);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-border: var(--hairline-dark);
+  --sidebar-accent: var(--ink);
+  --sidebar-accent-foreground: var(--cream);
+  --sidebar-ring: var(--lime);
+
+  /* Chart palette (dark/ink surface — this is what :root renders by
+     default on this dark-first site). Five categorical slots, fixed hue
+     order matching the light-surface set below: olive/lime (the brand
+     hue, pulled down from --lime's L 0.87 into the dark band), blue,
+     orange, purple, magenta. Computed with the dataviz skill's
+     validate_palette.js against surface #1c1b18 (== --ink), not chosen by
+     eye — ALL CHECKS PASS at these exact values:
+       Lightness band       all 5 inside L 0.48-0.67
+       Chroma floor         all 5 >= 0.10
+       CVD separation       worst adjacent (chart-4 <-> chart-5) ΔE 10.8 (protan) · 11.1 (tritan)
+       Normal-vision floor  worst adjacent (chart-4 <-> chart-5) ΔE 18.3
+       Contrast vs surface  all 5 >= 3:1
+     Counterfactual: the brand lime (oklch(0.87 0.19 118)) cannot be
+     chart-1 as-is — at L 0.906 it sits far outside the dark band's L
+     0.48-0.67 ceiling, which is exactly the failure the first attempt at
+     this palette hit. Dropping only its lightness into the band, holding
+     hue and chroma, is what makes chart-1 still read as "the brand lime"
+     rather than an unrelated olive.
+     Known limitation, same shape as the light set below: under
+     `--pairs all` this set FAILS twice — chart-3 <-> chart-1 (#c55d3f
+     orange <-> #798a02 olive) collapses under deuteranopia to ΔE 2.6, and
+     chart-5 <-> chart-3 (#c96598 magenta <-> #c55d3f orange) sits at ΔE
+     11.8 for normal vision, below the 15 floor. Passes clean for the
+     adjacent-pairs case (stacked bars, lines, legends) this is validated
+     for; a scatter/bubble/map/small-multiples chart using either pair
+     needs a secondary encoding (direct labels, distinct shapes/texture). */
+  --chart-1: oklch(0.599 0.139 118.1);
+  --chart-2: oklch(0.604 0.133 237.7);
+  --chart-3: oklch(0.600 0.141 36.9);
+  --chart-4: oklch(0.546 0.149 283.9);
+  --chart-5: oklch(0.640 0.140 349.9);
 }
 
 @layer base {
@@ -137,6 +199,39 @@
   background-color: var(--cream);
   color: var(--ink);
   --border: var(--hairline-dark);
+
+  /* Chart palette, light-surface variant. There is no `.dark` class on
+     this site (see the top-of-file note) — `:root`'s --chart-1..5 already
+     ARE the dark-mode values, because `:root` is the ink surface by
+     default. A chart dropped into a `section-cream` block sits on the
+     cream surface instead, so it needs its own set re-validated against
+     that surface rather than inheriting the ink-tuned one, which would
+     under-contrast on cream. Same fixed hue order (olive/lime, blue,
+     orange, purple, magenta) as the dark set above, just re-computed for
+     surface #f3efe6 (== --cream) — validate_palette.js ALL CHECKS PASS:
+       Lightness band       all 5 inside L 0.43-0.77
+       Chroma floor         all 5 >= 0.10
+       CVD separation       worst adjacent (chart-4 <-> chart-5) ΔE 10.5 (protan) · 10.2 (tritan)
+       Normal-vision floor  worst adjacent (chart-4 <-> chart-5) ΔE 16.1
+       Contrast vs surface  all 5 >= 3:1
+     Known limitation, not fixable by re-ordering: under `--pairs all`
+     (the stricter check scatter/bubble/choropleth/small-multiples need,
+     where any two marks can sit side by side rather than only neighbours)
+     this set FAILS twice — chart-3 <-> chart-1 (#b8431f red-orange <->
+     #6b7a01 olive) collapses under deuteranopia to ΔE 0.3, a near-total
+     red/green collision for that colour-blindness type, and chart-4 <->
+     chart-2 (#4a3aa7 purple <-> #00668f blue) sits at ΔE 13.5 for normal
+     vision, below the 15 floor. Fine for the adjacent-pairs case this
+     token set is validated for (stacked bars, lines, sequential legend
+     order); any chart that puts either pair next to each other in a
+     scatter/bubble/map/small-multiples form MUST carry a secondary
+     encoding (direct labels, distinct shapes/texture) — colour alone is
+     not sufficient there. */
+  --chart-1: oklch(0.548 0.127 117.9);
+  --chart-2: oklch(0.482 0.102 235.0);
+  --chart-3: oklch(0.540 0.159 36.9);
+  --chart-4: oklch(0.433 0.167 283.6);
+  --chart-5: oklch(0.461 0.143 344.5);
 }
 
 @utility section-ink {
