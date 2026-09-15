@@ -3,6 +3,7 @@ import "./lib/error-capture";
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
 import { upgradeDegraded } from "./lib/podcast/degraded-status";
+import { withSecurityHeaders } from "./lib/security-headers";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -74,13 +75,19 @@ export default {
       // means a swallowed throw correctly stays a 500: that is a catastrophic
       // failure in our own code, not a dependency outage, and it must not be
       // reported as "come back in five minutes".
-      return upgradeDegraded(await normalizeCatastrophicSsrResponse(response));
+      return withSecurityHeaders(
+        upgradeDegraded(await normalizeCatastrophicSsrResponse(response)),
+        new URL(request.url).pathname,
+      );
     } catch (error) {
       console.error(error);
-      return new Response(renderErrorPage(), {
-        status: 500,
-        headers: { "content-type": "text/html; charset=utf-8" },
-      });
+      return withSecurityHeaders(
+        new Response(renderErrorPage(), {
+          status: 500,
+          headers: { "content-type": "text/html; charset=utf-8" },
+        }),
+        new URL(request.url).pathname,
+      );
     }
   },
 };
