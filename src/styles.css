@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "@clerk/ui/themes/shadcn.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -44,6 +45,15 @@
   --color-lime: var(--lime);
   --color-hairline: var(--hairline);
   --color-hairline-dark: var(--hairline-dark);
+  /* Sidebar shell (US-003): the shadcn primitive's surface tokens pointed at
+     the brand palette, so the client-portal sidebar reads cream/ink instead
+     of the default dark. Nothing else renders these tokens today. */
+  --color-sidebar: var(--cream-deep);
+  --color-sidebar-foreground: var(--ink);
+  --color-sidebar-border: var(--hairline-dark);
+  --color-sidebar-accent: var(--ink);
+  --color-sidebar-accent-foreground: var(--cream);
+  --color-sidebar-ring: var(--lime);
   --font-display: "Oswald", "Arial Narrow", sans-serif;
   --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
   --font-hand: "Caveat", cursive;

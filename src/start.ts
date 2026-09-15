@@ -1,3 +1,4 @@
+import { clerkMiddleware } from "@clerk/tanstack-react-start/server";
 import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
@@ -25,5 +26,9 @@ const csrfMiddleware = createCsrfMiddleware({
 });
 
 export const startInstance = createStart(() => ({
-  requestMiddleware: [errorMiddleware, csrfMiddleware],
+  // clerkMiddleware must run so auth() resolves in server functions and
+  // beforeLoad guards; without it every auth() call returns empty (the
+  // documented pitfall). Order: error reporting outermost, then Clerk, then
+  // CSRF for server functions.
+  requestMiddleware: [errorMiddleware, clerkMiddleware(), csrfMiddleware],
 }));

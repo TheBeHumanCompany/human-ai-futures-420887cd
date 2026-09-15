@@ -1,3 +1,4 @@
+import { UserButton, useAuth } from "@clerk/tanstack-react-start";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -83,8 +84,6 @@ function FlatItem({ item }: { item: NavigatingItem }) {
     </Link>
   );
 }
-
-
 
 /** The panel contents, shared by both parent shapes. */
 function Panel({ item, onNavigate }: { item: WithChildren<NavItem>; onNavigate?: () => void }) {
@@ -246,6 +245,10 @@ function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => voi
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  // `useAuth` (not a `SignedIn` gate — this SDK version exports none):
+  // false on first paint and for every signed-out visitor, so the header
+  // below advertises nothing while staying a pure function of session.
+  const { isSignedIn } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background shadow-[0_1px_0_0_hsl(0_0%_100%/0.06)]">
@@ -273,6 +276,16 @@ export function SiteHeader() {
                 {cta.label}
               </Link>
             ))}
+            {/*
+              Paywall-only accounts (locked decision): the button below renders
+              solely for a signed-in payer — account access, not acquisition.
+              There is deliberately no signed-out branch here: no sign-in or
+              sign-up advertising in the nav; accounts are created at first
+              payment, and report pages stay magic-link. UserButton renders a
+              button plus a portalled panel (no landmark of its own), so the
+              header keeps exactly one <nav> per AC-3.3.
+            */}
+            {isSignedIn ? <UserButton /> : null}
             <button
               type="button"
               aria-label="Toggle menu"
@@ -306,7 +319,6 @@ export function SiteHeader() {
             </Link>
           </div>
         )}
-
       </nav>
     </header>
   );

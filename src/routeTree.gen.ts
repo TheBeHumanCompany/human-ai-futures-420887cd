@@ -20,7 +20,11 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutTheFounderRouteImport } from './routes/about-the-founder'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BeHumanAiIndexRouteImport } from './routes/be-human-ai/index'
+import { Route as SignUpSplatRouteImport } from './routes/sign-up.$'
+import { Route as SignInSplatRouteImport } from './routes/sign-in.$'
 import { Route as PodcastSlugRouteImport } from './routes/podcast_.$slug'
+import { Route as CTokenRouteImport } from './routes/c.$token'
+import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe-webhook'
 
 const WhyWeExistRoute = WhyWeExistRouteImport.update({
   id: '/why-we-exist',
@@ -77,9 +81,29 @@ const BeHumanAiIndexRoute = BeHumanAiIndexRouteImport.update({
   path: '/be-human-ai/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignUpSplatRoute = SignUpSplatRouteImport.update({
+  id: '/sign-up/$',
+  path: '/sign-up/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInSplatRoute = SignInSplatRouteImport.update({
+  id: '/sign-in/$',
+  path: '/sign-in/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PodcastSlugRoute = PodcastSlugRouteImport.update({
   id: '/podcast_/$slug',
   path: '/podcast/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CTokenRoute = CTokenRouteImport.update({
+  id: '/c/$token',
+  path: '/c/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
+  id: '/api/stripe-webhook',
+  path: '/api/stripe-webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -94,7 +118,11 @@ export interface FileRoutesByFullPath {
   '/type-specimen': typeof TypeSpecimenRoute
   '/who-we-are': typeof WhoWeAreRoute
   '/why-we-exist': typeof WhyWeExistRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
+  '/c/$token': typeof CTokenRoute
   '/podcast/$slug': typeof PodcastSlugRoute
+  '/sign-in/$': typeof SignInSplatRoute
+  '/sign-up/$': typeof SignUpSplatRoute
   '/be-human-ai/': typeof BeHumanAiIndexRoute
 }
 export interface FileRoutesByTo {
@@ -108,7 +136,11 @@ export interface FileRoutesByTo {
   '/type-specimen': typeof TypeSpecimenRoute
   '/who-we-are': typeof WhoWeAreRoute
   '/why-we-exist': typeof WhyWeExistRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
+  '/c/$token': typeof CTokenRoute
   '/podcast/$slug': typeof PodcastSlugRoute
+  '/sign-in/$': typeof SignInSplatRoute
+  '/sign-up/$': typeof SignUpSplatRoute
   '/be-human-ai': typeof BeHumanAiIndexRoute
 }
 export interface FileRoutesById {
@@ -123,7 +155,11 @@ export interface FileRoutesById {
   '/type-specimen': typeof TypeSpecimenRoute
   '/who-we-are': typeof WhoWeAreRoute
   '/why-we-exist': typeof WhyWeExistRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
+  '/c/$token': typeof CTokenRoute
   '/podcast_/$slug': typeof PodcastSlugRoute
+  '/sign-in/$': typeof SignInSplatRoute
+  '/sign-up/$': typeof SignUpSplatRoute
   '/be-human-ai/': typeof BeHumanAiIndexRoute
 }
 export interface FileRouteTypes {
@@ -139,7 +175,11 @@ export interface FileRouteTypes {
     | '/type-specimen'
     | '/who-we-are'
     | '/why-we-exist'
+    | '/api/stripe-webhook'
+    | '/c/$token'
     | '/podcast/$slug'
+    | '/sign-in/$'
+    | '/sign-up/$'
     | '/be-human-ai/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -153,7 +193,11 @@ export interface FileRouteTypes {
     | '/type-specimen'
     | '/who-we-are'
     | '/why-we-exist'
+    | '/api/stripe-webhook'
+    | '/c/$token'
     | '/podcast/$slug'
+    | '/sign-in/$'
+    | '/sign-up/$'
     | '/be-human-ai'
   id:
     | '__root__'
@@ -167,7 +211,11 @@ export interface FileRouteTypes {
     | '/type-specimen'
     | '/who-we-are'
     | '/why-we-exist'
+    | '/api/stripe-webhook'
+    | '/c/$token'
     | '/podcast_/$slug'
+    | '/sign-in/$'
+    | '/sign-up/$'
     | '/be-human-ai/'
   fileRoutesById: FileRoutesById
 }
@@ -182,7 +230,11 @@ export interface RootRouteChildren {
   TypeSpecimenRoute: typeof TypeSpecimenRoute
   WhoWeAreRoute: typeof WhoWeAreRoute
   WhyWeExistRoute: typeof WhyWeExistRoute
+  ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
+  CTokenRoute: typeof CTokenRoute
   PodcastSlugRoute: typeof PodcastSlugRoute
+  SignInSplatRoute: typeof SignInSplatRoute
+  SignUpSplatRoute: typeof SignUpSplatRoute
   BeHumanAiIndexRoute: typeof BeHumanAiIndexRoute
 }
 
@@ -265,11 +317,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BeHumanAiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sign-up/$': {
+      id: '/sign-up/$'
+      path: '/sign-up/$'
+      fullPath: '/sign-up/$'
+      preLoaderRoute: typeof SignUpSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in/$': {
+      id: '/sign-in/$'
+      path: '/sign-in/$'
+      fullPath: '/sign-in/$'
+      preLoaderRoute: typeof SignInSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/podcast_/$slug': {
       id: '/podcast_/$slug'
       path: '/podcast/$slug'
       fullPath: '/podcast/$slug'
       preLoaderRoute: typeof PodcastSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/c/$token': {
+      id: '/c/$token'
+      path: '/c/$token'
+      fullPath: '/c/$token'
+      preLoaderRoute: typeof CTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/stripe-webhook': {
+      id: '/api/stripe-webhook'
+      path: '/api/stripe-webhook'
+      fullPath: '/api/stripe-webhook'
+      preLoaderRoute: typeof ApiStripeWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -286,7 +366,11 @@ const rootRouteChildren: RootRouteChildren = {
   TypeSpecimenRoute: TypeSpecimenRoute,
   WhoWeAreRoute: WhoWeAreRoute,
   WhyWeExistRoute: WhyWeExistRoute,
+  ApiStripeWebhookRoute: ApiStripeWebhookRoute,
+  CTokenRoute: CTokenRoute,
   PodcastSlugRoute: PodcastSlugRoute,
+  SignInSplatRoute: SignInSplatRoute,
+  SignUpSplatRoute: SignUpSplatRoute,
   BeHumanAiIndexRoute: BeHumanAiIndexRoute,
 }
 export const routeTree = rootRouteImport

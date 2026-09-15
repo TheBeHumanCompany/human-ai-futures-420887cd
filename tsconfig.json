@@ -4,7 +4,7 @@
   // them here would need the bun-types package; excluding keeps `tsc --noEmit`
   // clean for application code without adding a dependency (bunfig.toml
   // enforces a 24h minimumReleaseAge on new packages).
-  "exclude": ["src/**/*.test.ts"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",
@@ -14,6 +14,9 @@
 
     /* Bundler mode */
     "moduleResolution": "Bundler",
+    // The client-portal token store is authored JSON outside src/; the
+    // server-only reader imports it so the bundler inlines it server-side.
+    "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": false,
     "noEmit": true,

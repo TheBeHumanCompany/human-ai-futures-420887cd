@@ -123,7 +123,21 @@ export const SURFACES: readonly Surface[] = [
   // sitemap.
   { path: "/type-specimen", kind: "page", expectsSingleNav: true },
   { path: "/sitemap.xml", kind: "machine", expectsSingleNav: false },
+  // Stripe fulfillment endpoint (US-011). Machine surface: never navigated,
+  // never in the sitemap, exercised by its own signature tests instead of
+  // the page gates.
+  { path: "/api/stripe-webhook", kind: "machine", expectsSingleNav: false },
   { path: "/podcast/$slug", kind: "dynamic", expectsSingleNav: true, sampleSlug: "" },
+  // Private token URLs (US-001). Deliberately unlisted: no sampleSlug, so
+  // `visitableSurfaces()` skips them (no gate ever visits or advertises a
+  // token URL) and `sitemapSurfaces()` excludes them (kind is dynamic). This
+  // entry exists because `route-shape.test.ts` requires the declared surfaces
+  // to equal the generated router exactly — a route with no entry here fails.
+  { path: "/c/$token", kind: "dynamic", expectsSingleNav: true },
+  // Clerk auth UI (paywall-only). Unlisted like token URLs: no gate visits
+  // a Clerk-mounted page and the sitemap never advertises auth endpoints.
+  { path: "/sign-in/$", kind: "dynamic", expectsSingleNav: true },
+  { path: "/sign-up/$", kind: "dynamic", expectsSingleNav: true },
 ] as const;
 
 /**

@@ -24,9 +24,15 @@
     "podcast:snapshot": "bun run scripts/snapshot-catalogue.ts",
     "podcast:share-cards": "bun run scripts/generate-share-cards.ts",
     "podcast:topics": "bun run scripts/apply-topics.ts",
+    "portal:publish": "bun scripts/publish-client-report.ts",
+    "portal:pdf": "bun scripts/generate-client-pdf.ts",
+    "portal:tokens": "bun scripts/manage-client-token.ts",
+    "portal:checkout": "bun scripts/create-audit-checkout.ts",
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@clerk/tanstack-react-start": "^1.5.13",
+    "@clerk/ui": "^1.32.3",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
