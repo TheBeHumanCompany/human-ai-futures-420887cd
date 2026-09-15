@@ -3,6 +3,10 @@ import type { SupabaseTokenConfig } from "../client-portal/supabase-tokens";
 /**
  * Stripe webhook handling (US-011): verified events in, paid unlocks out.
  *
+ * US-009 adds the second half of fulfillment: the payer's email also
+ * provisions (or resolves) their Clerk account, and the release carries
+ * the linkage — best-effort, never at the cost of the unlock.
+ *
  * Fulfillment belongs here, never on the success page: a customer can pay
  * and never land back (dead connection after the charge), and delayed
  * payment methods complete hours later. The route file is a thin shell over
@@ -18,6 +22,10 @@ export interface StripeCheckoutSessionObject {
   id: string;
   payment_status?: unknown;
   customer?: unknown;
+  /** Email the session was created with (the fallback, not the payer of record). */
+  customer_email?: unknown;
+  /** Payer details; the `email` inside is the address that actually paid. */
+  customer_details?: unknown;
   metadata?: unknown;
 }
 
@@ -49,6 +57,24 @@ export function parseWebhookEvent(raw: string): StripeWebhookEvent | null {
 
 function hexOf(bytes: ArrayBuffer): string {
   return [...new Uint8Array(bytes)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+/**
+ * The payer email of a completed session (US-009): `customer_details.email`
+ * once checkout has actually run — the address that paid — falling back to
+ * the `customer_email` the session was created with. Null drives
+ * "provision nothing": a paid session with no readable email still unlocks.
+ */
+function sessionEmail(session: StripeCheckoutSessionObject): string | null {
+  const details = session.customer_details;
+  if (typeof details === "object" && details !== null) {
+    const email = (details as Record<string, unknown>).email;
+    if (typeof email === "string" && email.length > 0) return email;
+  }
+  if (typeof session.customer_email === "string" && session.customer_email.length > 0) {
+    return session.customer_email;
+  }
+  return null;
 }
 
 /** Exported so tests sign with the real algorithm instead of a pasted constant. */
@@ -106,13 +132,46 @@ export interface PaidRelease {
   clientId: string;
   stripeCustomerId: string | null;
   stripeSessionId: string;
+  /** The payer email that drove provisioning; null when none was readable. */
+  email: string | null;
+  /** Linked Clerk user id; null must never overwrite a linked row (see below). */
+  clerkUserId: string | null;
 }
+
+/**
+ * Provisions (or resolves) the Clerk account for a payer email (US-009):
+ * answers the Clerk user id, or null when linkage is skipped. The default
+ * implementation never throws; `routeWebhookEvent` guards regardless.
+ */
+export type ClerkProvisioner = (email: string) => Promise<string | null>;
 
 export interface WebhookDeps {
   fetchImpl?: typeof fetch;
   supabaseUrl?: string;
   supabaseServiceRoleKey?: string;
+  clerkSecretKey?: string;
   releasePaidAccess?: (release: PaidRelease) => Promise<void>;
+  provisionClerkUser?: ClerkProvisioner;
+}
+
+/**
+ * The upsert payload for a release (US-009). `clerk_user_id` rides along
+ * only when provisioning answered: a null must never reach the body, or
+ * merge-duplicates would clobber an id an earlier delivery already linked
+ * on a replay that ran while Clerk was unreachable.
+ */
+function releaseUpsertBody(release: PaidRelease): Record<string, unknown> {
+  const body: Record<string, unknown> = {
+    client_id: release.clientId,
+    unlocked: true,
+    unlocked_at: new Date().toISOString(),
+    stripe_customer_id: release.stripeCustomerId,
+    stripe_session_id: release.stripeSessionId,
+  };
+  if (release.clerkUserId) {
+    body["clerk_user_id"] = release.clerkUserId;
+  }
+  return body;
 }
 
 /**
@@ -120,7 +179,7 @@ export interface WebhookDeps {
  *
  * Upsert on `client_id`: a payment before the operator stages content
  * records the unlock with null title/html (nothing renders until both halves
- * exist — see `stripePaidTab`); a replayed event writes the same values
+ * exist — see `stripePaidReport`); a replayed event writes the same values
  * again, so retries are naturally idempotent. Title/html are never touched
  * here: content staging stays the operator's deliberate act.
  */
@@ -151,13 +210,7 @@ export async function releasePaidAccess(
       "Content-Type": "application/json",
       Prefer: "resolution=merge-duplicates",
     },
-    body: JSON.stringify({
-      client_id: release.clientId,
-      unlocked: true,
-      unlocked_at: new Date().toISOString(),
-      stripe_customer_id: release.stripeCustomerId,
-      stripe_session_id: release.stripeSessionId,
-    }),
+    body: JSON.stringify(releaseUpsertBody(release)),
   });
   if (!response.ok) {
     throw new Error(`[billing] paid release answered ${response.status}`);
@@ -200,7 +253,42 @@ export async function routeWebhookEvent(
     return { handled: false, reason: "missing-client" };
   }
   const customer = typeof session.customer === "string" ? session.customer : null;
+  const email = sessionEmail(session);
+
+  // US-009: link the payer to a Clerk account before the release,
+  // best-effort at every layer — the provisioner itself answers null on
+  // any failure, and even a throwing seam must not gate the unlock. The
+  // dynamic import keeps the module that names CLERK_SECRET_KEY away from
+  // every bundler that walks this file from the route, the same discipline
+  // the Supabase read in `releasePaidAccess` follows.
+  let clerkUserId: string | null = null;
+  if (email) {
+    try {
+      if (deps.provisionClerkUser) {
+        clerkUserId = (await deps.provisionClerkUser(email)) ?? null;
+      } else {
+        const provisioning = await import("./clerk-provision");
+        const provisioned = await provisioning.provisionClerkUserForEmail({
+          email,
+          fetchImpl: deps.fetchImpl,
+          clerkSecretKey: deps.clerkSecretKey,
+        });
+        clerkUserId = provisioned?.clerkUserId ?? null;
+      }
+    } catch {
+      // Constant message: provider errors can quote the email.
+      console.error("[billing] clerk provisioning seam failed");
+      clerkUserId = null;
+    }
+  }
+
   const release = deps.releasePaidAccess ?? ((args) => releasePaidAccess(args, deps));
-  await release({ clientId, stripeCustomerId: customer, stripeSessionId: session.id });
+  await release({
+    clientId,
+    stripeCustomerId: customer,
+    stripeSessionId: session.id,
+    email,
+    clerkUserId,
+  });
   return { handled: true, action: "released", clientId };
 }

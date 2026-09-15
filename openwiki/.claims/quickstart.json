@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:826a7a3a0d4d9052992b64f1bb538e545002c4fa8f0f8ccc6c19e6bdebd860fb",
+  "claims": [
+    {
+      "id": "claim_435180eb94564b45be78e128e58795a1",
+      "statement": "The quickstart page is a routing guide, not a full system explanation, and it directs readers to the repository pages needed to understand the app, run it, test it, and change it safely.",
+      "evidence": [
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:8af12e662d147b769ff9374d6bdcdf0d74f043bbb57521be5244a5e448730eb2"
+        },
+        {
+          "resource": "repo://e2e/client-portal.spec.ts",
+          "version": "repo-file-v1:sha256:ddd0ae7ecb799fe886b1538e905e629793097678bd733e8fbf79d38d495a5254"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:c535b361542c64da51941984d1102cec968de6021a16eccd02f1eb622d171888"
+        },
+        {
+          "resource": "repo://src/lib/surfaces.ts",
+          "version": "repo-file-v1:sha256:a1982b8704d3734e9aa8ac968101c653b5208952a85961503b932c49f5547aa0"
+        },
+        {
+          "resource": "repo://src/router.tsx",
+          "version": "repo-file-v1:sha256:72b68964d3f55ba4f7dcf2a04aad9d97d7c61fabad13aec1d298f1e39ee59fcc"
+        },
+        {
+          "resource": "repo://src/routes/README.md",
+          "version": "repo-file-v1:sha256:5c8187dbe79dac7a3c494f2600585508f5d15e75f04f21ea364d0de14de10575"
+        },
+        {
+          "resource": "repo://src/server.ts",
+          "version": "repo-file-v1:sha256:6dbe9accc39212f03d01bd9024bdecbde73886c95d480c5d4c1351ab3afe1407"
+        },
+        {
+          "resource": "repo://src/start.ts",
+          "version": "repo-file-v1:sha256:1b5b8bc26caa138b0e4cd11ad78c171a3903ee9ec7ebf649c8afee36a8061508"
+        },
+        {
+          "resource": "repo://supabase/config.toml",
+          "version": "repo-file-v1:sha256:fa9fb64ecb17c3518fa79d2c644f0c9e9e90fb24e7cee7391139e52a6471db34"
+        },
+        {
+          "resource": "repo://supabase/migrations/20260914000000_client_portal_tokens.sql",
+          "version": "repo-file-v1:sha256:1c102bb6eb4d4afae9ef1ccc7250510ea0f326c79afd9d373b92a9484fef0b9b"
+        }
+      ]
+    },
+    {
+      "id": "claim_564d5a05db30462a93108482144f7bf5",
+      "statement": "Runtime, startup, and deployment work should be routed to the release and runtime operations page, which is the quickstart page’s recommended source for local running, production builds, previews, worker entrypoints, and auth-request debugging.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:c535b361542c64da51941984d1102cec968de6021a16eccd02f1eb622d171888"
+        },
+        {
+          "resource": "repo://src/server.ts",
+          "version": "repo-file-v1:sha256:6dbe9accc39212f03d01bd9024bdecbde73886c95d480c5d4c1351ab3afe1407"
+        },
+        {
+          "resource": "repo://src/start.ts",
+          "version": "repo-file-v1:sha256:1b5b8bc26caa138b0e4cd11ad78c171a3903ee9ec7ebf649c8afee36a8061508"
+        }
+      ]
+    },
+    {
+      "id": "claim_a90e34c413d04bb6aeeb99adfa1fe69c",
+      "statement": "Content, homepage, and editorial changes should be routed first to the content model page and, when the change is marketing-facing, to the marketing and content change workflow page.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/surfaces.ts",
+          "version": "repo-file-v1:sha256:a1982b8704d3734e9aa8ac968101c653b5208952a85961503b932c49f5547aa0"
+        },
+        {
+          "resource": "repo://src/routes/README.md",
+          "version": "repo-file-v1:sha256:5c8187dbe79dac7a3c494f2600585508f5d15e75f04f21ea364d0de14de10575"
+        }
+      ]
+    },
+    {
+      "id": "claim_6210c7a5e9644493a27328aa2ed733a0",
+      "statement": "Private portal, payment, and token-related changes should be routed to the Stripe and Portal Access page before touching implementation details or tests.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/publish.ts",
+          "version": "repo-file-v1:sha256:80309e703c77fd294c22e6a45fe153bc244ad6cea3b4cffc47621631339fcc19"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/supabase-tokens.ts",
+          "version": "repo-file-v1:sha256:36b9d372a9a96d40b1e6cd4831cd5c2182466901ecedf5ade3c41a1fd60487a9"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/token-admin.ts",
+          "version": "repo-file-v1:sha256:46209998fcc52e815c4e7ac45b1caa674ed7e136324ac9d6348dfe9e5cae0f7d"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/tokens.ts",
+          "version": "repo-file-v1:sha256:c62b12e2c9933089288d063f0188c5f6cc72c0db0741337c0ec16cb0a0f07490"
+        },
+        {
+          "resource": "repo://src/routes/portal.tsx",
+          "version": "repo-file-v1:sha256:67c8bd0acba4c2dc30a504dd2abd6c06980ada3b570d939873d51a16a4612474"
+        },
+        {
+          "resource": "repo://supabase/migrations/20260914000000_client_portal_tokens.sql",
+          "version": "repo-file-v1:sha256:1c102bb6eb4d4afae9ef1ccc7250510ea0f326c79afd9d373b92a9484fef0b9b"
+        }
+      ]
+    },
+    {
+      "id": "claim_03d04a782b3847e981d9b5befd87c978",
+      "statement": "The quickstart page points content-integration work to the Podbean Podcast Sync page and the Sanity and Content Models page as the domain-specific follow-ons.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/surfaces.ts",
+          "version": "repo-file-v1:sha256:a1982b8704d3734e9aa8ac968101c653b5208952a85961503b932c49f5547aa0"
+        }
+      ]
+    },
+    {
+      "id": "claim_1f89e78d41a745c085739f559fb703c5",
+      "statement": "The quickstart page highlights the repository’s core day-to-day commands as `bun run dev`, `bun run build`, `bun run lint`, `bun run test`, and `bun run e2e`, while deferring command choice to the workflow and testing pages.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:c535b361542c64da51941984d1102cec968de6021a16eccd02f1eb622d171888"
+        }
+      ]
+    },
+    {
+      "id": "claim_46176919cba440ddb0585641ffe27658",
+      "statement": "The quickstart page recommends a safe-change sequence of identifying the runtime domain, reading the matching page, checking focused tests, making the code change, and running narrow validation before broader checks.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:c535b361542c64da51941984d1102cec968de6021a16eccd02f1eb622d171888"
+        },
+        {
+          "resource": "repo://src/routes/README.md",
+          "version": "repo-file-v1:sha256:5c8187dbe79dac7a3c494f2600585508f5d15e75f04f21ea364d0de14de10575"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-15T05:01:30.389Z"
+  }
+}

@@ -15,6 +15,7 @@ import { Route as TypeSpecimenRouteImport } from './routes/type-specimen'
 import { Route as TheNewHumanEraRouteImport } from './routes/the-new-human-era'
 import { Route as TheHumanArchiveRouteImport } from './routes/the-human-archive'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PortalRouteImport } from './routes/portal'
 import { Route as PodcastRouteImport } from './routes/podcast'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutTheFounderRouteImport } from './routes/about-the-founder'
@@ -54,6 +55,11 @@ const TheHumanArchiveRoute = TheHumanArchiveRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PodcastRoute = PodcastRouteImport.update({
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/about-the-founder': typeof AboutTheFounderRoute
   '/contact': typeof ContactRoute
   '/podcast': typeof PodcastRoute
+  '/portal': typeof PortalRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
@@ -130,6 +137,7 @@ export interface FileRoutesByTo {
   '/about-the-founder': typeof AboutTheFounderRoute
   '/contact': typeof ContactRoute
   '/podcast': typeof PodcastRoute
+  '/portal': typeof PortalRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/about-the-founder': typeof AboutTheFounderRoute
   '/contact': typeof ContactRoute
   '/podcast': typeof PodcastRoute
+  '/portal': typeof PortalRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/the-human-archive': typeof TheHumanArchiveRoute
   '/the-new-human-era': typeof TheNewHumanEraRoute
@@ -169,6 +178,7 @@ export interface FileRouteTypes {
     | '/about-the-founder'
     | '/contact'
     | '/podcast'
+    | '/portal'
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
@@ -187,6 +197,7 @@ export interface FileRouteTypes {
     | '/about-the-founder'
     | '/contact'
     | '/podcast'
+    | '/portal'
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/about-the-founder'
     | '/contact'
     | '/podcast'
+    | '/portal'
     | '/sitemap.xml'
     | '/the-human-archive'
     | '/the-new-human-era'
@@ -224,6 +236,7 @@ export interface RootRouteChildren {
   AboutTheFounderRoute: typeof AboutTheFounderRoute
   ContactRoute: typeof ContactRoute
   PodcastRoute: typeof PodcastRoute
+  PortalRoute: typeof PortalRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TheHumanArchiveRoute: typeof TheHumanArchiveRoute
   TheNewHumanEraRoute: typeof TheNewHumanEraRoute
@@ -280,6 +293,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/podcast': {
@@ -360,6 +380,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutTheFounderRoute: AboutTheFounderRoute,
   ContactRoute: ContactRoute,
   PodcastRoute: PodcastRoute,
+  PortalRoute: PortalRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TheHumanArchiveRoute: TheHumanArchiveRoute,
   TheNewHumanEraRoute: TheNewHumanEraRoute,

@@ -65,9 +65,9 @@ export const Route = createFileRoute("/c/$token")({
  * One bookmarkable URL per client, every report inside it (US-003).
  *
  * The loader still resolves the token to exactly one client's page — the
- * sidebar below only navigates between that page's own reports, so it can
- * neither reach another client nor leak one. The single-report clients
- * render the same shell with one tab, which keeps the page branchless.
+ * stack below only renders that page's own reports, so it can neither
+ * reach another client nor leak one. Reports render in store order with
+ * no navigation chrome, which keeps the page branchless.
  */
 /**
  * The mark of the opened page (US-004).
@@ -93,7 +93,7 @@ function ClientPortalPage() {
 
   return (
     <section className="section-cream">
-      <div className="mx-auto flex w-full max-w-[720px] items-center gap-3 px-6 pt-12 sm:px-8">
+      <div className="mx-auto flex w-full max-w-[1180px] items-center gap-3 px-6 pt-12 sm:px-8">
         <ClientAvatar name={page.name} />
         <p className="eyebrow">{page.name}</p>
       </div>

@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:a504b5c3dcc653a0e0639abe08dfdb4244974b598a7d8644aacc8126d941a2fb",
+  "claims": [
+    {
+      "id": "claim_e4bf0c47b60140989e1ffe8ea5bfc70b",
+      "statement": "Marketing and content changes in this app usually propagate from shared copy primitives in `src/lib/brand.ts` and `src/lib/content.ts` into thin route shells that compose those values into public editorial pages.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/brand.ts#L1-L15",
+          "version": "repo-lines-v1:sha256:0685fad5ca492bf8116ffdc802264c0b3f4cc5f795da7090014eaedff9f71c2a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEwMTYyNDQ5NzY1NGE1MTlmMmI3MmQyNjVjMTNhM2ZmNWQ4NTM4NzljMDM0ZDg5NzBiYzc5Zjg3ZjBjM2ZmNDQifQ"
+        },
+        {
+          "resource": "repo://src/lib/content.ts#L1-L35",
+          "version": "repo-lines-v1:sha256:db28390d4386c3b51553952d118d0306e48ef7ce43a7f04147142a4fbb4a5399:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyOTA0MGJkYTQ5NGNiYjE2MzRiOWQzODM4MTgxZDI2OWMwNjQyOGQwMTVmMDk2ZWY4MWRlMDViYTkyMTkxMjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZkODM4NmYzNmE0MjM0ZmQwNjcyZmRjMGVlOThjNjE5NmFkMDY1NmEyNzk0ZmU0YzU4YmZkMjIxMTA4ZWNjOGEifQ"
+        },
+        {
+          "resource": "repo://src/routes/index.tsx#L10-L30",
+          "version": "repo-lines-v1:sha256:7961121c92866e36935e50cafe3af6309de2ae8a344dd5a7ad5f38fba7e7f053:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4MjAwOTY0YTk3ODYzNTUyMmIyYWIwOTBjNjUwNjVkOGVmOGU4NWM0NzMwYmIyZWIwNDYwZDM0YzY3N2RkYmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVkNGQ1OTMxNGNkZWMyMTc5ZjYyZDY2NDUzYjM4ZTI3OTZmMTc5YTE3ZjMwYzMwZGFmNjI3NDc1MDg2NDhkMzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzMTI5OWI5ZTQzYzJmYWYzZGUxYzg1NGQyYTk2NTkzN2UwZTE2Njg1ZjZiYjY4ZjJmZDdiYmQ5NGMzNjViOTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcxZjE3M2VlNDE1YTcyMjBlN2M5MTYwZTllM2RmMjIyOTliOGQ3MWVhYjY5ZTIzZWJmNmIwNzJkMWMzMWFjNmEifQ"
+        },
+        {
+          "resource": "repo://src/routes/the-human-archive.tsx#L1-L31",
+          "version": "repo-lines-v1:sha256:a385ff49f5846a621733ad203b8e9d1db974ca353e197c33949b0b29d6885bed:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYxY2Y4NDNjNmFiMzRlMTA4NzIyODE1NWViYzNkMTQ0Mjk2ZDhhOWViNzJmMDdhNjYxY2I0OTg3MzZjZDk2MmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkZDc1OTcxMTAzYmRiNWNmODRmOTY0MTM3Y2UxZWI1YmMzNmE1MjAyYmE1NTdlZmJhZDFmMzY2MzRkNDU4NzUifQ"
+        },
+        {
+          "resource": "repo://src/routes/the-new-human-era.tsx#L29-L55",
+          "version": "repo-lines-v1:sha256:e4c8163762a2609d9c6b7d77036f2c2294a06b4707414a0313d544c04c94b872:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4NDE3OTMzMzhmZDQ3ZTg4YjJkMzVjNWE0Y2EzZDc1YzBiZjcwMWJiMWFiMjIzMzI3MzI2MWFhNmE0MGU2OTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiYTM0MjZjMzQzNjg5MzEzMTc5MzM4NmJiNTRkMjNjYjI5YzFhZDA1YTBmMjEwMzY5NzIxZGU3YTQxNzA4MzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg5MWRhNjc2OTVkMTdlNDYwZTNlOTFjNzRlNzc4MDliZjEyZGViOTg3NDc3ZWVmYTdlMGVkMDQxZWE2MWFlNGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmOGE0NDQxY2JmZTcyZDk1ZmI5NjYzYzkzOTdlMmNkMzQ2M2I5NTQ2YjhjOGQxMmM5ZmM2NWQzOTRkOGExNDEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3398e2eb61fc4d539b7b7459fc8b1c86",
+      "statement": "The homepage is the broadest marketing surface: it renders the hero from `src/assets/hero.png`, consumes `HOME_PRINCIPLES`, and loads featured podcast content through `loadFeaturedEpisodes(fetchEpisodeList, 39)`.",
+      "evidence": [
+        {
+          "resource": "repo://src/assets/hero.png",
+          "version": "repo-file-v1:sha256:1a5c1e971c44315923196a58551903e99e204799e7f593f11cc131ce99078dbc"
+        },
+        {
+          "resource": "repo://src/lib/content.ts#L56-L74",
+          "version": "repo-lines-v1:sha256:5910af550e33198b06fa91f9150c2b606d6f6fce061b2b7890b9f3eac524caf4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFiNmI0MWExMWVlMTVkYTVkZTU2YmVlMGE5ZDgwNzE4YjgwZjc3ZDhlNWM1Mzg3YWNmZDc3OTA1NzM0ZmZkOWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ3YzJhMDgyY2M1MjI1ZThkZDg0YjMxYTM3NTVlMzFiNTZhNzYxMTMyMDNkZGQzMjA1OTcxMTE3MWU0MWU2YzAifQ"
+        },
+        {
+          "resource": "repo://src/routes/index.tsx#L1-L31",
+          "version": "repo-lines-v1:sha256:0319f2f7f35773894a6f8341c409605239c520a77f4623da794fd23e2906148b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxMGYyNTZmNDdhNTllYmM1MGNiZjg2OWQ1OGNiY2IzNGZlZGMyZjc4MzI5ZDdhODJmMmE1ZjkzNTVmZGM0NDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImExYzUwZTZlYTZkODBmMDg2MmM0MDIxOWI2NWRjZDU5MjQwZWUyODE4NGNkZmYxMDVhYmFhNjEzMmJiN2I2ZTIifQ"
+        },
+        {
+          "resource": "repo://src/routes/index.tsx#L71-L109",
+          "version": "repo-lines-v1:sha256:6e9d06fd44923dbff39534794c543556e3780c79ae7de592e6e64b8a6de80461:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3MjE2ZThlOWMwYTFhNjhkMDZjMmZiYWE1ZmQyMTM5NDgyYjhlZmQwYTE5MzE1YjkxNWU2Y2NlODQ5ZDg5ZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1MGFlYzRmNTY3ZTRmMTJiNDg3OWIyNTZhMTA4YjA0NzkyZjJiM2ExYzllNjFlOTg3MTVjMjFlNDk3MWJmYzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM5MzYxZDg1OWZjMDc3ZDNiYWY1ZGE2OWI3YTU2N2ExNzg1YmM3Y2Q3NGRmZDZiMDIyZjRmNzRhYjg5MjI3YzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyOThlNzg4ZmJiZmFjZDY3MWRiMDhhYjcwNDMxMDdlMDc4ZjA0ZThjODZlYTUyNmU4ZjY3ZjZiOTFkMTljMWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_041d7e9435b2484bae4d05f312ccb4ff",
+      "statement": "The homepage intentionally degrades only for unreachable Sanity data, while the podcast directory and episode routes are expected to fail loudly on real loader errors rather than hide outages.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/index.test.ts#L49-L104",
+          "version": "repo-lines-v1:sha256:4c4ba0988cd9020aae11cf31831e1859162731065efa589fa05bc2ff1387e672:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiNjFhNzUzY2IyYzkxNzZjYzRhYmEwNmUwOTgwOGJiYmNiYjZjOGQxYjYwMzllNzgyM2M4NTU2MGZjYTlkZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiMjBhZTljMzI5NmE0Nzg5OTYxNDkwMWQwMTcwOWE3ZTExNTk1ZWJkMGU0ZGIzNDQ0MGEzZDI2YWQ3ZjQ5NmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlNGQzNjU1N2JlN2I0NjM4MDdjNjIyNWU3OWNlMDY2ZTZjYWE3NWQ1MTMzNGY1OTJjMThiYmQ0YTNlOTNjODUifQ"
+        },
+        {
+          "resource": "repo://src/routes/index.tsx#L33-L45",
+          "version": "repo-lines-v1:sha256:0553c8a9e52adedfb28b2a4418c4a6f7fec98265be315cdedc0dbc0bf699350f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjZmZmNDk5ZWZkZDNlN2QwOGZjN2Q5ZjdmYmFkOTYzZThiNGM1YWVlNmY4YjNlOWEwNTBmM2RiMTk3MGZiOTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ0MTVlYzYxMTU5YWUyNjRjN2ExMGQ1ZWZmMzZjMDk0Mzc0NjVjYzFjNzZjZWQ1MmMzYjlhYTEzYzdjMWFhZWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc3ODFjMGYyYjIxOWY3Y2EwNDkzNDJlM2Q3YjQ2ZGRiNzkxOGU1NmYwY2ZlOTc2OTI4MDJjZjZjNzY3NjZjZTMifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast.test.ts#L79-L98",
+          "version": "repo-lines-v1:sha256:01b6d70c82f2f683e60db92e0c3a2977d2e407615948d26c6a15677db2c6e850:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1YmZhNTZhYmUyMjJhYTAxNzY5NGFhYjFlN2RhM2M2ZGUyMDcyNjZlYjAzZTJjYTg2MzdjN2VlYWExZDA1ZjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxZWJiNTRiY2U5YTZhZTU5OWQwNjIyOThiOTAxMmE1ZjQ1ZTliY2ZlYTNmMGYwZTgxZWQ1ZDAyMjllMmMzYTkifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast_.%24slug.test.ts#L69-L87",
+          "version": "repo-lines-v1:sha256:bf63d81241c6fcd5755d84681184e8768bb266d05bae569cb06a4521beccf753:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzOWJmNzJmZmY3YTZhZTNhZWJmODk0OGJkMTdjYzMwMWYwZWI1MjQ3OGY5MGNjMmEwMGM4NjkyZjFiNzc1YTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlYzc0YTE0NTI5Y2I0Y2FkNzU1Njg4ODdjYzE3M2ZkZWVhYjAxZjEyZTg2ZjdhZTM1ZjNiNWFlMjViZjM2N2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e7ed494b00bd4d8db32ea88adfc2c690",
+      "statement": "`src/lib/content.ts` centralizes reusable editorial sets for the site, including `PRINCIPLE_TITLES`, `HOME_PRINCIPLES`, `ARCHIVE`, and `HUMAN_ARCHIVE_VIDEOS`, so the same public copy can be consumed by multiple routes without retyping it in each page.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/content.ts#L37-L74",
+          "version": "repo-lines-v1:sha256:129fdc59c8fd8e4604dd51727f00b880feb1aa7d67617ebe3aec8992c4be8de3:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiZDMxZjEyZDEzNWI3ODhiNzNlMmUyNjA1OTlhMjkxZTNjOThmOTBkZTUyZTVlZWZhYTZlZWVlY2U0YjIxZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ3YzJhMDgyY2M1MjI1ZThkZDg0YjMxYTM3NTVlMzFiNTZhNzYxMTMyMDNkZGQzMjA1OTcxMTE3MWU0MWU2YzAifQ"
+        },
+        {
+          "resource": "repo://src/lib/content.ts#L76-L149",
+          "version": "repo-lines-v1:sha256:468866d0e470ce1b7b15dbbe1734567c807ad8d875c507e644c6bc6f7032f2e5:eyJzZWxlY3RlZExpbmVDb3VudCI6NzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYwNjk1Yzc0YTMwNjg1ZDc2OGM0YzVkODU4ZDU5M2UxNDQ0ZjRkMDhlMjJkOWYzMjliYTU0MjIxN2QzZDQxMDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmZTZiNjJhMThjODMxODk5ZjY1MTA3N2YzNzRkODAwOWU1NWNjNDJiMjM0M2U1MzYxOGUxYzBlOWY1YzlhNWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg4YTEyZDc5OTQ0YzRhZWJlYjMzNDUwZDZlMzRlNTIzYzRjZTBhY2QzMTM1ZWZlMTliNjQ5NzdmMGYxYWMwODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/routes/index.tsx#L24-L30",
+          "version": "repo-lines-v1:sha256:73049b367965dc74337af65c406c386cea3aeaf37ade0a5d01d6e2884cd0c097:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmY5MDMxZDVjNmM3MzljNDA4MGYyOTI2YjAxYTdhYmI4ZTUxZDEwNjU5YTU2NTNkZjU3ZjkxNmRkZmZhMWUxNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWQ0ZDU5MzE0Y2RlYzIxNzlmNjJkNjY0NTNiMzhlMjc5NmYxNzlhMTdmMzBjMzBkYWY2Mjc0NzUwODY0OGQzOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2MzYWVkM2YwMmI5NjdjZGQ5MzFkMmZjYjZhMTk5MWJmMzE2YzZlN2FiNmM5MzMzOGRmOTY4NTY5MzVmMzM4YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzFmMTczZWU0MTVhNzIyMGU3YzkxNjBlOWUzZGYyMjI5OWI4ZDcxZWFiNjllMjNlYmY2YjA3MmQxYzMxYWM2YSJ9"
+        },
+        {
+          "resource": "repo://src/routes/the-human-archive.tsx#L1-L4",
+          "version": "repo-lines-v1:sha256:de06f1f5e07d5f4c6878bb1db6f2e8af5ef197c411a8b8137e45285872ebb4a4:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjFjZjg0M2M2YWIzNGUxMDg3MjI4MTU1ZWJjM2QxNDQyOTZkOGE5ZWI3MmYwN2E2NjFjYjQ5ODczNmNkOTYyZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGY3NTNiZGZhOTY4MGQ4NTcxYzJiOWZlMDUxOTY0OWMzN2VjNmZiYTNlZDY4Mjc4ZmM3NDdiMzUyZjE2OGZmMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWEzZTE3ZmNiMDg3YWQxNGZjMzE3OWJkZDc5YzQ5OTQ2MjBmZDM3OGZiMTY5Yzc1NjQ1ZWVhOTVlZWI2MzczOCJ9"
+        },
+        {
+          "resource": "repo://src/routes/the-new-human-era.tsx#L32-L35",
+          "version": "repo-lines-v1:sha256:e01c3eec23ae014035fdf25e2f4496d5c62833ae2882443bddd0267c94557412:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmE1MmIwYTA0OGRlYjg2YzUzZTQ5OGYwNGM1ZWM2MDVjZDRmMGE0NDNiNGRkOTgxNzM3ZDU1YjQzOTg3YzUxMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGU4MGQwNWE3Y2Q0OTUxMmNlODU0ZDNhZDdmYmM0MzMzYjIxMjc0YWFmYTIxODI4OTQ1N2RlOTIyYTcyNDIwNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWE4ZTIwNjVjNmJiYmY5MTc2NWJhMmY3NTU3ZDVkYWQ1OTdmYThlMWU4ZTU1ODI5NmQzZjQyMDgwODk1YmU2NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGM1ZTEyNmUwOTJhZjBiNmE5MjdjMDM5NDE1YzVjYWVlMjU5MDU3NzQ5NjljYzI3ZjczOWVkYmQyZjAxZDNkOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c84ae42ab44d465b98715a88ff4874e9",
+      "statement": "`src/lib/brand.ts` owns shared brand-facing strings and URLs such as `INDIGENOUS_LINE`, `CONTACT_EMAIL`, and `ARCHIVE_PLAYLIST_URL`, which prevents those values from drifting across pages that reuse them.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/brand.ts#L16-L109",
+          "version": "repo-lines-v1:sha256:82cb484545b825ec38c29553a40e264f3d332919937feed48e5aba1edd17e06a:eyJzZWxlY3RlZExpbmVDb3VudCI6OTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlMTc5NWNiOWU1ZTNjMWY4NjA5NzQ3NGViODc5NmFhMmNlY2M3MmEyYTVhMjNkNWRjZWMwMWQ0ZGIyZmJkMmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBiOWQ2MDFjZjMzYTU2NzQ1OTNhMzljN2I0MGQ1ZmI4Yjg5MWJkNTAwYWExZmI2OGUzNWUxNThkYzRjYzU4M2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/routes/about-the-founder.tsx#L1-L15",
+          "version": "repo-lines-v1:sha256:3167beebe30c034b943766c5a4098d324c29642254cfa64ac57fe04bb2e06ec2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwNDg2YmJkZThiZjI2NWQwNmZiMjBmZGI1ZmNhYjM4ZGI3MjVmN2NmNzgyODAxNDEyM2JhZDEzZTNjYjg1YzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg1MzNjNTUxNWI5N2I2ODk2N2Y1YjQ3MDI4YjE0ZDZhMWNjNTE1NTllZTFiNzM1YWE5ODcxYjY3M2I0OGY4ODkifQ"
+        },
+        {
+          "resource": "repo://src/routes/the-human-archive.tsx#L1-L4",
+          "version": "repo-lines-v1:sha256:de06f1f5e07d5f4c6878bb1db6f2e8af5ef197c411a8b8137e45285872ebb4a4:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjFjZjg0M2M2YWIzNGUxMDg3MjI4MTU1ZWJjM2QxNDQyOTZkOGE5ZWI3MmYwN2E2NjFjYjQ5ODczNmNkOTYyZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGY3NTNiZGZhOTY4MGQ4NTcxYzJiOWZlMDUxOTY0OWMzN2VjNmZiYTNlZDY4Mjc4ZmM3NDdiMzUyZjE2OGZmMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWEzZTE3ZmNiMDg3YWQxNGZjMzE3OWJkZDc5YzQ5OTQ2MjBmZDM3OGZiMTY5Yzc1NjQ1ZWVhOTVlZWI2MzczOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bcafd9a986254fd085d99e7b8bf775db",
+      "statement": "The New Human Era page is built from shared editorial primitives: it imports `ARCHIVE` and `HOME_PRINCIPLES`, alternates cream and ink bands structurally, and keeps the manifesto layout aligned with reusable section helpers rather than ad hoc styling.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/content.ts#L47-L74",
+          "version": "repo-lines-v1:sha256:910f4f66916ff524a13bfab33d11718f65639c63c921004a2045f5df409cddd4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJkNTAzZGI1ZTZkNDVlZWNjMGQzNDgxODVjMzA3ZmRjODVmZTY0MjBlNWFjMjYzMmI5NzU5NjAzZDI5OTNiMjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEzNDg4NmU0ZGU3MjRjNTgwZDY5MjZmODM3MzNmMTgxZGIxNWZiMThhOTc3NWNkNWY3ODBiMWJmNDVhMWQ4MWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ3YzJhMDgyY2M1MjI1ZThkZDg0YjMxYTM3NTVlMzFiNTZhNzYxMTMyMDNkZGQzMjA1OTcxMTE3MWU0MWU2YzAifQ"
+        },
+        {
+          "resource": "repo://src/routes/the-new-human-era.tsx#L1-L35",
+          "version": "repo-lines-v1:sha256:e9cb5d3cc888be11fa55b5a81b533625c4c40f14e722291ebb4b4d1de6937810:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlODBkMDVhN2NkNDk1MTJjZTg1NGQzYWQ3ZmJjNDMzM2IyMTI3NGFhZmEyMTgyODk0NTdkZTkyMmE3MjQyMDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjNWUxMjZlMDkyYWYwYjZhOTI3YzAzOTQxNWM1Y2FlZTI1OTA1Nzc0OTY5Y2MyN2Y3MzllZGJkMmYwMWQzZDgifQ"
+        },
+        {
+          "resource": "repo://src/routes/the-new-human-era.tsx#L67-L126",
+          "version": "repo-lines-v1:sha256:2ea04dfb7a9bcefba76e2f3a4efc4b39dc974221f389f1bbbb15ad5e7c7a04a4:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4MWRhNzljNWNiZmRiNzIwMDZkNjA4ZWQyMjdkNGJiZTUzOGMxOGMxOTNkN2RjM2RmMThlYTFlZWRhMTZlMmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyZjJiZTQwYTJmNDNiNTA5Mzg2M2JmNjE2YjY3NzY3MjVlM2Q4OTVlZmY1ZWM0NTViZjRjNTU5ZTkxOGRkMDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI1ZDZhZGE0NjY3NWU0OTQxYWY1YjgwY2U5MmIyYTA2NGNiYmU1MzIxNDUzMTc0Yzc0YTExNGQxMzRlZjUyYmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMxNWRjMTg0OGM4OTRlYjZmNTI0NGEzYjA4Y2ViYjJmYjczZWIzZmUwYTZhYmUzNTZiMzgwZGQ0MDUzZGExOWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0ab2262e53264352b8b41394d6b86822",
+      "statement": "The Human Archive page depends on shared archive data and a shared playlist URL, and its interaction contract is that only one YouTube player may be active at a time and the iframe is destroyed when the card deactivates.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/brand.ts#L96-L109",
+          "version": "repo-lines-v1:sha256:54c5cb3bce756fd0f9e27c2253ab5bf30465e1e9ecfef8d885c6e2b5b21749ec:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlMTc5NWNiOWU1ZTNjMWY4NjA5NzQ3NGViODc5NmFhMmNlY2M3MmEyYTVhMjNkNWRjZWMwMWQ0ZGIyZmJkMmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ5MGJkMjQxZDdjZjk5YzE5NmNjNzZjNzA3MWEzMmIxMmNjMzVkOTE3NTFmZjZkMTMyYTQ1MmVkNjE5N2IxMDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/lib/content.ts#L111-L149",
+          "version": "repo-lines-v1:sha256:4ead3b276dc00aee7f0bbc1c0febc882e218fed9d948155436e4002f1bb6bad4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmZTZiNjJhMThjODMxODk5ZjY1MTA3N2YzNzRkODAwOWU1NWNjNDJiMjM0M2U1MzYxOGUxYzBlOWY1YzlhNWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiZDMxZjEyZDEzNWI3ODhiNzNlMmUyNjA1OTlhMjkxZTNjOThmOTBkZTUyZTVlZWZhYTZlZWVlY2U0YjIxZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/routes/the-human-archive.tsx#L1-L17",
+          "version": "repo-lines-v1:sha256:c92f60bd27c4a87f96d526e9feda323ab31f9289804512636b6a0b5d215d0fe2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYxY2Y4NDNjNmFiMzRlMTA4NzIyODE1NWViYzNkMTQ0Mjk2ZDhhOWViNzJmMDdhNjYxY2I0OTg3MzZjZDk2MmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzMGI1NDFjYzViNWE1YjNhYzNiN2JiODU3OTM2N2FhYTAxZDFlYjM2YmViNTc5NmQ4NjY0ZDk2OTFjYjc1MjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk3YTcyYzBhNGZiMDljZThmOTgwNTRiMjIxNWMzMzBkNmIxN2ZmYTc4ODgwM2FjNmRlMmJlYWFhY2FjYThkZTAifQ"
+        },
+        {
+          "resource": "repo://src/routes/the-human-archive.tsx#L33-L184",
+          "version": "repo-lines-v1:sha256:91400118ad3df5679a0e76bf46789137f8847e193a7f1ebf5728b077991b8dc2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUyLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIzNTNkNjlkYzdlM2MzNmVhMDhmNWEwNTE4ZGJlYjZlMmUwYzBlYmQxNWM2NDE3ZTIzZjQxMDZkM2M3MDQ1N2E4IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MmEyY2IyNWExMjJiNDQyMjFhNjIzNGVjNjYwYTdiNWZiN2Y5YmRlN2IzYjllMmIzYzU1OWEwZDk2ZmFjNzM5IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIwODJjMTdhOWE2ZWIwYjE1ZDZmYzhiYTVkZWE2M2VmMGRhOWIzOGUyYmIxMTE2ZTYwYTU3MjAyYWJlMjI4ZDliIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIwYWU4Yzk0MGQyMmRlM2Y2ZDJhYWZkZWVhOGFmNDY5YWQzODUwY2VjYWE4YjE3ZGZiOWUxMTc2ZGU5ZjQzMzM5In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_3871107dcd31435590097f338984c093",
+      "statement": "The `about-the-founder` route is a document-like editorial page that alternates chapter tones, renders imported archival images, and is held to prose fidelity against a source document by tests and comments in the route file.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/about-the-founder.tsx#L137-L260",
+          "version": "repo-lines-v1:sha256:8d647592b696b9c8d6959c7c8091aa73dd5af2ed49ce2ec45145c518731337ac:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI5MTc2NzEyOWZiODRmOThjYWZmMjE3NzhmZDA5MDRkMTc1ZDJjNWQ0MjNmZTMyZjUyY2NiNTI2YmQzZWE5ZDVlIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJjOGYxN2VlMWQ5Nzg1M2U5MzVkOTA2YzA0Y2QyYTM1ZWU3M2MyMGZhZmIxOGE3ZWU5OGNlMjI3NTYxMjU0ZTI1IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5MjZmN2I1NWQxYzEwYzA2YWE5NjBlZjM1NTkyYjVmM2Q1YjU4ODBhYTg3ZGEwOTEwOTQ4MzY2MzUwYzIwNWYyIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI4NjQ0OTMyZGJjOTg2YzcyOGNlZjhkOWIxYTg0Yzg5YTg3OGQ5MDQ5ZmMwZjVlMjdiODRiYTNiNGY0ODcxMjA0In0"
+        },
+        {
+          "resource": "repo://src/routes/about-the-founder.tsx#L16-L37",
+          "version": "repo-lines-v1:sha256:be8c314552dd363571b3b76d1ec37bbc979f1bdd1e157613be772f32c0b12e78:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE1MWY0NzRjYjEzZGJhN2Q3Njc1OTk1ODRlZGQ0ODFlNWJmMTA3OGFmYTYwMThjMDU5NTE1NzI2MWI0MTU0MjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI1ZDM4OWM3NDIwMzI2ZWJiMDQ1NzZmNDk0ZGZiMTQ5Nzk0ZDlhN2Y2ZjYwMDExMGFkOTQ3NzUwMzcwNTg1ZjgifQ"
+        },
+        {
+          "resource": "repo://src/routes/about-the-founder.tsx#L62-L127",
+          "version": "repo-lines-v1:sha256:ef8443fd030ec6ea5b7600f422d0b7f6281f878aa522cf5ef90ba0a8c018a97d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ0YzljNmVkYzM4ZWU0N2U1NTI1NmZkZGI3OGI0M2ZmNjMxMWY2OWMzMTA1Yjk5MWUwNWVhNTg4YzgyZDM0OTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiYmVlNzg3ODVmZmUzZTcxZWM3YmE5OGNkYTc2NTI2MjY5MTVlODI4YjUzYzU1ODVkYTYwMGY1ZWI2MDJlMDcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fd6254517c4240e190a926ade951ba37",
+      "statement": "The `why-we-exist` route is treated as a continuous editorial essay rather than a modular landing page, with copy fidelity enforced by tests and with a small set of supporting images instead of a large gallery of interchangeable assets.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/why-we-exist.tsx#L171-L227",
+          "version": "repo-lines-v1:sha256:195eb401de7e207196faab292fca7df4bc73cd7c33958b9c6b6555246948c0a1:eyJzZWxlY3RlZExpbmVDb3VudCI6NTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5MzFiZjAzODEyMTRmMThlZjJjNmQ5ZGYwYzVmNzcxNDYxYjZlMDBjNjE5MmI3MjgyNGNhOTczMDQzN2E3MWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1MGFlYzRmNTY3ZTRmMTJiNDg3OWIyNTZhMTA4YjA0NzkyZjJiM2ExYzllNjFlOTg3MTVjMjFlNDk3MWJmYzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjllODRiMTVlN2VjNjU0MzI5YWVjNGFkZDMxMGUzMzY1N2VhZWM0ODQ0MDRhYWU5NTY3NmM1MjYxNTdhNjhmMmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgzOWM0ZDA4MTVkNzg4YzU3YmU4N2RkMGY5NzE1ZDQ0NWExZmFiNjI4ZTRmN2VkZDZlMjY0YTRiZjBlNTNlNGQifQ"
+        },
+        {
+          "resource": "repo://src/routes/why-we-exist.tsx#L29-L46",
+          "version": "repo-lines-v1:sha256:31438f5595b682f6df0be31094b06ebed09d6056702f13117057bb0696f4fee2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNhODhmYjJkYmQyOTk4MTBhZWQ3NzFmZTVmMDljNGJmZjIyZGY3NzkxOWQ1NjIzNzBiNWU4NGNjOTYwYjk0YTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImExOTcxNjQ4YjNkZTYwNTRmZWJmMWRlNTZmMjY0OTRkNDYxMmY4NDIzZTEyZGYyZGZiYWFlM2JhYThjMDA4MzUifQ"
+        },
+        {
+          "resource": "repo://src/routes/why-we-exist.tsx#L47-L127",
+          "version": "repo-lines-v1:sha256:df960ee91f409ae3bc69095509bfcdd510de4a55ea448c0299acd21f05bb1c19:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4ZjgzM2ZhMWVjNDAzNTY2NzZlOTMxM2FiZjRhOTJhNDJmNjczMTM0Yzk1NjgzNjRlMDk3NzQyYTgyMjhjMmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1MGFlYzRmNTY3ZTRmMTJiNDg3OWIyNTZhMTA4YjA0NzkyZjJiM2ExYzllNjFlOTg3MTVjMjFlNDk3MWJmYzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4Y2FjYWZlYjY1MjYxNTVkMmIwNzMzNDE2OTJmNDBlOTJmZWVlNTUxOGYxMzg2Mzk1OWUxZGUwM2FjZDZlODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhM2NmNTE5MjM1NGY3MTYxNWFjNTEwMzRiM2U5N2MyMGVkYTk5NjQzZmNhZjViYmU2ZDQxYWQ1OWJkMTIxNjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fa5fb908f9ad4348bb8185305473a3b4",
+      "statement": "The `who-we-are` route is intentionally small and data-driven: it renders the shared `TEAM` list, keeps the page linear, and exposes the founder link from the card instead of introducing a nested route tree.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/who-we-are.tsx#L24-L32",
+          "version": "repo-lines-v1:sha256:a568f482b8d7542f3e38e9a1f3a75575496569650c9975fb174ee6acf940bae8:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWYxMWMzNTFhODkwZDJlZDA3OTQ3OWZjMTBlN2E1NTVlNjhiZDhlMjZkNjgzMmE2NWMwZTgxODkzYTQ5YjVkYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2Q5N2Q1MzZkNjVmOTVkMzkwNTY1NzY4Yjc5NzAxYWE5NmU1Y2VlZTk4ZTNiOGNhOTYyZmMyYmEyNDI0OTBhYSJ9"
+        },
+        {
+          "resource": "repo://src/routes/who-we-are.tsx#L33-L90",
+          "version": "repo-lines-v1:sha256:df9d4d52d300b6a838d8d9087a79228a1ef2d48b8dec0695c91f0135e1b87354:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzNGYxYWFiM2EzY2E0MjcwNmYzZmFlNmNjNDk0MTE2YjE4ZjU4NTgxZTMxNzA1NmM2YzU2ZWMzOWY2YTI1NjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmMjE1ZmQwM2NmYzJiZWViZjgwNGExN2FjNWU5NDc5NTFmN2NkMmRjMDU2MDUyMjQ5OWM2MDZmZGJjZDcxODUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE5MTNkNTkxMDk0ODBlNzI0ZjJhZWJlNDJkZGZkNWJiMDBmZGFiNDU4ZjMzMTZmMWQ0ZWNmNzE3YzdkMTBkODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdiMDA4NTlhZmNmODA2ODdkODkwZDg1YTY0Mzg4OGIzYTljZjcwMGFjZmY2MWJmNzE2ZjMyN2ZmMWM5NmYyODkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0d4afde2748a4fc487ecfa5593f7a832",
+      "statement": "`src/routes/type-specimen.tsx` is a review instrument rather than a marketing page: it records rendered typography from the live DOM, is marked `noindex, nofollow`, and is excluded from the sitemap.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/sitemap.xml.test.ts#L177-L195",
+          "version": "repo-lines-v1:sha256:3a3a7f943296463ed3273bc2dc0586ce6b06c99eb12b5c9a284ebaaa63905896:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkzNGFiNzNkZDZiYzJlODQ2NjUzYTdjNzM5OTA4Zjg1ODkwMGM3YTIzYjdkYjBmZWE5ZjU3NWNhNWQ5OWUxM2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/routes/sitemap.xml.test.ts#L80-L87",
+          "version": "repo-lines-v1:sha256:f8f3841e17a0685c611d084528db855e4cbc3ea123d6f5b108e74c154ba5e23d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzRjNzYzZTJmMWYwZDExYzAyZDJhNTdhN2NlMWFkYmFkM2JkNDNmZmE2NTZiZjRiMjYxNTVjZDZiMmZkMmQ4NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODM1NjlkNWNlMGUxNGY5YjNlNWExYTZjNTgwMjUyMTNhZGFmYmE3YjBjYjNjNzU1ZTAwZTc5ZTg1YjUyYTgzZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzk1ZWM0ZGFjNTY4ODMzOTgxYjg2ZmY5Nzc0NTEwYWZlMGI1MzBhMzlkNjMwMDY2MzliNTNmYjM2ODEzYjQ0NCJ9"
+        },
+        {
+          "resource": "repo://src/routes/type-specimen.tsx#L1-L40",
+          "version": "repo-lines-v1:sha256:c2baad855734f34345de02c097f169702c4af188d6a647b3bbf93c4be035bb08:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg0MzllN2JkN2E2YTc5ZDBjNDg2MmVlM2NhMjZjODg5NmYwZWU0NWM0NmM1NDE5NDY5MGNjNzU4NDQ3MDNhOWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_042711b15824457a9bdef5fd8933a4c5",
+      "statement": "Homepage and manifesto changes are constrained by shared tests: the homepage test pins the narrow Sanity fallback behavior, the manifesto and archive-related tests pin route contracts and shared content usage, and sitemap tests keep non-content surfaces such as `/type-specimen` out of crawlable inventory.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/index.test.ts#L1-L104",
+          "version": "repo-lines-v1:sha256:86623387b4bce33ee3bec303c77d182b0eb4e041e751dc093f3d41cd29b2e836:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIwNTcxZWE5MzE3OGJlNDU1M2E5Y2M2OTM2YjliZmU5OTZkMDMyMDgyZmU2YWViYTQ5NTAyMmU5MDY4OWJjMjM3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzYTNlNDZmOTQyNzZiNmY2ZjRlZDFmMDJhZjc4YmVmNmEyZWUxYzQzOWRkNTU4NGI5NzM5NDgzMTMyMTRkMmI3IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJjZTRkMzY1NTdiZTdiNDYzODA3YzYyMjVlNzljZTA2NmU2Y2FhNzVkNTEzMzRmNTkyYzE4YmJkNGEzZTkzYzg1In0"
+        },
+        {
+          "resource": "repo://src/routes/sitemap.xml.test.ts#L150-L175",
+          "version": "repo-lines-v1:sha256:6c3abb1b30f903809d0be1b4e361a86724816d62c43c648195f87d8679056457:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlY2RjMjNkZmY0NTM2ZmRiZjUxMzA3ZDM1ZWRmNzI0MWQ2Y2MwNGMzYzI0MjJmODE3Mjk0NjZjMGM4M2JlYWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzOTI2YjBkOWYxNWViMmUyNmQ3ZWMyZTZjOGI0ZDVjMGJhNjgzODYxOGVlZjRlMGVlZDE2NWZjNDIxYWI2NTYifQ"
+        },
+        {
+          "resource": "repo://src/routes/sitemap.xml.test.ts#L67-L95",
+          "version": "repo-lines-v1:sha256:115c7484bb9372a4ae5aa908c2fef511ab0a968b77bf717f37ded2912dc77165:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1ZDEwZGJhMGM5OGRhMTZiNzg3ZWIzMTU2ZWY2NDdmZGNlNDJiZDQ1MmZmYjAxZDY4YzU3OGM4OWZmNzhlNWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2ZmM5Nzc2M2I2YzViN2YwMWQ3YWRlZWU5ZTUwODk2NTg5NTYxMjI5MTAwY2NmMWIzOGViM2Q3NGJkMzUyMTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNmNzVmNTg1ZGRjMTAzNzQyMWNiOTljZmY5YmRkMGQyODAyYTM3YmUzN2IwODIwYTY0ZTM5YzRjM2QxZjI1YTgifQ"
+        },
+        {
+          "resource": "repo://src/routes/the-human-archive.tsx#L141-L147",
+          "version": "repo-lines-v1:sha256:69bf244414444d8b0da5eecc42c1fe72ee2e6864d28d2c7f32cbc0e29276d5ae:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDk0ZmMwYzE3M2QxZWMzZmM1MDFkN2RmYTkyODU1MDFjNTI3Y2ZiNDcxMjU4M2RhM2NjMzYxODA1NjZiNGJlMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWRmZjIwODY2MmJjNjc5ODUwNjU5NDMzMzE5NDJlNTAxZmU4MjEzYWNmZGFiM2JkYzU4ODRhYjJkZDdiNjQ2MyJ9"
+        },
+        {
+          "resource": "repo://src/routes/the-new-human-era.tsx#L1-L35",
+          "version": "repo-lines-v1:sha256:e9cb5d3cc888be11fa55b5a81b533625c4c40f14e722291ebb4b4d1de6937810:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlODBkMDVhN2NkNDk1MTJjZTg1NGQzYWQ3ZmJjNDMzM2IyMTI3NGFhZmEyMTgyODk0NTdkZTkyMmE3MjQyMDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjNWUxMjZlMDkyYWYwYjZhOTI3YzAzOTQxNWM1Y2FlZTI1OTA1Nzc0OTY5Y2MyN2Y3MzllZGJkMmYwMWQzZDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_83836a42824a450b97adba3cfbabb8e2",
+      "statement": "The safe workflow for a marketing/content edit is to update the shared source of truth first, then update the consuming route, then verify any required asset dependency and run the tests that pin the page contract.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/brand.ts#L1-L109",
+          "version": "repo-lines-v1:sha256:017464cbe9491ff24fccc23d77021009cc20bc38a49155b258df84e7a82fdaab:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlYWYyMmNmMDczMjU5MmMyNDcxNDFjYmU2MWVmYTExMDEyNjEyZjVhMzEyMmI5YWY5YmJhZjUyZjU3MjRkMTk0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJkZTE3OTVjYjllNWUzYzFmODYwOTc0NzRlYjg3OTZhYTJjZWNjNzJhMmE1YTIzZDVkY2VjMDFkNGRiMmZiZDJiIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://src/lib/content.ts#L1-L149",
+          "version": "repo-lines-v1:sha256:e524b7dacd8355d2e04327bcbeb91a0fa8173d507c0318cae9a2759314bebb48:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQ5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIwMjkwNDBiZGE0OTRjYmIxNjM0YjlkMzgzODE4MWQyNjljMDY0MjhkMDE1ZjA5NmVmODFkZTA1YmE5MjE5MTI5IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIxZmU2YjYyYTE4YzgzMTg5OWY2NTEwNzdmMzc0ZDgwMDllNTVjYzQyYjIzNDNlNTM2MThlMWMwZTlmNWM5YTVhIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://src/routes/index.test.ts#L49-L104",
+          "version": "repo-lines-v1:sha256:4c4ba0988cd9020aae11cf31831e1859162731065efa589fa05bc2ff1387e672:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiNjFhNzUzY2IyYzkxNzZjYzRhYmEwNmUwOTgwOGJiYmNiYjZjOGQxYjYwMzllNzgyM2M4NTU2MGZjYTlkZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiMjBhZTljMzI5NmE0Nzg5OTYxNDkwMWQwMTcwOWE3ZTExNTk1ZWJkMGU0ZGIzNDQ0MGEzZDI2YWQ3ZjQ5NmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlNGQzNjU1N2JlN2I0NjM4MDdjNjIyNWU3OWNlMDY2ZTZjYWE3NWQ1MTMzNGY1OTJjMThiYmQ0YTNlOTNjODUifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast.test.ts#L79-L98",
+          "version": "repo-lines-v1:sha256:01b6d70c82f2f683e60db92e0c3a2977d2e407615948d26c6a15677db2c6e850:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1YmZhNTZhYmUyMjJhYTAxNzY5NGFhYjFlN2RhM2M2ZGUyMDcyNjZlYjAzZTJjYTg2MzdjN2VlYWExZDA1ZjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxZWJiNTRiY2U5YTZhZTU5OWQwNjIyOThiOTAxMmE1ZjQ1ZTliY2ZlYTNmMGYwZTgxZWQ1ZDAyMjllMmMzYTkifQ"
+        },
+        {
+          "resource": "repo://src/routes/sitemap.xml.test.ts#L67-L175",
+          "version": "repo-lines-v1:sha256:78a30928ac4ac48b2203dda466349d3ce02483a720aa4c1349027c0c29111fda:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0NWQxMGRiYTBjOThkYTE2Yjc4N2ViMzE1NmVmNjQ3ZmRjZTQyYmQ0NTJmZmIwMWQ2OGM1NzhjODlmZjc4ZTVmIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJmNmY1YjQwYjE1ODQ1N2QxNzg2NGYyMTc5MDc4NmRkNWEyZWNkYjY0YjY2YTY1MWY3ODhkNGUyNWNkMzMwM2QyIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIxNmZjOTc3NjNiNmM1YjdmMDFkN2FkZWVlOWU1MDg5NjU4OTU2MTIyOTEwMGNjZjFiMzhlYjNkNzRiZDM1MjEyIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI1MzkyNmIwZDlmMTVlYjJlMjZkN2VjMmU2YzhiNGQ1YzBiYTY4Mzg2MThlZWY0ZTBlZWQxNjVmYzQyMWFiNjU2In0"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-15T05:01:30.389Z"
+  }
+}

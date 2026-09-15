@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e3308c02447396b124df7a391a19baf5922306633ec94e79f1161c34b5802509",
+  "claims": [
+    {
+      "id": "claim_c5cdeedcdd7441359e149abc3c959a49",
+      "statement": "The page defines a safe feature-change workflow that traces changes from route entrypoints through shared library logic to the final renderer, and it recommends updating tests at each boundary the change crosses.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/index.test.ts#L49-L79",
+          "version": "repo-lines-v1:sha256:323dceb8ed0bda0d5ae06ddfc15484a5a78b15282914924e28e4fb2096b80cdd:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiNjFhNzUzY2IyYzkxNzZjYzRhYmEwNmUwOTgwOGJiYmNiYjZjOGQxYjYwMzllNzgyM2M4NTU2MGZjYTlkZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiMjBhZTljMzI5NmE0Nzg5OTYxNDkwMWQwMTcwOWE3ZTExNTk1ZWJkMGU0ZGIzNDQ0MGEzZDI2YWQ3ZjQ5NmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA1NDlmZWE3Yjg4NDE0MzNmNGRmYTY3NDEzMTQwY2Y0NGRkNzgyNGYzNzY1YTE5MDYzY2QxMGUxMmQwMjkxM2QifQ"
+        },
+        {
+          "resource": "repo://src/routes/index.tsx#L32-L45",
+          "version": "repo-lines-v1:sha256:8e1a6a70f15fb29f30af99ee304bc21897d61b03d10e73a8faa7c7c29e40eea9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmZjE2ODA3MjU5MDI3YjcwYTlhNDIyN2FiMDQyMmU1NDJmZTc5Zjg1NWJhMTk3YmNiYzlmMjQyNTUwYWRiNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjZmZmNDk5ZWZkZDNlN2QwOGZjN2Q5ZjdmYmFkOTYzZThiNGM1YWVlNmY4YjNlOWEwNTBmM2RiMTk3MGZiOTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2MmUyM2EzYzg2MTIwNDMzMzFlYTJlMGUyMDk2ZWM5ZTkxMjM5NzQwN2FkMDA4N2QwMGUxODA5NWVlM2NkZTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc3ODFjMGYyYjIxOWY3Y2EwNDkzNDJlM2Q3YjQ2ZGRiNzkxOGU1NmYwY2ZlOTc2OTI4MDJjZjZjNzY3NjZjZTMifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast.tsx#L24-L40",
+          "version": "repo-lines-v1:sha256:314b7a355345a0dee40188d31af1d3102ca6238fb7433c3c952435aba28e0f28:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4ODVlNzdkYmM0NGEwNGU2OWE3MzQ0NjMzZDI0NGNiNThjYjZjOGY2NjU1N2ZjM2ExNjM1NTAyZTYwYTg4MGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhNzE1NWUyNzAxNjNiYzhiNDFkZTQ0Y2VkMzJlNzMyZjVkYzgwMjhhMzVjNjFjNTE0YWUwODhiOTZlOTQyNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhMzQ0MjE3ZDg2NjVhNWNhNWRkMTY4ZmU3OGNkOGY5MGJkNjZhYmRiOWY3Njk4NTllYjVlNDk4ZWI1YjliNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3YjhhZjM0NGRhOWM0YjUzMzUzNjcyNTI3NTllYWM4M2FhNWVjZWRmYzk4MGRlMDUyYzdlYTU5ZDk1MzVlNjEifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast_.%24slug.tsx#L53-L84",
+          "version": "repo-lines-v1:sha256:10d6b87c6fca99cd15e019d7b4b0839bdb935dc967296abd88bbdef190f0c7bf:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzNjI1MGRjZGE4YzlkNTViODFiMzMxY2ZhMDYxMGM1NWM5MzRmNzE5ZGI4NjZmN2Y5Y2M4YzFhMDgzZmM1NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmN2M4ZWE3NDAwNmMzNzM4OTY2M2YyMzMxNWJkYmRlMWE5MjE3NTdmODQ1MjI0Y2NlNWFmMDgzZDg2NzhjMzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBkMTUxOWRmNmZkOGUxNGY2Y2EwNjQ2MmJkNDVmY2E0Y2JhYjA1ZDYyNmYwZWZiYjhlZjUyZmNiYTBkYjUxMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiMDdiNDU4NDU3Njg3MzExMjMwYjY4MjIwZTVkNTExMmNmNTVmMmE1MDJkM2QxMmFjMjhiMmU4ODM4NzUyZTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_548b208ac3384b869e70ce6f852bdb88",
+      "statement": "In this repository, route files primarily own loader wiring, headers, head metadata, and the final component, while reusable calculations, query construction, and policy logic live in `src/lib/` modules.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/portal.ts#L43-L78",
+          "version": "repo-lines-v1:sha256:3deb94da4235dec253e1ff62fb30eac88dd2a151142b0cf536accebad070473a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjMTczNTRlODEzZDNkYjE2MTFkMmNmYWNiYTY3NDEyZmU5NWY3ODk3NjU2ODlkMGFjMjZiZDFlNzYxZDY4N2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkMzE4MjZiZTFjMGE1MWJiOTNmNjE0NjhhMmM1YTgyNjJmOWY0YjdkMjViMjZkNjQ1OGNiMGQ3ZGZlNTFiZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/lib/podcast/queries.ts#L7-L37",
+          "version": "repo-lines-v1:sha256:6c318ad91b6d75a1c783292323ddbe2d9fbe4f48eed0d4af3281fb4b39d30b12:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ4YmMyMDUyYjBjMjEyMTIxMjRmMGI3Mjc2NjFkYjI5NDY0MmYzMjMwMDZjOGM0MWM1ODc4YTQ2ZmRjOTU5MjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM0MTZkMmFiZjNiMjM0ZmVmNDY3MTlkNDdiZmY5OWQ5YmQxNzJiMDM3MTIzZDg5ZDQwM2VjNmRmNzIyMTUwZmMifQ"
+        },
+        {
+          "resource": "repo://src/routes/index.tsx#L32-L64",
+          "version": "repo-lines-v1:sha256:b1b1c9cca74f8b40b450674c6500a2c842a246b5acb169fad6853d3aea0bd2b7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmZjE2ODA3MjU5MDI3YjcwYTlhNDIyN2FiMDQyMmU1NDJmZTc5Zjg1NWJhMTk3YmNiYzlmMjQyNTUwYWRiNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2MmUyM2EzYzg2MTIwNDMzMzFlYTJlMGUyMDk2ZWM5ZTkxMjM5NzQwN2FkMDA4N2QwMGUxODA5NWVlM2NkZTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ1MGFhNjg2N2ZkNDFhZjc5NGJhZmJhNDhkNGRjOWRhOWUxNjMxMDZlMGUzZDhlNjdiZTg5NjJkNzBiNmJiNjAifQ"
+        },
+        {
+          "resource": "repo://src/routes/portal.tsx#L15-L27",
+          "version": "repo-lines-v1:sha256:193fea279c6a78ae0b1994bef25151be9fe9901be5992bf9a09ee5cb12eb5515:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllYjRmOTc1ZmJlMWJjYjE1ZTdmNzZjMWZmZTYxMjdjZTA4YzU5MWJhODliZmFlNTdlZjZmZGRjNTgzODZiMDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcxNmE5YzE0MDdhYTQ4MGFkODUwNDBjZDU1ZDk1NTc1ZGE2YjJmNTA1ZDkyZmUwMGUwZTZmOTg5YWEzYTg4ZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRmMTkxZDc1YjY1OTg2ZTQ4MmU3NTI2YTAxMTkxYzdiMDI0NTdmM2U4MDg4N2YxZDY2NzMxMWJmZDI2OGRkMzIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1cbd6c11a5d14fddb233bef6b7e2534d",
+      "statement": "The homepage route is documented as a thin shell over `loadFeaturedEpisodes(fetchEpisodeList, 39)`, and its route test verifies both the narrow outage catch and the visible unavailable copy instead of embedding the failure policy inline.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/index.test.ts#L49-L79",
+          "version": "repo-lines-v1:sha256:323dceb8ed0bda0d5ae06ddfc15484a5a78b15282914924e28e4fb2096b80cdd:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiNjFhNzUzY2IyYzkxNzZjYzRhYmEwNmUwOTgwOGJiYmNiYjZjOGQxYjYwMzllNzgyM2M4NTU2MGZjYTlkZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiMjBhZTljMzI5NmE0Nzg5OTYxNDkwMWQwMTcwOWE3ZTExNTk1ZWJkMGU0ZGIzNDQ0MGEzZDI2YWQ3ZjQ5NmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA1NDlmZWE3Yjg4NDE0MzNmNGRmYTY3NDEzMTQwY2Y0NGRkNzgyNGYzNzY1YTE5MDYzY2QxMGUxMmQwMjkxM2QifQ"
+        },
+        {
+          "resource": "repo://src/routes/index.tsx#L32-L45",
+          "version": "repo-lines-v1:sha256:8e1a6a70f15fb29f30af99ee304bc21897d61b03d10e73a8faa7c7c29e40eea9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmZjE2ODA3MjU5MDI3YjcwYTlhNDIyN2FiMDQyMmU1NDJmZTc5Zjg1NWJhMTk3YmNiYzlmMjQyNTUwYWRiNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjZmZmNDk5ZWZkZDNlN2QwOGZjN2Q5ZjdmYmFkOTYzZThiNGM1YWVlNmY4YjNlOWEwNTBmM2RiMTk3MGZiOTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2MmUyM2EzYzg2MTIwNDMzMzFlYTJlMGUyMDk2ZWM5ZTkxMjM5NzQwN2FkMDA4N2QwMGUxODA5NWVlM2NkZTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc3ODFjMGYyYjIxOWY3Y2EwNDkzNDJlM2Q3YjQ2ZGRiNzkxOGU1NmYwY2ZlOTc2OTI4MDJjZjZjNzY3NjZjZTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ec30edbbd3f3497382c0fae11179d157",
+      "statement": "The podcast list route deliberately lets Sanity failures reach the router as an errored match so the page can render a degraded state rather than silently showing an empty catalogue, and its headers are conditional on error status.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/podcast.tsx#L148-L170",
+          "version": "repo-lines-v1:sha256:f4395d2819096faf674edb4d7bf608197bc93afa6c025a69e17716893326cdf2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0NzdlZDkxNDgxMTM0NzllNjQyYzg3ZGI2NzdkMzdlN2ViZDUzNGQyZDEwN2I1NGIwYzk5NGY2MzhkNTVkNTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjNTkyYThiNjE0YzZlMzA3MzUxZDhjYmFhMjc5YmNjYmU2MWNkM2I3NjgyY2Y2NTE0Yzc4NDAxYTY0ZWMyNjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjllODRiMTVlN2VjNjU0MzI5YWVjNGFkZDMxMGUzMzY1N2VhZWM0ODQ0MDRhYWU5NTY3NmM1MjYxNTdhNjhmMmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2YjhiNWFlYmI1MTE3NjQyOWUzNjM5YzlkOWU3N2Y1ZGQ4MWNiY2FkZDVkNTg5MmFkNGE0ZWJjMzRmMWQ1YzcifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast.tsx#L24-L40",
+          "version": "repo-lines-v1:sha256:314b7a355345a0dee40188d31af1d3102ca6238fb7433c3c952435aba28e0f28:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4ODVlNzdkYmM0NGEwNGU2OWE3MzQ0NjMzZDI0NGNiNThjYjZjOGY2NjU1N2ZjM2ExNjM1NTAyZTYwYTg4MGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhNzE1NWUyNzAxNjNiYzhiNDFkZTQ0Y2VkMzJlNzMyZjVkYzgwMjhhMzVjNjFjNTE0YWUwODhiOTZlOTQyNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhMzQ0MjE3ZDg2NjVhNWNhNWRkMTY4ZmU3OGNkOGY5MGJkNjZhYmRiOWY3Njk4NTllYjVlNDk4ZWI1YjliNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3YjhhZjM0NGRhOWM0YjUzMzUzNjcyNTI3NTllYWM4M2FhNWVjZWRmYzk4MGRlMDUyYzdlYTU5ZDk1MzVlNjEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_740720cdaf1b448ca438504688699cfd",
+      "statement": "The podcast episode route distinguishes found, not-found, and outage states by branching on loader result and `match.status`, which keeps 404, degraded, and success semantics separate.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/podcast_.%24slug.tsx#L21-L41",
+          "version": "repo-lines-v1:sha256:241c796045be4495e0935ad872c0601e19155c161d098422112108930935c408:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjZDRhZWFiMGJmOGIyMWRhNWI5YzFkZmZiOTEyOGQ2OWE0ZWE2NzhlMzkyMDkyMzMxZTMzYjMxYmExNGVhNGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiNTI3NjQ2YjQ3MmZmMWYzODMyOTJkMmVjMmQ2NDY1NDQzZGU0NzVkZjc0OTU0OGRmYTFiMWY0YTU4ODY2NTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjExNjEwYTE5NTQ5ZDBjMDY0YTZjYTAzNjkyYzM2ZDI4YjkwNTg1ZmZkYTYzMDBhN2RiYWVmMmMzOTJkOWQzMmUifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast_.%24slug.tsx#L53-L84",
+          "version": "repo-lines-v1:sha256:10d6b87c6fca99cd15e019d7b4b0839bdb935dc967296abd88bbdef190f0c7bf:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzNjI1MGRjZGE4YzlkNTViODFiMzMxY2ZhMDYxMGM1NWM5MzRmNzE5ZGI4NjZmN2Y5Y2M4YzFhMDgzZmM1NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmN2M4ZWE3NDAwNmMzNzM4OTY2M2YyMzMxNWJkYmRlMWE5MjE3NTdmODQ1MjI0Y2NlNWFmMDgzZDg2NzhjMzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBkMTUxOWRmNmZkOGUxNGY2Y2EwNjQ2MmJkNDVmY2E0Y2JhYjA1ZDYyNmYwZWZiYjhlZjUyZmNiYTBkYjUxMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiMDdiNDU4NDU3Njg3MzExMjMwYjY4MjIwZTVkNTExMmNmNTVmMmE1MDJkM2QxMmFjMjhiMmU4ODM4NzUyZTQifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast_.%24slug.tsx#L86-L124",
+          "version": "repo-lines-v1:sha256:05091827b2e3cbb2cc223dfa5e220f1185a9419b1b32aa194648015af48e2a1b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNmNGUyY2ZiYmE3MGIwZTJmNjg4MmZhM2RjOTlmMzZlMDZkMDA4YWI1ZTU2ODE4NDliMjc4NjJjNDJiYWFmMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhNjU3MWYwZTU4MzA5NmRkNDc3ZmRiZDljNGQyNDc0OGZiZjZmYWY1MzE0Y2FkNDA4NDY3NDNhN2NhODYwODkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ab48bdfb74cc4236a47aa62756301262",
+      "statement": "The portal route is private-by-construction: it loads through `fetchPortalPage()`, redirects unauthenticated visitors to sign-in, and marks the page `noindex` in both meta and response headers.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/portal.ts#L43-L78",
+          "version": "repo-lines-v1:sha256:3deb94da4235dec253e1ff62fb30eac88dd2a151142b0cf536accebad070473a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjMTczNTRlODEzZDNkYjE2MTFkMmNmYWNiYTY3NDEyZmU5NWY3ODk3NjU2ODlkMGFjMjZiZDFlNzYxZDY4N2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkMzE4MjZiZTFjMGE1MWJiOTNmNjE0NjhhMmM1YTgyNjJmOWY0YjdkMjViMjZkNjQ1OGNiMGQ3ZGZlNTFiZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/routes/portal.tsx#L1-L27",
+          "version": "repo-lines-v1:sha256:090806148c43d06b62892a527b4c9da16cc91f2986d7ad285a9708cb4ff2803f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwNDg2YmJkZThiZjI2NWQwNmZiMjBmZGI1ZmNhYjM4ZGI3MjVmN2NmNzgyODAxNDEyM2JhZDEzZTNjYjg1YzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRmMTkxZDc1YjY1OTg2ZTQ4MmU3NTI2YTAxMTkxYzdiMDI0NTdmM2U4MDg4N2YxZDY2NzMxMWJmZDI2OGRkMzIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fb0ff5678c5e4c9e8f8e0627da79314e",
+      "statement": "Shared podcast query helpers export both plain async fetchers and `createServerFn` wrappers so route loaders can use server-side fetching without browser-side CORS drift during client navigation.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podcast/queries.ts#L7-L37",
+          "version": "repo-lines-v1:sha256:6c318ad91b6d75a1c783292323ddbe2d9fbe4f48eed0d4af3281fb4b39d30b12:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ4YmMyMDUyYjBjMjEyMTIxMjRmMGI3Mjc2NjFkYjI5NDY0MmYzMjMwMDZjOGM0MWM1ODc4YTQ2ZmRjOTU5MjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM0MTZkMmFiZjNiMjM0ZmVmNDY3MTlkNDdiZmY5OWQ5YmQxNzJiMDM3MTIzZDg5ZDQwM2VjNmRmNzIyMTUwZmMifQ"
+        },
+        {
+          "resource": "repo://src/lib/podcast/queries.ts#L70-L119",
+          "version": "repo-lines-v1:sha256:ab322292d1ddabb90b20058dd790c713673af5515ffdf94013be116fea78d783:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5OTY3ZWMxZWQzODM2ZjhlYjE3YWZmMTcyYjViZmVmN2RlNjA0ODVhNDM5YzZjYTExYzU5MWUxNzU1NzM5YWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE5NmQzM2ViYWY3NGI4ZjNlODYwNWVhNTkyNzUyMzkxY2E2NTQzYjFlNTI4NjA4YjNjMmJiYjI1Zjk4MTJiMGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9dbb089c9a3f49e3a646b6f9dc0c6f11",
+      "statement": "`src/lib/podcast/featured.ts` contains the homepage-specific outage policy: it absorbs only Sanity-unreachable errors, rethrows other failures, and returns a flagged empty featured list when the upstream is unavailable.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podcast/featured.ts#L12-L42",
+          "version": "repo-lines-v1:sha256:44cd7ac24e13201a0f6ddc362137ac79c6c9d4cafde43b30f5652b601fb5e166:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4Zjc0ODgxZjAxMTkyMjk0NTEwMWE2YjA0MmI2M2QyNDZmZWFkYWM2MThiYTg3MDViNDkzZGY5NWFlZmEwYjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_17da8af435884901a7a95019d06acb8a",
+      "statement": "The portal data loader separates pure decision logic from the server wrapper so tests can cover redirect, token, configuration, and report-loading outcomes without depending on Clerk at call time.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/portal.ts#L43-L78",
+          "version": "repo-lines-v1:sha256:3deb94da4235dec253e1ff62fb30eac88dd2a151142b0cf536accebad070473a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjMTczNTRlODEzZDNkYjE2MTFkMmNmYWNiYTY3NDEyZmU5NWY3ODk3NjU2ODlkMGFjMjZiZDFlNzYxZDY4N2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkMzE4MjZiZTFjMGE1MWJiOTNmNjE0NjhhMmM1YTgyNjJmOWY0YjdkMjViMjZkNjQ1OGNiMGQ3ZGZlNTFiZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/portal.ts#L7-L29",
+          "version": "repo-lines-v1:sha256:3517d2ab2533ca0144f54f0b449854793f903a5257372b8342b7d6f80c7c448d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI4NjQxMzljMWZmNWI5ZWUyMGYyODczMWEwODE3OWQ0ZjJmYzYwMDg4NTY2N2IyYjg4MjdiZWFiY2Q4YzFkMTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU1OGQ1OGUwYmNjYmFhZGE3Mzc5MzFiMWQwOTFmNjc2MzM4MTUzOTQyNTFkNGVlMmZhYWZhMzczYTVkMDVlNGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2bacfbd320f94d6da647d2f709e5c53c",
+      "statement": "`e2e/surfaces.spec.ts` visits every declared surface and checks visible content, navigation count, image integrity, and the absence of Lovable asset paths, making it the repository-level browser guard for cross-surface changes.",
+      "evidence": [
+        {
+          "resource": "repo://e2e/surfaces.spec.ts#L18-L92",
+          "version": "repo-lines-v1:sha256:98b9f77adc6f7fa63b35ab0ac5601dd9e7b248489803ad710ff0092f429d80f3:eyJzZWxlY3RlZExpbmVDb3VudCI6NzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiZjhmMjE1NWNmZDcwZjg3NTcyOWY5NTVmN2Y5MWVmNWYzZmM4MWM0Y2FkYjNkZDNlYTM2OTc5Yzk2MzAzZDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2YWU5ZTcxNDFlNzQ1ZTg0ODk1ODcwOGE5YzczOGY5MGIxYjMzYjgzMjA2MzA4ZTY4Nzc4ODA5ZGFlMjRkYjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmZWVhYWI0M2Q0ZmI5MTZhMWIzMzFiNWQ3YjcyYjM4NGFiOTkzYzJkZTIyNDBlNDM3YTUyNmVkYjc5ZWUzZjQifQ"
+        },
+        {
+          "resource": "repo://e2e/surfaces.spec.ts#L5-L14",
+          "version": "repo-lines-v1:sha256:1dab0ba195d838561b058c397aa5f969690b4096d5e2091785cfa63d3847c447:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM2NGZjMTA0M2VmY2Y3M2Y1MGZlYTkwNTg0Y2MzNWUzMmNlZWMyYzZhODQ5OTNmOGEwYzU4NDJiODgyYmRhYzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2YWU5ZTcxNDFlNzQ1ZTg0ODk1ODcwOGE5YzczOGY5MGIxYjMzYjgzMjA2MzA4ZTY4Nzc4ODA5ZGFlMjRkYjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bba0443a97404e0eb07acd67b270ae24",
+      "statement": "Surface declarations in `src/lib/surfaces.ts` are the canonical page list for browser-facing checks and sitemap generation, so route additions must be mirrored there or the route-shape and surface-gate tests will diverge.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/surfaces.ts#L1-L14",
+          "version": "repo-lines-v1:sha256:f35b4367a080323573ca2364caaccf7215c4b327bcc23f3378e9e3e52e8d5bee:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZkYWYxYWMwMWEzOGRkMzU4ZjE4OGYwNjJjNzJjNDdkNWYxMTI5NjI1ZTUyOGU2MjZlMDhiMTE1YTYzN2MzNDIifQ"
+        },
+        {
+          "resource": "repo://src/lib/surfaces.ts#L63-L145",
+          "version": "repo-lines-v1:sha256:d79bfe7532c93ce3103429b71101613df7f4288c73c773c9f4c5cc8c3e22bf9c:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZjljZDU2YWZhMGRmZmQwOWM3ZjliYjg1MGUwNWQ2YTExNWVkZDFkN2RkZjRlYzBiY2M5Y2NjMmFjZGM0MzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEzZThiOWRmMjhiMGU5NGZjZGVjMjA2M2NhNWY2OTllM2M4NWNlNGNjNzMyYTc4YWMxZDhiYzM2YmQwNjA3ZjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmNzhmNmU0ZTE1ZGUyZWQ2NDc2MTBmYmZlYTcwY2RhMjBlNjY4NGViM2UwNjYwYTFjMTViNDQ2ZjhmZjc1NGQifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-15T05:01:30.389Z"
+  }
+}

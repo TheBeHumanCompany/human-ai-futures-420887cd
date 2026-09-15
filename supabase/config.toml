@@ -357,9 +357,12 @@ enabled = false
 
 # Use Clerk as a third-party provider alongside Supabase Auth.
 [auth.third_party.clerk]
-enabled = false
-# Obtain from https://clerk.com/setup/supabase
-# domain = "example.clerk.accounts.dev"
+enabled = true
+# Frontend API domain of the dev Clerk instance (public by construction:
+# it is encoded in the publishable key). The production instance is a
+# DIFFERENT issuer — at cutover, update this domain and re-run
+# `supabase config push`.
+domain = "loyal-ocelot-9246.clerk.accounts.dev"
 
 # OAuth server configuration
 [auth.oauth_server]

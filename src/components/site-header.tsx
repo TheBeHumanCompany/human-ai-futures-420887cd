@@ -285,6 +285,20 @@ export function SiteHeader() {
               button plus a portalled panel (no landmark of its own), so the
               header keeps exactly one <nav> per AC-3.3.
             */}
+            {/*
+              Same paywall-only population as UserButton: the link renders
+              solely for a signed-in payer, so the signed-out header — what
+              every gate and screenshot sees — is unchanged (US-009).
+            */}
+            {isSignedIn ? (
+              <Link
+                to="/portal"
+                data-nav-item="Portal"
+                className="eyebrow hidden items-center px-3 py-2 text-muted-foreground transition-colors duration-200 hover:text-foreground lg:inline-flex"
+              >
+                Portal
+              </Link>
+            ) : null}
             {isSignedIn ? <UserButton /> : null}
             <button
               type="button"

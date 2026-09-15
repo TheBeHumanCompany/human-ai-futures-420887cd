@@ -234,15 +234,14 @@ describe("no gate between opening the link and reading the page", () => {
 });
 
 /**
- * US-003 — one link per client, many reports in sidebar tabs.
+ * US-003 — one link per client, every report stacked on the one page.
  *
  * The route composes the report shell; the shell itself lives in
- * `src/components/client-portal/client-reports.tsx`, so the primitive
- * imports are asserted on that file — the route asserting them would mean
- * the route imported primitives it never renders. Behaviour (both reports
- * under one token, tab selection, collapse) is pinned in
- * `client-reports.test.ts` (static render), `tokens.test.ts` (store read),
- * and `e2e/client-portal.spec.ts` (tab clicks and collapse in a browser).
+ * `src/components/client-portal/client-reports.tsx`. Behaviour (every
+ * report under one token, in store order, with no navigation chrome) is
+ * pinned in `client-reports.test.ts` (static render), `tokens.test.ts`
+ * (store read), and `e2e/client-portal.spec.ts` (stacked page in a
+ * browser).
  */
 
 const REPORTS_SOURCE = readFileSync(
@@ -266,23 +265,24 @@ describe("the route serves every report through the one client URL", () => {
   });
 });
 
-describe("the shell reuses the shadcn sidebar, disclosure, and tabs primitives", () => {
-  test("all three primitives are imported from the ui layer", () => {
-    expect(REPORTS_SOURCE).toContain("@/components/ui/sidebar");
-    expect(REPORTS_SOURCE).toContain("@/components/ui/collapsible");
-    expect(REPORTS_SOURCE).toContain("@/components/ui/tabs");
+describe("the shell stacks the reports with no navigation chrome", () => {
+  test("no sidebar, disclosure, or tabs primitives are imported", () => {
+    expect(REPORTS_SOURCE).not.toContain("@/components/ui/sidebar");
+    expect(REPORTS_SOURCE).not.toContain("@/components/ui/collapsible");
+    expect(REPORTS_SOURCE).not.toContain("@/components/ui/tabs");
   });
 
-  test("the sidebar shell, the collapse toggle, and the disclosure are wired", () => {
-    expect(REPORTS_SOURCE).toContain("SidebarProvider");
-    expect(REPORTS_SOURCE).toContain("SidebarTrigger");
-    expect(REPORTS_SOURCE).toContain("Collapsible");
-    expect(REPORTS_SOURCE).toContain("CollapsibleContent");
+  test("no sidebar shell, toggle, disclosure, or tab wiring remains", () => {
+    expect(REPORTS_SOURCE).not.toContain("SidebarProvider");
+    expect(REPORTS_SOURCE).not.toContain("SidebarTrigger");
+    expect(REPORTS_SOURCE).not.toContain("Collapsible");
+    expect(REPORTS_SOURCE).not.toContain("TabsTrigger");
+    expect(REPORTS_SOURCE).not.toContain("TabsContent");
+    expect(REPORTS_SOURCE).not.toContain("onValueChange");
   });
 
-  test("one tab value drives the tab bar, the panels, and the sidebar entries", () => {
-    expect(REPORTS_SOURCE).toContain("TabsTrigger");
-    expect(REPORTS_SOURCE).toContain("TabsContent");
-    expect(REPORTS_SOURCE).toContain("onValueChange");
+  test("every report renders from the resolved page in store order", () => {
+    expect(REPORTS_SOURCE).toContain("page.reports.map");
+    expect(REPORTS_SOURCE).toContain("dangerouslySetInnerHTML");
   });
 });

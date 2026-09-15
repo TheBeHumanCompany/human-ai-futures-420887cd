@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { afterAll, beforeAll, describe, expect, test } from "bun:test";
 
 import {
   fetchClientPageByTokenFn,
@@ -19,6 +19,36 @@ import store from "../../../content/clients.json";
  * these into HTTP statuses is covered by `src/routes/c.$token.test.ts` (route
  * options) plus a live dev-server curl recorded in `docs/client-portal-tokens.md`.
  */
+
+/**
+ * The tier under test is the unconfigured one: every `fetchClientPageByTokenFn`
+ * call below passes no deps, so the deploy environment decides whether the
+ * fixture store or Supabase answers. A harness that loads `.env.local`
+ * (`scripts/verify/delta.sh` runs through `bun run`, which does) carries
+ * SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY into this process and would
+ * silently route every fixture assertion at the network. Deleting the pair
+ * for this file's lifetime pins the tier the assertions were recorded
+ * against; the restore leaves the process exactly as found.
+ */
+const SUPABASE_ENV_PAIR = ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY"] as const;
+const savedSupabaseEnv: Record<string, string | undefined> = {};
+
+beforeAll(() => {
+  for (const name of SUPABASE_ENV_PAIR) {
+    savedSupabaseEnv[name] = process.env[name];
+    delete process.env[name];
+  }
+});
+
+afterAll(() => {
+  for (const [name, value] of Object.entries(savedSupabaseEnv)) {
+    if (value === undefined) {
+      delete process.env[name];
+    } else {
+      process.env[name] = value;
+    }
+  }
+});
 
 const clients = store as unknown as ClientRecord[];
 

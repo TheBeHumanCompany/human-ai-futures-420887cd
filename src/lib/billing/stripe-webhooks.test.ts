@@ -37,6 +37,7 @@ function paidCompleted(clientId = "acme-industrial"): StripeWebhookEvent {
         id: "cs_test_paid",
         payment_status: "paid",
         customer: "cus_test_acme",
+        customer_details: { email: "owner@acme.example" },
         metadata: { client_id: clientId },
       },
     },
@@ -81,9 +82,10 @@ describe("parseWebhookEvent", () => {
 });
 
 describe("routeWebhookEvent", () => {
-  test("paid completion releases with client, customer, and session", async () => {
+  test("paid completion releases with client, customer, session, and linkage", async () => {
     const releases: unknown[] = [];
     const outcome = await routeWebhookEvent(paidCompleted(), {
+      provisionClerkUser: async () => "user_clerk_acme",
       releasePaidAccess: async (release) => {
         releases.push(release);
       },
@@ -94,13 +96,18 @@ describe("routeWebhookEvent", () => {
         clientId: "acme-industrial",
         stripeCustomerId: "cus_test_acme",
         stripeSessionId: "cs_test_paid",
+        email: "owner@acme.example",
+        clerkUserId: "user_clerk_acme",
       },
     ]);
   });
 
   test("async succeeded also releases; failed and unknown types never touch release", async () => {
     const releases: unknown[] = [];
-    const recorder = { releasePaidAccess: async (r: unknown) => void releases.push(r) };
+    const recorder = {
+      provisionClerkUser: async () => null,
+      releasePaidAccess: async (r: unknown) => void releases.push(r),
+    };
     const succeeded: StripeWebhookEvent = {
       ...paidCompleted(),
       id: "evt_succeeded",
@@ -130,7 +137,14 @@ describe("routeWebhookEvent", () => {
 
   test("unpaid completion and missing client never release (still safe to 200)", async () => {
     let called = 0;
-    const recorder = { releasePaidAccess: async () => void called++ };
+    let provisioned = 0;
+    const recorder = {
+      provisionClerkUser: async () => {
+        provisioned++;
+        return null;
+      },
+      releasePaidAccess: async () => void called++,
+    };
     const unpaid = paidCompleted();
     unpaid.data.object.payment_status = "unpaid";
     expect(await routeWebhookEvent(unpaid, recorder)).toEqual({
@@ -144,6 +158,66 @@ describe("routeWebhookEvent", () => {
       reason: "missing-client",
     });
     expect(called).toBe(0);
+    expect(provisioned).toBe(0);
+  });
+
+  test("customer_email stands in when the details carry no email", async () => {
+    const releases: unknown[] = [];
+    const emails: string[] = [];
+    const sessionOnly = paidCompleted();
+    delete sessionOnly.data.object.customer_details;
+    sessionOnly.data.object.customer_email = "buyer@acme.example";
+    await routeWebhookEvent(sessionOnly, {
+      provisionClerkUser: async (email) => {
+        emails.push(email);
+        return "user_buyer";
+      },
+      releasePaidAccess: async (release) => {
+        releases.push(release);
+      },
+    });
+    expect(emails).toEqual(["buyer@acme.example"]);
+    expect((releases[0] as { clerkUserId: string | null }).clerkUserId).toBe("user_buyer");
+  });
+
+  test("a paid session with no readable email skips provisioning entirely", async () => {
+    const releases: unknown[] = [];
+    let provisioned = 0;
+    const noEmail = paidCompleted();
+    delete noEmail.data.object.customer_details;
+    await routeWebhookEvent(noEmail, {
+      provisionClerkUser: async () => {
+        provisioned++;
+        return null;
+      },
+      releasePaidAccess: async (release) => {
+        releases.push(release);
+      },
+    });
+    expect(provisioned).toBe(0);
+    expect(releases).toEqual([
+      {
+        clientId: "acme-industrial",
+        stripeCustomerId: "cus_test_acme",
+        stripeSessionId: "cs_test_paid",
+        email: null,
+        clerkUserId: null,
+      },
+    ]);
+  });
+
+  test("a throwing provision seam still releases with a null linkage", async () => {
+    const releases: unknown[] = [];
+    const outcome = await routeWebhookEvent(paidCompleted(), {
+      provisionClerkUser: async () => {
+        throw new Error("clerk unreachable");
+      },
+      releasePaidAccess: async (release) => {
+        releases.push(release);
+      },
+    });
+    expect(outcome).toEqual({ handled: true, action: "released", clientId: "acme-industrial" });
+    expect((releases[0] as { clerkUserId: string | null }).clerkUserId).toBeNull();
   });
 });
 
@@ -159,7 +233,13 @@ describe("releasePaidAccess", () => {
   test("upserts unlock plus mapping without touching staged content", async () => {
     const record: { url?: string; init?: RequestInit } = {};
     await releasePaidAccess(
-      { clientId: "acme-industrial", stripeCustomerId: "cus_x", stripeSessionId: "cs_x" },
+      {
+        clientId: "acme-industrial",
+        stripeCustomerId: "cus_x",
+        stripeSessionId: "cs_x",
+        email: null,
+        clerkUserId: null,
+      },
       {
         supabaseUrl: "https://xyzcompany.supabase.co",
         supabaseServiceRoleKey: "service-role-for-tests-only",
@@ -177,33 +257,87 @@ describe("releasePaidAccess", () => {
     expect(body.stripe_session_id).toBe("cs_x");
     expect(body).not.toHaveProperty("title");
     expect(body).not.toHaveProperty("html");
+    expect(body).not.toHaveProperty("clerk_user_id");
     expect(typeof body.unlocked_at).toBe("string");
   });
 
+  test("carries clerk_user_id only when provisioning answered", async () => {
+    const record: { url?: string; init?: RequestInit } = {};
+    await releasePaidAccess(
+      {
+        clientId: "acme-industrial",
+        stripeCustomerId: "cus_x",
+        stripeSessionId: "cs_x",
+        email: "owner@acme.example",
+        clerkUserId: "user_paid_1",
+      },
+      {
+        supabaseUrl: "https://xyzcompany.supabase.co",
+        supabaseServiceRoleKey: "service-role-for-tests-only",
+        fetchImpl: stubPost(record),
+      },
+    );
+    const body = JSON.parse(record.init!.body as string);
+    expect(body.clerk_user_id).toBe("user_paid_1");
+    expect(body).not.toHaveProperty("email");
+  });
+
   test("transport failure throws; missing config fails before any request", async () => {
-    const failing = (async () => ({
-      ok: false,
-      status: 500,
-      json: async () => ({}),
-    })) as typeof fetch;
-    await expect(
-      releasePaidAccess(
-        { clientId: "c", stripeCustomerId: null, stripeSessionId: "s" },
-        { supabaseUrl: "https://x.supabase.co", supabaseServiceRoleKey: "k", fetchImpl: failing },
-      ),
-    ).rejects.toThrow("answered 500");
-    let called = false;
-    await expect(
-      releasePaidAccess(
-        { clientId: "c", stripeCustomerId: null, stripeSessionId: "s" },
-        {
-          fetchImpl: (async () => {
-            called = true;
-            throw new Error("must not be called");
-          }) as typeof fetch,
-        },
-      ),
-    ).rejects.toThrow();
-    expect(called).toBe(false);
+    // The missing-config half reads the deploy environment by default: a
+    // harness that loads `.env.local` (delta.sh via `bun run`) would resolve
+    // SUPABASE_URL/SERVICE_ROLE and call the fetch that must never be
+    // called. Deleting the pair pins the branch regardless of shell; the
+    // restore leaves the process as found.
+    const saved: Record<string, string | undefined> = {};
+    for (const name of ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY"]) {
+      saved[name] = process.env[name];
+      delete process.env[name];
+    }
+    try {
+      const failing = (async () => ({
+        ok: false,
+        status: 500,
+        json: async () => ({}),
+      })) as typeof fetch;
+      await expect(
+        releasePaidAccess(
+          {
+            clientId: "c",
+            stripeCustomerId: null,
+            stripeSessionId: "s",
+            email: null,
+            clerkUserId: null,
+          },
+          { supabaseUrl: "https://x.supabase.co", supabaseServiceRoleKey: "k", fetchImpl: failing },
+        ),
+      ).rejects.toThrow("answered 500");
+      let called = false;
+      await expect(
+        releasePaidAccess(
+          {
+            clientId: "c",
+            stripeCustomerId: null,
+            stripeSessionId: "s",
+            email: null,
+            clerkUserId: null,
+          },
+          {
+            fetchImpl: (async () => {
+              called = true;
+              throw new Error("must not be called");
+            }) as typeof fetch,
+          },
+        ),
+      ).rejects.toThrow();
+      expect(called).toBe(false);
+    } finally {
+      for (const [name, value] of Object.entries(saved)) {
+        if (value === undefined) {
+          delete process.env[name];
+        } else {
+          process.env[name] = value;
+        }
+      }
+    }
   });
 });

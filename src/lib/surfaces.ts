@@ -138,6 +138,10 @@ export const SURFACES: readonly Surface[] = [
   // a Clerk-mounted page and the sitemap never advertises auth endpoints.
   { path: "/sign-in/$", kind: "dynamic", expectsSingleNav: true },
   { path: "/sign-up/$", kind: "dynamic", expectsSingleNav: true },
+  // Authenticated portal (US-009). Unlisted like the auth routes above: a
+  // gate cannot sign in, so no sampleSlug means visitableSurfaces() skips
+  // it, and the sitemap never advertises an account page.
+  { path: "/portal", kind: "dynamic", expectsSingleNav: true },
 ] as const;
 
 /**
