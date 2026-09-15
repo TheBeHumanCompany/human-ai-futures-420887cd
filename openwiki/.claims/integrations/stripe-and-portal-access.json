@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:5613ef40e926a086afd697875440996b0ad706ec54d4c436af5ba8262165c296",
+  "claims": [
+    {
+      "id": "claim_3b10af17f52e44e48d343c14238919ab",
+      "statement": "Stripe checkout for the audit fee is created by a server-side REST wrapper that posts a single payment session with the configured price id, canonical success and cancel URLs, managed payments enabled, and the portal client id embedded in metadata.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/billing/audit-checkout.ts#L28-L97",
+          "version": "repo-lines-v1:sha256:31f77f2694598ff2ce0de6a7aec69e8eed7db8f3962c3a8395289e16091943b0:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc1YjBhNTdjZjQxZmQzZjFjOWJjNjhhYTAzM2YxZmEzZDhlN2ZjNzk0YTI3NTRkOGIyYjU4OTU3NGIxNzg4OGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMyZDlkODkxN2JjN2UzZWM5NTIwMjIyMjI0NTZlNjg0OTk0NDdlOTkwOTMwNDI2YjliYWZhOWVhMGY0ZDk1OWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/audit-checkout.ts#L8-L20",
+          "version": "repo-lines-v1:sha256:bd472f6cf8df140931d976940f63a876ddd6bfaab5ea585f585dfce1695720f8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQwMDcxMzZjNTBhN2Y3MjgyNjlhMjA0MmE3ZGRjNzg5OTlkYTQzMGUwOTRmMGUyN2E1MjkzN2EwZTI2ODJiNDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkMzE3NTVmNTVlNjc4ZTQzZDdjMjk0ZDVlMmI3YTI5YWRhZjFjOGZmNmZiNWJiZjZjMjgyNzRiOTg3MTYyNjIifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-client.ts#L1-L15",
+          "version": "repo-lines-v1:sha256:78de657af793e5cff8ee4abe877b658724202c77ca8e6e57f03af388c144c6c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJmMTZmYjU4MWJiZTgxYTVkZmZhOWVkZjMwNDY5NTVhNzRmNzQ1MzA0ODRmMzNmZGU5MzYxNTU5ZDk3NDAxZTcifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-client.ts#L60-L90",
+          "version": "repo-lines-v1:sha256:061d000d3d31f9bed32d526dd7ee6c7381cffa9d006fef9551abadf7feebe3ec:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2N2FlMjlkMGQ3OGRmZjdiZTJlNTUwZDQzOGUzZWRmNTBiNmZjYmQyNDYzMGNlMDkzMjlkMTBlNGYzNzVhNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1682d3c6e2d9451290d183b212760952",
+      "statement": "The Stripe REST client is intentionally SDK-free and server-only: it requires STRIPE_SECRET_KEY, uses HTTP Basic auth plus a preview Stripe-Version header, and raises a StripeApiError when Stripe returns an error response.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/billing/stripe-client.ts#L1-L15",
+          "version": "repo-lines-v1:sha256:78de657af793e5cff8ee4abe877b658724202c77ca8e6e57f03af388c144c6c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJmMTZmYjU4MWJiZTgxYTVkZmZhOWVkZjMwNDY5NTVhNzRmNzQ1MzA0ODRmMzNmZGU5MzYxNTU5ZDk3NDAxZTcifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-client.ts#L19-L28",
+          "version": "repo-lines-v1:sha256:fb62afccabd1c8fe6ca76f7ecf90db166ca82f81d2fd242e507c5efcdb117fcd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5NjQzMDc0ODA4NDU0ZDJjMDkxNGNkMWE3ZGIwNTQxMjk1ODRlZmI2YTc2NjRkY2RmMjJjMDc0NjMzMTJmMjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMTZmYjU4MWJiZTgxYTVkZmZhOWVkZjMwNDY5NTVhNzRmNzQ1MzA0ODRmMzNmZGU5MzYxNTU5ZDk3NDAxZTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFlZTQzNTZkMTk1MTg3YjJmOGM5ZTVkZDkyNDYxNTQ0NWQxOWI5ZjY2ODkxZGY0MGRmNDAxNjBlYzFkM2EwNTgifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-client.ts#L34-L43",
+          "version": "repo-lines-v1:sha256:d1d1a405a34044ec7655398539eb2825fabe90f1aac6fc1c46ba8c4ac3570467:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0YmE1ZDQ0M2YyYmI1ZWRhMGYyOGQyZGNkOTdmNjdmMTQwNGRkZTU3ODkzMzJmMjcwM2RiYWU3Mjg4MmVkNzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5ZTc2N2UyNTVlNzVkMzA3MTA4NTg1YTYxODk5ZTQ3ZGIxNmQ2ZDQ2YTk0NTJiN2YwN2ZhOTE4OTQ4NGZkMmQifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-client.ts#L49-L90",
+          "version": "repo-lines-v1:sha256:75c2d7267ae95ce0cdcd98deb02b4ceadad5311d85c440fa0c4eab8e2e29bc90:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxNWRkZmQ5NmFkOTg3YmM2YzhhMWZhNDcyMTY4NTk4OTkxZThiMjdjMTJlMGQ4MjY0MTkxZmZjMzI5NjBjNTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2N2FlMjlkMGQ3OGRmZjdiZTJlNTUwZDQzOGUzZWRmNTBiNmZjYmQyNDYzMGNlMDkzMjlkMTBlNGYzNzVhNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQyZGFmODMyN2M0NWRkZjlkYjBmNjliZGZkYmI1MjU2YmM1OWYzODgxOTVlYjEwMDRkNmQ0OTcyZTBkMDIxYWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d4f161ecb0d34307b4b36a9d253d252a",
+      "statement": "The webhook HTTP route reads the raw request body, verifies the Stripe-Signature header before parsing JSON, and maps invalid signatures or malformed events to 400 responses while misconfiguration or handler exceptions become 500 responses.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L108-L129",
+          "version": "repo-lines-v1:sha256:ef36178a4961b8c8cf1a519ca4854d432996b12da1c8312b08520ee0135bf7fa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2OTlmYjFmMmUwOGM1YTQ3MTFkYTBmNTYyMzI1OWMxY2U3NWE5MzI2NWQ2NWEzZTNmZmQzNzRiMzdkY2VjZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdiNDNmZDRkNDc1YzJmYmE0ZTA2NzYwY2E2YzFkODNhN2Q2MWUwMmQ3N2M4YTAzOGY2ODBmMzFkYmY5NDI4NDkifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L43-L56",
+          "version": "repo-lines-v1:sha256:f3fea830a99732ec95de4e1f31fa2f07d5aa3b89a9bf7d5c930b4ee9d3c1d8cd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlY2E0OTZlNjJkNGI0YTZkMzJjMWIzOTljN2MxYTFiODRiNTA5NDgwNzQ0MmFhMGI2ZDE1ZmJkZDZkZGEzYTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMyOGM2NTA3YTdlZDE3ZWEyOTRhMWU5MmRjN2RiY2YwNDc4ODA0YWJhMmUyYzRhMjYyMWM5ZDRlM2FiYWVkNTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMxYTJiNjBiYWQ3ZWNhMjYyYjYxNGQyNmVmMWI4ZTY4MzZiMTJmZGIzODE3MDRlMDA4M2I1ZjBkNDJjZGI3ZjEifQ"
+        },
+        {
+          "resource": "repo://src/routes/api/stripe-webhook.ts#L9-L43",
+          "version": "repo-lines-v1:sha256:15c735e8210800265979bf021573677c1c9491a00a45ddae5ab38fe49ba98a53:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0YjA5YmNmNDUzMmEwNDQ2NzQwMDA5ODRlMWQ0YTUyOTQ2NTMxOWY1ZGJhYWFhNzBmYjBmMTgwZGFmMTkwM2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0OGRkNzVmMzBkMGE1ZjQ3MDRkNDg5MDI5OGE1YTI3NzM5ZTE3MDc4YjQ3OTQ2NjA1ZTdmZTRlYzkyMzZhMmUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4eb1f627a605448aa9fcc3be194faaac",
+      "statement": "Webhook signature verification uses WebCrypto HMAC-SHA256, accepts any matching v1 signature during secret rotation, and rejects replays outside a 300-second tolerance window.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.test.ts#L47-L71",
+          "version": "repo-lines-v1:sha256:a63148bd74f5c67d30899afbf941191fb560b7f2d294e984a3d7411f8c5c4cd9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmYzZjNDBkMjBiMGExMzM3ODYwNmFhMDhkNTU2YjljMGZjOTE2MDc0OWJlYzcyYzMwNzQwZTU3N2E1MzI5OWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI1M2VjOTgxYTMwMmQzMjU1ZWUwNjhkOThhNjNiM2QzN2MwYWNiZDE3NDg3N2RlOGNhNjBhYTEzMTg4NTkyMDgifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L19-L20",
+          "version": "repo-lines-v1:sha256:c1bfb5e42322eb27fbb7fa55b22ad235aebf25bef51a7b9fbb60d07c91096e3c:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGY5MmU1MzJjNzUzNDk3ZGNmODFmNjZlNjExOWY1Y2YzYWY4YTUxN2YwMWQ2YmJjNTRkZWE3Yzc1NDliN2JhYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2VlZmJlZGIxYjNmNjE3YzI0N2M2NjVjYjA0NDMyZTU5ZmMxNTk2NGE4OGRjZGY0NzA0ZTE5OThhMDEwOWJiYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGNmNTNlMDY3NDlhODg5YmMyMjk5ZTk2ZWE1MTEyMTMxYmRkMmRlOWM5YTk3YTZkMWVlMWUxZTAzODFlMzVmZCJ9"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L80-L129",
+          "version": "repo-lines-v1:sha256:e32089c8f7b947b5ef8ea5fc7a2437b5b45a2f10d37c27cd930cf2069af3d049:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmNzUyMWI5NDJkNzcyZjRlOTUzN2NkYTNlOTNiYjJlY2E0ZmI2M2VjNGM5OTY2MjY2NGEyOWIxZDlmMDVmODAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5ZjFiZmNiZGUyMzdhMTIxNDEyMDUyNDRhOWNhNDAzM2I4OGVkYzAwNTlmNmQ1YzAzM2U0MTcxMmRhYTEyMWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdiNDNmZDRkNDc1YzJmYmE0ZTA2NzYwY2E2YzFkODNhN2Q2MWUwMmQ3N2M4YTAzOGY2ODBmMzFkYmY5NDI4NDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a2beca769d4749ada1936fc10818e032",
+      "statement": "Only checkout.session.completed and checkout.session.async_payment_succeeded events can unlock access; async_payment_failed is treated as a handled failure event, other event types are ignored, and unpaid completed sessions are skipped rather than released.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.test.ts#L84-L136",
+          "version": "repo-lines-v1:sha256:e2c9f16e13fc5eee6a34ac44179f9cae71a1ea03317df015f9bb105608191ade:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmYjM1YWZmNWEyNjNmZjc1NmQzMWJiMjNhM2U0YmM3NzA1ZmFjZGE3MjQzZTE5MWVjMmFmODljNzRhNTg0OTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjZDY0ZjlmZTQ2NTNkOWM3NTNiM2U0OTBlZWZjYTNhZmU5ZTRiMmMyMWI4M2M4ZTNkNDZiNDEzZTNhNmMyMzYifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L224-L294",
+          "version": "repo-lines-v1:sha256:f8fb945c6dfa247f37464906881867bd0da3c23d127f772835a50c81142f6f8c:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiODkxNjk5NWUwMWJlNjVjNzIxNjExYzBhYjE3NTgwZWU1MTcwMWJiMDAyYTA3MTY4ZjY1MzNhYmVjYzUyNWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3ZWQxOWQyNjI5NjUzODUwY2UyNmMyMWI3MGI3MDU5ZmI0NWQ5YjQ3MTNiZmQ4MTA0MGNmNGQ3YTlhMmJhYjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ec11ec7dd81a48e997d205a3b09d8144",
+      "statement": "A paid webhook release requires metadata.client_id; the release record carries the Stripe customer id, session id, payer email when available, and an optional Clerk user id, and a missing readable email does not block the unlock.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.test.ts#L138-L221",
+          "version": "repo-lines-v1:sha256:fd209a8ecb100c820b74e28fa53d24ee25c7aeeda8d1423246d306a59642f2cf:eyJzZWxlY3RlZExpbmVDb3VudCI6ODQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiNDA5OGU1ZWM5MDc4YjE1N2U2MDhiNDU2OTE4OTEwYTU3NjUwZDU3OTZmNWI4OTQ5OWNlMWY4OTMwNDc2OWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAxMTg5ZmRkZGYxOWU3N2I0OWQzZjMzYjI0ZjUwNWNlNTJhOThlZmM2Y2U3ZjQ4MWViZWFhZDJlOGJjZmVmM2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM2NTcyZmIyMDJmMmI2OTE3NzljYWFlY2IxYjIxN2M0NzIxZDBmMjQ3N2NlMTY3NTk2NDQzNzc3MTVmZjFhODAifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L131-L175",
+          "version": "repo-lines-v1:sha256:e760f2270f6fee4e5f5a98ad2afa4bbc95f18f122d21126e4df0531eb9ba70f1:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhODc3ZGQzMWExNzJjMTVkZTJjYTA5N2QzZGRhMDY3ZGU5NjczY2VmYTRkZmJmMTNlMzZmZDA5M2MxNThmMzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ2MmE0ZTkxZmEzZjhjMDA0NzNhYTkzODRmNzE4ZDE4NTM3NzMzYjY4NWQyNGQ1ZmUzMTE0ZGVjZjIzNzk2Y2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlMWU2NGFkZTIwZTU4ZDFmYjEyZjRhZWQ4ZTY5NTMxYThhNDlhZWJhY2YxYWUyMTk3NGVlYWVhM2Q1NWM2YWEifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L248-L293",
+          "version": "repo-lines-v1:sha256:ecd8d882c5738e5559c743d36734e4dfa9e068a8f08fe6e8d7857deccb743885:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlNDE1Mjc1NWRhY2VkYmZhMjM2ZWEzNjVkZDk4YTljYzQ3YWQ4OTE1NzI1YTNhZmJjYjc5YzkzYzRjMWZkMTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4NjQ0OWU2NGE3YjBkYzVlNTJkYTIzMjRlNGZjYjI2NDI5MTJjMWQ0MDIxMWVhNTg2NWY1YjYwMTNkNzQ0Y2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI1ZjcxM2U1YjEzYjBhNTM1MjQzZTMxODRjOTBjOWYwNTUyMGQ1ZDM1ODhjMTBlOTNhMGIxZDg1OWY0NmVlMDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6e0dbb4133824e239d0eb94fe2741edd",
+      "statement": "Clerk provisioning during fulfillment is best-effort: the webhook attempts to resolve a Clerk user from the payer email when one is available, but any provisioning failure or null result still allows the paid release to proceed.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.test.ts#L164-L221",
+          "version": "repo-lines-v1:sha256:d6f8378f8b9af9eb6475507845c7e46df27fcfab8326271dc179811625dcf3b5:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlNDU1Nzg1ZjI2NjI1ZDIwZTQ3NzdlYWRiNWE5MzBlZTY4MjZmYzQ2YWEwMjY3MjU4ZTBlZTg3MzgyNjFkZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2YmQ5YTFlMTVlM2YwNWRlNmM2NDQ2ODVlMzExOWM3ZDQ4OGExM2ZmNTk3MmY2YTRmMTA0NWYxMzQxNWI1ZGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM2NTcyZmIyMDJmMmI2OTE3NzljYWFlY2IxYjIxN2M0NzIxZDBmMjQ3N2NlMTY3NTk2NDQzNzc3MTVmZjFhODAifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L258-L293",
+          "version": "repo-lines-v1:sha256:948f3949ed7de6dfa72a1481a8857739ae16c714104dce763b063fd7ce97b2eb:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0NjAyY2QyNGFjYjU0NTRlNDE5Y2RhNjkxMDU2NzJiZGMyNjJjM2JkMDY1NjVjNWZjMzc2YmZmMDY0NjYxNTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4NjQ0OWU2NGE3YjBkYzVlNTJkYTIzMjRlNGZjYjI2NDI5MTJjMWQ0MDIxMWVhNTg2NWY1YjYwMTNkNzQ0Y2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFmMmRjMDAyNDFlZDg1YTA1NjM4ZjlkNDdkODFjZTQwMzcyZmUzY2MwZDQ2N2Q0Y2FkY2Q1YWM5NzljMDgyYzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_13e01324be054be6ae44b90b4c2f0a65",
+      "statement": "Paid-access fulfillment is persisted by upserting public.client_paid_reports on client_id with merge-duplicates semantics, writing unlocked state, unlocked_at, Stripe identifiers, and clerk_user_id only when known, while deliberately leaving title and html untouched.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.test.ts#L224-L283",
+          "version": "repo-lines-v1:sha256:9fe2294b302745fc14ccf19ecf21ca534ed6d58658662482b9c16d5c0115a8c1:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlYTM1NGM1ZGQyMjk1ZTE1MDdjN2M4Mjc2OWM2MGFmZDVjNDgzZWQ1MDYwN2U3OGNjMDJmMDgzZDhkMWRiMGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkNTIzNzI2MjU4MDliODkwNDFkOTA4NDc3ODM5ZGI3M2JjYTA3YjkxMmMzM2EyMjk2Y2YzZDIyNzEwNzY0NmIifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L157-L218",
+          "version": "repo-lines-v1:sha256:93554364959f0d452c76ec641f9cddf114ec83711e75918e5dc0c6f14f6e0ca9:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxOTgwNWZiZDk4Njk2M2MwZWM3NGJhOTRkZmQ2YmRlOTlhOTY0MDM5ZWUyNzEzZTQ5ZGNiODAyZGI3MjI2ZTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhNmQwMmM1ZDcxZWE3YmQ4Mzk2OWRjOGQ4NGY3NjA4NmIxOGU0MmI3ZjBlZDIxMGJiYjBiMWIyYmI3MjFiYTIifQ"
+        },
+        {
+          "resource": "repo://supabase/migrations/20260914000001_client_paid_reports.sql#L1-L46",
+          "version": "repo-lines-v1:sha256:11c7847e9919190a29de5e767bb2cbda9145d3f60616dfdbb0f5ca5fd73cf937:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI2NWRiZGU1Zjk4YjFhYTcxOTZkYWM1M2Y5NGI0MDE2YzI2NzFkZmMxODI5MzhlYzFlOTc0MjViOTQ0ZjM3NjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1YjFlOWM4MTYxZDcwNDhjOWY4MDU1YTc2NzFjNmZlOWYwNTE1M2JkOWFiNzYzYjFmZGY3MGQ0MjgwN2Y5ZmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4e59c47c27d648c6a038c4664cb9fcb1",
+      "statement": "The client_paid_reports table is the storage boundary for Stripe-fulfilled unlocks: client_id is the primary key, title and html are nullable so payment can arrive before staging, unlocked defaults false, and the table is protected by RLS that denies anon access.",
+      "evidence": [
+        {
+          "resource": "repo://supabase/migrations/20260914000001_client_paid_reports.sql#L1-L46",
+          "version": "repo-lines-v1:sha256:11c7847e9919190a29de5e767bb2cbda9145d3f60616dfdbb0f5ca5fd73cf937:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI2NWRiZGU1Zjk4YjFhYTcxOTZkYWM1M2Y5NGI0MDE2YzI2NzFkZmMxODI5MzhlYzFlOTc0MjViOTQ0ZjM3NjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1YjFlOWM4MTYxZDcwNDhjOWY4MDU1YTc2NzFjNmZlOWYwNTE1M2JkOWFiNzYzYjFmZGY3MGQ0MjgwN2Y5ZmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_304720fc37b24612907f5bf9c0c3e010",
+      "statement": "Authenticated portal reads of client_paid_reports are allowed only when auth.jwt()->>'sub' matches clerk_user_id and unlocked is true, with an index on clerk_user_id to keep the policy lookup efficient.",
+      "evidence": [
+        {
+          "resource": "repo://supabase/migrations/20260914000002_clerk_paid_reports_rls.sql#L1-L36",
+          "version": "repo-lines-v1:sha256:b1e67d703e973e9cc4e9a6fc1fb1cbbb276b6ea7041a8c35538697d9b2a19366:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmZDkwNTM5ZDY1MDU1ZWIwMGUwNzE2NGUyYWM1NTY2ZTYxMjM1MmQxZDcxNmJhNTZhNWRiZDBjYTVlOTU5ZTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQwZGUyMjY3MDEyM2Q4NTAxZTVkOWI5OWVkMzc0ZTQyMWQ2MmE3NzQwOTQwM2YxYzRkZTlmYWY3YzdiMDAxYjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8a92781c4993401dad3af31f06be6b1a",
+      "statement": "The Clerk-scoped portal read sends the caller's Clerk token as the bearer credential, uses the public anon key in apikey, sends no client-id equality filter, and fails closed on transport refusal.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/supabase-clerk.test.ts#L124-L130",
+          "version": "repo-lines-v1:sha256:dd62eb62636d8bfb63e5a749ebc6a05286bbdc5c9c273da3c0970213ca4b5ec4:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTg1NmU4M2NlN2E1OTdlMjU0MWVhYTgzMTJhYmY4ODVlODcxZWEzOGU1ZTI1MmIyMjc1OTYzOWJjOGI3MzVhZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmJkYmYyYTU0NzE0MjM1YjU3ZWI2ODZiMjg0OGNhOTQyNTRiOGZmYTVmOGRkMjMyNTBlNzJjMjE5NzRmMTdmMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiJ9"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/supabase-clerk.test.ts#L53-L90",
+          "version": "repo-lines-v1:sha256:0642ba9254691060534b5babc5dfe86cc565482554afb6bfa4d76f2cb658141f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0NjI3NGUyNmVlMjMyYmI1NzIxYWYzNjhmYjc5NWNmNGYyYmU5ZGVkODZmZTEzMDRjMTAzMWNlYmVkYjY3MDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdhMThkYmMzY2Q1YTc2ZDIxOTU1ZDE4ZTcwOGFmYzI5Y2MyZjcxNDQyYTk2NGFjZWUzNjI2ZTg0YTdkMTMzZjAifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/supabase-clerk.ts#L1-L23",
+          "version": "repo-lines-v1:sha256:3724964b6044d2e49b22be89f29c2654a90a77be48a6d9ab293f9a51a7e82dbb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzOWVlYTIzOGU1MmZmNTA0Y2VkMzZlNTZmMzRhYjIwMmQ3NTlmYTU3YTVjNGRhOWM2MmNjM2VhODVmMjkxMmEifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/supabase-clerk.ts#L88-L120",
+          "version": "repo-lines-v1:sha256:a11a16ebaa94c9f3650c1cfac92ddfdb7a5036634c393650fedd3c79bf261f53:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjMDQ5YTU5M2M3ZGRiZTNhODRjYWZjODQ2YjRmMDMwOTIzODNkOTI5MjA4NGU5NDAxZjc4OGZkNGQxZjA4NzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7c7480b55d214470b5cbce329f7c1a8e",
+      "statement": "The Clerk-scoped portal read drops malformed or incomplete rows instead of rendering half a tab, requiring non-empty title and html together with unlocked=true before a report is returned to the portal.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/supabase-clerk.test.ts#L92-L122",
+          "version": "repo-lines-v1:sha256:7c8e9459e8b78cad7015d5b49e367b712476f6b7a812cfccb903482ee7fdc280:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiYmYxMjRjMzlhMGRiYWIwMTI2YzMzYmViNDE3NWY1N2QxZjM3Nzc2MzRlMDEwOWEzMjBkNjUyNjcxY2U5ZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNhNzM1ZTRlNDQwMDJiNjRmMDMzOTAyMDAxNWFlZTg2MjljODVkMjdhYzNiMTc4NmNlNWQ2YmRiNjI1YmNhODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiODQ5MTA1NWQ5NTc4ZmY1MThlZTBhYTE3NDYyZjhkN2RjNjFmNzBkMTEwZTcyODAzMjU1ZWYwOGZiNzNkYWQifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/supabase-clerk.ts#L118-L120",
+          "version": "repo-lines-v1:sha256:87b15ae464d00d3e1010861f548e0429da0287590c704c4ba1ab3a055c393188:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjI5MjQ3NzI4ODBlZDJhYWEzMmMwNDA5MzRjYmYxZmJjNDIxMTI4OGVmYmVkOTZiM2QzNzFlNmRmN2YxMWRiOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWMwNDlhNTkzYzdkZGJlM2E4NGNhZmM4NDZiNGYwMzA5MjM4M2Q5MjkyMDg0ZTk0MDFmNzg4ZmQ0ZDFmMDg3OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmYzMTY1ZGU2ZTcwZjA0ZDE3YThlNmY1MWE2Yjk0MzMwZTIzMDlkMTgyODgzZWQwZDY0MzNlNmEwZGJjMjI0NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSJ9"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/supabase-clerk.ts#L66-L85",
+          "version": "repo-lines-v1:sha256:ed42d4120397acd643d7f4491ed2ae681552fc8e21c5b95dd32696d334da36bc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ2ZjRiYWI0NWMwZGYxYTg3YTI4NDhkODVhZDJhNDEwMDdhNWUzMjAxZDQyYzZmYzcwYzc0NTViMGI2OTgyN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d84c002db5b94c25b2080c5c83a86119",
+      "statement": "In the token-gated client page flow, the private page is resolved first from the portal token, and the paid report is fetched afterward; a paid-report fetch failure is logged and does not take down the already-earned page.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/supabase-tokens.ts#L145-L181",
+          "version": "repo-lines-v1:sha256:4b97839dd43c5b55593f966d4fa9df6e26b821cda9e0e010575d20502d558b94:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/tokens.ts#L223-L287",
+          "version": "repo-lines-v1:sha256:a42a78130207633427a6c7c727c69134e84f256930ce5521582b870b2f4b6250:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQwY2MxODFmNmNhMmRhZDdiYjcyMTAwZDBhMTIwZGI0OWRjY2IzZWM5OTk2Y2Q4YTM2MmY1OTg5MzI3NmRiZWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQyZGFmODMyN2M0NWRkZjlkYjBmNjliZGZkYmI1MjU2YmM1OWYzODgxOTVlYjEwMDRkNmQ0OTcyZTBkMDIxYWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZkYmI4YTJiZmI2ZmMwYjg4OTljMDc3NGY0NGUxZGNjNTFmOWYzMWU5NzJjMThmODY3MjRmMmRiNTdjYTY3MWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_53194a9ef904417f8da34b1225dac793",
+      "statement": "Supabase token configuration is all-or-nothing on both the service-role and Clerk read paths: missing either required environment variable yields null configuration and prevents a half-configured lookup from running.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/supabase-clerk.test.ts#L36-L50",
+          "version": "repo-lines-v1:sha256:11787519917b5e37a9b0156c5b170c3562d37bfacc6040ad0187182e6e23d61c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjNDU1ZGUyNmI0MzE3N2U1YzFlYjdkM2IxNTE5YWE2MWU5NTZiNzVjZjA4NTgxMTU2ZjZmNDY1ODU2NTlmZmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRiZTc2ZTFiNWM0YjUwMzAyMGRiODk1YTc4NWQ5OGE5YTc4ZTFhNGEzYmNiMTI3NmQ4MjFjMDY1ODc3YmRlMzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg4ZDEwYWNjNmYxM2Y2ZTMzYzE1NzU1M2NhMGFmZTIwYTlhMjEzYzE1MDc0ZDc1NDA0ZDk3OGM4MjBhZDFmOWMifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/supabase-clerk.ts#L51-L64",
+          "version": "repo-lines-v1:sha256:f2a414e8773ad47042dcb76453a2c2a3a7153002319ba49423ce0992cc27c758:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxOGIyOTMxYjNlOWRlNWFlM2Y0ZTBiYTI4NTVlMjg0ZTQ0ODE1YWVmOWFjNWYzYzY1OTE2MjY2MDI0YzQyZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjZDdiMjIzYWE4YmJlZTczMDZjNTU4YTE0ODVjMjQ5MjJmYzIyMzVmY2Q1ZWE2MzFhNjQyZTY2Yjc3MmIyZTUifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/supabase-tokens.test.ts#L52-L69",
+          "version": "repo-lines-v1:sha256:9f207bad307fe1e00da3e3687ca3aab55c63984c25f2ed87d78a0671b9860a6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhNDc5MGIwMjA2ZThkMWIzOTc0MmM2MjUwMjliYjU2YWY5NTVkODdiZTcxMDQ4ZWE0NmFmMmRiNTQxMmE3MjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2MDM5NGQ2NzAxY2RhOTI3OGIyYmYyN2MzOTViZjFiODcxNDE1MzMyODBhMzFlZDM3M2Q4NDNmYmQ4YzU1NDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkyM2IwY2YxZGNkODA4NjkxN2VhN2Y2ZTA3N2JiN2Y0YjRlNmYwY2JjYjg1ZGMzYzY3NTliN2EzZmQyMjhkZGMifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/supabase-tokens.ts#L47-L62",
+          "version": "repo-lines-v1:sha256:02c4c016de57480c6b9110d0e33f74579e7ecda2a13eff91221d642d5ae4f729:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2NjRlZjExZGNkMmEwY2YzZjc1YmFmZjI4ZDU3ZjVlZmMyNjdiMzY0N2UwODM2YmJiNWZiYzE3ZDA4N2E0YjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIyMzkwYzI4Zjg4OTJjNDhlNTA3ZjNkMTVmMjZiZmY3M2U4OTU2MGE2NjM3ODk1NWMwYTI2YTU5MjhiMTU2NWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_565697794ed34122914c17c1d59e9a35",
+      "statement": "The private portal token table stores only SHA-256 token digests, not raw tokens; it enforces a 64-character lowercase hex digest, keeps rows for auditability with revoked_at, enables RLS, and explicitly denies anon access.",
+      "evidence": [
+        {
+          "resource": "repo://supabase/migrations/20260914000000_client_portal_tokens.sql#L1-L61",
+          "version": "repo-lines-v1:sha256:1c102bb6eb4d4afae9ef1ccc7250510ea0f326c79afd9d373b92a9484fef0b9b:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzODcwY2QxZGExMDBhMDMyYjg3MTAxY2YwMGQ1MGQ4YWViMDFhZDZlNDdlNTMyOGYxYWRjYjAxNGFhY2E0YjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYzNmIwNDM0ZDJmMzRkM2U4ZDE1MDM3NWFiODMwYjZkNDMzZjk5Yzk1YmUyMDVmYmVhZTE3MzU2YTQwOGM2MTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_26ebd81604b74d5488f7ae562e948602",
+      "statement": "Token lookup against client_portal_tokens hashes the opaque URL token, queries PostgREST by token_hash equality using the service-role key, and denies when the row is missing, revoked, malformed, or the backend refuses the request.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/supabase-tokens.test.ts#L91-L132",
+          "version": "repo-lines-v1:sha256:ac3cd6fcb78d4bee4c720bc08064e30acb50b44789153f81d08852f3336da59e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyMTc0NTUxNDBkNDYxNjBmZmM0M2NkOWViYTQ3ODAzN2QxODFkNmJjZTI1MTlhZjgwZThlYTcwNzEwOGYzMTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhMzE0NzU3YzhjMzNhMTU2ODc5ZDRlNzlhNjIwYWE2NjJmYTkxZjM5ZmU4ZmE3OTAwZjVhMjNlOWVlNmQwMzQifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/supabase-tokens.ts#L64-L126",
+          "version": "repo-lines-v1:sha256:76fdf74275b9b4430f94b37971715cef16a7cf5e11ed60f7c9f74444854eccc5:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzYmY1N2U0NTVlOTZhODMxM2VkMjU2YmY3N2E3OTZlN2RhNTkwYjc0ZTg0YWRmZjFlMTg0YzM1MjcyMDE2YzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk4YmIyOTA4ZWQ2ZWJkYWNlM2MxNjdiY2JmYmVhMzhiNjkxZTNiMWZkOTc5OTFlOWM2YmIxZDBhNjdkMWJjOWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ec1e17332f894ed6b10513def1a29301",
+      "statement": "The portal token lookup and reissue tooling preserve idempotency and safety by rotating only the token digest or revocation marker on the existing row, never storing the raw token in Postgres.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/token-admin.ts#L1-L29",
+          "version": "repo-lines-v1:sha256:62b3aad206999f83c905b60ef1e6eb3d51d55d3cb978b5731d62254be9c505b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2ODUyOTMwZDAxYWViMTE4NDQyZTg5ZTUwYzExYmZjMmNjZWU3NTk3NjEzZDhhMzJmNzZkODg5NzA5MjA1NGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI0NjE3ODYyZjQ0OGUwNTkyZmZhZGU1YTYyZTIwOTk2YWZmMTY0YjBhZTczODA5NWJhYmFkODZiOTliODFkNWUifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/token-admin.ts#L76-L227",
+          "version": "repo-lines-v1:sha256:0b6c2775f9acfcff6b951b84cf63d0e543e9bb41868e36c0b20b0e7303ace336:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUyLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlYWYyMmNmMDczMjU5MmMyNDcxNDFjYmU2MWVmYTExMDEyNjEyZjVhMzEyMmI5YWY5YmJhZjUyZjU3MjRkMTk0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlZDQ5OGUyY2UyYTc0MzE2MmJjMDgzYzc2NTE4OTA4ZTJhZTVkMzI0NmVmZGI3OWFlN2I1YTRhYmI1MzQ4MTUzIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://supabase/migrations/20260914000000_client_portal_tokens.sql#L20-L35",
+          "version": "repo-lines-v1:sha256:2172fffa9dbf02a48759ced865648dd46a2f0051d0e228ee04cdeebb196d5d39:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiNDE0YzMxMTcyYWE4OGUzYTgzMTY0YWFlNDZiN2U1OTUxOWJjMWM5YzA1ZGViMDllZDhkNjBmNDRiYTEzN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5OTY3ZWMxZWQzODM2ZjhlYjE3YWZmMTcyYjViZmVmN2RlNjA0ODVhNDM5YzZjYTExYzU5MWUxNzU1NzM5YWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk5NTZmZmRkMGI5YWE0NWQ5ZjFjYzM4ODhjYTJiNDVmNGU1NWNmODk5YjFjMjUwODc2NGFhZDdlMGFlNDk5NzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYxNzkyYTliMDRiMTMzN2VmODlmZjVkMjBmNGQzNmVkNGEyODI4YTQ1NDUyZWVjMzFhOGVjNDZiZmQ1MmRmOGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6d874bf770a44f1e8ff1d3e944c81798",
+      "statement": "Webhook fulfillment is idempotent because paid releases are merged on client_id, so replayed deliveries rewrite the same unlock record instead of creating duplicates or clobbering a previously linked Clerk user id with null.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.test.ts#L224-L283",
+          "version": "repo-lines-v1:sha256:9fe2294b302745fc14ccf19ecf21ca534ed6d58658662482b9c16d5c0115a8c1:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlYTM1NGM1ZGQyMjk1ZTE1MDdjN2M4Mjc2OWM2MGFmZDVjNDgzZWQ1MDYwN2U3OGNjMDJmMDgzZDhkMWRiMGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkNTIzNzI2MjU4MDliODkwNDFkOTA4NDc3ODM5ZGI3M2JjYTA3YjkxMmMzM2EyMjk2Y2YzZDIyNzEwNzY0NmIifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L157-L218",
+          "version": "repo-lines-v1:sha256:93554364959f0d452c76ec641f9cddf114ec83711e75918e5dc0c6f14f6e0ca9:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxOTgwNWZiZDk4Njk2M2MwZWM3NGJhOTRkZmQ2YmRlOTlhOTY0MDM5ZWUyNzEzZTQ5ZGNiODAyZGI3MjI2ZTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhNmQwMmM1ZDcxZWE3YmQ4Mzk2OWRjOGQ4NGY3NjA4NmIxOGU0MmI3ZjBlZDIxMGJiYjBiMWIyYmI3MjFiYTIifQ"
+        },
+        {
+          "resource": "repo://src/lib/billing/stripe-webhooks.ts#L258-L293",
+          "version": "repo-lines-v1:sha256:948f3949ed7de6dfa72a1481a8857739ae16c714104dce763b063fd7ce97b2eb:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0NjAyY2QyNGFjYjU0NTRlNDE5Y2RhNjkxMDU2NzJiZGMyNjJjM2JkMDY1NjVjNWZjMzc2YmZmMDY0NjYxNTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4NjQ0OWU2NGE3YjBkYzVlNTJkYTIzMjRlNGZjYjI2NDI5MTJjMWQ0MDIxMWVhNTg2NWY1YjYwMTNkNzQ0Y2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFmMmRjMDAyNDFlZDg1YTA1NjM4ZjlkNDdkODFjZTQwMzcyZmUzY2MwZDQ2N2Q0Y2FkY2Q1YWM5NzljMDgyYzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-15T05:01:30.389Z"
+  }
+}

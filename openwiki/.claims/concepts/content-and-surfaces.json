@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:92cdcc3bbbb6389f8060f5d843527c3466e3feeba47dfba0ca182c6b59a3090e",
+  "claims": [
+    {
+      "id": "claim_1d7d9c654802408abd04ab1b710a009e",
+      "statement": "The repository distinguishes editorial surfaces from operational surfaces: editorial pages are the public brand and marketing journeys, while operational surfaces include podcast, client-portal, webhook, and auth routes that depend on external data or authenticated state.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/portal.ts#L41-L78",
+          "version": "repo-lines-v1:sha256:f282d21e27bc56f6f757445d602b5680b0ce41a033d3b287d499442ffd401c9f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwMzU0YjRiYzNjYWI4OGE2NDA3MTAzZTVjZDYxMjk1ZDU5OWFmNmMwMzU3N2QzNWI2ZGY1YWMxN2IwODNmMmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwYzNhNjc4ZDkyYWU1NzhhZGM1ZDRmYjk1YWM0YzUzYzc4MzcwN2JmMDE3N2Y2YTJkZGFkOWViNDY2OWZlZDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/lib/podcast/featured.ts#L12-L42",
+          "version": "repo-lines-v1:sha256:44cd7ac24e13201a0f6ddc362137ac79c6c9d4cafde43b30f5652b601fb5e166:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4Zjc0ODgxZjAxMTkyMjk0NTEwMWE2YjA0MmI2M2QyNDZmZWFkYWM2MThiYTg3MDViNDkzZGY5NWFlZmEwYjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://src/lib/surfaces.ts#L16-L24",
+          "version": "repo-lines-v1:sha256:798880861800dda02f285189d664b22db3238ad7274c717b74b8433e6337ec3a:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODc2ODc1NDFmNTY0NTJlZDg2ZmY3MDFiMjEyMGEzMDA2YWY1YWJlMTVmNjIzYmFlOGM1MDBmMzJkYmIwMmE4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFlMWNmMWMzMjU4ZGM1Njg5YmM5YzJiZTcwMDRkMjk0N2U5ODI4NjU5Y2NiMzk5ZWEzMGQwMjJjNTUwYWU5YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTdlZmFiNjUxOGM3MjU0NTAyNjVkZTA2OTk5ODRjN2JkNDViZDkwYzlmYzYyY2Q0YTAxZjMzMGUzYmM1ZDM5MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGE5YjRlZjBkYzYzNGViMjA5NDEwMzI0NTEzMzk3YzZiMTlhODI4ZjE5NjNhOTU2Y2NlMzgxNDA3ODlmYzdlNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_21ce10f9c92f4159a79bcb7d3708ae10",
+      "statement": "`src/lib/nav.ts` defines a flat seven-item public navigation with the labels Why We Exist, Who We Are, The New Human Era, The Human Archive, Podcast, Contact, and Blueprint, and `Blueprint` is a direct CTA navigation target rather than a dropdown parent.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/nav.test.ts#L102-L117",
+          "version": "repo-lines-v1:sha256:58abb65fbe5ef8f1e9148f6ff1edc042a8bdf6d5eecb4c3026b118ee085e27bf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY5N2RiN2I3NGFkNzliOTc4ZDE0YWRiNWE3ZWFmMTkwNzlmMGJhMjA1YTFlN2QwMmM5ODcxZGMyOTFhMDhkMjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://src/lib/nav.ts#L105-L123",
+          "version": "repo-lines-v1:sha256:4f8139fcf162a56c94ed9f44977c708089dd9f91b672a01681dca25b276c5a1d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzY2ZkNzNmYWI2OGU2ZmU4MDY2NmRhMGUzMGRmMTg2MjRiNmQyMmVhODYzNTllZTZhMzU5MTVjNDllZjRjMDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzYmY1ZGRhOWJiNzBhNWU2YTQzYjE1ZDUxZDkxOWY0Mzc0MTQyMWQ4OThlYTYwMWZhMWE2YzBiMmE3NTAwNDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkNmIwNGJiYjRiZGYwMGE3YjkzZGIyNzM5MzQ2Yzc2MzM3MGZmYzY2Y2MxMjgyMzU4NDVkNDI2ZThjZTA2MjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d30ce57b6f404e119edd2661b75526d5",
+      "statement": "`src/lib/surfaces.ts` is the authoritative public-surface registry for the site; it includes public pages, machine surfaces, dynamic routes, Clerk auth routes, portal routes, and the Stripe webhook endpoint, and it intentionally excludes dynamic routes from the sitemap list.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/route-shape.test.ts#L126-L156",
+          "version": "repo-lines-v1:sha256:76a6a4c6ac26ded89294aad404c5e54d0a196c3bf2f8de0246839bdf07ff6172:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjZjllY2RmOTE2MTBhZjc4ZTMyYTRmNzI0NDI5YTcwMDEyNmE3OTc3N2VjMjQ0NTNjOWZmODU4M2M5ZGJkMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg4NGVhZDQ2MWI4MzQ5NzFjZmNhMmE5MzExMjFiN2Q2MzM1ODU4Y2MyZjM4MzczOTY3ZGY5MDgxMDA3OWU1MjAifQ"
+        },
+        {
+          "resource": "repo://src/lib/surfaces.ts#L63-L172",
+          "version": "repo-lines-v1:sha256:3a953a0d93c0306f8d72c1b87b42c5e9f16387513531d815518d9e8bf6466ae2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJhYWY5Y2Q1NmFmYTBkZmZkMDljN2Y5YmI4NTBlMDVkNmExMTVlZGQxZDdkZGY0ZWMwYmNjOWNjYzJhY2RjNDMzIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI5OThhZTRiMmI2MTJmMTU2ZTA3ZWFjMGY1MmZiOGIyZTViZDdkYzRmMzUzZTllOTJmODdhODU5YjA3MjhmMzRhIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJhM2U4YjlkZjI4YjBlOTRmY2RlYzIwNjNjYTVmNjk5ZTNjODVjZTRjYzczMmE3OGFjMWQ4YmMzNmJkMDYwN2YxIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_f8917ffffca74c2aac2af0456fc4a924",
+      "statement": "The route-shape test treats `SURFACES` as the source of truth for public routes and asserts that the generated router and declared surfaces match exactly, that the surface list is populated, and that no page surface is exempt from the single-nav rule.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/route-shape.test.ts#L126-L156",
+          "version": "repo-lines-v1:sha256:76a6a4c6ac26ded89294aad404c5e54d0a196c3bf2f8de0246839bdf07ff6172:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjZjllY2RmOTE2MTBhZjc4ZTMyYTRmNzI0NDI5YTcwMDEyNmE3OTc3N2VjMjQ0NTNjOWZmODU4M2M5ZGJkMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg4NGVhZDQ2MWI4MzQ5NzFjZmNhMmE5MzExMjFiN2Q2MzM1ODU4Y2MyZjM4MzczOTY3ZGY5MDgxMDA3OWU1MjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a1b1770e0c8c4c7c8b042ba6cfcf2a1d",
+      "statement": "Shared editorial primitives live outside route files: `src/lib/brand.ts` contains brand-facing content such as the Indigenous line, contact email, social links, archive playlist, services, principle titles, home principles, archive entries, and archive videos, while `content/topic-taxonomy.json` and `content/clients.json` provide topic vocabulary and client fixture data used by podcast and portal flows.",
+      "evidence": [
+        {
+          "resource": "repo://content/clients.json#L1-L40",
+          "version": "repo-lines-v1:sha256:08b2ddec2f8436a55b5c09cad325230cbb12b2bfab5eac7fa7d1a6d6992199cf:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZDJiMTkzNDkzMTY5MTY2OWNjMzVhODc2MTk1MTgwMTUzMzYyMTNkZGEwYTYwZmUxYjA5ZjliOGUzZTk5M2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkZDI0NDU4MmI2ZmIwM2QyM2I4NDE1YWJlY2QzNDZiMGM5ZjQ2NmI2Zjc1MmIwNjgxODljZTdlOWEyZGMzNTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3YTFmODZmMWZiNTcwZDg4NzE5NjI0OTU0ODUxMWZmZmI3ZDZkMTZkODYwODExMjc4MTYyZDQzNDIyZDczOTAifQ"
+        },
+        {
+          "resource": "repo://content/topic-taxonomy.json#L1-L250",
+          "version": "repo-lines-v1:sha256:da2733dde9f9d794633089858ccf054e1d9541ee256e3cc197bc7423ffcc8754:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJhNmZiMDhmZGExYWNiOTU3YjYxMTZiZDM3ODExYTFmZTQxYTAxNjExYzA2MzFlZGJmNzg2ZDY4ODlhMjdhNTVjIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJjMzkzM2IxY2Y0MGJiMmY5ZTMwNTQzNDc2ZTdjODRmZmY0OWZmZTYxYWU2Yzc0NDVhNjBiMTdiOTk4YTVjMWM0IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI3YWFhMWE2YjA2YzNhZDlkZGRhNjY5MTVjY2Y5YTk4NDBhNWI4ODdkOGJkYWYzNDQzMDY4YzYxOGM0Njc2MjE0In0"
+        },
+        {
+          "resource": "repo://src/lib/brand.ts#L16-L109",
+          "version": "repo-lines-v1:sha256:82cb484545b825ec38c29553a40e264f3d332919937feed48e5aba1edd17e06a:eyJzZWxlY3RlZExpbmVDb3VudCI6OTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlMTc5NWNiOWU1ZTNjMWY4NjA5NzQ3NGViODc5NmFhMmNlY2M3MmEyYTVhMjNkNWRjZWMwMWQ0ZGIyZmJkMmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBiOWQ2MDFjZjMzYTU2NzQ1OTNhMzljN2I0MGQ1ZmI4Yjg5MWJkNTAwYWExZmI2OGUzNWUxNThkYzRjYzU4M2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_da4ff473ccb349d09adf75563caee5ce",
+      "statement": "The homepage is the only public content surface that intentionally absorbs a Sanity outage; `loadFeaturedEpisodes` returns an empty featured list and a `podcastUnavailable` flag for unreachable Sanity, but rethrows unrelated errors.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podcast/featured.ts#L12-L42",
+          "version": "repo-lines-v1:sha256:44cd7ac24e13201a0f6ddc362137ac79c6c9d4cafde43b30f5652b601fb5e166:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4Zjc0ODgxZjAxMTkyMjk0NTEwMWE2YjA0MmI2M2QyNDZmZWFkYWM2MThiYTg3MDViNDkzZGY5NWFlZmEwYjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://src/routes/index.test.ts#L49-L111",
+          "version": "repo-lines-v1:sha256:9c2b41e3934fa6ee722a5d33f7ecc2fc7d0059bab23151ce15bcf2bc530a5a39:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiNjFhNzUzY2IyYzkxNzZjYzRhYmEwNmUwOTgwOGJiYmNiYjZjOGQxYjYwMzllNzgyM2M4NTU2MGZjYTlkZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiMjBhZTljMzI5NmE0Nzg5OTYxNDkwMWQwMTcwOWE3ZTExNTk1ZWJkMGU0ZGIzNDQ0MGEzZDI2YWQ3ZjQ5NmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyOWUzYWRkMjVlMjZkMTQ2MjNkNDhkM2UyMjlhMTQxMzI5MjQyZDQ5NTkxZWEyMzhkMjVmYTgxZjE5ZjhjZDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d4354cd3656848fca35e65d466a4aab2",
+      "statement": "The podcast directory and episode routes are strict failure surfaces: loader errors are not swallowed, and the route tests pin degraded-response headers such as `retry-after` and the degraded source marker so the server can later upgrade the response semantics.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/podcast.test.ts#L79-L98",
+          "version": "repo-lines-v1:sha256:01b6d70c82f2f683e60db92e0c3a2977d2e407615948d26c6a15677db2c6e850:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1YmZhNTZhYmUyMjJhYTAxNzY5NGFhYjFlN2RhM2M2ZGUyMDcyNjZlYjAzZTJjYTg2MzdjN2VlYWExZDA1ZjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxZWJiNTRiY2U5YTZhZTU5OWQwNjIyOThiOTAxMmE1ZjQ1ZTliY2ZlYTNmMGYwZTgxZWQ1ZDAyMjllMmMzYTkifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast_.%24slug.test.ts#L69-L86",
+          "version": "repo-lines-v1:sha256:744f5d81411d2dc7bdddb95440b5eb818d1c62de22f687f5ef145f9ac3e85f8a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzOWJmNzJmZmY3YTZhZTNhZWJmODk0OGJkMTdjYzMwMWYwZWI1MjQ3OGY5MGNjMmEwMGM4NjkyZjFiNzc1YTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0MTg5ZWYzNDA0YmU2MzNhYmI5MDNiYWE1OTg1NWRhMGJlYjk5YjRkYzE1MGExMGQzMThlNmE1ZGMyZmZlNjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0411b9e0b1904bf8a52a2c215fd83dd8",
+      "statement": "The client portal loader refuses to fabricate an empty portal for broken auth; it redirects unauthenticated users, throws when the Clerk session lacks a token or configuration is missing, and returns either authorized reports or a legitimate empty list when the account has no rows.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/client-portal/portal.test.ts#L32-L80",
+          "version": "repo-lines-v1:sha256:9020f52637428b0f8611507a1418df276d05c9ef2271e4f45eaed0f784d11ff7:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2MWVjZjdiOWFmYTgxZDk1NDY1MjMzNzhmZTM2MTlhNmM3YTk2MWY5MTZmOGRlNWNkMjUyYzE3NjM2OTE4NjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgxMzlhNWZkNTEzYmFkYWQyNjQ2Y2U4ZDlkMWM0NzUxN2ZjM2UxOTBhZTEwNTFlOGQ0MmE0M2I1YTFhNjdkMTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYxNzIwYWFjZGRiNzQzNTc4NjI0MWFkOTRmZjhjZTlkMzlmYWM3NjdjMDZhMWMzYTlmYTRjNDEzZjg3MjYzZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0YjA1M2RjZTk2MWI4ZWU1ZTAzYzNhM2FjMTcwMDU3NDRlMjU1YjFlNzUxZGM5NTBmNTM1YmNhN2VhZWU4ZDkifQ"
+        },
+        {
+          "resource": "repo://src/lib/client-portal/portal.ts#L41-L78",
+          "version": "repo-lines-v1:sha256:f282d21e27bc56f6f757445d602b5680b0ce41a033d3b287d499442ffd401c9f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwMzU0YjRiYzNjYWI4OGE2NDA3MTAzZTVjZDYxMjk1ZDU5OWFmNmMwMzU3N2QzNWI2ZGY1YWMxN2IwODNmMmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwYzNhNjc4ZDkyYWU1NzhhZGM1ZDRmYjk1YWM0YzUzYzc4MzcwN2JmMDE3N2Y2YTJkZGFkOWViNDY2OWZlZDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4c8eda097a0f46569bc592410396b1bf",
+      "statement": "The site’s public journey mapping is organized around brand positioning, archive and portfolio content, podcast discovery, contact/conversion, and private client access, with `/be-human-ai` acting as the CTA surface and `/portal` remaining private.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/nav.ts#L105-L123",
+          "version": "repo-lines-v1:sha256:4f8139fcf162a56c94ed9f44977c708089dd9f91b672a01681dca25b276c5a1d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzY2ZkNzNmYWI2OGU2ZmU4MDY2NmRhMGUzMGRmMTg2MjRiNmQyMmVhODYzNTllZTZhMzU5MTVjNDllZjRjMDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzYmY1ZGRhOWJiNzBhNWU2YTQzYjE1ZDUxZDkxOWY0Mzc0MTQyMWQ4OThlYTYwMWZhMWE2YzBiMmE3NTAwNDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkNmIwNGJiYjRiZGYwMGE3YjkzZGIyNzM5MzQ2Yzc2MzM3MGZmYzY2Y2MxMjgyMzU4NDVkNDI2ZThjZTA2MjYifQ"
+        },
+        {
+          "resource": "repo://src/lib/surfaces.ts#L63-L145",
+          "version": "repo-lines-v1:sha256:d79bfe7532c93ce3103429b71101613df7f4288c73c773c9f4c5cc8c3e22bf9c:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZjljZDU2YWZhMGRmZmQwOWM3ZjliYjg1MGUwNWQ2YTExNWVkZDFkN2RkZjRlYzBiY2M5Y2NjMmFjZGM0MzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEzZThiOWRmMjhiMGU5NGZjZGVjMjA2M2NhNWY2OTllM2M4NWNlNGNjNzMyYTc4YWMxZDhiYzM2YmQwNjA3ZjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmNzhmNmU0ZTE1ZGUyZWQ2NDc2MTBmYmZlYTcwY2RhMjBlNjY4NGViM2UwNjYwYTFjMTViNDQ2ZjhmZjc1NGQifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-15T05:01:30.389Z"
+  }
+}

@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:43d1f350e2af3a4311fc9c7f5661131c2520012995d2559d4b4504271a9d4d4f",
+  "claims": [
+    {
+      "id": "claim_3a9c67e18ed14805872274ab68945da5",
+      "statement": "`src/lib/sanity/config.ts` centralizes the Sanity deployment constants used by the read and write paths, including the fixed project id, dataset, pinned API version, CDN query host, mutate host, image host, site origin, and a conservative GET URL limit below Sanity's documented ceiling.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/config.ts#L1-L61",
+          "version": "repo-lines-v1:sha256:9e92a47af8775efa05c48a67abcfb539ab6764c647705a3805b986993e21cad5:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiODE3ZTVkMWNmMWJjN2VjNzhhZmIxNTI3ODAzYzkxODEzNzkxNGQ5Mjk0YTg0ZThlM2IxYTNkMjhkYTU4N2MifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/config.ts#L23-L44",
+          "version": "repo-lines-v1:sha256:5eb35becd6656afdc0d9a7231bc9e6a4f4d63141d7e50fcd384498c953ff7f9b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0NjY3NjdjNWUxZTk3ZTEwNTk3OGQ4ZTBjNGVjYjU5Y2MxNDYwZjNlNDUwNmY5OWZjZGFiMDRkMzgzODEzYzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4NTExOTMzNTQ1NWZkNDM5M2IzZTlhMmRjMTUzNmEyMjE2ZDkxMTA2Y2YxNTAwNTA1NWI3M2RhOTNlNDQzMjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzNDdlZjRiYTZiNzM3MDBiMTg2ZDVlOWQ1YTkyMTI0Yzk4NDhmZTVhYTZmZWY3Y2M3NjIwMDVkM2M1ZGE2ODUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_32c27345dbab4dc08d58a72776eb75b0",
+      "statement": "`SITE_ORIGIN` is treated as the canonical public origin for permanent URLs, canonicals, Open Graph images, and sitemap entries, so it is defined as a constant rather than as environment-driven configuration.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/config.ts#L48-L66",
+          "version": "repo-lines-v1:sha256:f97c452bea33a0cb91a50b856c859effd6ef6f2857a58d7ab26e7b746863f59e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzNDdlZjRiYTZiNzM3MDBiMTg2ZDVlOWQ1YTkyMTI0Yzk4NDhmZTVhYTZmZWY3Y2M3NjIwMDVkM2M1ZGE2ODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d4078bc7505648e5937352f32c4a5f52",
+      "statement": "`src/lib/sanity/projection-map.ts` makes the alias-to-source projection map the source of truth for episode reads, and `project()` converts that map into GROQ object-projection syntax instead of retyping field wiring at each query site.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/projection-map.ts#L1-L29",
+          "version": "repo-lines-v1:sha256:ed4a8886cda5b8fc5fddd01bdc120ce1669af74493919e5042bd1ae743eabd43:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyYjkzM2IwNTMxOTU3OTJkYTk2ZmU2ZDBjZDMyMjUzYWE3ZjdlOTI4NmQ5ZGExOGQwZmY4NGM2YTg1MGQ1MjQifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/projection-map.ts#L111-L126",
+          "version": "repo-lines-v1:sha256:d89052accdb0d70565d187a1a205f8b2ddf2011eefe3df34cfa8e160740f7e18:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzYjBiMTI4ZDg2YWUwZTMyNTQ0ZDJiNmIzMzQ4YzdiZmFhZTNiNzk5OWU5YjIzNWFmOGZmM2JjODRiOTk3MmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNhYjFjMzFmNjMyZmJjZjlkMDhjY2M4NzVjODUxNzIyYzQ5OTQwYWIwZTJhNWY0MjJlODlkMjg0NjZkYmI4OTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_19fede51d97a442fb5ce0cfc7e25002e",
+      "statement": "The episode projection deliberately keeps some fields as whole objects or dereferenced subprojections while projecting image fields to `asset._ref`, because the read path needs the slug object, dereferenced topic names, and raw image refs rather than wider document shapes.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/projection-map.ts#L14-L29",
+          "version": "repo-lines-v1:sha256:8eeb8ab680eda5b1e7e9696e192f29a03d663807f84b9541532eb0a04711369e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMzQxZTY1M2EwNjU0ZGU1Y2Q0OWRiYThiZjVkM2U1MGE4ODcxN2M1YjliNWVhYjVkY2M2MzcwOWU0MDcyNGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg2MTMzNzQ1MGRiYzQ0NmZhMTUyNGZmZmRkMDZjNzM3OGQyYzYzNmRiYjU1OTUwYWFmNTc4ZmM3ZjY3N2JhYTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyYjkzM2IwNTMxOTU3OTJkYTk2ZmU2ZDBjZDMyMjUzYWE3ZjdlOTI4NmQ5ZGExOGQwZmY4NGM2YTg1MGQ1MjQifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/projection-map.ts#L30-L50",
+          "version": "repo-lines-v1:sha256:322b21f9897ff577eb24b0153a088756cbfda48ea174e2f9a52e761640553129:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmYzUzM2RlOGFhNmRlMGYzZjJmNjkyMjA3MzE3NGI4ZDE3OGQ1ODFiYmEwOThkZDIyZGIzY2I3ZjBiZGFjZGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3NGVlOGE4ZDFhYTg0NTM5MWJjNjc5ZWI3MGNlN2Y0NmEzY2Q2ZmIyZDE2ZmNjYTY3ZmExNzhmNGY4YzFlMGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBiOGMwNmY3NzhhMjgyNWQ2OGY2YzkyMmVjMTg1MjExYTFlZWQwYTQ0MDZkYzNhM2NiNjNiYjI1OGZjNThlOGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIzNGRiM2FkYTY5NmZmYjE3YjQyZmRjODNmZTE5Mjc4ZjQyMWFmNWIwMjdlY2Q5ZWNmNGZiNGVlZDI0MzZjMGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2502952dc25148739922a02ea5983cf4",
+      "statement": "The list projection is intentionally narrower than the full episode projection, excluding fields such as `description`, `searchText`, `guestBio`, `podbeanUrl`, `_id`, `guid`, and `slugFrozenAt` to keep the catalogue payload small and stable.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/projection-map.test.ts#L171-L219",
+          "version": "repo-lines-v1:sha256:ed2564ad1d08c6ee3e9db72d19ce0452004d6c751605eb6c9b5d41e86008e061:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEwNzI2ODBiN2E5NTkzYzhjZWU3N2M1YTI3NTQ0ZTA2Nzc3OGVkMTlkYzg2OTJjODQ5NjRkMjY0ZjUyMDkyNzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlNjVlYTFmMzNjNmUyMmRlYzc1Yjk5NjlhZWUyZGFlNzM5MDczMmIwYjU2YWZmMmQ4OWZkNzEwYTE3OGQ2ZjMifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/projection-map.ts#L52-L108",
+          "version": "repo-lines-v1:sha256:c4b303c5a860529452dc67c97341ea628d1ea3360571a9f81ace6e6e7c2c8665:eyJzZWxlY3RlZExpbmVDb3VudCI6NTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3NGVlOGE4ZDFhYTg0NTM5MWJjNjc5ZWI3MGNlN2Y0NmEzY2Q2ZmIyZDE2ZmNjYTY3ZmExNzhmNGY4YzFlMGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxNThlNzA0ZmRhMTdjNTM4N2ZhMzFmMmZjNDc1MDUwMTA3ZjliYTVhZWM2NzNjY2FjMGFiZDNiZDI1NTA2YzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRjYTc5OWZhYmNiOTkwNjc2MDAxYjk0NDNiOTg3OTZmYzMzZmQ4ZGQxM2E5YzliNDQ0ZGMxYzU4NjE4NmZlMWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f08cc8e6a64f40b79501ded88b8c02f9",
+      "statement": "`src/lib/sanity/enriched.ts` defines enrichment as a derived GROQ predicate, `defined(guestPhoto.asset._ref) && length(guestBio) > 0`, so no stored boolean can drift away from the document's actual content.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/enriched.test.ts#L33-L75",
+          "version": "repo-lines-v1:sha256:8e7e7a6b1e4fafbaa5bfb7da12d7020cf7cb4a2600ddb6f6a88be9d0bc4e4fa5:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2YmE1Mjc0YWFkZTg5ZGY5ZGUzNzk4ZmIzOGY5YmEzOWQxNmY3NDIxMTkyNmVhOGU2ZDAyMzNlODE1ZmNjMTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ1OTlkYjY3ZjNkOTdkZmY2NjMxOTJmYWNlN2JkMjNhNGNkNjFiNjBmY2Q0MWNlNWFlYjQ4Yjg1NTUzMjNlYjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/enriched.ts#L1-L41",
+          "version": "repo-lines-v1:sha256:5cee52a99dc96b7e8c70107a00a658fd5b86c90f00b70a3b203a689d5ca89005:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQwMzRlNGI3YTYzMDNkZWQ3NjExM2ZlZDExOTIzMGQ5YTdjZTk2MzljY2U3OTJmZmQ3ODI3NGIwMTg3OGE4OWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_98e15faac2804c2793840f037b56196f",
+      "statement": "The enrichment tests evaluate the real exported GROQ fragment with `groq-js`, which preserves GROQ truthiness and length semantics, including the documented whitespace-only bio edge case.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/enriched.test.ts#L45-L75",
+          "version": "repo-lines-v1:sha256:0d8e2fab742f080966f8e1be3ffb2d33f78bb2ba7b9b485bd5a57fd198728ad2:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlZDMwNzM4NDEyZjgwNmI5YzE1YjYwMDUyOWRiNjBkZGQwOGVjZmZmM2Y0NTYwMzk0N2I3MDQzNWZjMmU5MTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4ZWNjYjZiYzk4NjIzMGEzYzA0MGRkZjFkNTUyZjc0YTA0ZWYxODIzMzhjZmViNTA1Y2VmYmI2M2UzNWE2MTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/enriched.test.ts#L6-L18",
+          "version": "repo-lines-v1:sha256:7559eb73e71df6165573d68ff57f8b339cabbfe3aa370464baedba47a5c0501b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzODRlMDBhNjkzZTUzYzAyZjA0NDdhNjA5NjM1Y2QyMWMzNGZjNzQ0YjU5YTQwY2IxMDQ3ODM3NWQxNzA1NTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiYTY3NjgzZGFhYjVhMTU2YWU0MTI2ZDUzN2VhNWJhNDQyZjdhMmY5ZTQwMzFjOTBkNjVhMDcyNjJhZTFhNmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5a7389b2c2044b2b91beca3ce0405241",
+      "statement": "`src/lib/sanity/client-errors.ts` normalizes `@sanity/client` errors by duck-typing on numeric `statusCode` and re-wrapping them as `SanityHttpError`, leaving non-status errors untouched so publish arbitration can recognize real 409 conflicts across package boundaries.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/client-errors.ts#L1-L42",
+          "version": "repo-lines-v1:sha256:af873507b21064129a61a4cbc0e57fd64425504d1be3a7d8987a61c8ab20c9c4:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyOWZhNmI3ZjExNWVjMjAxYWU2MmIwZjgwNjczNmMyMTEyZmNiOGUwMGJhYjgxMmY3NzM2YTVlMWEwYzZkMTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6eaad12238004cb2a274752c3f43b105",
+      "statement": "`src/lib/sanity/publish.ts` implements publish safety with two compare-and-set checks in a single `mutate()` call: a slug lock document prevents two episodes from claiming the same slug, and a strict episode `create` prevents concurrent first publications of the same unpublished episode under different slugs.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/publish.test.ts#L381-L467",
+          "version": "repo-lines-v1:sha256:0bc5d9beaf0cbbe2a8f64ea7191f4db255291a14d65d433450c380bcb1228f5a:eyJzZWxlY3RlZExpbmVDb3VudCI6ODcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlY2I0ZmRkYjAwMDFkM2E2NjYyNjAzOTRiYTgzNTIzZTE1ZGU4OTQzY2QxMTBhMTAzZTFhNDI5M2Y4ZGZhYjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwNTk4ODRhMzhmMTQwZDAxMWIwNzAyMDI1MzA0ZjBlNmE1MjVkNTU1MGJlNWI0M2FiMTliOTY4M2VlZWIwMDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRmNjFjOTY1ZDliNDQ3N2IzYjI4MzdmMmI2Y2FjYTY2NjgyNzQ4MmZmZjVkM2YyMjkxNWY3N2I3OTEzNTBmYTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/publish.ts#L1-L28",
+          "version": "repo-lines-v1:sha256:c8c62804475401a79a3e7ccdbc6a009a4477b04c03efb8b99642415e2c11726f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1ZTIzMTIxNzI2MDg3YzAwMDM2MmUxZmM4MTQzMDEzMDA5NjUxNGM4ZTliY2Q5ZDVhY2RjNTYyMTNkMzg3N2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM1YmZjYTVlNzY0YzFmOWM2OTZkOTZiMTU4YzQ1MDlkMGFmYWE2ZDNiYjFmZWVmOGUwYWZhN2RmMmFlMjRkYzQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_59769534ad91431a83f663248c4c3d3e",
+      "statement": "The publish transaction treats first publish, replacement, and no-op as distinct outcomes, and seed mode deliberately avoids emitting an episode mutation against an existing document so rerunning backfill cannot overwrite enrichment or authored changes.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/publish.test.ts#L341-L376",
+          "version": "repo-lines-v1:sha256:885b09b556389bdcdb93e119732cc5632fc176f453882453f209f50d45f48b45:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxZjA1ZTExOWY3NzAxNGQ0NzIzMWQwYWJmMTk5ZTE2YTg4OWM0ZDgxMWEwZWI5ZDE1YTkzNDVjNjY5NTJlNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc4YTU4YWNiZDM2ZDdkN2Y0MjBkZjhlNzcwZDZjYmMxODcyNDA5M2NkNzMwMmEyYjAxMTA1MjUwMDRmNGY4YTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyZWYyODAyYzUyOTEwZDVlNjE3NDVkZTkzY2VhNWZkMWRhNGRhZmQyZDgxZjQyNTk1OGI5ZGFmMDQ2ZDBkM2IifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/publish.test.ts#L471-L510",
+          "version": "repo-lines-v1:sha256:e0e86ffad242e743b9e8a9aa00046ffe9e391f3e7b3d71f0c0101e99e2c7d2a4:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3ZDA5NDRkNjFjZmVjM2NjOGYyNzc2NDA3MTY0N2EyMzRkYjEyMmFhYTczNmE5OTlhNjRmOGQ1ZWE5ZGQ2ZDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc3ZjFmOGNkMjNjNmU5MWY4ZjVjYjMxY2EwZWMzODg2ODU0MGM1YzBlZDY4ZjJkMzQ0NGE1YjJkNDgwNzJjMmMifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/publish.ts#L65-L88",
+          "version": "repo-lines-v1:sha256:2ea51f30a8a51dd462a1f8befaa512ee5d0e1d570327d839002525d1d26c2f09:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzYmMwZmFjNTlmMTM5ZTNjMzJkMzVmN2IwMjIxNGMzMzM3MzMyZTQwZmYzMzJkZDg2ODllNWEwNDczNzZmMTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5e6a49c32f23487ba9f6373f946efa69",
+      "statement": "`strip()` removes only a fixed set of Sanity system keys before comparison, and `equal()` performs structural deep equality with order-sensitive arrays so republish decisions are based on meaningful content changes rather than metadata churn or key ordering.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/publish.test.ts#L245-L256",
+          "version": "repo-lines-v1:sha256:f4e7e07c336c56edf8b4f4c4a23ad0ea9ca19d1531d069ac77e053f2d51d13c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzMzA2MmNmOGU5ZWE5MzZiNTZiNTY2OTI3NjAzZDZmYzgxN2E5MTUyZWRlZmJlNWMyMzNjZjI4MGVhOTU5YjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwNTcyZmM4ZmVmNTg2YTFiODcyZTI5NmMxMTE3OWFmMjIyNWYwMWY0OWViMDkwYjBjMGU4MzYwYTBlYzYwNTcifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/publish.test.ts#L341-L376",
+          "version": "repo-lines-v1:sha256:885b09b556389bdcdb93e119732cc5632fc176f453882453f209f50d45f48b45:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxZjA1ZTExOWY3NzAxNGQ0NzIzMWQwYWJmMTk5ZTE2YTg4OWM0ZDgxMWEwZWI5ZDE1YTkzNDVjNjY5NTJlNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc4YTU4YWNiZDM2ZDdkN2Y0MjBkZjhlNzcwZDZjYmMxODcyNDA5M2NkNzMwMmEyYjAxMTA1MjUwMDRmNGY4YTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyZWYyODAyYzUyOTEwZDVlNjE3NDVkZTkzY2VhNWZkMWRhNGRhZmQyZDgxZjQyNTk1OGI5ZGFmMDQ2ZDBkM2IifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/publish.ts#L102-L148",
+          "version": "repo-lines-v1:sha256:7868cf7266b905eb9f1af23c1ebf8bd6eb4a29be196f4e14460938940699f400:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlhNmNlNjA3NDRmM2M0ZGI2YmJhMGI5ZWNhZWY5NDUyYmM5NmFkNjZmYjIzMTc4YjM4MmFhZDg1ODAxMTM1MWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBmZWViNDMyNTBlYjdmZmZkMjRlNTBkNjc5MzRmNWFkMzcyOTIzMzlmYjg0ZjEzY2JkZDk1NDJhNzg5MjBlYzIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7a175cfc9acf4cf3af5c6d9e6ea4357e",
+      "statement": "`publish.ts` recomputes `searchText` and deterministically keys topic references when building the desired published document, keeping stored content aligned with the client-side search haystack and avoiding nondeterministic array keys.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/publish.test.ts#L185-L243",
+          "version": "repo-lines-v1:sha256:6581d7344fbbf14972523fef38fa8b946eb91e8434cff69e251e7f88dca635d8:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg5Yjk4MWVlMWJjMWUxOWQwYTE5Mzk1ZjE4ZjBmYzU1M2IyZmZhZWMyYTEwZWUyN2EyODQyYzdhMDViM2M1MDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU4YjI0ZDU3MDlmNDI2OTk1ZDVmNzRhNDM2OTkyMWM2Y2VlNzJmNTRkODZiYWVlNjU2NmE1ZDgzZjcwYTZlMWEifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/publish.test.ts#L512-L519",
+          "version": "repo-lines-v1:sha256:98ef43991fd8857611e24b68417e21fe1ef2d0120f7d712554fc9e9af5237397:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDMyYjI0ZGVjMDg5NzE4OWRjOTJmZDYyMTdkOWNmMjcwOGU4YmI0MGY2ZmU1NGE5MjNhOGQxMGM3M2UyMTFjNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODRlNDIwOGNkNmZmYjhjNGEzNTQ3YjJmNTRhZGExOTk3OGMzZjM2NWU3OGY5NTAyZWY1MTQ1Y2RkMmFhODU0MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzIwZmM5ZTY3ZGIwN2VkMjM5YmIzYWQyMzEyZWFhYjlhNzBlMWY2ZmJhMDEyODhiMGJhNmU2MWQ3ZjhlZTc4OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWJiMWQ3ZDc5M2UyNTJmZTM1ODViZjhmZWRkZmQyNTA4OTliZDllMTE2YTE4NzZiMzMxMzU4MzhhN2FhMmEwZiJ9"
+        },
+        {
+          "resource": "repo://src/lib/sanity/publish.ts#L150-L222",
+          "version": "repo-lines-v1:sha256:c6414765980cbba681b44b5e754c326fb136cc07722541ac18e78e4b77d49aed:eyJzZWxlY3RlZExpbmVDb3VudCI6NzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI2MmM0ZmZlZGM1NzYzNTZmYzllZGE5N2E2NTY3MzU1YTFiOTZkNzQ3NTk0MTEyMWM0ZTcxMDY5ODYyZDQ4NjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI5OTMyODYxMjA2Y2I3YWVhYmQ5MDZhNTA4YTJmMTZjYzEyOTE2YjFhZDljZmQ3NWYyNzcxYWViOGE3N2Q1OGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7d79e674d8d24ad1801f28df9b660d18",
+      "statement": "The publish tests pin the exact mutation arrays submitted to Sanity, which is what protects the strict-create compare-and-set shape from regressing into `createOrReplace`, split transactions, or other unsafe publish variants.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/publish.test.ts#L14-L25",
+          "version": "repo-lines-v1:sha256:a7f0575d39652e7d9d7c11beb344b2b7e941f1a8b7f83b5787d8e41874952f09:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY3OWZkMDYwZmQyNWI1YzI0N2FjYjQyNTg2M2M4MjdlNDM0YTA1ZDkxOWJlNzNiNjU0NTA5ODg2MTI2MWIyZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5YTJiOWYwZWJkNjA4NjM2ZTNiNTFmOTYyMzUyNjM0ZTQ5ZjZmYzVjOTUyNTI0MzFiZDJmYzhkZTA2Mzc2ZjIifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/publish.test.ts#L381-L447",
+          "version": "repo-lines-v1:sha256:c76e09a990448c7e2105548d58571c22f41c0fdc1571dd57328880cf067deb45:eyJzZWxlY3RlZExpbmVDb3VudCI6NjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlY2I0ZmRkYjAwMDFkM2E2NjYyNjAzOTRiYTgzNTIzZTE1ZGU4OTQzY2QxMTBhMTAzZTFhNDI5M2Y4ZGZhYjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkwOTNlMTI5MDZhNjFmZDVjMDg5ZmVlOGZjYWZkOTUyZTU3YTU5MDlhMjQ5ZGQxMjUwOTQ5OGQyNzFhNzFjOTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRmNjFjOTY1ZDliNDQ3N2IzYjI4MzdmMmI2Y2FjYTY2NjgyNzQ4MmZmZjVkM2YyMjkxNWY3N2I3OTEzNTBmYTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwZmUzMzJhYmZiNTIwYWQyZThkNzZmZmMzMGI4MmIxMGQ4NzliODEzZTA3OGQ1NjUwZmFmMDkwNzkwMWJiZTIifQ"
+        },
+        {
+          "resource": "repo://src/lib/sanity/publish.test.ts#L512-L519",
+          "version": "repo-lines-v1:sha256:98ef43991fd8857611e24b68417e21fe1ef2d0120f7d712554fc9e9af5237397:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDMyYjI0ZGVjMDg5NzE4OWRjOTJmZDYyMTdkOWNmMjcwOGU4YmI0MGY2ZmU1NGE5MjNhOGQxMGM3M2UyMTFjNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODRlNDIwOGNkNmZmYjhjNGEzNTQ3YjJmNTRhZGExOTk3OGMzZjM2NWU3OGY5NTAyZWY1MTQ1Y2RkMmFhODU0MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzIwZmM5ZTY3ZGIwN2VkMjM5YmIzYWQyMzEyZWFhYjlhNzBlMWY2ZmJhMDEyODhiMGJhNmU2MWQ3ZjhlZTc4OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWJiMWQ3ZDc5M2UyNTJmZTM1ODViZjhmZWRkZmQyNTA4OTliZDllMTE2YTE4NzZiMzMxMzU4MzhhN2FhMmEwZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_eb5f727926c34e0eb401aa121eccb5ff",
+      "statement": "The schema contract tests tie the Studio schema back to the read projection by asserting both that required fields exist with the expected types and that every schema field is either projected or explicitly excluded with a reason, which turns Studio renames and additions into CI failures instead of silent content drift.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/schema.contract.test.ts#L32-L149",
+          "version": "repo-lines-v1:sha256:6e447a70dc35f4a1c7ed6fba3d8a807588f2ec66d65c321795ffe1447da48bed:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0NWE0MmRlYzMwOTVjNThlMzY2NDI4ZjExOGE0YzViZjZiMmM2MTg5NTFiZjQwZGQ3ZDg3ZjQ2OTIxOGIxYmYzIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzYTNlNDZmOTQyNzZiNmY2ZjRlZDFmMDJhZjc4YmVmNmEyZWUxYzQzOWRkNTU4NGI5NzM5NDgzMTMyMTRkMmI3IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI3NWZlYTgzNTE5Yjc0Nzc2YTEwYTczOWU5NTQzYjAxOGRjYWE2MTA3NGY0NmU4YmM2MmExYmQ2ZTZhOTQ4OTJhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlNjFhOTI1ZjY3MzNjMjhkNTc5ZWEwMzY1ZGM3MWY5ODA5ZTE4MDUwOTE0MDJiZThjOTE1MzliOGFjNWM2ZWZlIn0"
+        },
+        {
+          "resource": "repo://src/lib/sanity/schema.contract.test.ts#L6-L24",
+          "version": "repo-lines-v1:sha256:28054efe3385485ee44bd01f3116e6dbdd73f262fd08430b78ccf9f7ceb29013:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI2YWY4OWY0ZjMzMjA5OTE5ZjVhMjU4MjJiNTg2ZWFlZTM5Y2ZkMTI5YzFiYjYwYjI2YmY1NzQwODlkZjZmNDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIyMmFjM2M3ODU2MjYyZjQyNWMxODBmNjk4MWQ0MTg2YTU5NjdmMTE0OTM4OGQ4YzQ3MDhiMTFkYmU0M2I1ZWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8497f5856d63448b9145bdc8471091d8",
+      "statement": "The schema contract also pins important authoring invariants: `guid` is read-only, `slug` freezes only after publish, `searchText` is read-only, image fields require hotspot and alt text, and `topics` are references rather than free-text strings.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/schema.contract.test.ts#L38-L96",
+          "version": "repo-lines-v1:sha256:4389d0fd6b3296fb682f4612c880dfed832def12ef8afafdc4fa573d4e47bc87:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkOTcwOTRlOWQ5ODIxZDVhMWQ5NzM4OTQwMmEyZDZlM2RlNjY3MjA1NDBkYTllYWMzYjMyMjc3NjNlOWFmZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc0ZTk4NWI1ZjFmYThlYTczZDFiOTgwZmQ0N2E1YjQ4OTAyNjE5M2JmYTRhNzhhOGE3ZGQ0MDBhOGZkNWUyNTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZmYTI1YWYzNTFjNDgzNjZkNTIzNmYxYmVhMjU1YWYzOWFiNDFhNzhmMDZlY2M4MDgzNTRhMDhiYjcyNzExNjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c32067459f4246628570913aa26aa369",
+      "statement": "`src/lib/sanity/studio-config.test.ts` verifies that `slugLock` stays out of the Studio sidebar, the create-new menu, and document actions, matching its role as infrastructure rather than authored content.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/studio-config.test.ts#L64-L109",
+          "version": "repo-lines-v1:sha256:ce708b38163b42cd66eb58eec90973560fa626e9e527179bc2d4c0eb56db4082:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZTEyMTliMzI4NTViZGE5OGI0OTA2OWIwOTUzOGMwOTE1MDBhZmIzYTc0NzgxOGY5YTBmZWFhZDZiZWI1MDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEzODNhYzE5OThhZDg4Mjg4NDVjNzBlZGZmOWQyNWZjYzc4OTU3ZjU1MzBhNzk4MzhkNTE4NGExZTE3MGZlNDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYzNWYzMTViMWVmNWRlODg3YTk1Zjk2NmM2YzZmMTIwNzI1M2Y4MjgyMzc1YzU5MTk2ZmFhZWJmODMwNjM1MTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8ef11da319f74f4492656bf9422683da",
+      "statement": "The Studio document actions are scoped so that episode documents gain the custom `Sync from Podbean` action after the built-ins, other schema types do not, and the sync action is not a built-in publish replacement.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/sanity/studio-config.test.ts#L112-L189",
+          "version": "repo-lines-v1:sha256:366b700424e245212fb33ca75ed35776f77244d0bfdca8cc879d929b1ac4cf47:eyJzZWxlY3RlZExpbmVDb3VudCI6NzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjYzQ4ZTc2NzQ2ODkwMjhhZTQ4MmU5MWExYWZlMzRkYzZiMzBhNzEwZDNhYTQ4NzAxNjgzYWEwNjIwNWU3NTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2ZWU1ZDY1ZTYyODliODFiMTYyYTUxZjM0ODNkZTk2ODNkNDIxM2I4OTMzMzgyZWQ0ZjMyZDdhZTNhOTIwZDIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_47f171c3c5d24772876488b35ce624aa",
+      "statement": "`studio/package.json` shows the Sanity Studio runs as a separate app shell with its own `sanity` scripts and dependencies, including `build`, `deploy`, `dev`, and `start`.",
+      "evidence": [
+        {
+          "resource": "repo://studio/package.json#L1-L23",
+          "version": "repo-lines-v1:sha256:022d723e98e59adf805d589d2e93e7cce624fb533c80d2cef5511dd0e9eae456:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2ZmIwOGZkYTFhY2I5NTdiNjExNmJkMzc4MTFhMWZlNDFhMDE2MTFjMDYzMWVkYmY3ODZkNjg4OWEyN2E1NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdjMmQ2ZDQ4OGExYzliNDk2ZDllNTdmYzcxODNlM2NkZjJmYTk1NGQ3MWYxOTIzZDI2ZDRjY2NlNDU3NTNkZTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd42072ae4b94ba9a3de73e3a8bde699",
+      "statement": "The repository's local Supabase configuration is unrelated to the Sanity content pipeline and is used for a separate local backend stack, so the Sanity workflow should not be inferred from it.",
+      "evidence": [
+        {
+          "resource": "repo://supabase/config.toml#L1-L18",
+          "version": "repo-lines-v1:sha256:f2d1b45b3cd8351826900ddc541ad608e00858ecfc7769cb3f21f66ffd55451d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5MTJlZjg4MjIzMzZmZjc2Mjk5YTg1MDVjM2YzOTQxNjkzM2RhZDIzZDRiNGUwMWU2Y2JiNTRhZmQzYTZjZjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzMWRlNDFiZWI5NDE3Y2U0NjQ5YmFhNzEyODY0OTMxZDBiZGI4YjEzNDhjYmYwZTRmOTBiN2E5Y2M1NWE4MDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM0Mjc1Yjk1ZGU1YzYzNzUzMjFlNmYxOTNkNzM1OTRiNWE4N2U0MGQwZTRhYzVjYTBkN2FmZWUzOGYwYzE1MzEifQ"
+        },
+        {
+          "resource": "repo://supabase/config.toml#L154-L177",
+          "version": "repo-lines-v1:sha256:97d915316dc25e7e90350ec80b67e38a6caaf11266f821c62e1fdd0c036fdfc4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0MDA5ODZlYjdmMTI2OTRhYzM5YTVjNDlkM2I5ZjQ1NDAwMjRmNWE0NjczMTA5ODAyNDg2MDlmZTIxZDA0MzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0Y2FhYTVkYThlNmIzYjU3MzA3NWVhYmRhZjI1MGQ3N2FhMDY4OTExMjcxMTI4MDhmMGUzZmIxMDZjZDliNjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNjODRiZDMyZTVhZWRhMGVmMTE2NzE1MmU2ODIyYTUxYmEyZDRiZmY4N2ZmODBlOGEwNTBjY2Y1OTU4YmI1ODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZlYzkyYWMyYjViMjY3ODE5MGRhNmMwOWM4OTg4MTQzZDc1NmUwNWRlMjYzZmRiNTUzMjA4MjI4OTFjZDkwYWYifQ"
+        },
+        {
+          "resource": "repo://supabase/config.toml#L93-L100",
+          "version": "repo-lines-v1:sha256:af1a708b3d6f57859f574e7ecd6d43f3dfc9cdcce4b3fa9606e0d7f50ab8f72f:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDJiNjRhZDgwMjI2Y2MxOGE5YjhmZWIyZDI1Y2Q0MTkxZGExZDY5N2I5NDlkYzM3ODNlNjE4NjhiODMyMzE3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk0YWZmMzgzMWRjOGMyNTFkYmQxNGE0NTI2NzM4NTkzYjQ3MGJhYzQ4ZGNlY2Y4M2UwMDk2ODc5N2YyOWRjOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzgwOWQ5YTE5MDAzNjhiNGZkOWQwYzBiNWVmNzViNjMxM2QyMWRkYzJiNDA3MWU0ZDE1MGQ3ZGYxYWJlZDcyMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGQxN2Y4NmZlMzMwN2M1ODAwYTcwOTg3NzI0OGRmZmY0YWM3Y2YyN2NhNGIxOTFhYjU2ODZmOGE2NmYwNmY3MSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-15T05:01:30.389Z"
+  }
+}

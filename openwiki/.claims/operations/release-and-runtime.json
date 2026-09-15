@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:7ca6c2e9e7e94daee145c1815b691bb232619cab6989d656bc75870eae4c47b3",
+  "claims": [
+    {
+      "id": "claim_915cafd3aedc42c8b7de4569441c74f2",
+      "statement": "The app's lifecycle commands exposed in package.json are `bun run dev`, `bun run build`, `bun run build:dev`, `bun run preview`, and the verification scripts `bun run e2e` and `bun run verify:delta`.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L6-L18",
+          "version": "repo-lines-v1:sha256:511e5d19c361ee046d409eded53d393e1e9e2bc1eb5fc72a8aabf32a059f61df:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4ZDRjNTU0YTRiYmZiMDlhNTM3YzFhNDA4NzBjODIwNGE2ZTBkNGE1YjQ0OWY5NWU2OThkYWU3M2IwZTVkNjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYyNDhkOTFkZWFhNGY1MjYxMGMyMjc3YjMxOGFhM2MwZmNkZjY5ODE4OTg1NTA1ZGFiZDcyYjIxM2U5ZWU2MzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI2ZGM5ODdiYjYxNjg2MmY4NDQ4ODgzZWNlN2ZkZDgzMTFkMGExMjQ5ODJkMjdmOThiZTlhZGQyYTQxZTc0MTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_858a634e23cf4eff9e6f6b0b1083a154",
+      "statement": "Vite/TanStack configuration redirects the server entry to `src/server.ts`, making that file the server boundary used by the build.",
+      "evidence": [
+        {
+          "resource": "repo://vite.config.ts#L7-L15",
+          "version": "repo-lines-v1:sha256:3721761adb4e511a14aad0551660988e0334abaae7ea83eed2a059fb4b0239eb:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjRjZTkzN2IwNmE3ZjVkYjVjOWFmMzU4ZmJkYTI1NmE2NTExZDU5ZTZmZDNjZWU1M2I4OGU3MzQ0M2Q1ZWE3YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzlkOTc5Y2YwYTJjYzA3ZjlkYjdiM2E2OWMyMzJiZTdmOGNiZjgyYjY1YzVmNmRmZDM4ODFiN2I2NjFlYmQ0YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5d17ba3579a0477783405e2ea01908e3",
+      "statement": "`src/start.ts` installs request middleware in the order error handling, conditional Clerk auth, then CSRF protection for server functions.",
+      "evidence": [
+        {
+          "resource": "repo://src/start.ts#L6-L54",
+          "version": "repo-lines-v1:sha256:13e1234ad7db0b25caedb2b23db6a54a65e04ed63ae9c7c83d6341ffe983bd71:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0YWMwODkwYzJiNDgwYjc3NjIzOWQyOGZmY2NiN2I0ZDY2M2NhYzkwYTU3M2E5NTExMjE5ZDRhMWZkNTVhMzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViNzQxZDJjMDhlNmY1MTBiN2U5YTI2NGYzNzhmOWNlMDA0OWE1MDRlMGU3ZWY1ZDY3Y2QzZWE4MTNmODU0NzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdhNzUxZTJjNjIxZDk0YmQ1ODg0NmYyYTU3OTMzMmQxNDllYTNmOThlODVkY2FkZTU1N2ZkYjk4OTZlNGM1NTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_011a80d102864f2994202035ab7c9285",
+      "statement": "If `CLERK_SECRET_KEY` is absent, auth middleware is omitted and the app serves without sessions instead of failing public pages.",
+      "evidence": [
+        {
+          "resource": "repo://src/start.ts#L21-L50",
+          "version": "repo-lines-v1:sha256:d4684b3c0b7f21c1bcc346c7720161b728724743921e7a67bd9465c8daab7a0f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4ZTNjYTQ2YWQ4ZTliNDFkZDYyM2ExNGFkMzM1ZDZkM2U5OTgzNGNiNzdlODU1MjJkNjhkYjVmNWQxYmQ0MWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImViMWVhMTVhMGY3YjFkNzc0MWMwOTJkZTgwMmQzOWZkYTQ0MzRlY2YwNWY5NDM1OGM2ZjM2OWNhOTExNmUyMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU5MzFkNmRmOTMyMGQ3MWQ0MjE4NWQyYjU1YWY0ZTMxYTUwMmQyZmRmNjY3YjE5NGJmOTY1MDk5ZWY2YmFjYzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bb1280f7abbf4c8ea94f3423364fe82b",
+      "statement": "`src/server.ts` lazily imports the TanStack Start server entry, permanently redirects `GET` and `HEAD` requests for `/about` to `/who-we-are`, and then normalizes the framework response.",
+      "evidence": [
+        {
+          "resource": "repo://src/server.ts#L11-L20",
+          "version": "repo-lines-v1:sha256:bd8c759a51107573c21f97a5bdde2b09341b7996699933f48bf63d7d29a43577:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MmUyMjEzYWUxMzUyOGFmNDViMWY2NjQzYjNlMjdkYzIwOGUxZTQ4MzliMjM0M2VmN2M4ZjExM2VlMTk0N2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcwOWRiNTg0YmQxYmRkNjAyMTI5Yjc4MzJkODBjNDQ3MGU1NWQ0ZmM5ZWQ5NmYzNzZiZjg3NzY0MmE2ODVmZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmNTE0NzJhYmMxYWI0ZTI2MDM3OTdiYTBiMDFiNjBjYWM1ZTdjMjNiMjJlNWUzZjAyYjE3Y2M2MDMyNjFmYTcifQ"
+        },
+        {
+          "resource": "repo://src/server.ts#L48-L77",
+          "version": "repo-lines-v1:sha256:094e487a69d09da3f35c173c2ef6b32239492ed187016e6217df98d2c7c419e3:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzMjdiNmMyNmNjYTI4MDRiMjY2YTc3YTJhNGYxMTU1NTBkOTNiNmUyYzI3MjI4MmJiMGJjZjY0OWQ1Y2MzMDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjMjZiNjE3MDdkMzlmNTQ5MjYzNWY1OThiODc4MDY2YWVmNzY4ZjViZmVhZDlmM2RjZGNkNzI5Yzc0MTI5MjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgyOTdlNjI5ZGYyYzAwNjhlMjg2YmRjNTZkY2VjMjZjYzc5MzQwY2ViYmFkZTYxMGYxMjU5NjAwOTE0ZjQ4NDcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e9fc8e25300e4941bd7d5ccbcc96c434",
+      "statement": "The server wrapper converts a specific h3-swallowed SSR failure into the app's HTML error page and preserves catastrophic failure as a 500 rather than a degraded response.",
+      "evidence": [
+        {
+          "resource": "repo://src/server.ts#L22-L46",
+          "version": "repo-lines-v1:sha256:d73cbfa0a4c48133d9bf9222df3c18e8de2ad8efae56659d30249c1778ff0465:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4OWZiM2IyNDZkMjcyOTA4MjkzOWI0ZGFiNGFlNzhhN2U5MjRiOTYyNmRkNWQwNzg4NzJmM2U2NjhhMDVmYTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0MjU0YTkwYTNlNzJkOTYxZDNlNjkyN2ZlODI0NzE4YmU5NDEzNTQzN2RiYzFiMWZiNTk2NTk4MDE5N2JmMWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJmYjY1MDU4MWZmNjNkODkzMzNiZjdiN2QzNzBjOTcwZDA0OGQ3MzUwM2E1N2M3ZmIzMWVhNDMzMTU0NDcxMzYifQ"
+        },
+        {
+          "resource": "repo://src/server.ts#L69-L83",
+          "version": "repo-lines-v1:sha256:c4da72f5d46ced8da21c87f5954818321553f5a52b38ca2e40a6f649ae915b18:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4MDUyNWIwNWNhNWViNTgzYzhjYWIyYTAwYzJlYTg0NjE1NTQ0NWU4ZTU3YjBjNDZiNDI3ZjM5MmE1MTEzNjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxN2FmMTEwMWM5N2I3YzJmNTI1NDA3ODJlNjM0Y2M0NDQwZjBlOTcwMzQxZTUyZjk3NTIzMTFkNzhiN2Q3ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdlOGZmZTMyYTM4YTY0Yzc5ODliYWM3ZDMwZWNkYmQ1ZjRhYTdlZmUxZWYzOTk1N2EzMzg2MzBjZjRmZDcwNmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhNzU0NzRjY2M0ODFhNzU5M2Y0ZWY5NTgwMWNkY2ZkZGYwZTk2YjExODVjODNjYjg2YWU1Mzk3ZWNmZWE5NWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8852f4779c844594a8e403a51720a438",
+      "statement": "The Playwright config uses `E2E_BASE_URL` or a shared default base URL, starts a local Vite dev server with `--strictPort` for localhost runs, and defines a `no-js` project with JavaScript disabled.",
+      "evidence": [
+        {
+          "resource": "repo://playwright.config.ts#L32-L90",
+          "version": "repo-lines-v1:sha256:038ded3dfcc7481d5375144acdde842f2700b24a68d1bb05dbe5d23ed037c386:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzODkzZDU1NGIwMjRkYzViNzEwZWIxY2FmZjZjYWRhMDJmZWZlNDhkNWE0ZjQ2MWUwOGM2MjgwZTBkNmMxM2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2NGQ4YzA3MzQyOTg5MzEwMTU3NmQ4OGQ5OTEyN2U4OWQ2ODkxZDNiMTdlODlkZjAyZWM5YWU3MDcwNWQ4YmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNjNGRhMmZkOGE3OTY3OWRmOTljYmE0NzY2YTNmMDdjODgyNmE2MjJlODc2N2FiZGFiMjUyNDhlYzMyM2IxNWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5da17da58bf44aecbc3479ad9e2b9cc0",
+      "statement": "`scripts/verify/e2e.sh` refuses to trust an empty Playwright discovery, requires the config and shared base-URL file, verifies the `no-js` spec exists, checks the runner and browser binary, and then delegates to `bunx playwright test`.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/verify/e2e.sh#L1-L69",
+          "version": "repo-lines-v1:sha256:1b48da5dd9e8cfe15c879aaa47e42c5a99c0c028904a4dee4ba54ea1534e136e:eyJzZWxlY3RlZExpbmVDb3VudCI6NjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkOTVmYzA0YTgwYzk1MmY0OWNlNDE4ODYyN2M1M2IwZmJlOGM0NDA0MWI5NTJkNTkyYWNkMWRlOTk4NjE0NjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0OTE5NGViMDRhODBlYmI1NmUyZDliNWZiM2I2OGMxYjY5M2ZhN2ZmMmMwODc1YjE0NmVjYjRmNDI1ODc0MmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3a2908942be447c0a884af18baab90e5",
+      "statement": "`scripts/verify/delta.sh` enforces pinned ESLint and failing-test baselines before running `bun run scripts/verify/baseline.ts --check`.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/verify/delta.sh#L1-L24",
+          "version": "repo-lines-v1:sha256:bdd49fe50ab0cae6bce69ea0fff47a447b0f4e7a80026214d439eff1c786e884:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkOTVmYzA0YTgwYzk1MmY0OWNlNDE4ODYyN2M1M2IwZmJlOGM0NDA0MWI5NTJkNTkyYWNkMWRlOTk4NjE0NjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViMTRjMTE4ZTc2OWNiNTE3NWJhNzYwNjAwYTM5MDE0YzAxNWI5ZWVjMmJmZGE4MTZlYmVlZmM2YzM2MDhkNmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-15T05:01:30.389Z"
+  }
+}

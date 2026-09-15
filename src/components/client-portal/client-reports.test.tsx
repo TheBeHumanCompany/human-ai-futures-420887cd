@@ -6,15 +6,15 @@ import type { ClientPage } from "@/lib/client-portal/tokens";
 import { ClientReports } from "./client-reports";
 
 /**
- * US-003 — one link per client, many reports in sidebar tabs.
+ * One link per client, every report stacked on the one page.
  *
  * Rendered server-side with `react-dom/server`, which needs no browser and
- * no new test framework: the sidebar/disclosure/tabs tree renders to static
- * markup exactly as the preview build server-renders it before hydration.
- * Tab *clicks* need a browser and are pinned in `e2e/client-portal.spec.ts`;
- * what is pinned here is everything a click depends on: both reports wired
- * to one page, exactly one tab selected, and a collapse toggle that leaves
- * the navigation in the tree.
+ * no new test framework: the stacked tree renders to static markup exactly
+ * as the preview build server-renders it before hydration. There is no tab
+ * state and no sidebar, so nothing here needs a browser: what is pinned is
+ * that every report is present in store order with no navigation chrome.
+ * The lookup layer (which reports resolve) is pinned in `tokens.test.ts`
+ * and the paid append in `paid-reports.test.ts`.
  */
 
 const MARKER_A = "ACME-FIXTURE-MARKER-7f3a91";
@@ -39,55 +39,38 @@ const PAGE: ClientPage = {
   ],
 };
 
-const countOf = (html: string, needle: string) => html.split(needle).length - 1;
-
-describe("first paint selects the first report", () => {
-  test("the first report body renders and the second waits for its tab", () => {
+describe("every report renders stacked in store order", () => {
+  test("both report bodies are present, preliminary before follow-up", () => {
     const html = renderToStaticMarkup(<ClientReports page={PAGE} />);
 
-    // Inactive panels unmount — that is what makes a tab click observable —
-    // so the second marker is absent until its tab is selected.
     expect(html).toContain(MARKER_A);
-    expect(html).not.toContain(MARKER_A2);
-  });
-
-  test("both reports are listed in both navigations with one tab selected", () => {
-    const html = renderToStaticMarkup(<ClientReports page={PAGE} />);
-
-    // The tab bar above the report and the sidebar menu each name both
-    // reports; the selected tab and its panel are the two active states.
-    expect(countOf(html, 'role="tab"')).toBe(2);
-    expect(countOf(html, 'data-sidebar="menu-button"')).toBe(2);
-    expect(countOf(html, 'data-state="active"')).toBe(2);
-  });
-
-  test("the collapse toggle and the report disclosure render", () => {
-    const html = renderToStaticMarkup(<ClientReports page={PAGE} />);
-
-    expect(html).toContain('data-sidebar="trigger"');
-    expect(html).toContain("Reports");
-  });
-});
-
-describe("defaultReportId — the value-to-panel linkage in both directions", () => {
-  test("naming the second report paints its body instead", () => {
-    const html = renderToStaticMarkup(<ClientReports page={PAGE} defaultReportId="follow-up" />);
-
     expect(html).toContain(MARKER_A2);
-    expect(html).not.toContain(MARKER_A);
-    expect(countOf(html, 'data-state="active"')).toBe(2);
+    expect(html.indexOf(MARKER_A)).toBeLessThan(html.indexOf(MARKER_A2));
   });
 
-  test("naming no report falls back to the first", () => {
-    const html = renderToStaticMarkup(<ClientReports page={PAGE} defaultReportId="no-such-report" />);
+  test("each report keeps its heading and section anchor", () => {
+    const html = renderToStaticMarkup(<ClientReports page={PAGE} />);
 
-    expect(html).toContain(MARKER_A);
-    expect(html).not.toContain(MARKER_A2);
+    expect(html).toContain("Preliminary Blueprint");
+    expect(html).toContain("Follow-up Findings");
+    expect(html).toContain('id="report-preliminary"');
+    expect(html).toContain('id="report-follow-up"');
   });
 });
 
-describe("a single-report page renders the same shell with one tab", () => {
-  test("one tab, one sidebar entry, the report painted", () => {
+describe("no navigation chrome", () => {
+  test("no tabs, no sidebar, no collapse toggle", () => {
+    const html = renderToStaticMarkup(<ClientReports page={PAGE} />);
+
+    expect(html).not.toContain('role="tab"');
+    expect(html).not.toContain("data-sidebar");
+    expect(html).not.toContain("Toggle Sidebar");
+    expect(html).not.toContain("Reports");
+  });
+});
+
+describe("a single-report page renders the one report", () => {
+  test("the report body paints with its anchor", () => {
     const single: ClientPage = {
       id: "beacon-health",
       name: "Beacon Health",
@@ -103,9 +86,9 @@ describe("a single-report page renders the same shell with one tab", () => {
     };
     const html = renderToStaticMarkup(<ClientReports page={single} />);
 
-    expect(countOf(html, 'role="tab"')).toBe(1);
-    expect(countOf(html, 'data-sidebar="menu-button"')).toBe(1);
     expect(html).toContain("BEACON-FIXTURE-MARKER-44d2c8");
-    expect(html).toContain('data-sidebar="trigger"');
+    expect(html).toContain('id="report-report"');
+    expect(html).not.toContain('role="tab"');
+    expect(html).not.toContain("data-sidebar");
   });
 });

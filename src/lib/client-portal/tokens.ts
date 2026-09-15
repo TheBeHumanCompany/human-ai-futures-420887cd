@@ -123,17 +123,15 @@ function isClientRecord(value: unknown): value is ClientRecord {
 }
 
 /**
- * The reports for one client's page, in sidebar order (US-003).
+ * The reports for one client's page, in store order (US-003).
  *
  * A record carrying a usable `reports` list renders it directly. Anything
  * else — absent, empty, or holding an entry the store could not have meant
- * as a tab — falls back to the legacy single report, so the page still
+ * as a report — falls back to the legacy single report, so the page still
  * renders exactly what it did before multi-report pages existed.
  *
- * Tab values must be unique: two tabs sharing a value activate together,
- * which reads as navigation working while showing both reports at once.
- * A list with a repeated id is therefore unusable as tabs and falls back
- * the same way.
+ * Report ids must be unique: they anchor each report's section, so a list
+ * with a repeated id is unusable and falls back the same way.
  */
 export function reportsOf(record: ClientRecord): ClientReport[] {
   const reports = record.reports;
@@ -174,18 +172,21 @@ async function readClientStore(): Promise<ClientRecord[]> {
 }
 
 /**
- * The Stripe-released paid tab (US-011), or nothing.
+ * The Stripe-released paid report (US-011), or nothing.
  *
  * Rendered only when the paid-reports row exists with unlocked=true AND a
  * non-empty staged title and html: payment-before-staging and
- * staging-before-payment both resolve to no new tab, never to a
+ * staging-before-payment both resolve to no new report, never to a
  * half-rendered one. A hand-published store report with id `paid` (the US-007
  * manual path) wins over this row — deliberate operator content in git beats
- * the automated gate, and two tabs must never share the `paid` value.
+ * the automated gate, and two reports must never share the `paid` value.
  */
 export const PAID_REPORT_ID = "paid";
 
-function stripePaidTab(match: ClientRecord, paid: SupabasePaidReport | null): ClientReport | null {
+function stripePaidReport(
+  match: ClientRecord,
+  paid: SupabasePaidReport | null,
+): ClientReport | null {
   if (!paid || !paid.unlocked || !paid.title || !paid.html) return null;
   if (reportsOf(match).some((report) => report.id === PAID_REPORT_ID)) return null;
   return { id: PAID_REPORT_ID, title: paid.title, html: paid.html };
@@ -193,8 +194,8 @@ function stripePaidTab(match: ClientRecord, paid: SupabasePaidReport | null): Cl
 
 function toClientPage(match: ClientRecord, paid: SupabasePaidReport | null = null): ClientPage {
   const reports = [...reportsOf(match)];
-  const tab = stripePaidTab(match, paid);
-  if (tab) reports.push(tab);
+  const paidReport = stripePaidReport(match, paid);
+  if (paidReport) reports.push(paidReport);
   return {
     id: match.id,
     name: match.name,

@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:8ea90bb4feab701d5508f6d39acc65ccfaccbdd25bedbb66ed831654f15e188f",
+  "claims": [
+    {
+      "id": "claim_1c5525d7014246099c3ccac56ca69284",
+      "statement": "The Podbean integration is the catalogue ingestion layer that feeds the podcast listing, per-episode pages, and Studio sync planning from the public RSS feed rather than authenticated Podbean APIs.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podbean/feed.ts#L6-L23",
+          "version": "repo-lines-v1:sha256:898fd74a2c63afe030e56018647e39ca7600989da05723df1b151fa92e706c9d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5MzNlM2QxYjM4NmE0MDQ1ZTkwZDdiMmJmYTVlYzdmZTBjNzc3ZWZiNTBjMzdiNDZmYWFmNjUyNWE1YjZmZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1ODdiMDU3YmI5ZjgzM2UzOWZiMjBiM2E2YTU0NWI5MzhkM2E1MjQyYzc4Mjg0YTEyM2I2YTMwOWJkNzVkYTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI1YTk4MWMzYjhkNDc5N2RiY2M0MGU3YWNlMWYyOTcxYmRjOWYwZDBkM2YwZTY1MzI4ZDMwMmVhN2JjYjIwYmUifQ"
+        },
+        {
+          "resource": "repo://src/lib/podbean/index.ts#L1-L29",
+          "version": "repo-lines-v1:sha256:d894216152bb171bf4b4dbb3102da6027d25afe91c974653fb7e0690191190c7:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3ODFjZGZjYWU2ODA2ZWFjZDRhN2U2ZjMzMTg0NmRjNGZmYzA1NjE2ODljNDcwMjVjMmJjMDQ5YjEyNWNlODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast.tsx#L9-L17",
+          "version": "repo-lines-v1:sha256:6907376a9d49ae39a1a255d347e47a6e4d036473edf844257b5c9868b4a73360:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGUxYzhlYjljMzAzODMwZmM3YTI2NDc1ODc0YzhjZjNkMDhkZjhjMTEzOWVjNWI2MzA2ZDFjNjc3ZTA0NDQ4OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTEwNjYzZWY0YmQ1NGQ4MjJmZGViY2FlNTcxMmZkZmM0ZjRkODcwZGZhZTdkZGFkMmRlMTAwMWM0ZDI2MGJhMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmRjNjljMGM1NjhjNmE4N2I1MWVjZmQ5YWNjNjdiM2Y1NDIxMzlkOWIwOGViMTEwZmVmODY3Y2I2NTAyYzI0MyJ9"
+        },
+        {
+          "resource": "repo://src/routes/podcast_.%24slug.tsx#L21-L46",
+          "version": "repo-lines-v1:sha256:3949fac8ef126612ff3fe5d4b85988e75cfb537db1d7a67ed0dfe73010496675:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiNTI3NjQ2YjQ3MmZmMWYzODMyOTJkMmVjMmQ2NDY1NDQzZGU0NzVkZjc0OTU0OGRmYTFiMWY0YTU4ODY2NTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmNDAyZDYzYWM1MTE0YmFlYmNiNTc2NjM4ZjgwOTlmYjNiMjhhNTliYmE5N2MwM2I0MzY3M2MzNmM1MzJhOWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bdf3fed9daf544cea7b53e604c6e03e1",
+      "statement": "`loadEpisodes()` fetches the public feed with an XML-oriented Accept header and an 8 second timeout, parses it, caches the last good result for 15 minutes, and serves stale cached episodes on fetch, HTTP, or parse failure instead of throwing.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podbean/feed.ts#L25-L103",
+          "version": "repo-lines-v1:sha256:21fc939113a2437b4d9460783258eb092223f9fa4f6d8eb7f3b0a5b9ed269112:eyJzZWxlY3RlZExpbmVDb3VudCI6NzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5YjI1Yzc3OGM2MzJlNTI0OGIwODBlZjA4ZWFlN2FjMDZlYTI3OTFiZDgzNjc1ZTMzMjEzNDNhY2ZmNTA2OTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFlNDdiMzk2MGViZDgwMTk1ZGIxNWRmODIwOTUyMmQyNzVlMmE1MzE4NDMxOTkxMGUxZWNlMDg1NWU4ZGMzMmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYwMWIzNTVhZGExOTJjZGYwMGE2YzA1N2EwYzYyYWY4NDg2ZjBlM2VmNmY3YTc4MjI4YmNhZTY4MTQ3YWI3NWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4026f1b161434a2787bba97258f8adff",
+      "statement": "`getEpisodes` is a server function that keeps feed fetching and XML parsing on the server and returns browsable listing items to routes.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podbean/feed.ts#L105-L110",
+          "version": "repo-lines-v1:sha256:25f6cb67695cf611b6c51cedd36f7bd239fe8ee2c1a2e571c44c914d2db3401b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTBhM2YyMDc3MTYzN2RkNjY2Mjg0YmVjMDIxOTkxMTE1NDBhYzBlZTBlY2FmYWYwM2UyMGVlZjZlNzA3OWM2NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDMzNzhhM2QxY2E0MTMwOTE3ZWM4MzQ0MzNjMjMzMTIyYzA4MGU0MTk1OGMwMzg3ZGFhYjM3ZDRlYzIwMmYzZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDk5NjdlYzFlZDM4MzZmOGViMTdhZmYxNzJiNWJmZWY3ZGU2MDQ4NWE0MzljNmNhMTFjNTkxZTE3NTU3MzlhZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_88e3a2871fb34de59158c16f08ec7495",
+      "statement": "The feed parser converts third-party RSS into display-safe episode data by decoding entities, stripping markup, excerpting show notes, extracting guests when possible, formatting durations, and selecting featured episodes.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podbean/parse.ts#L246-L260",
+          "version": "repo-lines-v1:sha256:7e947e3671ae644eaaae5eceb6e61d7e23c84a734074181a12a6d7b017dea0d1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwOTAwNTRlYmI4ZDI1YjQ4MzIwY2FmYWVmMjQ4NTFmNjBhODU3YWJmYTdhZDU0NjE2OGVhNGIzOTdjYmY3ODUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFjZWM2ZTVhNGM5ZGY5MWJmZGIxOTJhMzI3MzVkMDgwNmJlNzYxNTYyM2JlY2JlN2M0M2U3NDgyNjNkYzQ0NGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhOTdlMzRiNzJlNDBmNmU5ZDQ4OWM3YzI0Yjg0YmE2N2M2OTQ3YTc3YTYxZjdjYzc0ZGI3YmVjMDE1ZDUyZWMifQ"
+        },
+        {
+          "resource": "repo://src/lib/podbean/parse.ts#L37-L118",
+          "version": "repo-lines-v1:sha256:22249a6a10f85eca92f1a4a25db7a1329fd869e07fd7242dc283964bef6203eb:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxNjUzNzA5ZDM5NWY2MDJmZDIxZGZhNWY2NTIxYjQ0YzFmMTRlN2Y1NWZmNjBmOTczYWYyZWVkMzZmYzZlMDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRjNGQ1Njk3MDJiNzhlYWRlYTIwZmI4ZmJiMjA1ODBiYTYxNTNmZDQ0M2FmNDkyN2E0ZWU0OGY1YjEzNTA4ZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIzNGRjMGQwNWY1NDIxMzA3NDFhNjA0YmJmOGI3NWY0YjkwMDk4Y2Q3MTcwNzk4OWU3M2I4YmZjMjEwMWVhZWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a36d777f5f2f424997b17657793049a5",
+      "statement": "The parser is defensive: malformed or out-of-range entities, missing required fields, and non-plain-second durations are rejected or skipped so one bad item does not take down the whole catalogue.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podbean/parse.test.ts#L241-L260",
+          "version": "repo-lines-v1:sha256:422d0e4bc45843a693472ba6a3e772fe4f18d6ea71be75c7e5840b7fe0048fe1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzYWI5NzUxYTlhNzBmNWQ5OTJmMDYxZGJiZWY4YWZmMjBhYzg3N2I1MzdkNWRjZGM5NjJkYzllZmIxNGNkOTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0ZGI4NjRkNGUyZGQ0ZmM3Nzg2YTMxYWVjYmE3ODk4NmIyMDhjODRiY2I0Zjg3NDg2OTZhNzg0YzhjNzMyMzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlhMTFmZTBmODkwMmE3OTQxNmY4NjA5OTNjYzVjMDZmNjRmMzk0NmFiYzhkNzM0YWJmZjA0NzVhOTk0NWU5ZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3MmM0NDJlOWM0MWUxODZjMTI2MDhjMWQyZjA2YTViYzI2YzdhZTk1ODBjY2MyZDUyOWQ4YjNkNDhkNDE0NjIifQ"
+        },
+        {
+          "resource": "repo://src/lib/podbean/parse.ts#L23-L49",
+          "version": "repo-lines-v1:sha256:c61245d3c2fc12b612ff4df2b3b0d1965dd52ae12f56af0df4305b4ac82d1cd3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQyNTViODZjMzUzZDc1NzRmNWQyM2ZjYzExMTZhYzI5YjRmZjgwZTI1NmE4NmE4MzA4M2M1NjY4ODdlNTkwZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk1OGFjZmNiMDcxYjRlMjFkMzg2YjY0NGI1MDA3NDNkZTE2MDg5ZDY3NWFjMGMyMzYwZjBhZDc4MGM5MjlmYjMifQ"
+        },
+        {
+          "resource": "repo://src/lib/podbean/parse.ts#L246-L260",
+          "version": "repo-lines-v1:sha256:7e947e3671ae644eaaae5eceb6e61d7e23c84a734074181a12a6d7b017dea0d1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwOTAwNTRlYmI4ZDI1YjQ4MzIwY2FmYWVmMjQ4NTFmNjBhODU3YWJmYTdhZDU0NjE2OGVhNGIzOTdjYmY3ODUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFjZWM2ZTVhNGM5ZGY5MWJmZGIxOTJhMzI3MzVkMDgwNmJlNzYxNTYyM2JlY2JlN2M0M2U3NDgyNjNkYzQ0NGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhOTdlMzRiNzJlNDBmNmU5ZDQ4OWM3YzI0Yjg0YmE2N2M2OTQ3YTc3YTYxZjdjYzc0ZGI3YmVjMDE1ZDUyZWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3e328a0e11c74b029f1bbadb83a0203e",
+      "statement": "The browse model is intentionally small and client-side: it supports search, duration buckets, and sort order, applies AND semantics across search terms, matches accent-insensitively across title, guest, excerpt, and episode number, and never mutates the input array.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podbean/filter.ts#L13-L35",
+          "version": "repo-lines-v1:sha256:6fefa49712a957524f896da8a637c24720cee0cd5ebf611c9350e76c8cd617cc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMTA1ZDM0MDkzNWZhZWM2ODA3NDRlODAwZjc4NDEyMTRiMTQ5YmY4YThiZGM0NTg4OWIzNmFiYjA5YjVmN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlkYjQ0MjQ5M2QwZDY2MjVhMDE0MjBkZjdkNGQyNzRmZmQ3ZjQ2ZWFiNTNjZjEzNGUzYjRlYTYxYjcxNjY3YTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3ODE5ZDIwMGJkMjhlMWRmOGYzY2VkNjYyZThmMjAwN2JhNThhYmIzMDAwOTdlYmZkN2M1NjQ5NTliOTRlYWYifQ"
+        },
+        {
+          "resource": "repo://src/lib/podbean/filter.ts#L59-L126",
+          "version": "repo-lines-v1:sha256:321b6957cbc3f43bf780d07f116cb3c0250c8b95e1f3fa40cd0e0eed7e6ad80d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlZTcyNzFiN2NlYTNmYThlNzdiN2U1YTQ5OWIyMWI0M2QwYzFmYTNlNDQ2NWQ2NTA1NWExMDJjMGY0ZWY2MjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU5ZGU4ZWU2NGM4ZTcxN2NmNWFhY2MwNDZlZWMyZGMzNTcwYjQ5MzFjMGJmZGQ1NDY3YTBjZDFlZjRmZjY0NzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ef4a12850299428cb632836f7cb2f531",
+      "statement": "`browseEpisodes()` is used by the podcast catalogue route to filter already-loaded episodes in memory, which keeps search responsive and avoids a network round-trip per keystroke.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/podcast.tsx#L61-L83",
+          "version": "repo-lines-v1:sha256:a50dcac38c5a36f5bea6b19812ffc58d0d2a8653be88fe22199fc3476b19bdf2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyZTBiMTI2ZGFjNTNkYjlhMWEwNjM2YThjNTFiMWMzODdjZGY2NTZlMDY2NjhlMDYwZTM0NTg1NTAzNWZiM2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcwMGEzN2M0MTRjYjQ2OWJhNWZkNTNlNzE5NTk3YmI0MGJmM2IyMWM3OWExMzk5ZWQxYWE5Yjk0Y2JkNDg5NDkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwYjNiNTBiNjVkMDkwYjYwMzM2NDI3Yjc5NTk4NGZmNDJmYTc0YTJjNGUyOGQxNzNhNThkNmJjOWI1OTFlYTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiYmZkMGMwZjdlMDJhMmVlNjI5ZTBlNzNhN2I5ODJlZjY5Y2VjYTZjMjM0Y2YzMDg0M2EyOWI5YjAxZjA1YjQifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast.tsx#L66-L75",
+          "version": "repo-lines-v1:sha256:50dcd3b2964f9e4f5fe79030067f53840894059edc42ae7c62873264698e7ce5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4NzY4YTMzZTAwNmM3ODUwYjc3ODJkYTI5Mzg1ZThiNmJlMmUzZWM4YmVmMDE0MzIzMzE4YWIxMzdjNjA5NDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNmZjQ0MjhkMzU0YjZhMGI2OGFhNzM5NTE1NzYwYjQzMGIyYWMyMmUyMTk3ZjcxZTAwYzI3YzQ2OTQ0OTIzNWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIxMWI4ODg3ODlkNDNjMWE3YmNlNTZmMWNmMTA1OTQ1ZGNlZTllYTFkZmQxZmExZWE1MjlkZjUzNjM0ZWZjNzYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_dd55263631ec4164a7fd7c61d6a0fd8d",
+      "statement": "The `/podcast` route renders the catalogue when content loads successfully, shows a branded degraded component on loader error, and emits degraded response headers only for genuine errors.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/podcast.tsx#L112-L170",
+          "version": "repo-lines-v1:sha256:b3f63132901ef80df09bb9e4cf12f6354211f4bb676a891a1d94b670facdbb0e:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3MjE2ZThlOWMwYTFhNjhkMDZjMmZiYWE1ZmQyMTM5NDgyYjhlZmQwYTE5MzE1YjkxNWU2Y2NlODQ5ZDg5ZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjNTkyYThiNjE0YzZlMzA3MzUxZDhjYmFhMjc5YmNjYmU2MWNkM2I3NjgyY2Y2NTE0Yzc4NDAxYTY0ZWMyNjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdjMjlmNTliOTRjYTRlYmU2YTI3OGZhM2E3ZDY4MDM0MDU4YWQ3ZDRiZWQxOTVlZDIzNmQ2NzlhMTY3NDA2ZGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2YjhiNWFlYmI1MTE3NjQyOWUzNjM5YzlkOWU3N2Y1ZGQ4MWNiY2FkZDVkNTg5MmFkNGE0ZWJjMzRmMWQ1YzcifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast.tsx#L24-L40",
+          "version": "repo-lines-v1:sha256:314b7a355345a0dee40188d31af1d3102ca6238fb7433c3c952435aba28e0f28:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4ODVlNzdkYmM0NGEwNGU2OWE3MzQ0NjMzZDI0NGNiNThjYjZjOGY2NjU1N2ZjM2ExNjM1NTAyZTYwYTg4MGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhNzE1NWUyNzAxNjNiYzhiNDFkZTQ0Y2VkMzJlNzMyZjVkYzgwMjhhMzVjNjFjNTE0YWUwODhiOTZlOTQyNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhMzQ0MjE3ZDg2NjVhNWNhNWRkMTY4ZmU3OGNkOGY5MGJkNjZhYmRiOWY3Njk4NTllYjVlNDk4ZWI1YjliNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3YjhhZjM0NGRhOWM0YjUzMzUzNjcyNTI3NTllYWM4M2FhNWVjZWRmYzk4MGRlMDUyYzdlYTU5ZDk1MzVlNjEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a1af32ed2e5240e38e6c86fb67e44057",
+      "statement": "The catalogue route preserves an empty-state message for a loaded-but-empty episode list and a separate no-results state when filters eliminate all episodes.",
+      "evidence": [
+        {
+          "resource": "repo://src/routes/podcast.tsx#L148-L170",
+          "version": "repo-lines-v1:sha256:f4395d2819096faf674edb4d7bf608197bc93afa6c025a69e17716893326cdf2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0NzdlZDkxNDgxMTM0NzllNjQyYzg3ZGI2NzdkMzdlN2ViZDUzNGQyZDEwN2I1NGIwYzk5NGY2MzhkNTVkNTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjNTkyYThiNjE0YzZlMzA3MzUxZDhjYmFhMjc5YmNjYmU2MWNkM2I3NjgyY2Y2NTE0Yzc4NDAxYTY0ZWMyNjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjllODRiMTVlN2VjNjU0MzI5YWVjNGFkZDMxMGUzMzY1N2VhZWM0ODQ0MDRhYWU5NTY3NmM1MjYxNTdhNjhmMmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2YjhiNWFlYmI1MTE3NjQyOWUzNjM5YzlkOWU3N2Y1ZGQ4MWNiY2FkZDVkNTg5MmFkNGE0ZWJjMzRmMWQ1YzcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0296748cce3248129264636fa97533a3",
+      "statement": "The per-episode route distinguishes found, not found, and unreachable states: it throws `notFound()` for a missing slug, preserves degraded outage handling for thrown loader errors, and uses `match.status` to avoid collapsing 404s into outages.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podcast/outage.ts#L3-L49",
+          "version": "repo-lines-v1:sha256:b893a7684d0c261bc7d83c497d18731f2edf958ce1ae0221ba7b49b2b6842372:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNkZTVlODljYTgzZmFhODgyOWZiN2EyNTdhMDg4ZDFlM2U3YzcxYmE0ZTBiNTZhZjhlZTJkNzYwMDJjMTFkMWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast_.%24slug.tsx#L30-L46",
+          "version": "repo-lines-v1:sha256:94c31b25e083c0a11c9a799018b9e92b24142d7282634e92428d57538cb52509:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkZDQ2NDA0NjkwYzk2OTMzYzEzY2JkMDcyOWY3YTY3ODU0MDI3OTNlZTYwZjUwZWI4MGVjMGJhMzMwYmEzZjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI4NjYzMjJiM2U0Njk0OTQ4MWYzM2MwN2YyNGRmZjJjNmVmNWIxOWEwNWZmNTNjODZiMmQ1NmVkMjI4ODYzZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmNDAyZDYzYWM1MTE0YmFlYmNiNTc2NjM4ZjgwOTlmYjNiMjhhNTliYmE5N2MwM2I0MzY3M2MzNmM1MzJhOWIifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast_.%24slug.tsx#L53-L84",
+          "version": "repo-lines-v1:sha256:10d6b87c6fca99cd15e019d7b4b0839bdb935dc967296abd88bbdef190f0c7bf:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzNjI1MGRjZGE4YzlkNTViODFiMzMxY2ZhMDYxMGM1NWM5MzRmNzE5ZGI4NjZmN2Y5Y2M4YzFhMDgzZmM1NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmN2M4ZWE3NDAwNmMzNzM4OTY2M2YyMzMxNWJkYmRlMWE5MjE3NTdmODQ1MjI0Y2NlNWFmMDgzZDg2NzhjMzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBkMTUxOWRmNmZkOGUxNGY2Y2EwNjQ2MmJkNDVmY2E0Y2JhYjA1ZDYyNmYwZWZiYjhlZjUyZmNiYTBkYjUxMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiMDdiNDU4NDU3Njg3MzExMjMwYjY4MjIwZTVkNTExMmNmNTVmMmE1MDJkM2QxMmFjMjhiMmU4ODM4NzUyZTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5539b8fbb8fe47c681930f0d4491df87",
+      "statement": "`isSanityUnreachable()` classifies a `SanityHttpError` or a serialized error with `reason: \"upstream\"` as an outage, but explicitly does not classify the router's `notFound()` value as unreachable.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podcast/outage.test.ts#L23-L70",
+          "version": "repo-lines-v1:sha256:39038f89010f7440d9353e2806892ce242bd3db6cde795c43bf65ec50bf67a5e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlYzM2ZWRmNjQ0YTRiN2EwY2ExYmQ0NDNjYmE5ZmM5YjJkODZlOGQwYjU0MjdjZDUyNGZmOWJiMDc4YjNlYTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVlOGNlNzg1YTVhNDQ4YmM2MTEzMTZiMDA2N2JmYjJmNzRkZDI2NGFmYmY0YmI2MTE3YzkxOGNiYzk1MTI5ZjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY3OTk3YWE2YTBiNjRjMjY5ZmM4NTMzZjhmYzFjZDhiMTY5N2FiYjU0YzEzMjIwM2NhZjc4NTc2NTg4MDdlODQifQ"
+        },
+        {
+          "resource": "repo://src/lib/podcast/outage.ts#L23-L49",
+          "version": "repo-lines-v1:sha256:4daec028cb424cd1313c59a6a4954927cd20ae356320ffe89aa7ba76670052c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYyZTYyOTdkN2UxMDE5NDhkNjM0MjJhOGZmYThkNTNlZmU2NmI3ZDQ1YzVkMWQ1N2E2OTg4YWFkZmJmMzRmYzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b44eb47bd3f24492bbc8539e023ccd90",
+      "statement": "The episode route only marks genuine outages as degraded in response headers, while a real 404 stays a 404 and is not promoted to a transient failure.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podcast/outage.ts#L23-L49",
+          "version": "repo-lines-v1:sha256:4daec028cb424cd1313c59a6a4954927cd20ae356320ffe89aa7ba76670052c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYyZTYyOTdkN2UxMDE5NDhkNjM0MjJhOGZmYThkNTNlZmU2NmI3ZDQ1YzVkMWQ1N2E2OTg4YWFkZmJmMzRmYzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/routes/podcast_.%24slug.tsx#L71-L84",
+          "version": "repo-lines-v1:sha256:bd4d99619d5ae5a0e19b8b2cedce2caa804b109183d8ffc9fce89650f8d14641:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmN2M4ZWE3NDAwNmMzNzM4OTY2M2YyMzMxNWJkYmRlMWE5MjE3NTdmODQ1MjI0Y2NlNWFmMDgzZDg2NzhjMzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRjMmU4NzMxNGYzODFhNTg5YjU4NGU4ZDUzYjdkZjIzOWVhYTUwNWNjZDM1Zjc2ZGIxYzMzY2Q0MTM0ODRhZjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiMDdiNDU4NDU3Njg3MzExMjMwYjY4MjIwZTVkNTExMmNmNTVmMmE1MDJkM2QxMmFjMjhiMmU4ODM4NzUyZTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_dffbcf4fc9604f6b8f62e36d91cb6039",
+      "statement": "`planSyncDrafts()` builds Studio draft-creation plans from feed episodes and existing Sanity ids by probing both the published id and the draft id for each guid, skipping already-seen episodes, and refusing collisions where two guids sanitise to the same document id.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podcast/sync.test.ts#L124-L260",
+          "version": "repo-lines-v1:sha256:791e8fd93bf85401baaab5cc227365e059febed075350045d58aac92f6d5be53:eyJzZWxlY3RlZExpbmVDb3VudCI6MTM3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI5ZGEwN2Q1MzY3MjJlNTI0ODhmYTMwMTZhMGY4YWQ5ZjdkZDg4NGZmN2ExMmEwYjBmYjMxMzE5MDRhYmU3ODQ1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyY2RlYjJhZWQ3YmM5MTJmY2VkYzdmMjNhM2M5MDcwZTBmOTdhOGQ0ZmY4MjgyMjE3NDE0MmU0ZjFkNzQ3NGY2IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlYzY4MDA5N2NkM2QyZjVkZTQ2OWQ1ZjRjODRkZTBlZGFjZWRlNWE2YTNkNGRhODdkZDI2OTFhMWJjZGMxMWVkIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJjMjIyZWNlNjUzNTkxZDI5YjIxMzllZGFkZWQwNzNmODdjNWJhZDcxODBmZjFjYzBhYWJhOGVmMzQ4ZTQxNTJiIn0"
+        },
+        {
+          "resource": "repo://src/lib/podcast/sync.ts#L154-L245",
+          "version": "repo-lines-v1:sha256:dc2166406f7340df64135aca4975380f6b8126392f954ce441ad65081e1c6db4:eyJzZWxlY3RlZExpbmVDb3VudCI6OTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiYjM1ZTVhODkxMjc0NGEzZWQ1OGI3MTg3NjVkZjc0ZTJkNmZmYWYzNzIxMjQxMjIxOGFjOTNjMWFlYWE0MTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ4MzNjMDNhOGI1OTE2NmFhMTliNzI2OTYwMWRhODQ1MGUwODdiMjVhMzM0YTEyNjlmYTQ1MTVlZmJjMWEzYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1db741e191ff486d99f12b82a77fd026",
+      "statement": "The Studio sync plan stamps new drafts with `STUDIO_SYNC_SEEDED_BY`, keeps slug generation out of the draft payload, and reuses the same feed-derived field set as the backfill seed document shape.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podcast/sync.test.ts#L144-L198",
+          "version": "repo-lines-v1:sha256:04d122202dbb1b9f8f2549cad86008c71f67712ed8ad8a410378039fa6221bd1:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY5MzY0N2UyZWQwYjZiMDAwZDNmNWI2MGZkMGM5MjJhYmU4NjE1NGU2ODIyN2M0ZmRlNjMzMWExMjljMjM1OGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwYjc2NzdjN2U2NGE4MDMyZmQ5YWEzYzBlYzAxYmRlNTJiNWE3NGFkN2NlYjlkZmJiOTcyOWI0NTg2NDI3NmIifQ"
+        },
+        {
+          "resource": "repo://src/lib/podcast/sync.ts#L116-L152",
+          "version": "repo-lines-v1:sha256:7bfe2d37aa1b39c701eb2c3c8cfd2355923ed3a490b50ab451330354fd4e2fab:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBhMzBhNmQ5MDU4ZjcxOGRlYWJlYjY2MWVlMWZiNmZmN2JhZDYzZjUxNWFkMGEyY2FmODRlYTNhODYxMGZmN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3NjViZGRjNDRhNDA5NDVlZjdiNjFkYzg3MTVlNmExNWU1MzRiYzhjZGYyNzVmZGU1Yjg3OGRlMWFmZjFiMGIifQ"
+        },
+        {
+          "resource": "repo://src/lib/podcast/sync.ts#L237-L245",
+          "version": "repo-lines-v1:sha256:91dabd9c2b96386aeac04294215d08b6867c6ed8b84cf694c42c2e4e3d49172b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjI0ODg5NGEyNWViOWNmNjkzN2M1MjBkOWEyYTJhZGFiOTBjNzhkMTNiN2VmNjUwZDZiMGFjYmQ5MzBjYmE2OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmJiMzVlNWE4OTEyNzQ0YTNlZDU4YjcxODc2NWRmNzRlMmQ2ZmZhZjM3MjEyNDEyMjE4YWM5M2MxYWVhYTQxMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzdmN2M2ZjFhMWMwY2M5ZTJmYjQ4NjNiY2EwMTJlMzBmZjI2MzA5Zjk1NmEzZDVjMjAzMTEwOWM5YjE0MmRlMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2901577336274c7fbbd8ea224c2d72f7",
+      "statement": "The feed integration intentionally lives in library modules imported by routes rather than in the route files themselves, so route regeneration can at worst break an import instead of silently deleting ingestion logic.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/podbean/index.ts#L1-L29",
+          "version": "repo-lines-v1:sha256:d894216152bb171bf4b4dbb3102da6027d25afe91c974653fb7e0690191190c7:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3ODFjZGZjYWU2ODA2ZWFjZDRhN2U2ZjMzMTg0NmRjNGZmYzA1NjE2ODljNDcwMjVjMmJjMDQ5YjEyNWNlODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-15T05:01:30.389Z"
+  }
+}
