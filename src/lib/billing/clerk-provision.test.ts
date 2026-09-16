@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, spyOn, test } from "bun:test";
 
 import {
   CLERK_SECRET_KEY_ENV,
@@ -6,6 +6,9 @@ import {
   provisionClerkUserForEmail,
 } from "./clerk-provision";
 
+// allow: SIZE_OK — one test file per module is this repo's convention and the
+// todo pins both instance-shape suites here; splitting would orphan the shared
+// recorder/reply fixtures.
 /**
  * Clerk provisioning (US-009), pinned without Clerk.
  *
@@ -107,6 +110,114 @@ describe("provisionClerkUserForEmail", () => {
     });
     expect(result).toEqual({ clerkUserId: "user_raced" });
     expect(requests).toHaveLength(3);
+  });
+
+  test("a password-required instance retries the create once with a throwaway password", async () => {
+    const logged: string[] = [];
+    const errSpy = spyOn(console, "error").mockImplementation((...parts: unknown[]) => {
+      logged.push(parts.map(String).join(" "));
+    });
+    try {
+      let creates = 0;
+      const { requests, impl } = recorder((url) => {
+        if (url.includes("/v1/invitations")) return reply(201, { id: "inv_pwr" });
+        if (url.includes("email_address")) return reply(200, { data: [] });
+        creates += 1;
+        if (creates === 1) {
+          return reply(422, {
+            errors: [{ code: "form_data_missing", meta: { param_name: "password" } }],
+          });
+        }
+        return reply(201, { id: "user_pwr" });
+      });
+      const result = await provisionClerkUserForEmail({
+        email: "pwr@acme.example",
+        clerkSecretKey: "sk_test_x",
+        fetchImpl: impl,
+      });
+      expect(result).toEqual({ clerkUserId: "user_pwr" });
+      expect(requests).toHaveLength(4);
+
+      const firstBody = JSON.parse(requests[1].init!.body as string);
+      expect(firstBody.skip_password_required).toBe(true);
+
+      const retryBody = JSON.parse(requests[2].init!.body as string);
+      expect(retryBody.skip_password_required).toBeUndefined();
+      const password = retryBody.password as string;
+      expect(typeof password).toBe("string");
+      expect(password.length).toBeGreaterThanOrEqual(24);
+
+      // The throwaway secret never leaks into the answer or the logs.
+      expect(JSON.stringify(result)).not.toContain(password);
+      expect(logged.join("\n")).not.toContain(password);
+    } finally {
+      errSpy.mockRestore();
+    }
+  });
+
+  test("the password retry is bounded to one attempt", async () => {
+    let creates = 0;
+    const { requests, impl } = recorder((url) => {
+      if (url.includes("email_address")) return reply(200, { data: [] });
+      creates += 1;
+      if (creates === 1) {
+        return reply(422, {
+          errors: [{ code: "form_data_missing", meta: { param_name: "password" } }],
+        });
+      }
+      return reply(500, {});
+    });
+    expect(
+      await provisionClerkUserForEmail({
+        email: "bound@acme.example",
+        clerkSecretKey: "sk_test_x",
+        fetchImpl: impl,
+      }),
+    ).toBeNull();
+    expect(creates).toBe(2);
+    expect(requests).toHaveLength(3);
+  });
+
+  test("a form_data_missing 422 naming another param does not retry", async () => {
+    const { requests, impl } = recorder((url) => {
+      if (url.includes("email_address")) return reply(200, { data: [] });
+      return reply(422, {
+        errors: [{ code: "form_data_missing", meta: { param_name: "username" } }],
+      });
+    });
+    expect(
+      await provisionClerkUserForEmail({
+        email: "other@acme.example",
+        clerkSecretKey: "sk_test_x",
+        fetchImpl: impl,
+      }),
+    ).toBeNull();
+    expect(requests).toHaveLength(2);
+  });
+
+  test("an identifier_taken password retry still falls back to the list read", async () => {
+    let listCalls = 0;
+    let creates = 0;
+    const { requests, impl } = recorder((url) => {
+      if (url.includes("email_address")) {
+        listCalls += 1;
+        return reply(200, { data: listCalls === 1 ? [] : [{ id: "user_pwr_raced" }] });
+      }
+      creates += 1;
+      if (creates === 1) {
+        return reply(422, {
+          errors: [{ code: "form_data_missing", meta: { param_name: "password" } }],
+        });
+      }
+      return reply(422, { errors: [{ code: "identifier_taken", message: "taken" }] });
+    });
+    const result = await provisionClerkUserForEmail({
+      email: "pwrraced@acme.example",
+      clerkSecretKey: "sk_test_x",
+      fetchImpl: impl,
+    });
+    expect(result).toEqual({ clerkUserId: "user_pwr_raced" });
+    expect(requests).toHaveLength(4);
   });
 
   test("a create rejected for another reason answers null", async () => {

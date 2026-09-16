@@ -11,7 +11,8 @@
  *
  * Plain `fetch` against the Clerk Backend API (no SDK), mirroring the
  * Resend/Stripe/PostgREST transports: status-only logging, injectable
- * `fetchImpl`, WebCrypto-free (Workers-safe by construction).
+ * `fetchImpl`, Workers-safe (the only crypto use is the synchronous
+ * `crypto.getRandomValues`).
  *
  * Server-side only: this module names CLERK_SECRET_KEY and is loaded
  * through a dynamic `import()` inside the webhook router, exactly like
@@ -90,17 +91,17 @@ function authHeaders(secret: string): Record<string, string> {
   };
 }
 
+/** `id` of a create response, or `null`. */
+function userIdOf(body: unknown): string | null {
+  const id = (body as Record<string, unknown> | null)?.id;
+  return typeof id === "string" && id.length > 0 ? id : null;
+}
+
 /** First `data[].id` of a list response, or `null`. */
 function firstUserId(body: unknown): string | null {
   const data = (body as Record<string, unknown> | null)?.data;
   if (!Array.isArray(data) || data.length === 0) return null;
   const id = (data[0] as Record<string, unknown> | null)?.id;
-  return typeof id === "string" && id.length > 0 ? id : null;
-}
-
-/** `id` of a create response, or `null`. */
-function userIdOf(body: unknown): string | null {
-  const id = (body as Record<string, unknown> | null)?.id;
   return typeof id === "string" && id.length > 0 ? id : null;
 }
 
@@ -114,6 +115,38 @@ function isIdentifierTaken(body: unknown): boolean {
       error !== null &&
       (error as Record<string, unknown>).code === "identifier_taken",
   );
+}
+
+/**
+ * A create rejected because the instance requires a password credential:
+ * 422 `form_data_missing` naming the `password` param specifically — never
+ * a blanket 422 catch (identifier-taken races own their own 422).
+ */
+function isPasswordRequired(body: unknown): boolean {
+  const errors = (body as Record<string, unknown> | null)?.errors;
+  if (!Array.isArray(errors)) return false;
+  return errors.some(
+    (error) =>
+      typeof error === "object" &&
+      error !== null &&
+      (error as Record<string, unknown>).code === "form_data_missing" &&
+      ((error as Record<string, unknown>).meta as Record<string, unknown> | undefined)
+        ?.param_name === "password",
+  );
+}
+
+/**
+ * 24 random bytes as base64url (32 chars) for the password-required retry.
+ * Per-call, single-use: provisioning only needs the user to EXIST — the
+ * payer completes access via the invitation's email code or password reset.
+ * The value is never logged, returned, or persisted anywhere.
+ */
+function generateThrowawayPassword(): string {
+  const bytes = new Uint8Array(24);
+  crypto.getRandomValues(bytes);
+  let binary = "";
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
 }
 
 async function findUserIdByEmail(
@@ -138,14 +171,18 @@ async function findUserIdByEmail(
  * does not exist yet.
  *
  * GET-first: a replay or an already-invited address costs one read and
- * mutates nothing. Creation is passwordless (`skip_password_required`) —
- * the email is Stripe-verified, and the follow-up invitation is the
- * client's guided path to credentials; both skip flags keep the create
- * from bouncing off instance requirements this flow has already proved.
- * The invitation fires only on the create path (an existing user already
- * has, or was already sent, a way in) and is itself best-effort: a
- * refused invitation must not null the linkage. Every failure answers
- * `null` without throwing — Clerk's uptime may never gate the unlock.
+ * mutates nothing. Creation is passwordless first (`skip_password_required`)
+ * — the email is Stripe-verified, and the follow-up invitation is the
+ * client's guided path to credentials. When the instance itself demands a
+ * password credential (422 `form_data_missing` on `password`, as dev
+ * instances configured with the requirement answer), the create retries
+ * exactly once with a per-call throwaway password: provisioning only needs
+ * the user to EXIST, and the payer completes access via the invitation's
+ * email code or password reset. The invitation fires only on a successful
+ * create (an existing user already has, or was already sent, a way in) and
+ * is itself best-effort: a refused invitation must not null the linkage.
+ * Every failure answers `null` without throwing — Clerk's uptime may never
+ * gate the unlock.
  */
 export async function provisionClerkUserForEmail(
   args: ClerkProvisionArgs,
@@ -159,19 +196,35 @@ export async function provisionClerkUserForEmail(
   const existing = await findUserIdByEmail(email, headers, fetchImpl);
   if (existing) return { clerkUserId: existing };
 
-  const created = await clerkFetch(`${CLERK_API_BASE}/users`, headers, fetchImpl, {
-    method: "POST",
-    body: JSON.stringify({
-      email_addresses: [email],
-      skip_password_required: true,
-      skip_email_verification_required: true,
-    }),
-  });
-  if (created.status === 422 && isIdentifierTaken(created.body)) {
+  const createUser = (body: Record<string, unknown>): Promise<ClerkResponse> =>
+    clerkFetch(`${CLERK_API_BASE}/users`, headers, fetchImpl, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  const resolveRaced = async (): Promise<ClerkProvisionResult | null> => {
     // Raced: the user appeared between the GET and the POST. The list
     // read is authoritative; fall back to it rather than failing.
     const raced = await findUserIdByEmail(email, headers, fetchImpl);
     return raced ? { clerkUserId: raced } : null;
+  };
+
+  let created = await createUser({
+    email_addresses: [email],
+    skip_password_required: true,
+    skip_email_verification_required: true,
+  });
+  if (created.status === 422 && isIdentifierTaken(created.body)) {
+    return resolveRaced();
+  }
+  if (created.status === 422 && isPasswordRequired(created.body)) {
+    created = await createUser({
+      email_addresses: [email],
+      password: generateThrowawayPassword(),
+      skip_email_verification_required: true,
+    });
+    if (created.status === 422 && isIdentifierTaken(created.body)) {
+      return resolveRaced();
+    }
   }
   if (!created.ok) {
     console.error(`[billing] clerk create answered ${created.status}`);
