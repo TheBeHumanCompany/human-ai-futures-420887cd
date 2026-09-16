@@ -54,6 +54,14 @@ export interface MagicLinkRequest {
   to: string;
   /** The client's long-lived portal URL (apex origin, `/c/<token>`). */
   clientUrl: string;
+  /**
+   * The top two finding titles from the signed-off preliminary blueprint —
+   * the engagement teaser. Present, the send becomes the blueprint-delivery
+   * envelope (two titled findings above the portal CTA); absent, it stays the
+   * bare magic link. The bodies are deliberately NOT sent: the page is the
+   * product, the email only has to earn the click.
+   */
+  topFindings?: [string, string];
 }
 
 export interface MagicLinkResult {
@@ -93,6 +101,22 @@ function escapeHtml(value: string): string {
 export function composeMagicLinkEmail(request: MagicLinkRequest) {
   const name = escapeHtml(request.clientName.trim());
   const url = escapeHtml(request.clientUrl);
+  // The two findings render in both bodies or neither — one object, so the
+  // HTML list and the plain-text list cannot drift apart.
+  const findings = request.topFindings
+    ? {
+        html: [
+          `<p>Two things stood out when we built your preliminary blueprint:</p>`,
+          `<ul><li>${escapeHtml(request.topFindings[0].trim())}</li><li>${escapeHtml(request.topFindings[1].trim())}</li></ul>`,
+        ],
+        text: [
+          `Two things stood out when we built your preliminary blueprint:`,
+          ``,
+          `- ${request.topFindings[0].trim()}`,
+          `- ${request.topFindings[1].trim()}`,
+        ],
+      }
+    : undefined;
   return {
     from: MAGIC_LINK_FROM,
     to: [request.to.trim()],
@@ -100,6 +124,7 @@ export function composeMagicLinkEmail(request: MagicLinkRequest) {
     subject: `${request.clientName.trim()} — your private blueprint link`,
     html: [
       `<p>Hi ${name},</p>`,
+      ...(findings?.html ?? []),
       `<p><strong>[Placeholder copy — final wording TBD.]</strong> Your preliminary blueprint is ready to read online:</p>`,
       `<p><a href="${request.clientUrl}">Open your private blueprint &rarr;</a></p>`,
       `<p>If the button does not work, paste this link into your browser:<br><a href="${request.clientUrl}">${url}</a></p>`,
@@ -108,6 +133,7 @@ export function composeMagicLinkEmail(request: MagicLinkRequest) {
     text: [
       `Hi ${request.clientName.trim()},`,
       ``,
+      ...(findings?.text ?? []),
       `[Placeholder copy — final wording TBD.] Your preliminary blueprint is ready to read online:`,
       ``,
       request.clientUrl,
@@ -145,6 +171,38 @@ export function composeTemplateMagicLinkEmail(
 }
 
 /**
+ * A Resend Template send through the published "blueprint-delivery" template:
+ * the two finding titles, the date chip, and the portal CTA. PREVIEW_TEXT and
+ * READ_MINUTES are omitted on purpose — the template carries their fallbacks
+ * (emails/_resend/manifest.ts), so the caller cannot strand the envelope
+ * without a preview line.
+ */
+export function composeTemplateBlueprintDeliveryEmail(
+  request: MagicLinkRequest & { topFindings: [string, string] },
+  templateId: string,
+): EmailCatcherBody {
+  const clientName = request.clientName.trim();
+  const firstName = clientName.split(/\s+/)[0] ?? clientName;
+  const dateLabel = new Date().toLocaleDateString("en-CA", { month: "short", year: "numeric" });
+  return {
+    from: MAGIC_LINK_FROM,
+    to: [request.to.trim()],
+    reply_to: CONTACT_EMAIL,
+    template: {
+      id: templateId,
+      variables: {
+        RECIPIENT_FIRST_NAME: escapeHtml(firstName),
+        COMPANY_NAME: escapeHtml(clientName),
+        DATE_LABEL: dateLabel,
+        PORTAL_URL: escapeHtml(request.clientUrl),
+        FINDING_1_TITLE: escapeHtml(request.topFindings[0].trim()),
+        FINDING_2_TITLE: escapeHtml(request.topFindings[1].trim()),
+      },
+    },
+  };
+}
+
+/**
  * The delivery decision, mirroring `deliverEnquiry(data, deps)` in
  * `lib/contact.ts`: `deps` is the seam so every branch is exercisable
  * without a network, and `{ ok: true }` is reachable only after the
@@ -162,16 +220,26 @@ export async function deliverMagicLinkEmail(
      * RESEND_TEMPLATE_ID_MAGIC_LINK; null forces the inline compose.
      */
     templateId?: string | null;
+    /**
+     * Resend Template id for the blueprint-delivery envelope (the two-finding
+     * teaser). Unset reads RESEND_TEMPLATE_ID_BLUEPRINT_DELIVERY; null forces
+     * the inline compose even when topFindings are present.
+     */
+    deliveryTemplateId?: string | null;
   } = {},
 ): Promise<MagicLinkResult> {
   const apiKey = "apiKey" in deps ? deps.apiKey : process.env.RESEND_API_KEY;
   const fetchImpl = deps.fetchImpl ?? fetch;
   const templateId =
     "templateId" in deps ? deps.templateId : process.env.RESEND_TEMPLATE_ID_MAGIC_LINK;
-  const body = templateId
-    ? composeTemplateMagicLinkEmail(request, templateId)
-    : composeMagicLinkEmail(request);
-
+  const deliveryTemplateId =
+    "deliveryTemplateId" in deps
+      ? deps.deliveryTemplateId
+      : process.env.RESEND_TEMPLATE_ID_BLUEPRINT_DELIVERY;
+  // Validate before composing: composition reads the request's fields, so a
+  // malformed one (no name, bad address, one-and-a-half findings) must fail
+  // cleanly here rather than crash inside a compose function — the order used
+  // to be reversed and a 1-element topFindings threw in the HTML builder.
   if (request == null || typeof request !== "object") {
     return fail("invalid", "That request was not readable.");
   }
@@ -187,6 +255,31 @@ export async function deliverMagicLinkEmail(
   ) {
     return fail("invalid", "The client URL must be an apex client-portal link.");
   }
+  if (
+    request.topFindings !== undefined &&
+    (!Array.isArray(request.topFindings) ||
+      request.topFindings.length !== 2 ||
+      request.topFindings.some((title) => typeof title !== "string" || title.trim() === ""))
+  ) {
+    return fail("invalid", "Top findings must be exactly two non-empty titles.");
+  }
+
+  const hasFindings = request.topFindings !== undefined;
+
+  // The envelope choice, most-engaging first: two findings through the
+  // published delivery template, then the bare template link, then inline.
+  // Findings with no published delivery template must not silently downgrade
+  // to a findings-less template send — the inline compose keeps the titles.
+  const body = hasFindings
+    ? deliveryTemplateId
+      ? composeTemplateBlueprintDeliveryEmail(
+          request as MagicLinkRequest & { topFindings: [string, string] },
+          deliveryTemplateId,
+        )
+      : composeMagicLinkEmail(request)
+    : templateId
+      ? composeTemplateMagicLinkEmail(request, templateId)
+      : composeMagicLinkEmail(request);
 
   const catcherDir = "catcherDir" in deps ? deps.catcherDir : activeCatcherDir();
   if (catcherDir) {

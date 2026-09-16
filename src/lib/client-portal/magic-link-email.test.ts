@@ -173,7 +173,11 @@ describe("template sends (RESEND_TEMPLATE_ID_MAGIC_LINK)", () => {
     const dir = await mkdtemp(join(tmpdir(), "tmpl-catcher-"));
     try {
       const result = await deliverMagicLinkEmail(
-        { clientName: "Acme Industrial", to: "client@example.org", clientUrl: clientUrlForToken(TOKEN) },
+        {
+          clientName: "Acme Industrial",
+          to: "client@example.org",
+          clientUrl: clientUrlForToken(TOKEN),
+        },
         { catcherDir: dir, fetchImpl: NO_NET, templateId: "tmpl_magic" },
       );
       expect(result.ok).toBe(true);
@@ -183,6 +187,116 @@ describe("template sends (RESEND_TEMPLATE_ID_MAGIC_LINK)", () => {
       expect(captured.body.template.id).toBe("tmpl_magic");
       expect(captured.body.template.variables.PORTAL_URL).toBe(clientUrlForToken(TOKEN));
       expect(captured.body.html).toBeUndefined();
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("blueprint-delivery sends (topFindings)", () => {
+  const findings = ["Raise readiness, quantified", "The sneaker margin question"] as const;
+  const withFindings: MagicLinkRequest = { ...request, topFindings: [...findings] };
+
+  test("findings route through the delivery template with escaped titles", async () => {
+    const calls: string[] = [];
+    const recordingFetch = (async (_url: unknown, init?: RequestInit) => {
+      calls.push(String(init?.body));
+      return new Response('{"id":"email_2"}', { status: 200 });
+    }) as unknown as typeof fetch;
+    const result = await deliverMagicLinkEmail(withFindings, {
+      apiKey: "key",
+      fetchImpl: recordingFetch,
+      templateId: "tmpl_magic",
+      deliveryTemplateId: "tmpl_delivery",
+    });
+    expect(result.ok).toBe(true);
+    const body = JSON.parse(calls[0]!);
+    // The delivery envelope wins over the bare magic-link template when
+    // findings exist — the titles are the engagement, the link is the CTA.
+    expect(body.template.id).toBe("tmpl_delivery");
+    expect(body.template.variables.FINDING_1_TITLE).toBe(findings[0]);
+    expect(body.template.variables.FINDING_2_TITLE).toBe(findings[1]);
+    expect(body.template.variables.PORTAL_URL).toBe(clientUrlForToken(TOKEN));
+    expect(body.template.variables.COMPANY_NAME).toBe("Acme Industrial");
+    // DATE_LABEL is the "Preliminary · <Mon YYYY>" chip; never a full date.
+    expect(body.template.variables.DATE_LABEL).toMatch(
+      /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}$/,
+    );
+    expect(body.html).toBeUndefined();
+    expect(body.text).toBeUndefined();
+  });
+
+  test("findings escape into the template variables like every other value", async () => {
+    const calls: string[] = [];
+    const recordingFetch = (async (_url: unknown, init?: RequestInit) => {
+      calls.push(String(init?.body));
+      return new Response("{}", { status: 200 });
+    }) as unknown as typeof fetch;
+    await deliverMagicLinkEmail(
+      { ...withFindings, topFindings: ['"Growth" <risk>', "Plain"] },
+      { apiKey: "key", fetchImpl: recordingFetch, templateId: null, deliveryTemplateId: "tmpl" },
+    );
+    const vars = JSON.parse(calls[0]!).template.variables;
+    expect(vars.FINDING_1_TITLE).toBe("&quot;Growth&quot; &lt;risk&gt;");
+  });
+
+  test("no delivery template keeps the titles in the inline compose, both bodies", async () => {
+    const calls: string[] = [];
+    const recordingFetch = (async (_url: unknown, init?: RequestInit) => {
+      calls.push(String(init?.body));
+      return new Response("{}", { status: 200 });
+    }) as unknown as typeof fetch;
+    // templateId set but deliveryTemplateId null: a silent downgrade to the
+    // findings-less template send would drop the titles entirely.
+    const result = await deliverMagicLinkEmail(withFindings, {
+      apiKey: "key",
+      fetchImpl: recordingFetch,
+      templateId: "tmpl_magic",
+      deliveryTemplateId: null,
+    });
+    expect(result.ok).toBe(true);
+    const body = JSON.parse(calls[0]!);
+    expect(body.template).toBeUndefined();
+    expect(body.html).toContain(findings[0]);
+    expect(body.html).toContain(findings[1]);
+    expect(body.text).toContain(`- ${findings[0]}`);
+    expect(body.text).toContain(`- ${findings[1]}`);
+  });
+
+  test("malformed findings are refused before the provider is called", async () => {
+    let called = 0;
+    const countingFetch = (async () => {
+      called += 1;
+      return new Response("{}", { status: 200 });
+    }) as unknown as typeof fetch;
+    const one = await deliverMagicLinkEmail(
+      { ...request, topFindings: ["Only one"] as unknown as [string, string] },
+      { apiKey: "key", fetchImpl: countingFetch, deliveryTemplateId: "tmpl" },
+    );
+    const empty = await deliverMagicLinkEmail(
+      { ...request, topFindings: ["", "Second"] },
+      { apiKey: "key", fetchImpl: countingFetch, deliveryTemplateId: "tmpl" },
+    );
+    expect(one.ok === false && one.reason).toBe("invalid");
+    expect(empty.ok === false && empty.reason).toBe("invalid");
+    expect(called).toBe(0);
+  });
+
+  test("the catcher captures the delivery envelope with a resolvable portal URL", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "delivery-catcher-"));
+    try {
+      const result = await deliverMagicLinkEmail(withFindings, {
+        catcherDir: dir,
+        fetchImpl: NO_NET,
+        deliveryTemplateId: "tmpl_delivery",
+      });
+      expect(result.ok).toBe(true);
+      const files = await readdir(dir);
+      expect(files.length).toBe(1);
+      const captured = JSON.parse(await readFile(join(dir, files[0]!), "utf8"));
+      expect(captured.body.template.id).toBe("tmpl_delivery");
+      expect(captured.body.template.variables.PORTAL_URL).toBe(clientUrlForToken(TOKEN));
+      expect(captured.body.template.variables.FINDING_1_TITLE).toBe(findings[0]);
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }

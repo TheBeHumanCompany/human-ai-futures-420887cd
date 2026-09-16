@@ -174,9 +174,13 @@ should not imply otherwise.
    `client_blueprint_sections` rows are written only by the test seed. Nothing
    converts a signed-off blueprint into preliminary/final sections yet — the
    schema, paywall, and renderer are done; the ingestion is not.
-2. **The top-2-highlights email is not wired.** The template exists, uploads,
-   and has `FINDING_1_TITLE`/`FINDING_2_TITLE` variables, but no code selects
-   the two findings or sends it. Today the funnel sends the plain magic link.
+2. **The top-2-highlights email is wired; finding selection is still manual.**
+   `deliverMagicLinkEmail` now takes `topFindings: [string, string]` — present,
+   the send routes through the published `blueprint-delivery` template
+   (`RESEND_TEMPLATE_ID_BLUEPRINT_DELIVERY`) with both titles, the date chip,
+   and the portal CTA; absent or template-id-null, the inline compose renders
+   the titles itself. What no code does yet: pick the two findings out of a
+   signed-off blueprint. The caller supplies them.
 3. **No client email on the client record.** Checkout uses `FUNNEL_TEST_EMAIL`
    as the payer; a real client would get a 400 until email lands on the record.
 4. **The checklist is deterministic, not generative** — one question per final
@@ -200,6 +204,12 @@ should not imply otherwise.
     contact name on the client record, the same missing field as gap 3, and
     that is a data-model change rather than a copy tweak. **Do not send a real
     magic-link email to a real prospect until this is fixed.**
+11. **Production serves no `/c/` page.** Every token in this repo — all three
+    real clients and the fixture — 404s on `thebehumancompany.ca` (verified
+    2026-09-16). Production has no token digests provisioned and possibly no
+    current deploy of the client portal. A emailed magic link clicked outside
+    this machine lands on the denial page until that is provisioned; demo the
+    click-through on the local stack (host-swap, as the suite does).
 
 ---
 
