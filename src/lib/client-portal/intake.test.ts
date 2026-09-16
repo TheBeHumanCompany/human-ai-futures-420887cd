@@ -373,6 +373,14 @@ describe("the portal route pins the intake contract", () => {
 
   test("rejections render as alerts, and the confirmation exists only on a stored outcome", () => {
     expect(ROUTE_SOURCE).toContain('role="alert"');
-    expect(ROUTE_SOURCE).toContain('outcome.status === "stored"');
+    expect(ROUTE_SOURCE).toContain('case "stored"');
+  });
+
+  test("a policy rejection renders the inline intake-rejection alert, distinct from system errors", () => {
+    expect(ROUTE_SOURCE).toContain('data-testid="intake-rejection"');
+    // The policy branch, not the catch-all: the exact explain() text is
+    // surfaced as its own state so the funnel stage S5 can pin it.
+    expect(ROUTE_SOURCE).toContain('case "rejected"');
+    expect(ROUTE_SOURCE).toContain('kind: "rejected"');
   });
 });

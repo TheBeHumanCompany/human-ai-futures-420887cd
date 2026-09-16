@@ -91,7 +91,10 @@ function PortalPage() {
 }
 
 type IntakeCardState =
-  { kind: "idle" } | { kind: "confirmed"; name: string } | { kind: "error"; message: string };
+  | { kind: "idle" }
+  | { kind: "confirmed"; name: string }
+  | { kind: "rejected"; message: string }
+  | { kind: "error"; message: string };
 
 const INTAKE_UNAVAILABLE_MESSAGE = "The upload could not be completed. Please try again shortly.";
 
@@ -106,7 +109,7 @@ const INTAKE_UNAVAILABLE_MESSAGE = "The upload could not be completed. Please tr
  * corrected document is a new object (the prior one stays in the bucket)
  * and the confirmation simply shows the newest upload.
  */
-function IntakeCard({ questions }: { questions: readonly IntakeQuestion[] }) {
+export function IntakeCard({ questions }: { questions: readonly IntakeQuestion[] }) {
   const [state, setState] = useState<IntakeCardState>({ kind: "idle" });
   const [uploading, setUploading] = useState(false);
 
@@ -124,11 +127,14 @@ function IntakeCard({ questions }: { questions: readonly IntakeQuestion[] }) {
     setUploading(true);
     try {
       const outcome = await submitIntakeUpload({ data });
-      if (outcome.status === "stored") {
-        setState({ kind: "confirmed", name: file.name });
-        form.reset();
-      } else {
-        setState({ kind: "error", message: outcome.message });
+      switch (outcome.status) {
+        case "stored":
+          setState({ kind: "confirmed", name: file.name });
+          form.reset();
+          break;
+        case "rejected":
+          setState({ kind: "rejected", message: outcome.message });
+          break;
       }
     } catch {
       setState({ kind: "error", message: INTAKE_UNAVAILABLE_MESSAGE });
@@ -165,6 +171,15 @@ function IntakeCard({ questions }: { questions: readonly IntakeQuestion[] }) {
           {uploading ? "Uploading…" : "Upload document"}
         </button>
       </form>
+      {state.kind === "rejected" && (
+        <p
+          data-testid="intake-rejection"
+          role="alert"
+          className="mt-6 max-w-[58ch] border border-current/20 px-4 py-3 text-base text-ink/80"
+        >
+          {state.message}
+        </p>
+      )}
       {state.kind === "error" && (
         <p
           data-testid="intake-error"
