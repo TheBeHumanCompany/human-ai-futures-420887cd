@@ -4,6 +4,8 @@ import { readFileSync } from "node:fs";
 import {
   CLIENT_ID,
   CONFIG,
+  EMAILED_CLIENT_ID,
+  EMAILED_RECORD,
   PRICE_ID,
   SECRET,
   STRIPE_CONFIG,
@@ -129,6 +131,43 @@ describe("a client record without an email is answered 400", () => {
     const text = await response.text();
     expect(text).not.toContain(CLIENT_ID);
     expect(text).not.toContain(TOKEN);
+  });
+});
+
+describe("a token record carrying a contact email is charged directly", () => {
+  test("the record's email reaches Stripe with no seam and no env", async () => {
+    const seen: { body?: string } = {};
+    const fetchImpl = (async (url: string | URL | Request, init?: RequestInit) => {
+      const target = String(url);
+      if (target.includes("client_portal_tokens")) {
+        return jsonResponse(200, [{ client_id: EMAILED_CLIENT_ID, revoked_at: null }]);
+      }
+      if (target.includes("client_paid_reports")) {
+        return jsonResponse(200, [{ title: null, html: null, unlocked: false }]);
+      }
+      if (target.includes("api.stripe.com")) {
+        seen.body = String(init?.body ?? "");
+        return jsonResponse(200, { id: "cs_test_probe", client_secret: SECRET });
+      }
+      return jsonResponse(500, {});
+    }) as typeof fetch;
+
+    const { email: _email, ...noSeam } = UNCONFIGURED;
+    const response = await post(
+      { token: TOKEN },
+      {
+        ...noSeam,
+        supabaseConfig: CONFIG,
+        fetchImpl,
+        readStore: async () => [EMAILED_RECORD],
+      },
+    );
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ clientSecret: SECRET });
+    const params = Object.fromEntries(new URLSearchParams(seen.body ?? ""));
+    expect(params["customer_email"]).toBe("client-contact@example.test");
+    expect(params["metadata[client_id]"]).toBe(EMAILED_CLIENT_ID);
   });
 });
 

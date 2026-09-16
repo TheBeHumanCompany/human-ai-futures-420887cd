@@ -32,6 +32,14 @@ export const RECORD: ClientRecord = {
   html: "<p>fixture</p>",
 };
 
+/** A record carrying a contact email, as production demo clients now do. */
+export const EMAILED_CLIENT_ID = "funnel-fixture-emailed";
+export const EMAILED_RECORD: ClientRecord = {
+  ...RECORD,
+  id: EMAILED_CLIENT_ID,
+  email: "client-contact@example.test",
+};
+
 export const CONFIG = {
   url: "https://fixture.supabase.test",
   serviceRoleKey: "service-role-key-for-tests-only",
@@ -53,21 +61,16 @@ export interface StubCalls {
 
 export const freshCalls = (): StubCalls => ({ tokenLookups: 0, paidReads: 0, stripeCreates: 0 });
 
-/**
- * One fetchImpl for the configured tier: answers the PostgREST token lookup,
- * the paid-report read (per the given row), and the Stripe create; counts
- * each so tests can assert which seams a guard actually touched. Any other
- * URL (blueprint sections) fails, which the page lookup degrades away.
- */
 export const configuredFetch = (
   paid: SupabasePaidReport | null,
   calls: StubCalls = freshCalls(),
+  clientId: string = CLIENT_ID,
 ): typeof fetch =>
   (async (url: string | URL | Request) => {
     const target = String(url);
     if (target.includes("client_portal_tokens")) {
       calls.tokenLookups += 1;
-      return jsonResponse(200, [{ client_id: CLIENT_ID, revoked_at: null }]);
+      return jsonResponse(200, [{ client_id: clientId, revoked_at: null }]);
     }
     if (target.includes("client_paid_reports")) {
       calls.paidReads += 1;

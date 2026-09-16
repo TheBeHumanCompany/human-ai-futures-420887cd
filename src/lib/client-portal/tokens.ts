@@ -62,6 +62,14 @@ export interface ClientRecord {
    * carries the single legacy `title`/`html` as its one report.
    */
   reports?: ClientReport[];
+  /**
+   * The client's contact email: where the magic link is delivered, and the
+   * payer `customer_email` for token checkout — `/c/<token>` has no session
+   * to read one from. Optional so records authored before contacts were
+   * tracked keep working; those fall back to the funnel env and 400
+   * honestly when nothing knows the address.
+   */
+  email?: string;
 }
 
 /** Everything about a client that may leave the server. The token stays. */
@@ -134,7 +142,8 @@ function isClientRecord(value: unknown): value is ClientRecord {
     typeof record.title === "string" &&
     typeof record.html === "string" &&
     (record.reports === undefined ||
-      (Array.isArray(record.reports) && record.reports.every(isClientReport)))
+      (Array.isArray(record.reports) && record.reports.every(isClientReport))) &&
+    (record.email === undefined || typeof record.email === "string")
   );
 }
 
@@ -268,6 +277,9 @@ function toClientPage(
     // the whole page. The route renders per-report from `reports`.
     html: reports.map((report) => report.html).join("\n"),
     reports,
+    // Same omitted-rather-than-empty rule as `sections`: the checkout reads
+    // `email?.trim()` and treats absent exactly like blank.
+    ...(match.email ? { email: match.email } : {}),
     // Omitted rather than empty, so `sections?.length` is the whole test a
     // caller needs and an absent blueprint never looks like an empty one.
     ...(sections.length > 0 ? { sections } : {}),

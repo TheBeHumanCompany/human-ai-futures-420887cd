@@ -51,7 +51,8 @@
         "title": "Preliminary Blueprint",
         "html": "<p>Preliminary findings for Be Human AI Governance.</p>"
       }
-    ]
+    ],
+    "email": "abdullah.siddique94@gmail.com"
   },
   {
     "id": "sid-sec",
@@ -65,7 +66,8 @@
         "title": "Preliminary Blueprint",
         "html": "<p>Preliminary findings for Sid Sec.</p>"
       }
-    ]
+    ],
+    "email": "abdullah.siddique94@gmail.com"
   },
   {
     "id": "mrs-sloopy",
@@ -79,6 +81,7 @@
         "title": "Preliminary Blueprint",
         "html": "<p>Preliminary findings for Mrs Sloopy.</p>"
       }
-    ]
+    ],
+    "email": "maya.brstilo@gmail.com"
   }
 ]

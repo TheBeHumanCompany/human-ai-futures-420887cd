@@ -36,14 +36,13 @@ import type { PortalEngagement } from "@/lib/client-portal/portal-blueprint";
 export const PRICE_ENV = "STRIPE_AUDIT_PRICE_ID";
 
 /**
- * Where the checkout's immutable `customer_email` comes from today.
+ * The funnel-fixture fallback for the checkout's immutable `customer_email`.
  *
- * No store carries a client email yet (the shipped content store and the
- * Supabase tables have no column), so the route resolves it from the
- * funnel tier's env — the same value the seed logs as the fixture contact
- * and the preflight (todo 4) asserts. Production deploys never set it, so
- * real clients honestly 400 until email lands in the client record; the
- * `email` dep below is the seam that swap will fill.
+ * Records may carry their own contact `email` (`ClientRecord`), which is
+ * what token checkout charges in production; session identity reads the
+ * Clerk account's primary address. This env stays for fixture clients with
+ * no record email — the same value the seed logs as the fixture contact and
+ * the preflight (todo 4) asserts. Production never sets it.
  */
 export const CLIENT_EMAIL_ENV = "FUNNEL_TEST_EMAIL";
 
@@ -195,6 +194,7 @@ export async function handleAuditCheckout(
   const identity = await readIdentity(request);
   let clientId: string | null = null;
   let sessionUserId: string | null = null;
+  let tokenRecordEmail: string | null = null;
   if (identity.kind === "token") {
     const page =
       typeof identity.token === "string"
@@ -205,6 +205,7 @@ export async function handleAuditCheckout(
           })
         : null;
     clientId = page?.id ?? null;
+    tokenRecordEmail = typeof page?.email === "string" ? page.email : null;
   } else {
     if (deps.userId !== undefined) {
       sessionUserId = deps.userId;
@@ -242,11 +243,15 @@ export async function handleAuditCheckout(
     if (paid?.unlocked) return alreadyPaid();
   }
 
-  // Email precedence: explicit seam → Clerk primary email (session identity
-  // only — a token prospect has no account to look up) → the funnel env.
-  // Production never sets FUNNEL_TEST_EMAIL, so without the Clerk step the
-  // portal's pay button would 400 there.
+  // Email precedence: explicit seam → the identity's own source — the
+  // record's contact email for token checkout (`/c/<token>` has no session),
+  // the Clerk primary email for session checkout — → the funnel env. The env
+  // is last so fixture clients without a record email keep working under
+  // FUNNEL_TEST_EMAIL while production records never depend on it.
   let email = (deps.email ?? "").trim();
+  if (!email && identity.kind === "token" && tokenRecordEmail) {
+    email = tokenRecordEmail.trim();
+  }
   if (!email && identity.kind === "session" && sessionUserId) {
     email =
       (
