@@ -312,4 +312,29 @@ describe("the locked-final paywall hands off to the embedded checkout", () => {
     expect(deniedSource()).not.toContain("CheckoutBand");
     expect(deniedSource()).not.toContain("checkout-panel");
   });
+
+  test("the denial branch renders no intake card either", () => {
+    expect(deniedSource()).not.toContain("IntakeCard");
+    expect(deniedSource()).not.toContain("intake-card");
+  });
+});
+
+/**
+ * The paid state's successor to the purchase band: the document request
+ * generated from the blueprint's own final sections, mounted with the
+ * token identity the page already carries. Upload mechanics for both
+ * identities are pinned in `src/lib/client-portal/intake.test.ts`; what is
+ * pinned here is the wiring the card depends on.
+ */
+describe("the paid page renders the derived document request", () => {
+  test("the card mounts from the route's own sections and token", () => {
+    expect(ROUTE_SOURCE).toContain("<IntakeCard");
+    expect(ROUTE_SOURCE).toContain("deriveIntakeQuestions");
+    expect(ROUTE_SOURCE).toContain("hasLockedFinals ? [] : deriveIntakeQuestions");
+    expect(ROUTE_SOURCE).toContain("token={token}");
+  });
+
+  test("the question set is forced empty while finals are locked", () => {
+    expect(ROUTE_SOURCE).toContain("page.sections ?? []");
+  });
 });

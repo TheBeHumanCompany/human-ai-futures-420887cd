@@ -6,6 +6,8 @@ import type { BlueprintSection } from "./blueprint-schema";
 import { parseSections } from "./blueprint-schema";
 import { explain, judgeUpload, storageKeyFor, type UploadRejection } from "./upload-policy";
 import type { ClerkSupabaseConfig } from "./supabase-clerk";
+import type { SupabaseTokenConfig } from "./supabase-tokens";
+import type { ClientRecord } from "./tokens";
 import type { PortalAuthState } from "./portal";
 
 /**
@@ -214,15 +216,96 @@ export async function loadIntakeQuestions(
   }
 }
 
+export interface IntakeUploadRequestDeps {
+  fetchImpl?: typeof fetch;
+  /** Service-role config override; default reads env at call time. */
+  serviceConfig?: SupabaseTokenConfig | null;
+  /** Store override for the token→client resolution, mirroring TokenLookupDeps. */
+  readStore?: () => Promise<ClientRecord[]>;
+}
+
 /**
- * POST FormData `{file}` → policy verdict → storage write → outcome.
+ * One upload, two identities — the `handleAuditCheckout` pattern.
  *
- * The client id is never taken from the request: it comes from the first
- * row of the caller's own RLS-scoped reports read, so the only client a
- * session can upload for is the one it already reads. An account with no
- * paid report has nothing to upload against and is told so; a policy
- * rejection answers with the exact `explain` message, having written
- * nothing.
+ * A `token` resolves the client through the same page lookup `/c/$token`
+ * uses, then paywall-gates on the service-role paid read: the link is the
+ * entire grant exactly as at checkout, but only an unlocked engagement has
+ * anything to upload against. No token means the Clerk session path, whose
+ * client id comes from the caller's own RLS-scoped reports read — the only
+ * client a session can upload for is the one it already reads.
+ *
+ * Constant error strings throughout: neither the token nor any provider
+ * detail is ever quoted into a message.
+ */
+export async function handleIntakeUpload(
+  input: { file: File; token: string | null },
+  deps: IntakeUploadRequestDeps = {},
+): Promise<IntakeUploadOutcome> {
+  // Service-role config, resolved at call time — the env-naming module
+  // stays out of any bundle that walks this file from a route.
+  const tokenStore = await import("./supabase-tokens");
+  const serviceConfig =
+    deps.serviceConfig === undefined ? tokenStore.supabaseConfigFromEnv() : deps.serviceConfig;
+
+  if (input.token !== null) {
+    const tokens = await import("./tokens");
+    const page = await tokens.fetchClientPageByTokenFn(input.token, {
+      fetchImpl: deps.fetchImpl,
+      readStore: deps.readStore,
+      supabaseConfig: serviceConfig,
+    });
+    const clientId = page?.id;
+    if (!clientId) {
+      throw new Error("[client-portal] this link has no client page to upload against");
+    }
+    if (!serviceConfig) {
+      throw new Error("[client-portal] SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is not set");
+    }
+    // The paywall gate, reading the same row the checkout replay guard and
+    // the webhook upsert: an unlocked link may read its page, but only a
+    // paid one may hand us documents.
+    const paid = await tokenStore.fetchPaidReport(clientId, serviceConfig, deps.fetchImpl ?? fetch);
+    if (paid?.unlocked !== true) {
+      throw new Error(
+        "[client-portal] this link has not unlocked an audit yet, so there is nothing to upload against",
+      );
+    }
+    return storeIntakeUpload(clientId, input.file, input.file, serviceConfig, {
+      fetchImpl: deps.fetchImpl,
+    });
+  }
+  const { userId, getToken } = await auth();
+  if (!userId) {
+    throw redirect({ to: "/sign-in/$", params: { _splat: "" } });
+  }
+  const clerkToken = await getToken();
+  if (!clerkToken) {
+    throw new Error("[client-portal] portal session carries no token");
+  }
+  const clerkStore = await import("./supabase-clerk");
+  const clerkConfig = clerkStore.clerkSupabaseConfigFromEnv();
+  if (!clerkConfig) {
+    throw new Error("[client-portal] SUPABASE_URL or SUPABASE_ANON_KEY is not set");
+  }
+  const reports = await clerkStore.fetchClerkScopedPaidReports(clerkToken, clerkConfig);
+  const clientId: string | undefined = reports[0]?.client_id;
+  if (!clientId) {
+    throw new Error(
+      "[client-portal] no paid report is linked to this account, so there is nothing to upload against",
+    );
+  }
+  if (!serviceConfig) {
+    throw new Error("[client-portal] SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is not set");
+  }
+  return storeIntakeUpload(clientId, input.file, input.file, serviceConfig, {
+    fetchImpl: deps.fetchImpl,
+  });
+}
+/**
+ * POST FormData `{file, token?}` → identity resolution → policy verdict →
+ * storage write → outcome. The wrapper is a shell over `handleIntakeUpload`,
+ * the webhook pattern: every branch runs under `bun test` with injected
+ * seams and zero network.
  */
 export const submitIntakeUpload = createServerFn({ method: "POST" })
   .validator((data: unknown) => {
@@ -233,38 +316,10 @@ export const submitIntakeUpload = createServerFn({ method: "POST" })
     if (!(file instanceof File)) {
       throw new Error("[client-portal] intake upload expects a file field");
     }
-    return { file };
+    const token = data.get("token");
+    return { file, token: typeof token === "string" && token.length > 0 ? token : null };
   })
-  .handler(async ({ data }): Promise<IntakeUploadOutcome> => {
-    const { userId, getToken } = await auth();
-    if (!userId) {
-      throw redirect({ to: "/sign-in/$", params: { _splat: "" } });
-    }
-    const clerkToken = await getToken();
-    if (!clerkToken) {
-      throw new Error("[client-portal] portal session carries no token");
-    }
-    const clerkStore = await import("./supabase-clerk");
-    const clerkConfig = clerkStore.clerkSupabaseConfigFromEnv();
-    if (!clerkConfig) {
-      throw new Error("[client-portal] SUPABASE_URL or SUPABASE_ANON_KEY is not set");
-    }
-    const reports = await clerkStore.fetchClerkScopedPaidReports(clerkToken, clerkConfig);
-    const clientId: string | undefined = reports[0]?.client_id;
-    if (!clientId) {
-      throw new Error(
-        "[client-portal] no paid report is linked to this account, so there is nothing to upload against",
-      );
-    }
-    // Service-role storage write, resolved at call time — the env-naming
-    // module stays out of any bundle that walks this file from a route.
-    const tokenStore = await import("./supabase-tokens");
-    const serviceConfig = tokenStore.supabaseConfigFromEnv();
-    if (!serviceConfig) {
-      throw new Error("[client-portal] SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is not set");
-    }
-    return storeIntakeUpload(clientId, data.file, data.file, serviceConfig);
-  });
+  .handler(({ data }) => handleIntakeUpload(data));
 
 /** Re-exported for the route's `accept` attribute, so the card cannot drift. */
 export { ACCEPT_ATTRIBUTE } from "./upload-policy";

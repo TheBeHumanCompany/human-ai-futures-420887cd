@@ -4,10 +4,10 @@ import { describe, expect, test } from "bun:test";
 import {
   deriveIntakeQuestions,
   fetchClerkScopedBlueprintSections,
+  handleIntakeUpload,
   loadIntakeQuestions,
   storeIntakeUpload,
 } from "./intake";
-import type { BlueprintSection } from "./blueprint-schema";
 import { MAX_UPLOAD_BYTES } from "./upload-policy";
 import type { ClerkSupabaseConfig } from "./supabase-clerk";
 
@@ -354,6 +354,10 @@ describe("loadIntakeQuestions", () => {
 
 describe("the portal route pins the intake contract", () => {
   const ROUTE_SOURCE = readFileSync(
+    new URL("../../components/client-portal/intake-card.tsx", import.meta.url).pathname,
+    "utf8",
+  );
+  const PORTAL_ROUTE_SOURCE = readFileSync(
     new URL("../../routes/portal.tsx", import.meta.url).pathname,
     "utf8",
   );
@@ -382,5 +386,108 @@ describe("the portal route pins the intake contract", () => {
     // surfaced as its own state so the funnel stage S5 can pin it.
     expect(ROUTE_SOURCE).toContain('case "rejected"');
     expect(ROUTE_SOURCE).toContain('kind: "rejected"');
+  });
+
+  test("the portal renders the shared card with session identity", () => {
+    expect(PORTAL_ROUTE_SOURCE).toContain("<IntakeCard");
+    expect(PORTAL_ROUTE_SOURCE).not.toContain('data-testid="intake-card"');
+  });
+
+  test("a caller-provided token rides the upload form for link identity", () => {
+    expect(ROUTE_SOURCE).toContain('data.append("token", token)');
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Token-identity uploads — the /c/$token path, without a Clerk session */
+/* ------------------------------------------------------------------ */
+
+describe("handleIntakeUpload — token identity", () => {
+  const TOKEN = "t".repeat(43);
+  const STORE = [
+    {
+      id: "token-upload-client",
+      name: "Token Upload Co",
+      token: TOKEN,
+      title: "Token Upload Co — Preliminary Blueprint",
+      html: "<p>fixture</p>",
+    },
+  ];
+  const SERVICE = { url: "https://service.test", serviceRoleKey: "service-key-tests" };
+  const fileOf = () => new File(["document-bytes"], "doc.txt", { type: "text/plain" });
+
+  const stubFetch = (
+    paid: { title: string | null; html: string | null; unlocked: boolean } | null,
+    seen: { storageHits: number; storageKeys: string[] },
+  ) =>
+    (async (url: string | URL | Request) => {
+      const target = String(url);
+      if (target.includes("client_portal_tokens")) {
+        return new Response(
+          JSON.stringify([{ client_id: "token-upload-client", revoked_at: null }]),
+          { status: 200 },
+        );
+      }
+      if (target.includes("client_paid_reports")) {
+        return new Response(JSON.stringify(paid ? [paid] : []), { status: 200 });
+      }
+      if (target.includes("/storage/v1/object/")) {
+        seen.storageHits += 1;
+        seen.storageKeys.push(target);
+        return new Response("{}", { status: 200 });
+      }
+      return new Response(JSON.stringify({ message: "unexpected url" }), { status: 500 });
+    }) as typeof fetch;
+
+  test("an unlocked link stores the document under the resolved client", async () => {
+    const seen = { storageHits: 0, storageKeys: [] as string[] };
+    const outcome = await handleIntakeUpload(
+      { file: fileOf(), token: TOKEN },
+      {
+        fetchImpl: stubFetch({ title: "Final", html: "<p>final</p>", unlocked: true }, seen),
+        serviceConfig: SERVICE,
+        readStore: async () => STORE as never,
+      },
+    );
+    expect(outcome.status).toBe("stored");
+    expect(seen.storageHits).toBe(1);
+    expect(seen.storageKeys[0]).toContain("token-upload-client");
+  });
+
+  test("a locked link is refused before any storage dial", async () => {
+    const seen = { storageHits: 0, storageKeys: [] as string[] };
+    await expect(
+      handleIntakeUpload(
+        { file: fileOf(), token: TOKEN },
+        {
+          fetchImpl: stubFetch({ title: "Final", html: "<p>final</p>", unlocked: false }, seen),
+          serviceConfig: SERVICE,
+          readStore: async () => STORE as never,
+        },
+      ),
+    ).rejects.toThrow("not unlocked an audit yet");
+    expect(seen.storageHits).toBe(0);
+  });
+
+  test("a token resolving to no client refuses with zero storage dials", async () => {
+    const seen = { storageHits: 0, storageKeys: [] as string[] };
+    const emptyLookup = (async (url: string | URL | Request) => {
+      const target = String(url);
+      if (target.includes("client_portal_tokens")) {
+        return new Response(JSON.stringify([]), { status: 200 });
+      }
+      return new Response(JSON.stringify({ message: "unexpected url" }), { status: 500 });
+    }) as typeof fetch;
+    await expect(
+      handleIntakeUpload(
+        { file: fileOf(), token: TOKEN },
+        {
+          fetchImpl: emptyLookup,
+          serviceConfig: SERVICE,
+          readStore: async () => STORE as never,
+        },
+      ),
+    ).rejects.toThrow("no client page to upload against");
+    expect(seen.storageHits).toBe(0);
   });
 });

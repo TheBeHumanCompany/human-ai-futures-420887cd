@@ -1,8 +1,10 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { ClientReports } from "@/components/client-portal/client-reports";
+import { IntakeCard } from "@/components/client-portal/intake-card";
 import { CheckoutBand } from "@/components/client-portal/checkout/checkout-panel";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { deriveIntakeQuestions } from "@/lib/client-portal/intake";
 import { SITE_ORIGIN } from "@/lib/sanity/config";
 import { fetchClientPageByToken } from "@/lib/client-portal/tokens";
 
@@ -109,6 +111,18 @@ function ClientPortalPage() {
         reached, the init route answers 409 with the sign-in hint.
       */}
       <CheckoutBand identity={{ kind: "token", token }} hasLockedFinals={hasLockedFinals} />
+      {/*
+        The paid state's successor to the purchase band: the document
+        request generated from the blueprint's own final sections, one
+        prompt per investigation. Pre-payment the derived set is forced
+        empty — locked finals are present in the sections here, unlike the
+        portal's earned read — so the upsell keeps the stage alone and the
+        card renders nothing until the engagement is unlocked.
+      */}
+      <IntakeCard
+        questions={hasLockedFinals ? [] : deriveIntakeQuestions(page.sections ?? [])}
+        token={token}
+      />
     </section>
   );
 }

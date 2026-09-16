@@ -4,7 +4,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import * as booking from "@/lib/booking";
-import { ThankYouCard } from "../../routes/portal";
+import { ThankYouCard } from "../../components/client-portal/intake-card";
 import { THANKYOU_BOOKING_LABEL, THANKYOU_OUTREACH, thankYouBooking } from "./thankyou";
 
 /**
@@ -19,7 +19,7 @@ import { THANKYOU_BOOKING_LABEL, THANKYOU_OUTREACH, thankYouBooking } from "./th
  */
 
 const PORTAL_SOURCE = readFileSync(
-  new URL("../../routes/portal.tsx", import.meta.url).pathname,
+  new URL("../../components/client-portal/intake-card.tsx", import.meta.url).pathname,
   "utf8",
 );
 
