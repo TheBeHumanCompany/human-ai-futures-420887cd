@@ -52,5 +52,33 @@
         "html": "<p>Preliminary findings for Be Human AI Governance.</p>"
       }
     ]
+  },
+  {
+    "id": "sid-sec",
+    "name": "Sid Sec",
+    "token": "R9WF1CP6vF--KOXpgUe3UmWJGfDBO__3mlKTYpaSTdU",
+    "title": "Sid Sec \u2014 Preliminary Blueprint",
+    "html": "<p>Preliminary findings for Sid Sec.</p>",
+    "reports": [
+      {
+        "id": "preliminary",
+        "title": "Preliminary Blueprint",
+        "html": "<p>Preliminary findings for Sid Sec.</p>"
+      }
+    ]
+  },
+  {
+    "id": "mrs-sloopy",
+    "name": "Mrs Sloopy",
+    "token": "iIr84MS2J5QJ254_0mror9FVmW9Ifmq0iMMyrcVlDy4",
+    "title": "Mrs Sloopy \u2014 Preliminary Blueprint",
+    "html": "<p>Preliminary findings for Mrs Sloopy.</p>",
+    "reports": [
+      {
+        "id": "preliminary",
+        "title": "Preliminary Blueprint",
+        "html": "<p>Preliminary findings for Mrs Sloopy.</p>"
+      }
+    ]
   }
 ]
