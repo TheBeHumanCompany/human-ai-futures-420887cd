@@ -1,4 +1,5 @@
 import {
+  STRIPE_ELEMENTS_VERSION,
   stripeApi,
   stripeConfigFromEnv,
   type StripeApiDeps,
@@ -14,16 +15,18 @@ import {
  * charging an assumed amount — inventing money is the one error here that
  * cannot be diffed away later.
  *
- * Canonical origin is a constant, not configuration (the `.env.example`
- * essay on the canonical origin applies: a preview deploy minting checkout
- * return links on another host is the same failure class as episode URLs).
+ * Canonical origin defaults to a constant (the `.env.example` essay on the
+ * canonical origin applies: a preview deploy minting checkout return links on
+ * another host is the same failure class as episode URLs). `AUDIT_ORIGIN` is
+ * an explicit local-funnel affordance, not an implicit preview-host choice.
  */
 export const AUDIT_ORIGIN = "https://thebehumancompany.ca";
 
-export const auditSuccessUrl = (origin: string = AUDIT_ORIGIN) =>
+export const auditSuccessUrl = (origin: string = process.env.AUDIT_ORIGIN ?? AUDIT_ORIGIN) =>
   `${origin}/audit/success?session_id={CHECKOUT_SESSION_ID}`;
 
-export const auditCancelUrl = (origin: string = AUDIT_ORIGIN) => `${origin}/audit/cancelled`;
+export const auditCancelUrl = (origin: string = process.env.AUDIT_ORIGIN ?? AUDIT_ORIGIN) =>
+  `${origin}/audit/cancelled`;
 
 export interface AuditCheckoutInput {
   /** Portal client id, carried through as metadata so fulfillment can map back. */
@@ -94,4 +97,71 @@ export async function createAuditCheckoutSession(
     throw new Error("[billing] checkout session created without a url");
   }
   return { id: session.id, url: session.url };
+}
+
+export interface ElementsCheckoutInput {
+  /** Portal client id, carried through as metadata so fulfillment can map back. */
+  clientId: string;
+  /** Test-mode Price id for the audit fee, e.g. `price_…`. */
+  priceId: string;
+  /** Immutable prefill on the Payment Element — no email input needed on-page. */
+  customerEmail: string;
+}
+
+/**
+ * Flat params for the elements-mode variant of `POST /v1/checkout/sessions`
+ * (funnel todo 1): the client confirms on OUR origin with a `client_secret`
+ * instead of being redirected to Stripe-hosted pages. Hence `ui_mode=elements`
+ * + a single `return_url` — `success_url`/`cancel_url` are link-mode-only and
+ * Stripe rejects them here. Empirically pinned
+ * (test-results/elements-contract.md, 2026-09-15): managed payments only
+ * supports hosted/embedded, so it is sent explicitly `false` (the account has
+ * it default-on; omitting the param 400s), and `automatic_tax` is omitted —
+ * test mode rejects it pending a dashboard head-office address, so elements
+ * sessions currently carry `automatic_tax.enabled=false`.
+ */
+export function elementsCheckoutParams(
+  input: ElementsCheckoutInput,
+  integrationSuffix: string,
+): Record<string, string> {
+  if (!input.clientId) throw new Error("[billing] elements checkout needs a client id");
+  if (!input.priceId) throw new Error("[billing] elements checkout needs a price id");
+  if (!input.customerEmail) throw new Error("[billing] elements checkout needs a customer email");
+  return {
+    mode: "payment",
+    ui_mode: "elements",
+    "line_items[0][price]": input.priceId,
+    "line_items[0][quantity]": "1",
+    return_url: auditSuccessUrl(),
+    customer_email: input.customerEmail,
+    client_reference_id: input.clientId,
+    "managed_payments[enabled]": "false",
+    integration_identifier: `portal-audit-${integrationSuffix}`,
+    "metadata[client_id]": input.clientId,
+  };
+}
+
+export interface ElementsCheckoutSession {
+  id: string;
+  /** Never leaves the server except to the checkout-init route (todo 2); never logged. */
+  client_secret: string;
+}
+
+export async function createElementsCheckoutSession(
+  input: ElementsCheckoutInput,
+  deps: AuditCheckoutDeps = {},
+): Promise<ElementsCheckoutSession> {
+  const config = deps.config === undefined ? stripeConfigFromEnv() : deps.config;
+  if (!config) throw new Error("[billing] STRIPE_SECRET_KEY is not set");
+  const params = elementsCheckoutParams(input, deps.integrationSuffix ?? randomSuffix());
+  const session = await stripeApi<{ id: string; client_secret: string | null }>(
+    "/v1/checkout/sessions",
+    params,
+    config,
+    { ...deps, apiVersion: STRIPE_ELEMENTS_VERSION },
+  );
+  if (!session.client_secret) {
+    throw new Error("[billing] elements session created without a client_secret");
+  }
+  return { id: session.id, client_secret: session.client_secret };
 }

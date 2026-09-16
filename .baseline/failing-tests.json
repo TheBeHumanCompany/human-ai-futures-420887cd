@@ -1,9 +1,9 @@
 {
   "description": "Tests failing on main@a6a377a, pinned deliberately (S0.4). Recorded by ASSERTION IDENTITY, not by name: both failures are stale source strings, so a same-named failure with different asserted literals is a NEW failure and the delta gate must say so.",
-  "generated_at": "2026-08-18T01:42:33.096Z",
-  "commit": "a6a377abeaa262f4f245766f3b00a31e9704f8f8",
+  "generated_at": "2026-09-16T05:41:20.964Z",
+  "commit": "695cdc843925203b88091955c18bc200b41569cf",
   "command": "bun test src/",
-  "tests_run": 639,
+  "tests_run": 1147,
   "failing": [
     {
       "file": "src/routes/podcast.test.ts",

@@ -40,6 +40,24 @@ import e2eConfig from "./scripts/verify/e2e-config.json" with { type: "json" };
 // like a broken app rather than a wrong URL.
 const BASE_URL = process.env.E2E_BASE_URL ?? e2eConfig.defaultBaseUrl;
 
+// The funnel smoke suite (plan todo 12) runs ONLY through --project=funnel —
+// serially, one worker, against the seeded fixture tier. Two guards make that
+// exclusion real rather than aspirational: (1) the catch-all viewport
+// projects ignore the funnel directory, or a default run would pick each
+// stage spec up three more times in parallel; (2) the funnel project itself
+// is only REGISTERED when the CLI asked for it — `playwright test` (and
+// therefore --list) runs every registered project, so a merely-defined
+// funnel project would still show its specs in a default run. Registration
+// is keyed on FUNNEL_PW_PROJECT (exported by scripts/verify/funnel.sh, the
+// sanctioned entry) rather than argv: worker processes re-import this config
+// with their OWN argv, so an argv-keyed guard left the project unregistered
+// in every worker ("Project funnel not found in the worker process" on the
+// first real run). Both guards are proven in test-results/funnel-helpers.log
+// and the todo-13 run log.
+const FUNNEL_SPEC = /e2e\/funnel\/.*\.spec\.ts/;
+const FUNNEL_DIR = /e2e\/funnel\//;
+const FUNNEL_REQUESTED = process.env.FUNNEL_PW_PROJECT === "1";
+
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
@@ -73,6 +91,7 @@ export default defineConfig({
   projects: [
     ...VIEWPORTS.map((viewport) => ({
       name: viewport.name,
+      testIgnore: [FUNNEL_DIR],
       use: {
         ...devices["Desktop Chrome"],
         viewport: { width: viewport.width, height: viewport.height },
@@ -87,5 +106,18 @@ export default defineConfig({
         viewport: { width: 1440, height: 900 },
       },
     },
+    ...(FUNNEL_REQUESTED
+      ? [
+          {
+            name: "funnel",
+            testMatch: FUNNEL_SPEC,
+            fullyParallel: false,
+            workers: 1,
+            // Stage 3 alone can spend 60s on the cold init POST and 45s on each
+            // webhook/unlock poll ceiling; the 30s default cannot hold a stage.
+            timeout: 240_000,
+          },
+        ]
+      : []),
   ],
 });

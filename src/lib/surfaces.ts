@@ -127,6 +127,10 @@ export const SURFACES: readonly Surface[] = [
   // never in the sitemap, exercised by its own signature tests instead of
   // the page gates.
   { path: "/api/stripe-webhook", kind: "machine", expectsSingleNav: false },
+  // Token-guarded checkout init (funnel todo 2). Machine surface: never
+  // navigated, never in the sitemap, exercised by its own guard-matrix
+  // tests instead of the page gates.
+  { path: "/api/audit-checkout", kind: "machine", expectsSingleNav: false },
   { path: "/podcast/$slug", kind: "dynamic", expectsSingleNav: true, sampleSlug: "" },
   // Private token URLs (US-001). Deliberately unlisted: no sampleSlug, so
   // `visitableSurfaces()` skips them (no gate ever visits or advertises a
@@ -142,6 +146,12 @@ export const SURFACES: readonly Surface[] = [
   // gate cannot sign in, so no sampleSlug means visitableSurfaces() skips
   // it, and the sitemap never advertises an account page.
   { path: "/portal", kind: "dynamic", expectsSingleNav: true },
+  // Checkout return receipts (funnel todo 8). Unlisted like the portal: a
+  // receipt needs the checkout's session_id, so no sampleSlug keeps
+  // visitableSurfaces() away, and the sitemap never advertises a
+  // transactional page.
+  { path: "/audit/success", kind: "dynamic", expectsSingleNav: true },
+  { path: "/audit/cancelled", kind: "dynamic", expectsSingleNav: true },
 ] as const;
 
 /**

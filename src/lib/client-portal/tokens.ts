@@ -176,12 +176,56 @@ export function lookupClientByToken(
 }
 
 /**
+ * The funnel fixture-store override, resolved once here so the lookup and
+ * the seed tooling cannot disagree on its meaning. `null` unless
+ * `FUNNEL_STORE_PATH` holds a non-empty value; a relative path is resolved
+ * against the process working directory (the repo root for every script and
+ * dev server this repo runs). The funnel tier only — a deploy environment
+ * never sets it, so production keeps the content store below.
+ */
+export function funnelStoreOverride(
+  env: Record<string, string | undefined> = process.env,
+): string | null {
+  const override = env.FUNNEL_STORE_PATH?.trim();
+  return override ? override : null;
+}
+
+/**
  * Reads the store. Entries that fail the shape guard are skipped, so one bad
  * record cannot take down every client's page — and a store that is missing
  * or malformed resolves to no clients, denying everyone, which is the safe
  * direction for a private portal.
+ *
+ * With `FUNNEL_STORE_PATH` set (funnel test runs only) the file is read from
+ * disk instead of the shipped store, so a smoke run can never resolve a real
+ * client. Both node imports are dynamic: a bundler walking this file from a
+ * route must not see a static `node:fs` edge, and the branch never executes
+ * where that would matter (deploys carry no `FUNNEL_STORE_PATH`). An
+ * unreadable override denies, exactly like a missing store above — never a
+ * silent fall back to the real clients.
+ *
+ * Exported so the portal loader (US-009) can join the same store by the
+ * client_id its RLS-scoped read granted — one store reader, one resolution
+ * rule for FUNNEL_STORE_PATH across both surfaces.
  */
-async function readClientStore(): Promise<ClientRecord[]> {
+export async function readClientStore(): Promise<ClientRecord[]> {
+  const override = funnelStoreOverride();
+  if (override) {
+    const { readFile } = await import("node:fs/promises");
+    const { resolve } = await import("node:path");
+    const storePath = resolve(process.cwd(), override);
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(await readFile(storePath, "utf8"));
+    } catch (error) {
+      console.error(
+        `[client-portal] FUNNEL_STORE_PATH store unreadable at ${storePath}: ${error instanceof Error ? error.message : error}`,
+      );
+      return [];
+    }
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(isClientRecord);
+  }
   const store = (await import("../../../content/clients.json")) as { default: unknown };
   if (!Array.isArray(store.default)) return [];
   return store.default.filter(isClientRecord);

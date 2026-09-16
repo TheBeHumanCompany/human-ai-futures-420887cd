@@ -286,3 +286,30 @@ describe("the shell stacks the reports with no navigation chrome", () => {
     expect(REPORTS_SOURCE).toContain("dangerouslySetInnerHTML");
   });
 });
+
+/**
+ * The embedded checkout (funnel todo 7): the page mounts the purchase band
+ * in the locked-final area, and hands it the token it already resolved.
+ * Behaviour of the panel itself (init POST, Stripe boundary, decline path)
+ * is pinned in
+ * `src/components/client-portal/checkout/checkout-panel.test.tsx`; what is
+ * pinned here is the wiring the band depends on.
+ */
+describe("the locked-final paywall hands off to the embedded checkout", () => {
+  test("the page renders the purchase band only when final sections are locked", () => {
+    expect(ROUTE_SOURCE).toContain("checkout/checkout-panel");
+    expect(ROUTE_SOURCE).toContain("<CheckoutBand");
+    expect(ROUTE_SOURCE).toContain("section.locked");
+  });
+
+  test("the band's token comes from the route param, never from storage", () => {
+    expect(ROUTE_SOURCE).toContain("Route.useParams()");
+    expect(ROUTE_SOURCE).toMatch(/token=\{token\}/);
+    expect(ROUTE_SOURCE).not.toMatch(/localStorage|sessionStorage/);
+  });
+
+  test("the denial branch renders no checkout", () => {
+    expect(deniedSource()).not.toContain("CheckoutBand");
+    expect(deniedSource()).not.toContain("checkout-panel");
+  });
+});
