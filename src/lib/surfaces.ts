@@ -127,6 +127,10 @@ export const SURFACES: readonly Surface[] = [
   // never in the sitemap, exercised by its own signature tests instead of
   // the page gates.
   { path: "/api/stripe-webhook", kind: "machine", expectsSingleNav: false },
+  // Token-guarded checkout init (funnel todo 2). Machine surface: never
+  // navigated, never in the sitemap, exercised by its own guard-matrix
+  // tests instead of the page gates.
+  { path: "/api/audit-checkout", kind: "machine", expectsSingleNav: false },
   { path: "/podcast/$slug", kind: "dynamic", expectsSingleNav: true, sampleSlug: "" },
   // Private token URLs (US-001). Deliberately unlisted: no sampleSlug, so
   // `visitableSurfaces()` skips them (no gate ever visits or advertises a

@@ -25,6 +25,7 @@ import { Route as SignUpSplatRouteImport } from './routes/sign-up.$'
 import { Route as SignInSplatRouteImport } from './routes/sign-in.$'
 import { Route as PodcastSlugRouteImport } from './routes/podcast_.$slug'
 import { Route as CTokenRouteImport } from './routes/c.$token'
+import { Route as ApiAuditCheckoutRouteImport } from './routes/api/audit-checkout'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe-webhook'
 
 const WhyWeExistRoute = WhyWeExistRouteImport.update({
@@ -107,6 +108,11 @@ const CTokenRoute = CTokenRouteImport.update({
   path: '/c/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAuditCheckoutRoute = ApiAuditCheckoutRouteImport.update({
+  id: '/api/audit-checkout',
+  path: '/api/audit-checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
   id: '/api/stripe-webhook',
   path: '/api/stripe-webhook',
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/type-specimen': typeof TypeSpecimenRoute
   '/who-we-are': typeof WhoWeAreRoute
   '/why-we-exist': typeof WhyWeExistRoute
+  '/api/audit-checkout': typeof ApiAuditCheckoutRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/c/$token': typeof CTokenRoute
   '/podcast/$slug': typeof PodcastSlugRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/type-specimen': typeof TypeSpecimenRoute
   '/who-we-are': typeof WhoWeAreRoute
   '/why-we-exist': typeof WhyWeExistRoute
+  '/api/audit-checkout': typeof ApiAuditCheckoutRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/c/$token': typeof CTokenRoute
   '/podcast/$slug': typeof PodcastSlugRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/type-specimen': typeof TypeSpecimenRoute
   '/who-we-are': typeof WhoWeAreRoute
   '/why-we-exist': typeof WhyWeExistRoute
+  '/api/audit-checkout': typeof ApiAuditCheckoutRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/c/$token': typeof CTokenRoute
   '/podcast_/$slug': typeof PodcastSlugRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
     | '/type-specimen'
     | '/who-we-are'
     | '/why-we-exist'
+    | '/api/audit-checkout'
     | '/api/stripe-webhook'
     | '/c/$token'
     | '/podcast/$slug'
@@ -204,6 +214,7 @@ export interface FileRouteTypes {
     | '/type-specimen'
     | '/who-we-are'
     | '/why-we-exist'
+    | '/api/audit-checkout'
     | '/api/stripe-webhook'
     | '/c/$token'
     | '/podcast/$slug'
@@ -223,6 +234,7 @@ export interface FileRouteTypes {
     | '/type-specimen'
     | '/who-we-are'
     | '/why-we-exist'
+    | '/api/audit-checkout'
     | '/api/stripe-webhook'
     | '/c/$token'
     | '/podcast_/$slug'
@@ -243,6 +255,7 @@ export interface RootRouteChildren {
   TypeSpecimenRoute: typeof TypeSpecimenRoute
   WhoWeAreRoute: typeof WhoWeAreRoute
   WhyWeExistRoute: typeof WhyWeExistRoute
+  ApiAuditCheckoutRoute: typeof ApiAuditCheckoutRoute
   ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
   CTokenRoute: typeof CTokenRoute
   PodcastSlugRoute: typeof PodcastSlugRoute
@@ -365,6 +378,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/audit-checkout': {
+      id: '/api/audit-checkout'
+      path: '/api/audit-checkout'
+      fullPath: '/api/audit-checkout'
+      preLoaderRoute: typeof ApiAuditCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/stripe-webhook': {
       id: '/api/stripe-webhook'
       path: '/api/stripe-webhook'
@@ -387,6 +407,7 @@ const rootRouteChildren: RootRouteChildren = {
   TypeSpecimenRoute: TypeSpecimenRoute,
   WhoWeAreRoute: WhoWeAreRoute,
   WhyWeExistRoute: WhyWeExistRoute,
+  ApiAuditCheckoutRoute: ApiAuditCheckoutRoute,
   ApiStripeWebhookRoute: ApiStripeWebhookRoute,
   CTokenRoute: CTokenRoute,
   PodcastSlugRoute: PodcastSlugRoute,
