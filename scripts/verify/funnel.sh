@@ -5,7 +5,14 @@ VERIFY_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "$VERIFY_DIR/../.." && pwd)"
 cd "$REPO_ROOT"
 
-PORT="${PORT:-3000}"
+# The webhook forward target must be the port the browser suite's dev server
+# actually binds, which playwright.config.ts takes from e2e-config.json
+# (--strictPort). A literal here drifted from that file: the default said 3000
+# while the suite served 5180, so `stripe listen` forwarded every event into a
+# dead port — S3 then failed as "unlock never flipped", which reads like a
+# broken webhook rather than a wrong port, and the suite only passed for
+# whoever exported PORT by hand. One definition, read from the same file.
+PORT="${PORT:-$(bun -e 'const c = await Bun.file("scripts/verify/e2e-config.json").json(); process.stdout.write(new URL(c.defaultBaseUrl).port || "5180")')}"
 FORWARD_TO="localhost:${PORT}/api/stripe-webhook"
 LISTENER_PID=""
 LISTENER_LOG=""
@@ -48,7 +55,11 @@ assert_live_gate() {
 }
 
 run_live_checks() {
-  local podcasts_dir="${FUNNEL_PODCASTS_DIR:-/Users/siddicky/Projects/BeHuman_Company/podcasts-wt/e2e-smoke-blueprint-funnel-w1}"
+  # Same resolution S1 uses (e2e/funnel/s1-validate-publish.spec.ts:30): the
+  # sibling checkout. The previous default named a throwaway worktree that no
+  # longer exists, so FUNNEL_LIVE=1 failed in preflight on the path rather
+  # than on anything about the live tier.
+  local podcasts_dir="${FUNNEL_PODCASTS_DIR:-$REPO_ROOT/../podcasts}"
 
   command -v uv >/dev/null 2>&1 || fail "required command 'uv' is not on PATH for the live tier"
   [ -d "$podcasts_dir" ] || fail "FUNNEL_PODCASTS_DIR does not exist: $podcasts_dir"
