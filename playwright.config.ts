@@ -40,6 +40,24 @@ import e2eConfig from "./scripts/verify/e2e-config.json" with { type: "json" };
 // like a broken app rather than a wrong URL.
 const BASE_URL = process.env.E2E_BASE_URL ?? e2eConfig.defaultBaseUrl;
 
+// The funnel smoke suite (plan todo 12) runs ONLY through --project=funnel —
+// serially, one worker, against the seeded fixture tier. Two guards make that
+// exclusion real rather than aspirational: (1) the catch-all viewport
+// projects ignore the funnel directory, or a default run would pick each
+// stage spec up three more times in parallel; (2) the funnel project itself
+// is only REGISTERED when the CLI asked for it — `playwright test` (and
+// therefore --list) runs every registered project, so a merely-defined
+// funnel project would still show its specs in a default run. Both are
+// proven by --list with and without the flag in test-results/funnel-helpers.log.
+const FUNNEL_SPEC = /e2e\/funnel\/.*\.spec\.ts/;
+const FUNNEL_DIR = /e2e\/funnel\//;
+const FUNNEL_REQUESTED = process.argv.slice(2).some((arg, i, args) => {
+  if (arg === "--project") return (args[i + 1] ?? "").split(",").includes("funnel");
+  if (arg.startsWith("--project="))
+    return arg.slice("--project=".length).split(",").includes("funnel");
+  return false;
+});
+
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
@@ -73,6 +91,7 @@ export default defineConfig({
   projects: [
     ...VIEWPORTS.map((viewport) => ({
       name: viewport.name,
+      testIgnore: [FUNNEL_DIR],
       use: {
         ...devices["Desktop Chrome"],
         viewport: { width: viewport.width, height: viewport.height },
@@ -87,5 +106,15 @@ export default defineConfig({
         viewport: { width: 1440, height: 900 },
       },
     },
+    ...(FUNNEL_REQUESTED
+      ? [
+          {
+            name: "funnel",
+            testMatch: FUNNEL_SPEC,
+            fullyParallel: false,
+            workers: 1,
+          },
+        ]
+      : []),
   ],
 });

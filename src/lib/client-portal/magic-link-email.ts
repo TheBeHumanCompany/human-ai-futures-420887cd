@@ -16,6 +16,7 @@
  */
 
 import { CONTACT_EMAIL } from "../brand";
+import { CATCHER_DIR_ENV, writeCatcherPayload } from "./email-catcher";
 
 /** Canonical apex origin. No `www` variant anywhere on this path. */
 export const CLIENT_PORTAL_ORIGIN = "https://thebehumancompany.ca";
@@ -25,6 +26,22 @@ export const MAGIC_LINK_FROM =
   process.env.RESEND_FROM ?? "The Be Human Company <website@updates.thebehumancompany.ca>";
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
+
+/**
+ * Funnel-tier capture seam: when this env var names a directory, a "send"
+ * is written there as one JSON file (the exact Resend request body, per
+ * `email-catcher.ts`) instead of any network call — so the smoke suite can
+ * read the magic link back with zero real email. Unset/empty means the
+ * default behaviour is untouched. Checked BEFORE the API-key gate: the
+ * funnel run is deliberately unconfigured for Resend, and a capture must
+ * not require a key that would never be used.
+ */
+export { CATCHER_DIR_ENV };
+
+function activeCatcherDir(): string | undefined {
+  const dir = process.env[CATCHER_DIR_ENV];
+  return typeof dir === "string" && dir.trim().length > 0 ? dir : undefined;
+}
 
 /** A provider call that never returns must not hold a request open forever. */
 const SEND_TIMEOUT_MS = 10_000;
@@ -110,6 +127,8 @@ export async function deliverMagicLinkEmail(
   deps: {
     apiKey?: string;
     fetchImpl?: typeof fetch;
+    /** Test seam for the capture dir; defaults to the env var. Empty = unset. */
+    catcherDir?: string;
   } = {},
 ): Promise<MagicLinkResult> {
   const apiKey = "apiKey" in deps ? deps.apiKey : process.env.RESEND_API_KEY;
@@ -121,10 +140,7 @@ export async function deliverMagicLinkEmail(
   if (typeof request.clientName !== "string" || request.clientName.trim().length === 0) {
     return fail("invalid", "A client name is required.");
   }
-  if (
-    typeof request.to !== "string" ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(request.to.trim())
-  ) {
+  if (typeof request.to !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(request.to.trim())) {
     return fail("invalid", "A recipient address is required.");
   }
   if (
@@ -132,6 +148,22 @@ export async function deliverMagicLinkEmail(
     !request.clientUrl.startsWith(`${CLIENT_PORTAL_ORIGIN}/c/`)
   ) {
     return fail("invalid", "The client URL must be an apex client-portal link.");
+  }
+
+  const catcherDir = "catcherDir" in deps ? deps.catcherDir : activeCatcherDir();
+  if (catcherDir) {
+    try {
+      await writeCatcherPayload(catcherDir, RESEND_ENDPOINT, composeMagicLinkEmail(request));
+      return { ok: true };
+    } catch (error) {
+      console.error(
+        `[client-portal] ${CATCHER_DIR_ENV} write failed: ${error instanceof Error ? error.message : error}`,
+      );
+      return fail(
+        "failed",
+        `Something went wrong sending that. Please email ${CONTACT_EMAIL} directly.`,
+      );
+    }
   }
 
   if (!apiKey) {
@@ -152,12 +184,18 @@ export async function deliverMagicLinkEmail(
     });
     if (!response.ok) {
       console.error(`[client-portal] Resend ${response.status}: ${await response.text()}`);
-      return fail("failed", `Something went wrong sending that. Please email ${CONTACT_EMAIL} directly.`);
+      return fail(
+        "failed",
+        `Something went wrong sending that. Please email ${CONTACT_EMAIL} directly.`,
+      );
     }
     return { ok: true };
   } catch (error) {
     console.error(`[client-portal] send failed: ${error instanceof Error ? error.message : error}`);
-    return fail("failed", `Something went wrong sending that. Please email ${CONTACT_EMAIL} directly.`);
+    return fail(
+      "failed",
+      `Something went wrong sending that. Please email ${CONTACT_EMAIL} directly.`,
+    );
   } finally {
     clearTimeout(timeout);
   }

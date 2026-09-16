@@ -28,7 +28,11 @@ require_file "$VERIFY_LIB_DIR/e2e-config.json" "the shared e2e base-URL config"
 require_cmd jq "e2e"
 
 # ── the spec set is non-empty ──────────────────────────────────────────────
-specs="$(find e2e -type f -name '*.spec.ts' 2>/dev/null | LC_ALL=C sort || true)"
+# Funnel specs are pruned: they run only via --project=funnel (scripts/verify/
+# funnel.sh), so counting them here would assert a default-run suite size the
+# default run never executes. The floor stays honest to what `bun run e2e`
+# actually plays.
+specs="$(find e2e -type f -name '*.spec.ts' -not -path 'e2e/funnel/*' 2>/dev/null | LC_ALL=C sort || true)"
 spec_n="$(printf '%s\n' "$specs" | grep -c . || true)"
 if [ "${spec_n:-0}" -eq 0 ]; then
   echo "FAIL[e2e]: no *.spec.ts under e2e/." >&2
