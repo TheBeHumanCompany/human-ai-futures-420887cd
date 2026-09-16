@@ -15,16 +15,18 @@ import {
  * charging an assumed amount — inventing money is the one error here that
  * cannot be diffed away later.
  *
- * Canonical origin is a constant, not configuration (the `.env.example`
- * essay on the canonical origin applies: a preview deploy minting checkout
- * return links on another host is the same failure class as episode URLs).
+ * Canonical origin defaults to a constant (the `.env.example` essay on the
+ * canonical origin applies: a preview deploy minting checkout return links on
+ * another host is the same failure class as episode URLs). `AUDIT_ORIGIN` is
+ * an explicit local-funnel affordance, not an implicit preview-host choice.
  */
 export const AUDIT_ORIGIN = "https://thebehumancompany.ca";
 
-export const auditSuccessUrl = (origin: string = AUDIT_ORIGIN) =>
+export const auditSuccessUrl = (origin: string = process.env.AUDIT_ORIGIN ?? AUDIT_ORIGIN) =>
   `${origin}/audit/success?session_id={CHECKOUT_SESSION_ID}`;
 
-export const auditCancelUrl = (origin: string = AUDIT_ORIGIN) => `${origin}/audit/cancelled`;
+export const auditCancelUrl = (origin: string = process.env.AUDIT_ORIGIN ?? AUDIT_ORIGIN) =>
+  `${origin}/audit/cancelled`;
 
 export interface AuditCheckoutInput {
   /** Portal client id, carried through as metadata so fulfillment can map back. */
