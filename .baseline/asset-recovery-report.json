@@ -36,6 +36,42 @@
     "url": "https://id-preview--d03b88e4-8da1-457b-8afc-3c434677b299.lovable.app/__l5e/assets-v1/c2b63d1c-b817-43f6-ab8a-ebeb326b311f/archive-bella.png"
   },
   {
+    "asset_id": "supplied-d547e1cd8ceb",
+    "filename": "archive-video-abdi.jpg",
+    "status": "skipped-already-present",
+    "attempts": 0,
+    "bytes": 109870,
+    "sha256": "d547e1cd8ceb648dd002c8d2ec38e789f618060f41e6c0b6d9eb9db51730ba40",
+    "url": "(supplied — no source URL)"
+  },
+  {
+    "asset_id": "supplied-7a55ea6bd8ca",
+    "filename": "archive-video-farid.jpg",
+    "status": "skipped-already-present",
+    "attempts": 0,
+    "bytes": 88018,
+    "sha256": "7a55ea6bd8ca9b46d52940332b034c9e5a8422d2dbe62ca0e81dcc301415df05",
+    "url": "(supplied — no source URL)"
+  },
+  {
+    "asset_id": "supplied-616fdc151bf0",
+    "filename": "archive-video-lucy.jpg",
+    "status": "skipped-already-present",
+    "attempts": 0,
+    "bytes": 120922,
+    "sha256": "616fdc151bf072c1784d0a792333514bea91f8fb100c8720b6e47b72fd02893a",
+    "url": "(supplied — no source URL)"
+  },
+  {
+    "asset_id": "supplied-5a97c09a15a0",
+    "filename": "archive-video-marissa.jpg",
+    "status": "skipped-already-present",
+    "attempts": 0,
+    "bytes": 111144,
+    "sha256": "5a97c09a15a094b68cd7fe03e1e88fcdb9b868b6b34b523ae298e1a240c2e8ae",
+    "url": "(supplied — no source URL)"
+  },
+  {
     "asset_id": "67f7238f-fdb3-4654-8af9-75fbbd2f8e30",
     "filename": "guest-ep1.png",
     "status": "skipped-already-present",
@@ -423,48 +459,21 @@
     "url": "https://id-preview--d03b88e4-8da1-457b-8afc-3c434677b299.lovable.app/__l5e/assets-v1/65520b89-aa90-471c-be3c-c9bd99d25315/new-human-era-collage.png"
   },
   {
-    "asset_id": "supplied-616fdc151bf0",
-    "filename": "archive-video-lucy.jpg",
+    "asset_id": "bcfb31d5-6188-4ded-8813-280df507f25a",
+    "filename": "question-portrait.png",
     "status": "ok",
     "attempts": 1,
-    "bytes": 120922,
-    "sha256": "616fdc151bf072c1784d0a792333514bea91f8fb100c8720b6e47b72fd02893a",
-    "url": "https://i.ytimg.com/vi/lDGsG0nu1Ck/maxresdefault.jpg"
-  },
-  {
-    "asset_id": "supplied-7a55ea6bd8ca",
-    "filename": "archive-video-farid.jpg",
-    "status": "ok",
-    "attempts": 1,
-    "bytes": 88018,
-    "sha256": "7a55ea6bd8ca9b46d52940332b034c9e5a8422d2dbe62ca0e81dcc301415df05",
-    "url": "https://i.ytimg.com/vi/ESAw6gJRGhQ/maxresdefault.jpg"
-  },
-  {
-    "asset_id": "supplied-d547e1cd8ceb",
-    "filename": "archive-video-abdi.jpg",
-    "status": "ok",
-    "attempts": 1,
-    "bytes": 109870,
-    "sha256": "d547e1cd8ceb648dd002c8d2ec38e789f618060f41e6c0b6d9eb9db51730ba40",
-    "url": "https://i.ytimg.com/vi/xtbZARUHt7s/maxresdefault.jpg"
-  },
-  {
-    "asset_id": "supplied-5a97c09a15a0",
-    "filename": "archive-video-marissa.jpg",
-    "status": "ok",
-    "attempts": 1,
-    "bytes": 111144,
-    "sha256": "5a97c09a15a094b68cd7fe03e1e88fcdb9b868b6b34b523ae298e1a240c2e8ae",
-    "url": "https://i.ytimg.com/vi/2sAGALC7Pig/maxresdefault.jpg"
+    "bytes": 1722493,
+    "sha256": "d9d8635ab60f6dd8ba26c0ff6af4c298cc8d64944d5104eb385862f5e9075a24",
+    "url": "https://id-preview--d03b88e4-8da1-457b-8afc-3c434677b299.lovable.app/__l5e/assets-v1/bcfb31d5-6188-4ded-8813-280df507f25a/question-portrait.png"
   },
   {
     "asset_id": "supplied-11b8e18105df",
     "filename": "why-we-exist-video.jpg",
-    "status": "ok",
-    "attempts": 1,
+    "status": "skipped-already-present",
+    "attempts": 0,
     "bytes": 164016,
     "sha256": "11b8e18105df37160cb18deedfdbdf700be43e3eaaae5ad603c6520be3bec84a",
-    "url": "https://i.ytimg.com/vi/-r011ECKr7M/maxresdefault.jpg"
+    "url": "(supplied — no source URL)"
   }
 ]

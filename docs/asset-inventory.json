@@ -20,6 +20,26 @@
     "content_type": "image/png"
   },
   {
+    "filename": "archive-video-abdi.jpg",
+    "bytes": 109870,
+    "content_type": "image/jpeg"
+  },
+  {
+    "filename": "archive-video-farid.jpg",
+    "bytes": 88018,
+    "content_type": "image/jpeg"
+  },
+  {
+    "filename": "archive-video-lucy.jpg",
+    "bytes": 120922,
+    "content_type": "image/jpeg"
+  },
+  {
+    "filename": "archive-video-marissa.jpg",
+    "bytes": 111144,
+    "content_type": "image/jpeg"
+  },
+  {
     "filename": "guest-ep1.png",
     "bytes": 2151060,
     "content_type": "image/png"
@@ -233,5 +253,15 @@
     "filename": "new-human-era-collage.png",
     "bytes": 2436778,
     "content_type": "image/png"
+  },
+  {
+    "filename": "question-portrait.png",
+    "bytes": 1722493,
+    "content_type": "image/png"
+  },
+  {
+    "filename": "why-we-exist-video.jpg",
+    "bytes": 164016,
+    "content_type": "image/jpeg"
   }
 ]
