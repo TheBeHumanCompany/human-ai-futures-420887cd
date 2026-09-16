@@ -22,14 +22,26 @@ import type {
  * (`eyebrow`, `type-h4-caps`, the ink/cream ladder), so a report looks like the
  * site instead of shipping 92 inlined font subsets to redeclare it.
  *
+ * BAND-AGNOSTIC FOREGROUND. Body text and hairlines are `currentColor` with an
+ * opacity modifier, never `text-ink/*` or `border-hairline-dark/*`. The section
+ * wrapper alternates `.section-cream` and `.section-ink` by position
+ * (`blueprint-sections.tsx`), and `--ink` is near-black: a hardcoded ink
+ * foreground renders black-on-black on every odd-indexed band and on every
+ * `question` band. That is not a contrast nit — the text is simply gone, and it
+ * was: the funnel fixture's second preliminary section ("Fixture Method Notes")
+ * seeded a prose block and screenshotted as a bare title, so a demo of an
+ * 11-section blueprint would have shown half its content missing while every
+ * test stayed green, because the DOM was correct and only the paint was wrong.
+ * Inheriting the band's own foreground cannot drift when a band moves.
+ *
  * `LegacyHtmlBody` is the single exception and is quarantined in its own module
  * so it stays greppable.
  */
 
 const Finding = ({ block }: { block: FindingBlock }) => (
-  <li className="border-t border-hairline-dark/40 py-4">
-    <p className="text-[1.0625rem] leading-[1.55] text-ink/85">{block.claim}</p>
-    <p className="eyebrow mt-2 text-ink/50">
+  <li className="border-t border-current/20 py-4">
+    <p className="text-[1.0625rem] leading-[1.55] text-current/85">{block.claim}</p>
+    <p className="eyebrow mt-2 text-current/50">
       {/* A hypothesis must never read as a fact — the kind is shown, always. */}
       {block.kind}
       {block.verification ? ` · ${block.verification}` : ""}
@@ -37,7 +49,7 @@ const Finding = ({ block }: { block: FindingBlock }) => (
     {block.supportingExcerpts?.length ? (
       <ul className="mt-2 space-y-1">
         {block.supportingExcerpts.map((excerpt, i) => (
-          <li key={i} className="border-l border-hairline-dark/40 pl-3 text-sm text-ink/60">
+          <li key={i} className="border-l border-current/20 pl-3 text-sm text-current/60">
             {excerpt}
           </li>
         ))}
@@ -47,14 +59,14 @@ const Finding = ({ block }: { block: FindingBlock }) => (
 );
 
 const Opportunity = ({ block }: { block: OpportunityBlock }) => (
-  <article className="border-t border-hairline-dark/40 py-5">
-    <p className="eyebrow text-ink/50">{block.label}</p>
+  <article className="border-t border-current/20 py-5">
+    <p className="eyebrow text-current/50">{block.label}</p>
     <h4 className="type-h4-caps mt-1">{block.title}</h4>
     <dl className="mt-3 space-y-2">
       {block.bullets.map((bullet, i) => (
         <div key={i}>
-          <dt className="eyebrow text-ink/50">{bullet.label}</dt>
-          <dd className="text-[1.0625rem] leading-[1.55] text-ink/80">{bullet.text}</dd>
+          <dt className="eyebrow text-current/50">{bullet.label}</dt>
+          <dd className="text-[1.0625rem] leading-[1.55] text-current/80">{bullet.text}</dd>
         </div>
       ))}
     </dl>
@@ -64,7 +76,7 @@ const Opportunity = ({ block }: { block: OpportunityBlock }) => (
 const Prose = ({ block }: { block: ProseBlock }) => (
   <>
     {block.paragraphs.map((paragraph, i) => (
-      <p key={i} className="text-[1.0625rem] leading-[1.55] text-ink/80">
+      <p key={i} className="text-[1.0625rem] leading-[1.55] text-current/80">
         {paragraph}
       </p>
     ))}
@@ -72,28 +84,21 @@ const Prose = ({ block }: { block: ProseBlock }) => (
 );
 
 const Question = ({ block }: { block: QuestionBlock }) => (
-  <blockquote className="type-h3-caps-light max-w-[24ch] text-balance">
-    {block.question}
-  </blockquote>
+  <blockquote className="type-h3-caps-light max-w-[24ch] text-balance">{block.question}</blockquote>
 );
 
 const UnknownItem = ({ block }: { block: UnknownItemBlock }) => (
-  <li className="border-t border-hairline-dark/40 py-3 text-[1.0625rem] leading-[1.55] text-ink/80">
+  <li className="border-t border-current/20 py-3 text-[1.0625rem] leading-[1.55] text-current/80">
     {block.text}
   </li>
 );
 
 const Source = ({ block }: { block: SourceBlock }) => (
-  <li className="border-t border-hairline-dark/40 py-2 text-sm text-ink/70">
+  <li className="border-t border-current/20 py-2 text-sm text-current/70">
     {/* rel=noreferrer matters here beyond hygiene: on /c/<token> the URL is the
         credential, and the route already sends Referrer-Policy: no-referrer. */}
     {block.url ? (
-      <a
-        className="link-underline"
-        href={block.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a className="link-underline" href={block.url} target="_blank" rel="noopener noreferrer">
         {block.label}
       </a>
     ) : (
@@ -103,9 +108,9 @@ const Source = ({ block }: { block: SourceBlock }) => (
 );
 
 const PlaybookRef = ({ block }: { block: PlaybookRefBlock }) => (
-  <div className="border-t border-hairline-dark/40 py-3">
-    <p className="eyebrow text-ink/50">Playbook</p>
-    <p className="text-[1.0625rem] leading-[1.55] text-ink/80">
+  <div className="border-t border-current/20 py-3">
+    <p className="eyebrow text-current/50">Playbook</p>
+    <p className="text-[1.0625rem] leading-[1.55] text-current/80">
       {block.note ?? block.playbookId}
     </p>
   </div>

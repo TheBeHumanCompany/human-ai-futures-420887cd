@@ -10,6 +10,7 @@ import {
   ensureFunnelSeeded,
   funnelBaseUrl,
   localProspectUrl,
+  prospectUrl,
   readFixtureToken,
   snap,
 } from "./suite-setup.ts";
@@ -32,6 +33,8 @@ const run = promisify(execFile);
 
 const STAGE = "s2-email-prospect";
 const CLIENT_NAME = "The Funnel Fixture Co";
+/** The prose body seeded on `sec-pre-2` (scripts/verify/funnel-rows.ts). */
+const SEEDED_PROSE = "Fictional fixture prose for the funnel run.";
 
 test.beforeAll(async () => {
   await ensureFunnelSeeded();
@@ -93,6 +96,46 @@ test("following the magic link opens the blueprint with locked finals", async ({
   await expect(page.locator("#section-sec-fin-2")).toContainText("Final Playbook Detail");
   await expect(page.getByTestId("pay-cta")).toBeVisible();
   await snap(page, STAGE, "prospect-page-locked-finals");
+});
+
+/**
+ * The band-agnostic foreground contract (`blueprint/blocks.tsx`).
+ *
+ * Section bands alternate cream and ink by position, and `--ink` is near-black.
+ * The block renderers originally hardcoded `text-ink/*`, so every body block on
+ * an ink band painted black on black: `sec-pre-2` seeds a prose block and
+ * screenshotted as a bare title. Nothing above catches it — the text IS in the
+ * DOM, `toContainText` passes, and the tier attributes are correct. Only the
+ * paint is wrong, so only a computed-style check can see it.
+ *
+ * Lightness is read out of the computed `oklch()`/`oklab()` value rather than
+ * converted to a WCAG ratio: the palette is authored in oklch, Chromium reports
+ * it back in the same space, and "the text is a different lightness from the
+ * surface it sits on" is the whole claim. 0.4 is far below the real delta
+ * (0.96 vs 0.16) and far above anything a same-colour regression could produce.
+ */
+test("body copy on an ink band is painted in the band's own foreground", async ({ page }) => {
+  await page.goto(prospectUrl(await readFixtureToken()));
+
+  const section = page.locator("#section-sec-pre-2");
+  await expect(section).toHaveClass(/section-ink/);
+  await expect(section).toContainText(SEEDED_PROSE);
+
+  const measured = await section.evaluate((el, prose) => {
+    const body = Array.from(el.querySelectorAll("p")).find((p) => p.textContent?.includes(prose));
+    if (!body) throw new Error(`the seeded prose block is missing: ${prose}`);
+    const lightness = (value: string) => {
+      const match = /^okl(?:ch|ab)\(\s*([0-9.]+)/.exec(value);
+      if (!match) throw new Error(`colour not in an oklch/oklab form: ${value}`);
+      return Number(match[1]);
+    };
+    return {
+      band: lightness(getComputedStyle(el).backgroundColor),
+      text: lightness(getComputedStyle(body).color),
+    };
+  }, SEEDED_PROSE);
+
+  expect(Math.abs(measured.text - measured.band)).toBeGreaterThan(0.4);
 });
 
 test("an invalid token is a denial page, not content", async ({ request }) => {
