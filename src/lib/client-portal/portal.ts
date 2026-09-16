@@ -2,6 +2,7 @@ import { auth } from "@clerk/tanstack-react-start/server";
 import { redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 
+import type { ClientRecord } from "./tokens";
 import type { ClerkScopedReport, ClerkSupabaseConfig } from "./supabase-clerk";
 
 /**
@@ -26,6 +27,15 @@ import type { ClerkScopedReport, ClerkSupabaseConfig } from "./supabase-clerk";
  * answers "signed in, and no reports" as a stand-in for "broken". An
  * honest zero (a prospect who has not paid) is `ok` with an empty list,
  * and the page renders its empty state.
+ *
+ * The company identity (todo 9, G3) is the one deliberate exception: the
+ * header's avatar and name are decoration on a page the session already
+ * earned, so `resolvePortalCompany` degrades — an unknown client id, a
+ * nameless store record, or an unreadable store all answer `null` and the
+ * header falls back to the `?` mark instead of breaking the reports. The
+ * join still only ever runs inside the server function, on client ids the
+ * RLS-scoped read itself produced; the store read is the same one
+ * `tokens.ts` performs, never an anon request and never in a bundle.
  */
 
 export interface PortalAuthState {
@@ -39,6 +49,78 @@ export interface PortalDeps {
 }
 
 export type PortalOutcome = { status: "redirect" } | { status: "ok"; reports: ClerkScopedReport[] };
+
+/**
+ * The avatar initial for the portal header (US-004's rule, null-safe).
+ *
+ * Same expression `/c/$token` renders — first character, uppercased — so
+ * the two surfaces can never disagree on what a name resolves to. Every
+ * missing half (null, empty, whitespace) answers the "?" fallback instead
+ * of throwing: a nameless record must degrade, never crash the page.
+ */
+export function companyInitial(name: string | null | undefined): string {
+  return (name ?? "").trim().slice(0, 1).toUpperCase() || "?";
+}
+
+/**
+ * The signed-in client's company name, joined from the content store.
+ *
+ * The client_id comes only from the RLS-scoped reports above — the caller
+ * never supplies one, so the join can only ever name a client the signed-in
+ * session already earned visibility into. The first report wins (the read
+ * orders newest-unlocked first), an unknown id and a blank store name both
+ * answer `null`, and the header falls back to the bare initial.
+ */
+function companyNameForReports(
+  reports: readonly ClerkScopedReport[],
+  clients: readonly ClientRecord[],
+): { id: string; name: string } | null {
+  const clientId = reports[0]?.client_id;
+  if (!clientId) return null;
+  const match = clients.find((client) => client.id === clientId);
+  if (!match) return null;
+  const name = match.name.trim();
+  return name ? { id: match.id, name } : null;
+}
+
+/** The company identity the portal header renders (US-004's mark, US-009's page). */
+export interface PortalCompany {
+  id: string;
+  name: string;
+}
+
+export interface PortalCompanyDeps {
+  /** The client store read, injectable so tests join without the filesystem. */
+  readStore?: () => Promise<ClientRecord[]>;
+}
+
+/**
+ * The company record behind the granted reports, or `null` when there is
+ * nothing to name. Defaults to the client store `tokens.ts` reads — loaded
+ * dynamically, same bundling discipline as the clerk-scoped read above —
+ * and degrades on every missing half rather than throwing: a nameless
+ * record or an unreadable store cost the page its label, never its reports.
+ */
+export async function resolvePortalCompany(
+  reports: readonly ClerkScopedReport[],
+  deps: PortalCompanyDeps = {},
+): Promise<PortalCompany | null> {
+  if (reports.length === 0) return null;
+  const readStore =
+    deps.readStore ??
+    (async () => {
+      const tokens = await import("./tokens");
+      return tokens.readClientStore();
+    });
+  try {
+    return companyNameForReports(reports, await readStore());
+  } catch (error) {
+    console.error(
+      `[client-portal] company lookup failed: ${error instanceof Error ? error.message : error}`,
+    );
+    return null;
+  }
+}
 
 export async function loadPortalReports(
   authState: PortalAuthState,
@@ -74,5 +156,9 @@ export const fetchPortalPage = createServerFn({ method: "GET" }).handler(async (
   if (outcome.status === "redirect") {
     throw redirect({ to: "/sign-in/$", params: { _splat: "" } });
   }
-  return { reports: outcome.reports };
+  // Additive on the committed outcome shape: the reports read above is
+  // untouched (its decision table stays byte-compatible), and the company
+  // join degrades on its own so a nameless record can never error the page.
+  const company = await resolvePortalCompany(outcome.reports);
+  return { reports: outcome.reports, company };
 });

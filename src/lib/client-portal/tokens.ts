@@ -203,8 +203,12 @@ export function funnelStoreOverride(
  * where that would matter (deploys carry no `FUNNEL_STORE_PATH`). An
  * unreadable override denies, exactly like a missing store above — never a
  * silent fall back to the real clients.
+ *
+ * Exported so the portal loader (US-009) can join the same store by the
+ * client_id its RLS-scoped read granted — one store reader, one resolution
+ * rule for FUNNEL_STORE_PATH across both surfaces.
  */
-async function readClientStore(): Promise<ClientRecord[]> {
+export async function readClientStore(): Promise<ClientRecord[]> {
   const override = funnelStoreOverride();
   if (override) {
     const { readFile } = await import("node:fs/promises");

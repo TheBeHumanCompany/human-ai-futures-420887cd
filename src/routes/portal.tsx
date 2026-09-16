@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { fetchPortalPage } from "@/lib/client-portal/portal";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { companyInitial, fetchPortalPage } from "@/lib/client-portal/portal";
 
 /**
  * The signed-in client portal (US-009).
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/portal")({
 });
 
 function PortalPage() {
-  const { reports } = Route.useLoaderData();
+  const { reports, company } = Route.useLoaderData();
 
   return (
     <section className="section-cream">
@@ -38,7 +39,23 @@ function PortalPage() {
           defect. The empty-state paragraph keeps the 58ch prose measure
           because it is site copy, not client content. */}
       <div className="mx-auto w-full max-w-[1180px] px-6 py-12 sm:px-8">
-        <p className="eyebrow">Client portal</p>
+        {/* The company identity (todo 9, G3), mirroring /c/$token's header
+            row: same avatar classes (US-004), initial resolved by the same
+            rule. A client the store cannot name still gets the avatar —
+            the "?" fallback — but no name line. */}
+        <div className="flex items-center gap-3">
+          <Avatar className="bg-ink text-cream" data-testid="portal-company-avatar">
+            <AvatarFallback className="bg-ink text-cream">
+              {companyInitial(company?.name)}
+            </AvatarFallback>
+          </Avatar>
+          {company !== null && (
+            <p className="eyebrow" data-testid="portal-company-name">
+              {company.name}
+            </p>
+          )}
+        </div>
+        <p className="eyebrow mt-3">Client portal</p>
         <h1 className="type-h3-caps-light mt-3">Your reports</h1>
         {reports.length === 0 ? (
           <p className="mt-8 max-w-[58ch] text-base leading-relaxed text-ink/80">
