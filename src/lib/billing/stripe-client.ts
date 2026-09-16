@@ -27,6 +27,15 @@ export const STRIPE_API_BASE = "https://api.stripe.com";
  */
 export const STRIPE_PREVIEW_VERSION = "2026-02-25.preview";
 
+/**
+ * Empirically required for `ui_mode=elements` sessions
+ * (test-results/elements-contract.md, 2026-09-15): the preview header rejects
+ * elements with "you must upgrade to Stripe API version 2026-03-25.dahlia".
+ * Sent ONLY by the elements-session create; the preview version above still
+ * governs every other call.
+ */
+export const STRIPE_ELEMENTS_VERSION = "2026-08-26.dahlia";
+
 export interface StripeClientConfig {
   secretKey: string;
 }
@@ -44,6 +53,8 @@ export function stripeConfigFromEnv(
 
 export interface StripeApiDeps {
   fetchImpl?: typeof fetch;
+  /** Overrides the default `STRIPE_PREVIEW_VERSION` header for this call only. */
+  apiVersion?: string;
 }
 
 export class StripeApiError extends Error {
@@ -73,7 +84,7 @@ export async function stripeApi<T>(
     headers: {
       Authorization: `Basic ${btoa(`${config.secretKey}:`)}`,
       "Content-Type": "application/x-www-form-urlencoded",
-      "Stripe-Version": STRIPE_PREVIEW_VERSION,
+      "Stripe-Version": deps.apiVersion ?? STRIPE_PREVIEW_VERSION,
     },
     body,
   });

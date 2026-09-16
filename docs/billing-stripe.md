@@ -100,3 +100,18 @@ path) wins over this row and is never duplicated.
 - Operator sequencing (locked): the Stripe link lives INSIDE the preliminary
   blueprint HTML — run `portal:checkout`, embed the URL in the report HTML, then
   `portal:publish`. No on-page pay button exists or is needed for the loop.
+- FINDING (2026-09-15, elements-mode empirical probes, full record
+  `test-results/elements-contract.md` — version pin): the pinned preview header
+  `2026-02-25.preview` rejects `ui_mode=elements` (Stripe names
+  `2026-03-25.dahlia` as the minimum); elements sessions use `2026-08-26.dahlia`
+  via a per-call header override and 200 with a `client_secret`. The preview
+  header still governs all link-mode calls.
+- FINDING (2026-09-15, same probes — managed_payments):
+  `managed_payments[
+  enabled]=true` is rejected with elements on every header
+  tried (Managed Payments only supports hosted/embedded ui_modes), and the
+  account has it default-on, so elements sessions must send
+  `managed_payments[enabled]=false` explicitly. It stays on the operator
+  link-mode flow. Elements sessions currently carry
+  `automatic_tax.enabled=false` — test mode rejects explicit automatic tax
+  pending a dashboard head-office address; revisit before live.
