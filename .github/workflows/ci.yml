@@ -57,11 +57,25 @@ jobs:
       - name: Typecheck
         run: bun run typecheck
 
-      - name: Lint
-        run: bun run lint
-
       - name: Test (offline)
         run: bun test src/
 
       - name: Build
         run: bun run build
+
+      # Reads the bundles the Build step just emitted, so it costs a grep and
+      # nothing else. Without it the auth diagnostic's server-only property is
+      # asserted only when someone remembers to run the script by hand, which
+      # is the same as not asserting it.
+      - name: Auth diagnostic is server-only
+        run: bash scripts/verify/assert-auth-warning.sh
+
+      # Last, not because it matters least, but because it currently fails:
+      # `bun run lint` reports 741 pre-existing prettier violations on main, so
+      # while it ran third every later step was skipped and the last five runs
+      # on main told us nothing except that lint is red. Moving it here changes
+      # no verdict — a failing lint still fails the job — and buys a typecheck,
+      # a test run, a build and a gate result out of every one of those runs.
+      # Put it back above Build the day the 741 are cleared.
+      - name: Lint
+        run: bun run lint

@@ -60,7 +60,22 @@ const AUTHORIZED_PARTIES = (
 const clerkLayer = authMiddlewareEnabled()
   ? [clerkMiddleware({ authorizedParties: AUTHORIZED_PARTIES })]
   : [];
-if (clerkLayer.length === 0) {
+
+// Guarded by `import.meta.env.SSR` because this module is in BOTH graphs:
+// Start evaluates src/start.ts in the browser too. There `process.env` is
+// replaced by `{}`, so authMiddlewareEnabled() is structurally false no matter
+// how the server is configured, and the unguarded warning fired on every page
+// load of every deployment — including correctly configured ones. It was read
+// off a production console as "the portal is serving without sessions" while
+// that same deployment was answering `x-clerk-auth-status: signed-out`
+// (2026-09-16). That is the worst thing a config diagnostic can do: be loud,
+// be constant, and be about the wrong process.
+//
+// `import.meta.env.SSR` is a build-time literal, so the browser build removes
+// this block and its message outright rather than skipping it at runtime.
+// scripts/verify/assert-auth-warning.sh asserts that against the emitted
+// files, because the guard working is not something this source can promise.
+if (import.meta.env.SSR && clerkLayer.length === 0) {
   console.warn("[auth] CLERK_SECRET_KEY is not set — serving without sessions");
 }
 
