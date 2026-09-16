@@ -89,7 +89,10 @@ export const SOCIAL_LINKS: readonly SocialLink[] = [
   { name: "YouTube", href: "https://m.youtube.com/@shanejeremyjames?ra=m" },
   { name: "X", href: "https://x.com/shanejjames?lang=en" },
   { name: "TikTok", href: "https://www.tiktok.com/@shanejjames?_r=1&_t=ZS-98rtTHgscnF" },
-  { name: "Snapchat", href: "https://www.snapchat.com/add/shanejjames?share_id=lkw0bdXiL6I&locale=en-CA" },
+  {
+    name: "Snapchat",
+    href: "https://www.snapchat.com/add/shanejjames?share_id=lkw0bdXiL6I&locale=en-CA",
+  },
   { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61590590709616" },
 ] as const;
 

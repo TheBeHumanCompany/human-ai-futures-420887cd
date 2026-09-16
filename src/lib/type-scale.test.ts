@@ -162,9 +162,7 @@ describe("AC-4.1 — the scale is defined, in every register", () => {
       const others = srcNonTestFiles
         .filter(
           (f) =>
-            f !== SPECIMEN &&
-            !f.endsWith("site-header.tsx") &&
-            !f.endsWith("portal-header.tsx"),
+            f !== SPECIMEN && !f.endsWith("site-header.tsx") && !f.endsWith("portal-header.tsx"),
         )
         .filter((f) => readFileSync(f, "utf8").includes("type-wordmark"));
       expect(others).toEqual([]);

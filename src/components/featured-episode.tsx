@@ -61,9 +61,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
         </p>
 
         {episode.excerpt && (
-          <p className="mt-3 max-w-xl text-base leading-relaxed text-ink/80">
-            {episode.excerpt}
-          </p>
+          <p className="mt-3 max-w-xl text-base leading-relaxed text-ink/80">{episode.excerpt}</p>
         )}
 
         <Link

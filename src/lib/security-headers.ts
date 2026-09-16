@@ -84,9 +84,7 @@ const REPORT_ONLY_CSP = [
 export const securityHeadersFor = (pathname: string): Record<string, string> => {
   const isPrivate = isPrivatePath(pathname);
   return {
-    "Content-Security-Policy": isPrivate
-      ? `${ENFORCED_CSP}; frame-ancestors 'none'`
-      : ENFORCED_CSP,
+    "Content-Security-Policy": isPrivate ? `${ENFORCED_CSP}; frame-ancestors 'none'` : ENFORCED_CSP,
     "Content-Security-Policy-Report-Only": REPORT_ONLY_CSP,
     "X-Content-Type-Options": "nosniff",
     // A confidential report must not be stored by the browser or by anything

@@ -115,7 +115,10 @@ describe("requestCheckoutSession — the init-route transport", () => {
   test("an unparseable 200 body resolves unavailable, never ready", async () => {
     const fetchImpl = (async () => new Response("not json", { status: 200 })) as typeof fetch;
 
-    const state = await requestCheckoutSession({ identity: { kind: "token", token: "tok-123" }, fetchImpl });
+    const state = await requestCheckoutSession({
+      identity: { kind: "token", token: "tok-123" },
+      fetchImpl,
+    });
 
     expect(state).toEqual({ status: "unavailable" });
   });
@@ -134,7 +137,10 @@ describe("requestCheckoutSession — the init-route transport", () => {
       throw new TypeError("fetch failed");
     }) as typeof fetch;
 
-    const state = await requestCheckoutSession({ identity: { kind: "token", token: "tok-123" }, fetchImpl });
+    const state = await requestCheckoutSession({
+      identity: { kind: "token", token: "tok-123" },
+      fetchImpl,
+    });
 
     expect(state).toEqual({ status: "unavailable" });
   });

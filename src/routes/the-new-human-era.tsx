@@ -125,7 +125,6 @@ function Band({
 const COLS_2 = "grid gap-10 lg:grid-cols-2 lg:gap-16";
 const SPLIT = "grid gap-10 lg:grid-cols-[minmax(0,35fr)_minmax(0,65fr)] lg:gap-16";
 
-
 /** Eyebrow + short lime rule. Every section opens with this. */
 function Opener({ label, tone = "cream" }: { label: string; tone?: Tone }) {
   return (
@@ -153,7 +152,6 @@ function MobileHeading({ tone = "cream", children }: { tone?: Tone; children: Re
     </h2>
   );
 }
-
 
 /* ── Layout 1 — Statement ─────────────────────────────────────────────────
  * label · one headline · one or two body columns beneath.
@@ -195,7 +193,6 @@ function Statement({
     </>
   );
 }
-
 
 /* ── Layout 2 — Split editorial ───────────────────────────────────────────
  * 35/65 desktop grid: headline or thesis left, supporting copy or image right.
@@ -481,7 +478,6 @@ function NewHumanEra() {
               What if practicing your humanity is how you build the life you want?
             </h2>
           }
-
           right={
             <>
               <p className="type-body-lg text-muted-foreground">
@@ -513,7 +509,6 @@ function NewHumanEra() {
           label="Not the reward"
           left={
             <h2 className="type-h2-caps lg:type-h2-condensed">
-
               But what if your humanity is not the reward at the end of a good life?
             </h2>
           }
@@ -551,7 +546,6 @@ function NewHumanEra() {
           mobileHeadline="Our humanity matters even more"
           cols={1}
         >
-
           <p className="type-body-lg text-muted-foreground">
             Our humanity matters even more because AI is making many of the old signals of advantage
             easier to manufacture. Knowledge can be accessed in seconds. Content can be produced
@@ -560,9 +554,9 @@ function NewHumanEra() {
           <p className="type-body-lg mt-6 text-muted-foreground">
             For generations, status has largely been something we display: the money, the title, the
             appearance of winning. But real status has never needed that much explanation. It is the
-            person whose Word Carries Weight because they have kept it. The person people want beside
-            them when something important happens. The parent whose child knows they are actually
-            listening. The leader who makes people more capable instead of more afraid.
+            person whose Word Carries Weight because they have kept it. The person people want
+            beside them when something important happens. The parent whose child knows they are
+            actually listening. The leader who makes people more capable instead of more afraid.
           </p>
           <p className="type-body-lg mt-6 text-muted-foreground">
             And what one generation learns to admire, the next learns to chase. If status begins
@@ -574,7 +568,6 @@ function NewHumanEra() {
           </p>
         </Statement>
       </Band>
-
 
       {/* ---------- 9. Human Wealth (cream) — Split editorial ---------- */}
       <Band id="human-wealth">
@@ -724,7 +717,6 @@ function NewHumanEra() {
           mobileHeadline="There is another human on the other side"
           cols={2}
         >
-
           <div>
             <p className="type-body-lg text-ink/70">
               This is where Human Reps become bigger than self-improvement. There is usually another
@@ -732,14 +724,14 @@ function NewHumanEra() {
             </p>
             <p className="type-body-lg mt-6 text-ink/70">
               When you put your phone down, somebody feels heard. When you keep your word, somebody
-              learns they can trust you. When you call the friend, somebody feels remembered. The rep
-              strengthens something in you while changing something for another person at the same
-              time.
+              learns they can trust you. When you call the friend, somebody feels remembered. The
+              rep strengthens something in you while changing something for another person at the
+              same time.
             </p>
             <p className="type-body-lg mt-6 text-ink/70">
-              A real Human Rep can build something in you while creating something better for another
-              human in the same act. That is why practicing your humanity is not simply a private
-              project. Its effect begins moving outward the moment you do it.
+              A real Human Rep can build something in you while creating something better for
+              another human in the same act. That is why practicing your humanity is not simply a
+              private project. Its effect begins moving outward the moment you do it.
             </p>
           </div>
           <div>
@@ -759,7 +751,6 @@ function NewHumanEra() {
           </div>
         </Statement>
       </Band>
-
 
       {/* ---------- 14. Friction (ink) — Split editorial ---------- */}
       <Band id="some-friction-is-where-humans-are-built">
@@ -797,17 +788,12 @@ function NewHumanEra() {
 
       {/* ---------- 15. The framework (cream) — Statement, one column ---------- */}
       <Band id="the-framework">
-        <Statement
-          label="The framework"
-          mobileHeadline="Small choices become Human Reps"
-          cols={1}
-        >
-
+        <Statement label="The framework" mobileHeadline="Small choices become Human Reps" cols={1}>
           <p className="type-body-lg text-ink/70">
-            We practice our humanity through small choices. Those choices become Human Reps. Repeated
-            reps build Human Wealth. Human Wealth helps us build a richer life. And because those
-            reps so often affect another human at the same time, the effect moves outward too. A
-            better life for the person practicing it. A more human world because they did.
+            We practice our humanity through small choices. Those choices become Human Reps.
+            Repeated reps build Human Wealth. Human Wealth helps us build a richer life. And because
+            those reps so often affect another human at the same time, the effect moves outward too.
+            A better life for the person practicing it. A more human world because they did.
           </p>
           <p className="type-body-lg mt-6 text-ink/70">
             We did not want to build this framework by sitting in a room and deciding what humanity
@@ -824,22 +810,18 @@ function NewHumanEra() {
         <Opener label="How it compounds" tone="ink" />
 
         <ol className="flex flex-wrap items-center gap-x-4 gap-y-3">
-          {[
-            "PRACTISE HUMANITY",
-            "HUMAN REPS",
-            "HUMAN WEALTH",
-            "BETTER LIFE",
-            "BETTER WORLD",
-          ].map((node, i, all) => (
-            <li key={node} className="flex items-center gap-4">
-              <span className="type-h4-caps text-foreground">{node}</span>
-              {i < all.length - 1 ? (
-                <span aria-hidden className="text-lime">
-                  &rarr;
-                </span>
-              ) : null}
-            </li>
-          ))}
+          {["PRACTISE HUMANITY", "HUMAN REPS", "HUMAN WEALTH", "BETTER LIFE", "BETTER WORLD"].map(
+            (node, i, all) => (
+              <li key={node} className="flex items-center gap-4">
+                <span className="type-h4-caps text-foreground">{node}</span>
+                {i < all.length - 1 ? (
+                  <span aria-hidden className="text-lime">
+                    &rarr;
+                  </span>
+                ) : null}
+              </li>
+            ),
+          )}
         </ol>
 
         <div className={`mt-16 ${COLS_2}`}>
@@ -871,20 +853,17 @@ function NewHumanEra() {
           <p className="type-body-lg order-2 sm:order-1 mt-16 sm:mt-0 max-w-3xl text-ink/70">
             They are not commandments. They are not a claim that we discovered the only way to be
             human. They are language for things humanity itself keeps reminding us are worth
-            practicing. That is what makes the Human Archive so important. It keeps real human voices
-            inside the conversation as the world changes. Not one guru telling humanity what it should
-            become. Humanity helping shape it.
+            practicing. That is what makes the Human Archive so important. It keeps real human
+            voices inside the conversation as the world changes. Not one guru telling humanity what
+            it should become. Humanity helping shape it.
           </p>
         </div>
       </Band>
-
 
       {/* ---------- 18. What we are actually building (ink) — two columns ---------- */}
       <Band id="what-we-are-actually-building">
         <Opener label="What we are actually building" tone="ink" />
         <MobileHeading tone="ink">Practice your humanity deliberately</MobileHeading>
-
-
 
         <div className={COLS_2}>
           <div>
@@ -900,11 +879,11 @@ function NewHumanEra() {
               person&rsquo;s life a little better today?
             </p>
             <p className="type-body-lg mt-6 text-muted-foreground">
-              Now imagine that becoming normal in homes, companies, schools and communities. A parent
-              puts the phone down. A leader listens before reacting. A child notices somebody standing
-              alone and brings them in. A friend makes the call. A person thinks through the question
-              before handing it away. Individually, these moments look small. Together, they begin to
-              shape culture.
+              Now imagine that becoming normal in homes, companies, schools and communities. A
+              parent puts the phone down. A leader listens before reacting. A child notices somebody
+              standing alone and brings them in. A friend makes the call. A person thinks through
+              the question before handing it away. Individually, these moments look small. Together,
+              they begin to shape culture.
             </p>
           </div>
           <div>
@@ -922,18 +901,11 @@ function NewHumanEra() {
             </p>
           </div>
         </div>
-
       </Band>
-
 
       {/* ---------- 19. The invitation (cream) — two balanced text columns ---------- */}
       <Band id="the-invitation">
-        <Statement
-          label="The invitation"
-          mobileHeadline="We get to decide how we show up"
-          cols={2}
-        >
-
+        <Statement label="The invitation" mobileHeadline="We get to decide how we show up" cols={2}>
           <div>
             <p className="type-body-lg text-ink/70">
               We are living through one of the biggest transitions humanity has ever faced, and none
@@ -974,7 +946,6 @@ function NewHumanEra() {
             <h2 className="type-h2-caps text-foreground">
               <span className="block">There are no perfect humans</span>
               <span className="mt-6 block sm:mt-8 lg:mt-10">There are only humans practicing</span>
-
             </h2>
             <p className="type-body-lg mt-16 text-muted-foreground">
               Start where you are. Start with the human directly in front of you. Ask yourself one

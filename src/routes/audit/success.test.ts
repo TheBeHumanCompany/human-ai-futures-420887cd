@@ -55,7 +55,7 @@ describe("validateSearch reads only the checkout's session_id", () => {
 describe("a missing session_id redirects to the portal before any Stripe call", () => {
   test("the loader throws a redirect to /portal", async () => {
     const thrown = await Promise.resolve(
-      (Route.options.loader as ((ctx: { location: { search: object } }) => Promise<unknown>))({
+      (Route.options.loader as (ctx: { location: { search: object } }) => Promise<unknown>)({
         location: { search: {} },
       }),
     ).then(

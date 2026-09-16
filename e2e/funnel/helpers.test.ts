@@ -146,7 +146,10 @@ describe("the write → parse round-trip", () => {
     const names = (await readdir(dir)).filter((name) => name.endsWith(".json"));
     expect(names).toHaveLength(1);
     const file = join(dir, names[0]!);
-    const captured = resolveMagicLink(parseCatcherPayload(await readFile(file, "utf8"), file), file);
+    const captured = resolveMagicLink(
+      parseCatcherPayload(await readFile(file, "utf8"), file),
+      file,
+    );
     expect(captured.url).toBe(clientUrl);
     expect(captured.to).toEqual(["funnel-test@example.test"]);
   });
@@ -155,9 +158,9 @@ describe("the write → parse round-trip", () => {
 describe("the catcher poller", () => {
   test("an empty directory times out naming it", async () => {
     const dir = await mkdtemp(join(tmpdir(), "funnel-poll-"));
-    await expect(
-      pollForMagicLink(dir, { timeoutMs: 150, intervalMs: 50 }),
-    ).rejects.toThrow(/no capture appeared/);
+    await expect(pollForMagicLink(dir, { timeoutMs: 150, intervalMs: 50 })).rejects.toThrow(
+      /no capture appeared/,
+    );
   });
 });
 
@@ -229,7 +232,9 @@ describe("template-shaped captures", () => {
       capturedAt: "2026-09-16T00:00:00.000Z",
       endpoint: "https://api.resend.com/emails",
       body: {
-        from: "x", to: ["y"], reply_to: "z",
+        from: "x",
+        to: ["y"],
+        reply_to: "z",
         template: { id: "tmpl_x", variables: { COMPANY_NAME: "No Link Co" } },
       },
     } as unknown as Parameters<typeof resolveMagicLink>[0];

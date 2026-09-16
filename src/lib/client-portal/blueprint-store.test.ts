@@ -59,12 +59,7 @@ describe("fetchBlueprintSections", () => {
   });
 
   test("locked: the paid body never leaves this function", async () => {
-    const sections = await fetchBlueprintSections(
-      "voes-and-co",
-      false,
-      CONFIG,
-      stub(ROWS),
-    );
+    const sections = await fetchBlueprintSections("voes-and-co", false, CONFIG, stub(ROWS));
 
     expect(JSON.stringify(sections)).not.toContain(PAID);
     const final = sections.find((s) => s.tier === "final")!;
@@ -74,12 +69,7 @@ describe("fetchBlueprintSections", () => {
   });
 
   test("unlocked: the paid body is returned", async () => {
-    const sections = await fetchBlueprintSections(
-      "voes-and-co",
-      true,
-      CONFIG,
-      stub(ROWS),
-    );
+    const sections = await fetchBlueprintSections("voes-and-co", true, CONFIG, stub(ROWS));
     expect(JSON.stringify(sections)).toContain(PAID);
   });
 
@@ -107,8 +97,6 @@ describe("fetchBlueprintSections", () => {
   });
 
   test("a client with no sections yields an empty list, not a failure", async () => {
-    expect(
-      await fetchBlueprintSections("new-client", true, CONFIG, stub([])),
-    ).toEqual([]);
+    expect(await fetchBlueprintSections("new-client", true, CONFIG, stub([]))).toEqual([]);
   });
 });

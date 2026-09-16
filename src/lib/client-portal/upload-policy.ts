@@ -76,11 +76,7 @@ export const extensionOf = (filename: string): string | null => {
  * name like `../../secrets` or two files called `scan.pdf` are both non-events.
  * The original name is kept in the database column, not in the key.
  */
-export const storageKeyFor = (
-  clientId: string,
-  filename: string,
-  id: string,
-): string => {
+export const storageKeyFor = (clientId: string, filename: string, id: string): string => {
   const extension = extensionOf(filename) ?? "bin";
   const stem = filename
     .slice(0, filename.lastIndexOf(".") === -1 ? undefined : filename.lastIndexOf("."))
@@ -90,11 +86,7 @@ export const storageKeyFor = (
   return `${clientId}/${id}-${stem || "file"}.${extension}`;
 };
 
-export const judgeUpload = (file: {
-  name: string;
-  size: number;
-  type: string;
-}): UploadVerdict => {
+export const judgeUpload = (file: { name: string; size: number; type: string }): UploadVerdict => {
   if (file.size <= 0) return { ok: false, reason: "empty" };
   if (file.size > MAX_UPLOAD_BYTES) return { ok: false, reason: "too-large" };
   if (file.name.length > MAX_NAME_LENGTH) return { ok: false, reason: "name-too-long" };

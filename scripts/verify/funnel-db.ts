@@ -172,4 +172,3 @@ export async function ensureUploadBucket(
     ? `bucket ${UPLOAD_BUCKET} ready (anon denied, service roundtrip ok)`
     : `bucket ${UPLOAD_BUCKET} ready (anon probe skipped — ${ANON_ENV} unset)`;
 }
-

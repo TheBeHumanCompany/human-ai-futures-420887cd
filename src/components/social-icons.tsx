@@ -27,7 +27,14 @@ const LinkedInIcon = (props: IconProps) => (
 );
 
 const InstagramIcon = (props: IconProps) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden {...props}>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    aria-hidden
+    {...props}
+  >
     <rect x="2" y="2" width="20" height="20" rx="6" />
     <circle cx="12" cy="12" r="4.6" />
     <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
@@ -81,7 +88,13 @@ export function SocialIcon({
   return <Icon className={className} style={style} />;
 }
 
-export function SocialIconRow({ className, iconClassName }: { className?: string; iconClassName?: string }) {
+export function SocialIconRow({
+  className,
+  iconClassName,
+}: {
+  className?: string;
+  iconClassName?: string;
+}) {
   return (
     <div className={`flex flex-wrap gap-4 ${className ?? ""}`}>
       {SOCIAL_LINKS.map((social) => (

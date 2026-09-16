@@ -173,7 +173,6 @@ describe("every nav destination is a real route", () => {
     expect(destinations.length).toBeGreaterThanOrEqual(7);
   });
 
-
   test("each one resolves in the generated route tree", () => {
     const routable = new Set(generatedKeys("FileRoutesByFullPath").map(publicForm));
     const dangling = destinations.filter((to) => !routable.has(to));

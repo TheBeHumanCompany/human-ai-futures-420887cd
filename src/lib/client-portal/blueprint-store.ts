@@ -1,8 +1,4 @@
-import {
-  applyTier,
-  parseSections,
-  type BlueprintSection,
-} from "./blueprint-schema";
+import { applyTier, parseSections, type BlueprintSection } from "./blueprint-schema";
 import type { SupabaseTokenConfig } from "./supabase-tokens";
 
 /**
@@ -39,10 +35,7 @@ export async function fetchBlueprintSections(
   const query = new URL(`${config.url}/rest/v1/client_blueprint_sections`);
   query.searchParams.set("client_id", `eq.${clientId}`);
   query.searchParams.set("status", "eq.published");
-  query.searchParams.set(
-    "select",
-    "id,section_key,ordinal,tier,title,teaser,band,body",
-  );
+  query.searchParams.set("select", "id,section_key,ordinal,tier,title,teaser,band,body");
   query.searchParams.set("order", "ordinal.asc");
 
   const response = await fetchImpl(query.toString(), {
@@ -55,9 +48,7 @@ export async function fetchBlueprintSections(
   });
 
   if (!response.ok) {
-    throw new Error(
-      `[client-portal] blueprint lookup answered ${response.status}`,
-    );
+    throw new Error(`[client-portal] blueprint lookup answered ${response.status}`);
   }
 
   const rows: unknown = await response.json();

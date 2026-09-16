@@ -88,9 +88,9 @@ async function main(): Promise<void> {
     process.exitCode = 1;
     return;
   }
-  const record = (parsed as unknown[]).filter(isClientRecord).find(
-    (entry) => entry.id === options.clientId,
-  );
+  const record = (parsed as unknown[])
+    .filter(isClientRecord)
+    .find((entry) => entry.id === options.clientId);
   if (!record) {
     const known = (parsed as unknown[])
       .filter(isClientRecord)

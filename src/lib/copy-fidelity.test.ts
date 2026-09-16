@@ -215,7 +215,8 @@ const CASES: Case[] = [
       },
       {
         startsWith: "we're building it because we've seen what's possible",
-        instead: "We're building it because we've seen what becomes possible when humanity leads well.",
+        instead:
+          "We're building it because we've seen what becomes possible when humanity leads well.",
         because:
           "Same 2026-08-27 redesign: Maya's revised statement drops the risk clause and rewords " +
           "'what's possible if humanity leads this well' to 'what becomes possible when humanity " +

@@ -117,9 +117,9 @@ describe("decideHostRoute — apex moves portal paths to the portal host", () =>
   });
 
   test("/c/<token> 308s preserving path and query", () => {
-    expect(
-      locationOf(decision({ host: APEX, pathname: "/c/abc", search: "?utm=x" })),
-    ).toBe(`${PORTAL_ORIGIN}/c/abc?utm=x`);
+    expect(locationOf(decision({ host: APEX, pathname: "/c/abc", search: "?utm=x" }))).toBe(
+      `${PORTAL_ORIGIN}/c/abc?utm=x`,
+    );
   });
 
   test("/portalish is marketing (boundary), so it passes", () => {

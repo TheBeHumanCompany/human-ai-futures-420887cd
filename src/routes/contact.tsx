@@ -105,10 +105,7 @@ function Contact() {
 
         {/* RIGHT — dark form panel. The form actually sends; until 2026-08-19
             its only submit handler was `preventDefault`. */}
-        <form
-          className="rounded-xl bg-ink p-6 sm:p-8 lg:p-10"
-          onSubmit={onSubmit}
-        >
+        <form className="rounded-xl bg-ink p-6 sm:p-8 lg:p-10" onSubmit={onSubmit}>
           <div className="space-y-5">
             {FIELDS.map((f) => (
               <div key={f.id}>

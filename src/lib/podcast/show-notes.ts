@@ -30,7 +30,7 @@ const PROMO_MARKERS: RegExp[] = [
   /available on (?:apple|spotify|youtube)/i,
   /https?:\/\//,
   /#[A-Za-z]/,
-  /[🌐🎧🎥🎙📺📱▶️]/u,
+  /[🌐🎧🎥🎙📺📱▶]/u,
 ];
 
 /** A whole line that is nothing but promo: a handle, a hashtag row, a link. */
@@ -136,7 +136,12 @@ export function showNoteParagraphs(description: unknown): string[] {
   const sentences = single.match(/[^.!?]+[.!?]*\s*/g) ?? [];
   const grouped: string[] = [];
   for (let i = 0; i < sentences.length; i += 3) {
-    grouped.push(sentences.slice(i, i + 3).join("").trim());
+    grouped.push(
+      sentences
+        .slice(i, i + 3)
+        .join("")
+        .trim(),
+    );
   }
   return grouped.filter(Boolean);
 }
@@ -150,4 +155,3 @@ export function showNoteParagraphs(description: unknown): string[] {
 export function proseParagraphs(text: unknown): string[] {
   return toBlocks(toPlainText(text));
 }
-

@@ -128,9 +128,7 @@ describe("applyTier — the gate", () => {
   });
 
   test("locked: preliminary sections are untouched", () => {
-    const preliminary = applyTier(sections, false).find(
-      (s) => s.tier === "preliminary",
-    )!;
+    const preliminary = applyTier(sections, false).find((s) => s.tier === "preliminary")!;
     expect(preliminary.locked).toBe(false);
     expect(preliminary.blocks).toHaveLength(1);
   });

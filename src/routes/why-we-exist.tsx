@@ -51,9 +51,7 @@ function WhyWeExist() {
           Bold black opening: the question that starts everything. */}
       <section className="section-ink">
         <div className={`${SHELL} pt-16 pb-12 lg:pt-24 lg:pb-16`}>
-          <h1 className="type-h1-caps-light max-w-[18ch] text-foreground">
-            WHY WE EXIST
-          </h1>
+          <h1 className="type-h1-caps-light max-w-[18ch] text-foreground">WHY WE EXIST</h1>
 
           <p className="type-body mt-6 max-w-[52ch] text-muted-foreground">
             There&rsquo;s a moment from The Human Archive we haven&rsquo;t stopped thinking about.
@@ -66,9 +64,7 @@ function WhyWeExist() {
 
           <div className="mt-5 flex items-center gap-5">
             <span aria-hidden className="h-[3px] w-9 shrink-0 bg-lime" />
-            <p className="type-body-lg font-bold text-foreground">
-              What does it mean to be human?
-            </p>
+            <p className="type-body-lg font-bold text-foreground">What does it mean to be human?</p>
           </div>
         </div>
       </section>
@@ -89,8 +85,8 @@ function WhyWeExist() {
                   what they&rsquo;ve built.
                 </p>
                 <p className="type-body text-ink/70">
-                  They talk about feeling things. Laughing. Crying. Showing up for someone when
-                  it was hard. Being kind when it would&rsquo;ve been easier not to be.
+                  They talk about feeling things. Laughing. Crying. Showing up for someone when it
+                  was hard. Being kind when it would&rsquo;ve been easier not to be.
                 </p>
               </div>
 
@@ -125,8 +121,6 @@ function WhyWeExist() {
           </div>
         </div>
       </section>
-
-
 
       {/* ══════ 02 — THE REAL QUESTION (ink) ══════ Type only, two body columns. */}
       <section className="section-ink">
@@ -325,8 +319,6 @@ function WhyWeExist() {
               ))}
             </div>
           </div>
-
-
         </div>
       </section>
 
@@ -451,9 +443,7 @@ function WhyWeExist() {
             <div className="flex flex-col lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:pt-2">
               {PLAN_THOUGHTS.map((thought, i) => (
                 <div key={thought}>
-                  {i > 0 ? (
-                    <span aria-hidden className="my-8 block h-[2px] w-9 bg-lime" />
-                  ) : null}
+                  {i > 0 ? <span aria-hidden className="my-8 block h-[2px] w-9 bg-lime" /> : null}
                   <p className="type-body max-w-[46ch] text-foreground/85">{thought}</p>
                 </div>
               ))}
@@ -465,7 +455,6 @@ function WhyWeExist() {
           </div>
         </div>
       </section>
-
     </>
   );
 }

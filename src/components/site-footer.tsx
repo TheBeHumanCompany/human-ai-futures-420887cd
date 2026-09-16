@@ -50,8 +50,8 @@ export function SiteFooter() {
         <div className="min-w-0">
           <Wordmark />
           <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            A artificial intelligence strategy and transformation company, and a cultural movement for
-            practicing what keeps us human.
+            A artificial intelligence strategy and transformation company, and a cultural movement
+            for practicing what keeps us human.
           </p>
 
           <p

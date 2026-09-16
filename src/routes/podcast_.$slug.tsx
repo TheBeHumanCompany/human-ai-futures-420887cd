@@ -243,7 +243,8 @@ function EpisodePage() {
               </div>
             )}
 
-            {episode.slug.current === "minting-success-story-plant-based-cleaning-revolutionaries" && (
+            {episode.slug.current ===
+              "minting-success-story-plant-based-cleaning-revolutionaries" && (
               <div className="mt-8 max-w-[58ch] border-t border-hairline-dark pt-5">
                 <p className={SECTION_HEADING}>Connect with Mint Cleaning</p>
                 <ul className="mt-3 flex flex-wrap items-center gap-4">

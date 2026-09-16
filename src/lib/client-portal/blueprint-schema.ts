@@ -163,9 +163,7 @@ const isNonEmptyString = (value: unknown): value is string =>
 /** Keeps every block that has a usable `type`; drops only malformed entries. */
 export const parseBlocks = (value: unknown): Block[] => {
   if (!Array.isArray(value)) return [];
-  return value.filter(
-    (block): block is Block => isRecord(block) && isNonEmptyString(block.type),
-  );
+  return value.filter((block): block is Block => isRecord(block) && isNonEmptyString(block.type));
 };
 
 /** One Postgres row, as PostgREST returns it. */

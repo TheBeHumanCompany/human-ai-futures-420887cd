@@ -8,7 +8,6 @@ import { BOOKING_URL_30MIN } from "@/lib/booking";
 import { INDIGENOUS_LINE } from "@/lib/brand";
 import brettPhoto from "@/assets/brett-christoffel.png";
 
-
 /**
  * `/be-human-ai` — the Blueprint, one editorial page.
  *
@@ -94,7 +93,6 @@ const OBSERVATIONS = [
   "Most organizations are making decisions about AI while seeing only part of what is happening inside their business.",
 ] as const;
 
-
 type Pillar = {
   n: string;
   title: string;
@@ -113,7 +111,8 @@ const PILLARS: readonly Pillar[] = [
     n: "01",
     title: "Human Readiness",
     question: "A company can have high AI usage and low Human Readiness.",
-    overviewQuestion: "Are your leaders and people ready for the way intelligence is changing work?",
+    overviewQuestion:
+      "Are your leaders and people ready for the way intelligence is changing work?",
     icon: Users,
     lookAtIntro: "Are your leaders and people ready for the way intelligence is changing work?",
     lookAt: [
@@ -144,8 +143,7 @@ const PILLARS: readonly Pillar[] = [
     question: "As AI becomes more capable, more business information moves through more systems.",
     overviewQuestion: "Do you still control your data, your systems, and your decisions?",
     icon: ShieldCheck,
-    lookAtIntro:
-      "Do you still control your data, your systems, and your decisions?",
+    lookAtIntro: "Do you still control your data, your systems, and your decisions?",
     lookAt: [
       "Governance",
       "Security",
@@ -282,7 +280,6 @@ function ConversationCta({ tone }: { tone: "ink" | "cream" }) {
   );
 }
 
-
 function PillarModule({ pillar, isFirst }: { pillar: Pillar; isFirst?: boolean }) {
   const Icon = pillar.icon;
   return (
@@ -362,9 +359,7 @@ const MOBILE_PILLARS: readonly MobilePillar[] = [
     title: "Human Readiness",
     icon: Users,
     intro: ["A company can have high AI usage and low Human Readiness."],
-    lookAtIntro: [
-      "Are your leaders and people ready for the way intelligence is changing work?",
-    ],
+    lookAtIntro: ["Are your leaders and people ready for the way intelligence is changing work?"],
     lookAt: [
       "Leadership readiness",
       "Employee AI usage",
@@ -395,9 +390,7 @@ const MOBILE_PILLARS: readonly MobilePillar[] = [
     n: "02",
     title: "Governance & Sovereignty",
     icon: ShieldCheck,
-    intro: [
-      "As AI becomes more capable, more business information moves through more systems.",
-    ],
+    intro: ["As AI becomes more capable, more business information moves through more systems."],
     lookAtIntro: ["Do you still control your data, your systems, and your decisions?"],
     lookAt: [
       "Data flows & storage",
@@ -493,7 +486,6 @@ function MobilePillarAccordion() {
               </span>
             </button>
 
-
             <div
               className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
                 isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
@@ -577,7 +569,6 @@ function MobilePillarAccordion() {
                 </div>
               </div>
             </div>
-
           </div>
         );
       })}
@@ -619,722 +610,708 @@ function BlueprintPage() {
       {/* Page-wide left gutter (desktop/large tablet) reserving space for the
           collapsed "on this page" rail so no section content sits under it. */}
       <>
-      {/* ── 02 The Blueprint introduction, cream ─────────────────────── */}
-      <section id="blueprint-introduction" className="section-cream">
-        <div className={`${SHELL_IN} py-20 lg:pt-20 lg:pb-16`}>
-          <div className="grid h-auto min-h-0 items-start gap-7 md:gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 xl:gap-20">
-            {/* LEFT COLUMN — dominant headline and narrative */}
-            <div className="max-w-[58ch]">
-              <Label tone="muted">BE HUMAN INTELLIGENCE</Label>
-              <h2 className="type-h2-caps mt-4 lg:mt-7 text-ink">
-                THE BLUEPRINT IS
-                <br />
-                WHERE WE START
-              </h2>
-
-              <div className="mt-10 space-y-6 text-ink/85">
-                <p className="type-body">
-                  We look across your leadership, your people, your current use of machine
-                  intelligence, your workflows, your data, your governance, and the opportunities
-                  inside the business.
-                </p>
-                <p className="type-body">
-                  Then we bring leadership back to one clear position on where the organization
-                  stands, what needs protecting, where intelligence can create the greatest leverage,
-                  and what deserves to happen next.
-                </p>
-              </div>
-            </div>
-
-            {/* RIGHT COLUMN — supporting narrative */}
-            <div className="max-w-[54ch]">
-              {/* Desktop-only spacer that mirrors the left eyebrow + heading offset so the
-                  bold opening statement aligns with the top of the large headline. */}
-              <div aria-hidden className="hidden lg:block lg:mb-7 lg:invisible">
+        {/* ── 02 The Blueprint introduction, cream ─────────────────────── */}
+        <section id="blueprint-introduction" className="section-cream">
+          <div className={`${SHELL_IN} py-20 lg:pt-20 lg:pb-16`}>
+            <div className="grid h-auto min-h-0 items-start gap-7 md:gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 xl:gap-20">
+              {/* LEFT COLUMN — dominant headline and narrative */}
+              <div className="max-w-[58ch]">
                 <Label tone="muted">BE HUMAN INTELLIGENCE</Label>
-              </div>
-              <p className="type-body font-semibold lg:font-bold text-ink">
-                We start by asking who is actually shaping how AI enters your business.
-              </p>
+                <h2 className="type-h2-caps mt-4 lg:mt-7 text-ink">
+                  THE BLUEPRINT IS
+                  <br />
+                  WHERE WE START
+                </h2>
 
-              <div className="mt-5 space-y-5 lg:mt-8 lg:space-y-6 text-ink/85">
-                <p className="type-body">
-                  Artificial intelligence will change every business. The question is whether leadership
-                  is shaping that change, or whether it is happening one employee, one tool, and one
-                  decision at a time.
-                </p>
-                <p className="type-body">
-                  Your people are already experimenting. New systems are entering the business. Work
-                  is changing. Information is moving through tools leadership may not fully see.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* BOTTOM — three standalone observations */}
-          <div className="relative mt-5 pt-5 md:mt-6 md:border-t md:pt-6 lg:mt-16 lg:border-t lg:border-ink/10 lg:pt-10">
-            {/* Mobile / tablet layout — unchanged */}
-            <div className="grid md:grid-cols-2 lg:hidden">
-              {OBSERVATIONS.map((line, i) => (
-                <div
-                  key={line}
-                  className={`relative ${i === 2 ? "md:col-span-2" : ""}`}
-                >
-                  {/* Mobile horizontal divider + lime accent */}
-                  <div className="absolute top-0 right-0 left-0 h-px bg-ink/15 md:hidden" />
-                  <span className="absolute top-0 left-0 h-[2px] w-6 bg-lime md:hidden" />
-
-                  {/* Tablet vertical divider + lime accent */}
-                  {i === 1 && (
-                    <>
-                      <div className="absolute top-0 bottom-0 left-0 hidden w-px bg-ink/15 md:block lg:hidden" />
-                      <span className="absolute top-0 left-0 hidden h-6 w-[2px] bg-lime md:block lg:hidden" />
-                    </>
-                  )}
-
-                  {/* Tablet horizontal divider above spanning third item */}
-                  {i === 2 && (
-                    <>
-                      <div className="absolute top-0 right-0 left-0 hidden h-px bg-ink/15 md:block lg:hidden" />
-                      <span className="absolute top-0 left-0 hidden h-[2px] w-6 bg-lime md:block lg:hidden" />
-                    </>
-                  )}
-
-                  <p className="type-body py-5 font-medium leading-snug text-ink/90 md:py-0 md:pl-6">
-                    {line}
+                <div className="mt-10 space-y-6 text-ink/85">
+                  <p className="type-body">
+                    We look across your leadership, your people, your current use of machine
+                    intelligence, your workflows, your data, your governance, and the opportunities
+                    inside the business.
+                  </p>
+                  <p className="type-body">
+                    Then we bring leadership back to one clear position on where the organization
+                    stands, what needs protecting, where intelligence can create the greatest
+                    leverage, and what deserves to happen next.
                   </p>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            {/* Desktop layout — editorial 01/02/03 observations */}
-            <div className="hidden lg:grid lg:grid-cols-[1fr_1fr_1.35fr]">
-              {OBSERVATIONS.map((line, i) => (
-                <div
-                  key={line}
-                  className="relative px-8 lg:first:pl-0 lg:last:pr-0"
-                >
-                  {i > 0 && (
-                    <div
-                      className="absolute top-1/2 left-0 h-16 w-px -translate-y-1/2 bg-ink/10"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <p className="type-h4-caps text-lime">
-                    {String(i + 1).padStart(2, "0")}
+              {/* RIGHT COLUMN — supporting narrative */}
+              <div className="max-w-[54ch]">
+                {/* Desktop-only spacer that mirrors the left eyebrow + heading offset so the
+                  bold opening statement aligns with the top of the large headline. */}
+                <div aria-hidden className="hidden lg:block lg:mb-7 lg:invisible">
+                  <Label tone="muted">BE HUMAN INTELLIGENCE</Label>
+                </div>
+                <p className="type-body font-semibold lg:font-bold text-ink">
+                  We start by asking who is actually shaping how AI enters your business.
+                </p>
+
+                <div className="mt-5 space-y-5 lg:mt-8 lg:space-y-6 text-ink/85">
+                  <p className="type-body">
+                    Artificial intelligence will change every business. The question is whether
+                    leadership is shaping that change, or whether it is happening one employee, one
+                    tool, and one decision at a time.
                   </p>
-                  <p className="type-body-lg mt-3 font-semibold leading-snug text-ink">
-                    {line}
+                  <p className="type-body">
+                    Your people are already experimenting. New systems are entering the business.
+                    Work is changing. Information is moving through tools leadership may not fully
+                    see.
                   </p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-
-      {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
-      <section id="blueprint-adoption" className="section-ink">
-        <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14">
-            <div>
-              <Label>Why this matters</Label>
-              <h2 className="type-h2-caps mt-6">
-                <span className="block lg:whitespace-nowrap">AI adoption is</span>
-                <span className="block lg:whitespace-nowrap">moving faster than</span>
-                <span className="block lg:whitespace-nowrap">organizational</span>
-                <span className="block lg:whitespace-nowrap">readiness</span>
-              </h2>
-            </div>
-
-            <div className="max-w-[58ch] space-y-6 text-foreground/80">
-              <p aria-hidden className="type-label-caps invisible hidden lg:block">
-                Why this matters
-              </p>
-
-
-              <p className="type-body">
-                Most organizations no longer have an AI access problem. They have an organizational
-                readiness problem.
-              </p>
-              <p className="type-body">
-                Employees are already using ChatGPT, Copilot, Claude, Gemini, and AI-enabled
-                systems. Leadership may not be aligned on what AI is actually for. Managers may not
-                know how roles and workflows should change. Employees may be using AI every day
-                without a shared standard for what good use looks like.
-              </p>
-              <p className="type-body">
-                And technology is moving beyond answering questions. Agents can increasingly
-                complete tasks, move between systems, coordinate parts of workflows, and act with
-                less human prompting.
-              </p>
-            </div>
-          </div>
-
-          {/* The leadership question, restated — desktop only below lg */}
-          <div className="mt-16 hidden gap-12 border-t border-border pt-10 md:grid md:pt-14 lg:grid-cols-2 lg:gap-24">
-            <div className="hidden lg:block">
-              {/* Desktop / tablet version — unchanged */}
-              <div className="hidden md:block">
-                <Label>That changes the leadership question</Label>
-                <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
-                <p className="type-body mt-2 max-w-[38ch] font-bold text-foreground">
-                  Are our employees using AI?
-                </p>
-                <p className="type-body mt-8 text-foreground/70">It becomes:</p>
-                <p className="type-body mt-2 max-w-[52ch] font-bold text-foreground">
-                  What work are we delegating? Who supervises it? What authority are we giving these
-                  systems? Where must a human step back in? And who owns the outcome?
-                </p>
-              </div>
-
-              {/* Mobile version — matches the editorial reference */}
-              <div className="md:hidden">
-                <Label>That changes the leadership question</Label>
-
-                <p className="type-body-sm mt-6 font-medium uppercase tracking-[0.12em] text-foreground/45">
-                  BEFORE
-                </p>
-                <p className="type-body mt-2 text-foreground/75">
-                  Are our employees using AI?
-                </p>
-
-                <p className="type-body-sm mt-8 font-medium uppercase tracking-[0.12em] text-foreground/45">
-                  NOW
-                </p>
-                <div className="mt-3 space-y-3">
-                  <p className="type-body text-foreground/75">What work are we delegating?</p>
-                  <p className="type-body text-foreground/75">Who supervises it?</p>
-                  <p className="type-body text-foreground/75">What authority are we giving these systems?</p>
-                  <p className="type-body text-foreground/75">Where must a human step back in?</p>
-                  <p className="type-body text-foreground/75">And who owns the outcome?</p>
-                </div>
-
-                <div className="mt-11 border-t border-border" aria-hidden="true" />
               </div>
             </div>
 
-            <div className="hidden space-y-8 md:block">
-              <div className="border-l-2 border-lime pl-6">
-                <p className="type-h4-caps">AI does not automatically improve an organization</p>
-                <p className="type-h4-caps mt-2 text-lime">It reveals it</p>
-              </div>
-              <div className="max-w-[52ch] space-y-5 text-foreground/80">
-                <p className="type-body">
-                  Align the organization first, and the technology compounds that alignment. Leave
-                  it fragmented, and it compounds the fragmentation just as quickly.
-                </p>
-                <p className="type-body">
-                  Organizational readiness means aligning leadership, people, governance, data,
-                  workflows, and priorities around one clear direction. That is what the Blueprint
-                  is designed to establish.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            {/* BOTTOM — three standalone observations */}
+            <div className="relative mt-5 pt-5 md:mt-6 md:border-t md:pt-6 lg:mt-16 lg:border-t lg:border-ink/10 lg:pt-10">
+              {/* Mobile / tablet layout — unchanged */}
+              <div className="grid md:grid-cols-2 lg:hidden">
+                {OBSERVATIONS.map((line, i) => (
+                  <div key={line} className={`relative ${i === 2 ? "md:col-span-2" : ""}`}>
+                    {/* Mobile horizontal divider + lime accent */}
+                    <div className="absolute top-0 right-0 left-0 h-px bg-ink/15 md:hidden" />
+                    <span className="absolute top-0 left-0 h-[2px] w-6 bg-lime md:hidden" />
 
-      {/* ── 03b The new leadership question, ink (tablet/mobile only) ── */}
-      <section id="blueprint-leadership-question" className="section-ink border-t border-foreground/10 lg:hidden">
-        <div className={`${SHELL_IN} py-16 md:py-20`}>
-          <div className="max-w-[58ch]">
-            <Label>THE SHIFT</Label>
-            <h2 className="type-h2-caps mt-4">THE NEW LEADERSHIP QUESTION</h2>
+                    {/* Tablet vertical divider + lime accent */}
+                    {i === 1 && (
+                      <>
+                        <div className="absolute top-0 bottom-0 left-0 hidden w-px bg-ink/15 md:block lg:hidden" />
+                        <span className="absolute top-0 left-0 hidden h-6 w-[2px] bg-lime md:block lg:hidden" />
+                      </>
+                    )}
 
-            <div className="mt-12">
-              <p className="type-label-caps text-foreground/50">BEFORE</p>
-              <p className="type-body mt-3 text-foreground/90">Are our employees using AI?</p>
-            </div>
+                    {/* Tablet horizontal divider above spanning third item */}
+                    {i === 2 && (
+                      <>
+                        <div className="absolute top-0 right-0 left-0 hidden h-px bg-ink/15 md:block lg:hidden" />
+                        <span className="absolute top-0 left-0 hidden h-[2px] w-6 bg-lime md:block lg:hidden" />
+                      </>
+                    )}
 
-            <div className="mt-12">
-              <p className="type-label-caps text-foreground/50">NOW</p>
-              <div className="mt-3 space-y-3">
-                <p className="type-body text-foreground/90">What work are we delegating?</p>
-                <p className="type-body text-foreground/90">Who supervises it?</p>
-                <p className="type-body text-foreground/90">What authority are we giving these systems?</p>
-                <p className="type-body text-foreground/90">Where must a human step back in?</p>
-                <p className="type-body text-foreground/90">And who owns the outcome?</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* ── 04 Before we brought this to anyone else, cream ──────────── */}
-      <section id="blueprint-before-anyone-else" className="section-cream">
-        <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,0.5fr)] lg:gap-14 xl:gap-16">
-            {/* LEFT COLUMN — statement */}
-            <div>
-              <Label tone="muted">Built from experience</Label>
-              <h2 className="type-h3-caps-light mt-4 text-ink">
-                We needed the Blueprint ourselves
-              </h2>
-            </div>
-
-
-            {/* RIGHT COLUMN — explanation and proof */}
-            <div className="max-w-[64ch]">
-              <div className="space-y-6 text-ink/75">
-                <p className="type-body">
-                  We built The Be Human Company while artificial intelligence was changing how companies
-                  operate, so we ran the questions on our own business first.
-                </p>
-                <p className="type-body">
-                  What should we automate? What should we protect? Where should human judgment still
-                  lead? Where should intelligence take work off our plate?
-                </p>
-                <p className="type-body">
-                  We tested systems, found gaps, changed workflows, and learned where things break
-                  before bringing this work into a client organization.
-                </p>
-              </div>
-
-              <div className="mt-6 lg:mt-10">
-                <p className="type-body-lg max-w-[52ch] font-semibold text-ink">
-                  Every principle inside this Blueprint is one we use to run our own business.
-                </p>
-                <p className="type-body mt-3 max-w-[52ch] text-ink/70 lg:mt-4">
-                  Not a framework we studied from the outside. A way of working we live inside every
-                  day.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
-      <section id="blueprint-three-pillars" className="section-ink">
-        <div className={`${SHELL_IN} py-16 lg:py-20`}>
-          <div className="max-md:-mx-1">
-            <Label>The Blueprint</Label>
-            <h2 className="type-h2-caps mt-4 whitespace-nowrap">THE THREE PILLARS</h2>
-            <p className="type-body mt-6 max-w-[58ch] text-foreground/80">
-              The three pillars show where your organization stands, where it is exposed, and where intelligence can create the greatest leverage.
-            </p>
-          </div>
-
-          <MobilePillarAccordion />
-
-          <div className="mt-0 max-lg:hidden">
-            {PILLARS.map((pillar, i) => (
-              <div key={pillar.n} id={`blueprint-pillar-${pillar.n}`}>
-                <PillarModule pillar={pillar} isFirst={i === 0} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 06 Scorecard, cream ──────────────────────────────────────── */}
-      <section id="blueprint-scorecard" className="section-cream">
-        <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <Label tone="muted">Example Blueprint Scorecard</Label>
-          <h2
-            className="type-h2-caps mt-5 max-w-[18ch] text-ink"
-            style={{ fontSize: "clamp(2.25rem, 5.2vw, 4.25rem)", lineHeight: 0.95 }}
-          >
-            Your Blueprint makes readiness visible
-          </h2>
-          <p className="type-body mt-8 max-w-[52ch] text-ink/75">
-            You leave knowing where you stand, what matters most, what needs protecting, and what we
-            believe you should do first.
-          </p>
-
-          <div className="mt-12 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.55fr)] lg:gap-16">
-            {/* Headline score */}
-            <div>
-              <p className="type-label-caps text-[0.75rem] tracking-[0.18em] text-ink/50">
-                Organizational readiness
-              </p>
-              <p className="mt-5 flex items-baseline gap-3 text-ink">
-                <span className="type-hero-caps" style={{ lineHeight: 0.82 }}>
-                  64
-                </span>
-                <span className="type-h1-caps text-ink/30">/ 100</span>
-              </p>
-            </div>
-
-            {/* Category cards */}
-            <div className="grid gap-5 sm:grid-cols-2">
-              {SCORE_CATEGORIES.map((cat) => (
-                <div
-                  key={cat.title}
-                  className="rounded-xl border border-ink/12 bg-ink/[0.02] p-6"
-                >
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="type-h4-caps text-[0.9375rem] text-ink">{cat.title}</h3>
-                    <p className="type-h4-caps text-ink">{cat.score}%</p>
+                    <p className="type-body py-5 font-medium leading-snug text-ink/90 md:py-0 md:pl-6">
+                      {line}
+                    </p>
                   </div>
-                  <p className="type-body-sm mt-3 max-w-[42ch] text-ink/70">{cat.note}</p>
+                ))}
+              </div>
+
+              {/* Desktop layout — editorial 01/02/03 observations */}
+              <div className="hidden lg:grid lg:grid-cols-[1fr_1fr_1.35fr]">
+                {OBSERVATIONS.map((line, i) => (
+                  <div key={line} className="relative px-8 lg:first:pl-0 lg:last:pr-0">
+                    {i > 0 && (
+                      <div
+                        className="absolute top-1/2 left-0 h-16 w-px -translate-y-1/2 bg-ink/10"
+                        aria-hidden="true"
+                      />
+                    )}
+                    <p className="type-h4-caps text-lime">{String(i + 1).padStart(2, "0")}</p>
+                    <p className="type-body-lg mt-3 font-semibold leading-snug text-ink">{line}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 03 AI adoption / organizational readiness, ink ───────────── */}
+        <section id="blueprint-adoption" className="section-ink">
+          <div className={`${SHELL_IN} py-20 lg:py-28`}>
+            <div className="grid gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14">
+              <div>
+                <Label>Why this matters</Label>
+                <h2 className="type-h2-caps mt-6">
+                  <span className="block lg:whitespace-nowrap">AI adoption is</span>
+                  <span className="block lg:whitespace-nowrap">moving faster than</span>
+                  <span className="block lg:whitespace-nowrap">organizational</span>
+                  <span className="block lg:whitespace-nowrap">readiness</span>
+                </h2>
+              </div>
+
+              <div className="max-w-[58ch] space-y-6 text-foreground/80">
+                <p aria-hidden className="type-label-caps invisible hidden lg:block">
+                  Why this matters
+                </p>
+
+                <p className="type-body">
+                  Most organizations no longer have an AI access problem. They have an
+                  organizational readiness problem.
+                </p>
+                <p className="type-body">
+                  Employees are already using ChatGPT, Copilot, Claude, Gemini, and AI-enabled
+                  systems. Leadership may not be aligned on what AI is actually for. Managers may
+                  not know how roles and workflows should change. Employees may be using AI every
+                  day without a shared standard for what good use looks like.
+                </p>
+                <p className="type-body">
+                  And technology is moving beyond answering questions. Agents can increasingly
+                  complete tasks, move between systems, coordinate parts of workflows, and act with
+                  less human prompting.
+                </p>
+              </div>
+            </div>
+
+            {/* The leadership question, restated — desktop only below lg */}
+            <div className="mt-16 hidden gap-12 border-t border-border pt-10 md:grid md:pt-14 lg:grid-cols-2 lg:gap-24">
+              <div className="hidden lg:block">
+                {/* Desktop / tablet version — unchanged */}
+                <div className="hidden md:block">
+                  <Label>That changes the leadership question</Label>
+                  <p className="type-body mt-6 text-foreground/70">It is no longer simply:</p>
+                  <p className="type-body mt-2 max-w-[38ch] font-bold text-foreground">
+                    Are our employees using AI?
+                  </p>
+                  <p className="type-body mt-8 text-foreground/70">It becomes:</p>
+                  <p className="type-body mt-2 max-w-[52ch] font-bold text-foreground">
+                    What work are we delegating? Who supervises it? What authority are we giving
+                    these systems? Where must a human step back in? And who owns the outcome?
+                  </p>
+                </div>
+
+                {/* Mobile version — matches the editorial reference */}
+                <div className="md:hidden">
+                  <Label>That changes the leadership question</Label>
+
+                  <p className="type-body-sm mt-6 font-medium uppercase tracking-[0.12em] text-foreground/45">
+                    BEFORE
+                  </p>
+                  <p className="type-body mt-2 text-foreground/75">Are our employees using AI?</p>
+
+                  <p className="type-body-sm mt-8 font-medium uppercase tracking-[0.12em] text-foreground/45">
+                    NOW
+                  </p>
+                  <div className="mt-3 space-y-3">
+                    <p className="type-body text-foreground/75">What work are we delegating?</p>
+                    <p className="type-body text-foreground/75">Who supervises it?</p>
+                    <p className="type-body text-foreground/75">
+                      What authority are we giving these systems?
+                    </p>
+                    <p className="type-body text-foreground/75">Where must a human step back in?</p>
+                    <p className="type-body text-foreground/75">And who owns the outcome?</p>
+                  </div>
+
+                  <div className="mt-11 border-t border-border" aria-hidden="true" />
+                </div>
+              </div>
+
+              <div className="hidden space-y-8 md:block">
+                <div className="border-l-2 border-lime pl-6">
+                  <p className="type-h4-caps">AI does not automatically improve an organization</p>
+                  <p className="type-h4-caps mt-2 text-lime">It reveals it</p>
+                </div>
+                <div className="max-w-[52ch] space-y-5 text-foreground/80">
+                  <p className="type-body">
+                    Align the organization first, and the technology compounds that alignment. Leave
+                    it fragmented, and it compounds the fragmentation just as quickly.
+                  </p>
+                  <p className="type-body">
+                    Organizational readiness means aligning leadership, people, governance, data,
+                    workflows, and priorities around one clear direction. That is what the Blueprint
+                    is designed to establish.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 03b The new leadership question, ink (tablet/mobile only) ── */}
+        <section
+          id="blueprint-leadership-question"
+          className="section-ink border-t border-foreground/10 lg:hidden"
+        >
+          <div className={`${SHELL_IN} py-16 md:py-20`}>
+            <div className="max-w-[58ch]">
+              <Label>THE SHIFT</Label>
+              <h2 className="type-h2-caps mt-4">THE NEW LEADERSHIP QUESTION</h2>
+
+              <div className="mt-12">
+                <p className="type-label-caps text-foreground/50">BEFORE</p>
+                <p className="type-body mt-3 text-foreground/90">Are our employees using AI?</p>
+              </div>
+
+              <div className="mt-12">
+                <p className="type-label-caps text-foreground/50">NOW</p>
+                <div className="mt-3 space-y-3">
+                  <p className="type-body text-foreground/90">What work are we delegating?</p>
+                  <p className="type-body text-foreground/90">Who supervises it?</p>
+                  <p className="type-body text-foreground/90">
+                    What authority are we giving these systems?
+                  </p>
+                  <p className="type-body text-foreground/90">Where must a human step back in?</p>
+                  <p className="type-body text-foreground/90">And who owns the outcome?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 04 Before we brought this to anyone else, cream ──────────── */}
+        <section id="blueprint-before-anyone-else" className="section-cream">
+          <div className={`${SHELL_IN} py-20 lg:py-28`}>
+            <div className="grid gap-12 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,0.5fr)] lg:gap-14 xl:gap-16">
+              {/* LEFT COLUMN — statement */}
+              <div>
+                <Label tone="muted">Built from experience</Label>
+                <h2 className="type-h3-caps-light mt-4 text-ink">
+                  We needed the Blueprint ourselves
+                </h2>
+              </div>
+
+              {/* RIGHT COLUMN — explanation and proof */}
+              <div className="max-w-[64ch]">
+                <div className="space-y-6 text-ink/75">
+                  <p className="type-body">
+                    We built The Be Human Company while artificial intelligence was changing how
+                    companies operate, so we ran the questions on our own business first.
+                  </p>
+                  <p className="type-body">
+                    What should we automate? What should we protect? Where should human judgment
+                    still lead? Where should intelligence take work off our plate?
+                  </p>
+                  <p className="type-body">
+                    We tested systems, found gaps, changed workflows, and learned where things break
+                    before bringing this work into a client organization.
+                  </p>
+                </div>
+
+                <div className="mt-6 lg:mt-10">
+                  <p className="type-body-lg max-w-[52ch] font-semibold text-ink">
+                    Every principle inside this Blueprint is one we use to run our own business.
+                  </p>
+                  <p className="type-body mt-3 max-w-[52ch] text-ink/70 lg:mt-4">
+                    Not a framework we studied from the outside. A way of working we live inside
+                    every day.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 05 Three pillars, ink ────────────────────────────────────── */}
+        <section id="blueprint-three-pillars" className="section-ink">
+          <div className={`${SHELL_IN} py-16 lg:py-20`}>
+            <div className="max-md:-mx-1">
+              <Label>The Blueprint</Label>
+              <h2 className="type-h2-caps mt-4 whitespace-nowrap">THE THREE PILLARS</h2>
+              <p className="type-body mt-6 max-w-[58ch] text-foreground/80">
+                The three pillars show where your organization stands, where it is exposed, and
+                where intelligence can create the greatest leverage.
+              </p>
+            </div>
+
+            <MobilePillarAccordion />
+
+            <div className="mt-0 max-lg:hidden">
+              {PILLARS.map((pillar, i) => (
+                <div key={pillar.n} id={`blueprint-pillar-${pillar.n}`}>
+                  <PillarModule pillar={pillar} isFirst={i === 0} />
                 </div>
               ))}
             </div>
           </div>
+        </section>
 
-          {/* Priority opportunity strip */}
-          <div className="mt-12 border-t border-ink/15 pt-10">
-            <div className="grid gap-8 rounded-xl bg-ink/[0.05] px-8 py-8 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-0">
-              <div className="lg:pr-8">
-                <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
-                  Priority opportunity
-                </p>
-                <p className="type-h4-caps mt-4 max-w-[14ch] text-ink">Customer Intake Workflow</p>
-              </div>
-              <div className="lg:border-l lg:border-ink/15 lg:px-8">
-                <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
-                  Business value
-                </p>
-                <p className="type-h3-caps mt-4 text-ink">
-                  5 <span className="text-ink/35">/</span> 5
-                </p>
-              </div>
-              <div className="lg:border-l lg:border-ink/15 lg:px-8">
-                <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
-                  Implementation effort
-                </p>
-                <p className="type-h3-caps mt-4 text-ink">
-                  4 <span className="text-ink/35">/</span> 5
-                </p>
-              </div>
-              <div className="lg:border-l lg:border-ink/15 lg:pl-8">
-                <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
-                  Recommended position
-                </p>
-                <span className="mt-4 inline-block rounded-lg bg-ink px-7 py-3 type-h4-caps text-cream">
-                  Do now
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Closing insight */}
-          <div className="mt-14 max-w-[60ch] border-l-2 border-lime-dark pl-6">
-            <p className="type-body-lg font-bold text-ink">A number by itself is not the value.</p>
-            <p className="type-body mt-2 text-ink/75">
-              The value is understanding why the organization scored where it did, what sits
-              underneath the number, and what leadership should do about it.
-            </p>
-            <p className="type-label-caps mt-7 text-[0.7rem] tracking-[0.18em] text-ink/40">
-              Illustrative example only.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── 07 The readiness gap, ink ────────────────────────────────── */}
-      <section id="blueprint-readiness-gap" className="section-ink">
-        <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <Label>The gap</Label>
-          <h2 className="type-h2-caps mt-6 max-w-[18ch]">Finding the gap</h2>
-          <p className="type-body mt-6 max-w-[64ch] text-foreground/80">
-            Sometimes the most important finding is the gap. Organizations do not transform based on
-            what leadership assumes is true. They transform based on what is actually true.
-          </p>
-
-
-          <div className="mt-14 border-t border-border">
-            {GAPS.map((gap) => (
-              <div
-                key={gap.belief}
-                className="grid gap-4 border-b border-border py-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16"
-              >
-                <div>
-                  <p className="eyebrow text-muted-foreground">What is believed</p>
-                  <p className="type-body-lg mt-3 max-w-[42ch] text-foreground/60">{gap.belief}</p>
-                </div>
-                <div>
-                  <p className="eyebrow text-lime">What is actually true</p>
-                  <p className="type-body-lg mt-3 max-w-[46ch] text-foreground">{gap.reality}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 max-w-[56ch]">
-            <p className="type-h4-caps text-[1.0625rem] text-lime">The Blueprint is built to find the difference</p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── 08 What you receive, cream ───────────────────────────────── */}
-      <section id="blueprint-deliverables" className="section-cream">
-        <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="max-w-[60ch] lg:max-w-[58%]">
-            <Label tone="muted">The output</Label>
-            <h2 className="type-h2-caps mt-5 text-ink lg:whitespace-nowrap">
-              What you receive
+        {/* ── 06 Scorecard, cream ──────────────────────────────────────── */}
+        <section id="blueprint-scorecard" className="section-cream">
+          <div className={`${SHELL_IN} py-20 lg:py-28`}>
+            <Label tone="muted">Example Blueprint Scorecard</Label>
+            <h2
+              className="type-h2-caps mt-5 max-w-[18ch] text-ink"
+              style={{ fontSize: "clamp(2.25rem, 5.2vw, 4.25rem)", lineHeight: 0.95 }}
+            >
+              Your Blueprint makes readiness visible
             </h2>
-            <p className="type-body mt-6 max-w-[52ch] text-ink/75">
+            <p className="type-body mt-8 max-w-[52ch] text-ink/75">
               You leave knowing where you stand, what matters most, what needs protecting, and what
               we believe you should do first.
             </p>
 
-            <ol className="mt-14">
-              {DELIVERABLES.map((item, i) => (
-                <li
-                  key={item.title}
-                  className="grid grid-cols-[3.25rem_1fr] gap-x-5 border-t border-ink/12 py-8 first:border-t-0 first:pt-0 sm:grid-cols-[4.5rem_1fr] sm:gap-x-6"
-                >
-                  <span
-                    className="type-h3-caps-light leading-none text-lime-dark"
-                    aria-hidden="true"
-                  >
-                    {String(i + 1).padStart(2, "0")}
+            <div className="mt-12 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.55fr)] lg:gap-16">
+              {/* Headline score */}
+              <div>
+                <p className="type-label-caps text-[0.75rem] tracking-[0.18em] text-ink/50">
+                  Organizational readiness
+                </p>
+                <p className="mt-5 flex items-baseline gap-3 text-ink">
+                  <span className="type-hero-caps" style={{ lineHeight: 0.82 }}>
+                    64
                   </span>
-                  <div className="border-l border-ink/15 pl-5 sm:pl-6">
-                    <h3 className="type-h4-caps text-ink">{item.title}</h3>
-                    <p className="type-body mt-3 max-w-[58ch] text-ink/75">{item.body}</p>
+                  <span className="type-h1-caps text-ink/30">/ 100</span>
+                </p>
+              </div>
+
+              {/* Category cards */}
+              <div className="grid gap-5 sm:grid-cols-2">
+                {SCORE_CATEGORIES.map((cat) => (
+                  <div
+                    key={cat.title}
+                    className="rounded-xl border border-ink/12 bg-ink/[0.02] p-6"
+                  >
+                    <div className="flex items-baseline justify-between gap-4">
+                      <h3 className="type-h4-caps text-[0.9375rem] text-ink">{cat.title}</h3>
+                      <p className="type-h4-caps text-ink">{cat.score}%</p>
+                    </div>
+                    <p className="type-body-sm mt-3 max-w-[42ch] text-ink/70">{cat.note}</p>
                   </div>
-                </li>
-              ))}
-            </ol>
+                ))}
+              </div>
+            </div>
+
+            {/* Priority opportunity strip */}
+            <div className="mt-12 border-t border-ink/15 pt-10">
+              <div className="grid gap-8 rounded-xl bg-ink/[0.05] px-8 py-8 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-0">
+                <div className="lg:pr-8">
+                  <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
+                    Priority opportunity
+                  </p>
+                  <p className="type-h4-caps mt-4 max-w-[14ch] text-ink">
+                    Customer Intake Workflow
+                  </p>
+                </div>
+                <div className="lg:border-l lg:border-ink/15 lg:px-8">
+                  <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
+                    Business value
+                  </p>
+                  <p className="type-h3-caps mt-4 text-ink">
+                    5 <span className="text-ink/35">/</span> 5
+                  </p>
+                </div>
+                <div className="lg:border-l lg:border-ink/15 lg:px-8">
+                  <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
+                    Implementation effort
+                  </p>
+                  <p className="type-h3-caps mt-4 text-ink">
+                    4 <span className="text-ink/35">/</span> 5
+                  </p>
+                </div>
+                <div className="lg:border-l lg:border-ink/15 lg:pl-8">
+                  <p className="type-label-caps text-[0.7rem] tracking-[0.18em] text-ink/55">
+                    Recommended position
+                  </p>
+                  <span className="mt-4 inline-block rounded-lg bg-ink px-7 py-3 type-h4-caps text-cream">
+                    Do now
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Closing insight */}
+            <div className="mt-14 max-w-[60ch] border-l-2 border-lime-dark pl-6">
+              <p className="type-body-lg font-bold text-ink">
+                A number by itself is not the value.
+              </p>
+              <p className="type-body mt-2 text-ink/75">
+                The value is understanding why the organization scored where it did, what sits
+                underneath the number, and what leadership should do about it.
+              </p>
+              <p className="type-label-caps mt-7 text-[0.7rem] tracking-[0.18em] text-ink/40">
+                Illustrative example only.
+              </p>
+            </div>
           </div>
+        </section>
 
+        {/* ── 07 The readiness gap, ink ────────────────────────────────── */}
+        <section id="blueprint-readiness-gap" className="section-ink">
+          <div className={`${SHELL_IN} py-20 lg:py-28`}>
+            <Label>The gap</Label>
+            <h2 className="type-h2-caps mt-6 max-w-[18ch]">Finding the gap</h2>
+            <p className="type-body mt-6 max-w-[64ch] text-foreground/80">
+              Sometimes the most important finding is the gap. Organizations do not transform based
+              on what leadership assumes is true. They transform based on what is actually true.
+            </p>
 
-        </div>
-      </section>
+            <div className="mt-14 border-t border-border">
+              {GAPS.map((gap) => (
+                <div
+                  key={gap.belief}
+                  className="grid gap-4 border-b border-border py-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16"
+                >
+                  <div>
+                    <p className="eyebrow text-muted-foreground">What is believed</p>
+                    <p className="type-body-lg mt-3 max-w-[42ch] text-foreground/60">
+                      {gap.belief}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="eyebrow text-lime">What is actually true</p>
+                    <p className="type-body-lg mt-3 max-w-[46ch] text-foreground">{gap.reality}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-      {/* ── 09 Client proof, cream ───────────────────────────────────── */}
-      {/* Deliberately narrower than the page shell (~86% of it) so the case
+            <div className="mt-12 max-w-[56ch]">
+              <p className="type-h4-caps text-[1.0625rem] text-lime">
+                The Blueprint is built to find the difference
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 08 What you receive, cream ───────────────────────────────── */}
+        <section id="blueprint-deliverables" className="section-cream">
+          <div className={`${SHELL_IN} py-20 lg:py-28`}>
+            <div className="max-w-[60ch] lg:max-w-[58%]">
+              <Label tone="muted">The output</Label>
+              <h2 className="type-h2-caps mt-5 text-ink lg:whitespace-nowrap">What you receive</h2>
+              <p className="type-body mt-6 max-w-[52ch] text-ink/75">
+                You leave knowing where you stand, what matters most, what needs protecting, and
+                what we believe you should do first.
+              </p>
+
+              <ol className="mt-14">
+                {DELIVERABLES.map((item, i) => (
+                  <li
+                    key={item.title}
+                    className="grid grid-cols-[3.25rem_1fr] gap-x-5 border-t border-ink/12 py-8 first:border-t-0 first:pt-0 sm:grid-cols-[4.5rem_1fr] sm:gap-x-6"
+                  >
+                    <span
+                      className="type-h3-caps-light leading-none text-lime-dark"
+                      aria-hidden="true"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="border-l border-ink/15 pl-5 sm:pl-6">
+                      <h3 className="type-h4-caps text-ink">{item.title}</h3>
+                      <p className="type-body mt-3 max-w-[58ch] text-ink/75">{item.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 09 Client proof, cream ───────────────────────────────────── */}
+        {/* Deliberately narrower than the page shell (~86% of it) so the case
           study reads as an inset editorial feature, not another full-width
           section. */}
-      <section id="blueprint-client-proof" className="section-cream border-t border-ink/15">
-        <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 lg:py-16">
-          <p className="text-[0.625rem] font-medium tracking-[0.18em] text-ink/40 uppercase">
-            Client story
-          </p>
+        <section id="blueprint-client-proof" className="section-cream border-t border-ink/15">
+          <div className="mx-auto max-w-[1200px] px-5 py-12 sm:px-8 lg:py-16">
+            <p className="text-[0.625rem] font-medium tracking-[0.18em] text-ink/40 uppercase">
+              Client story
+            </p>
 
-          <div className="mt-5 grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.5fr)] lg:gap-16 xl:gap-20">
-            {/* LEFT — identity, portrait, method */}
-            <div>
-              <Label tone="muted">From finding to business decision</Label>
-              <h2 className="type-h3-caps mt-4 text-ink [font-size:clamp(1.55rem,2.8vw,2.4rem)]">
-                All Y&rsquo;all Foods
-              </h2>
-              <p className="type-body-sm mt-3 text-ink/60">
-                Real business. Real workflows. Real findings.
-              </p>
-
-              <img
-                src={brettPhoto}
-                alt="Brett Christoffel, founder and CEO of All Y’all Foods, holding four packs of plant-based jerky"
-                loading="lazy"
-                className="mt-8 aspect-[4/3] w-full max-w-[22rem] object-cover object-top"
-              />
-
-              <p className="type-body-sm mt-6 max-w-[22rem] text-ink/70">
-                We do not look for ways to force AI into a business. We look at how the organization
-                actually operates: where money is spent, where work is duplicated, where systems
-                overlap, where people lose time, and where intelligence could create leverage.
-              </p>
-            </div>
-
-            {/* RIGHT — findings, outcome, testimonial */}
-            <div className="lg:pt-2">
+            <div className="mt-5 grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.5fr)] lg:gap-16 xl:gap-20">
+              {/* LEFT — identity, portrait, method */}
               <div>
-                <p className="type-label-caps text-ink/45">What we found</p>
-                <p className="type-body mt-3 max-w-[58ch] text-ink/80">
-                  We identified AI agents that were not properly configured, creating unnecessary
-                  data and security exposure. We also found overlapping software and plugins that
-                  were adding cost without creating enough value.
+                <Label tone="muted">From finding to business decision</Label>
+                <h2 className="type-h3-caps mt-4 text-ink [font-size:clamp(1.55rem,2.8vw,2.4rem)]">
+                  All Y&rsquo;all Foods
+                </h2>
+                <p className="type-body-sm mt-3 text-ink/60">
+                  Real business. Real workflows. Real findings.
+                </p>
+
+                <img
+                  src={brettPhoto}
+                  alt="Brett Christoffel, founder and CEO of All Y’all Foods, holding four packs of plant-based jerky"
+                  loading="lazy"
+                  className="mt-8 aspect-[4/3] w-full max-w-[22rem] object-cover object-top"
+                />
+
+                <p className="type-body-sm mt-6 max-w-[22rem] text-ink/70">
+                  We do not look for ways to force AI into a business. We look at how the
+                  organization actually operates: where money is spent, where work is duplicated,
+                  where systems overlap, where people lose time, and where intelligence could create
+                  leverage.
                 </p>
               </div>
 
-              <div className="mt-9 border-t border-ink/12 pt-9">
-                <p className="type-label-caps text-ink/45">What changed</p>
-                <p className="type-body mt-3 max-w-[58ch] text-ink/80">
-                  We tightened the AI environment, removed unnecessary tools, and redesigned key
-                  workflows around properly structured agents so the team could work more
-                  efficiently with clearer human ownership and better control.
-                </p>
-              </div>
-
-              <div className="mt-9 border-t border-ink/12 pt-9">
-                <p className="type-label-caps text-ink/45">In Brett&rsquo;s words</p>
-                {/* The thin lime rule is the testimonial signal — the quote sits
-                    further in than the factual blocks above it. */}
-                <blockquote className="mt-5 ml-4 border-l-2 border-lime pl-5 sm:ml-7 sm:pl-6">
-                  <p className="max-w-[56ch] text-[1.0625rem] leading-relaxed font-normal text-ink lg:text-[1.1875rem]">
-                    &ldquo;I&rsquo;ve worked with Shane for more than three years. He and his team
-                    have helped us restructure operations, strengthen our social media, and now
-                    build our AI strategy. They found risks and wasted costs we hadn&rsquo;t seen,
-                    then helped us put a much stronger system in place. I trust Shane enough that he
-                    is now an equity partner in our company.&rdquo;
+              {/* RIGHT — findings, outcome, testimonial */}
+              <div className="lg:pt-2">
+                <div>
+                  <p className="type-label-caps text-ink/45">What we found</p>
+                  <p className="type-body mt-3 max-w-[58ch] text-ink/80">
+                    We identified AI agents that were not properly configured, creating unnecessary
+                    data and security exposure. We also found overlapping software and plugins that
+                    were adding cost without creating enough value.
                   </p>
-                  <footer className="mt-5">
-                    <span className="text-[0.9375rem] font-semibold text-ink">
-                      Brett Christoffel
-                    </span>
-                    <br />
-                    <span className="text-[0.8125rem] text-ink/55">
-                      Founder &amp; CEO, All Y&rsquo;all Foods
-                    </span>
-                  </footer>
-                </blockquote>
+                </div>
+
+                <div className="mt-9 border-t border-ink/12 pt-9">
+                  <p className="type-label-caps text-ink/45">What changed</p>
+                  <p className="type-body mt-3 max-w-[58ch] text-ink/80">
+                    We tightened the AI environment, removed unnecessary tools, and redesigned key
+                    workflows around properly structured agents so the team could work more
+                    efficiently with clearer human ownership and better control.
+                  </p>
+                </div>
+
+                <div className="mt-9 border-t border-ink/12 pt-9">
+                  <p className="type-label-caps text-ink/45">In Brett&rsquo;s words</p>
+                  {/* The thin lime rule is the testimonial signal — the quote sits
+                    further in than the factual blocks above it. */}
+                  <blockquote className="mt-5 ml-4 border-l-2 border-lime pl-5 sm:ml-7 sm:pl-6">
+                    <p className="max-w-[56ch] text-[1.0625rem] leading-relaxed font-normal text-ink lg:text-[1.1875rem]">
+                      &ldquo;I&rsquo;ve worked with Shane for more than three years. He and his team
+                      have helped us restructure operations, strengthen our social media, and now
+                      build our AI strategy. They found risks and wasted costs we hadn&rsquo;t seen,
+                      then helped us put a much stronger system in place. I trust Shane enough that
+                      he is now an equity partner in our company.&rdquo;
+                    </p>
+                    <footer className="mt-5">
+                      <span className="text-[0.9375rem] font-semibold text-ink">
+                        Brett Christoffel
+                      </span>
+                      <br />
+                      <span className="text-[0.8125rem] text-ink/55">
+                        Founder &amp; CEO, All Y&rsquo;all Foods
+                      </span>
+                    </footer>
+                  </blockquote>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
+        {/* ── 10 + 11 Relationship and Canadian trust, ink ─────────────── */}
+        <section id="blueprint-relationship" className="section-ink">
+          <div className={`${SHELL_IN} py-20 lg:py-28`}>
+            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
+              <div>
+                <Label>Before this page</Label>
+                <h2 className="type-h3-caps-light mt-6 max-w-[18ch]">
+                  We may have already been looking at your business
+                </h2>
+              </div>
 
-      {/* ── 10 + 11 Relationship and Canadian trust, ink ─────────────── */}
-      <section id="blueprint-relationship" className="section-ink">
-        <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
-            <div>
-              <Label>Before this page</Label>
-              <h2 className="type-h3-caps-light mt-6 max-w-[18ch]">
-                We may have already been looking at your business
-              </h2>
-
+              <div className="max-w-[58ch] space-y-6 text-foreground/80">
+                <p className="type-body">
+                  This conversation likely didn&rsquo;t begin on this page.
+                </p>
+                <p className="type-body">
+                  You may have joined us on the CEO People Podcast. We may already have spent time
+                  understanding your company, listening to what you are trying to solve, and looking
+                  at areas we believe deserve your attention. That is intentional.
+                </p>
+                <p className="type-body">
+                  The first thing an advisor should bring to a conversation is not a pitch. It is
+                  evidence that they paid attention.
+                </p>
+                <p className="type-body">
+                  We will never pretend to know something internal that we cannot know from the
+                  outside. But we can bring thoughtful observations, show you where we would want to
+                  look deeper, and begin the conversation with something useful.
+                </p>
+                <p className="type-body-lg text-foreground">
+                  If something we have uncovered has made you look at your organization differently,
+                  that is where the conversation starts.
+                </p>
+              </div>
             </div>
+          </div>
+        </section>
 
-            <div className="max-w-[58ch] space-y-6 text-foreground/80">
-              <p className="type-body">This conversation likely didn&rsquo;t begin on this page.</p>
-              <p className="type-body">
-                You may have joined us on the CEO People Podcast. We may already have spent time
-                understanding your company, listening to what you are trying to solve, and looking
-                at areas we believe deserve your attention. That is intentional.
-              </p>
-              <p className="type-body">
-                The first thing an advisor should bring to a conversation is not a pitch. It is
-                evidence that they paid attention.
-              </p>
-              <p className="type-body">
-                We will never pretend to know something internal that we cannot know from the
-                outside. But we can bring thoughtful observations, show you where we would want to
-                look deeper, and begin the conversation with something useful.
-              </p>
+        <section id="blueprint-canadian-trust" className="section-ink border-t border-border">
+          <div className={`${SHELL_IN} py-20 lg:py-28`}>
+            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
+              <div>
+                <Label>Trust</Label>
+                <h2 className="mt-6 max-w-[20ch]">
+                  <span className="type-h3-caps-light block">Canadian trust</span>
+                  <span className="type-h3-caps mt-1 block text-foreground">
+                    Human accountability
+                  </span>
+                </h2>
+
+                <p className="type-body mt-8 inline-flex items-center gap-3 text-foreground/85">
+                  <MapleLeaf className="h-5 w-5 shrink-0 text-lime" />
+                  <span>{INDIGENOUS_LINE}</span>
+                </p>
+              </div>
+
+              <div className="max-w-[58ch] space-y-6 text-foreground/80">
+                <p className="type-body">
+                  The Be Human Company is an Indigenous-led Canadian company. Trust, responsibility,
+                  and stewardship shape how we approach artificial intelligence from the beginning.
+                </p>
+                <p className="type-body">
+                  As AI becomes embedded in everyday business, leadership needs clear answers about
+                  where information goes, who controls it, which systems have access, and who
+                  remains accountable when machines influence decisions.
+                </p>
+                <p className="type-body">
+                  For Canadian organizations, that also means understanding privacy, cross-border
+                  processing, provider jurisdiction, and sovereignty.
+                </p>
+                <p className="type-body font-semibold text-foreground">
+                  Speed without trust is not transformation. It is exposure.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 12 A small number of organizations, cream ────────────────── */}
+        <section id="blueprint-small-number" className="section-cream">
+          <div className={`${SHELL_IN} py-24 lg:py-32`}>
+            <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
+              <div>
+                <Label tone="muted">The process</Label>
+                <h2 className="type-h3-caps-light mt-4 max-w-[16ch] text-ink">How we work</h2>
+              </div>
+
+              <div className="max-w-[56ch] space-y-6 text-ink/75">
+                <p className="type-body">
+                  <strong className="font-semibold text-ink">
+                    We work with a small number of organizations at a time.
+                  </strong>{" "}
+                  This is not manufactured scarcity. It is how we protect the quality of the work.
+                </p>
+                <p className="type-body">
+                  Every Blueprint receives direct senior attention from the people responsible for
+                  the engagement. That naturally limits how many organizations we can take through
+                  the process at one time.
+                </p>
+                <p className="type-body">
+                  For some organizations, the Blueprint will be the right place to start. For
+                  others, it will not.
+                </p>
+                <p className="type-body">
+                  The next step is a conversation, not a purchase. We will tell you which we believe
+                  is true.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 13 Final positioning, ink ────────────────────────────────── */}
+        <section id="blueprint-closing" className="section-ink grain">
+          <div className={`${SHELL_IN} py-24 lg:py-32`}>
+            <Label>The position</Label>
+            <h2 className="type-h3-caps-light mt-8 w-full max-w-[24ch]">
+              The future belongs to the most human
+            </h2>
+
+            <div className="mt-12 max-w-[46ch] space-y-6 text-foreground/80 lg:max-w-[720px]">
               <p className="type-body-lg text-foreground">
-                If something we have uncovered has made you look at your organization differently,
-                that is where the conversation starts.
+                Artificial intelligence will become increasingly available to everyone. Human
+                judgment will not.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="blueprint-canadian-trust" className="section-ink border-t border-border">
-        <div className={`${SHELL_IN} py-20 lg:py-28`}>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-24">
-            <div>
-              <Label>Trust</Label>
-              <h2 className="mt-6 max-w-[20ch]">
-                <span className="type-h3-caps-light block">Canadian trust</span>
-                <span className="type-h3-caps mt-1 block text-foreground">
-                  Human accountability
-                </span>
-              </h2>
-
-              <p className="type-body mt-8 inline-flex items-center gap-3 text-foreground/85">
-                <MapleLeaf className="h-5 w-5 shrink-0 text-lime" />
-                <span>{INDIGENOUS_LINE}</span>
+              <p className="type-body">
+                The organizations that thrive will not simply be the ones that adopted AI fastest.
+                They will be the ones that aligned the organization first, redesigned the work
+                intelligently, protected what mattered, and clarified what their people should still
+                own.
+              </p>
+              <p className="type-body lg:whitespace-nowrap">
+                Technology will keep accelerating. Build an organization that is ready for that.
               </p>
             </div>
 
-            <div className="max-w-[58ch] space-y-6 text-foreground/80">
-              <p className="type-body">
-                The Be Human Company is an Indigenous-led Canadian company. Trust, responsibility,
-                and stewardship shape how we approach artificial intelligence from the beginning.
-              </p>
-              <p className="type-body">
-                As AI becomes embedded in everyday business, leadership needs clear answers about
-                where information goes, who controls it, which systems have access, and who remains
-                accountable when machines influence decisions.
-              </p>
-              <p className="type-body">
-                For Canadian organizations, that also means understanding privacy, cross-border
-                processing, provider jurisdiction, and sovereignty.
-              </p>
-              <p className="type-body font-semibold text-foreground">
-                Speed without trust is not transformation. It is exposure.
-              </p>
-
-
+            <div className="mt-12">
+              <ConversationCta tone="ink" />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ── 12 A small number of organizations, cream ────────────────── */}
-      <section id="blueprint-small-number" className="section-cream">
-        <div className={`${SHELL_IN} py-24 lg:py-32`}>
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-            <div>
-              <Label tone="muted">The process</Label>
-              <h2 className="type-h3-caps-light mt-4 max-w-[16ch] text-ink">How we work</h2>
-            </div>
-
-
-            <div className="max-w-[56ch] space-y-6 text-ink/75">
-              <p className="type-body">
-                <strong className="font-semibold text-ink">
-                  We work with a small number of organizations at a time.
-                </strong>{" "}
-                This is not manufactured scarcity. It is how we protect the quality of the work.
-              </p>
-              <p className="type-body">
-                Every Blueprint receives direct senior attention from the people responsible for the
-                engagement. That naturally limits how many organizations we can take through the
-                process at one time.
-              </p>
-              <p className="type-body">
-                For some organizations, the Blueprint will be the right place to start. For others,
-                it will not.
-              </p>
-              <p className="type-body">
-                The next step is a conversation, not a purchase. We will tell you which we believe
-                is true.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 13 Final positioning, ink ────────────────────────────────── */}
-      <section id="blueprint-closing" className="section-ink grain">
-        <div className={`${SHELL_IN} py-24 lg:py-32`}>
-          <Label>The position</Label>
-          <h2 className="type-h3-caps-light mt-8 w-full max-w-[24ch]">
-            The future belongs to the most human
-          </h2>
-
-
-          <div className="mt-12 max-w-[46ch] space-y-6 text-foreground/80 lg:max-w-[720px]">
-            <p className="type-body-lg text-foreground">
-              Artificial intelligence will become increasingly available to everyone. Human judgment
-              will not.
-            </p>
-            <p className="type-body">
-              The organizations that thrive will not simply be the ones that adopted AI fastest.
-              They will be the ones that aligned the organization first, redesigned the work
-              intelligently, protected what mattered, and clarified what their people should still
-              own.
-            </p>
-            <p className="type-body lg:whitespace-nowrap">
-              Technology will keep accelerating. Build an organization that is ready for that.
-            </p>
-          </div>
-
-          <div className="mt-12">
-            <ConversationCta tone="ink" />
-          </div>
-
-        </div>
-      </section>
+        </section>
       </>
     </>
-
   );
 }

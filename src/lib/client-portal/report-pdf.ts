@@ -115,7 +115,9 @@ export function generateReportPdf(input: ReportPdfInput): Uint8Array {
   let rest = bodyLines;
   let first = true;
   while (rest.length > 0 || first) {
-    const budget = first ? MAX_BODY_LINES_PER_PAGE - titleLines.length - 1 : MAX_BODY_LINES_PER_PAGE;
+    const budget = first
+      ? MAX_BODY_LINES_PER_PAGE - titleLines.length - 1
+      : MAX_BODY_LINES_PER_PAGE;
     const chunk = rest.slice(0, Math.max(budget, 0));
     rest = rest.slice(chunk.length);
     pages.push({ size: first ? HEADING_SIZE : BODY_SIZE, lines: chunk, heading: first });
@@ -164,7 +166,7 @@ export function generateReportPdf(input: ReportPdfInput): Uint8Array {
 
   objects[1] = `<< /Type /Pages /Kids [${pageIndices.map((i) => `${i} 0 R`).join(" ")}] /Count ${pageIndices.length} >>`;
 
-  let pdf = "%PDF-1.4\n";
+  const pdf = "%PDF-1.4\n";
   const offsets: number[] = [];
   // Offsets count bytes; every emitted char is latin-1, one byte each.
   const encoder = (s: string) =>

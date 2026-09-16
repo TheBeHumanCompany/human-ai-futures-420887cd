@@ -45,9 +45,9 @@ describe("the generated PDF", () => {
 
   test("a long report paginates rather than truncating", () => {
     const long = Array.from({ length: 200 }, (_, i) => `<p>Line ${i} ${MARKER}</p>`).join("\n");
-    const big = Buffer.from(
-      generateReportPdf({ title: "Long report", html: long }),
-    ).toString("latin1");
+    const big = Buffer.from(generateReportPdf({ title: "Long report", html: long })).toString(
+      "latin1",
+    );
     expect(big).toContain("Line 199");
     expect(big).toContain(MARKER);
   });

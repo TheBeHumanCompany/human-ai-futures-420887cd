@@ -111,9 +111,33 @@ describe("rendering is structured, never injected", () => {
 describe("bands", () => {
   test("sections alternate ground, and the question band is always ink", () => {
     const sections = parseSections([
-      { id: "d1", section_key: "a", ordinal: 1, tier: "preliminary", title: "A", band: "prose", body: {} },
-      { id: "d2", section_key: "b", ordinal: 2, tier: "preliminary", title: "B", band: "prose", body: {} },
-      { id: "d3", section_key: "c", ordinal: 3, tier: "preliminary", title: "C", band: "question", body: {} },
+      {
+        id: "d1",
+        section_key: "a",
+        ordinal: 1,
+        tier: "preliminary",
+        title: "A",
+        band: "prose",
+        body: {},
+      },
+      {
+        id: "d2",
+        section_key: "b",
+        ordinal: 2,
+        tier: "preliminary",
+        title: "B",
+        band: "prose",
+        body: {},
+      },
+      {
+        id: "d3",
+        section_key: "c",
+        ordinal: 3,
+        tier: "preliminary",
+        title: "C",
+        band: "question",
+        body: {},
+      },
     ]);
     const html = renderToStaticMarkup(<BlueprintSections sections={sections} />);
     expect(html).toContain("section-cream");

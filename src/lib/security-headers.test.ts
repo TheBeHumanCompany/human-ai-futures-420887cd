@@ -1,10 +1,6 @@
 import { describe, expect, test } from "bun:test";
 
-import {
-  isPrivatePath,
-  securityHeadersFor,
-  withSecurityHeaders,
-} from "./security-headers";
+import { isPrivatePath, securityHeadersFor, withSecurityHeaders } from "./security-headers";
 
 /**
  * The token in `/c/<token>` is the credential, so the header that stops it
@@ -79,9 +75,7 @@ describe("enforced CSP", () => {
     expect(securityHeadersFor("/portal")["Content-Security-Policy"]).toContain(
       "frame-ancestors 'none'",
     );
-    expect(securityHeadersFor("/")["Content-Security-Policy"]).not.toContain(
-      "frame-ancestors",
-    );
+    expect(securityHeadersFor("/")["Content-Security-Policy"]).not.toContain("frame-ancestors");
   });
 
   test("the origin-bearing policy ships report-only, never enforced", () => {
@@ -118,9 +112,7 @@ describe("withSecurityHeaders", () => {
     const redirect = Response.redirect("https://thebehumancompany.ca/who-we-are", 301);
     const response = withSecurityHeaders(redirect, "/about");
     expect(response.status).toBe(301);
-    expect(response.headers.get("location")).toBe(
-      "https://thebehumancompany.ca/who-we-are",
-    );
+    expect(response.headers.get("location")).toBe("https://thebehumancompany.ca/who-we-are");
     expect(response.headers.get("X-Content-Type-Options")).toBe("nosniff");
   });
 

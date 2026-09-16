@@ -27,9 +27,7 @@ function LockedBody({ teaser }: { teaser?: string }) {
     <div className="mt-4 border-t border-current/20 pt-4">
       <p className="eyebrow opacity-60">Included in the full blueprint</p>
       {teaser ? (
-        <p className="mt-2 max-w-[52ch] text-[1.0625rem] leading-[1.55] opacity-80">
-          {teaser}
-        </p>
+        <p className="mt-2 max-w-[52ch] text-[1.0625rem] leading-[1.55] opacity-80">{teaser}</p>
       ) : null}
     </div>
   );
@@ -50,11 +48,7 @@ function SectionBody({ section }: { section: BlueprintSection }) {
   );
 }
 
-export function BlueprintSections({
-  sections,
-}: {
-  sections: readonly BlueprintSection[];
-}) {
+export function BlueprintSections({ sections }: { sections: readonly BlueprintSection[] }) {
   return (
     <>
       {sections.map((section, index) => {
@@ -68,9 +62,7 @@ export function BlueprintSections({
             className={ground === "cream" ? "section-cream" : "section-ink"}
           >
             <div className="mx-auto w-full max-w-[1180px] px-6 py-14 sm:px-8">
-              <p className="eyebrow opacity-60">
-                {String(section.ordinal).padStart(2, "0")}
-              </p>
+              <p className="eyebrow opacity-60">{String(section.ordinal).padStart(2, "0")}</p>
               <h2 className="type-h4-caps mt-2">{section.title}</h2>
               <SectionBody section={section} />
             </div>
