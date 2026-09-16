@@ -97,11 +97,11 @@ function userIdOf(body: unknown): string | null {
   return typeof id === "string" && id.length > 0 ? id : null;
 }
 
-/** First `data[].id` of a list response, or `null`. */
+/** First `id` of a list response, or `null`. */
 function firstUserId(body: unknown): string | null {
-  const data = (body as Record<string, unknown> | null)?.data;
-  if (!Array.isArray(data) || data.length === 0) return null;
-  const id = (data[0] as Record<string, unknown> | null)?.id;
+  const users = Array.isArray(body) ? body : (body as Record<string, unknown> | null)?.data;
+  if (!Array.isArray(users) || users.length === 0) return null;
+  const id = (users[0] as Record<string, unknown> | null)?.id;
   return typeof id === "string" && id.length > 0 ? id : null;
 }
 

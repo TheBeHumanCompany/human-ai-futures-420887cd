@@ -49,7 +49,7 @@ describe("clerkSecretFromEnv", () => {
 
 describe("provisionClerkUserForEmail", () => {
   test("answers the existing user id without creating anything", async () => {
-    const { requests, impl } = recorder(() => reply(200, { data: [{ id: "user_exists" }] }));
+    const { requests, impl } = recorder(() => reply(200, [{ id: "user_exists" }]));
     const result = await provisionClerkUserForEmail({
       email: "owner@acme.example",
       clerkSecretKey: "sk_test_x",
@@ -65,10 +65,21 @@ describe("provisionClerkUserForEmail", () => {
     );
   });
 
+  test("accepts the legacy data envelope as a list-users fallback", async () => {
+    const { impl } = recorder(() => reply(200, { data: [{ id: "user_legacy" }] }));
+    expect(
+      await provisionClerkUserForEmail({
+        email: "legacy@acme.example",
+        clerkSecretKey: "sk_test_x",
+        fetchImpl: impl,
+      }),
+    ).toEqual({ clerkUserId: "user_legacy" });
+  });
+
   test("creates passwordlessly and invites when the address is new", async () => {
     const { requests, impl } = recorder((url) => {
       if (url.includes("/v1/invitations")) return reply(201, { id: "inv_1" });
-      if (url.includes("email_address")) return reply(200, { data: [] });
+      if (url.includes("email_address")) return reply(200, []);
       return reply(201, { id: "user_new" });
     });
     const result = await provisionClerkUserForEmail({
@@ -99,7 +110,7 @@ describe("provisionClerkUserForEmail", () => {
     const { requests, impl } = recorder((url) => {
       if (url.includes("email_address")) {
         listCalls += 1;
-        return reply(200, { data: listCalls === 1 ? [] : [{ id: "user_raced" }] });
+        return reply(200, listCalls === 1 ? [] : [{ id: "user_raced" }]);
       }
       return reply(422, { errors: [{ code: "identifier_taken", message: "taken" }] });
     });
@@ -121,7 +132,7 @@ describe("provisionClerkUserForEmail", () => {
       let creates = 0;
       const { requests, impl } = recorder((url) => {
         if (url.includes("/v1/invitations")) return reply(201, { id: "inv_pwr" });
-        if (url.includes("email_address")) return reply(200, { data: [] });
+        if (url.includes("email_address")) return reply(200, []);
         creates += 1;
         if (creates === 1) {
           return reply(422, {
@@ -158,7 +169,7 @@ describe("provisionClerkUserForEmail", () => {
   test("the password retry is bounded to one attempt", async () => {
     let creates = 0;
     const { requests, impl } = recorder((url) => {
-      if (url.includes("email_address")) return reply(200, { data: [] });
+      if (url.includes("email_address")) return reply(200, []);
       creates += 1;
       if (creates === 1) {
         return reply(422, {
@@ -180,7 +191,7 @@ describe("provisionClerkUserForEmail", () => {
 
   test("a form_data_missing 422 naming another param does not retry", async () => {
     const { requests, impl } = recorder((url) => {
-      if (url.includes("email_address")) return reply(200, { data: [] });
+      if (url.includes("email_address")) return reply(200, []);
       return reply(422, {
         errors: [{ code: "form_data_missing", meta: { param_name: "username" } }],
       });
@@ -201,7 +212,7 @@ describe("provisionClerkUserForEmail", () => {
     const { requests, impl } = recorder((url) => {
       if (url.includes("email_address")) {
         listCalls += 1;
-        return reply(200, { data: listCalls === 1 ? [] : [{ id: "user_pwr_raced" }] });
+        return reply(200, listCalls === 1 ? [] : [{ id: "user_pwr_raced" }]);
       }
       creates += 1;
       if (creates === 1) {
@@ -222,7 +233,7 @@ describe("provisionClerkUserForEmail", () => {
 
   test("a create rejected for another reason answers null", async () => {
     const { impl } = recorder((url) => {
-      if (url.includes("email_address")) return reply(200, { data: [] });
+      if (url.includes("email_address")) return reply(200, []);
       return reply(422, { errors: [{ code: "param_invalid" }] });
     });
     expect(
@@ -256,7 +267,7 @@ describe("provisionClerkUserForEmail", () => {
     ).toBeNull();
 
     const createFails = recorder((url) => {
-      if (url.includes("email_address")) return reply(200, { data: [] });
+      if (url.includes("email_address")) return reply(200, []);
       return reply(500, {});
     });
     expect(
@@ -271,7 +282,7 @@ describe("provisionClerkUserForEmail", () => {
   test("an unsent invitation does not null the linkage", async () => {
     const { impl } = recorder((url) => {
       if (url.includes("/v1/invitations")) return reply(500, {});
-      if (url.includes("email_address")) return reply(200, { data: [] });
+      if (url.includes("email_address")) return reply(200, []);
       return reply(201, { id: "user_inv_fail" });
     });
     expect(
