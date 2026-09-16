@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Be Human email templates — React Email to Resend",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "layout": {
+    "mode": "grid",
+    "cols": 4,
+    "gapX": 70,
+    "gapY": 100
+  },
+  "components": [
+    { "id": "email-templates", "type": "frontend", "label": "React Email templates", "sublabel": "emails/*.tsx", "size": [148, 60], "row": 0, "col": 0 },
+    { "id": "resend-manifest", "type": "frontend", "label": "Resend manifest", "sublabel": "emails/_resend/manifest.ts", "tag": "18 + 3 variables", "row": 0, "col": 1 },
+    { "id": "upload-script", "type": "backend", "label": "Upload script", "sublabel": "upload-email-templates.ts", "tag": "bun run email:upload", "row": 0, "col": 2 },
+    { "id": "templates-api", "type": "cloud", "label": "Resend Templates API", "sublabel": "api.resend.com/templates", "size": [140, 60], "row": 0, "col": 3 },
+    { "id": "send-api", "type": "cloud", "label": "Resend Send API", "sublabel": "api.resend.com/emails", "row": 1, "col": 3 },
+    { "id": "preview-server", "type": "frontend", "label": "Preview server", "sublabel": "email dev :3001 — dev only", "row": 1, "col": 0 },
+    { "id": "site-sender", "type": "backend", "label": "Website sender", "sublabel": "client-portal/magic-link-email.ts", "size": [128, 60], "row": 1, "col": 1 },
+    { "id": "test-sink", "type": "external", "label": "Test sink", "sublabel": "delivered@resend.dev", "row": 2, "col": 2 },
+    { "id": "client-portal", "type": "frontend", "label": "Client portal", "sublabel": "thebehumancompany.ca/c/<token>", "row": 2, "col": 3 }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Website repo — human-ai-futures-420887cd", "wraps": ["email-templates", "resend-manifest", "upload-script", "preview-server", "site-sender"] },
+    { "kind": "region", "label": "Resend", "wraps": ["templates-api", "send-api"] }
+  ],
+  "connections": [
+    { "id": "templates-to-manifest", "from": "email-templates", "to": "resend-manifest", "label": "typed components", "labelDy": 54 },
+    { "id": "manifest-to-upload", "from": "resend-manifest", "to": "upload-script", "label": "variables + metadata", "labelDy": 54 },
+    { "id": "upload-to-templates", "from": "upload-script", "to": "templates-api", "label": "upsert alias + publish", "labelDy": 54 },
+    { "id": "templates-to-send", "from": "templates-api", "to": "send-api", "label": "published template id", "fromSide": "bottom", "toSide": "top" },
+    { "id": "sender-to-send", "from": "site-sender", "to": "send-api", "label": "sends inline HTML today" },
+    { "id": "send-to-portal", "from": "send-api", "to": "client-portal", "label": "delivers /c/<token> link", "fromSide": "bottom", "toSide": "top", "labelDy": 24 },
+    { "id": "send-to-sink", "from": "send-api", "to": "test-sink", "label": "test sends", "variant": "dashed" },
+    { "id": "preview-to-templates", "from": "preview-server", "to": "email-templates", "label": "hot reload :3001", "variant": "dashed", "fromSide": "top", "toSide": "bottom" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Authoring", "items": ["emails/*.tsx render with {{{KEY}}} placeholder props", "manifest declares every Resend variable, type, and fallback"] },
+    { "dot": "emerald", "title": "Upload", "items": ["PATCH by alias upserts; 404 falls back to create", "dry-run writes test-results/email-templates/ with no network"] },
+    { "dot": "rose", "title": "Delivery", "items": ["sends reference template id plus variables — substitution is raw", "site sender still posts inline HTML; template.id migration is future work"] }
+  ]
+}

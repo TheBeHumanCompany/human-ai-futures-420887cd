@@ -30,6 +30,8 @@
     "portal:pdf": "bun scripts/generate-client-pdf.ts",
     "portal:tokens": "bun scripts/manage-client-token.ts",
     "portal:checkout": "bun scripts/create-audit-checkout.ts",
+    "email:dev": "email dev --dir emails --port 3001",
+    "email:upload": "bun scripts/upload-email-templates.ts",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -95,6 +97,7 @@
     "@eslint/js": "^9.32.0",
     "@lovable.dev/vite-tanstack-config": "2.13.1",
     "@playwright/test": "^1.62.1",
+    "@react-email/ui": "6.9.5",
     "@resvg/resvg-js": "^2.6.2",
     "@sanity/client": "7.26.0",
     "@types/node": "^22.16.5",
@@ -111,6 +114,7 @@
     "nitro": "3.0.260603-beta",
     "playwright": "^1.62.1",
     "prettier": "^3.7.3",
+    "react-email": "^6.9.5",
     "satori": "^0.29.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
