@@ -18,6 +18,8 @@ mask() {
     pk_test_*) printf 'pk_test_***' ;;
     sb_secret_*) printf 'sb_secret_***' ;;
     sb_publishable_*) printf 'sb_publishable_***' ;;
+    eyJ*) printf 'eyJ***' ;;
+    sk_*) printf 'sk_***' ;;
     *) printf '%s' "${1:-<unset>}" ;;
   esac
 }
@@ -31,6 +33,57 @@ require_var() {
   local name="$1"
   [ -n "${!name:-}" ] || fail "$name is required"
   printf 'PASS[funnel env]: %s=%s\n' "$name" "$(mask "${!name}")"
+}
+
+assert_live_gate() {
+  case "${FUNNEL_LIVE:-}" in
+    "") ;;
+    1) printf 'PASS[funnel gate]: FUNNEL_LIVE=1 permits the live validation and email delivery tier\n' ;;
+    *) fail 'FUNNEL_LIVE must be exactly 1 when set' ;;
+  esac
+
+  if [ "${GTM_RUN_LIVE:-}" = 1 ] && [ "${FUNNEL_LIVE:-}" != 1 ]; then
+    fail 'GTM_RUN_LIVE=1 requires FUNNEL_LIVE=1'
+  fi
+}
+
+run_live_checks() {
+  local podcasts_dir="${FUNNEL_PODCASTS_DIR:-/Users/siddicky/Projects/BeHuman_Company/podcasts-wt/e2e-smoke-blueprint-funnel-w1}"
+
+  command -v uv >/dev/null 2>&1 || fail "required command 'uv' is not on PATH for the live tier"
+  [ -d "$podcasts_dir" ] || fail "FUNNEL_PODCASTS_DIR does not exist: $podcasts_dir"
+  [ -n "${RESEND_API_KEY:-}" ] || fail 'RESEND_API_KEY is required for FUNNEL_LIVE=1'
+
+  printf 'funnel: running live gtm validate against the LangGraph server\n'
+  (
+    cd "$podcasts_dir"
+    GTM_RUN_LIVE=1 uv run --frozen python scripts/funnel_stage1.py
+  )
+
+  printf 'funnel: sending one live Resend magic-link email to FUNNEL_TEST_EMAIL\n'
+  env -u FUNNEL_EMAIL_CATCHER_DIR bun -e '
+    const { readFile } = await import("node:fs/promises");
+    const { resolve } = await import("node:path");
+    const { pathToFileURL } = await import("node:url");
+
+    const storePath = process.env.FUNNEL_STORE_PATH;
+    if (!storePath) throw new Error("FUNNEL_STORE_PATH is required");
+    const clients = JSON.parse(await readFile(storePath, "utf8"));
+    const client = clients.find((entry) => entry?.id === "funnel-fixture");
+    if (!client?.token || !client?.name) throw new Error("funnel fixture client is invalid");
+
+    const moduleUrl = pathToFileURL(
+      resolve("src/lib/client-portal/magic-link-email.ts"),
+    ).href;
+    const { CLIENT_PORTAL_ORIGIN, deliverMagicLinkEmail } = await import(moduleUrl);
+    const result = await deliverMagicLinkEmail({
+      clientName: client.name,
+      to: process.env.FUNNEL_TEST_EMAIL ?? "",
+      clientUrl: `${CLIENT_PORTAL_ORIGIN}/c/${client.token}`,
+    });
+    if (!result.ok) throw new Error(result.message ?? "live Resend delivery failed");
+  '
+  printf 'PASS[funnel live]: Resend accepted one magic-link email\n'
 }
 
 cleanup() {
@@ -59,6 +112,7 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 printf 'funnel: preflight (PORT=%s, forward-to=%s)\n' "$PORT" "$FORWARD_TO"
+assert_live_gate
 require_var FUNNEL_STORE_PATH
 require_var FUNNEL_RUN_ID
 require_var FUNNEL_TEST_EMAIL
@@ -135,3 +189,7 @@ printf 'PASS[funnel listener]: TEST-mode listener ready, secret=%s\n' "$(mask "$
 # the registration (see playwright.config.ts).
 export FUNNEL_PW_PROJECT=1
 bunx playwright test --project=funnel
+
+if [ "${FUNNEL_LIVE:-}" = 1 ]; then
+  run_live_checks
+fi
