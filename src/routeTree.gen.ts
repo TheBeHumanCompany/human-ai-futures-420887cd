@@ -25,8 +25,10 @@ import { Route as SignUpSplatRouteImport } from './routes/sign-up.$'
 import { Route as SignInSplatRouteImport } from './routes/sign-in.$'
 import { Route as PodcastSlugRouteImport } from './routes/podcast_.$slug'
 import { Route as CTokenRouteImport } from './routes/c.$token'
-import { Route as ApiAuditCheckoutRouteImport } from './routes/api/audit-checkout'
+import { Route as AuditSuccessRouteImport } from './routes/audit/success'
+import { Route as AuditCancelledRouteImport } from './routes/audit/cancelled'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe-webhook'
+import { Route as ApiAuditCheckoutRouteImport } from './routes/api/audit-checkout'
 
 const WhyWeExistRoute = WhyWeExistRouteImport.update({
   id: '/why-we-exist',
@@ -108,14 +110,24 @@ const CTokenRoute = CTokenRouteImport.update({
   path: '/c/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiAuditCheckoutRoute = ApiAuditCheckoutRouteImport.update({
-  id: '/api/audit-checkout',
-  path: '/api/audit-checkout',
+const AuditSuccessRoute = AuditSuccessRouteImport.update({
+  id: '/audit/success',
+  path: '/audit/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditCancelledRoute = AuditCancelledRouteImport.update({
+  id: '/audit/cancelled',
+  path: '/audit/cancelled',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
   id: '/api/stripe-webhook',
   path: '/api/stripe-webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuditCheckoutRoute = ApiAuditCheckoutRouteImport.update({
+  id: '/api/audit-checkout',
+  path: '/api/audit-checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -133,6 +145,8 @@ export interface FileRoutesByFullPath {
   '/why-we-exist': typeof WhyWeExistRoute
   '/api/audit-checkout': typeof ApiAuditCheckoutRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
+  '/audit/cancelled': typeof AuditCancelledRoute
+  '/audit/success': typeof AuditSuccessRoute
   '/c/$token': typeof CTokenRoute
   '/podcast/$slug': typeof PodcastSlugRoute
   '/sign-in/$': typeof SignInSplatRoute
@@ -153,6 +167,8 @@ export interface FileRoutesByTo {
   '/why-we-exist': typeof WhyWeExistRoute
   '/api/audit-checkout': typeof ApiAuditCheckoutRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
+  '/audit/cancelled': typeof AuditCancelledRoute
+  '/audit/success': typeof AuditSuccessRoute
   '/c/$token': typeof CTokenRoute
   '/podcast/$slug': typeof PodcastSlugRoute
   '/sign-in/$': typeof SignInSplatRoute
@@ -174,6 +190,8 @@ export interface FileRoutesById {
   '/why-we-exist': typeof WhyWeExistRoute
   '/api/audit-checkout': typeof ApiAuditCheckoutRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
+  '/audit/cancelled': typeof AuditCancelledRoute
+  '/audit/success': typeof AuditSuccessRoute
   '/c/$token': typeof CTokenRoute
   '/podcast_/$slug': typeof PodcastSlugRoute
   '/sign-in/$': typeof SignInSplatRoute
@@ -196,6 +214,8 @@ export interface FileRouteTypes {
     | '/why-we-exist'
     | '/api/audit-checkout'
     | '/api/stripe-webhook'
+    | '/audit/cancelled'
+    | '/audit/success'
     | '/c/$token'
     | '/podcast/$slug'
     | '/sign-in/$'
@@ -216,6 +236,8 @@ export interface FileRouteTypes {
     | '/why-we-exist'
     | '/api/audit-checkout'
     | '/api/stripe-webhook'
+    | '/audit/cancelled'
+    | '/audit/success'
     | '/c/$token'
     | '/podcast/$slug'
     | '/sign-in/$'
@@ -236,6 +258,8 @@ export interface FileRouteTypes {
     | '/why-we-exist'
     | '/api/audit-checkout'
     | '/api/stripe-webhook'
+    | '/audit/cancelled'
+    | '/audit/success'
     | '/c/$token'
     | '/podcast_/$slug'
     | '/sign-in/$'
@@ -257,6 +281,8 @@ export interface RootRouteChildren {
   WhyWeExistRoute: typeof WhyWeExistRoute
   ApiAuditCheckoutRoute: typeof ApiAuditCheckoutRoute
   ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
+  AuditCancelledRoute: typeof AuditCancelledRoute
+  AuditSuccessRoute: typeof AuditSuccessRoute
   CTokenRoute: typeof CTokenRoute
   PodcastSlugRoute: typeof PodcastSlugRoute
   SignInSplatRoute: typeof SignInSplatRoute
@@ -378,11 +404,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/audit-checkout': {
-      id: '/api/audit-checkout'
-      path: '/api/audit-checkout'
-      fullPath: '/api/audit-checkout'
-      preLoaderRoute: typeof ApiAuditCheckoutRouteImport
+    '/audit/success': {
+      id: '/audit/success'
+      path: '/audit/success'
+      fullPath: '/audit/success'
+      preLoaderRoute: typeof AuditSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audit/cancelled': {
+      id: '/audit/cancelled'
+      path: '/audit/cancelled'
+      fullPath: '/audit/cancelled'
+      preLoaderRoute: typeof AuditCancelledRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/stripe-webhook': {
@@ -390,6 +423,13 @@ declare module '@tanstack/react-router' {
       path: '/api/stripe-webhook'
       fullPath: '/api/stripe-webhook'
       preLoaderRoute: typeof ApiStripeWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/audit-checkout': {
+      id: '/api/audit-checkout'
+      path: '/api/audit-checkout'
+      fullPath: '/api/audit-checkout'
+      preLoaderRoute: typeof ApiAuditCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -409,6 +449,8 @@ const rootRouteChildren: RootRouteChildren = {
   WhyWeExistRoute: WhyWeExistRoute,
   ApiAuditCheckoutRoute: ApiAuditCheckoutRoute,
   ApiStripeWebhookRoute: ApiStripeWebhookRoute,
+  AuditCancelledRoute: AuditCancelledRoute,
+  AuditSuccessRoute: AuditSuccessRoute,
   CTokenRoute: CTokenRoute,
   PodcastSlugRoute: PodcastSlugRoute,
   SignInSplatRoute: SignInSplatRoute,
