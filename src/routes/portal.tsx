@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { companyInitial, fetchPortalPage } from "@/lib/client-portal/portal";
+import {
+  ACCEPT_ATTRIBUTE,
+  submitIntakeUpload,
+  type IntakeQuestion,
+} from "@/lib/client-portal/intake";
 
 /**
  * The signed-in client portal (US-009).
@@ -28,7 +34,7 @@ export const Route = createFileRoute("/portal")({
 });
 
 function PortalPage() {
-  const { reports, company } = Route.useLoaderData();
+  const { reports, company, intake } = Route.useLoaderData();
 
   return (
     <section className="section-cream">
@@ -74,7 +80,112 @@ function PortalPage() {
             </article>
           ))
         )}
+        {/* The report-driven intake (todo 10, G4): one question per final
+            section the session's RLS read can see, so the card exists only
+            downstream of the paywall — before payment the set is empty and
+            it renders nothing. */}
+        <IntakeCard questions={intake.questions} />
       </div>
+    </section>
+  );
+}
+
+type IntakeCardState =
+  { kind: "idle" } | { kind: "confirmed"; name: string } | { kind: "error"; message: string };
+
+const INTAKE_UNAVAILABLE_MESSAGE = "The upload could not be completed. Please try again shortly.";
+
+/**
+ * The supporting-document card. A rejection answers with the upload
+ * policy's own message — the server judged the file, so the inline text is
+ * `explain`'s, verbatim. The confirmation branch is reachable only on a
+ * stored outcome: the server function returns it after the storage write
+ * answered 2xx, never on a promise to write.
+ *
+ * Re-uploading is allowed: each submission mints a fresh storage key, so a
+ * corrected document is a new object (the prior one stays in the bucket)
+ * and the confirmation simply shows the newest upload.
+ */
+function IntakeCard({ questions }: { questions: readonly IntakeQuestion[] }) {
+  const [state, setState] = useState<IntakeCardState>({ kind: "idle" });
+  const [uploading, setUploading] = useState(false);
+
+  if (questions.length === 0) return null;
+
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const file = data.get("file");
+    if (!(file instanceof File) || file.size === 0) {
+      setState({ kind: "error", message: "Choose a file to upload first." });
+      return;
+    }
+    setUploading(true);
+    try {
+      const outcome = await submitIntakeUpload({ data });
+      if (outcome.status === "stored") {
+        setState({ kind: "confirmed", name: file.name });
+        form.reset();
+      } else {
+        setState({ kind: "error", message: outcome.message });
+      }
+    } catch {
+      setState({ kind: "error", message: INTAKE_UNAVAILABLE_MESSAGE });
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  return (
+    <section data-testid="intake-card" className="mt-12 border-t border-current/20 pt-10">
+      <p className="eyebrow">Supporting documents</p>
+      <h2 className="type-h3-caps-light mt-3">Send us what the audit still needs</h2>
+      <ul className="mt-6 max-w-[58ch] space-y-3 text-base leading-relaxed text-ink/80">
+        {questions.map((question) => (
+          <li key={question.sectionKey} data-testid="intake-question">
+            {question.prompt}
+          </li>
+        ))}
+      </ul>
+      <form onSubmit={submit} className="mt-6 max-w-[58ch]">
+        <input
+          type="file"
+          name="file"
+          accept={ACCEPT_ATTRIBUTE}
+          data-testid="intake-file-input"
+          className="block w-full text-base text-ink/80"
+        />
+        <button
+          type="submit"
+          disabled={uploading}
+          data-testid="intake-submit"
+          className="eyebrow mt-6 inline-flex items-center rounded-full bg-lime px-7 py-4 text-ink transition-colors duration-200 hover:bg-cream disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {uploading ? "Uploading…" : "Upload document"}
+        </button>
+      </form>
+      {state.kind === "error" && (
+        <p
+          data-testid="intake-error"
+          role="alert"
+          className="mt-6 max-w-[58ch] border border-current/20 px-4 py-3 text-base text-ink/80"
+        >
+          {state.message}
+        </p>
+      )}
+      {state.kind === "confirmed" && (
+        <div
+          data-testid="intake-confirm"
+          className="mt-6 max-w-[58ch] border border-current/20 px-4 py-3"
+        >
+          <p className="eyebrow">Received</p>
+          <p className="mt-2 text-base leading-relaxed text-ink/80">
+            {state.name} is uploaded. Your audit team has it — we will be in touch about what comes
+            next.
+          </p>
+        </div>
+      )}
     </section>
   );
 }

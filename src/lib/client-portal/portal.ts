@@ -4,6 +4,7 @@ import { createServerFn } from "@tanstack/react-start";
 
 import type { ClientRecord } from "./tokens";
 import type { ClerkScopedReport, ClerkSupabaseConfig } from "./supabase-clerk";
+import { loadIntakeQuestions } from "./intake";
 
 /**
  * The signed-in portal's data path (US-009).
@@ -160,5 +161,9 @@ export const fetchPortalPage = createServerFn({ method: "GET" }).handler(async (
   // untouched (its decision table stays byte-compatible), and the company
   // join degrades on its own so a nameless record can never error the page.
   const company = await resolvePortalCompany(outcome.reports);
-  return { reports: outcome.reports, company };
+  // The intake question set (todo 10, G4), joined the same additive way:
+  // derived from RLS-visible final sections, degrading to empty so a
+  // sections outage can never error the page the reports already built.
+  const intake = await loadIntakeQuestions({ userId, getToken });
+  return { reports: outcome.reports, company, intake };
 });
