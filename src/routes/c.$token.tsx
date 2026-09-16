@@ -1,8 +1,9 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { ClientReports } from "@/components/client-portal/client-reports";
 import { CheckoutBand } from "@/components/client-portal/checkout/checkout-panel";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { SITE_ORIGIN } from "@/lib/sanity/config";
 import { fetchClientPageByToken } from "@/lib/client-portal/tokens";
 
 /**
@@ -107,7 +108,7 @@ function ClientPortalPage() {
         already-paid client sees no band here at all — and if one is ever
         reached, the init route answers 409 with the sign-in hint.
       */}
-      <CheckoutBand token={token} hasLockedFinals={hasLockedFinals} />
+      <CheckoutBand identity={{ kind: "token", token }} hasLockedFinals={hasLockedFinals} />
     </section>
   );
 }
@@ -121,9 +122,13 @@ function ClientLinkDenied() {
           The link you followed does not match a client page. Check the address, or ask us to send
           it again.
         </p>
-        <Link className="eyebrow mt-8 inline-block bg-ink px-7 py-4 text-cream" to="/">
+        {/* An absolute anchor to the marketing origin, not a `<Link>`: a
+            client-side navigation to `/` on this host would render marketing
+            chrome on the portal host. The client-side guard in `__root.tsx`
+            is the backstop; this is the removal of the trigger. */}
+        <a className="eyebrow mt-8 inline-block bg-ink px-7 py-4 text-cream" href={SITE_ORIGIN}>
           Back to the homepage
-        </Link>
+        </a>
       </div>
     </section>
   );

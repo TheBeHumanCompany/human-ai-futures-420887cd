@@ -43,16 +43,29 @@ describe("requestCheckoutSession — the init-route transport", () => {
       return jsonResponse(200, { clientSecret: "cs_test_a" });
     }) as typeof fetch;
 
-    await requestCheckoutSession({ token: "tok-123", fetchImpl });
+    await requestCheckoutSession({ identity: { kind: "token", token: "tok-123" }, fetchImpl });
 
     expect(seen.url).toBe("/api/audit-checkout");
     expect(seen.init?.method).toBe("POST");
     expect(seen.init?.body).toBe(JSON.stringify({ token: "tok-123" }));
   });
 
+  test("the portal's session identity posts a source marker, never a token or client id", async () => {
+    const seen: { init?: RequestInit } = {};
+    const fetchImpl = (async (input: string | URL | Request, init?: RequestInit) => {
+      seen.init = init;
+      return jsonResponse(200, { clientSecret: "cs_test_a" });
+    }) as typeof fetch;
+
+    const state = await requestCheckoutSession({ identity: { kind: "session" }, fetchImpl });
+
+    expect(state).toEqual({ status: "ready", clientSecret: "cs_test_a" });
+    expect(seen.init?.body).toBe(JSON.stringify({ source: "portal" }));
+  });
+
   test("a 200 {clientSecret} resolves ready with the secret carried", async () => {
     const state = await requestCheckoutSession({
-      token: "tok-123",
+      identity: { kind: "token", token: "tok-123" },
       fetchImpl: fetchAnswering(200, { clientSecret: "cs_test_secret" }),
     });
 
@@ -61,7 +74,7 @@ describe("requestCheckoutSession — the init-route transport", () => {
 
   test("a 404 denial resolves invalid — never ready", async () => {
     const state = await requestCheckoutSession({
-      token: "tok-bad",
+      identity: { kind: "token", token: "tok-bad" },
       fetchImpl: fetchAnswering(404, { error: "This link is not valid" }),
     });
 
@@ -70,7 +83,7 @@ describe("requestCheckoutSession — the init-route transport", () => {
 
   test("a 409 replay resolves paid", async () => {
     const state = await requestCheckoutSession({
-      token: "tok-123",
+      identity: { kind: "token", token: "tok-123" },
       fetchImpl: fetchAnswering(409, { error: "This audit is already paid." }),
     });
 
@@ -79,7 +92,7 @@ describe("requestCheckoutSession — the init-route transport", () => {
 
   test("400 is its own state — the record has no contact email", async () => {
     const state = await requestCheckoutSession({
-      token: "tok-123",
+      identity: { kind: "token", token: "tok-123" },
       fetchImpl: fetchAnswering(400, {
         error: "This client record has no contact email, so checkout cannot be initialized.",
       }),
@@ -91,7 +104,7 @@ describe("requestCheckoutSession — the init-route transport", () => {
   test("500 and 502 resolve unavailable", async () => {
     for (const status of [500, 502]) {
       const state = await requestCheckoutSession({
-        token: "tok-123",
+        identity: { kind: "token", token: "tok-123" },
         fetchImpl: fetchAnswering(status, { error: "whatever the route says" }),
       });
 
@@ -102,14 +115,14 @@ describe("requestCheckoutSession — the init-route transport", () => {
   test("an unparseable 200 body resolves unavailable, never ready", async () => {
     const fetchImpl = (async () => new Response("not json", { status: 200 })) as typeof fetch;
 
-    const state = await requestCheckoutSession({ token: "tok-123", fetchImpl });
+    const state = await requestCheckoutSession({ identity: { kind: "token", token: "tok-123" }, fetchImpl });
 
     expect(state).toEqual({ status: "unavailable" });
   });
 
   test("a 200 body without a usable clientSecret resolves unavailable", async () => {
     const state = await requestCheckoutSession({
-      token: "tok-123",
+      identity: { kind: "token", token: "tok-123" },
       fetchImpl: fetchAnswering(200, { secret: "wrongly-named" }),
     });
 
@@ -121,7 +134,7 @@ describe("requestCheckoutSession — the init-route transport", () => {
       throw new TypeError("fetch failed");
     }) as typeof fetch;
 
-    const state = await requestCheckoutSession({ token: "tok-123", fetchImpl });
+    const state = await requestCheckoutSession({ identity: { kind: "token", token: "tok-123" }, fetchImpl });
 
     expect(state).toEqual({ status: "unavailable" });
   });
@@ -130,7 +143,7 @@ describe("requestCheckoutSession — the init-route transport", () => {
 describe("resolveCheckoutPanel — the init answer mapped onto the panel", () => {
   test("a ready session with a publishable key arms the panel with both", async () => {
     const panel = await resolveCheckoutPanel({
-      token: "tok-123",
+      identity: { kind: "token", token: "tok-123" },
       publishableKey: "pk_test_123",
       fetchImpl: fetchAnswering(200, { clientSecret: "cs_test_secret" }),
     });
@@ -144,7 +157,7 @@ describe("resolveCheckoutPanel — the init answer mapped onto the panel", () =>
 
   test("a ready session without a publishable key stays unavailable — Stripe cannot init", async () => {
     const panel = await resolveCheckoutPanel({
-      token: "tok-123",
+      identity: { kind: "token", token: "tok-123" },
       publishableKey: "",
       fetchImpl: fetchAnswering(200, { clientSecret: "cs_test_secret" }),
     });
@@ -154,7 +167,7 @@ describe("resolveCheckoutPanel — the init answer mapped onto the panel", () =>
 
   test("a 404 denial maps to the invalid panel", async () => {
     const panel = await resolveCheckoutPanel({
-      token: "tok-bad",
+      identity: { kind: "token", token: "tok-bad" },
       publishableKey: "pk_test_123",
       fetchImpl: fetchAnswering(404, { error: "This link is not valid" }),
     });
@@ -164,7 +177,7 @@ describe("resolveCheckoutPanel — the init answer mapped onto the panel", () =>
 
   test("a 400 no-email record maps to the no-email panel", async () => {
     const panel = await resolveCheckoutPanel({
-      token: "tok-123",
+      identity: { kind: "token", token: "tok-123" },
       publishableKey: "pk_test_123",
       fetchImpl: fetchAnswering(400, { error: "This client record has no contact email…" }),
     });

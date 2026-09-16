@@ -52,22 +52,24 @@ describe("validateSearch reads only the checkout's session_id", () => {
   });
 });
 
-describe("a missing session_id redirects home before any Stripe call", () => {
-  test("the loader throws a redirect to /", async () => {
+describe("a missing session_id redirects to the portal before any Stripe call", () => {
+  test("the loader throws a redirect to /portal", async () => {
     const thrown = await Promise.resolve(
-      (Route.options.loader as any)({ location: { search: {} } }),
+      (Route.options.loader as ((ctx: { location: { search: object } }) => Promise<unknown>))({
+        location: { search: {} },
+      }),
     ).then(
       () => null,
       (error: unknown) => error,
     );
 
     expect(thrown).toBeInstanceOf(Response);
-    expect((thrown as Response & { options?: { to?: string } }).options?.to).toBe("/");
+    expect((thrown as Response & { options?: { to?: string } }).options?.to).toBe("/portal");
   });
 
   test("the redirect precedes the receipt fetch in the source", () => {
     // Order is the contract: a bare /audit/success must never reach Stripe.
-    const redirectAt = ROUTE_SOURCE.indexOf('throw redirect({ to: "/" })');
+    const redirectAt = ROUTE_SOURCE.indexOf('throw redirect({ to: "/portal" })');
     const fetchAt = ROUTE_SOURCE.indexOf("fetchAuditReceipt({");
     expect(redirectAt).toBeGreaterThan(-1);
     expect(fetchAt).toBeGreaterThan(redirectAt);
@@ -136,5 +138,8 @@ describe("the receipt states carry the funnel's testids", () => {
 
   test("the retry link goes home — never a token-carrying prospect URL", () => {
     expect(ROUTE_SOURCE).not.toMatch(/\/c\//);
+    // An absolute anchor to the marketing origin: on the portal host a
+    // same-host `/` would 302 to `/portal`, contradicting the copy.
+    expect(ROUTE_SOURCE).toContain("href={SITE_ORIGIN}");
   });
 });

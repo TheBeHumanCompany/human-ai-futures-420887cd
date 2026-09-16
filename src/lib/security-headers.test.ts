@@ -25,6 +25,21 @@ describe("private paths", () => {
     expect(isPrivatePath("/contact")).toBe(false);
     expect(isPrivatePath("/portalish")).toBe(false);
   });
+
+  test("every portal-host surface is private, matched on a segment boundary", () => {
+    expect(isPrivatePath("/profile")).toBe(true);
+    expect(isPrivatePath("/profile/security")).toBe(true);
+    expect(isPrivatePath("/sign-in")).toBe(true);
+    expect(isPrivatePath("/sign-in/factor-one")).toBe(true);
+    expect(isPrivatePath("/sign-up")).toBe(true);
+    expect(isPrivatePath("/audit/success")).toBe(true);
+    expect(isPrivatePath("/audit/cancelled")).toBe(true);
+
+    expect(isPrivatePath("/profilish")).toBe(false);
+    expect(isPrivatePath("/sign-internal")).toBe(false);
+    expect(isPrivatePath("/sign-upgrade")).toBe(false);
+    expect(isPrivatePath("/auditish")).toBe(false);
+  });
 });
 
 describe("referrer policy", () => {

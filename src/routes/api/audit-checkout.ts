@@ -7,18 +7,21 @@ import {
   type StripeClientConfig,
 } from "@/lib/billing/stripe-client";
 import { fetchClientPageByTokenFn, type ClientRecord } from "@/lib/client-portal/tokens";
-import type { SupabaseTokenConfig } from "@/lib/client-portal/supabase-tokens";
+import type { SupabasePaidReport, SupabaseTokenConfig } from "@/lib/client-portal/supabase-tokens";
+import type { PortalEngagement } from "@/lib/client-portal/portal-blueprint";
 
 /**
- * The public checkout-initiation endpoint (funnel todo 2): one POST turns a
- * prospect token into a Stripe elements-mode `client_secret`, which the
- * checkout surface (todo 7) feeds to the embedded Payment Element.
+ * The checkout-initiation endpoint (funnel todo 2): one POST turns an
+ * identity into a Stripe elements-mode `client_secret`, which the checkout
+ * surface (todo 7) feeds to the embedded Payment Element.
  *
- * The token is the entire grant, exactly as at `/c/$token`: the body carries
- * NOTHING else — never a raw `client_id`, which would make client pages
- * enumerable. The lookup deliberately cannot distinguish an unknown token
- * from a malformed one, and every denial below answers with the page route's
- * own phrase, so a probe learns nothing it did not already have.
+ * Two identities, one denial. Token identity (a body carrying `token`) is
+ * the entire grant exactly as at `/c/<token>`. Session identity (`{}` or
+ * `{source:"portal"}`, the portal's pay button) resolves the signed-in
+ * Clerk user's engagement server-side — the body never names a client id,
+ * and the email comes from the Clerk account, so no token leaves the
+ * server. Both paths collapse unknown/absent identities into the same
+ * denial below, so a probe learns nothing it did not already have.
  *
  * Statuses follow the webhook route's semantics discipline: 4xx for states
  * a retry cannot change, 5xx only where a retry can heal. A Stripe failure
@@ -46,6 +49,61 @@ export const CLIENT_EMAIL_ENV = "FUNNEL_TEST_EMAIL";
 
 const DENIAL_MESSAGE = "This link is not valid";
 
+/** Same base the provisioning module uses for its raw Clerk REST calls. */
+const CLERK_API_BASE = "https://api.clerk.com/v1";
+const CLERK_EMAIL_TIMEOUT_MS = 10_000;
+
+/**
+ * The signed-in user's email, read server-side so the portal's pay button
+ * never carries a token: primary address if set, else the first address on
+ * the account. REST (not `clerkClient()`) matches the provisioning module's
+ * style and goes through the injectable `fetchImpl`, so the guard matrix
+ * stays network-free.
+ */
+async function clerkEmailForUser(
+  userId: string,
+  env: Record<string, string | undefined>,
+  fetchImpl: typeof fetch,
+): Promise<string | null> {
+  const secret = env["CLERK_SECRET_KEY"]?.trim();
+  if (!secret) return null;
+  try {
+    const response = await fetchImpl(`${CLERK_API_BASE}/users/${encodeURIComponent(userId)}`, {
+      headers: { Authorization: `Bearer ${secret}` },
+      signal: AbortSignal.timeout(CLERK_EMAIL_TIMEOUT_MS),
+    });
+    if (!response.ok) {
+      throw new Error(`clerk user lookup answered ${response.status}`);
+    }
+    return primaryEmailFromClerkUser(await response.json());
+  } catch (error) {
+    console.error(
+      `[billing] clerk email lookup failed: ${error instanceof Error ? error.message : error}`,
+    );
+    return null;
+  }
+}
+
+function primaryEmailFromClerkUser(user: unknown): string | null {
+  if (typeof user !== "object" || user === null) return null;
+  const record = user as Record<string, unknown>;
+  const primaryId =
+    typeof record["primary_email_address_id"] === "string"
+      ? record["primary_email_address_id"]
+      : null;
+  const addresses = Array.isArray(record["email_addresses"]) ? record["email_addresses"] : [];
+  const parsed: { id: string; email: string }[] = [];
+  for (const entry of addresses) {
+    if (typeof entry !== "object" || entry === null) continue;
+    const shape = entry as Record<string, unknown>;
+    if (typeof shape["id"] === "string" && typeof shape["email_address"] === "string") {
+      parsed.push({ id: shape["id"], email: shape["email_address"] });
+    }
+  }
+  const primary = primaryId ? parsed.find((a) => a.id === primaryId) : undefined;
+  return (primary ?? parsed[0])?.email ?? null;
+}
+
 export interface AuditCheckoutDeps {
   /** Reaches the token lookup, the unlock read, and the Stripe call. */
   fetchImpl?: typeof fetch;
@@ -57,21 +115,41 @@ export interface AuditCheckoutDeps {
   stripeConfig?: StripeClientConfig | null;
   /** Overrides `STRIPE_AUDIT_PRICE_ID` (tests). */
   priceId?: string;
-  /** Overrides `CLIENT_EMAIL_ENV` (tests). */
+  /** Overrides `CLIENT_EMAIL_ENV` (tests), and the Clerk lookup (tests). */
   email?: string;
   /** Environment read; defaults to `process.env`. */
   env?: Record<string, string | undefined>;
+  /**
+   * Session identity seam. Present (`string | null`) short-circuits `auth()`
+   * so every guard row runs network-free; `undefined` resolves the signed-in
+   * Clerk user inside the handler.
+   */
+  userId?: string | null;
+  /** Overrides `clientIdForClerkUser` (tests). */
+  clientIdForUser?: (userId: string) => Promise<PortalEngagement | null>;
+  /** Overrides the Clerk REST email lookup (tests). */
+  clerkEmail?: (userId: string) => Promise<string | null>;
 }
 
-async function readToken(request: Request): Promise<unknown> {
+/**
+ * Who the POST says it is. A body carrying a `token` key → token identity
+ * (the `/c/<token>` path); an object without one (`{}`, `{source:"portal"}`)
+ * → session identity (the portal path); an unparseable body → token identity
+ * with a null token, which the denial below refuses exactly as before.
+ */
+async function readIdentity(
+  request: Request,
+): Promise<{ kind: "token"; token: unknown } | { kind: "session" }> {
   let body: unknown;
   try {
     body = await request.json();
   } catch {
-    return null;
+    return { kind: "token", token: null };
   }
-  if (typeof body !== "object" || body === null) return null;
-  return (body as Record<string, unknown>)["token"];
+  if (typeof body !== "object" || body === null) return { kind: "token", token: null };
+  const record = body as Record<string, unknown>;
+  if ("token" in record) return { kind: "token", token: record["token"] };
+  return { kind: "session" };
 }
 
 /** The `/c/$token` denial, as JSON: one phrase, no client content. */
@@ -109,26 +187,52 @@ export async function handleAuditCheckout(
       ? portalStore.supabaseConfigFromEnv(env)
       : deps.supabaseConfig;
 
-  // The one identity check. Unknown, malformed, oversized, and absent
-  // tokens all collapse into the same `null` and the same denial below —
-  // a distinct "bad format" answer would be a validity oracle.
-  const token = await readToken(request);
-  const page =
-    typeof token === "string"
-      ? await fetchClientPageByTokenFn(token, {
-          fetchImpl: deps.fetchImpl,
-          supabaseConfig: supabase,
-          readStore: deps.readStore,
-        })
-      : null;
-  if (!page) return denied();
+  // The one identity check, per path. Token: unknown, malformed, oversized,
+  // and absent tokens all collapse into the same `null`. Session: a signed-in
+  // Clerk user resolves to their current engagement server-side — the browser
+  // never names a client id. Both failures return the same denial, so neither
+  // path becomes a validity oracle.
+  const identity = await readIdentity(request);
+  let clientId: string | null = null;
+  let sessionUserId: string | null = null;
+  if (identity.kind === "token") {
+    const page =
+      typeof identity.token === "string"
+        ? await fetchClientPageByTokenFn(identity.token, {
+            fetchImpl: deps.fetchImpl,
+            supabaseConfig: supabase,
+            readStore: deps.readStore,
+          })
+        : null;
+    clientId = page?.id ?? null;
+  } else {
+    if (deps.userId !== undefined) {
+      sessionUserId = deps.userId;
+    } else {
+      // Dynamic import, the same discipline as the store above: the Clerk
+      // server module only ever executes inside the handler.
+      const { auth } = await import("@clerk/tanstack-react-start/server");
+      sessionUserId = (await auth()).userId ?? null;
+    }
+    if (sessionUserId) {
+      const engagement = deps.clientIdForUser
+        ? await deps.clientIdForUser(sessionUserId)
+        : supabase
+          ? await (
+              await import("@/lib/client-portal/portal-blueprint")
+            ).clientIdForClerkUser(sessionUserId, supabase, deps.fetchImpl)
+          : null;
+      clientId = engagement?.clientId ?? null;
+    }
+  }
+  if (!clientId) return denied();
 
   // The replay guard, reading the same row the webhook upserts. A read
   // failure fails closed: a blip must never open a second charge.
   if (supabase) {
-    let paid: Awaited<ReturnType<typeof portalStore.fetchPaidReport>>;
+    let paid: SupabasePaidReport | null;
     try {
-      paid = await portalStore.fetchPaidReport(page.id, supabase, deps.fetchImpl ?? fetch);
+      paid = await portalStore.fetchPaidReport(clientId, supabase, deps.fetchImpl ?? fetch);
     } catch (error) {
       console.error(
         `[billing] unlock check failed: ${error instanceof Error ? error.message : error}`,
@@ -138,7 +242,20 @@ export async function handleAuditCheckout(
     if (paid?.unlocked) return alreadyPaid();
   }
 
-  const email = (deps.email ?? env[CLIENT_EMAIL_ENV] ?? "").trim();
+  // Email precedence: explicit seam → Clerk primary email (session identity
+  // only — a token prospect has no account to look up) → the funnel env.
+  // Production never sets FUNNEL_TEST_EMAIL, so without the Clerk step the
+  // portal's pay button would 400 there.
+  let email = (deps.email ?? "").trim();
+  if (!email && identity.kind === "session" && sessionUserId) {
+    email =
+      (
+        await (deps.clerkEmail
+          ? deps.clerkEmail(sessionUserId)
+          : clerkEmailForUser(sessionUserId, env, deps.fetchImpl ?? fetch))
+      )?.trim() ?? "";
+  }
+  if (!email) email = (env[CLIENT_EMAIL_ENV] ?? "").trim();
   if (!email) {
     return Response.json(
       { error: "This client record has no contact email, so checkout cannot be initialized." },
@@ -160,7 +277,7 @@ export async function handleAuditCheckout(
 
   try {
     const session = await createElementsCheckoutSession(
-      { clientId: page.id, priceId, customerEmail: email },
+      { clientId, priceId, customerEmail: email },
       { config: stripe, fetchImpl: deps.fetchImpl },
     );
     return Response.json({ clientSecret: session.client_secret });

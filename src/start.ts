@@ -2,6 +2,8 @@ import { clerkMiddleware } from "@clerk/tanstack-react-start/server";
 import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
+import { PORTAL_ORIGIN } from "./lib/surface";
+import { SITE_ORIGIN } from "./lib/sanity/config";
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
@@ -44,7 +46,20 @@ export function authMiddlewareEnabled(
 // magic-link pages. No keys means no sessions (the pre-Clerk behavior),
 // never a dead site. Order: error reporting outermost, then Clerk, then
 // CSRF for server functions.
-const clerkLayer = authMiddlewareEnabled() ? [clerkMiddleware()] : [];
+//
+// authorizedParties: sessions are shared across subdomains of one root
+// domain, so the JWT `azp` can be either host. Clerk checks exact inclusion,
+// and the production default alone would reject local sessions — hence the
+// env override, which funnel.sh and local verification both set.
+const AUTHORIZED_PARTIES = (
+  process.env.CLERK_AUTHORIZED_PARTIES ?? `${PORTAL_ORIGIN},${SITE_ORIGIN}`
+)
+  .split(",")
+  .map((value) => value.trim())
+  .filter(Boolean);
+const clerkLayer = authMiddlewareEnabled()
+  ? [clerkMiddleware({ authorizedParties: AUTHORIZED_PARTIES })]
+  : [];
 if (clerkLayer.length === 0) {
   console.warn("[auth] CLERK_SECRET_KEY is not set — serving without sessions");
 }

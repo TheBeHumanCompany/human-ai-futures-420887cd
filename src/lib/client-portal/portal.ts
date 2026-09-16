@@ -151,6 +151,12 @@ export async function loadPortalReports(
   return { status: "ok", reports };
 }
 
+export const requireSignedIn = createServerFn({ method: "GET" }).handler(async () => {
+  const { userId } = await auth();
+  if (!userId) throw redirect({ to: "/sign-in/$", params: { _splat: "" } });
+  return null;
+});
+
 export const fetchPortalPage = createServerFn({ method: "GET" }).handler(async () => {
   const { userId, getToken } = await auth();
   const outcome = await loadPortalReports({ userId, getToken });
@@ -165,5 +171,13 @@ export const fetchPortalPage = createServerFn({ method: "GET" }).handler(async (
   // derived from RLS-visible final sections, degrading to empty so a
   // sections outage can never error the page the reports already built.
   const intake = await loadIntakeQuestions({ userId, getToken });
-  return { reports: outcome.reports, company, intake };
+  // The service-role blueprint read (the locked preview), gated on Clerk
+  // auth server-side — the RLS path cannot see an unpaid client at all.
+  // Degrades to null so an outage never errors the page; the render order
+  // then falls back to the reports above. Dynamic import inside the
+  // handler: the module owns the service-role env names.
+  const blueprint = userId
+    ? await (await import("./portal-blueprint")).loadPortalBlueprint(userId)
+    : null;
+  return { reports: outcome.reports, company, intake, blueprint };
 });

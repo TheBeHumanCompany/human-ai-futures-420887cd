@@ -137,16 +137,19 @@ Narrate against the five stages:
   `test-results/funnel/email-catcher/`. With `RESEND_TEMPLATE_ID_MAGIC_LINK`
   set (it is, in `.env.local`) the send is a Resend Template call, so the link
   is at `body.template.variables.PORTAL_URL` — not in an HTML body. It carries
-  the production apex origin by contract; swap the host for `localhost:5180` to
-  follow it locally, which is exactly what the suite does. The page shows
+  the production portal origin by contract
+  (`portal.thebehumancompany.ca`); swap the host for `portal.localhost:5180`
+  to follow it locally, which is exactly what the suite does. The page shows
   preliminary sections in full and finals reduced to title + teaser. Then paste
   a wrong token: 404, content-free.
 - **S3 — payment.** Pay with `4000 0000 0000 9995` first — inline decline, and
   the database stays locked. Then `4242 4242 4242 4242` — watch
   `checkout.session.completed → [200]` land in
   `test-results/funnel/stripe-listener.log` and the row flip to `unlocked`.
-- **S4 — account.** Signed out, `/portal` redirects to sign-in. Sign in as the
-  fixture account: company identity and the paid report are visible.
+- **S4 — account.** Signed out, `/portal` on the portal host redirects to
+  sign-in. Sign in as the fixture account: company identity, the locked
+  preview (finals as title + teaser) before payment, and the paid report after
+  it — plus the portal chrome's exactly-two controls, Portal and Profile.
 - **S5 — checklist.** Upload a `.exe`: refused inline, and the storage bucket is
   verified empty afterwards. Upload the PDF: confirmation, then the thank-you
   surface with the 24-hour promise and the Cal.com CTA.
@@ -206,10 +209,12 @@ should not imply otherwise.
     magic-link email to a real prospect until this is fixed.**
 11. **Production serves no `/c/` page.** Every token in this repo — all three
     real clients and the fixture — 404s on `thebehumancompany.ca` (verified
-    2026-09-16). Production has no token digests provisioned and possibly no
-    current deploy of the client portal. A emailed magic link clicked outside
-    this machine lands on the denial page until that is provisioned; demo the
-    click-through on the local stack (host-swap, as the suite does).
+    2026-09-16; the apex now 308s `/c/*` to the portal host, which 404s the
+    same unknown tokens). Production has no token digests provisioned and
+    possibly no current deploy of the client portal. A emailed magic link
+    clicked outside this machine lands on the denial page until that is
+    provisioned; demo the click-through on the local stack (host-swap, as the
+    suite does).
 
 ---
 

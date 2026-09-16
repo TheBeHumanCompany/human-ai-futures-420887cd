@@ -1,5 +1,6 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
+import { SITE_ORIGIN } from "@/lib/sanity/config";
 import { fetchAuditReceipt } from "./receipt";
 
 /**
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/audit/success")({
     // The loader context carries the parsed location, not a typed search;
     // validateSearch has already run, so the one param we read is ours.
     const search = location.search as Partial<{ session_id: string }> | undefined;
-    if (!search?.session_id) throw redirect({ to: "/" });
+    if (!search?.session_id) throw redirect({ to: "/portal" });
     return { receipt: await fetchAuditReceipt({ data: { sessionId: search.session_id } }) };
   },
 
@@ -51,11 +52,14 @@ const RETRY_COPY =
   "Open the email with your personal blueprint link and try again from your own client page.";
 
 function RetryHome() {
+  // An absolute anchor to the marketing origin, not a same-host href: on the
+  // portal host `/` would 302 to `/portal`, making "Back to the homepage"
+  // observably wrong. The client-side guard in `__root.tsx` is the backstop.
   return (
     <a
       className="eyebrow mt-8 inline-block bg-ink px-7 py-4 text-cream"
       data-testid="audit-retry-link"
-      href="/"
+      href={SITE_ORIGIN}
     >
       Back to the homepage
     </a>

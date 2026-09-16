@@ -70,5 +70,5 @@ export default function MagicLink({ recipientFirstName, companyName, portalUrl }
 MagicLink.PreviewProps = {
   recipientFirstName: "Desirée",
   companyName: "Voes & Co",
-  portalUrl: "https://thebehumancompany.ca/c/preview-token",
+  portalUrl: "https://portal.thebehumancompany.ca/c/preview-token",
 } satisfies MagicLinkProps;

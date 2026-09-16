@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 import { FUNNEL_CLERK_IDENTIFIER_SELECTOR, openPortalAuthenticated } from "./helpers.ts";
-import { ensureFunnelSeeded, snap } from "./suite-setup.ts";
+import { ensureFunnelSeeded, portalBaseUrl, snap } from "./suite-setup.ts";
 
 /**
  * Stage 4 — the paid identity (plan todo 13, S4): a signed-out visit to
@@ -22,7 +22,7 @@ test.beforeAll(async () => {
 });
 
 test("a signed-out visit to /portal is sent to sign-in", async ({ page }) => {
-  await page.goto("/portal");
+  await page.goto(`${portalBaseUrl()}/portal`);
   await expect(page.locator(FUNNEL_CLERK_IDENTIFIER_SELECTOR)).toBeVisible({
     timeout: 20_000,
   });
@@ -44,4 +44,45 @@ test("the fixture account signs in to a portal with the company identity", async
   await expect(page.getByText("FUNNEL-FIXTURE-PAID-MARKER-9d2e4f")).toBeVisible();
 
   await snap(page, STAGE, "portal-company");
+});
+
+test("the portal chrome carries exactly two controls and none of marketing's", async ({ page }) => {
+  await openPortalAuthenticated(page);
+
+  // The entire chrome vocabulary: two header controls, zero footer links,
+  // zero buttons anywhere in the chrome.
+  const interactive = page.locator("header a, header button, footer a, footer button");
+  await expect(interactive).toHaveCount(2);
+  await expect(interactive.nth(0)).toHaveAccessibleName("Portal");
+  await expect(interactive.nth(1)).toHaveAccessibleName("Profile");
+
+  // No marketing nav label anywhere on the page.
+  for (const label of [
+    "Why We Exist",
+    "Who We Are",
+    "The New Human Era",
+    "The Human Archive",
+    "Podcast",
+    "Contact",
+    "Blueprint",
+  ]) {
+    await expect(page.locator("header").getByText(label, { exact: true })).toHaveCount(0);
+  }
+
+  // The brand mark is a span, not a link: clicking it must navigate
+  // nowhere — no third control hiding in the logo.
+  const before = page.url();
+  await page.locator("header").getByText("THE BE HUMAN COMPANY", { exact: true }).click();
+  await page.waitForTimeout(250);
+  expect(page.url()).toBe(before);
+
+  // Profile renders Clerk's account UI with the page-level sign-out, and
+  // Portal returns; the single <nav> holds exactly the two controls on
+  // every portal surface (the surfaces registry's expectsSingleNav claim).
+  await page.getByTestId("portal-nav-profile").click();
+  await expect(page).toHaveURL(/\/profile/);
+  await expect(page.getByTestId("profile-sign-out")).toBeVisible({ timeout: 20_000 });
+  await expect(page.locator("header nav a")).toHaveCount(2);
+  await page.getByTestId("portal-nav-portal").click();
+  await expect(page).toHaveURL(/\/portal$/);
 });

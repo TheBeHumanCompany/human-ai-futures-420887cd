@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { SITE_ORIGIN } from "@/lib/sanity/config";
+
 /**
  * The cancelled-checkout receipt (funnel todo 8).
  *
@@ -32,10 +34,12 @@ function AuditCancelledPage() {
           No charge was made. Your blueprint is waiting — open the email with your personal link
           whenever you are ready to continue.
         </p>
+        {/* Absolute to the marketing origin: on the portal host `/` would
+            302 to `/portal`, contradicting the copy. */}
         <a
           className="eyebrow mt-8 inline-block bg-ink px-7 py-4 text-cream"
           data-testid="audit-retry-link"
-          href="/"
+          href={SITE_ORIGIN}
         >
           Back to the homepage
         </a>

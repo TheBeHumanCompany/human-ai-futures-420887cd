@@ -36,10 +36,11 @@ const request: MagicLinkRequest = {
 };
 
 describe("the client URL", () => {
-  test("it uses the canonical apex origin, never www", () => {
-    expect(CLIENT_PORTAL_ORIGIN).toBe("https://thebehumancompany.ca");
-    expect(request.clientUrl).toBe(`https://thebehumancompany.ca/c/${TOKEN}`);
+  test("it uses the portal origin, never the apex and never www", () => {
+    expect(CLIENT_PORTAL_ORIGIN).toBe("https://portal.thebehumancompany.ca");
+    expect(request.clientUrl).toBe(`https://portal.thebehumancompany.ca/c/${TOKEN}`);
     expect(request.clientUrl).not.toContain("www.");
+    expect(request.clientUrl).not.toContain("//thebehumancompany.ca");
   });
 });
 

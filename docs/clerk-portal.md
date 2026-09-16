@@ -14,10 +14,13 @@ third leg of the funnel: what changes the moment a client pays.
    email becomes a Clerk user (passwordless by design), its id lands in
    `client_paid_reports.clerk_user_id`, and the client receives an invitation
    email carrying the set-password link.
-3. The client signs in (`/sign-in`, the header account button, or the
-   invitation) and opens `/portal`: the page reads their paid reports from
-   Supabase through RLS keyed to their Clerk session token. The route never
-   learns a client id — the token IS the query.
+3. The client signs in (`/sign-in` on the portal host, or through the
+   invitation) and opens `/portal` on `portal.thebehumancompany.ca`: the page
+   reads their paid reports from Supabase through RLS keyed to their Clerk
+   session token. For a locked (unpaid) engagement — which RLS deliberately
+   cannot see — the page falls back to a service-role blueprint read gated on
+   the Clerk session server-side (`src/lib/client-portal/portal-blueprint.ts`).
+   The browser never learns a client id in either path.
 
 Provisioning is best-effort at every layer: a Clerk outage costs the portal
 linkage, never the paid unlock, and the magic link keeps working unchanged. The
@@ -98,9 +101,11 @@ configuration, or a denied read all throw, so a broken session never renders as
 the page.
 
 `/portal` is unlisted in `src/lib/surfaces.ts` like the auth routes (gates
-cannot sign in), `noindex` is unconditional, and the header shows a Portal link
-only to a signed-in visitor — the same paywall-only population as the account
-button, so the signed-out site is visually unchanged.
+cannot sign in), `noindex` is unconditional, and every private surface —
+portal, profile, `/c/<token>`, sign-in — is served from
+`portal.thebehumancompany.ca`, whose chrome carries exactly two controls
+(Portal, Profile). The marketing header advertises no session UI at all: the
+apex 308s portal paths to the portal host, so there is nothing to advertise.
 
 ### Reusing `SUPABASE_ANON_KEY`
 

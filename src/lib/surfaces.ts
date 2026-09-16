@@ -146,6 +146,11 @@ export const SURFACES: readonly Surface[] = [
   // gate cannot sign in, so no sampleSlug means visitableSurfaces() skips
   // it, and the sitemap never advertises an account page.
   { path: "/portal", kind: "dynamic", expectsSingleNav: true },
+  // Clerk account page (portal host). Unlisted like the portal: a gate
+  // cannot sign in, and the sitemap never advertises an account page. The
+  // portal chrome carries exactly two controls, so the single-nav claim
+  // holds here too.
+  { path: "/profile/$", kind: "dynamic", expectsSingleNav: true },
   // Checkout return receipts (funnel todo 8). Unlisted like the portal: a
   // receipt needs the checkout's session_id, so no sampleSlug keeps
   // visitableSurfaces() away, and the sitemap never advertises a

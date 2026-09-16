@@ -10,6 +10,7 @@ import {
   confirmAuditPayment,
   fetchStripePublishableKey,
   resolveCheckoutPanel,
+  type CheckoutIdentity,
   type PanelState,
 } from "@/lib/checkout/audit-checkout-client";
 
@@ -37,10 +38,10 @@ import {
 type StripeInit = (publishableKey: string) => PromiseLike<Stripe | null>;
 
 export function CheckoutBand({
-  token,
+  identity,
   hasLockedFinals,
 }: {
-  token: string;
+  identity: CheckoutIdentity;
   hasLockedFinals: boolean;
 }) {
   const [state, setState] = useState<PanelState | null>(null);
@@ -51,7 +52,7 @@ export function CheckoutBand({
     try {
       setState(
         await resolveCheckoutPanel({
-          token,
+          identity,
           publishableKey: await fetchStripePublishableKey(),
         }),
       );

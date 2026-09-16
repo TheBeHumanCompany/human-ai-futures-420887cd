@@ -23,6 +23,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BeHumanAiIndexRouteImport } from './routes/be-human-ai/index'
 import { Route as SignUpSplatRouteImport } from './routes/sign-up.$'
 import { Route as SignInSplatRouteImport } from './routes/sign-in.$'
+import { Route as ProfileSplatRouteImport } from './routes/profile.$'
 import { Route as PodcastSlugRouteImport } from './routes/podcast_.$slug'
 import { Route as CTokenRouteImport } from './routes/c.$token'
 import { Route as AuditSuccessRouteImport } from './routes/audit/success'
@@ -100,6 +101,11 @@ const SignInSplatRoute = SignInSplatRouteImport.update({
   path: '/sign-in/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileSplatRoute = ProfileSplatRouteImport.update({
+  id: '/profile/$',
+  path: '/profile/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PodcastSlugRoute = PodcastSlugRouteImport.update({
   id: '/podcast_/$slug',
   path: '/podcast/$slug',
@@ -149,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/audit/success': typeof AuditSuccessRoute
   '/c/$token': typeof CTokenRoute
   '/podcast/$slug': typeof PodcastSlugRoute
+  '/profile/$': typeof ProfileSplatRoute
   '/sign-in/$': typeof SignInSplatRoute
   '/sign-up/$': typeof SignUpSplatRoute
   '/be-human-ai/': typeof BeHumanAiIndexRoute
@@ -171,6 +178,7 @@ export interface FileRoutesByTo {
   '/audit/success': typeof AuditSuccessRoute
   '/c/$token': typeof CTokenRoute
   '/podcast/$slug': typeof PodcastSlugRoute
+  '/profile/$': typeof ProfileSplatRoute
   '/sign-in/$': typeof SignInSplatRoute
   '/sign-up/$': typeof SignUpSplatRoute
   '/be-human-ai': typeof BeHumanAiIndexRoute
@@ -194,6 +202,7 @@ export interface FileRoutesById {
   '/audit/success': typeof AuditSuccessRoute
   '/c/$token': typeof CTokenRoute
   '/podcast_/$slug': typeof PodcastSlugRoute
+  '/profile/$': typeof ProfileSplatRoute
   '/sign-in/$': typeof SignInSplatRoute
   '/sign-up/$': typeof SignUpSplatRoute
   '/be-human-ai/': typeof BeHumanAiIndexRoute
@@ -218,6 +227,7 @@ export interface FileRouteTypes {
     | '/audit/success'
     | '/c/$token'
     | '/podcast/$slug'
+    | '/profile/$'
     | '/sign-in/$'
     | '/sign-up/$'
     | '/be-human-ai/'
@@ -240,6 +250,7 @@ export interface FileRouteTypes {
     | '/audit/success'
     | '/c/$token'
     | '/podcast/$slug'
+    | '/profile/$'
     | '/sign-in/$'
     | '/sign-up/$'
     | '/be-human-ai'
@@ -262,6 +273,7 @@ export interface FileRouteTypes {
     | '/audit/success'
     | '/c/$token'
     | '/podcast_/$slug'
+    | '/profile/$'
     | '/sign-in/$'
     | '/sign-up/$'
     | '/be-human-ai/'
@@ -285,6 +297,7 @@ export interface RootRouteChildren {
   AuditSuccessRoute: typeof AuditSuccessRoute
   CTokenRoute: typeof CTokenRoute
   PodcastSlugRoute: typeof PodcastSlugRoute
+  ProfileSplatRoute: typeof ProfileSplatRoute
   SignInSplatRoute: typeof SignInSplatRoute
   SignUpSplatRoute: typeof SignUpSplatRoute
   BeHumanAiIndexRoute: typeof BeHumanAiIndexRoute
@@ -390,6 +403,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignInSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile/$': {
+      id: '/profile/$'
+      path: '/profile/$'
+      fullPath: '/profile/$'
+      preLoaderRoute: typeof ProfileSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/podcast_/$slug': {
       id: '/podcast_/$slug'
       path: '/podcast/$slug'
@@ -453,6 +473,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuditSuccessRoute: AuditSuccessRoute,
   CTokenRoute: CTokenRoute,
   PodcastSlugRoute: PodcastSlugRoute,
+  ProfileSplatRoute: ProfileSplatRoute,
   SignInSplatRoute: SignInSplatRoute,
   SignUpSplatRoute: SignUpSplatRoute,
   BeHumanAiIndexRoute: BeHumanAiIndexRoute,

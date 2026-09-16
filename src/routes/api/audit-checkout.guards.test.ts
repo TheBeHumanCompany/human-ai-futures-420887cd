@@ -4,7 +4,9 @@ import { readFileSync } from "node:fs";
 import {
   CLIENT_ID,
   CONFIG,
+  PRICE_ID,
   SECRET,
+  STRIPE_CONFIG,
   TOKEN,
   UNCONFIGURED,
   configuredFetch,
@@ -180,6 +182,105 @@ describe("misconfiguration fails loudly as 500", () => {
     const response = await post({ token: TOKEN }, { ...UNCONFIGURED, stripeConfig: null });
 
     expect(response.status).toBe(500);
+  });
+});
+
+describe("the session identity path — the portal's pay button", () => {
+  const LOCKED_ROW: SupabasePaidReport = { title: "F", html: "<p>f</p>", unlocked: false };
+  const UNPAID_ROW: SupabasePaidReport = { title: "F", html: "<p>f</p>", unlocked: true };
+
+  test("a session body with no signed-in user resolves to nobody", async () => {
+    const response = await post({ source: "portal" }, { ...UNCONFIGURED, userId: null });
+
+    expect(response.status).toBe(404);
+    expect(await response.json()).toEqual({ error: "This link is not valid" });
+  });
+
+  test("a signed-in user whose account maps to no engagement resolves to nobody", async () => {
+    const calls = freshCalls();
+    const response = await post(
+      { source: "portal" },
+      {
+        ...UNCONFIGURED,
+        userId: "user_fixture",
+        fetchImpl: configuredFetch(LOCKED_ROW, calls),
+        clientIdForUser: async () => null,
+      },
+    );
+
+    expect(response.status).toBe(404);
+    expect(calls.stripeCreates).toBe(0);
+  });
+
+  test("an unlocked engagement is a paid replay: 409, no Stripe session", async () => {
+    const calls = freshCalls();
+    const response = await post(
+      { source: "portal" },
+      {
+        ...UNCONFIGURED,
+        supabaseConfig: CONFIG,
+        userId: "user_fixture",
+        fetchImpl: configuredFetch(UNPAID_ROW, calls),
+        clientIdForUser: async () => ({ clientId: CLIENT_ID, unlocked: true }),
+      },
+    );
+
+    expect(response.status).toBe(409);
+    expect(calls.stripeCreates).toBe(0);
+  });
+
+  test("a locked engagement charges the Clerk account's email, never a token", async () => {
+    const calls = freshCalls();
+    const seen: { body?: string } = {};
+    const fetchImpl = (async (url: string | URL | Request, init?: RequestInit) => {
+      if (String(url).includes("api.stripe.com")) {
+        seen.body = String(init?.body);
+        calls.stripeCreates += 1;
+        return jsonResponse(200, { id: "cs_test_probe", client_secret: SECRET });
+      }
+      return jsonResponse(200, []);
+    }) as typeof fetch;
+
+    const response = await post(
+      { source: "portal" },
+      {
+        supabaseConfig: CONFIG,
+        readStore: async () => [],
+        priceId: PRICE_ID,
+        stripeConfig: STRIPE_CONFIG,
+        env: {},
+        userId: "user_fixture",
+        fetchImpl,
+        clientIdForUser: async () => ({ clientId: CLIENT_ID, unlocked: false }),
+        clerkEmail: async () => "payer@example.test",
+      },
+    );
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ clientSecret: SECRET });
+    expect(calls.stripeCreates).toBe(1);
+    const params = Object.fromEntries(new URLSearchParams(seen.body ?? ""));
+    expect(params["customer_email"]).toBe("payer@example.test");
+    expect(params["metadata[client_id]"]).toBe(CLIENT_ID);
+  });
+
+  test("a locked engagement with no Clerk email and no env email answers 400", async () => {
+    const response = await post(
+      { source: "portal" },
+      {
+        supabaseConfig: CONFIG,
+        readStore: async () => [],
+        priceId: PRICE_ID,
+        stripeConfig: STRIPE_CONFIG,
+        env: {},
+        userId: "user_fixture",
+        fetchImpl: configuredFetch(LOCKED_ROW),
+        clientIdForUser: async () => ({ clientId: CLIENT_ID, unlocked: false }),
+        clerkEmail: async () => null,
+      },
+    );
+
+    expect(response.status).toBe(400);
   });
 });
 

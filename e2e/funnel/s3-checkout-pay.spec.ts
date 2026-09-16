@@ -8,6 +8,7 @@ import {
   FUNNEL_TEST_CARD,
   FUNNEL_TEST_EMAIL_ENV,
   fillStripeCard,
+  openPortalAuthenticated,
   stripeCardFrame,
   type FunnelTestCard,
 } from "./helpers.ts";
@@ -135,6 +136,49 @@ async function openCheckout(
   await frame.getByText("Card", { exact: true }).first().click();
   return frame;
 }
+
+test("the unpaid fixture account sees the locked preview and checks out from the portal", async ({
+  page,
+}) => {
+  // Must run BEFORE the payment tests: the seed leaves the row
+  // `unlocked: false`, and this stage exercises exactly that state — a
+  // signed-in client whose engagement is still locked. The row is linked to
+  // the fixture account now, while locked, so the portal's session path
+  // (never a token) is the identity checkout charges.
+  await expect.poll(readUnlocked, { timeout: 10_000 }).toBe(false);
+  await linkPaidRowToFixtureUser();
+
+  await openPortalAuthenticated(page);
+
+  // The locked preview: preliminary sections readable, both seeded finals
+  // rendered as title + teaser only.
+  await expect(page.getByTestId("portal-company-avatar")).toBeVisible({ timeout: 20_000 });
+  const locked = page.locator('section[data-locked="true"]');
+  await expect(locked).toHaveCount(2, { timeout: 20_000 });
+  await expect(locked.filter({ hasText: "Final Opportunity Map" })).toBeVisible();
+  await expect(locked.filter({ hasText: "Final Playbook Detail" })).toBeVisible();
+  await expect(page.getByText("Unlocks with checkout — the full opportunity map.")).toBeVisible();
+  await expect(page.getByTestId("pay-cta")).toBeVisible();
+  await expect(page.getByTestId("portal-booking-cta")).toBeVisible();
+  await snap(page, STAGE, "portal-locked-preview");
+
+  // The session identity path: no token exists in this page — the init
+  // route resolves the signed-in user's engagement server-side and answers
+  // 200 with a client_secret.
+  const token = await readFixtureToken();
+  expect(await page.content()).not.toContain(token);
+
+  const initResponse = page.waitForResponse(
+    (response) =>
+      response.url().includes("/api/audit-checkout") && response.request().method() === "POST",
+  );
+  await page.getByTestId("pay-cta").click();
+  const response = await initResponse;
+  expect(response.status(), "session checkout init must succeed without a token").toBe(200);
+  const body = (await response.json()) as { clientSecret?: unknown };
+  expect(typeof body.clientSecret).toBe("string");
+  await expect(page.getByTestId("checkout-panel")).toBeVisible({ timeout: 30_000 });
+});
 
 test("a declined card shows the inline error and unlocks nothing", async ({ page }) => {
   const frame = await openCheckout(page);

@@ -304,7 +304,7 @@ describe("the locked-final paywall hands off to the embedded checkout", () => {
 
   test("the band's token comes from the route param, never from storage", () => {
     expect(ROUTE_SOURCE).toContain("Route.useParams()");
-    expect(ROUTE_SOURCE).toMatch(/token=\{token\}/);
+    expect(ROUTE_SOURCE).toMatch(/identity=\{\{ kind: "token", token \}\}/);
     expect(ROUTE_SOURCE).not.toMatch(/localStorage|sessionStorage/);
   });
 

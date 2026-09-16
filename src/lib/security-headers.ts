@@ -40,10 +40,10 @@
  */
 
 /** Routes where the URL itself is a secret, or the page must never be framed. */
+const PRIVATE_PREFIXES = ["/portal", "/profile", "/c", "/sign-in", "/sign-up", "/audit"];
+
 export const isPrivatePath = (pathname: string): boolean =>
-  pathname === "/portal" ||
-  pathname.startsWith("/portal/") ||
-  pathname.startsWith("/c/");
+  PRIVATE_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
 
 /**
  * Origin-free, so it cannot be wrong about an origin. `frame-ancestors` is

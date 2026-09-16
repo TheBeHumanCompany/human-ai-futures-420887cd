@@ -2,6 +2,17 @@ import { expect, test } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
+import e2eConfig from "../scripts/verify/e2e-config.json" with { type: "json" };
+
+/**
+ * `/c/<token>` is a portal surface, served on the portal host — the same
+ * host the guard serves it on in production. Absolute against
+ * `portalBaseUrl`, never the marketing base URL (the apex 308s the path
+ * over, which would silently halve the redirect budget this page relies
+ * on for nothing).
+ */
+const portalBaseUrl = process.env.E2E_PORTAL_BASE_URL ?? e2eConfig.portalBaseUrl;
+
 /**
  * US-003 — one link per client, every report stacked, in a browser.
  *
@@ -38,7 +49,7 @@ const FIRST_TEXT = textOf(first.html);
 const SECOND_TEXT = textOf(second.html);
 
 test("one URL serves every report stacked in store order", async ({ page }) => {
-  const response = await page.goto(`/c/${acme.token}`);
+  const response = await page.goto(`${portalBaseUrl}/c/${acme.token}`);
   expect(response?.ok(), "the fixture token must resolve").toBe(true);
   await page.waitForLoadState("networkidle");
 
@@ -54,7 +65,7 @@ test("one URL serves every report stacked in store order", async ({ page }) => {
 });
 
 test("no sidebar or tab chrome renders", async ({ page }) => {
-  const response = await page.goto(`/c/${acme.token}`);
+  const response = await page.goto(`${portalBaseUrl}/c/${acme.token}`);
   expect(response?.ok(), "the fixture token must resolve").toBe(true);
   await page.waitForLoadState("networkidle");
 

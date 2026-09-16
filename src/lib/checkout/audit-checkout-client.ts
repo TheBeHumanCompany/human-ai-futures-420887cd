@@ -40,6 +40,11 @@ export type PanelState =
   | { kind: "no-email" }
   | { kind: "unavailable" };
 
+/** Who the checkout is for. The browser never picks a client id: the token
+ *  path carries the URL's token, the portal path lets the server resolve the
+ *  signed-in Clerk user's engagement. */
+export type CheckoutIdentity = { kind: "token"; token: string } | { kind: "session" };
+
 interface CheckoutDeps {
   fetchImpl?: typeof fetch;
 }
@@ -51,15 +56,17 @@ function clientSecretFrom(body: unknown): string | null {
 }
 
 export async function requestCheckoutSession({
-  token,
+  identity,
   fetchImpl = fetch,
-}: { token: string } & CheckoutDeps): Promise<CheckoutInitState> {
+}: { identity: CheckoutIdentity } & CheckoutDeps): Promise<CheckoutInitState> {
   let response: Response;
   try {
     response = await fetchImpl(CHECKOUT_INIT_ROUTE, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ token }),
+      body: JSON.stringify(
+        identity.kind === "token" ? { token: identity.token } : { source: "portal" },
+      ),
     });
   } catch {
     return { status: "unavailable" };
@@ -81,15 +88,15 @@ export async function requestCheckoutSession({
 }
 
 export async function resolveCheckoutPanel({
-  token,
+  identity,
   publishableKey,
   fetchImpl,
 }: {
-  token: string;
+  identity: CheckoutIdentity;
   /** Empty (env unset) keeps the panel unavailable: Stripe cannot init. */
   publishableKey: string;
 } & CheckoutDeps): Promise<PanelState> {
-  const state = await requestCheckoutSession({ token, fetchImpl });
+  const state = await requestCheckoutSession({ identity, fetchImpl });
   switch (state.status) {
     case "ready":
       return publishableKey

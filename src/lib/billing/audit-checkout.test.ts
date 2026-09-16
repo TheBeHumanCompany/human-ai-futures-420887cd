@@ -34,9 +34,9 @@ describe("auditCheckoutParams", () => {
     expect(params["cancel_url"]).toBe(auditCancelUrl());
   });
 
-  test("return URLs stay on the apex canonical origin", () => {
-    expect(auditSuccessUrl()).toMatch(/^https:\/\/thebehumancompany\.ca\//);
-    expect(auditCancelUrl()).toMatch(/^https:\/\/thebehumancompany\.ca\//);
+  test("return URLs stay on the portal canonical origin", () => {
+    expect(auditSuccessUrl()).toMatch(/^https:\/\/portal\.thebehumancompany\.ca\//);
+    expect(auditCancelUrl()).toMatch(/^https:\/\/portal\.thebehumancompany\.ca\//);
   });
 
   test("payment_method_types never appears: dynamic methods stay enabled", () => {
