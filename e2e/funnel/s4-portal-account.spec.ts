@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 import { FUNNEL_CLERK_IDENTIFIER_SELECTOR, openPortalAuthenticated } from "./helpers.ts";
-import { ensureFunnelSeeded, funnelBaseUrl, snap } from "./suite-setup.ts";
+import { ensureFunnelSeeded, snap } from "./suite-setup.ts";
 
 /**
  * Stage 4 — the paid identity (plan todo 13, S4): a signed-out visit to
@@ -30,7 +30,11 @@ test("a signed-out visit to /portal is sent to sign-in", async ({ page }) => {
 });
 
 test("the fixture account signs in to a portal with the company identity", async ({ page }) => {
-  await openPortalAuthenticated(page, funnelBaseUrl());
+  // sign-in UI leg first (identifier + password are driven through the real
+  // form); this instance's device-verification gate then blocks fresh
+  // browsers, so the session completes via the sign-in-token fallback —
+  // assertions below run on the real session either way.
+  await openPortalAuthenticated(page);
 
   await expect(page.getByTestId("portal-company-avatar")).toBeVisible({ timeout: 20_000 });
   await expect(page.getByTestId("portal-company-name")).toHaveText(COMPANY_NAME);

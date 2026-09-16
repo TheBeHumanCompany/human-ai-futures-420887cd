@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 import { BOOKING_URL_15MIN } from "../../src/lib/booking.ts";
 import { ALLOWED_EXTENSIONS } from "../../src/lib/client-portal/upload-policy.ts";
 import { openPortalAuthenticated } from "./helpers.ts";
-import { ensureFunnelSeeded, funnelBaseUrl, snap } from "./suite-setup.ts";
+import { ensureFunnelSeeded, snap } from "./suite-setup.ts";
 
 /**
  * Stage 5 — the closing loop (plan todo 13, S5): the intake asks exactly the
@@ -64,7 +64,7 @@ async function listStoredObjects(): Promise<string[]> {
 }
 
 async function openIntakeCard(page: import("@playwright/test").Page) {
-  await openPortalAuthenticated(page, funnelBaseUrl());
+  await openPortalAuthenticated(page);
   const card = page.getByTestId("intake-card");
   await expect(card).toBeVisible({ timeout: 20_000 });
   await expect(card.getByTestId("intake-question")).toHaveText(QUESTIONS);

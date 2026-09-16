@@ -184,6 +184,14 @@ case "$secret" in
 esac
 export STRIPE_WEBHOOK_SECRET="$secret"
 printf 'PASS[funnel listener]: TEST-mode listener ready, secret=%s\n' "$(mask "$secret")"
+# The audit return_url must land on the dev server this suite drives, not
+# the production origin the billing module defaults to.
+export AUDIT_ORIGIN="${AUDIT_ORIGIN:-http://localhost:${PORT}}"
+# Seed EXACTLY once per run, here: each spec file gets a fresh worker process,
+# so a spec-side seed would reset the tier mid-run (wiping S3's webhook
+# unlock between stages). The specs only VERIFY the tier is present.
+bun scripts/verify/funnel-reset.ts
+bun scripts/verify/funnel-seed.ts
 # Registers the funnel project in EVERY process that imports the config —
 # workers re-import it with their own argv, so the flag alone cannot carry
 # the registration (see playwright.config.ts).

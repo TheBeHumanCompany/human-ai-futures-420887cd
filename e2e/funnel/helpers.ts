@@ -290,13 +290,16 @@ export async function portalSignIn(
 }
 
 /**
- * Completes the sign-in the UI cannot: the dev instance blocks fresh devices
- * at client-trust with a mailed code, so a sign-in token is minted through
- * the Backend API (Clerk's documented Playwright pattern) and consumed via
- * the `?token=` search param, which establishes the same session the
- * sign-in form would have. Outcome recorded for the runbook (todo 16).
+ * Completes the sign-in the UI cannot: this instance blocks fresh devices at
+ * client-trust with a mailed code, so a sign-in token is minted through the
+ * Backend API and consumed IN-PAGE through the Frontend API's ticket
+ * strategy (`client.signIn.create({strategy:"ticket"})` + `Clerk.setActive`)
+ * — the same consumption clerk-js performs for a sign-in token, and the only
+ * path that lands the session cookie on the app origin. The token material
+ * never reaches logs; failures name statuses only. Outcome recorded for the
+ * runbook (todo 16).
  */
-export async function portalSession(page: Page, origin: string): Promise<void> {
+export async function portalSession(page: Page): Promise<void> {
   const email = process.env[FUNNEL_TEST_EMAIL_ENV]?.trim();
   const key = process.env["CLERK_SECRET_KEY"]?.trim();
   if (!email || !key) {
@@ -325,20 +328,53 @@ export async function portalSession(page: Page, origin: string): Promise<void> {
       `funnel: sign-in token create answered ${created.status}: ${JSON.stringify(body).slice(0, 160)}`,
     );
   }
-  await page.goto(`${origin}/?token=${body.token}`);
+
+  // The SignIn component hosts client.signIn; a signed-out /portal lands on
+  // it, and clerk-js must be fully loaded before the ticket can be consumed.
+  await page.goto("/portal");
   await page
-    .waitForFunction(() => document.cookie.includes("__client_uat"), undefined, {
-      timeout: 15_000,
-    })
+    .waitForFunction(
+      () => (window as unknown as { Clerk?: { loaded?: boolean } }).Clerk?.loaded === true,
+      undefined,
+      { timeout: 30_000 },
+    )
     .catch(() => {});
+  const activated = await page.evaluate(async (ticket) => {
+    const clerk = (
+      window as unknown as {
+        Clerk?: {
+          client?: {
+            signIn?: {
+              create: (params: { strategy: string; ticket: string }) => Promise<{
+                status: string;
+                createdSessionId?: string;
+              }>;
+            };
+          };
+          setActive: (params: { session: string }) => Promise<void>;
+          user?: { id?: string } | null;
+        };
+      }
+    ).Clerk;
+    if (!clerk?.client?.signIn) return "no-sign-in-resource";
+    const signIn = await clerk.client.signIn.create({ strategy: "ticket", ticket });
+    if (signIn.status !== "complete" || !signIn.createdSessionId) {
+      return `status-${signIn.status}`;
+    }
+    await clerk.setActive({ session: signIn.createdSessionId });
+    return `active-${clerk.user?.id?.slice(0, 8) ?? "?"}`;
+  }, body.token);
+  if (activated !== "active" && !activated.startsWith("active-")) {
+    throw new Error(`funnel: clerk ticket sign-in did not activate (${activated})`);
+  }
   await page.goto("/portal");
 }
 
 /** The UI sign-in first; the session fallback when client-trust blocks it. */
-export async function openPortalAuthenticated(page: Page, origin: string): Promise<void> {
+export async function openPortalAuthenticated(page: Page): Promise<void> {
   const viaUi = await portalSignIn(page);
   if (!viaUi) {
-    await portalSession(page, origin);
+    await portalSession(page);
   }
 }
 

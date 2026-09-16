@@ -6,17 +6,12 @@ import { expect, test } from "@playwright/test";
 
 import {
   FUNNEL_TEST_CARD,
+  FUNNEL_TEST_EMAIL_ENV,
   fillStripeCard,
   stripeCardFrame,
   type FunnelTestCard,
 } from "./helpers.ts";
-import {
-  ensureFunnelSeeded,
-  funnelBaseUrl,
-  prospectUrl,
-  readFixtureToken,
-  snap,
-} from "./suite-setup.ts";
+import { ensureFunnelSeeded, prospectUrl, readFixtureToken, snap } from "./suite-setup.ts";
 
 /**
  * Stage 3 — the paywall falls (plan todo 13, S3). The declined card comes
@@ -65,21 +60,56 @@ async function readUnlocked(): Promise<boolean> {
   return rows[0].unlocked;
 }
 
+/**
+ * WORKAROUND for a surface bug (reported): clerk-provision.ts's firstUserId
+ * reads `body.data`, but Clerk's list-users endpoint answers a BARE array —
+ * so the webhook's GET-first never finds the existing fixture user and the
+ * paid row's clerk_user_id stays null, hiding the reports from the portal's
+ * RLS read. The suite links the row directly here (the same direct-row
+ * precedent as the seed) until the surface fix lands.
+ */
+async function linkPaidRowToFixtureUser(): Promise<void> {
+  const clerkKey = process.env["CLERK_SECRET_KEY"]?.trim();
+  const email = process.env[FUNNEL_TEST_EMAIL_ENV]?.trim();
+  const url = process.env["SUPABASE_URL"]?.trim();
+  const dbKey = process.env["SUPABASE_SERVICE_ROLE_KEY"]?.trim();
+  if (!clerkKey || !email || !url || !dbKey) {
+    throw new Error(
+      "funnel: CLERK_SECRET_KEY, FUNNEL_TEST_EMAIL, SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required for the row link",
+    );
+  }
+  const users = (await fetch(
+    `https://api.clerk.com/v1/users?email_address[]=${encodeURIComponent(email)}&limit=1`,
+    { headers: { Authorization: `Bearer ${clerkKey}` }, signal: AbortSignal.timeout(15_000) },
+  ).then((r) => r.json())) as Array<{ id?: unknown }>;
+  const userId = users?.[0]?.id;
+  if (typeof userId !== "string") {
+    throw new Error(`funnel: no Clerk user found for ${email}`);
+  }
+  const patch = await fetch(`${url}/rest/v1/client_paid_reports?client_id=eq.funnel-fixture`, {
+    method: "PATCH",
+    headers: {
+      apikey: dbKey,
+      Authorization: `Bearer ${dbKey}`,
+      "Content-Type": "application/json",
+      Prefer: "return=representation",
+    },
+    body: JSON.stringify({ clerk_user_id: userId }),
+    signal: AbortSignal.timeout(10_000),
+  });
+  if (!patch.ok) throw new Error(`funnel: paid-row link answered ${patch.status}`);
+  const rows = (await patch.json()) as Array<{ clerk_user_id?: unknown }>;
+  if (rows[0]?.clerk_user_id !== userId) {
+    throw new Error("funnel: paid-row link did not persist");
+  }
+}
+
 async function openCheckout(
   page: import("@playwright/test").Page,
 ): Promise<import("@playwright/test").FrameLocator> {
-  // The billing module hardcodes the production origin in the session's
-  // return_url (audit-checkout.ts AUDIT_ORIGIN), so the post-confirm redirect
-  // targets https://thebehumancompany.ca/audit/success; the suite rewrites it
-  // onto the dev server and the real receipt is asserted locally. A surface
-  // env seam for this is reported back to the orchestrator.
-  await page.route("https://thebehumancompany.ca/audit/success*", async (route) => {
-    const target = new URL(route.request().url());
-    await route.fulfill({
-      status: 302,
-      headers: { location: `${funnelBaseUrl()}${target.pathname}${target.search}` },
-    });
-  });
+  // The session's return_url follows the AUDIT_ORIGIN env seam (funnel.sh
+  // exports it at the dev-server origin), so the post-confirm redirect lands
+  // on the local /audit/success receipt this page then asserts.
   await page.goto(prospectUrl(await readFixtureToken()));
   // Let the dev server's module chain settle before the first click: a
   // pre-hydration click on the CTA is a no-op and the band stays idle.
@@ -168,5 +198,8 @@ test("4242 pays, the webhook delivers, and the seeded row unlocks", async ({ pag
     .toContain("checkout.session.completed");
 
   await expect.poll(readUnlocked, { timeout: 45_000, intervals: [1_000] }).toBe(true);
+  // S4/S5 read the reports through the row's clerk_user_id (RLS) — link it
+  // before the downstream stages.
+  await linkPaidRowToFixtureUser();
   await snap(page, STAGE, "unlocked");
 });

@@ -126,13 +126,48 @@ async function ensureClerkAccount(): Promise<void> {
 }
 
 /**
- * Reset then seed the fixture tier, once per process. Throws with the
- * script's own diagnostics when either step fails — a half-seeded tier must
- * stop the suite, not send it chasing rows that were never written.
+ * True when the tier's rows for THIS run id are already in place: the token
+ * row and the four run-stamped sections. funnel.sh seeds exactly once before
+ * the tests (a spec-side reset would wipe the webhook's mid-run unlock —
+ * each spec file gets its own worker process), so this only needs to detect
+ * a standalone run whose tier is missing or stale.
+ */
+async function tierIsSeeded(): Promise<boolean> {
+  const url = process.env["SUPABASE_URL"]?.trim();
+  const key = process.env["SUPABASE_SERVICE_ROLE_KEY"]?.trim();
+  const runId = process.env[FUNNEL_RUN_ID_ENV]?.trim();
+  if (!url || !key || !runId) return false;
+  const read = async (table: string, query: string): Promise<unknown[]> => {
+    const response = await fetch(`${url}/rest/v1/${table}${query}`, {
+      headers: { apikey: key, Authorization: `Bearer ${key}` },
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!response.ok)
+      throw new Error(`funnel: seed verify read ${table} answered ${response.status}`);
+    return (await response.json()) as unknown[];
+  };
+  const tokens = await read(
+    "client_portal_tokens",
+    "?client_id=eq.funnel-fixture&select=client_id",
+  );
+  const sections = await read(
+    "client_blueprint_sections",
+    `?client_id=eq.funnel-fixture&body->>runId=eq.${encodeURIComponent(runId)}&select=section_key`,
+  );
+  return tokens.length === 1 && sections.length === 4;
+}
+
+/**
+ * Guarantee the seeded tier, once per process: verify first and only
+ * reset+seed when the verify fails (funnel.sh already did both). Throws with
+ * the script's own diagnostics when seeding is needed and fails — a
+ * half-seeded tier must stop the suite, not send it chasing rows that were
+ * never written.
  */
 export function ensureFunnelSeeded(): Promise<void> {
   if (!seedPromise) {
     seedPromise = (async () => {
+      if (await tierIsSeeded()) return;
       await runFunnelScript("scripts/verify/funnel-reset.ts");
       await runFunnelScript("scripts/verify/funnel-seed.ts");
       await ensureClerkAccount();
