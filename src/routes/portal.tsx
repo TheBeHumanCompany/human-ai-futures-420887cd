@@ -8,6 +8,11 @@ import {
   submitIntakeUpload,
   type IntakeQuestion,
 } from "@/lib/client-portal/intake";
+import {
+  thankYouBooking,
+  THANKYOU_OUTREACH,
+  type ThankYouBooking,
+} from "@/lib/client-portal/thankyou";
 
 /**
  * The signed-in client portal (US-009).
@@ -190,16 +195,49 @@ export function IntakeCard({ questions }: { questions: readonly IntakeQuestion[]
         </p>
       )}
       {state.kind === "confirmed" && (
-        <div
-          data-testid="intake-confirm"
-          className="mt-6 max-w-[58ch] border border-current/20 px-4 py-3"
+        <>
+          <div
+            data-testid="intake-confirm"
+            className="mt-6 max-w-[58ch] border border-current/20 px-4 py-3"
+          >
+            <p className="eyebrow">Received</p>
+            <p className="mt-2 text-base leading-relaxed text-ink/80">
+              {state.name} is uploaded. Your audit team has it — we will be in touch about what
+              comes next.
+            </p>
+          </div>
+          <ThankYouCard booking={thankYouBooking()} />
+        </>
+      )}
+    </section>
+  );
+}
+
+/**
+ * The closing surface (todo 11, G5): the thank-you and the 24-hour outreach
+ * promise, plus the booking CTA when a booking destination resolves. A
+ * `null` booking renders the copy alone — no anchor, no dead link. Stateless
+ * and exported so the funnel suite's contracts can render it offline.
+ */
+export function ThankYouCard({ booking }: { booking: ThankYouBooking | null }) {
+  return (
+    <section data-testid="thankyou" className="mt-10 border-t border-current/20 pt-10">
+      <p className="eyebrow">What happens next</p>
+      <h3 className="type-h4-caps mt-3">Thank you — your document is with the team.</h3>
+      <p
+        data-testid="thankyou-copy"
+        className="mt-3 max-w-[58ch] text-base leading-relaxed text-ink/80"
+      >
+        {THANKYOU_OUTREACH}
+      </p>
+      {booking !== null && (
+        <a
+          href={booking.href}
+          data-testid="booking-cta"
+          className="eyebrow mt-6 inline-flex items-center rounded-full bg-lime px-7 py-4 text-ink transition-colors duration-200 hover:bg-cream"
         >
-          <p className="eyebrow">Received</p>
-          <p className="mt-2 text-base leading-relaxed text-ink/80">
-            {state.name} is uploaded. Your audit team has it — we will be in touch about what comes
-            next.
-          </p>
-        </div>
+          {booking.label}
+        </a>
       )}
     </section>
   );
