@@ -27,8 +27,7 @@ const run = promisify(execFile);
 const STAGE = "s1-validate-publish";
 const FIXTURE_STORE = "e2e/funnel/fixtures/clients.json";
 const PODCASTS_DIR =
-  process.env["FUNNEL_PODCASTS_DIR"] ??
-  "/Users/siddicky/Projects/BeHuman_Company/podcasts-wt/e2e-smoke-blueprint-funnel-w1";
+  process.env["FUNNEL_PODCASTS_DIR"] ?? resolve(process.cwd(), "..", "podcasts");
 
 interface Stage1Payload {
   package: string;

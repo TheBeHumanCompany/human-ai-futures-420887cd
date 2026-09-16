@@ -134,6 +134,27 @@ export interface CapturedMagicLink {
  * body carries one — the same loud-failure contract as the parse itself.
  */
 export function resolveMagicLink(payload: EmailCatcherPayload, file: string): CapturedMagicLink {
+  if ("template" in payload.body) {
+    // Template sends carry no rendered subject or bodies on the wire — Resend
+    // fills them from the published template. Its subject line is
+    // "{{{COMPANY_NAME}}} — your private blueprint link" (emails/_resend/manifest.ts),
+    // so the assertion surface survives the template tier unchanged.
+    const variables = payload.body.template.variables;
+    let url: string;
+    try {
+      url = extractMagicLink(String(variables.PORTAL_URL ?? ""));
+    } catch {
+      throw new Error(
+        `email-catcher: ${file} carries no magic link (${CLIENT_PORTAL_ORIGIN}/c/…) in template.variables.PORTAL_URL`,
+      );
+    }
+    return {
+      file,
+      url,
+      subject: `${variables.COMPANY_NAME ?? ""} — your private blueprint link`,
+      to: payload.body.to,
+    };
+  }
   let url: string;
   try {
     url = extractMagicLink(payload.body.html);

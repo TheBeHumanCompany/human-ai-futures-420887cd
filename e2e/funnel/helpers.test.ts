@@ -197,3 +197,44 @@ describe("the reset wiring (scripts/verify/funnel-reset.ts)", () => {
     }
   });
 });
+
+describe("template-shaped captures", () => {
+  test("a Resend Template send resolves from variables.PORTAL_URL with the derived subject", () => {
+    const token = "t".repeat(43);
+    const payload = {
+      capturedAt: "2026-09-16T00:00:00.000Z",
+      endpoint: "https://api.resend.com/emails",
+      body: {
+        from: "The Be Human Company <website@updates.thebehumancompany.ca>",
+        to: ["funnel-test@example.com"],
+        reply_to: "info@thebehumancompany.ca",
+        template: {
+          id: "3375c068-8c60-4588-8e90-fb3dc5b6c65f",
+          variables: {
+            RECIPIENT_FIRST_NAME: "The",
+            COMPANY_NAME: "The Funnel Fixture Co",
+            PORTAL_URL: `https://thebehumancompany.ca/c/${token}`,
+          },
+        },
+      },
+    } as unknown as Parameters<typeof resolveMagicLink>[0];
+    const captured = resolveMagicLink(payload, "send-template.json");
+    expect(captured.url).toBe(`https://thebehumancompany.ca/c/${token}`);
+    expect(captured.subject).toContain("The Funnel Fixture Co");
+    expect(captured.to).toContain("funnel-test@example.com");
+  });
+
+  test("a template capture without a portal URL fails loudly, naming the file", () => {
+    const payload = {
+      capturedAt: "2026-09-16T00:00:00.000Z",
+      endpoint: "https://api.resend.com/emails",
+      body: {
+        from: "x", to: ["y"], reply_to: "z",
+        template: { id: "tmpl_x", variables: { COMPANY_NAME: "No Link Co" } },
+      },
+    } as unknown as Parameters<typeof resolveMagicLink>[0];
+    expect(() => resolveMagicLink(payload, "send-broken.json")).toThrow(
+      "send-broken.json carries no magic link",
+    );
+  });
+});

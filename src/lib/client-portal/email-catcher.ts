@@ -17,8 +17,8 @@ import path from "node:path";
 /** The directory override: set in the server process by the funnel preflight. */
 export const CATCHER_DIR_ENV = "FUNNEL_EMAIL_CATCHER_DIR";
 
-/** The send body, byte-for-byte what the Resend API would have received. */
-export interface EmailCatcherBody {
+/** An inline-composed send: the full subject and both bodies on the wire. */
+export interface InlineEmailBody {
   from: string;
   to: string[];
   reply_to: string;
@@ -26,6 +26,23 @@ export interface EmailCatcherBody {
   html: string;
   text: string;
 }
+
+/**
+ * A Resend Template send: no subject or bodies here — Resend renders them
+ * from the published template and fills them from `variables`.
+ */
+export interface TemplateEmailBody {
+  from: string;
+  to: string[];
+  reply_to: string;
+  template: {
+    id: string;
+    variables: Record<string, string>;
+  };
+}
+
+/** The send body, byte-for-byte what the Resend API would have received. */
+export type EmailCatcherBody = InlineEmailBody | TemplateEmailBody;
 
 /** One intercepted send: the body plus the envelope the poller asserts on. */
 export interface EmailCatcherPayload {
@@ -84,18 +101,43 @@ export function parseCatcherPayload(text: string, filePath: string): EmailCatche
       throw new Error('expected a "body" object');
     }
     const bodyRecord = body as Record<string, unknown>;
-    return {
-      capturedAt,
-      endpoint,
-      body: {
+    if (
+      bodyRecord.template != null &&
+      typeof bodyRecord.template === "object" &&
+      !Array.isArray(bodyRecord.template)
+    ) {
+      const templateRecord = bodyRecord.template as Record<string, unknown>;
+      const variablesRecord = templateRecord.variables;
+      if (
+        variablesRecord == null ||
+        typeof variablesRecord !== "object" ||
+        Array.isArray(variablesRecord) ||
+        Object.values(variablesRecord).some((value) => typeof value !== "string")
+      ) {
+        throw new Error('expected "template.variables" to be a map of strings');
+      }
+      const templateBody: TemplateEmailBody = {
         from: requireString(bodyRecord, "from"),
         to: requireStringArray(bodyRecord, "to"),
         reply_to: requireString(bodyRecord, "reply_to"),
-        subject: requireString(bodyRecord, "subject"),
-        html: requireString(bodyRecord, "html"),
-        text: requireString(bodyRecord, "text"),
-      },
+        template: {
+          id: requireString(templateRecord, "id"),
+          variables: Object.fromEntries(
+            Object.entries(variablesRecord).map(([key, value]) => [key, String(value)]),
+          ),
+        },
+      };
+      return { capturedAt, endpoint, body: templateBody };
+    }
+    const inlineBody: InlineEmailBody = {
+      from: requireString(bodyRecord, "from"),
+      to: requireStringArray(bodyRecord, "to"),
+      reply_to: requireString(bodyRecord, "reply_to"),
+      subject: requireString(bodyRecord, "subject"),
+      html: requireString(bodyRecord, "html"),
+      text: requireString(bodyRecord, "text"),
     };
+    return { capturedAt, endpoint, body: inlineBody };
   } catch (error) {
     throw fail(error instanceof Error ? error.message : String(error));
   }

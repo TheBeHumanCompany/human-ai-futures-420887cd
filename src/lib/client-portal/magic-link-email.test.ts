@@ -1,4 +1,8 @@
 import { describe, expect, test } from "bun:test";
+import { mkdtemp, readdir, readFile } from "node:fs/promises";
+import { rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 import {
   CLIENT_PORTAL_ORIGIN,
@@ -18,6 +22,12 @@ import {
  */
 
 const TOKEN = "d5PLdS3fF5OFFaC-LO9HVcmphoi746VR19aH9hs4Uhs";
+
+function NO_NET(): typeof fetch {
+  return (async () => {
+    throw new Error("must not reach the network");
+  }) as unknown as typeof fetch;
+}
 
 const request: MagicLinkRequest = {
   clientName: "Acme Industrial",
@@ -120,5 +130,61 @@ describe("delivery: the fixture send carries the link and zero PDF bytes", () =>
     );
     expect(out.ok === false && out.reason).toBe("invalid");
     expect(called).toBe(0);
+  });
+});
+
+describe("template sends (RESEND_TEMPLATE_ID_MAGIC_LINK)", () => {
+  function recordingFetch(calls: string[]): typeof fetch {
+    return (async (_url: unknown, init?: RequestInit) => {
+      calls.push(String(init?.body));
+      return new Response('{"id":"email_1"}', { status: 200 });
+    }) as unknown as typeof fetch;
+  }
+
+  test("a template id posts template_id and escaped variables, never inline bodies", async () => {
+    const calls: string[] = [];
+    const result = await deliverMagicLinkEmail(
+      { clientName: "Funnel & Co", to: "client@example.org", clientUrl: clientUrlForToken(TOKEN) },
+      { apiKey: "key", fetchImpl: recordingFetch(calls), templateId: "tmpl_magic" },
+    );
+    expect(result.ok).toBe(true);
+    const body = JSON.parse(calls[0]!);
+    expect(body.template.id).toBe("tmpl_magic");
+    expect(body.template.variables.RECIPIENT_FIRST_NAME).toBe("Funnel");
+    expect(body.template.variables.COMPANY_NAME).toBe("Funnel &amp; Co");
+    expect(body.template.variables.PORTAL_URL).toBe(clientUrlForToken(TOKEN));
+    expect(body.html).toBeUndefined();
+    expect(body.text).toBeUndefined();
+    expect(body.subject).toBeUndefined();
+  });
+
+  test("a null template id forces the inline compose byte-for-byte", async () => {
+    const calls: string[] = [];
+    const result = await deliverMagicLinkEmail(request, {
+      apiKey: "key",
+      fetchImpl: recordingFetch(calls),
+      templateId: null,
+    });
+    expect(result.ok).toBe(true);
+    expect(calls[0]).toBe(JSON.stringify(composeMagicLinkEmail(request)));
+  });
+
+  test("the catcher captures the template body when a template id is set", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "tmpl-catcher-"));
+    try {
+      const result = await deliverMagicLinkEmail(
+        { clientName: "Acme Industrial", to: "client@example.org", clientUrl: clientUrlForToken(TOKEN) },
+        { catcherDir: dir, fetchImpl: NO_NET, templateId: "tmpl_magic" },
+      );
+      expect(result.ok).toBe(true);
+      const files = await readdir(dir);
+      expect(files.length).toBe(1);
+      const captured = JSON.parse(await readFile(join(dir, files[0]!), "utf8"));
+      expect(captured.body.template.id).toBe("tmpl_magic");
+      expect(captured.body.template.variables.PORTAL_URL).toBe(clientUrlForToken(TOKEN));
+      expect(captured.body.html).toBeUndefined();
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });

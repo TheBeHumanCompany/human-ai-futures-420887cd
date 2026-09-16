@@ -16,6 +16,7 @@
  */
 
 import { CONTACT_EMAIL } from "../brand";
+import type { EmailCatcherBody } from "./email-catcher";
 import { CATCHER_DIR_ENV, writeCatcherPayload } from "./email-catcher";
 
 /** Canonical apex origin. No `www` variant anywhere on this path. */
@@ -117,6 +118,33 @@ export function composeMagicLinkEmail(request: MagicLinkRequest) {
 }
 
 /**
+ * A Resend Template send: the published "magic-link" template renders the
+ * branded email; this carries only the template id and its variables.
+ * Resend substitutes `{{{KEY}}}` raw, so every value is HTML-escaped here —
+ * the same escaping the inline compose applies to its interpolated values.
+ */
+export function composeTemplateMagicLinkEmail(
+  request: MagicLinkRequest,
+  templateId: string,
+): EmailCatcherBody {
+  const clientName = request.clientName.trim();
+  const firstName = clientName.split(/\s+/)[0] ?? clientName;
+  return {
+    from: MAGIC_LINK_FROM,
+    to: [request.to.trim()],
+    reply_to: CONTACT_EMAIL,
+    template: {
+      id: templateId,
+      variables: {
+        RECIPIENT_FIRST_NAME: escapeHtml(firstName),
+        COMPANY_NAME: escapeHtml(clientName),
+        PORTAL_URL: escapeHtml(request.clientUrl),
+      },
+    },
+  };
+}
+
+/**
  * The delivery decision, mirroring `deliverEnquiry(data, deps)` in
  * `lib/contact.ts`: `deps` is the seam so every branch is exercisable
  * without a network, and `{ ok: true }` is reachable only after the
@@ -129,10 +157,20 @@ export async function deliverMagicLinkEmail(
     fetchImpl?: typeof fetch;
     /** Test seam for the capture dir; defaults to the env var. Empty = unset. */
     catcherDir?: string;
+    /**
+     * Resend Template id for the branded magic link. Unset reads
+     * RESEND_TEMPLATE_ID_MAGIC_LINK; null forces the inline compose.
+     */
+    templateId?: string | null;
   } = {},
 ): Promise<MagicLinkResult> {
   const apiKey = "apiKey" in deps ? deps.apiKey : process.env.RESEND_API_KEY;
   const fetchImpl = deps.fetchImpl ?? fetch;
+  const templateId =
+    "templateId" in deps ? deps.templateId : process.env.RESEND_TEMPLATE_ID_MAGIC_LINK;
+  const body = templateId
+    ? composeTemplateMagicLinkEmail(request, templateId)
+    : composeMagicLinkEmail(request);
 
   if (request == null || typeof request !== "object") {
     return fail("invalid", "That request was not readable.");
@@ -153,7 +191,7 @@ export async function deliverMagicLinkEmail(
   const catcherDir = "catcherDir" in deps ? deps.catcherDir : activeCatcherDir();
   if (catcherDir) {
     try {
-      await writeCatcherPayload(catcherDir, RESEND_ENDPOINT, composeMagicLinkEmail(request));
+      await writeCatcherPayload(catcherDir, RESEND_ENDPOINT, body);
       return { ok: true };
     } catch (error) {
       console.error(
@@ -179,7 +217,7 @@ export async function deliverMagicLinkEmail(
     const response = await fetchImpl(RESEND_ENDPOINT, {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify(composeMagicLinkEmail(request)),
+      body: JSON.stringify(body),
       signal: controller.signal,
     });
     if (!response.ok) {
