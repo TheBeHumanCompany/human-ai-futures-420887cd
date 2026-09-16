@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Funnel Fixture Co — Preliminary Outside-In Blueprint</title>
+    <style>
+      :root {
+        --ink: oklch(0.16 0.005 90);
+        --ink-soft: oklch(0.22 0.006 90);
+        --cream: oklch(0.955 0.014 85);
+        --cream-deep: oklch(0.915 0.018 85);
+        --lime: oklch(0.87 0.19 118);
+        --hairline: oklch(1 0 0 / 14%);
+        --hairline-dark: oklch(0.16 0.005 90 / 16%);
+        --font-display: "Oswald", "Arial Narrow", sans-serif;
+        --font-body: "Work Sans", "Helvetica Neue", sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        background: var(--ink);
+        color: var(--cream);
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.6;
+      }
+      .band {
+        padding: 4rem 1.5rem;
+        border-bottom: 1px solid var(--hairline-dark);
+      }
+      .band--ink {
+        background: var(--ink);
+        color: var(--cream);
+      }
+      .band--cream {
+        background: var(--cream);
+        color: var(--ink);
+      }
+      .band--ink + .band--cream,
+      .band--cream + .band--ink {
+        border-bottom: 1px solid var(--hairline);
+      }
+      .inner {
+        max-width: 44rem;
+        margin: 0 auto;
+      }
+      h1,
+      h2 {
+        font-family: var(--font-display);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        line-height: 1.1;
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.25rem);
+      }
+      h2 {
+        font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--hairline);
+        margin-bottom: 1.5rem;
+      }
+      .band--cream h2 {
+        border-bottom-color: var(--hairline-dark);
+      }
+      .kicker {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.8125rem;
+        color: var(--lime);
+        margin-bottom: 0.75rem;
+      }
+      .band--cream .kicker {
+        color: var(--ink);
+        opacity: 0.7;
+      }
+      .rule {
+        border: 0;
+        border-top: 1px solid var(--hairline-dark);
+        margin: 2.5rem 0;
+      }
+      .tier-tag {
+        display: inline-block;
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.6875rem;
+        padding: 0.2rem 0.6rem;
+        border: 1px solid currentColor;
+        border-radius: 999px;
+        margin-bottom: 1rem;
+      }
+      .locked {
+        border: 1px dashed var(--hairline);
+        border-radius: 2px;
+        padding: 1.25rem;
+      }
+      .band--cream .locked {
+        border-color: var(--hairline-dark);
+      }
+      .locked p {
+        opacity: 0.75;
+      }
+      .upsell {
+        margin-top: 1rem;
+        font-size: 0.9375rem;
+      }
+      .upsell strong {
+        color: var(--lime);
+        font-weight: 600;
+      }
+      footer {
+        background: var(--ink);
+        color: var(--cream);
+        padding: 2rem 1.5rem 3rem;
+        font-size: 0.8125rem;
+        opacity: 0.7;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="band band--ink">
+      <div class="inner">
+        <p class="kicker">The Be Human Company — Strategic Blueprint</p>
+        <h1>The Funnel Fixture Co</h1>
+        <p>
+          A preliminary outside-in blueprint prepared for Rowan Ledger. This
+          demonstration is fictional fixture content for automated testing.
+        </p>
+      </div>
+    </header>
+
+    <section id="sec-pre-1" class="band band--cream" data-tier="preliminary">
+      <div class="inner">
+        <h2>1 · The strategic window</h2>
+        <p>
+          Fixture Desk already ships the Monday Funnel Report at nine sharp
+          every week, and two unvalidated growth hypotheses — maintenance
+          renewals and shared scheduling — depend on the same operational
+          foundation. The window to act is now, while the team is still eight
+          people.
+        </p>
+      </div>
+    </section>
+
+    <section id="sec-pre-2" class="band band--ink" data-tier="preliminary">
+      <div class="inner">
+        <h2>2 · The priority operating capability</h2>
+        <p>
+          Run the Monday Funnel Report inward first: a fixed fifteen-minute
+          review of aging quotes, one owner per quote, and a written next action
+          recorded before the customer report ships. The artifact already
+          exists; only the discipline around it is new.
+        </p>
+      </div>
+    </section>
+
+    <section
+      id="sec-fin-1"
+      class="band band--cream"
+      data-tier="final"
+      data-locked="true"
+    >
+      <div class="inner">
+        <p class="tier-tag">Final section — locked</p>
+        <h2>3 · Recommended sequence and measures of value</h2>
+        <div class="locked">
+          <p>
+            The full sequencing of the Monday review, the recorded onboarding
+            handoff, the shared calendar view, and the renewal reminder — with
+            the measures of value for each stage.
+          </p>
+          <p class="upsell">
+            <strong>Unlock the final blueprint</strong> — get the complete
+            four-stage sequence with measures, owners, and dependencies.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="sec-fin-2"
+      class="band band--ink"
+      data-tier="final"
+      data-locked="true"
+    >
+      <div class="inner">
+        <p class="tier-tag">Final section — locked</p>
+        <h2>4 · The future-state thesis</h2>
+        <div class="locked">
+          <p>
+            What The Funnel Fixture Co looks like when the follow-up discipline
+            it sells to workshops runs its own internal operations — and the
+            strategic question to test on the way there.
+          </p>
+          <p class="upsell">
+            <strong>Unlock the final blueprint</strong> — the full thesis and
+            the strategic question, delivered after your engagement begins.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      The Be Human Company · Preliminary blueprint demonstration · Fixture
+      content, not a real client.
+    </footer>
+  </body>
+</html>
