@@ -51,8 +51,11 @@ describe("row keys are defined and unique", () => {
     expect(new Set(keys).size).toBe(episodes.length);
   });
 
+  // The mobile-pagination rework maps rows to their source episode before the
+  // grid, so the key sits on `episode.slug.current` directly — same invariant,
+  // current spelling.
   test("the card is keyed on slug.current, never on the dropped guid", () => {
-    expect(ROUTE).toContain("key={row.source.slug.current}");
+    expect(ROUTE).toContain("key={episode.slug.current}");
     expect(ROUTE).not.toContain("key={episode.guid}");
   });
 });
@@ -127,7 +130,7 @@ describe("no topic or length filtering survives on the directory", () => {
   test("the route renders neither topic pills nor duration buckets", () => {
     expect(ROUTE).not.toContain("topicFacets");
     expect(ROUTE).not.toContain("filterByTopic");
-    expect(ROUTE).not.toContain("All episodes\"");
+    expect(ROUTE).not.toContain('All episodes"');
     expect(ROUTE).not.toContain("DURATION_OPTIONS");
   });
 
@@ -152,9 +155,14 @@ describe("episode numbers live in metadata, never in the title", () => {
 });
 
 describe("incremental render", () => {
+  // The mobile-pagination rework splits the old one-expression slice: the
+  // featured episode still leads (`visible.slice(1)`), the desktop grid is
+  // capped at `shown`, and mobile pages through MOBILE_PAGE_SIZE instead.
   test("a page size is declared and the grid is sliced by it", () => {
     expect(ROUTE).toMatch(/const PAGE_SIZE = 9;/);
-    expect(ROUTE).toContain("visible.slice(1, 1 + shown)");
+    expect(ROUTE).toMatch(/const MOBILE_PAGE_SIZE = 6;/);
+    expect(ROUTE).toMatch(/visible\s*\.slice\(1\)/);
+    expect(ROUTE).toContain("gridEpisodes.slice(0, shown)");
   });
 
   test("a View all control exists and is conditional on there being more", () => {
