@@ -46,11 +46,14 @@ cleanup() {
   if [ -n "$EMAIL_CATCHER_CREATED" ]; then
     rm -rf -- "$EMAIL_CATCHER_CREATED"
   fi
-  if [ -n "$LISTENER_LOG" ]; then
-    rm -f -- "$LISTENER_LOG"
-  fi
   if [ -n "$LISTENER_PID" ]; then
     printf 'funnel: stripe listener teardown complete\n'
+  fi
+  if [ -n "$LISTENER_LOG" ] && [ -f "$LISTENER_LOG" ]; then
+    # The delivery lines are S3/F3 evidence: Playwright wipes test-results at
+    # startup, so the live log lives outside it and is copied in at teardown.
+    mkdir -p -- "$REPO_ROOT/test-results/funnel"
+    cp -f -- "$LISTENER_LOG" "$REPO_ROOT/test-results/funnel/stripe-listener.log" 2>/dev/null || true
   fi
 }
 trap cleanup EXIT INT TERM
@@ -93,17 +96,25 @@ if [ "${FUNNEL_PREFLIGHT_DRY:-}" = 1 ]; then
 fi
 
 command -v stripe >/dev/null 2>&1 || fail "required command 'stripe' is not on PATH"
-LISTENER_LOG="$(mktemp "${TMPDIR:-/tmp}/funnel-stripe.XXXXXX")"
+# Live log OUTSIDE test-results: Playwright deletes that tree at startup while
+# the listener is still running; teardown copies the finished log back in as
+# evidence. S3 polls the live path exported below.
+LISTENER_LOG="${TMPDIR:-/tmp}/funnel-stripe-listener.log"
+: > "$LISTENER_LOG"
+export FUNNEL_STRIPE_LISTENER_LOG="$LISTENER_LOG"
 stripe listen --api-key "$STRIPE_SECRET_KEY" --forward-to "$FORWARD_TO" >"$LISTENER_LOG" 2>&1 &
 LISTENER_PID=$!
 
 secret=""
 ready=0
-for _ in $(seq 1 40); do
+# 15s window: the real CLI's cold start includes a version check before its
+# readiness line ("Ready! ..." on stripe-cli 1.50.11; the stand-in todo 4
+# exercised printed "listening", which the real binary never says).
+for _ in $(seq 1 60); do
   if [ -z "$secret" ]; then
     secret="$(LC_ALL=C grep -Eo 'whsec_[A-Za-z0-9_-]+' "$LISTENER_LOG" | LC_ALL=C awk 'NR == 1 { print; exit }' || true)"
   fi
-  if LC_ALL=C grep -qi 'listening' "$LISTENER_LOG"; then
+  if LC_ALL=C grep -qiE 'ready!|listening' "$LISTENER_LOG"; then
     ready=1
   fi
   [ "$ready" -eq 1 ] && [ -n "$secret" ] && break
@@ -111,7 +122,7 @@ for _ in $(seq 1 40); do
   sleep 0.25
 done
 
-[ "$ready" -eq 1 ] || fail 'stripe listener did not report listening within 10s'
+[ "$ready" -eq 1 ] || fail 'stripe listener did not report readiness within 15s'
 [ -n "$secret" ] || fail 'stripe listener did not provide a webhook signing secret'
 case "$secret" in
   whsec_*) : ;;
@@ -119,4 +130,8 @@ case "$secret" in
 esac
 export STRIPE_WEBHOOK_SECRET="$secret"
 printf 'PASS[funnel listener]: TEST-mode listener ready, secret=%s\n' "$(mask "$secret")"
+# Registers the funnel project in EVERY process that imports the config —
+# workers re-import it with their own argv, so the flag alone cannot carry
+# the registration (see playwright.config.ts).
+export FUNNEL_PW_PROJECT=1
 bunx playwright test --project=funnel

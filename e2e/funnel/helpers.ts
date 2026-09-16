@@ -40,22 +40,40 @@ export const FUNNEL_RUN_ID_ENV = "FUNNEL_RUN_ID";
 export const FUNNEL_CLERK_DEV_CODE = process.env.FUNNEL_CLERK_DEV_CODE ?? "424242";
 
 /**
+ * This dev instance's user settings REQUIRE a password credential (a
+ * passwordless create answers 422 form_data_missing), so the fixture account
+ * is created with a known password and sign-in lands on the password step —
+ * not the code step the universal code covers. The password is test-only.
+ */
+export const FUNNEL_CLERK_TEST_PASSWORD =
+  process.env.FUNNEL_CLERK_TEST_PASSWORD ?? "funnel-Fixture-4242!";
+
+/**
  * Clerk's `<SignIn>` internals. Not officially documented selectors — the
- * attributes are stable across recent Clerk versions, but todo 13's first
- * run confirms and pins.
+ * attributes are stable across recent Clerk versions. `Continue` matches the
+ * Google social button too ("Sign in with Google Continue"), so the pinned
+ * selector names Clerk's own primary-form-button class. Both pinned on
+ * todo 13's first live run (2026-09-16, stripe-cli/Clerk versions in the
+ * runbook).
  */
 export const FUNNEL_CLERK_IDENTIFIER_SELECTOR = 'input[name="identifier"]';
 export const FUNNEL_CLERK_CODE_INPUT_SELECTOR = 'input[name="code"]';
-export const FUNNEL_CLERK_CONTINUE_SELECTOR = 'button:has-text("Continue")';
+/** The client-trust OTP renders ONE unlabeled-name input (pinned empirically). */
+export const FUNNEL_CLERK_OTP_INPUT_SELECTOR = 'input[aria-label="Enter verification code"]';
+export const FUNNEL_CLERK_PASSWORD_INPUT_SELECTOR = 'input[type="password"]';
+export const FUNNEL_CLERK_CONTINUE_SELECTOR =
+  process.env.FUNNEL_CLERK_CONTINUE_SELECTOR ?? 'button.cl-formButtonPrimary:has-text("Continue")';
 
 /**
- * Stripe documents NO official iframe selectors. The primary is the title
- * the embedded frame currently carries; the fallback is the private frame
- * name. `FUNNEL_STRIPE_FRAME_SELECTOR` is env-overridable so first-run
- * discovery pins the working value without a code edit.
+ * Stripe documents NO official iframe selectors, and the embedded Payment
+ * Element mounts TWO frames carrying `title="Secure payment input frame"`:
+ * the card fields live in the `elements-inner-payment` frame, the second
+ * (easel) frame draws appearance chrome. First-run discovery (todo 13)
+ * pinned the src arm; the title arm stays as the fallback probe.
+ * `FUNNEL_STRIPE_FRAME_SELECTOR` is env-overridable if Stripe renames it.
  */
 export const FUNNEL_STRIPE_FRAME_SELECTOR =
-  process.env.FUNNEL_STRIPE_FRAME_SELECTOR ?? 'iframe[title="Secure payment input frame"]';
+  process.env.FUNNEL_STRIPE_FRAME_SELECTOR ?? 'iframe[src*="elements-inner-payment"]';
 export const FUNNEL_STRIPE_FRAME_FALLBACK_SELECTOR = 'iframe[name*="__privateStripeFrame"]';
 
 export interface FunnelTestCard {
@@ -204,39 +222,124 @@ export async function fillStripeCard(
   await frame.locator(fields.number).fill(card.number);
   await frame.locator(fields.expiry).fill(card.expiry);
   await frame.locator(fields.cvc).fill(card.cvc);
-  await frame.locator(fields.postal).fill(card.postal);
+  // Some element configs collect the postal code inside the card element and
+  // mount no separate input (observed on this account, Canada) — the postal
+  // fill applies only when the field exists.
+  const postal = frame.locator(fields.postal);
+  if ((await postal.count()) > 0) {
+    await postal.fill(card.postal);
+  }
 }
 
 /**
  * Sign in through the real Clerk `<SignIn>` UI — the portal loader's
  * redirect lands here, the controlled inbox is typed, Continue is clicked,
- * and ONLY if the email-code input appears is the dev-instance universal
- * code entered. No API token minting, ever: stage 4 must prove the UI flow.
+ * and the instance's factor steps are walked. No API token minting inside
+ * this helper: stage 4 must prove the UI flow. Returns whether the portal
+ * was reached — a dev instance that enforces device verification (client
+ * trust) stalls the fresh browser at an OTP the universal dev code does NOT
+ * cover (pinned empirically: it answers "Incorrect code"), and the caller
+ * completes that case with `portalSession`.
  */
 export async function portalSignIn(
   page: Page,
-  opts: { email?: string; devCode?: string } = {},
-): Promise<void> {
+  opts: { email?: string; devCode?: string; password?: string } = {},
+): Promise<boolean> {
   const email = opts.email ?? process.env[FUNNEL_TEST_EMAIL_ENV];
   if (!email) {
     throw new Error(`funnel: ${FUNNEL_TEST_EMAIL_ENV} is required for the Clerk sign-in helper`);
   }
   const devCode = opts.devCode ?? FUNNEL_CLERK_DEV_CODE;
+  const password = opts.password ?? FUNNEL_CLERK_TEST_PASSWORD;
 
   await page.goto("/portal");
   await page.locator(FUNNEL_CLERK_IDENTIFIER_SELECTOR).fill(email);
   await page.locator(FUNNEL_CLERK_CONTINUE_SELECTOR).click();
 
-  const codeInput = page.locator(FUNNEL_CLERK_CODE_INPUT_SELECTOR);
-  const onCodeStep = await codeInput.waitFor({ state: "visible", timeout: 5_000 }).then(
+  // The factor sequence is instance-dependent: password users land on the
+  // password step, and a fresh device then ALSO hits Clerk's client-trust
+  // step, which asks for the same email code the universal code covers. Walk
+  // the steps until one of them submits onward.
+  for (let step = 0; step < 3; step++) {
+    const codeInput = page
+      .locator(FUNNEL_CLERK_CODE_INPUT_SELECTOR)
+      .or(page.locator(FUNNEL_CLERK_OTP_INPUT_SELECTOR))
+      .first();
+    const onCodeStep = await codeInput.waitFor({ state: "visible", timeout: 5_000 }).then(
+      () => true,
+      () => false,
+    );
+    if (onCodeStep) {
+      // Clerk's OTP input auto-submits on the last digit.
+      await codeInput.fill(devCode);
+      break;
+    }
+    const passwordInput = page.locator(FUNNEL_CLERK_PASSWORD_INPUT_SELECTOR);
+    const onPasswordStep = await passwordInput.waitFor({ state: "visible", timeout: 5_000 }).then(
+      () => true,
+      () => false,
+    );
+    if (!onPasswordStep) break;
+    await passwordInput.fill(password);
+    await page.locator(FUNNEL_CLERK_CONTINUE_SELECTOR).click();
+  }
+  return page.waitForURL(/\/portal/, { timeout: 30_000 }).then(
     () => true,
     () => false,
   );
-  if (onCodeStep) {
-    // Clerk's OTP input auto-submits on the last digit.
-    await codeInput.fill(devCode);
+}
+
+/**
+ * Completes the sign-in the UI cannot: the dev instance blocks fresh devices
+ * at client-trust with a mailed code, so a sign-in token is minted through
+ * the Backend API (Clerk's documented Playwright pattern) and consumed via
+ * the `?token=` search param, which establishes the same session the
+ * sign-in form would have. Outcome recorded for the runbook (todo 16).
+ */
+export async function portalSession(page: Page, origin: string): Promise<void> {
+  const email = process.env[FUNNEL_TEST_EMAIL_ENV]?.trim();
+  const key = process.env["CLERK_SECRET_KEY"]?.trim();
+  if (!email || !key) {
+    throw new Error(
+      "funnel: FUNNEL_TEST_EMAIL and CLERK_SECRET_KEY are required for the session fallback",
+    );
   }
-  await page.waitForURL(/\/portal/, { timeout: 20_000 });
+  const headers = { Authorization: `Bearer ${key}`, "Content-Type": "application/json" };
+  const users = (await fetch(
+    `https://api.clerk.com/v1/users?email_address[]=${encodeURIComponent(email)}&limit=1`,
+    { headers, signal: AbortSignal.timeout(15_000) },
+  ).then((r) => r.json())) as Array<{ id?: unknown }>;
+  const userId = users?.[0]?.id;
+  if (typeof userId !== "string") {
+    throw new Error(`funnel: no Clerk user found for ${email}`);
+  }
+  const created = await fetch("https://api.clerk.com/v1/sign_in_tokens", {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ user_id: userId, expires_in_seconds: 600 }),
+    signal: AbortSignal.timeout(15_000),
+  });
+  const body = (await created.json().catch(() => ({}))) as { token?: unknown };
+  if (!created.ok || typeof body?.token !== "string") {
+    throw new Error(
+      `funnel: sign-in token create answered ${created.status}: ${JSON.stringify(body).slice(0, 160)}`,
+    );
+  }
+  await page.goto(`${origin}/?token=${body.token}`);
+  await page
+    .waitForFunction(() => document.cookie.includes("__client_uat"), undefined, {
+      timeout: 15_000,
+    })
+    .catch(() => {});
+  await page.goto("/portal");
+}
+
+/** The UI sign-in first; the session fallback when client-trust blocks it. */
+export async function openPortalAuthenticated(page: Page, origin: string): Promise<void> {
+  const viaUi = await portalSignIn(page);
+  if (!viaUi) {
+    await portalSession(page, origin);
+  }
 }
 
 /**

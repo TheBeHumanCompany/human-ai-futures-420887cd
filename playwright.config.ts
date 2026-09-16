@@ -47,16 +47,16 @@ const BASE_URL = process.env.E2E_BASE_URL ?? e2eConfig.defaultBaseUrl;
 // stage spec up three more times in parallel; (2) the funnel project itself
 // is only REGISTERED when the CLI asked for it — `playwright test` (and
 // therefore --list) runs every registered project, so a merely-defined
-// funnel project would still show its specs in a default run. Both are
-// proven by --list with and without the flag in test-results/funnel-helpers.log.
+// funnel project would still show its specs in a default run. Registration
+// is keyed on FUNNEL_PW_PROJECT (exported by scripts/verify/funnel.sh, the
+// sanctioned entry) rather than argv: worker processes re-import this config
+// with their OWN argv, so an argv-keyed guard left the project unregistered
+// in every worker ("Project funnel not found in the worker process" on the
+// first real run). Both guards are proven in test-results/funnel-helpers.log
+// and the todo-13 run log.
 const FUNNEL_SPEC = /e2e\/funnel\/.*\.spec\.ts/;
 const FUNNEL_DIR = /e2e\/funnel\//;
-const FUNNEL_REQUESTED = process.argv.slice(2).some((arg, i, args) => {
-  if (arg === "--project") return (args[i + 1] ?? "").split(",").includes("funnel");
-  if (arg.startsWith("--project="))
-    return arg.slice("--project=".length).split(",").includes("funnel");
-  return false;
-});
+const FUNNEL_REQUESTED = process.env.FUNNEL_PW_PROJECT === "1";
 
 export default defineConfig({
   testDir: "./e2e",
@@ -113,6 +113,9 @@ export default defineConfig({
             testMatch: FUNNEL_SPEC,
             fullyParallel: false,
             workers: 1,
+            // Stage 3 alone can spend 60s on the cold init POST and 45s on each
+            // webhook/unlock poll ceiling; the 30s default cannot hold a stage.
+            timeout: 240_000,
           },
         ]
       : []),
