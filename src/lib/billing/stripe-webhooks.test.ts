@@ -86,6 +86,7 @@ describe("routeWebhookEvent", () => {
     const releases: unknown[] = [];
     const outcome = await routeWebhookEvent(paidCompleted(), {
       provisionClerkUser: async () => "user_clerk_acme",
+      sendPayerEmail: async () => {},
       releasePaidAccess: async (release) => {
         releases.push(release);
       },
@@ -107,6 +108,7 @@ describe("routeWebhookEvent", () => {
     const recorder = {
       provisionClerkUser: async () => null,
       releasePaidAccess: async (r: unknown) => void releases.push(r),
+      sendPayerEmail: async () => {},
     };
     const succeeded: StripeWebhookEvent = {
       ...paidCompleted(),
@@ -144,6 +146,7 @@ describe("routeWebhookEvent", () => {
         return null;
       },
       releasePaidAccess: async () => void called++,
+      sendPayerEmail: async () => {},
     };
     const unpaid = paidCompleted();
     unpaid.data.object.payment_status = "unpaid";
@@ -175,6 +178,7 @@ describe("routeWebhookEvent", () => {
       releasePaidAccess: async (release) => {
         releases.push(release);
       },
+      sendPayerEmail: async () => {},
     });
     expect(emails).toEqual(["buyer@acme.example"]);
     expect((releases[0] as { clerkUserId: string | null }).clerkUserId).toBe("user_buyer");
@@ -193,6 +197,7 @@ describe("routeWebhookEvent", () => {
       releasePaidAccess: async (release) => {
         releases.push(release);
       },
+      sendPayerEmail: async () => {},
     });
     expect(provisioned).toBe(0);
     expect(releases).toEqual([
@@ -215,9 +220,97 @@ describe("routeWebhookEvent", () => {
       releasePaidAccess: async (release) => {
         releases.push(release);
       },
+      sendPayerEmail: async () => {},
     });
     expect(outcome).toEqual({ handled: true, action: "released", clientId: "acme-industrial" });
     expect((releases[0] as { clerkUserId: string | null }).clerkUserId).toBeNull();
+  });
+});
+
+describe("the payer delivery notice", () => {
+  test("a released sale emails the payer, and a throwing seam never fails it", async () => {
+    const notices: unknown[] = [];
+    let shouldThrow = false;
+    const outcome = await routeWebhookEvent(paidCompleted(), {
+      provisionClerkUser: async () => null,
+      releasePaidAccess: async () => {},
+      sendPayerEmail: async (input) => {
+        if (shouldThrow) throw new Error("resend unreachable");
+        notices.push(input);
+      },
+    });
+    expect(outcome).toEqual({ handled: true, action: "released", clientId: "acme-industrial" });
+    expect(notices).toEqual([
+      { clientId: "acme-industrial", email: "owner@acme.example", fetchImpl: undefined },
+    ]);
+
+    shouldThrow = true;
+    const stillReleased = await routeWebhookEvent(paidCompleted(), {
+      provisionClerkUser: async () => null,
+      releasePaidAccess: async () => {},
+      sendPayerEmail: async () => {
+        throw new Error("resend unreachable");
+      },
+    });
+    expect(stillReleased).toEqual({
+      handled: true,
+      action: "released",
+      clientId: "acme-industrial",
+    });
+  });
+
+  test("the default sender posts the record's blueprint link to Resend", async () => {
+    const { mkdtempSync, writeFileSync, rmSync } = await import("node:fs");
+    const { tmpdir } = await import("node:os");
+    const { join } = await import("node:path");
+    const dir = mkdtempSync(join(tmpdir(), "payer-email-"));
+    const token = "p".repeat(43);
+    writeFileSync(
+      join(dir, "clients.json"),
+      JSON.stringify([
+        { id: "acme-industrial", name: "Acme Industrial", token, title: "T", html: "<p>t</p>" },
+      ]),
+    );
+
+    const posts: { url: string; body: string }[] = [];
+    const fetchImpl = (async (url: string | URL | Request, init?: RequestInit) => {
+      posts.push({ url: String(url), body: String(init?.body ?? "") });
+      return new Response(JSON.stringify({ id: "email-1" }), { status: 200 });
+    }) as typeof fetch;
+
+    const keys = [
+      "FUNNEL_STORE_PATH",
+      "RESEND_API_KEY",
+      "RESEND_TEMPLATE_ID_MAGIC_LINK",
+      "RESEND_TEMPLATE_ID_BLUEPRINT_DELIVERY",
+      "FUNNEL_EMAIL_CATCHER_DIR",
+    ] as const;
+    const saved = Object.fromEntries(keys.map((k) => [k, process.env[k]]));
+    process.env.FUNNEL_STORE_PATH = join(dir, "clients.json");
+    process.env.RESEND_API_KEY = "re_test_sender_key";
+    delete process.env.RESEND_TEMPLATE_ID_MAGIC_LINK;
+    delete process.env.RESEND_TEMPLATE_ID_BLUEPRINT_DELIVERY;
+    delete process.env.FUNNEL_EMAIL_CATCHER_DIR;
+    try {
+      const outcome = await routeWebhookEvent(paidCompleted(), {
+        provisionClerkUser: async () => null,
+        releasePaidAccess: async () => {},
+        fetchImpl,
+      });
+      expect(outcome.action).toBe("released");
+      const resend = posts.find((post) => post.url.includes("api.resend.com"));
+      expect(resend).toBeDefined();
+      const body = JSON.parse(resend!.body) as { to: string[] | string };
+      const to = Array.isArray(body.to) ? body.to[0] : body.to;
+      expect(to).toBe("owner@acme.example");
+      expect(resend!.body).toContain(`/c/${token}`);
+    } finally {
+      for (const key of keys) {
+        if (saved[key] === undefined) delete process.env[key];
+        else process.env[key] = saved[key];
+      }
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });
 

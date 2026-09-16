@@ -152,6 +152,12 @@ export interface WebhookDeps {
   clerkSecretKey?: string;
   releasePaidAccess?: (release: PaidRelease) => Promise<void>;
   provisionClerkUser?: ClerkProvisioner;
+  /**
+   * The payer's delivery notice after a successful release. Tests must
+   * inject this seam: the default reads the content store and the deploy's
+   * mailer configuration, which a unit run has no business touching.
+   */
+  sendPayerEmail?: PayerEmailSender;
 }
 
 /**
@@ -214,6 +220,46 @@ export async function releasePaidAccess(
   });
   if (!response.ok) {
     throw new Error(`[billing] paid release answered ${response.status}`);
+  }
+}
+
+/**
+ * The payer's copy of the sale: their blueprint link, delivered to the
+ * address Stripe already collected. Never throws — the unlock above is the
+ * fulfillment; a notice that cannot be sent is logged, never a failed
+ * webhook.
+ */
+export type PayerEmailSender = (input: {
+  clientId: string;
+  email: string;
+  fetchImpl?: typeof fetch;
+}) => Promise<void>;
+
+async function sendPayerEmailByDefault(input: {
+  clientId: string;
+  email: string;
+  fetchImpl?: typeof fetch;
+}): Promise<void> {
+  // Dynamic imports, the same discipline as the stores above: these modules
+  // only ever load inside the handler that needs them.
+  const tokens = await import("../client-portal/tokens");
+  const record = (await tokens.readClientStore()).find((c) => c.id === input.clientId) ?? null;
+  if (!record) {
+    // Constant message: never quote the payer address into a log.
+    console.error("[billing] payer email: client not in the store");
+    return;
+  }
+  const delivery = await import("../client-portal/magic-link-email");
+  const result = await delivery.deliverMagicLinkEmail(
+    {
+      clientName: record.name,
+      to: input.email,
+      clientUrl: delivery.clientUrlForToken(record.token),
+    },
+    input.fetchImpl ? { fetchImpl: input.fetchImpl } : {},
+  );
+  if (!result.ok) {
+    console.error(`[billing] payer email not sent: ${result.reason}`);
   }
 }
 
@@ -290,5 +336,17 @@ export async function routeWebhookEvent(
     email,
     clerkUserId,
   });
+  // The payer's copy of the sale. The release above is the fulfillment;
+  // this notice is best-effort at every layer — a provider outage must
+  // never turn a completed sale into a Stripe retry loop, so a throwing
+  // seam is logged and swallowed, exactly like provisioning above.
+  if (email) {
+    try {
+      const sendPayerEmail = deps.sendPayerEmail ?? sendPayerEmailByDefault;
+      await sendPayerEmail({ clientId, email, fetchImpl: deps.fetchImpl });
+    } catch {
+      console.error("[billing] payer email seam failed");
+    }
+  }
   return { handled: true, action: "released", clientId };
 }
