@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { ClientReports } from "@/components/client-portal/client-reports";
+import { CheckoutBand } from "@/components/client-portal/checkout/checkout-panel";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { fetchClientPageByToken } from "@/lib/client-portal/tokens";
 
@@ -90,6 +91,8 @@ export function ClientAvatar({ name }: { name: string }) {
 
 function ClientPortalPage() {
   const { page } = Route.useLoaderData();
+  const { token } = Route.useParams();
+  const hasLockedFinals = page.sections?.some((section) => section.locked) ?? false;
 
   return (
     <section className="section-cream">
@@ -98,6 +101,13 @@ function ClientPortalPage() {
         <p className="eyebrow">{page.name}</p>
       </div>
       <ClientReports page={page} />
+      {/*
+        The purchase band (funnel todo 7) sits where the locked sections end:
+        the page's single upsell, shown only while finals remain locked. An
+        already-paid client sees no band here at all — and if one is ever
+        reached, the init route answers 409 with the sign-in hint.
+      */}
+      <CheckoutBand token={token} hasLockedFinals={hasLockedFinals} />
     </section>
   );
 }
