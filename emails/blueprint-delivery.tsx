@@ -97,7 +97,7 @@ export default function BlueprintDelivery({
   );
 }
 
-const PREVIEW_TOKEN_URL = "https://thebehumancompany.ca/c/preview-token";
+const PREVIEW_TOKEN_URL = "https://portal.thebehumancompany.ca/c/preview-token";
 
 BlueprintDelivery.PreviewProps = {
   recipientFirstName: "Desirée",

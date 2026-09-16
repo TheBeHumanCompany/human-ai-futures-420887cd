@@ -115,7 +115,13 @@ describe("invalid or unknown tokens get the /c/$token denial", () => {
   });
 
   test("a body naming a client_id instead of a token resolves to nobody", async () => {
-    const response = await post({ clientId: CLIENT_ID, client_id: CLIENT_ID }, UNCONFIGURED);
+    // No `token` key means session identity; `userId: null` is the seam for
+    // "no signed-in session", so the probe resolves to nobody without ever
+    // touching Clerk.
+    const response = await post(
+      { clientId: CLIENT_ID, client_id: CLIENT_ID },
+      { ...UNCONFIGURED, userId: null },
+    );
 
     expect(response.status).toBe(404);
     expect(await response.json()).toEqual(DENIAL);

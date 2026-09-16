@@ -74,7 +74,8 @@ masked to their prefix in every funnel log.
 | `CLERK_SECRET_KEY`           | yes                  | Clerk dev instance secret key (fixture-account provisioning).                                                                                                                                                                                                                                                |
 | `STRIPE_SECRET_KEY`          | yes                  | TEST-mode secret key. The preflight asserts the `sk_test_` prefix and rejects `sk_live_`.                                                                                                                                                                                                                    |
 | `STRIPE_AUDIT_PRICE_ID`      | yes                  | The audit price the funnel checkout buys. Provenance: a persistent TEST-mode price created ONCE (Stripe dashboard, or `stripe prices create` with the test key) and reused by every run. The preflight asserts its presence; it is never created per-run.                                                    |
-| `AUDIT_ORIGIN`               | local runs           | Return-URL origin for the elements checkout (`src/lib/billing/audit-checkout.ts`). Unset, the module uses the production apex and behaves byte-identically. Local funnel runs set it to the dev origin so payment returns land on the local receipt route, not production.                                   |
+| `AUDIT_ORIGIN`               | local runs           | Return-URL origin for the elements checkout (`src/lib/billing/audit-checkout.ts`). Unset, the module uses the production portal host (`portal.thebehumancompany.ca`, where `/audit/success` is served) and behaves byte-identically. Local funnel runs set it to the dev portal origin so payment returns land on the local receipt route, not production.                                   |
+| `CLERK_AUTHORIZED_PARTIES`   | local runs           | Comma-separated origins Clerk accepts as the session JWT's `azp` (`src/start.ts`). The app default lists the two production origins; local drives visit `http://localhost:$PORT` and `http://portal.localhost:$PORT`, so both must be listed or every signed-in read fails.                                   |
 | `STRIPE_PUBLISHABLE_KEY`     | yes, in `.env.local` | Server-side key the checkout panel arms with (`src/lib/checkout/audit-checkout-client.ts`). Not asserted by the preflight, but without it the panel degrades to "unavailable" and S3 cannot run. Documented in the repo `.env.example`.                                                                      |
 | `PORT`                       | yes, for funnel runs | The app port funnel.sh forwards webhooks to (`localhost:$PORT/api/stripe-webhook`). Defaults to 3000, but the browser suite points at `http://localhost:5180` (`scripts/verify/e2e-config.json`) and the nightly pins 5180. Export `PORT=5180` so the forward target is the server the suite actually tests. |
 
@@ -109,7 +110,10 @@ export FUNNEL_RUN_ID=fw1-$(git rev-parse --short HEAD)
 export FUNNEL_TEST_EMAIL=funnel-test@example.com
 export FUNNEL_STORE_PATH=e2e/funnel/fixtures/clients.json
 export PORT=5180
-export AUDIT_ORIGIN=http://localhost:5180
+export AUDIT_ORIGIN=http://portal.localhost:5180
+# Clerk rejects a session JWT whose `azp` is outside authorizedParties; local
+# drives visit both hosts, so both belong in the list.
+export CLERK_AUTHORIZED_PARTIES="http://localhost:5180,http://portal.localhost:5180"
 bun run test:funnel
 ```
 

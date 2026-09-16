@@ -368,11 +368,12 @@ nullifying the directive.
   the block comment), `{{CLIENT_PORTAL_URL}}` count 4, zero
   `attachment`, zero `.pdf`. The embedded JSON still parses
   (`json.loads` of the template string OK).
-- **Apex canonical:** all three `https://www.` links in the preliminary
-  template rewritten to the apex origin; every client link the send path
-  builds comes from `clientUrlForToken` (`CLIENT_PORTAL_ORIGIN =
-  "https://thebehumancompany.ca"`), and a non-apex URL is refused before
-  any provider call (pinned in tests).
+- **Portal-host canonical:** every client link the send path
+  builds comes from `clientUrlForToken` (`CLIENT_PORTAL_ORIGIN = PORTAL_ORIGIN`,
+  i.e. `https://portal.thebehumancompany.ca` — the host that serves
+  `/c/<token>`), and a URL outside that origin's `/c/` prefix is refused
+  before any provider call (pinned in tests). The apex 308s `/c/*` to the
+  portal host, so already-sent apex links keep working.
 - **Second template disposition — deferred with reason:**
   `templates/Strategic Intelligence Blueprint TEMPLATE.dc.html` is
   untouched. It is the paid-tier send design (one `www` link, Design

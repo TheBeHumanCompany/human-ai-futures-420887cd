@@ -1,4 +1,3 @@
-import { UserButton, useAuth } from "@clerk/tanstack-react-start";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -245,10 +244,6 @@ function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => voi
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  // `useAuth` (not a `SignedIn` gate — this SDK version exports none):
-  // false on first paint and for every signed-out visitor, so the header
-  // below advertises nothing while staying a pure function of session.
-  const { isSignedIn } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background shadow-[0_1px_0_0_hsl(0_0%_100%/0.06)]">
@@ -277,29 +272,12 @@ export function SiteHeader() {
               </Link>
             ))}
             {/*
-              Paywall-only accounts (locked decision): the button below renders
-              solely for a signed-in payer — account access, not acquisition.
-              There is deliberately no signed-out branch here: no sign-in or
-              sign-up advertising in the nav; accounts are created at first
-              payment, and report pages stay magic-link. UserButton renders a
-              button plus a portalled panel (no landmark of its own), so the
-              header keeps exactly one <nav> per AC-3.3.
+              Marketing carries no auth UI and no portal link: every private
+              surface (portal, profile, /c/<token>, sign-in) is served from
+              portal.thebehumancompany.ca, whose chrome carries the Portal and
+              Profile controls. The apex advertises nothing session-shaped —
+              "the apex has no auth UI" is the point of the split.
             */}
-            {/*
-              Same paywall-only population as UserButton: the link renders
-              solely for a signed-in payer, so the signed-out header — what
-              every gate and screenshot sees — is unchanged (US-009).
-            */}
-            {isSignedIn ? (
-              <Link
-                to="/portal"
-                data-nav-item="Portal"
-                className="eyebrow hidden items-center px-3 py-2 text-muted-foreground transition-colors duration-200 hover:text-foreground lg:inline-flex"
-              >
-                Portal
-              </Link>
-            ) : null}
-            {isSignedIn ? <UserButton /> : null}
             <button
               type="button"
               aria-label="Toggle menu"

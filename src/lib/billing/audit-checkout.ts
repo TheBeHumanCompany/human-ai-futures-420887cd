@@ -1,3 +1,4 @@
+import { PORTAL_ORIGIN } from "../surface";
 import {
   STRIPE_ELEMENTS_VERSION,
   stripeApi,
@@ -20,7 +21,7 @@ import {
  * another host is the same failure class as episode URLs). `AUDIT_ORIGIN` is
  * an explicit local-funnel affordance, not an implicit preview-host choice.
  */
-export const AUDIT_ORIGIN = "https://thebehumancompany.ca";
+export const AUDIT_ORIGIN = PORTAL_ORIGIN;
 
 export const auditSuccessUrl = (origin: string = process.env.AUDIT_ORIGIN ?? AUDIT_ORIGIN) =>
   `${origin}/audit/success?session_id={CHECKOUT_SESSION_ID}`;

@@ -31,7 +31,7 @@ import {
  */
 
 const TOKEN = "iwk6Gn111auDWiidHvz9OwOkOI9_Yqnum7-pUNEageI";
-const URL = `https://thebehumancompany.ca/c/${TOKEN}`;
+const URL = `https://portal.thebehumancompany.ca/c/${TOKEN}`;
 
 function payloadHtml(url: string): string {
   return `<p><a href="${url}">Open your private blueprint</a></p>`;
@@ -213,13 +213,13 @@ describe("template-shaped captures", () => {
           variables: {
             RECIPIENT_FIRST_NAME: "The",
             COMPANY_NAME: "The Funnel Fixture Co",
-            PORTAL_URL: `https://thebehumancompany.ca/c/${token}`,
+            PORTAL_URL: `https://portal.thebehumancompany.ca/c/${token}`,
           },
         },
       },
     } as unknown as Parameters<typeof resolveMagicLink>[0];
     const captured = resolveMagicLink(payload, "send-template.json");
-    expect(captured.url).toBe(`https://thebehumancompany.ca/c/${token}`);
+    expect(captured.url).toBe(`https://portal.thebehumancompany.ca/c/${token}`);
     expect(captured.subject).toContain("The Funnel Fixture Co");
     expect(captured.to).toContain("funnel-test@example.com");
   });

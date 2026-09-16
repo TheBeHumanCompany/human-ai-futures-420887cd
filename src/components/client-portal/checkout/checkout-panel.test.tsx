@@ -46,7 +46,10 @@ const SOURCE = readFileSync(new URL("./checkout-panel.tsx", import.meta.url).pat
 describe("the purchase band on the locked-final page", () => {
   test("with locked finals it renders the pay CTA on the ink band", () => {
     const html = renderToStaticMarkup(
-      createElement(CheckoutBand, { token: ROUTE_TOKEN, hasLockedFinals: true }),
+      createElement(CheckoutBand, {
+        identity: { kind: "token", token: ROUTE_TOKEN },
+        hasLockedFinals: true,
+      }),
     );
 
     expect(html).toContain('data-testid="pay-cta"');
@@ -55,7 +58,10 @@ describe("the purchase band on the locked-final page", () => {
 
   test("without locked finals it renders nothing — no upsell on an open page", () => {
     const html = renderToStaticMarkup(
-      createElement(CheckoutBand, { token: ROUTE_TOKEN, hasLockedFinals: false }),
+      createElement(CheckoutBand, {
+        identity: { kind: "token", token: ROUTE_TOKEN },
+        hasLockedFinals: false,
+      }),
     );
 
     expect(html).not.toContain('data-testid="pay-cta"');

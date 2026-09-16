@@ -154,9 +154,18 @@ describe("AC-4.1 — the scale is defined, in every register", () => {
 
       const header = readFileSync(join(SRC_DIR, "components", "site-header.tsx"), "utf8");
       expect(header).toContain("type-wordmark");
-      // And nothing else claims the step.
+      // The portal shell's brand mark reuses the same logotype step — it is
+      // a wordmark, the exact purpose of the step, so the two surfaces read
+      // as one company. Anything else still has no claim on it.
+      const portalHeader = readFileSync(join(SRC_DIR, "components", "portal-header.tsx"), "utf8");
+      expect(portalHeader).toContain("type-wordmark");
       const others = srcNonTestFiles
-        .filter((f) => f !== SPECIMEN && !f.endsWith("site-header.tsx"))
+        .filter(
+          (f) =>
+            f !== SPECIMEN &&
+            !f.endsWith("site-header.tsx") &&
+            !f.endsWith("portal-header.tsx"),
+        )
         .filter((f) => readFileSync(f, "utf8").includes("type-wordmark"));
       expect(others).toEqual([]);
     });

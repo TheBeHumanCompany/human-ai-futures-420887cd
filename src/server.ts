@@ -3,6 +3,7 @@ import "./lib/error-capture";
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
 import { upgradeDegraded } from "./lib/podcast/degraded-status";
+import { decideHostRoute } from "./lib/surface";
 import { withSecurityHeaders } from "./lib/security-headers";
 
 type ServerEntry = {
@@ -49,6 +50,41 @@ function isH3SwallowedErrorBody(body: string): boolean {
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      // Host guard: which surface (marketing vs portal) serves this request.
+      // Decides before the /about rewrite so a moved path redirects to its
+      // new host rather than being rewritten on the wrong one. Method is
+      // deliberately ignored — 308 preserves method and body, so a moved
+      // POST still lands correctly.
+      const guardUrl = new URL(request.url);
+      const hostDecision = decideHostRoute({
+        host: request.headers.get("host"),
+        pathname: guardUrl.pathname,
+        search: guardUrl.search,
+      });
+      if (hostDecision.kind === "redirect") {
+        // Through withSecurityHeaders (unlike the /about 301 below): a
+        // redirect carrying a token in its path must carry no-referrer and
+        // private, no-store, or the credential can leak via a referrer or a
+        // shared cache. withSecurityHeaders only fills absent names, so the
+        // Location header survives.
+        return withSecurityHeaders(
+          new Response(null, {
+            status: hostDecision.status,
+            headers: { location: hostDecision.location },
+          }),
+          guardUrl.pathname,
+        );
+      }
+      if (hostDecision.kind === "notFound") {
+        return withSecurityHeaders(
+          new Response("Not found", {
+            status: 404,
+            headers: { "content-type": "text/plain; charset=utf-8" },
+          }),
+          guardUrl.pathname,
+        );
+      }
+
       // /about permanently redirects to /who-we-are (Krisp 2026-08-22
       // meeting, user-confirmed 2026-08-26). Read verbs only — everything
       // else falls through for the framework to answer. One trailing slash is

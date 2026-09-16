@@ -6,6 +6,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -15,6 +16,9 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
+import { PortalHeader } from "../components/portal-header";
+import { PortalFooter } from "../components/portal-footer";
+import { decideHostRoute, isPortalPath } from "../lib/surface";
 
 function NotFoundComponent() {
   return (
@@ -181,6 +185,43 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const portal = isPortalPath(pathname);
+
+  // Client-side host guard, both directions. A TanStack `<Link>` /
+  // `router.navigate` never re-enters `src/server.ts`, so without this an
+  // apex client navigation to `/portal` would render portal chrome on the
+  // apex, and a portal navigation to `/` would render marketing on the
+  // portal host. The exact same decision function the server uses, so the
+  // two cannot disagree. The branch above is path-based (identical on
+  // server and client) so SSR and hydration never disagree on chrome.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const decision = decideHostRoute({
+      host: window.location.host,
+      pathname: window.location.pathname,
+      search: window.location.search,
+    });
+    if (decision.kind === "redirect") {
+      window.location.replace(decision.location);
+    } else if (decision.kind === "notFound") {
+      // Let the server emit the 404.
+      window.location.reload();
+    }
+  }, [pathname]);
+
+  if (portal) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <PortalHeader />
+        <main>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <PortalFooter />
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

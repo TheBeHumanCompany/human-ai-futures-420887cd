@@ -196,8 +196,16 @@ esac
 export STRIPE_WEBHOOK_SECRET="$secret"
 printf 'PASS[funnel listener]: TEST-mode listener ready, secret=%s\n' "$(mask "$secret")"
 # The audit return_url must land on the dev server this suite drives, not
-# the production origin the billing module defaults to.
-export AUDIT_ORIGIN="${AUDIT_ORIGIN:-http://localhost:${PORT}}"
+# the production origin the billing module defaults to — and on the portal
+# host specifically, because /audit/success is a portal surface: the apex
+# 308s the path over (which would still work, but a direct landing proves
+# the host split and keeps Stripe's return on one origin).
+export AUDIT_ORIGIN="${AUDIT_ORIGIN:-http://portal.localhost:${PORT}}"
+# Clerk rejects a session JWT whose `azp` is not in authorizedParties. The
+# app default lists only the production origins, so local drives — where the
+# browser visits http://localhost:$PORT and http://portal.localhost:$PORT —
+# must list both local hosts or every signed-in read fails.
+export CLERK_AUTHORIZED_PARTIES="${CLERK_AUTHORIZED_PARTIES:-http://localhost:${PORT},http://portal.localhost:${PORT}}"
 # Seed EXACTLY once per run, here: each spec file gets a fresh worker process,
 # so a spec-side seed would reset the tier mid-run (wiping S3's webhook
 # unlock between stages). The specs only VERIFY the tier is present.

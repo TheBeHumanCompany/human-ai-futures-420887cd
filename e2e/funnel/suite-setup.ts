@@ -32,18 +32,28 @@ export function funnelBaseUrl(): string {
   return process.env.E2E_BASE_URL ?? e2eConfig.defaultBaseUrl;
 }
 
-/** The prospect page URL for a token, on the local dev server. */
+/**
+ * The base URL the portal surfaces are served on. One dev server answers
+ * both hosts; the portal entries (`/portal`, `/profile`, `/c/<token>`,
+ * sign-in) must be visited on the portal host, since that is what the host
+ * guard serves them on in production.
+ */
+export function portalBaseUrl(): string {
+  return process.env.E2E_PORTAL_BASE_URL ?? e2eConfig.portalBaseUrl;
+}
+
+/** The prospect page URL for a token, on the portal host. */
 export function prospectUrl(token: string): string {
-  return buildProspectUrl(funnelBaseUrl(), token);
+  return buildProspectUrl(portalBaseUrl(), token);
 }
 
 /**
- * The local page a captured apex-origin magic link points at: the email
- * carries the production origin by contract, the browser must follow it on
- * the dev server.
+ * The local page a captured portal-origin magic link points at: the email
+ * carries the production portal origin by contract, the browser must follow
+ * it on the dev server's portal host.
  */
 export function localProspectUrl(capturedUrl: string): string {
-  return `${funnelBaseUrl().replace(/\/$/, "")}${new URL(capturedUrl).pathname}`;
+  return `${portalBaseUrl().replace(/\/$/, "")}${new URL(capturedUrl).pathname}`;
 }
 
 /** The seeded prospect token, read from the fixture store the app resolves. */
@@ -167,9 +177,14 @@ async function tierIsSeeded(): Promise<boolean> {
 export function ensureFunnelSeeded(): Promise<void> {
   if (!seedPromise) {
     seedPromise = (async () => {
-      if (await tierIsSeeded()) return;
-      await runFunnelScript("scripts/verify/funnel-reset.ts");
-      await runFunnelScript("scripts/verify/funnel-seed.ts");
+      if (!(await tierIsSeeded())) {
+        await runFunnelScript("scripts/verify/funnel-reset.ts");
+        await runFunnelScript("scripts/verify/funnel-seed.ts");
+      }
+      // Always, not only when seeding ran: funnel.sh's reset+seed creates no
+      // Clerk account, and the unpaid-authenticated stage links the still
+      // locked row to this account before any payment — a funnel.sh-seeded
+      // run must not skip it.
       await ensureClerkAccount();
     })().catch((error: unknown) => {
       seedPromise = null;

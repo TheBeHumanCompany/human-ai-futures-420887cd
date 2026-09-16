@@ -16,11 +16,15 @@
  */
 
 import { CONTACT_EMAIL } from "../brand";
+import { PORTAL_ORIGIN } from "../surface";
 import type { EmailCatcherBody } from "./email-catcher";
 import { CATCHER_DIR_ENV, writeCatcherPayload } from "./email-catcher";
 
-/** Canonical apex origin. No `www` variant anywhere on this path. */
-export const CLIENT_PORTAL_ORIGIN = "https://thebehumancompany.ca";
+/** The portal host: `/c/<token>` is served there, and the send guard below
+ *  refuses anything outside this origin's `/c/` prefix. (The apex 308s
+ *  `/c/*` here anyway, but an emailed credential should land on its own
+ *  host in one hop.) */
+export const CLIENT_PORTAL_ORIGIN = PORTAL_ORIGIN;
 
 /** The sender: the existing Resend-verified updates subdomain. */
 export const MAGIC_LINK_FROM =

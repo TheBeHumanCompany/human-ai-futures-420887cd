@@ -24,6 +24,9 @@ import {
   type EmailCatcherPayload,
 } from "../../src/lib/client-portal/email-catcher.ts";
 import { CLIENT_PORTAL_ORIGIN } from "../../src/lib/client-portal/magic-link-email.ts";
+// Circular with suite-setup is safe: the binding is a hoisted function used
+// only at call time, never during module init on either side.
+import { portalBaseUrl } from "./suite-setup.ts";
 
 export { CATCHER_DIR_ENV as FUNNEL_EMAIL_CATCHER_DIR_ENV };
 
@@ -273,7 +276,7 @@ export async function portalSignIn(
   const devCode = opts.devCode ?? FUNNEL_CLERK_DEV_CODE;
   const password = opts.password ?? FUNNEL_CLERK_TEST_PASSWORD;
 
-  await page.goto("/portal");
+  await page.goto(`${portalBaseUrl()}/portal`);
   await page.locator(FUNNEL_CLERK_IDENTIFIER_SELECTOR).fill(email);
   await page.locator(FUNNEL_CLERK_CONTINUE_SELECTOR).click();
 
@@ -304,10 +307,14 @@ export async function portalSignIn(
     await passwordInput.fill(password);
     await page.locator(FUNNEL_CLERK_CONTINUE_SELECTOR).click();
   }
-  return page.waitForURL(/\/portal/, { timeout: 30_000 }).then(
-    () => true,
-    () => false,
-  );
+  return page
+    .waitForURL((url) => url.origin === portalBaseUrl() && url.pathname === "/portal", {
+      timeout: 30_000,
+    })
+    .then(
+      () => true,
+      () => false,
+    );
 }
 
 /**
@@ -352,7 +359,7 @@ export async function portalSession(page: Page): Promise<void> {
 
   // The SignIn component hosts client.signIn; a signed-out /portal lands on
   // it, and clerk-js must be fully loaded before the ticket can be consumed.
-  await page.goto("/portal");
+  await page.goto(`${portalBaseUrl()}/portal`);
   await page
     .waitForFunction(
       () => (window as unknown as { Clerk?: { loaded?: boolean } }).Clerk?.loaded === true,
@@ -388,7 +395,7 @@ export async function portalSession(page: Page): Promise<void> {
   if (activated !== "active" && !activated.startsWith("active-")) {
     throw new Error(`funnel: clerk ticket sign-in did not activate (${activated})`);
   }
-  await page.goto("/portal");
+  await page.goto(`${portalBaseUrl()}/portal`);
 }
 
 /** The UI sign-in first; the session fallback when client-trust blocks it. */

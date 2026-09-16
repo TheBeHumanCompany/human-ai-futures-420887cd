@@ -8,8 +8,8 @@ import { expect, test } from "@playwright/test";
 import { FUNNEL_EMAIL_CATCHER_DIR_ENV, pollForMagicLink } from "./helpers.ts";
 import {
   ensureFunnelSeeded,
-  funnelBaseUrl,
   localProspectUrl,
+  portalBaseUrl,
   prospectUrl,
   readFixtureToken,
   snap,
@@ -139,7 +139,7 @@ test("body copy on an ink band is painted in the band's own foreground", async (
 });
 
 test("an invalid token is a denial page, not content", async ({ request }) => {
-  const response = await request.get(`${funnelBaseUrl()}/c/definitely-invalid-token-000000`);
+  const response = await request.get(`${portalBaseUrl()}/c/definitely-invalid-token-000000`);
   expect(response.status()).toBe(404);
   expect(await response.text()).toContain("This link is not valid");
 });
