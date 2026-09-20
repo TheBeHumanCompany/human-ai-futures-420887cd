@@ -109,6 +109,21 @@ export async function buildSeedState(client: FixtureClient, runId: string): Prom
       clerk_user_id: null,
     },
     sections: [
+      // The masthead. Without a hero row the funnel fixture exercises the band
+      // list but not the document: no company lockup, no meta cells, no
+      // disclaimer — exactly the parts the export is compared against.
+      section("sec-hero", 0, "preliminary", FUNNEL_CLIENT_NAME, null, "hero", [
+        {
+          type: "title",
+          company: FUNNEL_CLIENT_NAME,
+          thesis: "FUNNEL-FIXTURE-THESIS-7b1d — fictional thesis for the funnel run.",
+          preparedFor: `Fixture Contact, ${FUNNEL_CLIENT_NAME}`,
+          preparedBy: "The Be Human Company",
+          assessmentDate: "2026-01-01",
+          purpose: "Fictional fixture purpose line for the funnel run.",
+          disclaimer: "Fictional fixture disclaimer. Not a real blueprint.",
+        },
+      ]),
       section("sec-pre-1", 1, "preliminary", "Fixture Finding Overview", null, "findings", [
         {
           type: "finding",

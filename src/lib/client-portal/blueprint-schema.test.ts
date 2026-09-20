@@ -77,6 +77,36 @@ describe("parseBlocks — open by construction", () => {
   test("a non-array body yields no blocks", () => {
     expect(parseBlocks(undefined)).toEqual([]);
   });
+
+  test("locator parentheticals are stripped from every string, at any depth", () => {
+    const [block] = parseBlocks([
+      {
+        type: "finding",
+        claim: `grew "floodgates" (transcript:bb.txt, ~05:23; E025–E026), then moved`,
+        supportingExcerpts: [`payback (~42:10–43:13; E145–E147).`],
+        source: { label: "the segment (~01:02:14)" },
+      },
+    ]);
+    expect(block).toEqual({
+      type: "finding",
+      claim: `grew "floodgates", then moved`,
+      supportingExcerpts: ["payback."],
+      source: { label: "the segment" },
+    });
+  });
+
+  test("real citations inside block strings survive the parse", () => {
+    const [block] = parseBlocks([
+      {
+        type: "prose",
+        paragraphs: ["Council for Indigenous Business (ccib.ca)."],
+      },
+    ]);
+    expect(block).toEqual({
+      type: "prose",
+      paragraphs: ["Council for Indigenous Business (ccib.ca)."],
+    });
+  });
 });
 
 describe("parseSections", () => {
