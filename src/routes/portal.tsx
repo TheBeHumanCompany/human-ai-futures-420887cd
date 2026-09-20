@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { BlueprintSections } from "@/components/client-portal/blueprint/blueprint-sections";
+import { BlueprintDocument } from "@/components/client-portal/blueprint/blueprint-document";
+import { PrintButton } from "@/components/client-portal/blueprint/print-button";
 import { CheckoutBand } from "@/components/client-portal/checkout/checkout-panel";
 import { IntakeCard } from "@/components/client-portal/intake-card";
 import { companyInitial, fetchPortalPage } from "@/lib/client-portal/portal";
@@ -71,14 +72,22 @@ function PortalPage() {
           )}
         </div>
         <p className="eyebrow mt-3">Client portal</p>
-        <h1 className="type-h3-caps-light mt-3">Your reports</h1>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <h1 className="type-h3-caps-light mt-3">Your reports</h1>
+          {lockedBlueprint ? <PrintButton /> : null}
+        </div>
         {lockedBlueprint ? (
           <>
-            <BlueprintSections sections={lockedBlueprint.sections} />
-            <CheckoutBand
-              identity={{ kind: "session" }}
-              hasLockedFinals={lockedBlueprint.sections.some((section) => section.locked)}
-            />
+            <BlueprintDocument sections={lockedBlueprint.sections} variant="portal" />
+            {/* The upsell is a control, not part of the document: it is
+                wrapped rather than given the attribute so the print rule
+                applies without the band having to know it can be printed. */}
+            <div data-print="hide">
+              <CheckoutBand
+                identity={{ kind: "session" }}
+                hasLockedFinals={lockedBlueprint.sections.some((section) => section.locked)}
+              />
+            </div>
           </>
         ) : reports.length > 0 ? (
           reports.map((report) => (
@@ -116,7 +125,9 @@ function PortalPage() {
             section the session's RLS read can see, so the card exists only
             downstream of the paywall — before payment the set is empty and
             it renders nothing. */}
-        <IntakeCard questions={intake.questions} />
+        <div data-print="hide">
+          <IntakeCard questions={intake.questions} />
+        </div>
       </div>
     </section>
   );

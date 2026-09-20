@@ -1,6 +1,7 @@
 import type { ClientPage } from "@/lib/client-portal/tokens";
 
-import { BlueprintSections } from "./blueprint/blueprint-sections";
+import { BlueprintDocument } from "./blueprint/blueprint-document";
+import { PrintButton } from "./blueprint/print-button";
 
 /**
  * One client's reports under their single URL.
@@ -24,11 +25,14 @@ export function ClientReports({ page }: { page: ClientPage }) {
   if (page.sections?.length) {
     return (
       <div className="w-full">
-        <div className="mx-auto w-full max-w-[1180px] px-6 pt-12 sm:px-8">
-          <p className="eyebrow">Private client page</p>
-          <h1 className="type-h3-caps-light mt-3">{page.title}</h1>
+        <div className="mx-auto flex w-full max-w-[1180px] flex-wrap items-end justify-between gap-4 px-6 pt-12 sm:px-8">
+          <div>
+            <p className="eyebrow">Private client page</p>
+            <h1 className="type-h3-caps-light mt-3">{page.title}</h1>
+          </div>
+          <PrintButton />
         </div>
-        <BlueprintSections sections={page.sections} />
+        <BlueprintDocument sections={page.sections} variant="portal" />
       </div>
     );
   }

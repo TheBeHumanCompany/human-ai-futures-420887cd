@@ -9,7 +9,7 @@ import { INDIGENOUS_LINE } from "@/lib/brand";
  */
 export function PortalFooter() {
   return (
-    <footer className="section-ink border-t border-border">
+    <footer data-print="hide" className="section-ink border-t border-border">
       <div className="mx-auto max-w-[1400px] px-5 py-10 sm:px-8">
         <p
           data-brand="indigenous-line"

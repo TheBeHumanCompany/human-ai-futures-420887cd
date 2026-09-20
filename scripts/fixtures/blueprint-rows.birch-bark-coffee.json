@@ -1,0 +1,449 @@
+[
+  {
+    "id": "bbc00000-0000-4000-8000-000000000000",
+    "section_key": "hero",
+    "ordinal": 0,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "Birch Bark Coffee Company",
+    "band": "hero",
+    "body": {
+      "blocks": [
+        {
+          "type": "title",
+          "company": "Birch Bark Coffee Company",
+          "thesis": "A federal Indigenous-procurement mandate, an escalating Canada–U.S. tariff cycle, and an unresolved First Nations water crisis are converging in the same season Mark Marsolais-Nahwegahbow is deciding how far to push Birch Bark's institutional and retail growth — the window for turning \"storytelling and word of mouth\" into a systematic institutional pipeline is open now, but it will not stay open on its own.",
+          "preparedFor": "Mark Marsolais-Nahwegahbow, Founder, Birch Bark Coffee Company Inc.",
+          "preparedBy": "The Be Human Company",
+          "assessmentDate": "2026-09-17",
+          "purpose": "Demonstrate the strategic value of a Be Human engagement by exploring how Birch Bark Coffee Company could convert its mission-driven brand and existing institutional relationships into a more deliberate, less improvised growth engine.",
+          "disclaimer": "This preliminary blueprint demonstration draws on the supplied conversation and selected external research. It offers an initial view of opportunities we could explore together. The final blueprint is developed separately once you subscribe or pay for an engagement with The Be Human Company. The ideas here remain preliminary and require internal discovery and validation."
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000001",
+    "section_key": "s01",
+    "ordinal": 1,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "The strategic window",
+    "band": "prose",
+    "body": {
+      "blocks": [
+        {
+          "type": "prose",
+          "paragraphs": [
+            "Mark told Shane James on The People Driven CEO Podcast that Birch Bark grew \"kind of like went through the floodgates\" without a pitch deck, marketing strategy, or business plan (transcript:birch-bark-coffee-mark-marcello-wegwans.txt, ~05:23; E025–E026), that the company had recently moved its roasting relationship from the Atlantic region to Ontario for cost and distribution reasons (~16:59; E058–E069), and that a food-insecurity initiative was still \"behind the scenes\" and not yet launched (~18:48; E073–E074). Those are direct statements from the conversation, not independent verification.",
+            "Trade policy is actively squeezing the U.S. market Mark said he wants to re-enter. The Coffee Association of Canada's own trade bulletin shows the U.S. imposing new 50% tariffs on a range of Canadian goods effective August 19, 2026 — weeks before this conversation — layered on top of a volatile 2025–2026 tariff cycle. Mark's comment that \"with the trade wars, it's been a bit hard to get the coffee over there\" (~01:11:54; E245) is corroborated by this timeline, not merely asserted.",
+            "The founding mission — clean water in First Nations communities — remains unresolved, not historical. Indigenous Services Canada's advisory tracker lists dozens of active long-term boil-water and do-not-consume advisories across Manitoba, Saskatchewan, and Ontario, several issued as recently as 2024–2025. The brand's founding story is not a completed chapter; it is an active, ongoing claim on customers' and partners' attention.",
+            "Federal and corporate Indigenous-procurement commitments are a live institutional tailwind. Indigenous Services Canada describes a \"Mandatory Minimum 5%\" federal Indigenous-procurement target introduced in 2021 — a policy signal that aligns with Birch Bark's own newly worded wholesale positioning, which now explicitly pitches \"Indigenous procurement commitments and reconciliation goals\" to corporate offices, government departments and agencies, and hospitals and healthcare facilities (birchbarkcoffeecompany.com/pages/wholesale, fetched this task).",
+            "Distinguishing sources: the tariff timeline and water-advisory data are direct government/industry-source observations made during this task. The institutional-procurement tailwind is a documented federal policy. The AI-adoption framing is host commentary and is treated as a hypothesis, not a client fact."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000002",
+    "section_key": "s02",
+    "ordinal": 2,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "Strategic opportunities inside the business",
+    "band": "opportunities",
+    "body": {
+      "blocks": [
+        {
+          "type": "opportunity",
+          "label": "Opportunity A",
+          "title": "Formalize the institutional channel around Indigenous-procurement compliance",
+          "bullets": [
+            {
+              "label": "Signal",
+              "text": "Birch Bark's own wholesale page now targets corporate offices and boardrooms, universities and colleges, hotels and hospitality, government departments and agencies, and hospitals and healthcare facilities, and explicitly ties purchase decisions to \"ESG reporting\" — a direct evolution from the ad hoc growth Mark described (~22:39–26:34; E089–E103), where \"everybody came to me\" rather than a deliberate sales motion."
+            },
+            {
+              "label": "Implication",
+              "text": "The federal 5% Indigenous-procurement target and growing corporate ESG commitments create a demand pull Birch Bark is already positioned for but has not, by Mark's own account, systematically pursued."
+            },
+            {
+              "label": "Proposed action",
+              "text": "Explore, in paid discovery, whether a repeatable qualification and documentation process for government and enterprise coffee bids could reduce the trial-and-error Mark described in the institutional-placement economics."
+            },
+            {
+              "label": "Assumption to validate",
+              "text": "Current win rate, actual contract volume with named partners, and margin structure are not publicly documented and were not confirmed beyond partial secondary mentions."
+            }
+          ]
+        },
+        {
+          "type": "opportunity",
+          "label": "Opportunity B",
+          "title": "Prepare a launch story for Wiisiniwin before it goes live",
+          "bullets": [
+            {
+              "label": "Signal",
+              "text": "Mark said food-insecurity work was happening \"behind the scenes\" and \"not yet launched\" (~18:48; E073–E074). The company's own Foundation page agrees: a second stream of giving for campus food security is not running yet, and its name is Wiisiniwin."
+            },
+            {
+              "label": "Implication",
+              "text": "That is itself the opportunity: a launch-ready growth story — metrics framework, campus-procurement narrative, distribution plan — could be built now so it is ready the moment the second giving stream goes live, rather than assembled after the fact."
+            },
+            {
+              "label": "Proposed action",
+              "text": "Consider preparing Wiisiniwin's story and campus-procurement pitch ahead of its actual launch, so it can ship day-one rather than be retrofitted."
+            },
+            {
+              "label": "Assumption to validate",
+              "text": "Wiisiniwin's actual launch timeline, planned participation model, and funding mechanism are not publicly disclosed and are a clear discovery question."
+            }
+          ]
+        },
+        {
+          "type": "opportunity",
+          "label": "Opportunity C",
+          "title": "Build the retail Indigenous-aisle advocacy into a data-backed retailer pitch",
+          "bullets": [
+            {
+              "label": "Signal",
+              "text": "Mark stated a clear ambition — \"let us populate one aisle... where the planogram says here's all Indigenous food\" (~01:06:14–01:07:47; E223, E226) — and described actively challenging Costco on rotation policy while working with the Canadian Council for Indigenous Business (ccib.ca)."
+            },
+            {
+              "label": "Implication",
+              "text": "Costco's Fall 2024 launch of Birch Bark and the CCIB relationship are real building blocks, but no public evidence was found of a retailer adopting a dedicated Indigenous aisle."
+            },
+            {
+              "label": "Proposed action",
+              "text": "Discovery could assess what evidence — sales data, consumer research, other CCIB member outcomes — would make this pitch land with a national retailer."
+            },
+            {
+              "label": "Assumption to validate",
+              "text": "No retailer commitment currently exists; this is Mark's stated goal, not a confirmed retail outcome."
+            }
+          ]
+        },
+        {
+          "type": "opportunity",
+          "label": "Opportunity D",
+          "title": "Treat U.S. re-entry as a monitored, not immediate, opportunity",
+          "bullets": [
+            {
+              "label": "Signal",
+              "text": "The Coffee Association of Canada's tariff timeline shows a volatile, still-escalating trade environment through mid-2026, directly corroborating Mark's own comment about trade-war friction (~01:11:54; E245)."
+            },
+            {
+              "label": "Proposed action",
+              "text": "Rather than push U.S. expansion now, discovery could define what tariff or policy conditions would need to change before re-entry makes economic sense, and prioritize the domestic institutional and retail channels in the meantime."
+            },
+            {
+              "label": "Expected benefit",
+              "text": "Avoids repeating the earlier lesson Mark described from over-committing to the Atlantic-region roasting arrangement before understanding the full cost structure (~09:53–16:59; E058–E069)."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000003",
+    "section_key": "s03",
+    "ordinal": 3,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "The scalability and economics story",
+    "band": "prose",
+    "body": {
+      "blocks": [
+        {
+          "type": "prose",
+          "paragraphs": [
+            "Birch Bark is already structurally capital-light on the production side: Mark said early on he \"couldn't afford a roasting machine\" and chose e-commerce over brick-and-mortar for that reason (~09:53; E040), and the company's roasting is now handled by Reunion Coffee Roasters, described as a Certified B Corporation. The scaling challenge Mark actually described was not manufacturing capacity — it was demand-side economics.",
+            "Mark was candid about this: placing coffee in a single institutional cafe section cost roughly $1,500 up front, with no return in year one and a roughly two-year payback (~42:10–43:13; E145–E147). He said that multiplying this across \"40\" locations forced him to \"restructure\" his entire financial plan (~43:13; E148–E149). We do not have Birch Bark's actual margin, headcount, or financing data, and none is invented here; a paid engagement would need to establish these before recommending any specific capital plan."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000004",
+    "section_key": "s04",
+    "ordinal": 4,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "The priority operating capability",
+    "band": "prose",
+    "body": {
+      "blocks": [
+        {
+          "type": "prose",
+          "paragraphs": [
+            "The highest-priority capability to explore is an institutional-opportunity monitoring and qualification capability — a way of continuously tracking where Birch Bark's mission and certifications intersect with active buying signals, and turning that into a short list of qualified conversations rather than waiting for inbound interest (~22:39; E087–E088).",
+            "Illustratively, such a capability would draw on public procurement postings, university sustainability commitments, and trade-policy bulletins; it would produce short briefing summaries for Mark or his team to review; and the decisions about which opportunities to pursue, how to price them, and how to represent the brand would remain entirely human-led. This is a concept for discussion, not a specification."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000005",
+    "section_key": "s05",
+    "ordinal": 5,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "Proprietary data and organizational intelligence",
+    "band": "findings",
+    "body": {
+      "blocks": [
+        {
+          "type": "finding",
+          "kind": "fact",
+          "claim": "Up to 5% of net income goes annually to the Birch Bark Coffee Foundation — one live giving mechanism, confirmed on the company's own wholesale and Foundation pages.",
+          "verification": "primary source re-fetched 2026-09-17",
+          "supportingExcerpts": ["\"up to five percent of net income\" to the Foundation Fund."]
+        },
+        {
+          "type": "finding",
+          "kind": "fact",
+          "claim": "A second stream, Wiisiniwin (campus food security), is named and planned but explicitly not yet running.",
+          "verification": "Foundation page, fetched 2026-09-17",
+          "supportingExcerpts": [
+            "\"We are working toward a second stream of giving for campus food security. It is not running yet.\""
+          ]
+        },
+        {
+          "type": "finding",
+          "kind": "estimate",
+          "claim": "A multi-year list of institutional and retail relationships exists — roughly 35–40 universities and colleges, Sobeys, Loblaws, Costco, the Toronto Zoo, and named foodservice partners.",
+          "verification": "conversation plus the company's own wholesale page"
+        },
+        {
+          "type": "finding",
+          "kind": "hypothesis",
+          "claim": "Itemized Foundation distribution totals, a record of which institutional bids succeeded or failed and why, and any retailer response to the Indigenous-aisle pitch would need to be collected — none was available in the supplied sources or public search.",
+          "verification": "gap flagged by prior research and still open"
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000006",
+    "section_key": "s06",
+    "ordinal": 6,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "Customer, community, and ecosystem intelligence",
+    "band": "prose",
+    "body": {
+      "blocks": [
+        {
+          "type": "prose",
+          "paragraphs": [
+            "The most relevant feedback loops are institutional and community-based rather than shareholder-based — this is a privately held company with no evidence of external investment found in this research. Existing relationships worth exploring for structured feedback include university sustainability offices, the seven Indigenous-serving organizations supported through the Birch Bark Foundation, and Birch Bark's own CCIB membership network.",
+            "Any use of these relationships for structured feedback or co-marketing would need explicit consent and a clear data-ownership agreement with each partner; none is assumed here."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000007",
+    "section_key": "s07",
+    "ordinal": 7,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "Human capability and governance",
+    "band": "prose",
+    "body": {
+      "blocks": [
+        {
+          "type": "prose",
+          "paragraphs": [
+            "Mark was explicit that his voice, not an automated one, should represent the brand: \"I train it to really understand who I am as an individual, as a human. And I tell them that I do not want an AI approach. I want my approach\" (~49:30; E174). He also described consulting elders before finalizing product names (~29:34; E119) and framing the Seven Grandfather Teachings as the foundation's guiding structure.",
+            "Any future capability should keep relationship judgment, pricing decisions, cultural and Elder consultation, and public storytelling firmly with Mark and his team; the role of any outside capability is to surface information and reduce manual search effort, not to make commitments on the company's behalf."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000008",
+    "section_key": "s08",
+    "ordinal": 8,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "Recommended sequence and measures of value",
+    "band": "prose",
+    "body": {
+      "blocks": [
+        {
+          "type": "prose",
+          "paragraphs": [
+            "An illustrative path — not a committed plan — would start with paid discovery to establish a baseline: current institutional contract volume and economics, actual Foundation and Wiisiniwin distribution totals, and Birch Bark's real exposure to further U.S. tariff escalation. From that baseline, a final blueprint could define which opportunities to prioritize.",
+            "Candidate measures of value to test during discovery include institutional and government contract win rate, campus footprint growth against the \"over 35\" figure now published by the company, dollars distributed through the Foundation and Wiisiniwin per year, and any measurable retailer response to the Indigenous-aisle pitch."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000009",
+    "section_key": "s09",
+    "ordinal": 9,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "The future-state thesis and strategic question",
+    "band": "question",
+    "body": {
+      "blocks": [
+        {
+          "type": "question",
+          "question": "What would it take for Birch Bark's mission-driven story — not just its coffee — to become the default, evidence-backed choice for every buyer with a reconciliation or ESG commitment?"
+        },
+        {
+          "type": "prose",
+          "paragraphs": [
+            "These changes, if pursued and validated, could support an organization where Birch Bark's institutional relationships are built on a repeatable, documented case rather than word of mouth alone; where the Wiisiniwin campus food-security story is as visible to procurement decision-makers as the coffee itself; and where the Indigenous-aisle ambition Mark described is backed by evidence a retailer can act on. None of this outcome is guaranteed."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000010",
+    "section_key": "s10",
+    "ordinal": 10,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "Assumptions and questions to validate",
+    "band": "questions",
+    "body": {
+      "blocks": [
+        {
+          "type": "unknown",
+          "text": "Mark's claim that coffee is \"the second most sold commodity in the world\" (~05:23; E027–E028) is stated without a cited methodology or timeframe; treat it as his own framing, not verified market data."
+        },
+        {
+          "type": "unknown",
+          "text": "The transcript's water-mandate timeline is internally uncertain — the \"634 nations\" figure and the exact original mandate date were not independently confirmed (~09:53; E043–E044) and should not be repeated as precise facts."
+        },
+        {
+          "type": "unknown",
+          "text": "The $1,500-per-location institutional placement economics and two-year payback (~42:10–43:13; E145–E149) are self-reported and not corroborated by any institutional contract document."
+        },
+        {
+          "type": "unknown",
+          "text": "Mark's statement that he works with Sodexo, Aramark and Compass Group (~25:23; E103) was not independently confirmed to a documented contract in this research."
+        },
+        {
+          "type": "unknown",
+          "text": "Exact current Foundation Fund and Wiisiniwin distribution totals, current headquarters, team size and organizational structure remain undisclosed."
+        },
+        {
+          "type": "unknown",
+          "text": "Whether any retailer has committed to a dedicated Indigenous product aisle — no evidence was found either way."
+        },
+        {
+          "type": "unknown",
+          "text": "Current U.S. distribution status and Birch Bark's specific tariff exposure: general industry impact is documented; company-specific impact is not."
+        },
+        {
+          "type": "unknown",
+          "text": "New hypothesis, not verified: that a more systematic institutional-opportunity qualification capability would materially improve win rate or reduce capital strain."
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000011",
+    "section_key": "s11",
+    "ordinal": 11,
+    "tier": "preliminary",
+    "status": "published",
+    "title": "Research basis and sources",
+    "band": "sources",
+    "body": {
+      "blocks": [
+        {
+          "type": "source",
+          "label": "Coffee Association of Canada — tariff updates and resources (entry dated 2026-07-22)",
+          "url": "https://coffeeassoc.com/tariff-updates-resources/"
+        },
+        {
+          "type": "source",
+          "label": "Indigenous Services Canada — active long-term drinking water advisories (page modified 2026-09-01)",
+          "url": "https://www.sac-isc.gc.ca/eng/1614387410146/1614387435325"
+        },
+        {
+          "type": "source",
+          "label": "Birch Bark Coffee Company — wholesale",
+          "url": "https://birchbarkcoffeecompany.com/pages/wholesale"
+        },
+        {
+          "type": "source",
+          "label": "Birch Bark Coffee Company — founder, Mark Marsolais-Nahwegahbow",
+          "url": "https://birchbarkcoffeecompany.com/pages/founder-mark-marsolais-nahwegahbow"
+        },
+        {
+          "type": "source",
+          "label": "Anishinabek News — First Nation entrepreneur delivers powerful message of having purpose at Toronto forum (2026-03)",
+          "url": "https://anishinabeknews.ca/2026/03/first-nation-entrepreneur-delivers-powerful-message-of-having-purpose-at-toronto-forum/"
+        },
+        {
+          "type": "source",
+          "label": "Humber College — Indigenous-owned Birch Bark Coffee now available at Humber College (2022-10-25)",
+          "url": "https://humber.ca/today/news/indigenous-owned-birch-bark-coffee-now-available-humber-college"
+        },
+        {
+          "type": "source",
+          "label": "CoffeeTalk — Birch Bark launching in select Costco locations nationwide (2024-09-17)",
+          "url": "https://coffeetalk.com/daily-dose/announcements/09-2024/104590/"
+        },
+        {
+          "type": "source",
+          "label": "Supplied podcast transcript, evidence-notes index, prior research report and prior-sources evidence file (not publicly linkable)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000012",
+    "section_key": "s12",
+    "ordinal": 12,
+    "tier": "final",
+    "status": "published",
+    "title": "The institutional qualification playbook",
+    "teaser": "The qualification questions, the documentation pack, and the bid calendar — built against Birch Bark's own win/loss record.",
+    "band": "prose",
+    "body": {
+      "blocks": [
+        {
+          "type": "prose",
+          "paragraphs": [
+            "PAID-SECTION-BODY: the qualification rubric, scored against the last twelve institutional bids, with the documentation pack each tier of buyer asks for."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbc00000-0000-4000-8000-000000000013",
+    "section_key": "s13",
+    "ordinal": 13,
+    "tier": "final",
+    "status": "published",
+    "title": "Wiisiniwin launch sequence",
+    "teaser": "What has to exist on launch day, in the order it binds, and who owns each piece.",
+    "band": "playbook",
+    "body": {
+      "blocks": [
+        {
+          "type": "playbookRef",
+          "playbookId": "campus-procurement-launch",
+          "note": "PAID-SECTION-BODY: the campus-procurement launch playbook, sequenced against the Foundation's own reporting calendar."
+        }
+      ]
+    }
+  }
+]

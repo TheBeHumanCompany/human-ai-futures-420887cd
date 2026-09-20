@@ -7,7 +7,7 @@ import {
   type BlueprintSection,
 } from "@/lib/client-portal/blueprint-schema";
 
-import { BlueprintSections } from "./blueprint-sections";
+import { BlueprintSections, groundsFor } from "./blueprint-sections";
 
 /**
  * Rendered with `react-dom/server`, the same idiom as `client-reports.test.tsx`:
@@ -151,5 +151,103 @@ describe("bands", () => {
     const html = render(true);
     expect(html).toContain('id="section-operating-reality"');
     expect(html).toContain('id="section-implementation"');
+  });
+});
+
+describe("the ground rule, ported from the designed deliverable", () => {
+  const band = (band: string, ordinal: number) =>
+    parseSections([
+      {
+        id: `g${ordinal}`,
+        section_key: `g${ordinal}`,
+        ordinal,
+        tier: "preliminary",
+        title: `G${ordinal}`,
+        band,
+        body: {},
+      },
+    ])[0]!;
+
+  /** The canonical eleven-section template, in order. */
+  const TEMPLATE = [
+    "prose",
+    "opportunities",
+    "prose",
+    "prose",
+    "findings",
+    "prose",
+    "prose",
+    "prose",
+    "question",
+    "questions",
+    "sources",
+  ].map((name, index) => band(name, index + 1));
+
+  test("the four fixed registers keep their ground", () => {
+    const grounds = groundsFor(TEMPLATE);
+    expect(grounds[1]).toBe("ink"); // opportunities
+    expect(grounds[8]).toBe("ink"); // question
+    expect(grounds[9]).toBe("cream"); // questions
+    expect(grounds[10]).toBe("ink"); // sources
+  });
+
+  test("two cream bands never touch — they would read as one over-long band", () => {
+    const grounds = groundsFor(TEMPLATE);
+    const adjacentCream = grounds.filter(
+      (ground, index) => index > 0 && ground === "cream" && grounds[index - 1] === "cream",
+    );
+    expect(adjacentCream).toEqual([]);
+  });
+
+  test("alternation is measured against the ink hero, so band 1 is cream", () => {
+    expect(groundsFor(TEMPLATE)[0]).toBe("cream");
+  });
+
+  test("a cream band that would collide with the fixed cream register falls to ink", () => {
+    // prose, prose, questions(cream): the second prose would alternate to
+    // cream and butt against the fixed cream band, so it takes ink instead.
+    const grounds = groundsFor([band("prose", 1), band("prose", 2), band("questions", 3)]);
+    expect(grounds).toEqual(["cream", "ink", "cream"]);
+  });
+});
+
+describe("the hero band and the grids", () => {
+  const sections = parseSections([
+    {
+      id: "h1",
+      section_key: "hero",
+      ordinal: 0,
+      tier: "preliminary",
+      title: "Masthead",
+      band: "hero",
+      body: { blocks: [{ type: "title", company: "Acme", thesis: "T" }] },
+    },
+    {
+      id: "h2",
+      section_key: "s10",
+      ordinal: 10,
+      tier: "preliminary",
+      title: "Assumptions",
+      band: "questions",
+      body: {
+        blocks: [
+          { type: "unknown", text: "UNKNOWN-ONE" },
+          { type: "unknown", text: "UNKNOWN-TWO" },
+        ],
+      },
+    },
+  ]);
+
+  test("the hero row is not rendered here — it is the document's masthead", () => {
+    const html = renderToStaticMarkup(<BlueprintSections sections={sections} />);
+    expect(html).not.toContain("Masthead");
+    expect(html).not.toContain('id="section-hero"');
+  });
+
+  test("the questions band is a grid of items, not a reading column", () => {
+    const html = renderToStaticMarkup(<BlueprintSections sections={sections} />);
+    expect(html).toContain("UNKNOWN-ONE");
+    expect(html).toContain("UNKNOWN-TWO");
+    expect(html).toMatch(/<ul class="[^"]*grid[^"]*grid-cols-2/);
   });
 });

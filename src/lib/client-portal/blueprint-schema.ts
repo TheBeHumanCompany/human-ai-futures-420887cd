@@ -33,12 +33,22 @@
 export type BlueprintTier = "preliminary" | "final";
 
 /** Known bands. Kept as a union of string literals WIDENED to string so an
- *  unrecognised band parses and renders through the fallback. */
+ *  unrecognised band parses and renders through the fallback.
+ *
+ *  `hero` is the one band with a fixed shape: exactly one `title` block and no
+ *  others. `BlueprintDocument` renders it as the document's masthead and
+ *  `BlueprintSections` skips it, so a `hero` row carrying anything else would
+ *  render as nothing at all.
+ *
+ *  `question` and `questions` are different bands and the plural is not a typo:
+ *  `question` is section 9's single full-bleed strategic question, `questions`
+ *  is section 10's grid of open assumptions to validate. */
 export const KNOWN_BANDS = [
   "hero",
   "findings",
   "opportunities",
   "question",
+  "questions",
   "unknowns",
   "sources",
   "prose",
@@ -46,6 +56,25 @@ export const KNOWN_BANDS = [
 ] as const;
 
 export type KnownBand = (typeof KNOWN_BANDS)[number];
+
+/**
+ * The title block of a blueprint: the hero band's only content.
+ *
+ * Every field is authored by the exporter from the draft's opening block, so
+ * the masthead is data like every other band rather than markup the renderer
+ * hardcodes. `disclaimer` is optional because a final blueprint does not carry
+ * the preliminary's "not the final blueprint" line.
+ */
+export interface TitleBlock {
+  type: "title";
+  company: string;
+  thesis: string;
+  preparedFor: string;
+  preparedBy: string;
+  assessmentDate: string;
+  purpose: string;
+  disclaimer?: string;
+}
 
 export interface FindingBlock {
   type: "finding";
@@ -125,6 +154,7 @@ export interface UnrecognisedBlock {
 }
 
 export type Block =
+  | TitleBlock
   | FindingBlock
   | OpportunityBlock
   | ProseBlock
@@ -154,6 +184,8 @@ export interface BlueprintSection {
 /* Parsing — hand-rolled narrowing, matching `supabase-clerk.ts`.       */
 /* ------------------------------------------------------------------ */
 
+import { stripLocators } from "./locators";
+
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
 
@@ -163,8 +195,28 @@ const isNonEmptyString = (value: unknown): value is string =>
 /** Keeps every block that has a usable `type`; drops only malformed entries. */
 export const parseBlocks = (value: unknown): Block[] => {
   if (!Array.isArray(value)) return [];
-  return value.filter((block): block is Block => isRecord(block) && isNonEmptyString(block.type));
+  return value
+    .filter((block): block is Block => isRecord(block) && isNonEmptyString(block.type))
+    .map((block) => {
+      // Locators are internal grounding (US-007): stripped once here, the
+      // single funnel every served block passes through, so no renderer has
+      // to know about them and the stored rows keep theirs. The `type`
+      // discriminator can never match a locator parenthetical, so the deep
+      // walk is safe over it.
+      const stripped = stripDeep(block as JsonValue);
+      return stripped as Block;
+    });
 };
+
+/** Applies `stripLocators` to every string in a JSON tree. */
+const stripDeep = (value: JsonValue): JsonValue =>
+  typeof value === "string"
+    ? stripLocators(value)
+    : Array.isArray(value)
+      ? value.map(stripDeep)
+      : value !== null && typeof value === "object"
+        ? Object.fromEntries(Object.entries(value).map(([key, child]) => [key, stripDeep(child)]))
+        : value;
 
 /** One Postgres row, as PostgREST returns it. */
 export interface BlueprintSectionRow {

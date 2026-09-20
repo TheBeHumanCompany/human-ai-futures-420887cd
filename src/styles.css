@@ -669,3 +669,62 @@
     opacity: 1;
   }
 }
+
+/* ── Print ───────────────────────────────────────────────────────────────── */
+/*
+   The blueprint is designed as a full-bleed editorial page with a sticky
+   header; on paper nothing is fixed, the bands lay out at the sheet's width,
+   and the ink/cream grounds must actually ink — a browser drops background
+   colour by default, which would print an ink band as white text on white
+   paper. Ported from `podcasts/src/podcasts/gtm_blueprint.py:663-671`, which
+   mirrors the design system's own `ui_kits/website/index-print.html`.
+
+   This block is what makes the client's own Save-as-PDF and the operator's
+   `bun run blueprint:export --pdf` produce the same document: the script
+   prints this stylesheet, so there is one set of print rules, not two.
+*/
+@media print {
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Controls and chrome that have no meaning on paper — the Save-as-PDF
+     button itself first among them. */
+  [data-print="hide"] {
+    display: none !important;
+  }
+
+  header {
+    position: static !important;
+    box-shadow: none !important;
+  }
+
+  section,
+  footer {
+    padding-top: 36px !important;
+    padding-bottom: 36px !important;
+  }
+
+  li,
+  h1,
+  h2,
+  h3 {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+}

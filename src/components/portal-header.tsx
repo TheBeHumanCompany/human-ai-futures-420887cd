@@ -34,7 +34,7 @@ const controlTestId: Record<string, string> = {
  */
 export function PortalHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background">
+    <header data-print="hide" className="sticky top-0 z-50 border-b border-border bg-background">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-5 py-4 sm:px-8">
         <span className="type-wordmark text-foreground">THE BE HUMAN COMPANY</span>
         <nav aria-label="Primary" className="flex items-center gap-3">

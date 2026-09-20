@@ -83,8 +83,25 @@ const Prose = ({ block }: { block: ProseBlock }) => (
   </>
 );
 
+/**
+ * The strategic question sizes itself against its own length, the rule the
+ * hand-authored page uses (`gtm_blueprint.py:481-486`). A fixed step is the
+ * defect it removes: the same size that makes a twelve-word question the
+ * page's full-bleed moment turns a fifty-word one into a wall that overruns
+ * the band. Three steps, and the measure widens with each, so the block keeps
+ * roughly the same shape whatever the generator writes.
+ */
+const questionSize = (question: string) =>
+  question.length < 140
+    ? "type-h2-caps-light max-w-[34ch]"
+    : question.length < 260
+      ? "type-h3-caps-light max-w-[40ch]"
+      : "type-h4-caps-light max-w-[46ch]";
+
 const Question = ({ block }: { block: QuestionBlock }) => (
-  <blockquote className="type-h3-caps-light max-w-[24ch] text-balance">{block.question}</blockquote>
+  <blockquote className={`${questionSize(block.question)} text-balance`}>
+    {block.question}
+  </blockquote>
 );
 
 const UnknownItem = ({ block }: { block: UnknownItemBlock }) => (
@@ -144,3 +161,25 @@ export function BlueprintBlock({ block }: { block: Block }) {
 
 /** Bands whose children are list items, so the wrapper element matches. */
 export const LIST_BANDS = new Set(["findings", "unknowns", "sources"]);
+
+/**
+ * Every block type this build actually draws — the switch above, plus `title`,
+ * which `hero.tsx` draws instead.
+ *
+ * The portal renders an unknown block as nothing, which is the right answer
+ * for a live page that must not break on a row from a newer generator. It is
+ * the wrong answer for an operator artifact: a blueprint exported with a
+ * silently dropped block is a file that gets emailed to a client with a
+ * section missing. `scripts/export-blueprint.ts` refuses on anything absent
+ * from this set, and the set lives here so it cannot drift from the switch.
+ */
+export const RENDERED_BLOCK_TYPES: ReadonlySet<string> = new Set([
+  "title",
+  "finding",
+  "opportunity",
+  "prose",
+  "question",
+  "unknown",
+  "source",
+  "playbookRef",
+]);
