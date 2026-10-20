@@ -43,6 +43,18 @@ export interface SanityEpisode extends EpisodeListItem {
   guid: string;
   description: string;
   guestBio: string | null;
+  /**
+   * Optional external links, authored per episode in Studio. Each renders only
+   * when populated; when all six are null the links area is hidden entirely.
+   * Detail page only — deliberately not on `EpisodeListItem`, so the directory
+   * payload does not pay for fields it never renders.
+   */
+  businessWebsiteUrl: string | null;
+  guestInstagramUrl: string | null;
+  companyInstagramUrl: string | null;
+  facebookUrl: string | null;
+  guestLinkedinUrl: string | null;
+  companyLinkedinUrl: string | null;
   podbeanUrl: string;
   searchText: string;
   slugFrozenAt: string | null;

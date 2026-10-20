@@ -177,6 +177,65 @@ export const episode = defineType({
       ],
     }),
 
+    /* ---------- guest links ----------
+     * All optional, all empty by default: a link renders on the episode page
+     * only when its field has a value, and the whole links area disappears
+     * when every one is empty. Paste verified URLs here and publish — the
+     * site picks the change up with no code edit. */
+
+    defineField({
+      name: 'businessWebsiteUrl',
+      title: 'Business website URL',
+      description: 'Shown as "VISIT [BUSINESS NAME] ↗" below the guest bio. Leave empty to hide.',
+      type: 'url',
+      group: 'guest',
+      validation: (rule) => rule.uri({scheme: ['https']}),
+    }),
+
+    defineField({
+      name: 'guestInstagramUrl',
+      title: 'Guest Instagram URL',
+      description: 'The guest’s personal Instagram. Shown as "[GUEST NAME] ON INSTAGRAM ↗".',
+      type: 'url',
+      group: 'guest',
+      validation: (rule) => rule.uri({scheme: ['https']}),
+    }),
+
+    defineField({
+      name: 'companyInstagramUrl',
+      title: 'Company Instagram URL',
+      description: 'The business’s Instagram, independent of the guest’s personal account.',
+      type: 'url',
+      group: 'guest',
+      validation: (rule) => rule.uri({scheme: ['https']}),
+    }),
+
+    defineField({
+      name: 'facebookUrl',
+      title: 'Facebook URL',
+      type: 'url',
+      group: 'guest',
+      validation: (rule) => rule.uri({scheme: ['https']}),
+    }),
+
+    defineField({
+      name: 'guestLinkedinUrl',
+      title: 'Guest LinkedIn URL',
+      description: 'The guest’s personal LinkedIn. Shown as "[GUEST NAME] ON LINKEDIN ↗".',
+      type: 'url',
+      group: 'guest',
+      validation: (rule) => rule.uri({scheme: ['https']}),
+    }),
+
+    defineField({
+      name: 'companyLinkedinUrl',
+      title: 'Company LinkedIn URL',
+      description: 'The business’s LinkedIn, independent of the guest’s personal account.',
+      type: 'url',
+      group: 'guest',
+      validation: (rule) => rule.uri({scheme: ['https']}),
+    }),
+
     defineField({
       name: 'guestKey',
       title: 'Guest key',
