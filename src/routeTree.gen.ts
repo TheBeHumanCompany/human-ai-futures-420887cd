@@ -9,71 +9,31 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WhyWeExistRouteImport } from './routes/why-we-exist'
-import { Route as WhoWeAreRouteImport } from './routes/who-we-are'
-import { Route as TypeSpecimenRouteImport } from './routes/type-specimen'
-import { Route as TheNewHumanEraRouteImport } from './routes/the-new-human-era'
-import { Route as TheHumanArchiveRouteImport } from './routes/the-human-archive'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as PortalRouteImport } from './routes/portal'
-import { Route as PodcastRouteImport } from './routes/podcast'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AboutTheFounderRouteImport } from './routes/about-the-founder'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BeHumanAiIndexRouteImport } from './routes/be-human-ai/index'
-import { Route as SignUpSplatRouteImport } from './routes/sign-up.$'
-import { Route as SignInSplatRouteImport } from './routes/sign-in.$'
-import { Route as ProfileSplatRouteImport } from './routes/profile.$'
-import { Route as PodcastSlugRouteImport } from './routes/podcast_.$slug'
-import { Route as CTokenRouteImport } from './routes/c.$token'
-import { Route as AuditSuccessRouteImport } from './routes/audit/success'
-import { Route as AuditCancelledRouteImport } from './routes/audit/cancelled'
-import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe-webhook'
+import { Route as AboutTheFounderRouteImport } from './routes/about-the-founder'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as PodcastRouteImport } from './routes/podcast'
+import { Route as PortalRouteImport } from './routes/portal'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TheHumanArchiveRouteImport } from './routes/the-human-archive'
+import { Route as TheNewHumanEraRouteImport } from './routes/the-new-human-era'
+import { Route as TypeSpecimenRouteImport } from './routes/type-specimen'
+import { Route as WhoWeAreRouteImport } from './routes/who-we-are'
+import { Route as WhyWeExistRouteImport } from './routes/why-we-exist'
 import { Route as ApiAuditCheckoutRouteImport } from './routes/api/audit-checkout'
+import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe-webhook'
+import { Route as AuditCancelledRouteImport } from './routes/audit/cancelled'
+import { Route as AuditSuccessRouteImport } from './routes/audit/success'
+import { Route as BeHumanAiIndexRouteImport } from './routes/be-human-ai/index'
+import { Route as CTokenRouteImport } from './routes/c.$token'
+import { Route as PodcastSlugRouteImport } from './routes/podcast_.$slug'
+import { Route as ProfileSplatRouteImport } from './routes/profile.$'
+import { Route as SignInSplatRouteImport } from './routes/sign-in.$'
+import { Route as SignUpSplatRouteImport } from './routes/sign-up.$'
 
-const WhyWeExistRoute = WhyWeExistRouteImport.update({
-  id: '/why-we-exist',
-  path: '/why-we-exist',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WhoWeAreRoute = WhoWeAreRouteImport.update({
-  id: '/who-we-are',
-  path: '/who-we-are',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TypeSpecimenRoute = TypeSpecimenRouteImport.update({
-  id: '/type-specimen',
-  path: '/type-specimen',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TheNewHumanEraRoute = TheNewHumanEraRouteImport.update({
-  id: '/the-new-human-era',
-  path: '/the-new-human-era',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TheHumanArchiveRoute = TheHumanArchiveRouteImport.update({
-  id: '/the-human-archive',
-  path: '/the-human-archive',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PortalRoute = PortalRouteImport.update({
-  id: '/portal',
-  path: '/portal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PodcastRoute = PodcastRouteImport.update({
-  id: '/podcast',
-  path: '/podcast',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutTheFounderRoute = AboutTheFounderRouteImport.update({
@@ -81,49 +41,54 @@ const AboutTheFounderRoute = AboutTheFounderRouteImport.update({
   path: '/about-the-founder',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BeHumanAiIndexRoute = BeHumanAiIndexRouteImport.update({
-  id: '/be-human-ai/',
-  path: '/be-human-ai/',
+const PodcastRoute = PodcastRouteImport.update({
+  id: '/podcast',
+  path: '/podcast',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SignUpSplatRoute = SignUpSplatRouteImport.update({
-  id: '/sign-up/$',
-  path: '/sign-up/$',
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SignInSplatRoute = SignInSplatRouteImport.update({
-  id: '/sign-in/$',
-  path: '/sign-in/$',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileSplatRoute = ProfileSplatRouteImport.update({
-  id: '/profile/$',
-  path: '/profile/$',
+const TheHumanArchiveRoute = TheHumanArchiveRouteImport.update({
+  id: '/the-human-archive',
+  path: '/the-human-archive',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PodcastSlugRoute = PodcastSlugRouteImport.update({
-  id: '/podcast_/$slug',
-  path: '/podcast/$slug',
+const TheNewHumanEraRoute = TheNewHumanEraRouteImport.update({
+  id: '/the-new-human-era',
+  path: '/the-new-human-era',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CTokenRoute = CTokenRouteImport.update({
-  id: '/c/$token',
-  path: '/c/$token',
+const TypeSpecimenRoute = TypeSpecimenRouteImport.update({
+  id: '/type-specimen',
+  path: '/type-specimen',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuditSuccessRoute = AuditSuccessRouteImport.update({
-  id: '/audit/success',
-  path: '/audit/success',
+const WhoWeAreRoute = WhoWeAreRouteImport.update({
+  id: '/who-we-are',
+  path: '/who-we-are',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuditCancelledRoute = AuditCancelledRouteImport.update({
-  id: '/audit/cancelled',
-  path: '/audit/cancelled',
+const WhyWeExistRoute = WhyWeExistRouteImport.update({
+  id: '/why-we-exist',
+  path: '/why-we-exist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuditCheckoutRoute = ApiAuditCheckoutRouteImport.update({
+  id: '/api/audit-checkout',
+  path: '/api/audit-checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
@@ -131,9 +96,44 @@ const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
   path: '/api/stripe-webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiAuditCheckoutRoute = ApiAuditCheckoutRouteImport.update({
-  id: '/api/audit-checkout',
-  path: '/api/audit-checkout',
+const AuditCancelledRoute = AuditCancelledRouteImport.update({
+  id: '/audit/cancelled',
+  path: '/audit/cancelled',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditSuccessRoute = AuditSuccessRouteImport.update({
+  id: '/audit/success',
+  path: '/audit/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BeHumanAiIndexRoute = BeHumanAiIndexRouteImport.update({
+  id: '/be-human-ai/',
+  path: '/be-human-ai/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CTokenRoute = CTokenRouteImport.update({
+  id: '/c/$token',
+  path: '/c/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PodcastSlugRoute = PodcastSlugRouteImport.update({
+  id: '/podcast_/$slug',
+  path: '/podcast/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileSplatRoute = ProfileSplatRouteImport.update({
+  id: '/profile/$',
+  path: '/profile/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInSplatRoute = SignInSplatRouteImport.update({
+  id: '/sign-in/$',
+  path: '/sign-in/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignUpSplatRoute = SignUpSplatRouteImport.update({
+  id: '/sign-up/$',
+  path: '/sign-up/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -305,67 +305,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/why-we-exist': {
-      id: '/why-we-exist'
-      path: '/why-we-exist'
-      fullPath: '/why-we-exist'
-      preLoaderRoute: typeof WhyWeExistRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/who-we-are': {
-      id: '/who-we-are'
-      path: '/who-we-are'
-      fullPath: '/who-we-are'
-      preLoaderRoute: typeof WhoWeAreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/type-specimen': {
-      id: '/type-specimen'
-      path: '/type-specimen'
-      fullPath: '/type-specimen'
-      preLoaderRoute: typeof TypeSpecimenRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/the-new-human-era': {
-      id: '/the-new-human-era'
-      path: '/the-new-human-era'
-      fullPath: '/the-new-human-era'
-      preLoaderRoute: typeof TheNewHumanEraRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/the-human-archive': {
-      id: '/the-human-archive'
-      path: '/the-human-archive'
-      fullPath: '/the-human-archive'
-      preLoaderRoute: typeof TheHumanArchiveRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/portal': {
-      id: '/portal'
-      path: '/portal'
-      fullPath: '/portal'
-      preLoaderRoute: typeof PortalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/podcast': {
-      id: '/podcast'
-      path: '/podcast'
-      fullPath: '/podcast'
-      preLoaderRoute: typeof PodcastRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about-the-founder': {
@@ -375,67 +319,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutTheFounderRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/be-human-ai/': {
-      id: '/be-human-ai/'
-      path: '/be-human-ai'
-      fullPath: '/be-human-ai/'
-      preLoaderRoute: typeof BeHumanAiIndexRouteImport
+    '/podcast': {
+      id: '/podcast'
+      path: '/podcast'
+      fullPath: '/podcast'
+      preLoaderRoute: typeof PodcastRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sign-up/$': {
-      id: '/sign-up/$'
-      path: '/sign-up/$'
-      fullPath: '/sign-up/$'
-      preLoaderRoute: typeof SignUpSplatRouteImport
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sign-in/$': {
-      id: '/sign-in/$'
-      path: '/sign-in/$'
-      fullPath: '/sign-in/$'
-      preLoaderRoute: typeof SignInSplatRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/$': {
-      id: '/profile/$'
-      path: '/profile/$'
-      fullPath: '/profile/$'
-      preLoaderRoute: typeof ProfileSplatRouteImport
+    '/the-human-archive': {
+      id: '/the-human-archive'
+      path: '/the-human-archive'
+      fullPath: '/the-human-archive'
+      preLoaderRoute: typeof TheHumanArchiveRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/podcast_/$slug': {
-      id: '/podcast_/$slug'
-      path: '/podcast/$slug'
-      fullPath: '/podcast/$slug'
-      preLoaderRoute: typeof PodcastSlugRouteImport
+    '/the-new-human-era': {
+      id: '/the-new-human-era'
+      path: '/the-new-human-era'
+      fullPath: '/the-new-human-era'
+      preLoaderRoute: typeof TheNewHumanEraRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/c/$token': {
-      id: '/c/$token'
-      path: '/c/$token'
-      fullPath: '/c/$token'
-      preLoaderRoute: typeof CTokenRouteImport
+    '/type-specimen': {
+      id: '/type-specimen'
+      path: '/type-specimen'
+      fullPath: '/type-specimen'
+      preLoaderRoute: typeof TypeSpecimenRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/audit/success': {
-      id: '/audit/success'
-      path: '/audit/success'
-      fullPath: '/audit/success'
-      preLoaderRoute: typeof AuditSuccessRouteImport
+    '/who-we-are': {
+      id: '/who-we-are'
+      path: '/who-we-are'
+      fullPath: '/who-we-are'
+      preLoaderRoute: typeof WhoWeAreRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/audit/cancelled': {
-      id: '/audit/cancelled'
-      path: '/audit/cancelled'
-      fullPath: '/audit/cancelled'
-      preLoaderRoute: typeof AuditCancelledRouteImport
+    '/why-we-exist': {
+      id: '/why-we-exist'
+      path: '/why-we-exist'
+      fullPath: '/why-we-exist'
+      preLoaderRoute: typeof WhyWeExistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/audit-checkout': {
+      id: '/api/audit-checkout'
+      path: '/api/audit-checkout'
+      fullPath: '/api/audit-checkout'
+      preLoaderRoute: typeof ApiAuditCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/stripe-webhook': {
@@ -445,11 +396,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiStripeWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/audit-checkout': {
-      id: '/api/audit-checkout'
-      path: '/api/audit-checkout'
-      fullPath: '/api/audit-checkout'
-      preLoaderRoute: typeof ApiAuditCheckoutRouteImport
+    '/audit/cancelled': {
+      id: '/audit/cancelled'
+      path: '/audit/cancelled'
+      fullPath: '/audit/cancelled'
+      preLoaderRoute: typeof AuditCancelledRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audit/success': {
+      id: '/audit/success'
+      path: '/audit/success'
+      fullPath: '/audit/success'
+      preLoaderRoute: typeof AuditSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/be-human-ai/': {
+      id: '/be-human-ai/'
+      path: '/be-human-ai'
+      fullPath: '/be-human-ai/'
+      preLoaderRoute: typeof BeHumanAiIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/c/$token': {
+      id: '/c/$token'
+      path: '/c/$token'
+      fullPath: '/c/$token'
+      preLoaderRoute: typeof CTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/podcast_/$slug': {
+      id: '/podcast_/$slug'
+      path: '/podcast/$slug'
+      fullPath: '/podcast/$slug'
+      preLoaderRoute: typeof PodcastSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/$': {
+      id: '/profile/$'
+      path: '/profile/$'
+      fullPath: '/profile/$'
+      preLoaderRoute: typeof ProfileSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in/$': {
+      id: '/sign-in/$'
+      path: '/sign-in/$'
+      fullPath: '/sign-in/$'
+      preLoaderRoute: typeof SignInSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-up/$': {
+      id: '/sign-up/$'
+      path: '/sign-up/$'
+      fullPath: '/sign-up/$'
+      preLoaderRoute: typeof SignUpSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

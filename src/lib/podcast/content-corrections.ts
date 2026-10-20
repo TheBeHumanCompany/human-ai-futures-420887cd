@@ -42,6 +42,11 @@ function correctMintCleaning(text: string): string {
  * slug matches a known correction set.
  *
  * The original episode object is never mutated.
+ *
+ * The Mint Cleaning links are fallbacks, not overrides: the moment the same
+ * URLs are authored on the episode in Studio, the CMS values win and these
+ * stop mattering. They exist so the page does not lose links it already
+ * showed while the fields are being filled in.
  */
 export function withContentCorrections(episode: SanityEpisode): SanityEpisode {
   if (episode.slug.current !== MINT_CLEANING_SLUG) return episode;
@@ -50,5 +55,8 @@ export function withContentCorrections(episode: SanityEpisode): SanityEpisode {
     ...episode,
     description: correctMintCleaning(episode.description),
     excerpt: correctMintCleaning(episode.excerpt),
+    businessWebsiteUrl: episode.businessWebsiteUrl ?? "https://mintcleaningproducts.com/",
+    companyInstagramUrl:
+      episode.companyInstagramUrl ?? "https://www.instagram.com/mintcleaning_/",
   };
 }
