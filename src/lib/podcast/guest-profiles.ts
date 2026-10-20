@@ -21,9 +21,18 @@ export interface GuestProfile {
   role?: string;
   /** ~50–80 words. Omitted where the episode does not support one. */
   bio?: string;
+  /**
+   * The business name used in external-link labels ("VISIT X ↗"). Set
+   * explicitly for company-titled episodes that have no role line to derive
+   * it from; otherwise `businessNameOf` reads it out of `role`.
+   */
+  businessName?: string;
 }
 
 const PROFILES: Record<number, GuestProfile> = {
+  // Episode 6's title names the company rather than a person, so it carries
+  // no role or bio — only the business name its external-link labels need.
+  6: { businessName: "Mint Cleaning" },
   2: {
     role: "Founder, Adhere to Studios",
     bio: "Alexandra Dean is the founder of Adhere to Studios, a sustainable outerwear brand redefining fashion with purpose. She studied fashion design in Vancouver before joining Lululemon, where she developed her skills in technical garment development and design. She now builds high-performance outerwear from excess materials using lower-impact methods, and speaks candidly about the realities of building a sustainable brand solo.",
@@ -175,4 +184,20 @@ const PROFILES: Record<number, GuestProfile> = {
 export function guestProfile(episodeNumber: number | null): GuestProfile {
   if (episodeNumber === null) return {};
   return PROFILES[episodeNumber] ?? {};
+}
+
+/**
+ * The business name for link labels, or `undefined` when nothing supports one.
+ *
+ * Explicit `businessName` wins; otherwise the company is read out of the role
+ * line ("Founder, Cheekbone Beauty" → "Cheekbone Beauty"). Multi-company roles
+ * ("Founder, Dermapure; Co-founder, Recess") take the first segment — the
+ * label only ever renders when someone has authored a company URL for the
+ * episode, at which point the explicit field is the fix.
+ */
+export function businessNameOf(profile: GuestProfile): string | undefined {
+  if (profile.businessName) return profile.businessName;
+  if (!profile.role) return undefined;
+  const afterComma = profile.role.split(", ").slice(1).join(", ").split(";")[0]?.trim();
+  return afterComma || undefined;
 }

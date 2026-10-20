@@ -56,6 +56,19 @@ describe("episode schema", () => {
     expect(field(episode, name)?.type).toBe(type);
   });
 
+  test.each([
+    ["businessWebsiteUrl", "url"],
+    ["guestInstagramUrl", "url"],
+    ["companyInstagramUrl", "url"],
+    ["facebookUrl", "url"],
+    ["guestLinkedinUrl", "url"],
+    ["companyLinkedinUrl", "url"],
+  ])("declares the optional external link %s as %s", (name, type) => {
+    // All six are optional by design: an episode with none of them populated
+    // hides the links area entirely, so none may be required().
+    expect(field(episode, name)?.type).toBe(type);
+  });
+
   test("guestBio is a plain string type, because the enrichment predicate uses length()", () => {
     // GROQ `length()` counts characters on a string and returns null for other
     // types; `count()` is the array equivalent. Choosing the wrong one here
