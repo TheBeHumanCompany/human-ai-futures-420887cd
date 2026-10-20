@@ -1,7 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { EpisodePlayer } from "@/components/episode-player";
-import { SocialIcon } from "@/components/social-icons";
 import { formatDuration } from "@/lib/podbean/parse";
 import { PodcastDegraded } from "@/components/podcast-degraded";
 import { withContentCorrections } from "@/lib/podcast/content-corrections";
@@ -11,7 +10,7 @@ import {
   DEGRADED_SOURCE_VALUE,
 } from "@/lib/podcast/degraded-status";
 import type { SanityEpisode } from "@/lib/podcast/episode";
-import { guestProfile } from "@/lib/podcast/guest-profiles";
+import { businessNameOf, guestProfile } from "@/lib/podcast/guest-profiles";
 import { episodeHeroImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
 import { selectRelatedEpisodes } from "@/lib/podcast/related";
@@ -162,6 +161,9 @@ function EpisodePage() {
   // Guest bio: CMS copy first, the on-file profile only as a fallback. Both go
   // through the same paragraph splitter so breaks survive either way.
   const bio = proseParagraphs(episode.guestBio ?? profile.bio ?? "");
+  // External links, built from the episode's optional Sanity URL fields.
+  // Empty when none are authored, and then nothing renders at all.
+  const links = guestLinks(episode, businessNameOf(profile));
 
   return (
     <>
@@ -243,42 +245,17 @@ function EpisodePage() {
               </div>
             )}
 
-            {episode.slug.current ===
-              "minting-success-story-plant-based-cleaning-revolutionaries" && (
-              <div className="mt-8 max-w-[58ch] border-t border-hairline-dark pt-5">
-                <p className={SECTION_HEADING}>Connect with Mint Cleaning</p>
-                <ul className="mt-3 flex flex-wrap items-center gap-4">
-                  <li>
-                    <a
-                      href="https://mintcleaningproducts.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="eyebrow inline-flex items-center gap-2 text-ink/80 transition-colors hover:text-ink"
-                    >
-                      <GlobeIcon className="h-4 w-4 text-lime" />
-                      Website
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.instagram.com/mintcleaning_/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="eyebrow inline-flex items-center gap-2 text-ink/80 transition-colors hover:text-ink"
-                    >
-                      <SocialIcon name="Instagram" className="h-4 w-4 text-lime" />
-                      Instagram
-                    </a>
-                  </li>
-                </ul>
-              </div>
+            {/* Company-titled episodes have no guest column, so their links
+                live here instead — same list, same rules. */}
+            {!episode.guestName && links.length > 0 && (
+              <GuestLinks links={links} className="mt-8 max-w-[58ch]" />
             )}
           </div>
 
           {episode.guestName && (
             <div className="px-5 pb-12 sm:px-8 lg:border-l lg:border-hairline-dark lg:pt-12 lg:pl-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
               <p className={SECTION_HEADING}>Meet the guest</p>
-              <h2 className="mt-3 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
+              <h2 className="mt-5 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                 {episode.guestName}
               </h2>
               {profile.role && <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>}
@@ -291,6 +268,9 @@ function EpisodePage() {
                   ))}
                 </div>
               )}
+              {/* Below the bio, never between the name and it — and absent
+                  entirely when no URL fields are populated. */}
+              {links.length > 0 && <GuestLinks links={links} className="mt-6" />}
             </div>
           )}
         </div>
