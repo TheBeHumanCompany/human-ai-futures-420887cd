@@ -320,23 +320,69 @@ function EpisodePage() {
   );
 }
 
-/** Simple globe icon for an external website link. */
-function GlobeIcon({ className }: { className?: string }) {
+interface GuestLink {
+  label: string;
+  href: string;
+}
+
+/**
+ * The external links for an episode, built from its optional Sanity URL
+ * fields. A field with no value produces no link — no placeholder, no empty
+ * line — and an episode with none populated produces an empty list, which the
+ * caller renders as nothing at all. Personal and company accounts are
+ * independent: both, either, or neither may appear.
+ */
+function guestLinks(episode: SanityEpisode, businessName: string | undefined): GuestLink[] {
+  const business = businessName ?? "the business";
+  const links: GuestLink[] = [];
+  if (episode.businessWebsiteUrl) {
+    links.push({
+      label: businessName ? `Visit ${businessName}` : "Visit the website",
+      href: episode.businessWebsiteUrl,
+    });
+  }
+  if (episode.guestInstagramUrl && episode.guestName) {
+    links.push({ label: `${episode.guestName} on Instagram`, href: episode.guestInstagramUrl });
+  }
+  if (episode.companyInstagramUrl) {
+    links.push({ label: `${business} on Instagram`, href: episode.companyInstagramUrl });
+  }
+  if (episode.facebookUrl) {
+    links.push({ label: "Facebook", href: episode.facebookUrl });
+  }
+  if (episode.guestLinkedinUrl && episode.guestName) {
+    links.push({ label: `${episode.guestName} on LinkedIn`, href: episode.guestLinkedinUrl });
+  }
+  if (episode.companyLinkedinUrl) {
+    links.push({ label: `${business} on LinkedIn`, href: episode.companyLinkedinUrl });
+  }
+  return links;
+}
+
+/**
+ * The editorial links list: uppercase ink text at label size, a lime arrow,
+ * no permanent underline, and the whole label — not just the arrow — is the
+ * link. Every link opens in a new tab.
+ */
+function GuestLinks({ links, className }: { links: GuestLink[]; className?: string }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-      className={className}
-    >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M2 12h20" />
-      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
+    <ul className={`flex flex-col gap-2.5 ${className ?? ""}`}>
+      {links.map((link) => (
+        <li key={link.href}>
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="eyebrow inline-flex w-fit items-center gap-1.5 font-medium text-ink transition-colors hover:text-ink/60"
+          >
+            {link.label}
+            <span aria-hidden className="text-lime">
+              ↗
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 }
 
