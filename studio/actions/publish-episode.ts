@@ -1,5 +1,8 @@
 import {useCallback, useMemo, useState} from 'react'
-import {useToast} from '@sanity/ui'
+// `useToast` lives on the `@sanity/ui/toast` subpath since @sanity/ui v4 (the
+// root export was removed with the toast API's move), and that subpath is what
+// Sanity's own v6 code imports it from.
+import {useToast} from '@sanity/ui/toast'
 import {
   useClient,
   useDocumentPairPermissions,
