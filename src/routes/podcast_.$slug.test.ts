@@ -167,7 +167,7 @@ describe("the Podbean CTA points at the page, not the audio file", () => {
   test("the CTA opens in a new tab safely", () => {
     expect(source).toContain('target="_blank"');
     expect(source).toContain('rel="noopener noreferrer"');
-    expect(source).toContain("Listen or Watch Full Episode");
+    expect(source).toContain("Watch the Full Episode");
   });
 });
 

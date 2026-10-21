@@ -213,7 +213,7 @@ function EpisodePage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Listen or Watch Full Episode
+              Watch the Full Episode
               <span
                 aria-hidden
                 className="text-lime transition-transform group-hover:translate-x-1"
