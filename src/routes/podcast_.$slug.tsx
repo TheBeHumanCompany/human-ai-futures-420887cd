@@ -334,6 +334,9 @@ interface GuestLink {
  */
 function guestLinks(episode: SanityEpisode, businessName: string | undefined): GuestLink[] {
   const business = businessName ?? "the business";
+  // Personal links use the guest's first name only — never a role or title.
+  const first = episode.guestName?.trim().split(/\s+/)[0];
+  const bothInstagram = Boolean(episode.guestInstagramUrl && episode.companyInstagramUrl);
   const links: GuestLink[] = [];
   if (episode.businessWebsiteUrl) {
     links.push({
@@ -341,17 +344,20 @@ function guestLinks(episode: SanityEpisode, businessName: string | undefined): G
       href: episode.businessWebsiteUrl,
     });
   }
-  if (episode.guestInstagramUrl && episode.guestName) {
-    links.push({ label: `${episode.guestName} on Instagram`, href: episode.guestInstagramUrl });
+  if (episode.guestInstagramUrl && first) {
+    links.push({ label: `${first} on Instagram`, href: episode.guestInstagramUrl });
   }
   if (episode.companyInstagramUrl) {
-    links.push({ label: `${business} on Instagram`, href: episode.companyInstagramUrl });
+    links.push({
+      label: bothInstagram || businessName ? `${business} on Instagram` : "Instagram",
+      href: episode.companyInstagramUrl,
+    });
   }
   if (episode.facebookUrl) {
     links.push({ label: "Facebook", href: episode.facebookUrl });
   }
-  if (episode.guestLinkedinUrl && episode.guestName) {
-    links.push({ label: `${episode.guestName} on LinkedIn`, href: episode.guestLinkedinUrl });
+  if (episode.guestLinkedinUrl && first) {
+    links.push({ label: `${first} on LinkedIn`, href: episode.guestLinkedinUrl });
   }
   if (episode.companyLinkedinUrl) {
     links.push({ label: `${business} on LinkedIn`, href: episode.companyLinkedinUrl });
@@ -360,29 +366,32 @@ function guestLinks(episode: SanityEpisode, businessName: string | undefined): G
 }
 
 /**
- * The editorial links list: uppercase ink text at label size, a lime arrow,
- * no permanent underline, and the whole label — not just the arrow — is the
- * link. Every link opens in a new tab.
+ * EXPLORE MORE: an understated heading (no lime fill, no rule above) and the
+ * editorial links — uppercase ink, lime arrow, whole label clickable, new tab.
+ * Two compact columns from sm up; stacked with touch spacing on mobile.
  */
 function GuestLinks({ links, className }: { links: GuestLink[]; className?: string }) {
   return (
-    <ul className={`flex flex-col gap-2.5 ${className ?? ""}`}>
-      {links.map((link) => (
-        <li key={link.href}>
-          <a
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="eyebrow inline-flex w-fit items-center gap-1.5 font-medium text-ink transition-colors hover:text-ink/60"
-          >
-            {link.label}
-            <span aria-hidden className="text-lime">
-              ↗
-            </span>
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div className={className}>
+      <p className="eyebrow font-semibold tracking-[0.14em] text-ink">Explore more</p>
+      <ul className="mt-3 grid gap-x-8 gap-y-1 sm:grid-cols-2 sm:gap-y-2">
+        {links.map((link) => (
+          <li key={link.href}>
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="eyebrow inline-flex min-h-[40px] w-fit items-center gap-1.5 font-medium text-ink transition-colors hover:text-ink/60 sm:min-h-0"
+            >
+              {link.label}
+              <span aria-hidden className="text-lime">
+                ↗
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -415,11 +424,11 @@ function HeroImage({
         className="size-full object-cover"
       />
       {labelled && (
-        <div className="absolute right-5 top-5 text-right sm:right-8 sm:top-8">
-          <span className="eyebrow inline-block bg-lime px-2.5 py-1 text-ink">Guest</span>
-          <p className="mt-3 font-display text-xl uppercase tracking-[0.02em] text-cream sm:text-2xl">
+        <div className="absolute right-5 top-5 flex flex-col items-end text-right sm:right-8 sm:top-8">
+          <p className="font-display text-lg uppercase tracking-[0.04em] text-cream drop-shadow sm:text-xl">
             {episode.guestName}
           </p>
+          <span aria-hidden className="mt-2 block h-[2px] w-10 bg-lime" />
         </div>
       )}
     </div>
