@@ -406,25 +406,25 @@ function guestLinks(episode: SanityEpisode, businessName: string | undefined): G
 }
 
 /**
- * EXPLORE MORE: an understated heading (no lime fill, no rule above) and the
- * editorial links — uppercase ink, lime arrow, whole label clickable, new tab.
- * Two compact columns from sm up; stacked with touch spacing on mobile.
+ * EXPLORE MORE: a heading lifted out of the footnote scale (still no lime fill,
+ * no rule above) and the editorial links beneath it — uppercase ink, lime arrow,
+ * whole label clickable, new tab. Two columns from sm up, brought close together.
  */
 function GuestLinks({ links, className }: { links: GuestLink[]; className?: string }) {
   return (
     <div className={className}>
-      <p className="eyebrow font-semibold tracking-[0.14em] text-ink">Explore more</p>
-      <ul className="mt-3 grid gap-x-8 gap-y-1 sm:grid-cols-2 sm:gap-y-2">
+      <p className="text-[0.875rem] font-semibold uppercase tracking-[0.17em] text-ink">Explore more</p>
+      <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-[minmax(0,auto)_minmax(0,auto)] sm:gap-y-3">
         {links.map((link) => (
           <li key={link.href}>
             <a
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="eyebrow inline-flex min-h-[40px] w-fit items-center gap-1.5 font-medium text-ink transition-colors hover:text-ink/60 sm:min-h-0"
+              className="inline-block min-h-[40px] w-fit text-[0.825rem] font-semibold uppercase tracking-[0.13em] text-ink transition-colors hover:text-ink/60 sm:min-h-0"
             >
               {link.label}
-              <span aria-hidden className="text-lime">
+              <span aria-hidden className="ml-2 text-lime">
                 ↗
               </span>
             </a>
