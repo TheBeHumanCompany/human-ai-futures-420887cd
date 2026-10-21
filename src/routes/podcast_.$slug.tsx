@@ -163,6 +163,7 @@ function EpisodePage() {
   const bio = proseParagraphs(episode.guestBio ?? profile.bio ?? "");
   // External links, built from the episode's optional Sanity URL fields.
   // Empty when none are authored, and then nothing renders at all.
+  const guest = splitGuest(episode.guestName);
   const links = guestLinks(episode, businessNameOf(profile));
 
   return (
@@ -256,9 +257,11 @@ function EpisodePage() {
             <div className="px-5 pb-12 sm:px-8 lg:border-l lg:border-hairline-dark lg:pt-12 lg:pl-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
               <p className={SECTION_HEADING}>Meet the guest</p>
               <h2 className="mt-4 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
-                {episode.guestName}
+                {guest.name}
               </h2>
-              {profile.role && <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>}
+              {(profile.role ?? guest.role) && (
+                <p className="eyebrow mt-2 text-ink/60">{profile.role ?? guest.role}</p>
+              )}
               {/* Sanity first, the on-file profile only as a fallback — and
                   nothing at all when neither exists. No filler. */}
               {bio.length > 0 && (
@@ -347,6 +350,17 @@ function EpisodePage() {
   );
 }
 
+/**
+ * Some guest names arrive with a role appended ("Name, Founder | Speaker").
+ * Split at the first comma so the name and the role render separately.
+ */
+function splitGuest(raw: string | null): { name: string | null; role: string | null } {
+  if (!raw) return { name: null, role: null };
+  const i = raw.indexOf(",");
+  if (i === -1) return { name: raw, role: null };
+  return { name: raw.slice(0, i).trim(), role: raw.slice(i + 1).trim() || null };
+}
+
 interface GuestLink {
   label: string;
   href: string;
@@ -360,9 +374,8 @@ interface GuestLink {
  * independent: both, either, or neither may appear.
  */
 function guestLinks(episode: SanityEpisode, businessName: string | undefined): GuestLink[] {
-  const business = businessName ?? "the business";
   // Personal links use the guest's first name only — never a role or title.
-  const first = episode.guestName?.trim().split(/\s+/)[0];
+  const first = splitGuest(episode.guestName).name?.trim().split(/\s+/)[0];
   const bothInstagram = Boolean(episode.guestInstagramUrl && episode.companyInstagramUrl);
   const links: GuestLink[] = [];
   if (episode.businessWebsiteUrl) {
@@ -376,7 +389,7 @@ function guestLinks(episode: SanityEpisode, businessName: string | undefined): G
   }
   if (episode.companyInstagramUrl) {
     links.push({
-      label: bothInstagram || businessName ? `${business} on Instagram` : "Instagram",
+      label: businessName ? `${businessName} on Instagram` : bothInstagram ? "Company Instagram" : "Instagram",
       href: episode.companyInstagramUrl,
     });
   }
@@ -387,7 +400,7 @@ function guestLinks(episode: SanityEpisode, businessName: string | undefined): G
     links.push({ label: `${first} on LinkedIn`, href: episode.guestLinkedinUrl });
   }
   if (episode.companyLinkedinUrl) {
-    links.push({ label: `${business} on LinkedIn`, href: episode.companyLinkedinUrl });
+    links.push({ label: businessName ? `${businessName} on LinkedIn` : "LinkedIn", href: episode.companyLinkedinUrl });
   }
   return links;
 }
@@ -453,7 +466,7 @@ function HeroImage({
       {labelled && (
         <div className="absolute right-5 top-5 flex flex-col items-end text-right sm:right-8 sm:top-8">
           <p className="font-display text-lg uppercase tracking-[0.04em] text-cream drop-shadow sm:text-xl">
-            {episode.guestName}
+            {splitGuest(episode.guestName).name}
           </p>
           <span aria-hidden className="mt-2 block h-[2px] w-10 bg-lime" />
         </div>
