@@ -11,7 +11,7 @@ import {
 } from "@/lib/podcast/degraded-status";
 import type { SanityEpisode } from "@/lib/podcast/episode";
 import { businessNameOf, guestProfile } from "@/lib/podcast/guest-profiles";
-import { episodeHeroImage } from "@/lib/podcast/imagery";
+import { episodeHeroImage, episodeImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
 import { selectRelatedEpisodes } from "@/lib/podcast/related";
 import { buildEpisodeJsonLd, buildEpisodeMeta } from "@/lib/podcast/seo";
@@ -291,23 +291,50 @@ function EpisodePage() {
                   </span>
                 </Link>
               </div>
-              <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {/* Mobile: compact swipe row (snap) instead of a long stack. */}
+              <ul className="-mx-5 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-3 lg:gap-8">
                 {related.map((item) => (
-                  <li key={item.slug.current} className="border-t border-hairline-dark pt-4">
+                  <li
+                    key={item.slug.current}
+                    className="w-[78%] shrink-0 snap-start sm:w-auto"
+                  >
                     <Link
-                      className="group block text-base leading-snug text-ink/85 hover:text-ink"
+                      className="group block h-full border border-hairline-dark"
                       to="/podcast/$slug"
                       params={{ slug: item.slug.current }}
                     >
-                      <span className="font-medium">
-                        {item.episodeNumber !== null && `Episode ${item.episodeNumber}: `}
-                        {displayTitle(item.title)}
-                      </span>
-                      {item.guestName && (
-                        <span className="mt-1 block text-sm text-ink/55">
-                          With {item.guestName}
-                        </span>
-                      )}
+                      <div className="aspect-[4/3] overflow-hidden bg-ink">
+                        <img
+                          src={episodeImage(item, 700)}
+                          alt={item.guestName ? `Portrait of ${item.guestName}` : ""}
+                          loading="lazy"
+                          className="size-full object-cover object-[50%_22%] transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <p className="eyebrow flex items-center gap-2 text-ink/60">
+                          {item.episodeNumber !== null && (
+                            <span className="bg-lime px-2 py-0.5 text-ink">
+                              Ep {item.episodeNumber}
+                            </span>
+                          )}
+                          {item.durationSeconds > 0 && (
+                            <span>{formatDuration(item.durationSeconds)}</span>
+                          )}
+                        </p>
+                        <p className="mt-3 font-display text-lg font-medium uppercase leading-tight text-ink">
+                          {displayTitle(item.title)}
+                        </p>
+                        <div className="mt-3 flex items-center justify-between gap-3">
+                          <span className="text-sm text-ink/60">{item.guestName ?? ""}</span>
+                          <span
+                            aria-hidden
+                            className="text-lime transition-transform group-hover:translate-x-1"
+                          >
+                            →
+                          </span>
+                        </div>
+                      </div>
                     </Link>
                   </li>
                 ))}
