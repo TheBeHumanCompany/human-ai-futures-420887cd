@@ -273,7 +273,7 @@ function EpisodePage() {
               )}
               {/* Below the bio, never between the name and it — and absent
                   entirely when no URL fields are populated. */}
-              {links.length > 0 && <GuestLinks links={links} className="mt-5" />}
+              {links.length > 0 && <GuestLinks links={links} className="mt-8" />}
             </div>
           )}
         </div>
@@ -406,14 +406,22 @@ function guestLinks(episode: SanityEpisode, businessName: string | undefined): G
 }
 
 /**
- * EXPLORE MORE: a heading lifted out of the footnote scale (still no lime fill,
- * no rule above) and the editorial links beneath it — uppercase ink, lime arrow,
- * whole label clickable, new tab. Two columns from sm up, brought close together.
+ * EXPLORE MORE: a SUBSECTION label — one step above the links, but never the
+ * filled lime block that "Episode summary" and "Meet the guest" wear (that
+ * treatment is reserved for the two top-level headings). Its own accent is a
+ * short dark-lime tick: the brand hue darkened for cream, so it reads as lime
+ * on a cream page instead of washing out.
+ *
+ * Links beneath it: uppercase ink, brand-lime arrow at the text baseline, whole
+ * label clickable, new tab. Two columns from sm up, brought close together.
  */
 function GuestLinks({ links, className }: { links: GuestLink[]; className?: string }) {
   return (
     <div className={className}>
-      <p className="text-[0.875rem] font-semibold uppercase tracking-[0.17em] text-ink">Explore more</p>
+      <p className="flex items-center gap-3 text-[0.9375rem] font-bold uppercase tracking-[0.14em] text-ink">
+        <span aria-hidden className="h-[2px] w-5 shrink-0 bg-lime-dark" />
+        Explore more
+      </p>
       <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-[minmax(0,auto)_minmax(0,auto)] sm:gap-y-3">
         {links.map((link) => (
           <li key={link.href}>
@@ -424,7 +432,7 @@ function GuestLinks({ links, className }: { links: GuestLink[]; className?: stri
               className="inline-block min-h-[40px] w-fit text-[0.825rem] font-semibold uppercase tracking-[0.13em] text-ink transition-colors hover:text-ink/60 sm:min-h-0"
             >
               {link.label}
-              <span aria-hidden className="ml-2 text-lime">
+              <span aria-hidden className="ml-3 text-[1.125rem] leading-none text-lime">
                 ↗
               </span>
             </a>
