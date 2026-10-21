@@ -414,7 +414,7 @@ function GuestLinks({ links, className }: { links: GuestLink[]; className?: stri
   return (
     <div className={className}>
       <p className="text-[0.875rem] font-semibold uppercase tracking-[0.17em] text-ink">Explore more</p>
-      <ul className="mt-4 grid gap-x-6 gap-y-2.5 sm:grid-cols-[minmax(0,auto)_minmax(0,auto)] sm:gap-y-3">
+      <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-[minmax(0,auto)_minmax(0,auto)] sm:gap-y-3">
         {links.map((link) => (
           <li key={link.href}>
             <a
