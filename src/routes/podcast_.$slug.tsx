@@ -255,7 +255,7 @@ function EpisodePage() {
           {episode.guestName && (
             <div className="px-5 pb-12 sm:px-8 lg:border-l lg:border-hairline-dark lg:pt-12 lg:pl-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
               <p className={SECTION_HEADING}>Meet the guest</p>
-              <h2 className="mt-5 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
+              <h2 className="mt-4 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                 {episode.guestName}
               </h2>
               {profile.role && <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>}
@@ -270,7 +270,7 @@ function EpisodePage() {
               )}
               {/* Below the bio, never between the name and it — and absent
                   entirely when no URL fields are populated. */}
-              {links.length > 0 && <GuestLinks links={links} className="mt-6" />}
+              {links.length > 0 && <GuestLinks links={links} className="mt-5" />}
             </div>
           )}
         </div>
