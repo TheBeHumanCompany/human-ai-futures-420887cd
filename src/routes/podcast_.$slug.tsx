@@ -421,7 +421,7 @@ function GuestLinks({ links, className }: { links: GuestLink[]; className?: stri
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[40px] w-fit items-center gap-2 text-[0.825rem] font-semibold uppercase tracking-[0.13em] text-ink transition-colors hover:text-ink/60 sm:min-h-0"
+              className="inline-block min-h-[40px] w-fit text-[0.825rem] font-semibold uppercase tracking-[0.13em] text-ink transition-colors hover:text-ink/60 sm:min-h-0"
             >
               {link.label}
               <span aria-hidden className="text-lime">
