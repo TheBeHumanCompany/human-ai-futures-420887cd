@@ -11,7 +11,7 @@ import {
 } from "@/lib/podcast/degraded-status";
 import type { SanityEpisode } from "@/lib/podcast/episode";
 import { businessNameOf, guestProfile } from "@/lib/podcast/guest-profiles";
-import { episodeHeroImage } from "@/lib/podcast/imagery";
+import { episodeHeroImage, episodeImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
 import { selectRelatedEpisodes } from "@/lib/podcast/related";
 import { buildEpisodeJsonLd, buildEpisodeMeta } from "@/lib/podcast/seo";
@@ -163,6 +163,7 @@ function EpisodePage() {
   const bio = proseParagraphs(episode.guestBio ?? profile.bio ?? "");
   // External links, built from the episode's optional Sanity URL fields.
   // Empty when none are authored, and then nothing renders at all.
+  const guest = splitGuest(episode.guestName);
   const links = guestLinks(episode, businessNameOf(profile));
 
   return (
@@ -255,10 +256,12 @@ function EpisodePage() {
           {episode.guestName && (
             <div className="px-5 pb-12 sm:px-8 lg:border-l lg:border-hairline-dark lg:pt-12 lg:pl-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
               <p className={SECTION_HEADING}>Meet the guest</p>
-              <h2 className="mt-5 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
-                {episode.guestName}
+              <h2 className="mt-4 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
+                {guest.name}
               </h2>
-              {profile.role && <p className="eyebrow mt-2 text-ink/60">{profile.role}</p>}
+              {(profile.role ?? guest.role) && (
+                <p className="eyebrow mt-2 text-ink/60">{profile.role ?? guest.role}</p>
+              )}
               {/* Sanity first, the on-file profile only as a fallback — and
                   nothing at all when neither exists. No filler. */}
               {bio.length > 0 && (
@@ -270,7 +273,7 @@ function EpisodePage() {
               )}
               {/* Below the bio, never between the name and it — and absent
                   entirely when no URL fields are populated. */}
-              {links.length > 0 && <GuestLinks links={links} className="mt-6" />}
+              {links.length > 0 && <GuestLinks links={links} className="mt-5" />}
             </div>
           )}
         </div>
@@ -291,23 +294,50 @@ function EpisodePage() {
                   </span>
                 </Link>
               </div>
-              <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {/* Mobile: compact swipe row (snap) instead of a long stack. */}
+              <ul className="-mx-5 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-3 lg:gap-8">
                 {related.map((item) => (
-                  <li key={item.slug.current} className="border-t border-hairline-dark pt-4">
+                  <li
+                    key={item.slug.current}
+                    className="w-[78%] shrink-0 snap-start sm:w-auto"
+                  >
                     <Link
-                      className="group block text-base leading-snug text-ink/85 hover:text-ink"
+                      className="group block h-full border border-hairline-dark"
                       to="/podcast/$slug"
                       params={{ slug: item.slug.current }}
                     >
-                      <span className="font-medium">
-                        {item.episodeNumber !== null && `Episode ${item.episodeNumber}: `}
-                        {displayTitle(item.title)}
-                      </span>
-                      {item.guestName && (
-                        <span className="mt-1 block text-sm text-ink/55">
-                          With {item.guestName}
-                        </span>
-                      )}
+                      <div className="aspect-[4/3] overflow-hidden bg-ink">
+                        <img
+                          src={episodeImage(item, 700)}
+                          alt={item.guestName ? `Portrait of ${item.guestName}` : ""}
+                          loading="lazy"
+                          className="size-full object-cover object-[50%_22%] transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <p className="eyebrow flex items-center gap-2 text-ink/60">
+                          {item.episodeNumber !== null && (
+                            <span className="bg-lime px-2 py-0.5 text-ink">
+                              Ep {item.episodeNumber}
+                            </span>
+                          )}
+                          {item.durationSeconds > 0 && (
+                            <span>{formatDuration(item.durationSeconds)}</span>
+                          )}
+                        </p>
+                        <p className="mt-3 font-display text-lg font-medium uppercase leading-tight text-ink">
+                          {displayTitle(item.title)}
+                        </p>
+                        <div className="mt-3 flex items-center justify-between gap-3">
+                          <span className="text-sm text-ink/60">{splitGuest(item.guestName).name ?? ""}</span>
+                          <span
+                            aria-hidden
+                            className="text-lime transition-transform group-hover:translate-x-1"
+                          >
+                            →
+                          </span>
+                        </div>
+                      </div>
                     </Link>
                   </li>
                 ))}
@@ -318,6 +348,17 @@ function EpisodePage() {
       </section>
     </>
   );
+}
+
+/**
+ * Some guest names arrive with a role appended ("Name, Founder | Speaker").
+ * Split at the first comma so the name and the role render separately.
+ */
+function splitGuest(raw: string | null): { name: string | null; role: string | null } {
+  if (!raw) return { name: null, role: null };
+  const i = raw.indexOf(",");
+  if (i === -1) return { name: raw, role: null };
+  return { name: raw.slice(0, i).trim(), role: raw.slice(i + 1).trim() || null };
 }
 
 interface GuestLink {
@@ -333,7 +374,9 @@ interface GuestLink {
  * independent: both, either, or neither may appear.
  */
 function guestLinks(episode: SanityEpisode, businessName: string | undefined): GuestLink[] {
-  const business = businessName ?? "the business";
+  // Personal links use the guest's first name only — never a role or title.
+  const first = splitGuest(episode.guestName).name?.trim().split(/\s+/)[0];
+  const bothInstagram = Boolean(episode.guestInstagramUrl && episode.companyInstagramUrl);
   const links: GuestLink[] = [];
   if (episode.businessWebsiteUrl) {
     links.push({
@@ -341,48 +384,54 @@ function guestLinks(episode: SanityEpisode, businessName: string | undefined): G
       href: episode.businessWebsiteUrl,
     });
   }
-  if (episode.guestInstagramUrl && episode.guestName) {
-    links.push({ label: `${episode.guestName} on Instagram`, href: episode.guestInstagramUrl });
+  if (episode.guestInstagramUrl && first) {
+    links.push({ label: `${first} on Instagram`, href: episode.guestInstagramUrl });
   }
   if (episode.companyInstagramUrl) {
-    links.push({ label: `${business} on Instagram`, href: episode.companyInstagramUrl });
+    links.push({
+      label: businessName ? `${businessName} on Instagram` : bothInstagram ? "Company Instagram" : "Instagram",
+      href: episode.companyInstagramUrl,
+    });
   }
   if (episode.facebookUrl) {
     links.push({ label: "Facebook", href: episode.facebookUrl });
   }
-  if (episode.guestLinkedinUrl && episode.guestName) {
-    links.push({ label: `${episode.guestName} on LinkedIn`, href: episode.guestLinkedinUrl });
+  if (episode.guestLinkedinUrl && first) {
+    links.push({ label: `${first} on LinkedIn`, href: episode.guestLinkedinUrl });
   }
   if (episode.companyLinkedinUrl) {
-    links.push({ label: `${business} on LinkedIn`, href: episode.companyLinkedinUrl });
+    links.push({ label: businessName ? `${businessName} on LinkedIn` : "LinkedIn", href: episode.companyLinkedinUrl });
   }
   return links;
 }
 
 /**
- * The editorial links list: uppercase ink text at label size, a lime arrow,
- * no permanent underline, and the whole label — not just the arrow — is the
- * link. Every link opens in a new tab.
+ * EXPLORE MORE: an understated heading (no lime fill, no rule above) and the
+ * editorial links — uppercase ink, lime arrow, whole label clickable, new tab.
+ * Two compact columns from sm up; stacked with touch spacing on mobile.
  */
 function GuestLinks({ links, className }: { links: GuestLink[]; className?: string }) {
   return (
-    <ul className={`flex flex-col gap-2.5 ${className ?? ""}`}>
-      {links.map((link) => (
-        <li key={link.href}>
-          <a
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="eyebrow inline-flex w-fit items-center gap-1.5 font-medium text-ink transition-colors hover:text-ink/60"
-          >
-            {link.label}
-            <span aria-hidden className="text-lime">
-              ↗
-            </span>
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div className={className}>
+      <p className="eyebrow font-semibold tracking-[0.14em] text-ink">Explore more</p>
+      <ul className="mt-3 grid gap-x-8 gap-y-1 sm:grid-cols-2 sm:gap-y-2">
+        {links.map((link) => (
+          <li key={link.href}>
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="eyebrow inline-flex min-h-[40px] w-fit items-center gap-1.5 font-medium text-ink transition-colors hover:text-ink/60 sm:min-h-0"
+            >
+              {link.label}
+              <span aria-hidden className="text-lime">
+                ↗
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -415,11 +464,11 @@ function HeroImage({
         className="size-full object-cover"
       />
       {labelled && (
-        <div className="absolute right-5 top-5 text-right sm:right-8 sm:top-8">
-          <span className="eyebrow inline-block bg-lime px-2.5 py-1 text-ink">Guest</span>
-          <p className="mt-3 font-display text-xl uppercase tracking-[0.02em] text-cream sm:text-2xl">
-            {episode.guestName}
+        <div className="absolute right-5 top-5 flex flex-col items-end text-right sm:right-8 sm:top-8">
+          <p className="font-display text-lg uppercase tracking-[0.04em] text-cream drop-shadow sm:text-xl">
+            {splitGuest(episode.guestName).name}
           </p>
+          <span aria-hidden className="mt-2 block h-[2px] w-10 bg-lime" />
         </div>
       )}
     </div>
