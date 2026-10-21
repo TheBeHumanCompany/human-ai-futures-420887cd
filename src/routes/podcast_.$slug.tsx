@@ -424,7 +424,7 @@ function GuestLinks({ links, className }: { links: GuestLink[]; className?: stri
               className="inline-block min-h-[40px] w-fit text-[0.825rem] font-semibold uppercase tracking-[0.13em] text-ink transition-colors hover:text-ink/60 sm:min-h-0"
             >
               {link.label}
-              <span aria-hidden className="text-lime">
+              <span aria-hidden className="ml-2 text-lime">
                 ↗
               </span>
             </a>
