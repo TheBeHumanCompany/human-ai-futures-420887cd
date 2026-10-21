@@ -419,7 +419,7 @@ function GuestLinks({ links, className }: { links: GuestLink[]; className?: stri
   return (
     <div className={className}>
       <p className="flex items-center gap-3 text-[0.9375rem] font-bold uppercase tracking-[0.14em] text-ink">
-        <span aria-hidden className="h-[2px] w-5 shrink-0 bg-lime-dark" />
+        <span aria-hidden className="h-[2px] w-5 shrink-0 bg-lime" />
         Explore more
       </p>
       <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-[minmax(0,auto)_minmax(0,auto)] sm:gap-y-3">
