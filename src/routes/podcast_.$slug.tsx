@@ -409,8 +409,8 @@ function guestLinks(episode: SanityEpisode, businessName: string | undefined): G
  * EXPLORE MORE: a SUBSECTION label — one step above the links, but never the
  * filled lime block that "Episode summary" and "Meet the guest" wear (that
  * treatment is reserved for the two top-level headings). Its own accent is a
- * short dark-lime tick: the brand hue darkened for cream, so it reads as lime
- * on a cream page instead of washing out.
+ * short brand-lime tick — the same lime as the arrows, two pixels tall, so it
+ * marks the label without competing with the filled headings above.
  *
  * Links beneath it: uppercase ink, brand-lime arrow at the text baseline, whole
  * label clickable, new tab. Two columns from sm up, brought close together.
