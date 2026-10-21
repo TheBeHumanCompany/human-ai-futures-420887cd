@@ -329,7 +329,7 @@ function EpisodePage() {
                           {displayTitle(item.title)}
                         </p>
                         <div className="mt-3 flex items-center justify-between gap-3">
-                          <span className="text-sm text-ink/60">{item.guestName ?? ""}</span>
+                          <span className="text-sm text-ink/60">{splitGuest(item.guestName).name ?? ""}</span>
                           <span
                             aria-hidden
                             className="text-lime transition-transform group-hover:translate-x-1"
