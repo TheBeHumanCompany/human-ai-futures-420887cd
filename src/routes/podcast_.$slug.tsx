@@ -248,17 +248,17 @@ function EpisodePage() {
 
             {/* Company-titled episodes have no guest column, so their links
                 live here instead — same list, same rules. */}
-            {!episode.guestName && links.length > 0 && (
+            {!episode.guestName && bio.length === 0 && links.length > 0 && (
               <GuestLinks links={links} className="mt-8 max-w-[58ch]" />
             )}
           </div>
 
-          {episode.guestName && (
+          {(episode.guestName || bio.length > 0) && (
             <div className="px-5 pb-12 sm:px-8 lg:border-l lg:border-hairline-dark lg:pt-12 lg:pl-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
               <p className={SECTION_HEADING}>Meet the guest</p>
-              <h2 className="mt-4 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
+              {guest.name && <h2 className="mt-4 font-display text-[clamp(1.4rem,2.2vw,1.75rem)] font-medium uppercase leading-none tracking-[0.01em] text-ink">
                 {guest.name}
-              </h2>
+              </h2>}
               {(profile.role ?? guest.role) && (
                 <p className="eyebrow mt-2 text-ink/60">{profile.role ?? guest.role}</p>
               )}
