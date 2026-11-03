@@ -10,6 +10,7 @@ import {
   DEGRADED_SOURCE_VALUE,
 } from "@/lib/podcast/degraded-status";
 import type { SanityEpisode } from "@/lib/podcast/episode";
+import { guestLinks, splitGuest, type GuestLink } from "@/lib/podcast/guest-links";
 import { businessNameOf, guestProfile } from "@/lib/podcast/guest-profiles";
 import { episodeHeroImage, episodeImage } from "@/lib/podcast/imagery";
 import { fetchEpisodeBySlug, fetchRelatedCandidates } from "@/lib/podcast/queries";
@@ -350,60 +351,6 @@ function EpisodePage() {
   );
 }
 
-/**
- * Some guest names arrive with a role appended ("Name, Founder | Speaker").
- * Split at the first comma so the name and the role render separately.
- */
-function splitGuest(raw: string | null): { name: string | null; role: string | null } {
-  if (!raw) return { name: null, role: null };
-  const i = raw.indexOf(",");
-  if (i === -1) return { name: raw, role: null };
-  return { name: raw.slice(0, i).trim(), role: raw.slice(i + 1).trim() || null };
-}
-
-interface GuestLink {
-  label: string;
-  href: string;
-}
-
-/**
- * The external links for an episode, built from its optional Sanity URL
- * fields. A field with no value produces no link — no placeholder, no empty
- * line — and an episode with none populated produces an empty list, which the
- * caller renders as nothing at all. Personal and company accounts are
- * independent: both, either, or neither may appear.
- */
-function guestLinks(episode: SanityEpisode, businessName: string | undefined): GuestLink[] {
-  // Personal links use the guest's first name only — never a role or title.
-  const first = splitGuest(episode.guestName).name?.trim().split(/\s+/)[0];
-  const bothInstagram = Boolean(episode.guestInstagramUrl && episode.companyInstagramUrl);
-  const links: GuestLink[] = [];
-  if (episode.businessWebsiteUrl) {
-    links.push({
-      label: businessName ? `Visit ${businessName}` : "Visit the website",
-      href: episode.businessWebsiteUrl,
-    });
-  }
-  if (episode.guestInstagramUrl && first) {
-    links.push({ label: `${first} on Instagram`, href: episode.guestInstagramUrl });
-  }
-  if (episode.companyInstagramUrl) {
-    links.push({
-      label: businessName ? `${businessName} on Instagram` : bothInstagram ? "Company Instagram" : "Instagram",
-      href: episode.companyInstagramUrl,
-    });
-  }
-  if (episode.facebookUrl) {
-    links.push({ label: "Facebook", href: episode.facebookUrl });
-  }
-  if (episode.guestLinkedinUrl && first) {
-    links.push({ label: `${first} on LinkedIn`, href: episode.guestLinkedinUrl });
-  }
-  if (episode.companyLinkedinUrl) {
-    links.push({ label: businessName ? `${businessName} on LinkedIn` : "LinkedIn", href: episode.companyLinkedinUrl });
-  }
-  return links;
-}
 
 /**
  * EXPLORE MORE: a SUBSECTION label — one step above the links, but never the
