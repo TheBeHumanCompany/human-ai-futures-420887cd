@@ -86,6 +86,18 @@ describe("guestLinks", () => {
     expect(instagramLinks[0].label).toBe("Company Instagram");
   });
 
+  test("names a personal field after the company when it carries the company's handle on another network", () => {
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      guestInstagramUrl: "https://www.tiktok.com/@shopilovechamoy",
+      companyInstagramUrl: "https://www.instagram.com/shopilovechamoy/",
+    };
+
+    const links = guestLinks(episode, "I Love Chamoy");
+    expect(labelOf("tiktok.com", links)).toBe("I Love Chamoy on TikTok");
+    expect(labelOf("instagram.com", links)).toBe("I Love Chamoy on Instagram");
+  });
+
   test("keeps both links when the personal and company accounts differ", () => {
     const episode: SanityEpisode = {
       ...baseEpisode,

@@ -33,6 +33,9 @@ const PROFILES: Record<number, GuestProfile> = {
   // Episode 6's title names the company rather than a person, so it carries
   // no role or bio — only the business name its external-link labels need.
   6: { businessName: "Mint Cleaning" },
+  // Episode 71's guest bio carries the company, but the link labels need the
+  // name itself: the guest's own TikTok field holds the brand's account.
+  71: { businessName: "I Love Chamoy" },
   2: {
     role: "Founder, Adhere to Studios",
     bio: "Alexandra Dean is the founder of Adhere to Studios, a sustainable outerwear brand redefining fashion with purpose. She studied fashion design in Vancouver before joining Lululemon, where she developed her skills in technical garment development and design. She now builds high-performance outerwear from excess materials using lower-impact methods, and speaks candidly about the realities of building a sustainable brand solo.",
