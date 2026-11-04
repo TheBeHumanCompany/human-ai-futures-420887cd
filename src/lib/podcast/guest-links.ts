@@ -79,7 +79,9 @@ function handleOf(url: string): string | null {
     const parsed = new URL(url);
     const last = parsed.pathname.split("/").filter(Boolean).pop();
     if (!last) return null;
-    return decodeURIComponent(last).replace(/^@/, "").toLowerCase();
+    // Underscores and dots are decoration, not identity: a brand's handle is
+    // often `skipperotto` on one network and `skipper_otto` on another.
+    return decodeURIComponent(last).replace(/^@/, "").replace(/[._]/g, "").toLowerCase();
   } catch {
     return null;
   }

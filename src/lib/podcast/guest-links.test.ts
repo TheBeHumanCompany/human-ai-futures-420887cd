@@ -98,6 +98,18 @@ describe("guestLinks", () => {
     expect(labelOf("instagram.com", links)).toBe("I Love Chamoy on Instagram");
   });
 
+  test("matches a company handle across networks despite underscores", () => {
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      guestInstagramUrl: "https://www.tiktok.com/@skipper_otto",
+      companyInstagramUrl: "https://www.instagram.com/skipperotto/",
+    };
+
+    const links = guestLinks(episode, "Skipper Otto");
+    expect(labelOf("tiktok.com", links)).toBe("Skipper Otto on TikTok");
+    expect(labelOf("instagram.com", links)).toBe("Skipper Otto on Instagram");
+  });
+
   test("keeps both links when the personal and company accounts differ", () => {
     const episode: SanityEpisode = {
       ...baseEpisode,
