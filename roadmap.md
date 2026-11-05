@@ -1,23 +1,11 @@
 # Roadmap
 
 ## Open
-
-- **Episode summary (Any a & Niki).** The page already shows Sanity's current
-  text word for word, so it needs Maya's new wording (or the field she wrote it
-  in) before it can change.
-- **Business names on other episodes.** Only Mint Cleaning (6) and I Love
-  Chamoy (71) have one on file, so other episodes' links read "Company
-  Instagram" / "LinkedIn" instead of naming the business. Waiting on Maya for
-  the rest.
+- New episode summary wording for Anya & Niki — the page already mirrors Sanity word for word; waiting on Maya's new text (or the field she wrote it in).
+- Studio redeploy: Maya runs `npm run deploy` in `studio/` so the new `companyName`, `books` and `customLinks` fields appear in the hosted episode editor.
 
 ## Done
-
-- Annie Leal's episode now reads "I Love Chamoy on TikTok" for
-  `tiktok.com/@shopilovechamoy`, which she pasted into the Studio field herself.
-- Link labels on every episode page name the network the address is on
-  (`src/lib/podcast/guest-links.ts`): a TikTok address reads "… on TikTok" even
-  if it was typed into the Instagram field.
-- A personal field holding the company's account — same profile, or the
-  company's handle on another network — is named after the company, not the
-  guest, and never listed twice.
-- Guest bio shows on the Anya & Niki episode page even with no guest name set.
+- Dynamic guest/company link labels: platform read from the URL itself, company links named after the business (Sanity `companyName` first, on-file profile as fallback), domain/handle fallbacks instead of generic "Company Instagram".
+- Schema: added optional `companyName`, repeatable `books` (title, url, subtitle, displayLabel, coverImage) and `customLinks` (label, url) to the episode type; all projected into the episode query.
+- Books render as "Explore [title]" links (display label overrides); custom links show their authored label; duplicate destinations are listed once.
+- Episode 76 (Adam Silvertown): Pace Pharmacy named as the business; VetMeds links keep their own names.

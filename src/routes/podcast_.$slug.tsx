@@ -162,10 +162,11 @@ function EpisodePage() {
   // Guest bio: CMS copy first, the on-file profile only as a fallback. Both go
   // through the same paragraph splitter so breaks survive either way.
   const bio = proseParagraphs(episode.guestBio ?? profile.bio ?? "");
-  // External links, built from the episode's optional Sanity URL fields.
-  // Empty when none are authored, and then nothing renders at all.
+  // External links, built from the episode's optional Sanity fields. The
+  // company name comes from Sanity first; the on-file profile is only the
+  // fallback for episodes whose companyName has not been authored yet.
   const guest = splitGuest(episode.guestName);
-  const links = guestLinks(episode, businessNameOf(profile));
+  const links = guestLinks(episode, episode.companyName ?? businessNameOf(profile));
 
   return (
     <>

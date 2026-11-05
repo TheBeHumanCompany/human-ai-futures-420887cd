@@ -37,12 +37,33 @@ export interface EpisodeListItem {
   publishedAt: string;
 }
 
+/** A guest's book, as the `books` array projection returns it. */
+export interface SanityBook {
+  title: string;
+  url: string;
+  subtitle: string | null;
+  displayLabel: string | null;
+  coverImage: string | null;
+}
+
+/** An extra destination with its label authored outright in Studio. */
+export interface SanityCustomLink {
+  label: string;
+  url: string;
+}
+
 /** The detail page's shape — the list fields plus everything only one page needs. */
 export interface SanityEpisode extends EpisodeListItem {
   _id: string;
   guid: string;
   description: string;
   guestBio: string | null;
+  /**
+   * The business or brand name used in link labels. Sanity is the source of
+   * truth; the on-file guest profile is only a fallback for episodes whose
+   * company name has not been authored yet.
+   */
+  companyName: string | null;
   /**
    * Optional external links, authored per episode in Studio. Each renders only
    * when populated; when all six are null the links area is hidden entirely.
@@ -55,6 +76,9 @@ export interface SanityEpisode extends EpisodeListItem {
   facebookUrl: string | null;
   guestLinkedinUrl: string | null;
   companyLinkedinUrl: string | null;
+  /** Repeatable book and custom-link groups — same render-or-nothing rule. */
+  books: SanityBook[] | null;
+  customLinks: SanityCustomLink[] | null;
   podbeanUrl: string;
   searchText: string;
   slugFrozenAt: string | null;

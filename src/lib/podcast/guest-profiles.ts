@@ -39,6 +39,9 @@ const PROFILES: Record<number, GuestProfile> = {
   // Episode 72: the personal Instagram field holds the company's TikTok, so
   // the link labels need the business name to read "Skipper Otto on TikTok".
   72: { businessName: "Skipper Otto" },
+  // Episode 76: Pace Pharmacy is the primary business; the guest also runs
+  // VetMeds, whose links keep their own handle/domain labels.
+  76: { businessName: "Pace Pharmacy" },
   2: {
     role: "Founder, Adhere to Studios",
     bio: "Alexandra Dean is the founder of Adhere to Studios, a sustainable outerwear brand redefining fashion with purpose. She studied fashion design in Vancouver before joining Lululemon, where she developed her skills in technical garment development and design. She now builds high-performance outerwear from excess materials using lower-impact methods, and speaks candidly about the realities of building a sustainable brand solo.",

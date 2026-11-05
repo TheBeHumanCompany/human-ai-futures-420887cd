@@ -14,12 +14,15 @@ const baseEpisode: SanityEpisode = {
   topics: null,
   guestName: "Annie Leal",
   guestBio: "Annie Leal is the Founder and CEO of I Love Chamoy.",
+  companyName: null,
   businessWebsiteUrl: null,
   guestInstagramUrl: null,
   companyInstagramUrl: null,
   facebookUrl: null,
   guestLinkedinUrl: null,
   companyLinkedinUrl: null,
+  books: null,
+  customLinks: null,
   guestPhoto: null,
   coverArtwork: null,
   podbeanUrl: "https://example.com/e/annie/",
@@ -83,7 +86,7 @@ describe("guestLinks", () => {
     const instagramLinks = links.filter((link) => link.href.includes("instagram"));
 
     expect(instagramLinks).toHaveLength(1);
-    expect(instagramLinks[0].label).toBe("Company Instagram");
+    expect(instagramLinks[0].label).toBe("@shopilovechamoy on Instagram");
   });
 
   test("names a personal field after the company when it carries the company's handle on another network", () => {
@@ -119,10 +122,95 @@ describe("guestLinks", () => {
 
     const labels = guestLinks(episode, undefined).map((link) => link.label);
     expect(labels).toContain("Annie on Instagram");
-    expect(labels).toContain("Company Instagram");
+    expect(labels).toContain("@shopilovechamoy on Instagram");
   });
 
   test("produces no links when no field is filled", () => {
     expect(guestLinks(baseEpisode, undefined)).toEqual([]);
+  });
+
+  test("names a plain website in a social field after its domain, not a network", () => {
+    // Episode 76: the guest Instagram field holds https://www.vetmeds.ca/.
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      guestName: "Adam Silvertown",
+      guestInstagramUrl: "https://www.vetmeds.ca/",
+    };
+
+    expect(labelOf("vetmeds.ca", guestLinks(episode, "Pace Pharmacy"))).toBe("Visit vetmeds.ca");
+  });
+
+  test("names an Instagram address in the Facebook field after Instagram, never Facebook", () => {
+    // Episode 76: the Facebook field holds instagram.com/vetmedspharmacy —
+    // a second business's account, so it keeps its own handle, not the
+    // primary company's name.
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      guestName: "Adam Silvertown",
+      companyInstagramUrl: "https://www.instagram.com/pacepharmacy/",
+      facebookUrl: "https://www.instagram.com/vetmedspharmacy",
+    };
+
+    const links = guestLinks(episode, "Pace Pharmacy");
+    expect(labelOf("vetmedspharmacy", links)).toBe("@vetmedspharmacy on Instagram");
+    expect(labelOf("pacepharmacy", links)).toBe("Pace Pharmacy on Instagram");
+    expect(links.map((link) => link.label)).not.toContain("Facebook");
+  });
+
+  test("names the company Facebook after the company when the account is theirs", () => {
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      companyInstagramUrl: "https://www.instagram.com/shopilovechamoy/",
+      facebookUrl: "https://www.facebook.com/shopilovechamoy",
+    };
+
+    expect(labelOf("facebook.com", guestLinks(episode, "I Love Chamoy"))).toBe(
+      "I Love Chamoy on Facebook",
+    );
+  });
+
+  test("names the business website after its domain when no company name is on file", () => {
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      businessWebsiteUrl: "https://www.pacepharmacy.com/",
+    };
+
+    expect(labelOf("pacepharmacy.com", guestLinks(episode, undefined))).toBe(
+      "Visit pacepharmacy.com",
+    );
+  });
+
+  test("renders each book as its own link, titled from Sanity", () => {
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      books: [
+        { title: "The Long Way Home", url: "https://example.com/long-way-home", subtitle: null, displayLabel: null, coverImage: null },
+        { title: "Second Book", url: "https://example.com/second", subtitle: null, displayLabel: "Get Second Book", coverImage: null },
+      ],
+    };
+
+    const links = guestLinks(episode, undefined);
+    expect(labelOf("long-way-home", links)).toBe("Explore The Long Way Home");
+    expect(labelOf("second", links)).toBe("Get Second Book");
+  });
+
+  test("shows a custom link's label exactly as authored", () => {
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      customLinks: [{ label: "Visit VetMeds", url: "https://www.vetmeds.ca/" }],
+    };
+
+    expect(labelOf("vetmeds.ca", guestLinks(episode, undefined))).toBe("Visit VetMeds");
+  });
+
+  test("never lists the same destination twice", () => {
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      businessWebsiteUrl: "https://www.vetmeds.ca/",
+      customLinks: [{ label: "Visit VetMeds", url: "https://vetmeds.ca" }],
+    };
+
+    const links = guestLinks(episode, undefined);
+    expect(links.filter((link) => link.href.includes("vetmeds.ca"))).toHaveLength(1);
   });
 });

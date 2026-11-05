@@ -184,9 +184,18 @@ export const episode = defineType({
      * site picks the change up with no code edit. */
 
     defineField({
+      name: 'companyName',
+      title: 'Company name',
+      description:
+        'The business or brand name used in link labels — "Visit Pace Pharmacy", "Pace Pharmacy on Instagram". Leave empty to fall back to the link’s own handle or domain.',
+      type: 'string',
+      group: 'guest',
+    }),
+
+    defineField({
       name: 'businessWebsiteUrl',
       title: 'Business website URL',
-      description: 'Shown as "VISIT [BUSINESS NAME] ↗" below the guest bio. Leave empty to hide.',
+      description: 'Shown as "VISIT [COMPANY NAME] ↗" below the guest bio. Leave empty to hide.',
       type: 'url',
       group: 'guest',
       validation: (rule) => rule.uri({scheme: ['https']}),
@@ -234,6 +243,97 @@ export const episode = defineType({
       type: 'url',
       group: 'guest',
       validation: (rule) => rule.uri({scheme: ['https']}),
+    }),
+
+    defineField({
+      name: 'books',
+      title: 'Books',
+      description:
+        'Books by the guest. Each renders as its own link below the guest bio — "EXPLORE [TITLE] ↗", or the display label when one is set. Leave empty for guests without books.',
+      type: 'array',
+      group: 'guest',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'book',
+          title: 'Book',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Book title',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'url',
+              title: 'Book URL',
+              description: 'The book’s official site, publisher page or purchase page.',
+              type: 'url',
+              validation: (rule) => rule.required().uri({scheme: ['https']}),
+            }),
+            defineField({
+              name: 'subtitle',
+              title: 'Subtitle',
+              type: 'string',
+            }),
+            defineField({
+              name: 'displayLabel',
+              title: 'Display label',
+              description: 'Overrides the default "EXPLORE [TITLE]" link label.',
+              type: 'string',
+            }),
+            defineField({
+              name: 'coverImage',
+              title: 'Cover image',
+              type: 'image',
+              options: {hotspot: true},
+              fields: [
+                defineField({
+                  name: 'alt',
+                  title: 'Alternative text',
+                  type: 'string',
+                }),
+              ],
+            }),
+          ],
+          preview: {
+            select: {title: 'title', subtitle: 'displayLabel', media: 'coverImage'},
+          },
+        }),
+      ],
+    }),
+
+    defineField({
+      name: 'customLinks',
+      title: 'Custom links',
+      description:
+        'Any extra destination — a second business, a nonprofit, a project, a personal site. The label is shown exactly as written, so write it the way it should read ("Visit VetMeds", "Adam on YouTube").',
+      type: 'array',
+      group: 'guest',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'customLink',
+          title: 'Custom link',
+          fields: [
+            defineField({
+              name: 'label',
+              title: 'Label',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'url',
+              title: 'URL',
+              type: 'url',
+              validation: (rule) => rule.required().uri({scheme: ['https']}),
+            }),
+          ],
+          preview: {
+            select: {title: 'label', subtitle: 'url'},
+          },
+        }),
+      ],
     }),
 
     defineField({

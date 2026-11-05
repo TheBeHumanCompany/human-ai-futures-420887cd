@@ -69,6 +69,27 @@ describe("episode schema", () => {
     expect(field(episode, name)?.type).toBe(type);
   });
 
+  test.each([
+    ["companyName", "string"],
+    ["books", "array"],
+    ["customLinks", "array"],
+  ])("declares the optional labelling field %s as %s", (name, type) => {
+    // companyName names the business in link labels; books and customLinks are
+    // the repeatable groups for guests with books or extra destinations. All
+    // three are optional — an episode without them renders exactly as before.
+    expect(field(episode, name)?.type).toBe(type);
+  });
+
+  test("a book requires only its title and URL", () => {
+    const books = field(episode, "books") as
+      | (Field & { of?: Array<{ fields?: Array<{ name: string; validation?: unknown }> }> })
+      | undefined;
+    const bookFields = books?.of?.[0]?.fields ?? [];
+    const required = bookFields.filter((f) => f.validation !== undefined).map((f) => f.name);
+
+    expect(required.sort()).toEqual(["title", "url"]);
+  });
+
   test("guestBio is a plain string type, because the enrichment predicate uses length()", () => {
     // GROQ `length()` counts characters on a string and returns null for other
     // types; `count()` is the array equivalent. Choosing the wrong one here
