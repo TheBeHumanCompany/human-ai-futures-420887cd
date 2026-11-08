@@ -213,4 +213,67 @@ describe("guestLinks", () => {
     const links = guestLinks(episode, undefined);
     expect(links.filter((link) => link.href.includes("vetmeds.ca"))).toHaveLength(1);
   });
+
+  test("names an account from the profile's account list, ahead of the guest's name", () => {
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      guestInstagramUrl: "https://www.instagram.com/lakecitycider/",
+    };
+
+    expect(
+      labelOf(
+        "instagram.com/lakecitycider",
+        guestLinks(episode, undefined, { "instagram.com/lakecitycider": "Lake City Cider" }),
+      ),
+    ).toBe("Lake City Cider on Instagram");
+  });
+
+  test("an account name outranks the episode's business name", () => {
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      guestInstagramUrl: "https://www.instagram.com/lakecitycider/",
+    };
+
+    expect(
+      labelOf(
+        "instagram.com/lakecitycider",
+        guestLinks(episode, "I Love Chamoy", { "instagram.com/lakecitycider": "Lake City Cider" }),
+      ),
+    ).toBe("Lake City Cider on Instagram");
+  });
+
+  test("names one account on a two-brand episode without touching the rest", () => {
+    // Episode 78 as authored in Sanity: two brands interleaved across the
+    // fields, Lake City Cider's Instagram sitting in the guest's own field.
+    const episode: SanityEpisode = {
+      ...baseEpisode,
+      episodeNumber: 78,
+      guestName: "Poet Comeau",
+      businessWebsiteUrl: "https://lakecitycider.ca/",
+      guestInstagramUrl: "https://www.instagram.com/lakecitycider/",
+      companyInstagramUrl: "https://www.dartybrewing.ca/",
+      facebookUrl: "https://www.instagram.com/dartybrewing/",
+      guestLinkedinUrl: "https://www.facebook.com/dartybrewing/",
+      companyLinkedinUrl: "https://ca.linkedin.com/company/lake-city-cider",
+    };
+
+    const links = guestLinks(episode, undefined, {
+      "instagram.com/lakecitycider": "Lake City Cider",
+    });
+
+    expect(links).toEqual([
+      { label: "Visit lakecitycider.ca", href: "https://lakecitycider.ca/" },
+      {
+        label: "Lake City Cider on Instagram",
+        href: "https://www.instagram.com/lakecitycider/",
+      },
+      { label: "Visit dartybrewing.ca", href: "https://www.dartybrewing.ca/" },
+      { label: "@dartybrewing on Instagram", href: "https://www.instagram.com/dartybrewing/" },
+      { label: "@dartybrewing on Facebook", href: "https://www.facebook.com/dartybrewing/" },
+      {
+        label: "@lake-city-cider on LinkedIn",
+        href: "https://ca.linkedin.com/company/lake-city-cider",
+      },
+    ]);
+  });
 });

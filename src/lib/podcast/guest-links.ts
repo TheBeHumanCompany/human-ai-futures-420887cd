@@ -130,12 +130,16 @@ function handleLabel(url: string, platform: string): string {
  *
  *   1. A custom link's label is shown exactly as authored in Studio.
  *   2. A book shows its display label, else "Explore [title]".
- *   3. A link is named after the network its address is actually on, so a
+ *   3. An account named in the episode's on-file profile shows that name —
+ *      the only way to name two brands on one page correctly (episode 78 is
+ *      Lake City Cider and Darty Brewing, and one company name would mislabel
+ *      half the links).
+ *   4. A link is named after the network its address is actually on, so a
  *      TikTok profile sitting in the "Instagram" field reads "… on TikTok",
  *      and a plain website in a social field reads "Visit [domain]".
- *   4. A company-owned account is named after the company when one is on
+ *   5. A company-owned account is named after the company when one is on
  *      file (Sanity `companyName` first, the on-file profile as fallback).
- *   5. Otherwise the account's own handle or the site's domain names it —
+ *   6. Otherwise the account's own handle or the site's domain names it —
  *      never a generic "Company Instagram", never an invented name.
  *
  * Two more rules keep the list honest:
@@ -150,7 +154,13 @@ function handleLabel(url: string, platform: string): string {
 export function guestLinks(
   episode: SanityEpisode,
   businessName: string | undefined,
+  /** Account display names, keyed by `accountKey` — see `GuestProfile.linkNames`. */
+  accountNames: Record<string, string> = {},
 ): GuestLink[] {
+  // An explicitly named account outranks every derived label: it is the one
+  // name someone confirmed for that exact address.
+  const explicitName = (url: string) => accountNames[accountKey(url)];
+
   // Personal links use the guest's first name only — never a role or title.
   const first = splitGuest(episode.guestName).name?.trim().split(/\s+/)[0];
 
@@ -211,13 +221,15 @@ export function guestLinks(
   // A social field holding a plain website is a website link, not a profile.
   const socialOrSite = (url: string, labelFor: (url: string, platform: string) => string) => {
     const platform = platformOf(url);
-    if (platform) push(labelFor(url, platform), url);
-    else push(`Visit ${siteNameOf(url)}`, url);
+    const named = explicitName(url);
+    if (platform) push(named ? `${named} on ${platform}` : labelFor(url, platform), url);
+    else push(`Visit ${named ?? siteNameOf(url)}`, url);
   };
 
   if (episode.businessWebsiteUrl) {
+    const named = explicitName(episode.businessWebsiteUrl) ?? businessName;
     push(
-      businessName ? `Visit ${businessName}` : `Visit ${siteNameOf(episode.businessWebsiteUrl)}`,
+      `Visit ${named ?? siteNameOf(episode.businessWebsiteUrl)}`,
       episode.businessWebsiteUrl,
     );
   }

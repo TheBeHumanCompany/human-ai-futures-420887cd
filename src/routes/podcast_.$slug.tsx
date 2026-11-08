@@ -166,7 +166,11 @@ function EpisodePage() {
   // company name comes from Sanity first; the on-file profile is only the
   // fallback for episodes whose companyName has not been authored yet.
   const guest = splitGuest(episode.guestName);
-  const links = guestLinks(episode, episode.companyName ?? businessNameOf(profile));
+  const links = guestLinks(
+    episode,
+    episode.companyName ?? businessNameOf(profile),
+    profile.linkNames,
+  );
 
   return (
     <>

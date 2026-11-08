@@ -27,6 +27,17 @@ export interface GuestProfile {
    * it from; otherwise `businessNameOf` reads it out of `role`.
    */
   businessName?: string;
+  /**
+   * Display names for individual accounts, keyed by the account itself — host
+   * plus path, with `www.` and a trailing slash removed, e.g.
+   * `instagram.com/lakecitycider`.
+   *
+   * Why per-account rather than one `businessName`: an episode can carry two
+   * brands (episode 78 is Lake City Cider *and* Darty Brewing), and a single
+   * company name would then mislabel the other brand's accounts. Naming each
+   * account exactly keeps every label true to the address it points at.
+   */
+  linkNames?: Record<string, string>;
 }
 
 const PROFILES: Record<number, GuestProfile> = {
@@ -42,6 +53,10 @@ const PROFILES: Record<number, GuestProfile> = {
   // Episode 76: Pace Pharmacy is the primary business; the guest also runs
   // VetMeds, whose links keep their own handle/domain labels.
   76: { businessName: "Pace Pharmacy" },
+  // Episode 78 covers two brands at once. Lake City Cider's own Instagram sits
+  // in the guest field, so it is named account-by-account — a single business
+  // name here would relabel Darty Brewing's accounts as Lake City Cider's.
+  78: { linkNames: { "instagram.com/lakecitycider": "Lake City Cider" } },
   2: {
     role: "Founder, Adhere to Studios",
     bio: "Alexandra Dean is the founder of Adhere to Studios, a sustainable outerwear brand redefining fashion with purpose. She studied fashion design in Vancouver before joining Lululemon, where she developed her skills in technical garment development and design. She now builds high-performance outerwear from excess materials using lower-impact methods, and speaks candidly about the realities of building a sustainable brand solo.",
