@@ -269,11 +269,33 @@ describe("guestLinks", () => {
       },
       { label: "Visit dartybrewing.ca", href: "https://www.dartybrewing.ca/" },
       { label: "@dartybrewing on Instagram", href: "https://www.instagram.com/dartybrewing/" },
-      { label: "@dartybrewing on Facebook", href: "https://www.facebook.com/dartybrewing/" },
+      { label: "dartybrewing on Facebook", href: "https://www.facebook.com/dartybrewing/" },
       {
-        label: "@lake-city-cider on LinkedIn",
+        label: "lake-city-cider on LinkedIn",
         href: "https://ca.linkedin.com/company/lake-city-cider",
       },
     ]);
+  });
+});
+
+describe("handle labels keep @ on Instagram only", () => {
+  const episode: SanityEpisode = {
+    ...baseEpisode,
+    guestInstagramUrl: "https://www.instagram.com/dartybrewing/",
+    facebookUrl: "https://www.facebook.com/dartybrewing/",
+    companyLinkedinUrl: "https://ca.linkedin.com/company/lake-city-cider",
+  };
+
+  const links = guestLinks(episode, undefined);
+
+  test("Instagram keeps the @ prefix", () => {
+    expect(labelOf("instagram.com/dartybrewing", links)).toBe("@dartybrewing on Instagram");
+  });
+
+  test("Facebook and LinkedIn drop the @ prefix", () => {
+    expect(labelOf("facebook.com/dartybrewing", links)).toBe("dartybrewing on Facebook");
+    expect(labelOf("linkedin.com/company/lake-city-cider", links)).toBe(
+      "lake-city-cider on LinkedIn",
+    );
   });
 });

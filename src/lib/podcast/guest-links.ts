@@ -114,10 +114,17 @@ function siteNameOf(url: string): string {
   }
 }
 
-/** "@handle on Platform" — the fallback when no verified name owns the account. */
+/**
+ * "handle on Platform" — the fallback when no verified name owns the account.
+ *
+ * Only Instagram keeps the `@`: that is the one network where a handle is
+ * written that way. Facebook and LinkedIn names are page titles, not handles,
+ * so "@dartybrewing on Facebook" reads as a mistake.
+ */
 function handleLabel(url: string, platform: string): string {
   const handle = displayHandleOf(url);
-  return handle ? `@${handle} on ${platform}` : platform;
+  if (!handle) return platform;
+  return platform === "Instagram" ? `@${handle} on ${platform}` : `${handle} on ${platform}`;
 }
 
 /**
