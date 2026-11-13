@@ -8,6 +8,7 @@ import {
   publishedOn,
 } from "@/components/episode-media-card";
 import type { EpisodeListItem } from "@/lib/podcast/episode";
+import { guestProfile } from "@/lib/podcast/guest-profiles";
 import { featuredImage } from "@/lib/podcast/imagery";
 
 /**
@@ -19,6 +20,7 @@ import { featuredImage } from "@/lib/podcast/imagery";
  */
 export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
   const slug = episode.slug.current;
+  const focusX = guestProfile(episode.episodeNumber).imageFocusX;
 
   return (
     <article className="grid border border-hairline-dark lg:min-h-[21rem] lg:grid-cols-[minmax(0,34fr)_minmax(0,66fr)]">
@@ -32,6 +34,7 @@ export function FeaturedEpisode({ episode }: { episode: EpisodeListItem }) {
           src={featuredImage(episode)}
           alt=""
           loading="lazy"
+          style={focusX ? { objectPosition: `${focusX} 22%` } : undefined}
           className="absolute inset-0 size-full object-cover object-[50%_22%] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
         <span className="absolute left-4 top-4 bg-lime px-2.5 py-1.5 text-[0.7rem] font-semibold uppercase leading-none tracking-[0.14em] text-ink">

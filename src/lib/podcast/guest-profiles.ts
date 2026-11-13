@@ -38,12 +38,21 @@ export interface GuestProfile {
    * account exactly keeps every label true to the address it points at.
    */
   linkNames?: Record<string, string>;
+  /**
+   * Horizontal focal point (CSS percentage) for multi-guest photos. Narrow
+   * cards cannot hold two faces, so the crop centres one complete face
+   * instead of halving both.
+   */
+  imageFocusX?: string;
 }
 
 const PROFILES: Record<number, GuestProfile> = {
   // Episode 6's title names the company rather than a person, so it carries
   // no role or bio — only the business name its external-link labels need.
-  6: { businessName: "Mint Cleaning" },
+  6: { businessName: "Mint Cleaning", imageFocusX: "15%" },
+  // Multi-guest photos: frame the left guest's full face on narrow cards.
+  70: { imageFocusX: "14%" },
+  82: { imageFocusX: "25%" },
   // Episode 71's guest bio carries the company, but the link labels need the
   // name itself: the guest's own TikTok field holds the brand's account.
   71: { businessName: "I Love Chamoy" },

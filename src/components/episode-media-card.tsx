@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Play } from "lucide-react";
 
 import type { EpisodeListItem } from "@/lib/podcast/episode";
+import { guestProfile } from "@/lib/podcast/guest-profiles";
 import { episodeImage } from "@/lib/podcast/imagery";
 import { formatDuration } from "@/lib/podbean";
 
@@ -67,6 +68,7 @@ export function EpisodeMetaStamp({ episode }: { episode: EpisodeListItem }) {
  */
 export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
   const slug = episode.slug.current;
+  const focusX = guestProfile(episode.episodeNumber).imageFocusX;
 
   return (
     <li className="group h-full">
@@ -80,6 +82,7 @@ export function EpisodeMediaCard({ episode }: { episode: EpisodeListItem }) {
             src={episodeImage(episode, 600)}
             alt=""
             loading="lazy"
+            style={focusX ? { objectPosition: `${focusX} 50%` } : undefined}
             className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
           <span className="absolute bottom-3 left-3 flex size-8 items-center justify-center rounded-full border border-cream/70 bg-ink/40 text-cream backdrop-blur-sm transition-colors group-hover:bg-lime group-hover:text-ink">
