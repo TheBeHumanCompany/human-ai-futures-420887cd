@@ -179,10 +179,7 @@ function CeoPage() {
             <br />
             Generation CEO
           </h1>
-          <p className="type-h3-caps-light mt-5 text-cream/90 sm:mt-6">
-            Executive AI Leadership Program
-          </p>
-          <p className="type-body-lg mt-4 max-w-md text-cream/70">
+          <p className="type-body-lg mt-5 max-w-md text-cream/70 sm:mt-6">
             A private founding program for 8 CEOs
           </p>
           <div className="mt-10">
