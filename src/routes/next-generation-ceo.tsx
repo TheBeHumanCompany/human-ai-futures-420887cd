@@ -179,8 +179,11 @@ function CeoPage() {
             <br />
             Generation CEO
           </h1>
-          <p className="mt-6 max-w-xl text-[clamp(1.25rem,2.4vw,2rem)] leading-snug text-cream/90">
-            A private founding program for eight CEOs
+          <p className="type-h3-caps-light mt-5 text-cream/90 sm:mt-6">
+            Executive AI Leadership Program
+          </p>
+          <p className="type-body-lg mt-4 max-w-md text-cream/70">
+            A private founding program for 8 CEOs
           </p>
           <div className="mt-10">
             <Ctas />
@@ -189,7 +192,7 @@ function CeoPage() {
         <div className="border-t border-cream/15 bg-ink/80 backdrop-blur-sm">
           <dl className={`${SHELL} grid grid-cols-2 divide-cream/15 lg:grid-cols-4 lg:divide-x`}>
             {[
-              ["Seats", "Eight CEOs"],
+              ["Seats", "8 CEOs"],
               ["Your guide", "Your own Chief AI Officer"],
               ["Format", "24 live sessions"],
               ["Enrollment closes", "Friday, December 11"],
@@ -205,16 +208,17 @@ function CeoPage() {
 
       {/* INTRO */}
       <section className="section-cream">
-        <div className={`${SHELL} grid gap-12 py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16 lg:py-28`}>
+        <div className={`${SHELL} grid gap-10 py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-16 lg:py-20`}>
           <div>
-            <h2 className="type-h2-caps max-w-[18ch]">
+            <span className="type-eyebrow-rule mt-0 block" aria-hidden />
+            <h2 className="type-h2-prose mt-5 font-medium text-ink">
               When someone tells you to spend more on AI, do you actually know if they’re right?
             </h2>
-            <p className="type-body-lg mt-6 max-w-[46ch] text-ink/80">
-              Stop paying for AI activity. Start building a company that moves faster, costs less to run, and gives you your time back.
+            <p className="type-body-lg mt-5 max-w-[46ch] text-ink/80">
+              <B>Stop paying for AI activity.</B> Start building a company that moves faster, costs less to run, and gives you your time back.
             </p>
           </div>
-          <div className="space-y-6 text-ink/80">
+          <div className="space-y-5 text-ink/80">
             <P>
               I’m personally taking eight CEOs through this. The day you join, we assess you and your company, then build your AI strategy and 30/60/90-day roadmap. Then, for eight weeks in January and February, I sit beside you as your Chief AI Officer while you put it into motion, with a marketing and content track, direct email access to me, and seven other CEOs going through the same change.
             </P>
@@ -225,7 +229,7 @@ function CeoPage() {
             <Ctas tone="cream" />
           </div>
         </div>
-        <div className={`${SHELL} pb-20 lg:pb-28`}>
+        <div className={`${SHELL} pb-16 lg:pb-20`}>
           <div className="relative grid aspect-video place-items-center overflow-hidden rounded-sm bg-ink">
             <img src={boardroom} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-40" />
             <div className="relative px-6 text-center">
@@ -532,7 +536,7 @@ function CeoPage() {
       {/* PEERS */}
       <section className="section-cream">
         <div className={`${SHELL} grid gap-8 py-20 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16 lg:py-24`}>
-          <h2 className="type-h2-caps">Seven other CEOs in your corner</h2>
+          <h2 className="type-h2-prose font-medium text-ink">Seven other CEOs in your corner</h2>
           <P className="text-ink/80">Running a company can be lonely. People depend on you, and the hardest calls still land on your shoulders. In this program, you’ll be in the room with seven other CEOs going through the same change, bringing real problems, hearing how others are handling them, and sharing what’s working. Some of the most valuable conversations will happen between the CEOs themselves.</P>
         </div>
       </section>
@@ -540,7 +544,7 @@ function CeoPage() {
       {/* VALUE */}
       <section className="section-ink">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <h2 className="type-h1-caps-light max-w-[16ch]">What this is worth to you</h2>
+          <h2 className="type-h1-condensed max-w-[16ch]">What this is worth to you</h2>
           <P className="mt-6 text-foreground/80">Let’s talk about the return, because that’s what a CEO should be asking.</P>
           <div className="mt-12 grid gap-10 border-t border-border pt-10 md:grid-cols-3">
             {[

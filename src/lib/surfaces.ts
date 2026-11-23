@@ -86,6 +86,16 @@ export const SURFACES: readonly Surface[] = [
     sitemap: { changefreq: "monthly", priority: "0.9" },
   },
   {
+    // The Next Generation CEO sales page. Not in the nav tree — AC-3.1a
+    // deep-equals that tree, so an eighth top-level item is an amendment, not
+    // an edit — and not in the sitemap yet: it is a founding-group page Maya
+    // is sending to named CEOs, so advertising it to search engines is her
+    // call, not a default.
+    path: "/next-generation-ceo",
+    kind: "page",
+    expectsSingleNav: true,
+  },
+  {
     // Maya's 2026-08-18 brief. Not in the nav tree — AC-3.1a deep-equals that
     // tree, so a seventh top-level item is an amendment, not an edit. Reachable
     // from /who-we-are until that is decided.
