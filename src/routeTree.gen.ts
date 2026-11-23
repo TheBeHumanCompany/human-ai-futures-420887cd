@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutTheFounderRouteImport } from './routes/about-the-founder'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as NextGenerationCeoRouteImport } from './routes/next-generation-ceo'
 import { Route as PodcastRouteImport } from './routes/podcast'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -44,6 +45,11 @@ const AboutTheFounderRoute = AboutTheFounderRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NextGenerationCeoRoute = NextGenerationCeoRouteImport.update({
+  id: '/next-generation-ceo',
+  path: '/next-generation-ceo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PodcastRoute = PodcastRouteImport.update({
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-the-founder': typeof AboutTheFounderRoute
   '/contact': typeof ContactRoute
+  '/next-generation-ceo': typeof NextGenerationCeoRoute
   '/podcast': typeof PodcastRoute
   '/portal': typeof PortalRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -164,6 +171,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-the-founder': typeof AboutTheFounderRoute
   '/contact': typeof ContactRoute
+  '/next-generation-ceo': typeof NextGenerationCeoRoute
   '/podcast': typeof PodcastRoute
   '/portal': typeof PortalRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about-the-founder': typeof AboutTheFounderRoute
   '/contact': typeof ContactRoute
+  '/next-generation-ceo': typeof NextGenerationCeoRoute
   '/podcast': typeof PodcastRoute
   '/portal': typeof PortalRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -213,6 +222,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about-the-founder'
     | '/contact'
+    | '/next-generation-ceo'
     | '/podcast'
     | '/portal'
     | '/sitemap.xml'
@@ -236,6 +246,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about-the-founder'
     | '/contact'
+    | '/next-generation-ceo'
     | '/podcast'
     | '/portal'
     | '/sitemap.xml'
@@ -259,6 +270,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about-the-founder'
     | '/contact'
+    | '/next-generation-ceo'
     | '/podcast'
     | '/portal'
     | '/sitemap.xml'
@@ -283,6 +295,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutTheFounderRoute: typeof AboutTheFounderRoute
   ContactRoute: typeof ContactRoute
+  NextGenerationCeoRoute: typeof NextGenerationCeoRoute
   PodcastRoute: typeof PodcastRoute
   PortalRoute: typeof PortalRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -324,6 +337,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/next-generation-ceo': {
+      id: '/next-generation-ceo'
+      path: '/next-generation-ceo'
+      fullPath: '/next-generation-ceo'
+      preLoaderRoute: typeof NextGenerationCeoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/podcast': {
@@ -459,6 +479,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutTheFounderRoute: AboutTheFounderRoute,
   ContactRoute: ContactRoute,
+  NextGenerationCeoRoute: NextGenerationCeoRoute,
   PodcastRoute: PodcastRoute,
   PortalRoute: PortalRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
