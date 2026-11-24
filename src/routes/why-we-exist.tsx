@@ -513,7 +513,7 @@ const COMPOUNDS = ["Trust", "Relationships", "Leadership", "Families", "Organiza
  */
 const INFRASTRUCTURE = [
   {
-    to: "/be-human-ai",
+    to: "/next-generation-ceo",
     name: "Be Human Intelligence",
     body: "Be Human Intelligence helps organizations adopt these systems through strategy, human readiness, governance, and transformation, keeping a person accountable for every judgment that matters. Hence, the technology strengthens both the business and the people inside it.",
   },

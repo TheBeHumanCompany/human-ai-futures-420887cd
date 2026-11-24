@@ -57,7 +57,8 @@ export type NavRoute =
   | "/the-human-archive"
   | "/podcast"
   | "/contact"
-  | "/be-human-ai";
+  | "/be-human-ai"
+  | "/next-generation-ceo";
 
 /** An entry inside a dropdown panel. Always a real destination. */
 export type NavChild = {
@@ -115,8 +116,8 @@ export const NAV: readonly NavItem[] = [
   { label: "Podcast", to: "/podcast", triggerNavigates: true },
   { label: "Contact", to: "/contact", triggerNavigates: true },
   {
-    label: "Blueprint",
-    to: "/be-human-ai",
+    label: "Next Generation CEO",
+    to: "/next-generation-ceo",
     triggerNavigates: true,
     cta: true,
   },

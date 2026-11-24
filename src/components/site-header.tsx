@@ -303,11 +303,11 @@ export function SiteHeader() {
               <MobileItem key={item.label} item={item} onNavigate={close} />
             ))}
             <Link
-              to="/be-human-ai"
+              to="/next-generation-ceo"
               onClick={close}
               className="eyebrow mt-6 inline-flex rounded-full border border-lime px-5 py-3 text-lime"
             >
-              Blueprint
+              Next Generation CEO
             </Link>
           </div>
         )}

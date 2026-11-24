@@ -170,7 +170,7 @@ function Home() {
               their people, protecting what matters, and transforming how work gets done.
             </p>
             <Link
-              to="/be-human-ai"
+              to="/next-generation-ceo"
               className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-lime px-6 py-3 text-xs font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-lime hover:text-ink sm:mt-8 sm:px-8 sm:py-3.5 sm:text-sm"
             >
               EXPLORE BE HUMAN INTELLIGENCE{" "}

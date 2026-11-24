@@ -95,6 +95,12 @@ export default {
           url.pathname.endsWith("/") && url.pathname !== "/"
             ? url.pathname.slice(0, -1)
             : url.pathname;
+        // The Blueprint page (/be-human-ai) is retired as the primary offer;
+        // its route file is kept for future use, but shared links go to the
+        // Next Generation CEO page (Maya 2026-11-24).
+        if (pathname === "/be-human-ai" || pathname === "/be-human-ai/") {
+          return Response.redirect(new URL(`/next-generation-ceo${url.search}`, request.url), 301);
+        }
         if (pathname === "/about") {
           return Response.redirect(new URL(`/who-we-are${url.search}`, request.url), 301);
         }

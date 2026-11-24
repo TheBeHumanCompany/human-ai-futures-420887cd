@@ -17,8 +17,8 @@ const BINDING_TREE: NavItem[] = [
   { label: "Podcast", to: "/podcast", triggerNavigates: true },
   { label: "Contact", to: "/contact", triggerNavigates: true },
   {
-    label: "Blueprint",
-    to: "/be-human-ai",
+    label: "Next Generation CEO",
+    to: "/next-generation-ceo",
     triggerNavigates: true,
     cta: true,
   },
@@ -37,7 +37,7 @@ describe("the binding nav tree", () => {
       "The Human Archive",
       "Podcast",
       "Contact",
-      "Blueprint",
+      "Next Generation CEO",
     ]);
   });
 
@@ -47,7 +47,7 @@ describe("the binding nav tree", () => {
 
   test("exactly one item is the pill", () => {
     const pills = NAV.filter((item) => item.cta);
-    expect(pills.map((item) => item.label)).toEqual(["Blueprint"]);
+    expect(pills.map((item) => item.label)).toEqual(["Next Generation CEO"]);
   });
 });
 
@@ -62,9 +62,9 @@ describe("the split-control invariant", () => {
   });
 
   test("Blueprint is one page and links straight to it, with no dropdown", () => {
-    const blueprint = NAV.find((item) => item.label === "Blueprint");
+    const blueprint = NAV.find((item) => item.label === "Next Generation CEO");
 
-    expect(blueprint?.to).toBe("/be-human-ai");
+    expect(blueprint?.to).toBe("/next-generation-ceo");
     expect(blueprint?.triggerNavigates).toBe(true);
     expect(blueprint?.children).toBeUndefined();
   });
@@ -106,13 +106,13 @@ describe("navDestinations", () => {
     expect(destinations).toHaveLength(7);
     expect(new Set(destinations.map((d) => d.to)).size).toBe(destinations.length);
     expect(destinations.map((d) => d.to)).toContain("/who-we-are");
-    expect(destinations.map((d) => d.to)).toContain("/be-human-ai");
+    expect(destinations.map((d) => d.to)).toContain("/next-generation-ceo");
   });
 
   test("order follows the bar", () => {
     const order = navDestinations().map((d) => d.to);
 
     expect(order.indexOf("/why-we-exist")).toBeLessThan(order.indexOf("/who-we-are"));
-    expect(order.indexOf("/who-we-are")).toBeLessThan(order.indexOf("/be-human-ai"));
+    expect(order.indexOf("/who-we-are")).toBeLessThan(order.indexOf("/next-generation-ceo"));
   });
 });
