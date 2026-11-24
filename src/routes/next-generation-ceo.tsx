@@ -261,10 +261,27 @@ function CeoPage() {
             <Label tone="muted">The problem</Label>
             <h2 className="type-h2-caps mt-4 max-w-[16ch]">You’re using AI. Is your business actually getting better?</h2>
             <div className="mt-10 border-t border-ink/15 pt-8">
-              <p className="font-display text-[clamp(4rem,9vw,7rem)] font-bold leading-none text-ink">
-                88% <span className="text-ink/30">/</span> 6%
-              </p>
-              <p className="type-body-sm mt-3 max-w-[38ch] text-ink/60">McKinsey, 2025 State of AI</p>
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-0">
+                <div className="sm:pr-12">
+                  <p className="font-display text-[clamp(3.25rem,7vw,5.5rem)] font-bold leading-none tracking-[-0.01em] text-ink">
+                    88%
+                  </p>
+                  <p className="type-body mt-3 text-ink/70">of organizations use AI.</p>
+                  <div className="mt-5 h-[2px] w-[88%] bg-ink" aria-hidden />
+                </div>
+                <div className="border-t border-ink/15 pt-8 sm:border-l sm:border-t-0 sm:pl-12 sm:pt-0">
+                  <p className="font-display text-[clamp(3.25rem,7vw,5.5rem)] font-bold leading-none tracking-[-0.01em] text-ink">
+                    6%
+                  </p>
+                  <p className="type-body mt-3 text-ink/70">are AI high performers.</p>
+                  <div className="mt-5 h-[2px] w-[6%] bg-lime" aria-hidden />
+                </div>
+              </div>
+              <p className="type-body-sm mt-8 text-ink/50">McKinsey, 2025 State of AI</p>
+              <div className="mt-7 space-y-1.5">
+                <p className="type-h4-prose text-ink">Almost everyone is using AI.</p>
+                <p className="type-h4-prose font-bold text-ink">Few are actually getting ahead.</p>
+              </div>
             </div>
           </div>
           <div className="space-y-6 text-ink/80">
