@@ -692,9 +692,10 @@ function CeoPage() {
             <P>The weekly marketing call takes what you’re learning in the CEO curriculum and applies it to the part of your business that brings customers in.</P>
           </div>
           <div className="mt-12 grid border-t border-border sm:grid-cols-2 lg:grid-cols-4">
-            {MARKETING.map(([t, b]) => (
+            {MARKETING.map(([t, b], i) => (
               <div key={t} className="border-b border-border py-6 sm:pr-6 lg:[&:nth-child(-n+4)]:border-b">
-                <p className="type-h4-caps-light text-[1rem]">{t}</p>
+                <p className="font-display text-[18px] font-bold uppercase leading-none tracking-[0.04em] text-lime md:text-[19px]">Week {i + 1}</p>
+                <p className="mt-2 font-display text-[24px] font-semibold uppercase leading-[1.05] text-foreground md:text-[26px]">{t.replace(/^Week \d+\.\s*/, "").replace(/\.$/, "")}</p>
                 <p className="type-body-sm mt-2 text-foreground/70">{b}</p>
               </div>
             ))}
