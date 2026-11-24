@@ -570,58 +570,61 @@ function CeoPage() {
 
       {/* PHASE 1 */}
       <section className="section-cream">
-        <div className={`${SHELL} py-20 lg:py-28`}>
-          <div className="flex items-start gap-5 sm:gap-8">
-            <p aria-hidden="true" className="font-display text-[clamp(4.5rem,10vw,8rem)] font-bold leading-[0.8] text-ink">01</p>
+        <div className={`${SHELL} pt-20 pb-14 lg:pt-28 lg:pb-20`}>
+          <div className="flex items-end gap-5 sm:gap-8">
+            <p aria-hidden="true" className="font-display text-[clamp(4rem,9vw,7rem)] font-bold leading-[0.8] text-ink">01</p>
             <div>
               <p className="type-label-caps text-ink">Phase 1 / The Blueprint</p>
               <p className="type-label-caps mt-2 text-ink/50">Starts the day you join</p>
             </div>
           </div>
-          <h2 className="type-h1-caps mt-8 max-w-[18ch]">Your CEO and company blueprint</h2>
-          <p className="type-h4-caps mt-6 text-ink">Three assessments. Four consulting steps. One clear plan</p>
-          <P className="mt-6 text-ink/80">From day one, you get four private Zoom calls with me. The first three are your assessments, where we dig into where your company stands, where it’s losing value and what needs to happen next. On the fourth, we walk through your Key Findings Report and 30/60/90-day roadmap together. We do the heavy lifting in between, so you can focus on the conversations that matter.</P>
+          <h2 className="type-h1-caps mt-8 max-w-none">Your CEO and company blueprint</h2>
+          <span aria-hidden="true" className="mt-5 block h-[2px] w-12 bg-lime" />
+          <p className="type-h4-caps mt-5 text-ink">Three assessments. Four consulting steps. One clear plan.</p>
+          <P className="mt-6 max-w-4xl text-ink/80">From day one, you get four private Zoom calls with me. The first three are your assessments, where we dig into where your company stands, where it’s losing value and what needs to happen next. On the fourth, we walk through your Key Findings Report and 30/60/90-day roadmap together. We do the heavy lifting in between, so you can focus on the conversations that matter.</P>
 
-          <div className="mt-14 border-t border-ink/15 pt-10">
-            <h3 className="type-h3-caps">Step 1. Your three assessments</h3>
-            <div className="mt-8 grid gap-8 md:grid-cols-3">
-              {[
-                ["CEO assessment.", "How you lead, decide, spend your time and use AI. What still depends on you, and where better systems would make you more effective. We also want to hear your vision for the business, what’s weighing on you and what you’ve wanted to do but haven’t had the resources for."],
-                ["Company assessment.", "Ten areas of your business: your business model, revenue engine, customer journey, team structure, technology, critical workflows, information flow, decision bottlenecks, growth constraints and risk exposure. We also look at what the work feels like for your team, because a better company should be a better place to work too."],
-                ["AI implementation assessment.", "Your current technology, data, workflows and real readiness to bring in AI and agents, including what needs fixing before anything gets built."],
-              ].map(([t, b], i) => (
-                <div key={t} className="border-t-2 border-ink pt-5">
-                  <p className="font-display text-[18px] font-bold text-lime-dark">0{i + 1}</p>
-                  <details className="group mt-3">
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
-                      <span className="type-h4-caps">{t.replace(/\.$/, "")}</span>
-                      <span aria-hidden="true" className="shrink-0 text-[20px] font-light leading-none transition-transform group-open:rotate-45">+</span>
-                    </summary>
-                    <p className="type-body-sm mt-3 text-ink/75">{b}</p>
-                  </details>
+          <ol className="mt-12 border-t border-ink/15 lg:mt-14">
+            {[["Step 1", "Your three assessments", null] as const, ...STEPS.map(([t, body]) => [t.slice(0, 6), t.slice(8).replace(/\.$/, ""), body] as const)].map(([n, t, body]) => (
+              <li key={n} className="grid gap-2 border-b border-ink/15 py-6 md:grid-cols-[8rem_minmax(0,1fr)] md:gap-8 md:py-8">
+                <p className="font-display text-[15px] font-bold uppercase tracking-[0.12em] text-lime-dark md:pt-1.5">{n}</p>
+                <div>
+                  <h3 className="type-h3-caps">{t}</h3>
+                  {body ? (
+                    <p className="type-body mt-3 max-w-4xl text-ink/80">{body}</p>
+                  ) : (
+                    <div className="mt-5 grid gap-6 md:grid-cols-3 md:gap-8">
+                      {[
+                      ["CEO assessment.", "How you lead, decide, spend your time and use AI. What still depends on you, and where better systems would make you more effective. We also want to hear your vision for the business, what’s weighing on you and what you’ve wanted to do but haven’t had the resources for."],
+                      ["Company assessment.", "Ten areas of your business: your business model, revenue engine, customer journey, team structure, technology, critical workflows, information flow, decision bottlenecks, growth constraints and risk exposure. We also look at what the work feels like for your team, because a better company should be a better place to work too."],
+                      ["AI implementation assessment.", "Your current technology, data, workflows and real readiness to bring in AI and agents, including what needs fixing before anything gets built."],
+                      ].map(([at, ab], i) => (
+                        <div key={at} className="border-t-2 border-ink pt-4">
+                          <p className="font-display text-[15px] font-bold text-lime-dark">0{i + 1}</p>
+                          <details className="group mt-2">
+                            <summary className="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                              <span className="type-h4-caps">{at.replace(/\.$/, "")}</span>
+                              <span aria-hidden="true" className="shrink-0 text-[20px] font-light leading-none transition-transform group-open:rotate-45">+</span>
+                            </summary>
+                            <p className="type-body-sm mt-3 text-ink/75">{ab}</p>
+                          </details>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-14 border-t border-ink/15">
-            {STEPS.map(([t, b]) => (
-              <div key={t} className="grid gap-3 border-b border-ink/15 py-7 md:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] md:gap-12">
-                <h3 className="type-h3-caps">{t.replace(/\.$/, "")}</h3>
-                <p className="type-body text-ink/80">{b}</p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ol>
 
-          <div className="mt-16 bg-ink p-8 text-cream sm:p-12">
+          <div className="mt-12 bg-ink p-6 text-cream sm:p-12 lg:mt-14">
             <p className="type-label-caps text-lime">What you walk away with</p>
             <div className="mt-8 grid gap-10 md:grid-cols-2">
               <div>
-                <h4 className="type-h3-caps-light">Your Key Findings Report</h4>
+                <h4 className="font-display text-[clamp(1.5rem,2.4vw,2rem)] font-medium uppercase leading-[1.05] tracking-[0.01em] text-cream">Your Key Findings Report</h4>
                 <p className="type-body mt-3 text-cream/75">A personal executive report on your findings, opportunities, readiness, risks and recommended priorities.</p>
               </div>
               <div>
-                <h4 className="type-h3-caps-light">Your 30/60/90-day roadmap</h4>
+                <h4 className="font-display text-[clamp(1.5rem,2.4vw,2rem)] font-medium uppercase leading-[1.05] tracking-[0.01em] text-cream">Your 30/60/90-day roadmap</h4>
                 <p className="type-body mt-3 text-cream/75">The complete plan, built out for your company: what happens in each phase, in what order, with what resources, owned by whom and measured how.</p>
               </div>
             </div>
@@ -631,19 +634,13 @@ function CeoPage() {
             </figure>
             <p className="type-body mt-10 border-t border-cream/15 pt-8 text-cream/80">We walk you through both on your fourth call. Before January even starts, you’ll know exactly where your business stands and what comes next.</p>
           </div>
-          <div className="mt-12 w-full max-w-6xl border-l-2 border-lime pl-6 sm:pl-8">
+          <div className="mt-12 w-full max-w-6xl border-l-2 border-lime pl-6 sm:pl-8 lg:mt-14">
             <p className="max-w-[44ch] font-sans text-[clamp(1.25rem,2vw,1.625rem)] font-bold leading-[1.25] tracking-[-0.02em] text-ink">
               The sooner you join, the sooner we start.
             </p>
             <p className="type-body mt-4 max-w-[58ch] font-medium text-ink">
               Your assessments begin <strong className="font-bold">the day you reserve your seat</strong>, so you’ll be further ahead when the group starts.
             </p>
-            <div className="mt-8">
-              <p className="type-label-caps text-ink/55">Live program begins</p>
-              <p className="mt-2 whitespace-nowrap font-display text-[clamp(1.75rem,3.2vw,2.5rem)] font-bold uppercase leading-none text-ink">Monday, January 4</p>
-              <p className="mt-1 font-display text-[clamp(1.125rem,1.8vw,1.375rem)] font-bold uppercase leading-none text-ink/70">2027</p>
-              <span aria-hidden="true" className="mt-4 block h-[2px] w-12 bg-lime" />
-            </div>
           </div>
         </div>
       </section>
@@ -651,8 +648,19 @@ function CeoPage() {
       {/* PHASE 2 */}
       <section className="section-ink">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <Label>Phase 2 (January and February)</Label>
-          <h2 className="type-h1-caps-light mt-4 max-w-none !font-bold !text-[clamp(1.9rem,7.6vw,5.5rem)] !leading-[0.95]"><span className="block whitespace-nowrap">For eight weeks, I’m</span><span className="block whitespace-nowrap">your Chief AI Officer</span></h2>
+          <div className="flex items-end gap-5 sm:gap-8">
+            <p aria-hidden="true" className="font-display text-[clamp(4rem,9vw,7rem)] font-bold leading-[0.8] text-lime">02</p>
+            <div>
+              <p className="type-label-caps text-cream">Phase 2 / The Build</p>
+              <p className="type-label-caps mt-2 text-cream/55">January and February 2027</p>
+            </div>
+          </div>
+          <h2 className="type-h1-caps-light mt-8 max-w-none !font-bold !text-[clamp(1.9rem,7.6vw,5.5rem)] !leading-[0.95]"><span className="block whitespace-nowrap">For eight weeks, I’m</span><span className="block whitespace-nowrap">your Chief AI Officer</span></h2>
+          <span aria-hidden="true" className="mt-5 block h-[2px] w-12 bg-lime" />
+          <div className="mt-8">
+            <p className="type-label-caps text-lime">Live program begins</p>
+            <p className="mt-2 font-display text-[clamp(1.75rem,3.2vw,2.5rem)] font-bold uppercase leading-none text-cream">Monday, January 4, 2027</p>
+          </div>
           <div className="mt-10 grid gap-6 text-foreground/80 lg:grid-cols-2 lg:gap-16">
             <div className="space-y-6">
               <P>Most consulting engagements end when you get the report, and you’re left working out how to make it happen. This one doesn’t.</P>
