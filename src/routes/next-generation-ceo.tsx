@@ -695,7 +695,10 @@ function CeoPage() {
           <h2 className="type-h2-caps-light mt-6 max-w-[24ch] !font-semibold"><span className="block">Your competitors are learning to produce more marketing at a fraction of the cost</span><span className="mt-[18px] block">Are you?</span></h2>
           <div className="mt-10 grid gap-6 text-foreground/80 lg:grid-cols-2 lg:gap-16">
             <P>Marketing is usually where CEOs feel this shift first. The way customers find you, trust you, and buy from you is changing fast, and AI has rewritten content economics. A small team can now research, create, and distribute what used to take an agency, and the companies that figure it out first will take attention from everyone who doesn’t.</P>
-            <P>The weekly marketing call takes what you’re learning in the CEO curriculum and applies it to the part of your business that brings customers in.</P>
+            <div>
+              <P>The weekly marketing call takes what you’re learning in the CEO curriculum and applies it to the part of your business that brings customers in.</P>
+              <P className="mt-6 hidden lg:block">This isn’t about flooding the internet with more content. It’s about a marketing operation that connects with the right people and grows your business without your costs growing at the same rate. I’ve been building brands since social media began, and we run these systems in our own businesses today.</P>
+            </div>
           </div>
           <div className="mt-12 grid border-t border-border sm:grid-cols-2 lg:grid-cols-4">
             {MARKETING.map(([t, b], i) => (
@@ -706,7 +709,7 @@ function CeoPage() {
               </div>
             ))}
           </div>
-          <P className="mt-12 text-foreground/80">This isn’t about flooding the internet with more content. It’s about a marketing operation that connects with the right people and grows your business without your costs growing at the same rate. I’ve been building brands since social media began, and we run these systems in our own businesses today.</P>
+          <P className="mt-12 text-foreground/80 lg:hidden">This isn’t about flooding the internet with more content. It’s about a marketing operation that connects with the right people and grows your business without your costs growing at the same rate. I’ve been building brands since social media began, and we run these systems in our own businesses today.</P>
         </div>
       </section>
 
