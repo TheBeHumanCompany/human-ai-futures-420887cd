@@ -250,7 +250,7 @@ function CeoPage() {
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/80 to-ink/0 md:via-ink/55" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-ink to-ink/0" />
-        <div className={`${SHELL} flex min-h-[78svh] flex-col justify-center py-24 md:min-h-[640px] lg:min-h-[720px]`}>
+        <div className={`${SHELL} flex flex-col justify-center pt-24 pb-[60px] md:min-h-[640px] md:py-24 lg:min-h-[720px]`}>
           <h1 className="font-display text-[clamp(3.25rem,9vw,8.25rem)] font-bold uppercase leading-[0.92] tracking-[-0.01em] text-cream">
             The Next
             <br />
