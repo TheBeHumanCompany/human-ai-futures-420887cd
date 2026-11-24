@@ -130,7 +130,9 @@ function PersuasionStatement({
   emphasis,
   tone = "dark",
   className = "",
+  matchSize = false,
 }: {
+  matchSize?: boolean;
   children: React.ReactNode;
   emphasis: React.ReactNode;
   tone?: "dark" | "cream";
@@ -146,7 +148,9 @@ function PersuasionStatement({
         {children}
       </p>
       <p
-        className={`mt-4 max-w-[38ch] font-sans text-[clamp(1.75rem,3.2vw,3rem)] font-bold leading-[1.12] tracking-[-0.035em] sm:mt-5 ${
+        className={`mt-4 max-w-[38ch] font-sans font-bold sm:mt-5 ${
+          matchSize ? "text-[clamp(1.375rem,2.2vw,2rem)] leading-[1.3] tracking-[-0.025em]" : "text-[clamp(1.75rem,3.2vw,3rem)] leading-[1.12] tracking-[-0.035em]"
+        } ${
           tone === "dark" ? "text-lime" : "text-lime-dark"
         }`}
       >
@@ -729,7 +733,7 @@ function CeoPage() {
               </div>
             ))}
           </div>
-          <PersuasionStatement className="mt-16" emphasis="That’s the trade.">
+          <PersuasionStatement className="mt-16" matchSize emphasis="That’s the trade.">
             $3,500 against 10 to 20 hours of your week and the most expensive mistakes in this space.
           </PersuasionStatement>
         </div>
