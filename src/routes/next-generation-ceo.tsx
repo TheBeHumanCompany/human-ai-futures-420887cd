@@ -261,26 +261,26 @@ function CeoPage() {
             <Label tone="muted">The problem</Label>
             <h2 className="type-h2-caps mt-4 max-w-[16ch]">You’re using AI. Is your business actually getting better?</h2>
             <div className="mt-10 border-t border-ink/15 pt-8">
-              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-0">
-                <div className="sm:pr-12">
-                  <p className="font-display text-[clamp(3.25rem,7vw,5.5rem)] font-bold leading-none tracking-[-0.01em] text-ink">
-                    88%
-                  </p>
-                  <p className="type-body mt-3 text-ink/70">of organizations use AI.</p>
-                  <div className="mt-5 h-[2px] w-[88%] bg-ink" aria-hidden />
+              <div className="grid grid-cols-2 gap-6 sm:gap-10">
+                <div className="min-w-0">
+                  <p className="font-display !text-[56px] md:!text-[72px] lg:!text-[96px] !font-bold !leading-none tracking-[-0.01em] text-ink">88%</p>
+                  <p className="mt-4 font-sans !text-[14px] lg:!text-[18px] font-normal leading-snug text-ink/70">of organizations use AI.</p>
+                  <div className="mt-5 h-2 w-full bg-ink/10" role="img" aria-label="88%">
+                    <div className="h-full bg-ink" style={{ width: "88%" }} />
+                  </div>
                 </div>
-                <div className="border-t border-ink/15 pt-8 sm:border-l sm:border-t-0 sm:pl-12 sm:pt-0">
-                  <p className="font-display text-[clamp(3.25rem,7vw,5.5rem)] font-bold leading-none tracking-[-0.01em] text-ink">
-                    6%
-                  </p>
-                  <p className="type-body mt-3 text-ink/70">are AI high performers.</p>
-                  <div className="mt-5 h-[2px] w-[6%] bg-lime" aria-hidden />
+                <div className="min-w-0">
+                  <p className="font-display !text-[56px] md:!text-[72px] lg:!text-[96px] !font-bold !leading-none tracking-[-0.01em] text-ink">6%</p>
+                  <p className="mt-4 font-sans !text-[14px] lg:!text-[18px] font-normal leading-snug text-ink/70">are AI high performers.</p>
+                  <div className="mt-5 h-2 w-full bg-ink/10" role="img" aria-label="6%">
+                    <div className="h-full bg-lime" style={{ width: "6%" }} />
+                  </div>
                 </div>
               </div>
               <p className="type-body-sm mt-8 text-ink/50">McKinsey, 2025 State of AI</p>
               <div className="mt-7 space-y-1.5">
-                <p className="type-h4-prose text-ink">Almost everyone is using AI.</p>
-                <p className="type-h4-prose font-bold text-ink">Few are actually getting ahead.</p>
+                <p className="font-sans !text-[22px] lg:!text-[28px] font-normal leading-tight text-ink">Almost everyone is using AI.</p>
+                <p className="font-sans !text-[22px] lg:!text-[28px] !font-bold leading-tight text-ink">Few are actually getting ahead.</p>
               </div>
             </div>
           </div>
