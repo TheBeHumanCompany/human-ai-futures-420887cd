@@ -815,11 +815,12 @@ function CeoPage() {
         <img src={boardroom} alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-45" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/85 to-ink/35 lg:to-ink/20" />
         <div className={`${SHELL} py-24 lg:py-32`}>
-          <h2 className="max-w-[24ch] font-display text-[clamp(2.75rem,4.8vw,4.25rem)] font-medium normal-case leading-[1.02] tracking-[0.005em] text-cream">
-            <span className="block">The next generation of companies is being built right now.</span>
-            <span className="mt-5 block font-semibold">Make sure yours is one of them</span>
+          <h2 className="max-w-[26ch] font-display normal-case tracking-[0.005em] text-cream [text-wrap:balance]">
+            <span className="block text-[clamp(2.25rem,4.2vw,3.75rem)] font-normal leading-[1.05]">The next generation of companies is being built right now.</span>
+            <span className="mt-2 block text-[clamp(2.5rem,4.8vw,4.25rem)] font-bold leading-[1.05]">Make sure yours is one of them</span>
           </h2>
-          <div className="mt-10 max-w-[64ch] space-y-6 text-cream/80">
+          <span aria-hidden className="mt-6 block h-[2px] w-14 bg-lime" />
+          <div className="mt-10 max-w-[64ch] space-y-6 leading-[1.75] text-cream/80">
             <P>The way companies run is changing, and the way CEOs lead is changing with it. You can continue experimenting with tools and hoping the pieces come together. Or you can start with a real diagnosis, a well-defined roadmap, and an operator beside you while you build what’s next.</P>
             <P>If you’re reading this, it’s because I chose you. I’ve looked at you and your business, and I’ve looked at the competitors in your field, some of whom I may know. I’m taking only one company per industry, so you get this before your competitors do, and no similar business will be in the room with you. If you want to cut waste, move faster, and build a company ready for what’s coming, let’s talk.</P>
             <P className="font-semibold text-cream">Enrollment closes Friday, December 11, or sooner when the eight seats fill. Your assessments start the day you join.</P>
@@ -835,7 +836,7 @@ function CeoPage() {
                 key={value}
                 className={`border-cream/15 p-4 sm:p-6 lg:px-8 lg:py-10 ${i % 2 === 1 ? "border-l" : ""} ${i >= 2 ? "border-t lg:border-t-0" : ""} ${i > 0 ? "lg:border-l" : ""}`}
               >
-                <dt className="whitespace-nowrap font-display text-[clamp(1.75rem,3.4vw,3.5rem)] font-medium uppercase leading-none text-lime">{value}</dt>
+                <dt className="whitespace-nowrap font-display text-[clamp(1.75rem,3.2vw,3.25rem)] font-bold uppercase leading-none text-lime">{value}</dt>
                 <dd className="mt-3 font-sans text-[13px] leading-relaxed text-cream/75 sm:text-sm">{description}</dd>
               </div>
             ))}
