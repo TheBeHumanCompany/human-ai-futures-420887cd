@@ -571,30 +571,31 @@ function CeoPage() {
             <p className="type-label-caps text-lime">What you walk away with</p>
             <div className="mt-8 grid gap-10 md:grid-cols-2">
               <div>
-                <h4 className="type-h3-caps-light">Your Key Findings Report.</h4>
+                <h4 className="type-h3-caps-light">Your Key Findings Report</h4>
                 <p className="type-body mt-3 text-cream/75">A personal executive report on your findings, opportunities, readiness, risks, and recommended priorities.</p>
               </div>
               <div>
-                <h4 className="type-h3-caps-light">Your 30/60/90-day roadmap.</h4>
+                <h4 className="type-h3-caps-light">Your 30/60/90-day roadmap</h4>
                 <p className="type-body mt-3 text-cream/75">The complete plan, built out for your company: what happens in each phase, in what order, with what resources, owned by whom, and measured how.</p>
               </div>
             </div>
             <figure className="mt-10 border-t border-cream/15 pt-8">
-              <div className="grid gap-4 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-                <img src={reportImg.url} alt="Illustrative Key Findings Report cover" loading="lazy" className="w-full rounded-[4px] object-cover" />
-                <img src={recsImg.url} alt="Illustrative AI opportunity recommendations" loading="lazy" className="w-full rounded-[4px] object-cover" />
+              <div className="grid items-start gap-6 sm:gap-8 md:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)]">
+                <img src={reportImg.url} alt="Illustrative Key Findings Report cover" loading="lazy" className="h-auto w-full object-contain" />
+                <img src={recsImg.url} alt="Illustrative AI opportunity recommendations" loading="lazy" className="h-auto w-full object-contain" />
               </div>
-              <figcaption className="type-label-caps mt-3 text-cream/50">Illustrative example, not client data</figcaption>
+              <figcaption className="mt-4 font-sans text-xs font-normal leading-relaxed text-cream/50">Illustrative example, not client data</figcaption>
             </figure>
             <p className="type-body mt-10 border-t border-cream/15 pt-8 text-cream/80">We walk you through both on your fourth call. Before January even starts, you’ll know exactly where your business stands and what comes next.</p>
           </div>
-          <PersuasionStatement
-            tone="cream"
-            className="mt-12"
-            emphasis="Your assessments begin the day you reserve your seat, so you’ll be further ahead when the group starts on January 4."
-          >
-            The sooner you join, the sooner we start.
-          </PersuasionStatement>
+          <div className="mt-12 w-full max-w-6xl border-l-2 border-lime pl-6 sm:pl-8">
+            <p className="max-w-[44ch] font-sans text-[clamp(1.25rem,2vw,1.625rem)] font-bold leading-[1.25] tracking-[-0.02em] text-ink">
+              The sooner you join, the sooner we start.
+            </p>
+            <p className="type-body mt-4 max-w-[58ch] font-medium text-ink">
+              Your assessments begin <strong className="font-bold">the day you reserve your seat</strong>, so you’ll be further ahead when the group starts on <strong className="font-bold">January 4</strong>.
+            </p>
+          </div>
         </div>
       </section>
 
