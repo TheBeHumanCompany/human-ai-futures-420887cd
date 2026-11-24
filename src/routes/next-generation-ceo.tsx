@@ -614,8 +614,8 @@ function CeoPage() {
           <div className="mt-8 border-t border-border">
             {WEEKS.map(([t, b, adv], i) => (
               <div key={t} className="grid gap-4 border-b border-border py-8 md:grid-cols-[5rem_minmax(0,20rem)_minmax(0,1fr)] md:gap-8">
-                <p className="font-display text-4xl font-bold leading-none text-lime">{String(i + 1).padStart(2, "0")}</p>
-                <h4 className="type-h4-caps-light">{t}</h4>
+                <p className="type-label-caps pt-1 text-lime">Week {i + 1}</p>
+                <h4 className="type-h4-caps-light">{t.replace(/^Week \d+\.\s*/, "").replace(/\.$/, "")}</h4>
                 <div>
                   <p className="type-body text-foreground/80">{b}</p>
                   <p className="type-body mt-3 text-foreground"><span className="font-semibold text-lime">Your advantage:</span> {adv}</p>
