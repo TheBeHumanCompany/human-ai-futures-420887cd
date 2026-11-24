@@ -440,10 +440,10 @@ function CeoPage() {
           <div>
             <Label>Proof in our own house</Label>
             <h2 className="type-h2-caps-light mt-4 max-w-[18ch]">We’re building this kind of company ourselves</h2>
-            <div className="mt-10 grid grid-cols-3 gap-4 border-t border-border pt-8">
+            <div className="mt-10 grid grid-cols-3 divide-x divide-border border-t border-border pt-8">
               {[["15–20", "podcast interviews a week"], ["150–200", "pieces of content a week"], ["600–800", "pieces a month"]].map(([n, l]) => (
-                <div key={l}>
-                  <p className="font-display text-[clamp(1.75rem,4vw,3rem)] font-bold leading-none text-lime">{n}</p>
+                <div key={l} className="min-w-0 px-2 text-center sm:px-4">
+                  <p className="whitespace-nowrap font-display text-[clamp(1.35rem,4vw,3rem)] font-bold leading-none text-lime">{n}</p>
                   <p className="type-body-sm mt-2 text-foreground/60">{l}</p>
                 </div>
               ))}
