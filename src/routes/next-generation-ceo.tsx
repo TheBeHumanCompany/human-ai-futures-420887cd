@@ -326,7 +326,7 @@ function CeoPage() {
         <div className={`${SHELL} grid gap-10 py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16 lg:py-28`}>
           <div className="lg:col-span-2">
             <Label tone="muted">The problem</Label>
-            <h2 className="type-h2-caps mt-4 max-w-none md:!text-[min(4.4vw,4.5rem)]"><span className="sm:block">You’re using AI.</span> <span className="sm:block">Is your business actually getting better?</span></h2>
+            <h2 className="type-h2-caps mt-4 max-w-none md:!text-[min(4.4vw,4.5rem)]"><span className="block">You’re using AI.</span> <span className="mt-4 block">Is your business actually getting better?</span></h2>
           </div>
           <div>
             <div className="border-t border-ink/15 pt-8">
@@ -404,7 +404,7 @@ function CeoPage() {
         <div className={`${SHELL} grid gap-12 py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 lg:py-28`}>
           <div className="lg:col-span-2">
             <Label tone="muted">Your Chief AI Officer</Label>
-            <h2 className="type-h2-caps mt-4 max-w-none"><span className="sm:block">I’ve always been an operator.</span> <span className="sm:block">That’s exactly how I approach AI.</span></h2>
+            <h2 className="type-h2-caps mt-4 max-w-none"><span className="block">I’ve always been an operator.</span> <span className="mt-4 block">That’s exactly how I approach AI.</span></h2>
           </div>
           <div className="lg:sticky lg:top-28 lg:self-start">
             <img src={shaneBookshelf.url} alt="Shane Jeremy James in front of his bookshelf" loading="lazy" className="aspect-[4/5] w-full object-cover object-[50%_30%]" />
