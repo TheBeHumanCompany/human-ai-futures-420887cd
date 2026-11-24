@@ -815,9 +815,12 @@ function CeoPage() {
         <img src={boardroom} alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-45" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/85 to-ink/35 lg:to-ink/20" />
         <div className={`${SHELL} py-24 lg:py-32`}>
-          <h2 className="max-w-[26ch] font-display normal-case tracking-[0.005em] text-cream [text-wrap:balance]">
-            <span className="block text-[clamp(2.25rem,4.2vw,3.75rem)] font-normal leading-[1.05]">The next generation of companies is being built right now.</span>
-            <span className="mt-2 block text-[clamp(2.5rem,4.8vw,4.25rem)] font-bold leading-[1.05]">Make sure yours is one of them</span>
+          <h2 className="w-full max-w-[1100px] font-display normal-case tracking-[0.005em] text-cream">
+            <span className="block text-[clamp(2.25rem,3.4vw,3rem)] font-normal leading-[1.05]">
+              <span className="lg:block">The next generation of companies</span>{" "}
+              <span className="lg:block">is being built right now.</span>
+            </span>
+            <span className="mt-2 block text-[clamp(2.5rem,4vw,3.5rem)] font-semibold leading-[1.05] lg:whitespace-nowrap">Make sure yours is one of them</span>
           </h2>
           <span aria-hidden className="mt-6 block h-[2px] w-14 bg-lime" />
           <div className="mt-10 max-w-[64ch] space-y-6 leading-[1.75] text-cream/80">
