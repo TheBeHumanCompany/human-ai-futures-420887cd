@@ -178,9 +178,9 @@ const FAMILIAR = [
 
 const AGENTS: [string, string][] = [
   ["Research", "agents watching your competitors and the market, and preparing what you need to decide."],
-  ["Marketing", "agents supporting planning, copy, production, repurposing, and distribution."],
-  ["Sales", "agents researching prospects, preparing outreach, and keeping follow-up from slipping."],
-  ["Operations", "agents organizing information, preparing reports, and handling repetitive admin."],
+  ["Marketing", "agents supporting planning, copy, production, repurposing and distribution."],
+  ["Sales", "agents researching prospects, preparing outreach and keeping follow-up from slipping."],
+  ["Operations", "agents organizing information, preparing reports and handling repetitive admin."],
   ["Executive support", "an AI-supported chief of staff that helps you set priorities and keep projects moving."],
 ];
 
@@ -191,41 +191,41 @@ const HIGHLIGHTS = [
   "Sat on the board of the Maple Ridge Food Bank and helped double its donations and funding in one year",
   "Built a fitness brand that was written up around the world and wrote two best-selling books",
   "Started a marketing and social media company in the earliest days of social media, and it still runs marketing for clients today",
-  "Grew a podcast to 500,000 listeners, hosted my own radio shows, and interviewed more than 150 CEOs about how they lead and grow",
-  "Helped build brands and launches for Kevin Harrington (an original investor on Shark Tank), the film Milton’s Secret (based on the book by Eckhart Tolle, author of The Power of Now), and Satnam Singh (the first India-born player drafted into the NBA, featured in Netflix’s One in a Billion)",
+  "Grew a podcast to 500,000 listeners, hosted my own radio shows and interviewed more than 150 CEOs about how they lead and grow",
+  "Helped build brands and launches for Kevin Harrington (an original investor on Shark Tank), the film Milton’s Secret (based on the book by Eckhart Tolle, author of The Power of Now) and Satnam Singh (the first India-born player drafted into the NBA, featured in Netflix’s One in a Billion)",
   "Started a compassion movement, filming acts of compassion across North America, a mission that lives on through The Be Human Company",
 ];
 
 const STEPS: [string, string][] = [
-  ["Step 2. Define AI opportunities and risks.", "Where you can grow revenue, cut waste and cost, free up your team, and get ahead of competitors, plus the risks and obstacles that could stop it from working."],
-  ["Step 3. Develop your AI strategy and roadmap.", "How AI fits your wider business strategy: which processes change, which systems make sense, where agents create value, how your people are involved, and what you shouldn’t spend money on."],
-  ["Step 4. Prioritize objectives.", "The sequence: what happens first, what can wait, what it takes, who owns it, and how you’ll measure it."],
+  ["Step 2. Define AI opportunities and risks.", "Where you can grow revenue, cut waste and cost, free up your team and get ahead of competitors, plus the risks and obstacles that could stop it from working."],
+  ["Step 3. Develop your AI strategy and roadmap.", "How AI fits your wider business strategy: which processes change, which systems make sense, where agents create value, how your people are involved and what you shouldn’t spend money on."],
+  ["Step 4. Prioritize objectives.", "The sequence: what happens first, what can wait, what it takes, who owns it and how you’ll measure it."],
 ];
 
 const WEEKS: [string, string, string][] = [
-  ["Week 1. Redesign how you think and work.", "We start with you. How to think with AI instead of just asking it questions, how to rebuild your own week around it, and how to tell great output from average. Then what language models, tools, agents, and agentic systems can really do, and how to evaluate ChatGPT, Claude, and the vendors pitching you, before you spend another dollar.", "you lead from your own experience and make the technology calls instead of taking someone’s word for it."],
-  ["Week 2. Value mapping.", "How your company makes money, where work gets stuck, and where resources leak.", "you know what to fix before you automate anything."],
-  ["Week 3. Your company brain and the harness.", "This is where results are won or lost. Your agents are only as good as what they know, so you’ll learn to build the brain they work from: your data, your context, your strategy, and the way you do things, organized in one place you own. Then you set up the harness, the instructions, tools, connections, and controls that let your agents put that knowledge to work. You’ll see it all live inside Claude and ChatGPT, including projects, scheduled tasks, skills, connectors, and plugins, working rather than just described.", "agents that understand your business instead of giving generic answers."],
-  ["Week 4. Build workflows that run with agents and people.", "Map your key workflows in depth, step by step, then connect agents to them: which steps agents handle, which stay with your people, how work hands off between them, and where human judgment and approval sit. The agents support the workflow and the people in it.", "workflows built for how work gets done now, not technology bolted onto old processes."],
-  ["Week 5. Orchestrate your agentic workforce.", "The future of every business is a team of agents working together. You’ll learn to build lead agents for research, marketing, sales, operations, and the executive team, with specialist agents working under each one. They talk to each other, work without being asked, and hand off to your people when a decision needs human judgment.", "a team of agents moving your business forward, not one chatbot waiting for a question."],
-  ["Week 6. Lead the human-and-AI workforce.", "A new leadership style that leaves the old-school model behind, where you orchestrate humans and intelligent systems together. How roles change, which skills matter now, how to hire and train for it, and how to keep accountability and human judgment at the center.", "a more capable team that keeps what makes your business human."],
-  ["Week 7. The economics of AI.", "Subscriptions, model and token costs, agent activity and integrations, and how to tell whether the return justifies the spend.", "you know the real cost before you commit."],
-  ["Week 8. Your next operating model.", "We go back to your roadmap with everything you’ve learned: what to start now, what to wait on, and what you’ll need.", "the judgment to keep leading the change after the program ends."],
+  ["Week 1. Redesign how you think and work.", "We start with you. How to think with AI instead of just asking it questions, how to rebuild your own week around it and how to tell great output from average. Then what language models, tools, agents and agentic systems can really do, and how to evaluate ChatGPT, Claude and the vendors pitching you, before you spend another dollar.", "you lead from your own experience and make the technology calls instead of taking someone’s word for it."],
+  ["Week 2. Value mapping.", "How your company makes money, where work gets stuck and where resources leak.", "you know what to fix before you automate anything."],
+  ["Week 3. Your company brain and the harness.", "This is where results are won or lost. Your agents are only as good as what they know, so you’ll learn to build the brain they work from: your data, your context, your strategy and the way you do things, organized in one place you own. Then you set up the harness, the instructions, tools, connections and controls that let your agents put that knowledge to work. You’ll see it all live inside Claude and ChatGPT, including projects, scheduled tasks, skills, connectors and plugins, working rather than just described.", "agents that understand your business instead of giving generic answers."],
+  ["Week 4. Build workflows that run with agents and people.", "Map your key workflows in depth, step by step, then connect agents to them: which steps agents handle, which stay with your people, how work hands off between them and where human judgment and approval sit. The agents support the workflow and the people in it.", "workflows built for how work gets done now, not technology bolted onto old processes."],
+  ["Week 5. Orchestrate your agentic workforce.", "The future of every business is a team of agents working together. You’ll learn to build lead agents for research, marketing, sales, operations and the executive team, with specialist agents working under each one. They talk to each other, work without being asked and hand off to your people when a decision needs human judgment.", "a team of agents moving your business forward, not one chatbot waiting for a question."],
+  ["Week 6. Lead the human-and-AI workforce.", "A new leadership style that leaves the old-school model behind, where you orchestrate humans and intelligent systems together. How roles change, which skills matter now, how to hire and train for it and how to keep accountability and human judgment at the center.", "a more capable team that keeps what makes your business human."],
+  ["Week 7. The economics of AI.", "Subscriptions, model and token costs, agent activity and integrations and how to tell whether the return justifies the spend.", "you know the real cost before you commit."],
+  ["Week 8. Your next operating model.", "We go back to your roadmap with everything you’ve learned: what to start now, what to wait on and what you’ll need.", "the judgment to keep leading the change after the program ends."],
 ];
 
 const MARKETING: [string, string][] = [
-  ["Week 1. The new marketing landscape.", "How attention, platforms, and customer discovery are shifting, and where you’re at risk of being outcompeted."],
-  ["Week 2. Content that drives revenue.", "Connecting what you publish to leads, authority, and sales."],
-  ["Week 3. More content at a lower cost.", "Using AI for research, scripting, editing, and repurposing without losing your voice."],
-  ["Week 4. Your brand in the company brain.", "Your voice, expertise, content pillars, and assets, organized so your marketing systems sound like you."],
-  ["Week 5. Your first marketing agents.", "Agents for research, content planning, copy, and repurposing."],
+  ["Week 1. The new marketing landscape.", "How attention, platforms and customer discovery are shifting, and where you’re at risk of being outcompeted."],
+  ["Week 2. Content that drives revenue.", "Connecting what you publish to leads, authority and sales."],
+  ["Week 3. More content at a lower cost.", "Using AI for research, scripting, editing and repurposing without losing your voice."],
+  ["Week 4. Your brand in the company brain.", "Your voice, expertise, content pillars and assets, organized so your marketing systems sound like you."],
+  ["Week 5. Your first marketing agents.", "Agents for research, content planning, copy and repurposing."],
   ["Week 6. Your marketing team.", "Agents working alongside your people or contractors as one content operation."],
-  ["Week 7. Distribution and growth.", "Getting content in front of the right people, testing, measuring, and finding the openings your competitors miss."],
+  ["Week 7. Distribution and growth.", "Getting content in front of the right people, testing, measuring and finding the openings your competitors miss."],
   ["Week 8. Your 90-day marketing plan.", "A practical plan to run from March onward."],
 ];
 
 const INCLUDED: [string, string][] = [
-  ["Your personal blueprint ($7,500 value):", "four private Zoom calls with me, starting the day you join; three personal assessments (CEO, company, and AI implementation); your Key Findings Report; and your built-out 30/60/90-day roadmap, reviewed with you privately"],
+  ["Your personal blueprint ($7,500 value):", "four private Zoom calls with me, starting the day you join; three personal assessments (CEO, company and AI implementation); your Key Findings Report; and your built-out 30/60/90-day roadmap, reviewed with you privately"],
   ["Eight weeks with me as your Chief AI Officer ($20,000 value)", ""],
   ["16 live CEO and AI leadership sessions, two a week ($6,000 value)", ""],
   ["Eight live marketing and content sessions, one a week ($3,000 value)", ""],
@@ -289,12 +289,12 @@ function CeoPage() {
               When someone tells you to spend more on AI, do you actually know if they’re right?
             </h2>
             <p className="type-body-lg mt-5 max-w-[46ch] text-ink/80">
-              <B>Stop paying for AI activity.</B> Start building a company that moves faster, costs less to run, and gives you your time back.
+              <B>Stop paying for AI activity.</B> Start building a company that moves faster, costs less to run and gives you your time back.
             </p>
           </div>
           <div className="space-y-5 text-ink/80">
             <P>
-              I’m personally taking eight CEOs through this. The day you join, we assess you and your company, then build your AI strategy and 30/60/90-day roadmap. Then, for eight weeks in January and February, I sit beside you as your Chief AI Officer while you put it into motion, with a marketing and content track, direct email access to me, and seven other CEOs going through the same change.
+              I’m personally taking eight CEOs through this. The day you join, we assess you and your company, then build your AI strategy and 30/60/90-day roadmap. Then, for eight weeks in January and February, I sit beside you as your Chief AI Officer while you put it into motion, with a marketing and content track, direct email access to me and seven other CEOs going through the same change.
             </P>
             <p className="type-h4-caps text-ink">Eight CEOs. Your own Chief AI Officer. 24 live sessions</p>
             <P>
@@ -364,7 +364,7 @@ function CeoPage() {
             </div>
           </div>
           <div className="space-y-6 text-ink/80">
-            <P>Maybe you’re in ChatGPT every day. Maybe your team is too, or you’ve paid for a few subscriptions, tried some automations, or hired someone to build an agent. It feels productive. There’s more content, more reports, and more ideas than ever.</P>
+            <P>Maybe you’re in ChatGPT every day. Maybe your team is too, or you’ve paid for a few subscriptions, tried some automations, or hired someone to build an agent. It feels productive. There’s more content, more reports and more ideas than ever.</P>
             <P>And that’s the trap. Most CEOs believe it’s working because it feels like it’s working, but very few can actually show it. Are your costs down? Are customers getting served faster? Is the business executing better, or is it just producing more?</P>
             <P>The research backs this up. McKinsey’s 2025 State of AI report found that 88% of companies now use AI, but only about 6% see it make a real difference to their profits. Almost everyone is using it. Almost no one is winning with it.</P>
             <P>Using AI and getting results from AI are not the same thing, and almost every CEO I talk to has a hard time telling the difference. They see an answer that looks good and assume it is. When I sit down with a CEO and look at how they’re using it, I can usually see right away that they could be getting about 40% better output than they are today. And it doesn’t stop with them. When the person at the top can’t tell great output from average, that standard trickles down to everyone in the company.</P>
@@ -382,7 +382,7 @@ function CeoPage() {
           <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="space-y-6 text-foreground/80">
               <P>Your next competitor might have half your staff and still outrun you. They don’t need a bigger team or a bigger budget anymore. Someone can now start a business in your space in weeks, for a fraction of what yours cost to build, and move faster than you on day one. Meanwhile, most companies your size run without a CTO, a chief of staff, or a real marketing lead because they’ve never been able to justify the hire.</P>
-              <P>Now ask yourself a harder question. If you were building your company from scratch today, knowing what AI agents can do, would you organize it the same way? Would you hire for the same roles, build the same departments, and spend the same money? Probably not. We’re entering a time when a company of 10 people can have the operating capability that used to take 30 or 40. Here’s what that starts to look like:</P>
+              <P>Now ask yourself a harder question. If you were building your company from scratch today, knowing what AI agents can do, would you organize it the same way? Would you hire for the same roles, build the same departments and spend the same money? Probably not. We’re entering a time when a company of 10 people can have the operating capability that used to take 30 or 40. Here’s what that starts to look like:</P>
             </div>
             <div>
               <ul className="border-t border-border">
@@ -393,12 +393,12 @@ function CeoPage() {
                   </li>
                 ))}
               </ul>
-              <p className="type-body-sm mt-5 text-foreground/60">All of it works from the same company knowledge, with your people providing the judgment, relationships, and accountability.</p>
+              <p className="type-body-sm mt-5 text-foreground/60">All of it works from the same company knowledge, with your people providing the judgment, relationships and accountability.</p>
             </div>
           </div>
           <div className="mt-16 grid gap-6 border-t border-border pt-12 text-foreground/80 lg:grid-cols-2 lg:gap-16">
-            <P>And it’s still early. Most companies use AI one person and one tool at a time, with nothing connected to how the business actually runs. In most of them, the people are ready. The systems around them aren’t. The companies that fix that now get a head start that compounds. The ones that don’t may end up competing against someone with lower costs, quicker execution, and more capacity than their current model can match.</P>
-            <P>And this is where the real advantage lives. Your competitors can buy the same AI tools you can. What they can’t copy overnight is a company that has organized its knowledge, redesigned its workflows, and learned how its people and agents work together. That takes strategy, the right sequence, and leadership from the top.</P>
+            <P>And it’s still early. Most companies use AI one person and one tool at a time, with nothing connected to how the business actually runs. In most of them, the people are ready. The systems around them aren’t. The companies that fix that now get a head start that compounds. The ones that don’t may end up competing against someone with lower costs, quicker execution and more capacity than their current model can match.</P>
+            <P>And this is where the real advantage lives. Your competitors can buy the same AI tools you can. What they can’t copy overnight is a company that has organized its knowledge, redesigned its workflows and learned how its people and agents work together. That takes strategy, the right sequence and leadership from the top.</P>
           </div>
           <PersuasionStatement
             className="mt-16"
@@ -420,7 +420,7 @@ function CeoPage() {
             <img src={shaneBookshelf.url} alt="Shane Jeremy James in front of his bookshelf" loading="lazy" className="aspect-[4/5] w-full object-cover object-[50%_30%]" />
           </div>
           <div>
-            <P className="text-ink/80">I’m Shane Jeremy James, founder and CEO of The Be Human Company. I’ve spent more than 20 years building, running, and growing businesses. A few highlights:</P>
+            <P className="text-ink/80">I’m Shane Jeremy James, founder and CEO of The Be Human Company. I’ve spent more than 20 years building, running and growing businesses. A few highlights:</P>
             <div className="mt-8">
               <Bullets items={HIGHLIGHTS} dark={false} variant="dot" />
             </div>
@@ -436,8 +436,8 @@ function CeoPage() {
             </div>
             <div className="mt-10 space-y-6 text-ink/80">
               <P>Each of those taught me the same lesson: results come from how a business operates, not how many tools it owns.</P>
-              <P>When AI started taking off, I went all in. I studied the models, tested platforms, and generated an enormous amount of output. And I made the same mistake I now see in almost every company I talk to: I confused more AI output with better business performance.</P>
-              <P>What changed was looking hard at my own decisions, workflows, and priorities, and asking a different question. Not how much AI could produce, but how it could help us operate better. That’s when it clicked. AI isn’t a technology game. It’s an operations game, and using AI is a completely different skill from leading a company through it.</P>
+              <P>When AI started taking off, I went all in. I studied the models, tested platforms and generated an enormous amount of output. And I made the same mistake I now see in almost every company I talk to: I confused more AI output with better business performance.</P>
+              <P>What changed was looking hard at my own decisions, workflows and priorities, and asking a different question. Not how much AI could produce, but how it could help us operate better. That’s when it clicked. AI isn’t a technology game. It’s an operations game, and using AI is a completely different skill from leading a company through it.</P>
               <P className="font-semibold text-ink">That’s why I built this program.</P>
             </div>
           </div>
@@ -460,8 +460,8 @@ function CeoPage() {
             </div>
           </div>
           <div className="space-y-6 text-foreground/80">
-            <P>I’m not teaching this from the sidelines. At The Be Human Company, we’re building our own operations around the same changes we help CEOs through: agents, organized company knowledge, AI-supported functions, and new ways for people and systems to work together. We’re applying the same approach in the companies I own, too.</P>
-            <P>We’ve tested different models and platforms, hit their limits, and changed direction when something wasn’t paying off. And we’ve learned that the order you build in matters enormously. Great technology still gets poor results when processes are broken, information is a mess, or people don’t understand how the system is supposed to work.</P>
+            <P>I’m not teaching this from the sidelines. At The Be Human Company, we’re building our own operations around the same changes we help CEOs through: agents, organized company knowledge, AI-supported functions and new ways for people and systems to work together. We’re applying the same approach in the companies I own, too.</P>
+            <P>We’ve tested different models and platforms, hit their limits and changed direction when something wasn’t paying off. And we’ve learned that the order you build in matters enormously. Great technology still gets poor results when processes are broken, information is a mess, or people don’t understand how the system is supposed to work.</P>
             <P>And here’s what surprised even me. Of all the businesses I’ve built and helped grow, The Be Human Company has broken into its market faster than I ever imagined, and I can tie that directly to how well we’ve learned to use the technology. That’s why I’m so passionate about this right now. I believe every CEO can do this if they take the time to get it right, and that’s exactly what this program is for.</P>
             <P>Here’s one example. We now record 15 to 20 podcast interviews a week, at about half of what it used to cost us, with a fast turnaround. Each interview becomes around 10 pieces of high-quality content, which is 150 to 200 pieces a week, or roughly 600 to 800 a month, from that alone.</P>
           </div>
@@ -484,7 +484,7 @@ function CeoPage() {
               <P className="mt-5 text-ink/80">All Y’alls Foods is a Texas plant-protein food company. I’m an equity partner, so I have a real stake in how it runs.</P>
               <dl className="mt-8 border-t border-ink/15">
                 {[
-                  ["The challenge", "All Y’alls was growing with a small team. There weren’t enough people to keep up with marketing, content, and operations, and too much depended on too few hands."],
+                  ["The challenge", "All Y’alls was growing with a small team. There weren’t enough people to keep up with marketing, content and operations, and too much depended on too few hands."],
                   ["What we found", "Systems and operations didn’t connect, and the business was still running the old way, with no foundation for AI or agents to build on."],
                   ["What we changed", "We streamlined systems and operations so the business runs more simply, then built a new AI operations division to move the company toward an agentic operating model."],
                   ["The results", "Less operational complexity and a company that moves faster. And All Y’alls recently secured a major Walmart contract, with operations built to handle the growth."],
@@ -546,15 +546,15 @@ function CeoPage() {
           <p className="type-label-caps text-ink/50">Phase 1 (starts the day you join)</p>
           <h2 className="type-h1-caps mt-4 max-w-[18ch]">Your CEO and company blueprint</h2>
           <p className="type-h4-caps mt-6 text-ink">Three assessments. Four consulting steps. One clear plan</p>
-          <P className="mt-6 text-ink/80">From day one, you get four private Zoom calls with me. The first three are your assessments, where we dig into where your company stands, where it’s losing value, and what needs to happen next. On the fourth, we walk through your Key Findings Report and 30/60/90-day roadmap together. We do the heavy lifting in between, so you can focus on the conversations that matter.</P>
+          <P className="mt-6 text-ink/80">From day one, you get four private Zoom calls with me. The first three are your assessments, where we dig into where your company stands, where it’s losing value and what needs to happen next. On the fourth, we walk through your Key Findings Report and 30/60/90-day roadmap together. We do the heavy lifting in between, so you can focus on the conversations that matter.</P>
 
           <div className="mt-14 border-t border-ink/15 pt-10">
             <h3 className="type-h3-caps">Step 1. Your three assessments</h3>
             <div className="mt-8 grid gap-8 md:grid-cols-3">
               {[
-                ["CEO assessment.", "How you lead, decide, spend your time, and use AI. What still depends on you, and where better systems would make you more effective. We also want to hear your vision for the business, what’s weighing on you, and what you’ve wanted to do but haven’t had the resources for."],
-                ["Company assessment.", "Ten areas of your business: your business model, revenue engine, customer journey, team structure, technology, critical workflows, information flow, decision bottlenecks, growth constraints, and risk exposure. We also look at what the work feels like for your team, because a better company should be a better place to work too."],
-                ["AI implementation assessment.", "Your current technology, data, workflows, and real readiness to bring in AI and agents, including what needs fixing before anything gets built."],
+                ["CEO assessment.", "How you lead, decide, spend your time and use AI. What still depends on you, and where better systems would make you more effective. We also want to hear your vision for the business, what’s weighing on you and what you’ve wanted to do but haven’t had the resources for."],
+                ["Company assessment.", "Ten areas of your business: your business model, revenue engine, customer journey, team structure, technology, critical workflows, information flow, decision bottlenecks, growth constraints and risk exposure. We also look at what the work feels like for your team, because a better company should be a better place to work too."],
+                ["AI implementation assessment.", "Your current technology, data, workflows and real readiness to bring in AI and agents, including what needs fixing before anything gets built."],
               ].map(([t, b], i) => (
                 <div key={t} className="border-t-2 border-ink pt-5">
                   <p className="font-display text-[18px] font-bold text-lime-dark">0{i + 1}</p>
@@ -584,11 +584,11 @@ function CeoPage() {
             <div className="mt-8 grid gap-10 md:grid-cols-2">
               <div>
                 <h4 className="type-h3-caps-light">Your Key Findings Report</h4>
-                <p className="type-body mt-3 text-cream/75">A personal executive report on your findings, opportunities, readiness, risks, and recommended priorities.</p>
+                <p className="type-body mt-3 text-cream/75">A personal executive report on your findings, opportunities, readiness, risks and recommended priorities.</p>
               </div>
               <div>
                 <h4 className="type-h3-caps-light">Your 30/60/90-day roadmap</h4>
-                <p className="type-body mt-3 text-cream/75">The complete plan, built out for your company: what happens in each phase, in what order, with what resources, owned by whom, and measured how.</p>
+                <p className="type-body mt-3 text-cream/75">The complete plan, built out for your company: what happens in each phase, in what order, with what resources, owned by whom and measured how.</p>
               </div>
             </div>
             <figure className="mt-10 border-t border-cream/15 pt-8">
@@ -622,9 +622,9 @@ function CeoPage() {
           <div className="mt-10 grid gap-6 text-foreground/80 lg:grid-cols-2 lg:gap-16">
             <div className="space-y-6">
               <P>Most consulting engagements end when you get the report, and you’re left working out how to make it happen. This one doesn’t.</P>
-              <P>For eight weeks, I work alongside you as your Chief AI Officer. We start with your actual business, your findings, and your roadmap, so nothing is generic. I’ll help you decide which opportunities to chase, which systems to build first, how to organize your company’s knowledge, where agents earn their keep, and how to avoid the expensive mistakes.</P>
+              <P>For eight weeks, I work alongside you as your Chief AI Officer. We start with your actual business, your findings and your roadmap, so nothing is generic. I’ll help you decide which opportunities to chase, which systems to build first, how to organize your company’s knowledge, where agents earn their keep and how to avoid the expensive mistakes.</P>
             </div>
-            <P>When you’re stuck, you have someone to ask. When you’re not sure whether a platform, agent, or investment makes sense, you have another operator to think it through with. You don’t need to become a programmer. You need to become the CEO who knows what to build, what to buy, what to question, and how to lead it.</P>
+            <P>When you’re stuck, you have someone to ask. When you’re not sure whether a platform, agent, or investment makes sense, you have another operator to think it through with. You don’t need to become a programmer. You need to become the CEO who knows what to build, what to buy, what to question and how to lead it.</P>
           </div>
 
           <h3 className="mt-12 font-sans text-[24px] font-semibold normal-case leading-tight tracking-normal text-foreground md:text-[28px]">The Eight-Week CEO Curriculum</h3>
@@ -660,7 +660,7 @@ function CeoPage() {
             <li className="border-b border-ink/15 py-7 last:border-b-0 first:pt-0">
               <div className="border-l-2 border-lime pl-5">
                 <p className="type-body font-semibold text-ink">Two CEO and AI leadership calls every week.</p>
-                <p className="type-body mt-1 font-normal text-ink/75">We teach, demonstrate real systems, and work through the problems you bring from your own company.</p>
+                <p className="type-body mt-1 font-normal text-ink/75">We teach, demonstrate real systems and work through the problems you bring from your own company.</p>
               </div>
             </li>
             <li className="border-b border-ink/15 py-7 last:border-b-0 first:pt-0">
@@ -698,7 +698,7 @@ function CeoPage() {
           <span aria-hidden="true" className="mt-3 block h-[2px] w-12 bg-lime" />
           <h2 className="type-h2-caps-light mt-6 max-w-[24ch] !font-semibold"><span className="block">Your competitors are learning to produce more marketing at a fraction of the cost</span><span className="mt-[18px] block">Are you?</span></h2>
           <div className="mt-10 grid gap-6 text-foreground/80 lg:grid-cols-2 lg:gap-16">
-            <P>Marketing is usually where CEOs feel this shift first. The way customers find you, trust you, and buy from you is changing fast, and AI has rewritten content economics. A small team can now research, create, and distribute what used to take an agency, and the companies that figure it out first will take attention from everyone who doesn’t.</P>
+            <P>Marketing is usually where CEOs feel this shift first. The way customers find you, trust you and buy from you is changing fast, and AI has rewritten content economics. A small team can now research, create and distribute what used to take an agency, and the companies that figure it out first will take attention from everyone who doesn’t.</P>
             <div>
               <P>The weekly marketing call takes what you’re learning in the CEO curriculum and applies it to the part of your business that brings customers in.</P>
               <P className="mt-6 hidden lg:block">This isn’t about flooding the internet with more content. It’s about a marketing operation that connects with the right people and grows your business without your costs growing at the same rate. I’ve been building brands since social media began, and we run these systems in our own businesses today.</P>
@@ -721,7 +721,7 @@ function CeoPage() {
       <section className="section-cream">
         <div className={`${SHELL} grid gap-8 py-20 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16 lg:py-24`}>
           <h2 className="type-h1-condensed max-w-[16ch]">Seven other CEOs in your corner</h2>
-          <P className="text-ink/80">Running a company can be lonely. People depend on you, and the hardest calls still land on your shoulders. In this program, you’ll be in the room with seven other CEOs going through the same change, bringing real problems, hearing how others are handling them, and sharing what’s working. Some of the most valuable conversations will happen between the CEOs themselves.</P>
+          <P className="text-ink/80">Running a company can be lonely. People depend on you, and the hardest calls still land on your shoulders. In this program, you’ll be in the room with seven other CEOs going through the same change, bringing real problems, hearing how others are handling them and sharing what’s working. Some of the most valuable conversations will happen between the CEOs themselves.</P>
         </div>
       </section>
 
@@ -753,8 +753,8 @@ function CeoPage() {
         <div className={`${SHELL} grid gap-12 py-20 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16 lg:py-28`}>
           <h2 className="type-h2-caps">Why $3,500, and why only eight</h2>
           <div className="space-y-6 text-ink/80">
-            <P>Add it up. Four private calls with me, a personal assessment of you and your company, your AI strategy, your Key Findings Report, and a built-out 30/60/90-day roadmap. Then, eight weeks with me as your Chief AI Officer: 24 live sessions and direct email access.</P>
-            <P>The Phase 1 work alone (your assessments, Key Findings Report, and roadmap) normally runs $5,000 to $15,000, depending on the size of the company. At $3,500, you’re getting it for less than my lowest price, with eight weeks of training, the marketing track, and me as your Chief AI Officer included. And if you hired someone genuinely good to do personalized AI strategy and implementation work at this level today, you’d be paying $25,000 and up. The people charging less are usually learning on your dime.</P>
+            <P>Add it up. Four private calls with me, a personal assessment of you and your company, your AI strategy, your Key Findings Report and a built-out 30/60/90-day roadmap. Then, eight weeks with me as your Chief AI Officer: 24 live sessions and direct email access.</P>
+            <P>The Phase 1 work alone (your assessments, Key Findings Report and roadmap) normally runs $5,000 to $15,000, depending on the size of the company. At $3,500, you’re getting it for less than my lowest price, with eight weeks of training, the marketing track and me as your Chief AI Officer included. And if you hired someone genuinely good to do personalized AI strategy and implementation work at this level today, you’d be paying $25,000 and up. The people charging less are usually learning on your dime.</P>
             <P>So why $3,500? Because right now, eight strong success stories are worth more to me than the margin on this first group. We’re taking this program to a much bigger market at its full price, and before we do, I want real businesses and real results behind it. With your permission, yours will be one of them. Some of you may keep working with us afterward. That’s entirely your call.</P>
             <P>It’s eight because the personal work takes real time, and I won’t take on more CEOs than I can serve properly. I want the right eight, not just the first eight, so if you’d like to talk before you join, I’m happy to get on a short call. This is the founding group, and it won’t run at this price again.</P>
             <P className="font-semibold text-ink">And because you’re a founding member, your access never ends. As more groups come through, you’re welcome to join their live training calls, and every new training we add on these subjects is yours for free. You’ll stay up to date on everything we’re building and learning. Founding members get lifetime access.</P>
@@ -797,7 +797,7 @@ function CeoPage() {
         <div className={`${SHELL} grid gap-8 py-20 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16 lg:py-24`}>
           <h2 className="type-h2-caps">Where this fits</h2>
           <div className="space-y-6">
-            <P className="text-ink/80">This program gives you what should come before any big AI investment: a clear picture of your business, a strategy and roadmap built on your real opportunities, an operator beside you as you start, and the knowledge to lead it yourself. Larger custom builds and integrations come after, and when you’re ready, we can help with those too.</P>
+            <P className="text-ink/80">This program gives you what should come before any big AI investment: a clear picture of your business, a strategy and roadmap built on your real opportunities, an operator beside you as you start and the knowledge to lead it yourself. Larger custom builds and integrations come after, and when you’re ready, we can help with those too.</P>
             <PersuasionStatement
               tone="cream"
               matchSize
@@ -824,8 +824,8 @@ function CeoPage() {
           </h2>
           <span aria-hidden className="mt-6 block h-[2px] w-14 bg-lime" />
           <div className="mt-10 max-w-[64ch] space-y-6 leading-[1.75] text-cream/80">
-            <P>The way companies run is changing, and the way CEOs lead is changing with it. You can continue experimenting with tools and hoping the pieces come together. Or you can start with a real diagnosis, a well-defined roadmap, and an operator beside you while you build what’s next.</P>
-            <P>If you’re reading this, it’s because I chose you. I’ve looked at you and your business, and I’ve looked at the competitors in your field, some of whom I may know. I’m taking only one company per industry, so you get this before your competitors do, and no similar business will be in the room with you. If you want to cut waste, move faster, and build a company ready for what’s coming, let’s talk.</P>
+            <P>The way companies run is changing, and the way CEOs lead is changing with it. You can continue experimenting with tools and hoping the pieces come together. Or you can start with a real diagnosis, a well-defined roadmap and an operator beside you while you build what’s next.</P>
+            <P>If you’re reading this, it’s because I chose you. I’ve looked at you and your business, and I’ve looked at the competitors in your field, some of whom I may know. I’m taking only one company per industry, so you get this before your competitors do, and no similar business will be in the room with you. If you want to cut waste, move faster and build a company ready for what’s coming, let’s talk.</P>
           </div>
           <div className="mt-6 max-w-[80ch] border-l-2 border-lime pl-5 leading-[1.65] text-cream/80">
             <p className="font-sans text-[clamp(1rem,1.3vw,1.125rem)] font-semibold leading-[1.65] text-pretty">
