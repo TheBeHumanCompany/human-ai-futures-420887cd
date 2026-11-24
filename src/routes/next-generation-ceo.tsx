@@ -721,7 +721,7 @@ function CeoPage() {
       {/* VALUE */}
       <section className="section-ink">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <h2 className="type-h1-condensed max-w-[16ch]">What this is worth to you</h2>
+          <h2 className="type-h1-condensed max-w-[16ch] lg:max-w-none">What this is worth to you</h2>
           <P className="mt-6 text-foreground/80">Let’s talk about the return, because that’s what a CEO should be asking.</P>
           <div className="mt-12 grid gap-10 border-t border-border pt-10 md:grid-cols-3">
             {[
@@ -730,7 +730,7 @@ function CeoPage() {
               ["The mistakes you don’t make.", "One wrong platform, one agent nobody uses, one hire for a role that’s about to change. Any one of those can cost more than this entire program, and most CEOs are making those calls right now without knowing it. Knowing what not to spend money on may be the most valuable thing you take away."],
             ].map(([t, b]) => (
               <div key={t}>
-                <h3 className="type-h3-caps-light text-lime">{t.replace(/\.$/, "")}</h3>
+                <h3 className="type-h3-caps-light text-lime lg:text-[clamp(1.25rem,2.4vw,2.125rem)]!">{t.replace(/\.$/, "")}</h3>
                 <p className="type-body mt-4 text-foreground/80">{b}</p>
               </div>
             ))}
