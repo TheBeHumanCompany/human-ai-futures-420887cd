@@ -540,11 +540,45 @@ function CeoPage() {
         </div>
       </section>
 
+      {/* PROGRAM OVERVIEW */}
+      <section className="section-ink">
+        <div className={`${SHELL} py-16 lg:py-24`}>
+          <h2 className="type-h2-caps-light max-w-none">Two phases. One transformation.</h2>
+          <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-16">
+            {[
+              ["01", "The Blueprint", "Starts the day you join", ["Three assessments", "Four consulting steps", "Key Findings Report", "30/60/90-day roadmap"]],
+              ["02", "The Build", "January and February 2027", ["Shane as your Chief AI Officer", "Eight weeks of guidance", "24 live sessions", "Implementation support"]],
+            ].map(([n, name, when, items], i) => (
+              <div key={n as string} className={i ? "md:border-l md:border-cream/15 md:pl-16" : ""}>
+                <p className="font-display text-[clamp(4rem,8vw,6.5rem)] font-bold leading-[0.85] text-lime">{n as string}</p>
+                <h3 className="mt-5 font-display text-[clamp(1.75rem,3vw,2.5rem)] font-bold uppercase leading-none text-cream">{name as string}</h3>
+                <p className="type-label-caps mt-3 text-cream/55">{when as string}</p>
+                <ul className="mt-6 border-t border-cream/15">
+                  {(items as string[]).map((it) => (
+                    <li key={it} className="type-body-sm flex items-center gap-3 border-b border-cream/15 py-3 text-cream/80"><span aria-hidden="true" className="block size-1.5 shrink-0 bg-lime" />{it}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="mt-14" aria-hidden="true">
+            <div className="relative h-[2px] bg-lime/70"><span className="absolute -right-px -top-[5px] block size-0 border-y-[6px] border-l-[10px] border-y-transparent border-l-lime" /></div>
+          </div>
+          <p className="type-label-caps mt-5 text-cream/70">Diagnosis &amp; strategy <span className="text-lime">→</span> Execution &amp; transformation</p>
+        </div>
+      </section>
+
       {/* PHASE 1 */}
       <section className="section-cream">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <p className="type-label-caps text-ink/50">Phase 1 (starts the day you join)</p>
-          <h2 className="type-h1-caps mt-4 max-w-[18ch]">Your CEO and company blueprint</h2>
+          <div className="flex items-start gap-5 sm:gap-8">
+            <p aria-hidden="true" className="font-display text-[clamp(4.5rem,10vw,8rem)] font-bold leading-[0.8] text-ink">01</p>
+            <div>
+              <p className="type-label-caps text-ink">Phase 1 / The Blueprint</p>
+              <p className="type-label-caps mt-2 text-ink/50">Starts the day you join</p>
+            </div>
+          </div>
+          <h2 className="type-h1-caps mt-8 max-w-[18ch]">Your CEO and company blueprint</h2>
           <p className="type-h4-caps mt-6 text-ink">Three assessments. Four consulting steps. One clear plan</p>
           <P className="mt-6 text-ink/80">From day one, you get four private Zoom calls with me. The first three are your assessments, where we dig into where your company stands, where it’s losing value and what needs to happen next. On the fourth, we walk through your Key Findings Report and 30/60/90-day roadmap together. We do the heavy lifting in between, so you can focus on the conversations that matter.</P>
 
