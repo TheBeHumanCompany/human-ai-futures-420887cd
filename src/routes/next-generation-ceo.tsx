@@ -542,9 +542,10 @@ function CeoPage() {
 
       {/* PROGRAM OVERVIEW */}
       <section className="section-ink">
-        <div className={`${SHELL} py-16 lg:py-24`}>
-          <h2 className="type-h2-caps-light max-w-none">Two phases. One transformation.</h2>
-          <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-16">
+        <div className={`${SHELL} -mt-8 pt-0 pb-16 lg:mt-0 lg:py-24`}>
+          <h2 className="font-sans text-[24px] font-semibold normal-case leading-tight tracking-normal text-foreground md:text-[28px]">Two phases. One transformation.</h2>
+          <span aria-hidden="true" className="mt-3 block h-[2px] w-12 bg-lime" />
+          <div className="mt-8 grid gap-12 md:grid-cols-2 md:gap-16">
             {[
               ["01", "The Blueprint", "Starts the day you join", ["Three assessments", "Four consulting steps", "Key Findings Report", "30/60/90-day roadmap"]],
               ["02", "The Build", "January and February 2027", ["Shane as your Chief AI Officer", "Eight weeks of guidance", "24 live sessions", "Implementation support"]],
@@ -669,7 +670,7 @@ function CeoPage() {
             <P>When you’re stuck, you have someone to ask. When you’re not sure whether a platform, agent, or investment makes sense, you have another operator to think it through with. You don’t need to become a programmer. You need to become the CEO who knows what to build, what to buy, what to question and how to lead it.</P>
           </div>
 
-          <h3 className="mt-12 font-sans text-[24px] font-semibold normal-case leading-tight tracking-normal text-foreground md:text-[28px]">The Eight-Week CEO Curriculum</h3>
+          <h3 className="mt-12 font-sans text-[24px] font-semibold normal-case leading-tight tracking-normal text-foreground md:text-[28px]"><span className="lg:hidden">The Curriculum</span><span className="hidden lg:inline">The Eight-Week CEO Curriculum</span></h3>
           <span aria-hidden="true" className="mt-3 block h-[2px] w-12 bg-lime" />
           <div className="mt-8 border-t border-border">
             {WEEKS.map(([t, b, adv], i) => (
