@@ -497,8 +497,9 @@ function CeoPage() {
 
       {/* EXPERIENCE BEHIND THE PROGRAM */}
       <section className="section-cream border-t border-ink/10">
-        <div className={`${SHELL} grid gap-12 py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-16 lg:py-28`}>
-          <div className="grid grid-cols-2 gap-4 sm:gap-6">
+        <div className={`${SHELL} py-20 lg:py-28`}>
+          <h2 className="type-h2-caps max-w-[20ch] text-ink">The experience behind the program</h2>
+          <div className="mt-8 grid max-w-3xl grid-cols-2 gap-4 sm:mt-10 sm:gap-6">
             <figure>
               <img src={shanePlaid.url} alt="Shane Jeremy James" loading="lazy" className="aspect-[4/5] w-full object-cover object-top" />
               <figcaption className="type-label-caps mt-3 text-ink/50">Shane Jeremy James</figcaption>
@@ -508,10 +509,7 @@ function CeoPage() {
               <figcaption className="type-label-caps mt-3 text-ink/50">Kane Minkus</figcaption>
             </figure>
           </div>
-          <div>
-            <Label tone="muted">The experience behind the program</Label>
-            <P className="mt-6 text-ink/80">Shane has worked closely with Kane Minkus, co-founder of Industry Rockstar, an AI-focused business mentoring company ranked No. 298 on the 2026 Inc. 5000 list of America’s fastest-growing private companies. Kane also co-founded MyGentic, an AI platform built to help companies put their knowledge to work.</P>
-          </div>
+          <P className="mt-10 text-ink/80 sm:mt-12">Shane has worked closely with Kane Minkus, co-founder of Industry Rockstar, an AI-focused business mentoring company ranked No. 298 on the 2026 Inc. 5000 list of America’s fastest-growing private companies. Kane also co-founded MyGentic, an AI platform built to help companies put their knowledge to work.</P>
         </div>
       </section>
 
