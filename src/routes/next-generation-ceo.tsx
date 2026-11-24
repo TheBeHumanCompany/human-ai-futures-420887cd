@@ -541,8 +541,8 @@ function CeoPage() {
       </section>
 
       {/* PROGRAM OVERVIEW */}
-      <section className="section-ink">
-        <div className={`${SHELL} -mt-8 pt-0 pb-16 lg:mt-0 lg:py-24`}>
+      <section className="section-ink relative z-10 -mt-8 lg:mt-0">
+        <div className={`${SHELL} pt-0 pb-16 lg:py-24`}>
           <h2 className="font-sans text-[24px] font-semibold normal-case leading-tight tracking-normal text-foreground md:text-[28px]">Two phases. One transformation.</h2>
           <span aria-hidden="true" className="mt-3 block h-[2px] w-12 bg-lime" />
           <div className="mt-8 grid gap-12 md:grid-cols-2 md:gap-16">
