@@ -285,12 +285,11 @@ function CeoPage() {
         <div className={`${SHELL} grid gap-10 py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-16 lg:py-20`}>
           <div>
             <span className="type-eyebrow-rule mt-0 block" aria-hidden />
-            <h2 className="type-h2-prose mt-5 font-medium text-ink">
+            <h2 className="mt-5 max-w-[22ch] font-display text-[clamp(1.875rem,3.4vw,2.75rem)] font-medium normal-case leading-[1.15] tracking-[-0.005em] text-ink text-balance">
               When someone tells you to spend more on AI, do you actually know if they’re right?
             </h2>
-            <p className="type-body-lg mt-5 max-w-[46ch] text-ink/80">
-              <B>Stop paying for AI activity.</B> Start building a company that moves faster, costs less to run and gives you your time back.
-            </p>
+            <p className="type-body-lg mt-5 block font-bold text-ink">Stop paying for AI activity.</p>
+            <p className="type-body-lg mt-3 max-w-[46ch] font-normal text-ink/80">Start building a company that moves faster, costs less to run and gives you your time back.</p>
           </div>
           <div className="space-y-5 text-ink/80">
             <P>
