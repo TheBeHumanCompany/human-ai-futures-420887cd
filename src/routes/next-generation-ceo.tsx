@@ -286,7 +286,7 @@ function CeoPage() {
             <P>
               I’m personally taking eight CEOs through this. The day you join, we assess you and your company, then build your AI strategy and 30/60/90-day roadmap. Then, for eight weeks in January and February, I sit beside you as your Chief AI Officer while you put it into motion, with a marketing and content track, direct email access to me, and seven other CEOs going through the same change.
             </P>
-            <p className="type-h4-caps text-ink">Eight CEOs. Your own Chief AI Officer. 24 live sessions.</p>
+            <p className="type-h4-caps text-ink">Eight CEOs. Your own Chief AI Officer. 24 live sessions</p>
             <P>
               Only eight seats, and only one company per industry. Enrollment closes Friday, December 11, and your assessments start the day you join.
             </P>
@@ -326,7 +326,7 @@ function CeoPage() {
         <div className={`${SHELL} grid gap-10 py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16 lg:py-28`}>
           <div className="lg:col-span-2">
             <Label tone="muted">The problem</Label>
-            <h2 className="type-h2-caps mt-4 max-w-none md:!text-[min(4.4vw,4.5rem)]"><span className="block">You’re using AI.</span> <span className="mt-4 block">Is your business actually getting better?</span></h2>
+            <h2 className="type-h2-caps mt-4 max-w-none md:!text-[min(4.4vw,4.5rem)]"><span className="block">You’re using AI</span> <span className="mt-4 block">Is your business actually getting better?</span></h2>
           </div>
           <div>
             <div className="border-t border-ink/15 pt-8">
@@ -404,7 +404,7 @@ function CeoPage() {
         <div className={`${SHELL} grid gap-12 py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 lg:py-28`}>
           <div className="lg:col-span-2">
             <Label tone="muted">Your Chief AI Officer</Label>
-            <h2 className="type-h2-caps mt-4 max-w-none"><span className="block">I’ve always been an operator.</span> <span className="mt-4 block">That’s exactly how I approach AI.</span></h2>
+            <h2 className="type-h2-caps mt-4 max-w-none"><span className="block">I’ve always been an operator</span> <span className="mt-4 block">That’s exactly how I approach AI</span></h2>
           </div>
           <div className="lg:sticky lg:top-28 lg:self-start">
             <img src={shaneBookshelf.url} alt="Shane Jeremy James in front of his bookshelf" loading="lazy" className="aspect-[4/5] w-full object-cover object-[50%_30%]" />
@@ -520,7 +520,7 @@ function CeoPage() {
             The Next Generation <span className="text-lime">CEO</span>
           </h2>
           <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
-            <h3 className="font-sans text-[clamp(1.25rem,1.6vw,1.5rem)] font-semibold leading-[1.4] tracking-[-0.02em]">We don’t start with AI. We start with your business.</h3>
+            <h3 className="font-sans text-[clamp(1.25rem,1.6vw,1.5rem)] font-semibold leading-[1.4] tracking-[-0.02em]">We don’t start with AI. We start with your business</h3>
             <div className="space-y-6 text-foreground/80">
               <P>Most AI programs start with generic training. Everyone watches the same demos, then goes home trying to work out what applies to their company. We do it the other way around, because the right strategy for a professional services firm can look nothing like the right one for a manufacturer or a growing consumer brand.</P>
               <P>Most consultants start by asking which agent you should build. We start by asking where your business is losing value. You wouldn’t build a house by buying materials and hoping they fit together. You’d start with the blueprint, and that’s what we build first.</P>
@@ -535,7 +535,7 @@ function CeoPage() {
         <div className={`${SHELL} py-20 lg:py-28`}>
           <p className="type-label-caps text-ink/50">Phase 1 (starts the day you join)</p>
           <h2 className="type-h1-caps mt-4 max-w-[18ch]">Your CEO and company blueprint</h2>
-          <p className="type-h4-caps mt-6 text-ink">Three assessments. Four consulting steps. One clear plan.</p>
+          <p className="type-h4-caps mt-6 text-ink">Three assessments. Four consulting steps. One clear plan</p>
           <P className="mt-6 text-ink/80">From day one, you get four private Zoom calls with me. The first three are your assessments, where we dig into where your company stands, where it’s losing value, and what needs to happen next. On the fourth, we walk through your Key Findings Report and 30/60/90-day roadmap together. We do the heavy lifting in between, so you can focus on the conversations that matter.</P>
 
           <div className="mt-14 border-t border-ink/15 pt-10">
@@ -550,7 +550,7 @@ function CeoPage() {
                   <p className="font-display text-[18px] font-bold text-lime-dark">0{i + 1}</p>
                   <details className="group mt-3">
                     <summary className="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
-                      <span className="type-h4-caps">{t}</span>
+                      <span className="type-h4-caps">{t.replace(/\.$/, "")}</span>
                       <span aria-hidden="true" className="shrink-0 text-[20px] font-light leading-none transition-transform group-open:rotate-45">+</span>
                     </summary>
                     <p className="type-body-sm mt-3 text-ink/75">{b}</p>
@@ -563,7 +563,7 @@ function CeoPage() {
           <div className="mt-14 border-t border-ink/15">
             {STEPS.map(([t, b]) => (
               <div key={t} className="grid gap-3 border-b border-ink/15 py-7 md:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] md:gap-12">
-                <h3 className="type-h3-caps">{t}</h3>
+                <h3 className="type-h3-caps">{t.replace(/\.$/, "")}</h3>
                 <p className="type-body text-ink/80">{b}</p>
               </div>
             ))}
@@ -686,7 +686,7 @@ function CeoPage() {
         <div className={`${SHELL} py-20 lg:py-28`}>
           <p className="font-display text-[clamp(1.125rem,2vw,1.5rem)] font-bold uppercase leading-tight tracking-[0.04em] text-lime">Included: eight weeks of marketing and content</p>
           <span aria-hidden="true" className="mt-3 block h-[2px] w-12 bg-lime" />
-          <h2 className="type-h2-caps-light mt-6 max-w-[24ch] !font-semibold"><span className="block">Your competitors are learning to produce more marketing at a fraction of the cost.</span><span className="mt-[18px] block">Are you?</span></h2>
+          <h2 className="type-h2-caps-light mt-6 max-w-[24ch] !font-semibold"><span className="block">Your competitors are learning to produce more marketing at a fraction of the cost</span><span className="mt-[18px] block">Are you?</span></h2>
           <div className="mt-10 grid gap-6 text-foreground/80 lg:grid-cols-2 lg:gap-16">
             <P>Marketing is usually where CEOs feel this shift first. The way customers find you, trust you, and buy from you is changing fast, and AI has rewritten content economics. A small team can now research, create, and distribute what used to take an agency, and the companies that figure it out first will take attention from everyone who doesn’t.</P>
             <P>The weekly marketing call takes what you’re learning in the CEO curriculum and applies it to the part of your business that brings customers in.</P>
@@ -707,7 +707,7 @@ function CeoPage() {
       {/* PEERS */}
       <section className="section-cream">
         <div className={`${SHELL} grid gap-8 py-20 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16 lg:py-24`}>
-          <h2 className="type-h2-prose font-medium text-ink">Seven other CEOs in your corner</h2>
+          <h2 className="type-h1-condensed max-w-[16ch]">Seven other CEOs in your corner</h2>
           <P className="text-ink/80">Running a company can be lonely. People depend on you, and the hardest calls still land on your shoulders. In this program, you’ll be in the room with seven other CEOs going through the same change, bringing real problems, hearing how others are handling them, and sharing what’s working. Some of the most valuable conversations will happen between the CEOs themselves.</P>
         </div>
       </section>
@@ -724,7 +724,7 @@ function CeoPage() {
               ["The mistakes you don’t make.", "One wrong platform, one agent nobody uses, one hire for a role that’s about to change. Any one of those can cost more than this entire program, and most CEOs are making those calls right now without knowing it. Knowing what not to spend money on may be the most valuable thing you take away."],
             ].map(([t, b]) => (
               <div key={t}>
-                <h3 className="type-h3-caps-light text-lime">{t}</h3>
+                <h3 className="type-h3-caps-light text-lime">{t.replace(/\.$/, "")}</h3>
                 <p className="type-body mt-4 text-foreground/80">{b}</p>
               </div>
             ))}
@@ -797,13 +797,13 @@ function CeoPage() {
         <img src={boardroom} alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-35" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
         <div className={`${SHELL} py-24 lg:py-32`}>
-          <h2 className="type-h1-caps-light max-w-[20ch] text-cream">The next generation of companies is being built right now. Make sure yours is one of them.</h2>
+          <h2 className="type-h1-caps-light max-w-[20ch] text-cream">The next generation of companies is being built right now. Make sure yours is one of them</h2>
           <div className="mt-10 max-w-[64ch] space-y-6 text-cream/80">
             <P>The way companies run is changing, and the way CEOs lead is changing with it. You can continue experimenting with tools and hoping the pieces come together. Or you can start with a real diagnosis, a well-defined roadmap, and an operator beside you while you build what’s next.</P>
             <P>If you’re reading this, it’s because I chose you. I’ve looked at you and your business, and I’ve looked at the competitors in your field, some of whom I may know. I’m taking only one company per industry, so you get this before your competitors do, and no similar business will be in the room with you. If you want to cut waste, move faster, and build a company ready for what’s coming, let’s talk.</P>
             <P className="font-semibold text-cream">Enrollment closes Friday, December 11, or sooner when the eight seats fill. Your assessments start the day you join.</P>
           </div>
-          <p className="type-h3-caps-light mt-10 text-lime">Eight CEOs. Your own Chief AI Officer. 24 live sessions. $3,500.</p>
+          <p className="type-h3-caps-light mt-10 text-lime">Eight CEOs. Your own Chief AI Officer. 24 live sessions. $3,500</p>
           <div className="mt-10"><Ctas /></div>
         </div>
       </section>
