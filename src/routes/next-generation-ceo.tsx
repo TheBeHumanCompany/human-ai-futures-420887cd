@@ -10,8 +10,7 @@ import curvesTruck from "@/assets/shane-curves-truck.jpg.asset.json";
 import shaneTeaching from "@/assets/shane-teaching.jpg.asset.json";
 import shanePlaid from "@/assets/shane-portrait-plaid.jpg.asset.json";
 import kanePhoto from "@/assets/kane-minkus.jpg.asset.json";
-import reportImg from "@/assets/key-findings-report.jpg.asset.json";
-import recsImg from "@/assets/ai-recommendations.jpg.asset.json";
+import { ReportShowcase } from "@/components/ceo/report-showcase";
 
 /** `/next-generation-ceo` — sales page. Copy is Shane's document verbatim. */
 export const Route = createFileRoute("/next-generation-ceo")({
@@ -578,10 +577,7 @@ function CeoPage() {
               </div>
             </div>
             <figure className="mt-10 border-t border-cream/15 pt-8">
-              <div className="grid items-start gap-6 sm:gap-8 md:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)]">
-                <img src={reportImg.url} alt="Illustrative Key Findings Report cover" loading="lazy" className="h-auto w-full object-contain" />
-                <img src={recsImg.url} alt="Illustrative AI opportunity recommendations" loading="lazy" className="h-auto w-full object-contain" />
-              </div>
+              <ReportShowcase />
               <figcaption className="mt-4 font-sans text-xs font-normal leading-relaxed text-cream/50">Illustrative example, not client data</figcaption>
             </figure>
             <p className="type-body mt-10 border-t border-cream/15 pt-8 text-cream/80">We walk you through both on your fourth call. Before January even starts, you’ll know exactly where your business stands and what comes next.</p>
