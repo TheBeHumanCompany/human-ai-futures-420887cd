@@ -131,12 +131,14 @@ function PersuasionStatement({
   tone = "dark",
   className = "",
   matchSize = false,
+  emphasisClassName = "",
 }: {
   matchSize?: boolean;
   children: React.ReactNode;
   emphasis: React.ReactNode;
   tone?: "dark" | "cream";
   className?: string;
+  emphasisClassName?: string;
 }) {
   return (
     <div className={`w-full max-w-6xl border-l-2 border-lime pl-6 sm:pl-8 ${className}`}>
@@ -151,7 +153,7 @@ function PersuasionStatement({
         className={`mt-4 max-w-[38ch] font-sans font-bold sm:mt-5 ${
           matchSize ? "text-[clamp(1.375rem,2.2vw,2rem)] leading-[1.3] tracking-[-0.025em]" : "text-[clamp(1.75rem,3.2vw,3rem)] leading-[1.12] tracking-[-0.035em]"
         } ${
-          tone === "dark" ? "text-lime" : "text-lime-dark"
+          emphasisClassName || (tone === "dark" ? "text-lime" : "text-lime-dark")
         }`}
       >
         {emphasis}
@@ -789,7 +791,12 @@ function CeoPage() {
           <h2 className="type-h2-caps">Where this fits</h2>
           <div className="space-y-6">
             <P className="text-ink/80">This program gives you what should come before any big AI investment: a clear picture of your business, a strategy and roadmap built on your real opportunities, an operator beside you as you start, and the knowledge to lead it yourself. Larger custom builds and integrations come after, and when you’re ready, we can help with those too.</P>
-            <PersuasionStatement tone="cream" emphasis="The capability stays with you.">
+            <PersuasionStatement
+              tone="cream"
+              matchSize
+              emphasisClassName="text-ink"
+              emphasis="The capability stays with you."
+            >
               The transformation starts with your business.
             </PersuasionStatement>
           </div>
