@@ -1,3 +1,4 @@
+import { OperatingSystem } from "@/components/ceo/operating-system";
 import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 
@@ -7,10 +8,6 @@ import brettPhoto from "@/assets/brett-christoffel.png";
 import shaneBookshelf from "@/assets/shane-bookshelf.png.asset.json";
 import curvesTruck from "@/assets/shane-curves-truck.jpg.asset.json";
 import shaneTeaching from "@/assets/shane-teaching.jpg.asset.json";
-import systemsGraphic from "@/assets/be-human-systems.webp.asset.json";
-import panel1 from "@/assets/systems-panel-1.webp.asset.json";
-import panel2 from "@/assets/systems-panel-2.webp.asset.json";
-import panel3 from "@/assets/systems-panel-3.webp.asset.json";
 import shanePlaid from "@/assets/shane-portrait-plaid.jpg.asset.json";
 import kanePhoto from "@/assets/kane-minkus.jpg.asset.json";
 import reportImg from "@/assets/key-findings-report.jpg.asset.json";
@@ -427,12 +424,7 @@ function CeoPage() {
           </div>
         </div>
         <div className={`${SHELL} pb-20 lg:pb-28`}>
-          <img src={systemsGraphic.url} alt="The Be Human systems: 01 The Company Brain, 02 The Agent Workforce, 03 A Live Workflow" loading="lazy" className="hidden w-full md:block" />
-          <div className="mx-auto grid max-w-md gap-6 md:hidden">
-            {[[panel1, "01 The Company Brain"], [panel2, "02 The Agent Workforce"], [panel3, "03 A Live Workflow"]].map(([img, alt]) => (
-              <img key={alt as string} src={(img as { url: string }).url} alt={alt as string} loading="lazy" className="w-full" />
-            ))}
-          </div>
+          <OperatingSystem />
         </div>
       </section>
 
