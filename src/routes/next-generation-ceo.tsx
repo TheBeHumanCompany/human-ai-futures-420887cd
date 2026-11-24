@@ -620,14 +620,19 @@ function CeoPage() {
           <h3 className="type-h2-caps-light mt-20">The eight-week CEO curriculum</h3>
           <div className="mt-8 border-t border-border">
             {WEEKS.map(([t, b, adv], i) => (
-              <div key={t} className="grid gap-4 border-b border-border py-8 md:grid-cols-[5rem_minmax(0,20rem)_minmax(0,1fr)] md:gap-8">
-                <p className="type-label-caps pt-1 text-lime">Week {i + 1}</p>
-                <h4 className="type-h4-caps-light">{t.replace(/^Week \d+\.\s*/, "").replace(/\.$/, "")}</h4>
-                <div>
+              <details key={t} className="group border-b border-border">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
+                  <span>
+                    <span className="type-label-caps block !text-[15px] text-lime">Week {i + 1}</span>
+                    <span className="type-h4-caps-light mt-2 block">{t.replace(/^Week \d+\.\s*/, "").replace(/\.$/, "")}</span>
+                  </span>
+                  <span aria-hidden="true" className="shrink-0 pt-1 text-[22px] font-light leading-none text-foreground transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <div className="max-w-3xl pb-8">
                   <p className="type-body text-foreground/80">{b}</p>
                   <p className="type-body mt-3 text-foreground"><span className="font-semibold text-lime">Your advantage:</span> {adv}</p>
                 </div>
-              </div>
+              </details>
             ))}
           </div>
         </div>
