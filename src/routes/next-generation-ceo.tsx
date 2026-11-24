@@ -324,7 +324,7 @@ function CeoPage() {
           </div>
           <div>
             <Bullets items={FAMILIAR} />
-            <PersuasionStatement className="mt-12" emphasis="this program was built for you.">
+            <PersuasionStatement className="mt-12" matchSize emphasis="this program was built for you.">
               If you nodded at even two of these,
             </PersuasionStatement>
           </div>
