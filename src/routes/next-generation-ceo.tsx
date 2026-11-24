@@ -295,7 +295,7 @@ function CeoPage() {
             <P>
               I’m personally taking eight CEOs through this. The day you join, we assess you and your company, then build your AI strategy and 30/60/90-day roadmap. Then, for eight weeks in January and February, I sit beside you as your Chief AI Officer while you put it into motion, with a marketing and content track, direct email access to me and seven other CEOs going through the same change.
             </P>
-            <p className="type-h4-caps text-ink">Eight CEOs. Your own Chief AI Officer. 24 live sessions</p>
+            <p className="type-h4-caps text-ink"><span className="whitespace-nowrap">Eight CEOs. Your own Chief AI Officer.</span><br className="lg:hidden" /><span className="hidden lg:inline"> </span>24 live sessions</p>
             <P>
               Only eight seats, and only one company per industry. Enrollment closes Friday, December 11, and your assessments start the day you join.
             </P>
