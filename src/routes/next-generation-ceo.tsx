@@ -826,16 +826,14 @@ function CeoPage() {
           <div className="mt-10 max-w-[64ch] space-y-6 leading-[1.75] text-cream/80">
             <P>The way companies run is changing, and the way CEOs lead is changing with it. You can continue experimenting with tools and hoping the pieces come together. Or you can start with a real diagnosis, a well-defined roadmap, and an operator beside you while you build what’s next.</P>
             <P>If you’re reading this, it’s because I chose you. I’ve looked at you and your business, and I’ve looked at the competitors in your field, some of whom I may know. I’m taking only one company per industry, so you get this before your competitors do, and no similar business will be in the room with you. If you want to cut waste, move faster, and build a company ready for what’s coming, let’s talk.</P>
-          </div>
-          <div className="mt-12 border-l border-lime pl-5 lg:mt-16">
-            <Label>Enrollment closes</Label>
-            <p className="mt-3 font-display text-[clamp(1.625rem,4.5vw,2rem)] font-medium leading-[1.1] tracking-[0.005em] text-cream">
-              Friday, December 11
-            </p>
-            <p className="type-body mt-2 text-cream/80">Or sooner when the eight seats fill.</p>
-            <p className="mt-4 font-sans text-[1rem] font-semibold leading-[1.65] text-cream">
-              Your assessments start the day you join.
-            </p>
+            <div>
+              <p className="font-sans text-[clamp(1rem,1.3vw,1.125rem)] font-medium leading-[1.65] text-pretty">
+                Enrollment closes <span className="font-bold text-lime">Friday, December 11</span>, or sooner when the eight seats fill.
+              </p>
+              <p className="mt-3 font-sans text-[clamp(1rem,1.3vw,1.125rem)] font-normal leading-[1.65]">
+                Your assessments start the day you join.
+              </p>
+            </div>
           </div>
           <dl className="mt-14 grid grid-cols-2 border-y border-cream/20 lg:mt-16 lg:grid-cols-4">
             {[
