@@ -592,8 +592,14 @@ function CeoPage() {
               The sooner you join, the sooner we start.
             </p>
             <p className="type-body mt-4 max-w-[58ch] font-medium text-ink">
-              Your assessments begin <strong className="font-bold">the day you reserve your seat</strong>, so you’ll be further ahead when the group starts on <strong className="font-bold">January 4</strong>.
+              Your assessments begin <strong className="font-bold">the day you reserve your seat</strong>, so you’ll be further ahead when the group starts.
             </p>
+            <div className="mt-8">
+              <p className="type-label-caps text-ink/55">Live program begins</p>
+              <p className="mt-2 whitespace-nowrap font-display text-[clamp(1.75rem,3.2vw,2.5rem)] font-bold uppercase leading-none text-ink">Monday, January 4</p>
+              <p className="mt-1 font-display text-[clamp(1.125rem,1.8vw,1.375rem)] font-bold uppercase leading-none text-ink/70">2027</p>
+              <span aria-hidden="true" className="mt-4 block h-[2px] w-12 bg-lime" />
+            </div>
           </div>
         </div>
       </section>
