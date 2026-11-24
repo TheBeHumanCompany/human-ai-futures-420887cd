@@ -282,16 +282,16 @@ function CeoPage() {
 
       {/* INTRO */}
       <section className="section-cream">
-        <div className={`${SHELL} grid gap-10 py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-16 lg:py-20`}>
+        <div className={`${SHELL} grid gap-6 py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-16 lg:py-20`}>
           <div>
             <span className="type-eyebrow-rule mt-0 block" aria-hidden />
             <h2 className="mt-5 max-w-[22ch] font-display text-[clamp(1.875rem,3.4vw,2.75rem)] font-medium normal-case leading-[1.15] tracking-[-0.005em] text-ink text-balance">
               When someone tells you to spend more on AI, do you actually know if they’re right?
             </h2>
             <p className="type-body-lg mt-5 block font-bold text-ink">Stop paying for AI activity.</p>
-            <p className="type-body-lg mt-3 max-w-[46ch] font-normal text-ink/80">Start building a company that moves faster, costs less to run and gives you your time back.</p>
+            <p className="type-body-lg mt-2 max-w-[46ch] font-normal lg:mt-3 text-ink/80">Start building a company that moves faster, costs less to run and gives you your time back.</p>
           </div>
-          <div className="space-y-5 text-ink/80">
+          <div className="space-y-6 text-ink/80 lg:space-y-5">
             <P>
               I’m personally taking eight CEOs through this. The day you join, we assess you and your company, then build your AI strategy and 30/60/90-day roadmap. Then, for eight weeks in January and February, I sit beside you as your Chief AI Officer while you put it into motion, with a marketing and content track, direct email access to me and seven other CEOs going through the same change.
             </P>
