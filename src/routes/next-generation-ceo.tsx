@@ -74,7 +74,37 @@ function P({ children, className = "" }: { children: React.ReactNode; className?
   return <p className={`type-body max-w-[64ch] ${className}`}>{children}</p>;
 }
 
-function Bullets({ items, dark = true }: { items: readonly React.ReactNode[]; dark?: boolean }) {
+function Bullets({
+  items,
+  dark = true,
+  variant = "number",
+}: {
+  items: readonly React.ReactNode[];
+  dark?: boolean;
+  /** "number" = numbered rows with hairline dividers; "dot" = plain bullet list, no dividers. */
+  variant?: "number" | "dot";
+}) {
+  if (variant === "dot") {
+    return (
+      <ul>
+        {items.map((it, i) => (
+          <li
+            key={i}
+            className={`type-body grid grid-cols-[0.9rem_minmax(0,1fr)] gap-3 py-[0.4rem] ${
+              dark ? "text-foreground/80" : "text-ink/80"
+            }`}
+          >
+            <span
+              aria-hidden
+              className="mt-[0.6em] h-[7px] w-[7px] shrink-0 rounded-full bg-lime"
+            />
+            <span>{it}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   return (
     <ul className={`border-t ${dark ? "border-border" : "border-ink/15"}`}>
       {items.map((it, i) => (
@@ -383,7 +413,7 @@ function CeoPage() {
           <div>
             <P className="text-ink/80">I’m Shane Jeremy James, founder and CEO of The Be Human Company. I’ve spent more than 20 years building, running, and growing businesses. A few highlights:</P>
             <div className="mt-8">
-              <Bullets items={HIGHLIGHTS} dark={false} />
+              <Bullets items={HIGHLIGHTS} dark={false} variant="dot" />
             </div>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               <figure>
