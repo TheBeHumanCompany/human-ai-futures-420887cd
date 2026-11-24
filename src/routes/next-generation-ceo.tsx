@@ -402,6 +402,7 @@ function CeoPage() {
           </div>
           <PersuasionStatement
             className="mt-16"
+            matchSize
             emphasis="And every hour you spend trying to figure this out alone is an hour your competitors get to use."
           >
             When you and your company move faster and get better results, you win.
