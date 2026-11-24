@@ -608,7 +608,7 @@ function CeoPage() {
       <section className="section-ink">
         <div className={`${SHELL} py-20 lg:py-28`}>
           <Label>Phase 2 (January and February)</Label>
-          <h2 className="type-h1-caps-light mt-4 max-w-[18ch]">For eight weeks, I’m your Chief AI Officer</h2>
+          <h2 className="type-h1-caps-light mt-4 max-w-none !font-bold !text-[clamp(1.9rem,7.6vw,5.5rem)] !leading-[0.95]"><span className="block whitespace-nowrap">For eight weeks, I’m</span><span className="block whitespace-nowrap">your Chief AI Officer</span></h2>
           <div className="mt-10 grid gap-6 text-foreground/80 lg:grid-cols-2 lg:gap-16">
             <div className="space-y-6">
               <P>Most consulting engagements end when you get the report, and you’re left working out how to make it happen. This one doesn’t.</P>
@@ -617,7 +617,8 @@ function CeoPage() {
             <P>When you’re stuck, you have someone to ask. When you’re not sure whether a platform, agent, or investment makes sense, you have another operator to think it through with. You don’t need to become a programmer. You need to become the CEO who knows what to build, what to buy, what to question, and how to lead it.</P>
           </div>
 
-          <h3 className="type-h2-caps-light mt-20">The eight-week CEO curriculum</h3>
+          <h3 className="mt-12 font-sans text-[24px] font-semibold normal-case leading-tight tracking-normal text-foreground md:text-[28px]">The Eight-Week CEO Curriculum</h3>
+          <span aria-hidden="true" className="mt-3 block h-[2px] w-12 bg-lime" />
           <div className="mt-8 border-t border-border">
             {WEEKS.map(([t, b, adv], i) => (
               <details key={t} className="group border-b border-border">
