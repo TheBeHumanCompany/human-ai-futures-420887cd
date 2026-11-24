@@ -593,7 +593,7 @@ function CeoPage() {
             </div>
             <figure className="mt-10 border-t border-cream/15 pt-8">
               <ReportShowcase />
-              <figcaption className="mt-4 font-sans text-xs font-normal leading-relaxed text-cream/50">Illustrative example, not client data</figcaption>
+              <figcaption className="mt-4 font-sans text-xs font-normal leading-relaxed text-cream/50">Illustrative example, not client data. All metrics are samples, not actual client results or guaranteed outcomes.</figcaption>
             </figure>
             <p className="type-body mt-10 border-t border-cream/15 pt-8 text-cream/80">We walk you through both on your fourth call. Before January even starts, you’ll know exactly where your business stands and what comes next.</p>
           </div>
