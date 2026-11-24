@@ -820,7 +820,7 @@ function CeoPage() {
               <span className="lg:block">The next generation of companies</span>{" "}
               <span className="lg:block">is being built right now.</span>
             </span>
-            <span className="mt-2 block text-[clamp(2.5rem,4vw,3.5rem)] font-semibold leading-[1.05] lg:whitespace-nowrap">Make sure yours is one of them</span>
+            <span className="mt-6 block text-[clamp(2.5rem,4vw,3.5rem)] font-semibold leading-[1.05] lg:mt-8 lg:whitespace-nowrap">Make sure yours is one of them.</span>
           </h2>
           <span aria-hidden className="mt-6 block h-[2px] w-14 bg-lime" />
           <div className="mt-10 max-w-[64ch] space-y-6 leading-[1.75] text-cream/80">
