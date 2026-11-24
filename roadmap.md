@@ -1,9 +1,16 @@
 # Roadmap
 
 ## Open
-- Headline-width audit: report any similar constraints elsewhere without changing them, per Maya's scope limit.
 - New episode summary wording for Anya & Niki — the page already mirrors Sanity word for word; waiting on Maya's new text (or the field she wrote it in).
 - Studio redeploy: Maya runs `npm run deploy` in `studio/` so the new `companyName`, `books` and `customLinks` fields appear in the hosted episode editor.
+
+## Found in headline-width audit — reported, not changed (Maya's scope limit)
+- `/be-human-ai` "Canadian trust / Human accountability": heading box is 199px wide but its text needs 314px, so the last word is cut off. Real overflow, not just wrapping.
+- `/next-generation-ceo` "Why $3,500, and why only eight": 4 lines at 72px in a 352px column, with "WHY" and "$3,500," each alone on a line.
+- `/next-generation-ceo` "Does any of this sound familiar?": 3 lines, "FAMILIAR?" orphaned.
+- `/next-generation-ceo` "Three live calls every week, and a direct line to me": 4 lines, "ME" orphaned.
+- `/next-generation-ceo` "We don't start with AI. We start with your business": breaks mid-sentence instead of between the two sentences.
+- Judged fine, left alone: "Where this fits" (2 lines), "Technology will keep advancing. Humanity has to advance with it." (deliberate stanzas), all `/about-the-founder` chapter headings (2 lines each).
 
 ## Done
 - Closing headline: added the final period and verified 32px desktop / 24px mobile statement spacing at 1440px, 1920px and 393px; typography, line breaks and underline unchanged.
