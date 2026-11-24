@@ -13,6 +13,7 @@
 - Judged fine, left alone: "Where this fits" (2 lines), "Technology will keep advancing. Humanity has to advance with it." (deliberate stanzas), all `/about-the-founder` chapter headings (2 lines each).
 
 ## Done
+- Closing-section enrollment callout: replaced the bold paragraph with a four-line editorial grouping — lime uppercase label, "Friday, December 11" in the condensed brand font at 32px medium off-white, regular-weight "Or sooner when the eight seats fill.", then 16px above the semibold "Your assessments start the day you join." Thin 1px lime line down the left with 20px padding, transparent background, 64px above / 64px below on desktop. Verified at 1440, 820 and 393.
 - Closing headline: added the final period and verified 32px desktop / 24px mobile statement spacing at 1440px, 1920px and 393px; typography, line breaks and underline unchanged.
 - Episode 78 (Poet Comeau): her Instagram link — already in the Guest Instagram field, pointing at the company account — is labelled "Lake City Cider on Instagram". Account-level names (`GuestProfile.linkNames`) let one page name two brands without relabelling Darty Brewing's links.
 - Dynamic guest/company link labels: platform read from the URL itself, company links named after the business (Sanity `companyName` first, on-file profile as fallback), domain/handle fallbacks instead of generic "Company Instagram".
