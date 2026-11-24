@@ -4,7 +4,17 @@ import * as React from "react";
 import { BOOKING_URL_15MIN } from "@/lib/booking";
 import boardroom from "@/assets/ceo-boardroom.jpg";
 import brettPhoto from "@/assets/brett-christoffel.png";
-import shanePhoto from "@/assets/founder-stage.webp";
+import shaneBookshelf from "@/assets/shane-bookshelf.png.asset.json";
+import curvesTruck from "@/assets/shane-curves-truck.jpg.asset.json";
+import shaneTeaching from "@/assets/shane-teaching.jpg.asset.json";
+import systemsGraphic from "@/assets/be-human-systems.webp.asset.json";
+import panel1 from "@/assets/systems-panel-1.webp.asset.json";
+import panel2 from "@/assets/systems-panel-2.webp.asset.json";
+import panel3 from "@/assets/systems-panel-3.webp.asset.json";
+import shanePlaid from "@/assets/shane-portrait-plaid.jpg.asset.json";
+import kanePhoto from "@/assets/kane-minkus.jpg.asset.json";
+import reportImg from "@/assets/key-findings-report.jpg.asset.json";
+import recsImg from "@/assets/ai-recommendations.jpg.asset.json";
 
 /** `/next-generation-ceo` — sales page. Copy is Shane's document verbatim. */
 export const Route = createFileRoute("/next-generation-ceo")({
@@ -331,7 +341,7 @@ function CeoPage() {
       <section className="section-cream">
         <div className={`${SHELL} grid gap-12 py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 lg:py-28`}>
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <img src={shanePhoto} alt="Shane Jeremy James" loading="lazy" className="aspect-[4/5] w-full object-cover" />
+            <img src={shaneBookshelf.url} alt="Shane Jeremy James in front of his bookshelf" loading="lazy" className="aspect-[4/5] w-full object-cover object-[50%_30%]" />
           </div>
           <div>
             <Label tone="muted">Your Chief AI Officer</Label>
@@ -339,6 +349,16 @@ function CeoPage() {
             <P className="mt-6 text-ink/80">I’m Shane Jeremy James, founder and CEO of The Be Human Company. I’ve spent more than 20 years building, running, and growing businesses. A few highlights:</P>
             <div className="mt-8">
               <Bullets items={HIGHLIGHTS} dark={false} />
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              <figure>
+                <img src={curvesTruck.url} alt="Shane with colleagues in front of a Curves franchise truck" loading="lazy" className="aspect-square w-full object-cover" />
+                <figcaption className="type-label-caps mt-3 text-ink/50">The Curves years</figcaption>
+              </figure>
+              <figure>
+                <img src={shaneTeaching.url} alt="Shane teaching a room of business owners" loading="lazy" className="aspect-square w-full object-cover" />
+                <figcaption className="type-label-caps mt-3 text-ink/50">Teaching business owners</figcaption>
+              </figure>
             </div>
             <div className="mt-10 space-y-6 text-ink/80">
               <P>Each of those taught me the same lesson: results come from how a business operates, not how many tools it owns.</P>
@@ -372,6 +392,14 @@ function CeoPage() {
             <P>Here’s one example. We now record 15 to 20 podcast interviews a week, at about half of what it used to cost us, with a fast turnaround. Each interview becomes around 10 pieces of high-quality content, which is 150 to 200 pieces a week, or roughly 600 to 800 a month, from that alone.</P>
           </div>
         </div>
+        <div className={`${SHELL} pb-20 lg:pb-28`}>
+          <img src={systemsGraphic.url} alt="The Be Human systems: 01 The Company Brain, 02 The Agent Workforce, 03 A Live Workflow" loading="lazy" className="hidden w-full md:block" />
+          <div className="mx-auto grid max-w-md gap-6 md:hidden">
+            {[[panel1, "01 The Company Brain"], [panel2, "02 The Agent Workforce"], [panel3, "03 A Live Workflow"]].map(([img, alt]) => (
+              <img key={alt as string} src={(img as { url: string }).url} alt={alt as string} loading="lazy" className="w-full" />
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* CASE STUDY */}
@@ -403,6 +431,26 @@ function CeoPage() {
                 <footer className="type-label-caps mt-5 text-ink/60">Brett Christoffel, Founder, All Y’alls Foods</footer>
               </blockquote>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERIENCE BEHIND THE PROGRAM */}
+      <section className="section-cream border-t border-ink/10">
+        <div className={`${SHELL} grid gap-12 py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-16 lg:py-28`}>
+          <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <figure>
+              <img src={shanePlaid.url} alt="Shane Jeremy James" loading="lazy" className="aspect-[4/5] w-full object-cover object-top" />
+              <figcaption className="type-label-caps mt-3 text-ink/50">Shane Jeremy James</figcaption>
+            </figure>
+            <figure className="mt-10 sm:mt-16">
+              <img src={kanePhoto.url} alt="Kane Minkus" loading="lazy" className="aspect-[4/5] w-full object-cover object-top" />
+              <figcaption className="type-label-caps mt-3 text-ink/50">Kane Minkus</figcaption>
+            </figure>
+          </div>
+          <div>
+            <Label tone="muted">The experience behind the program</Label>
+            <P className="mt-6 text-ink/80">Shane has worked closely with Kane Minkus, co-founder of Industry Rockstar, an AI-focused business mentoring company ranked No. 298 on the 2026 Inc. 5000 list of America’s fastest-growing private companies. Kane also co-founded MyGentic, an AI platform built to help companies put their knowledge to work.</P>
           </div>
         </div>
       </section>
@@ -471,6 +519,13 @@ function CeoPage() {
                 <p className="type-body mt-3 text-cream/75">The complete plan, built out for your company: what happens in each phase, in what order, with what resources, owned by whom, and measured how.</p>
               </div>
             </div>
+            <figure className="mt-10 border-t border-cream/15 pt-8">
+              <div className="grid gap-4 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+                <img src={reportImg.url} alt="Illustrative Key Findings Report cover" loading="lazy" className="w-full rounded-[4px] object-cover" />
+                <img src={recsImg.url} alt="Illustrative AI opportunity recommendations" loading="lazy" className="w-full rounded-[4px] object-cover" />
+              </div>
+              <figcaption className="type-label-caps mt-3 text-cream/50">Illustrative example, not client data</figcaption>
+            </figure>
             <p className="type-body mt-10 border-t border-cream/15 pt-8 text-cream/80">We walk you through both on your fourth call. Before January even starts, you’ll know exactly where your business stands and what comes next.</p>
           </div>
           <p className="type-body-lg mt-10 max-w-[60ch] border-l-2 border-lime pl-6 text-ink">The sooner you join, the sooner we start. Your assessments begin the day you reserve your seat, so you’ll be further ahead when the group starts on January 4.</p>
