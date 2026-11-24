@@ -603,7 +603,7 @@ function CeoPage() {
                           <p className="font-display text-[15px] font-bold text-lime-dark">0{i + 1}</p>
                           <details className="group mt-2">
                             <summary className="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
-                              <span className="type-h4-caps">{at.replace(/\.$/, "")}</span>
+                              <span className="font-display text-[22px] font-semibold uppercase leading-[1.05] md:text-[24px]">{at.replace(/\.$/, "")}</span>
                               <span aria-hidden="true" className="shrink-0 text-[20px] font-light leading-none transition-transform group-open:rotate-45">+</span>
                             </summary>
                             <p className="type-body-sm mt-3 text-ink/75">{ab}</p>
@@ -678,7 +678,7 @@ function CeoPage() {
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
                   <span>
                     <span className="type-label-caps block !text-[15px] text-lime">Week {i + 1}</span>
-                    <span className="type-h4-caps-light mt-2 block">{t.replace(/^Week \d+\.\s*/, "").replace(/\.$/, "")}</span>
+                    <span className="mt-2 block font-display text-[24px] font-semibold uppercase leading-[1.05] text-cream md:text-[26px]">{t.replace(/^Week \d+\.\s*/, "").replace(/\.$/, "")}</span>
                   </span>
                   <span aria-hidden="true" className="shrink-0 pt-1 text-[22px] font-light leading-none text-foreground transition-transform group-open:rotate-45">+</span>
                 </summary>
@@ -739,7 +739,7 @@ function CeoPage() {
         <div className={`${SHELL} py-20 lg:py-28`}>
           <p className="font-display text-[clamp(1.125rem,2vw,1.5rem)] font-bold uppercase leading-tight tracking-[0.04em] text-lime">Included: eight weeks of marketing and content</p>
           <span aria-hidden="true" className="mt-3 block h-[2px] w-12 bg-lime" />
-<h2 className="mt-6 max-w-[30ch] font-display text-[clamp(1.75rem,3.6vw,3rem)] font-normal normal-case leading-[1.15] tracking-[-0.005em] text-cream text-balance"><span className="block">Your competitors are learning to produce more marketing at a fraction of the cost.</span><span className="mt-6 block font-bold">Are you?</span></h2>
+<h2 className="mt-6 max-w-[30ch] font-display text-[clamp(1.75rem,3.6vw,3rem)] font-normal normal-case leading-[1.15] tracking-[-0.005em] text-cream text-balance"><span className="block">Your competitors are learning to produce more marketing at a fraction of the cost.</span><span className="mt-6 block">Are you?</span></h2>
           <div className="mt-10 grid gap-6 text-foreground/80 lg:grid-cols-2 lg:gap-16">
             <P>Marketing is usually where CEOs feel this shift first. The way customers find you, trust you and buy from you is changing fast, and AI has rewritten content economics. A small team can now research, create and distribute what used to take an agency, and the companies that figure it out first will take attention from everyone who doesn’t.</P>
             <div>
