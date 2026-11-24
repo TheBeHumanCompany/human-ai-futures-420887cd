@@ -646,16 +646,38 @@ function CeoPage() {
             <h2 className="type-h2-caps max-w-[18ch]">Three live calls every week, and a direct line to me</h2>
             <P className="mt-6 text-ink/80">This isn’t a course where you watch videos and hope it sticks. Starting Monday, January 4, and running through the end of February, you get:</P>
           </div>
-          <Bullets
-            dark={false}
-            items={[
-              <><B>Two CEO and AI leadership calls every week.</B> We teach, demonstrate real systems, and work through the problems you bring from your own company.</>,
-              <><B>One marketing and content call every week.</B> More on that below.</>,
-              <><B>We answer your questions even when you can’t attend.</B> Send them in ahead of time, and we’ll answer them on the call.</>,
-              <><B>Every session is recorded,</B> so you can rewatch whenever you need to.</>,
-              <><B>Direct email access to me.</B> For these eight founding CEOs only, you can email me between calls when you’re working through your roadmap, weighing a platform, or stuck on a decision. I don’t normally offer this, and I won’t offer it at this level again.</>,
-            ]}
-          />
+          <ul>
+            <li className="border-b border-ink/15 py-7 last:border-b-0 first:pt-0">
+              <div className="border-l-2 border-lime pl-5">
+                <p className="type-body font-semibold text-ink">Two CEO and AI leadership calls every week.</p>
+                <p className="type-body mt-1 font-normal text-ink/75">We teach, demonstrate real systems, and work through the problems you bring from your own company.</p>
+              </div>
+            </li>
+            <li className="border-b border-ink/15 py-7 last:border-b-0 first:pt-0">
+              <div className="border-l-2 border-lime pl-5">
+                <p className="type-body font-semibold text-ink">One marketing and content call every week.</p>
+                <p className="type-body mt-1 font-normal text-ink/75">More on that below.</p>
+              </div>
+            </li>
+            <li className="border-b border-ink/15 py-7 last:border-b-0 first:pt-0">
+              <div className="border-l-2 border-lime pl-5">
+                <p className="type-body font-semibold text-ink">We answer your questions even when you can’t attend.</p>
+                <p className="type-body mt-1 font-normal text-ink/75">Send them in ahead of time, and we’ll answer them on the call.</p>
+              </div>
+            </li>
+            <li className="border-b border-ink/15 py-7 last:border-b-0 first:pt-0">
+              <div className="border-l-2 border-lime pl-5">
+                <p className="type-body font-semibold text-ink">Every session is recorded,</p>
+                <p className="type-body mt-1 font-normal text-ink/75">so you can rewatch whenever you need to.</p>
+              </div>
+            </li>
+            <li className="border-b border-ink/15 py-7 last:border-b-0 first:pt-0">
+              <div className="border-l-2 border-lime pl-5">
+                <p className="type-body font-semibold text-ink">Direct email access to me.</p>
+                <p className="type-body mt-1 font-normal text-ink/75">For these eight founding CEOs only, you can email me between calls when you’re working through your roadmap, weighing a platform, or stuck on a decision. I don’t normally offer this, and I won’t offer it at this level again.</p>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
 
