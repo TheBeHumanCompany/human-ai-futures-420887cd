@@ -493,7 +493,7 @@ function CeoPage() {
             The Next Generation <span className="text-lime">CEO</span>
           </h2>
           <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
-            <h3 className="type-h3-caps-light">We don’t start with AI. We start with your business.</h3>
+            <h3 className="font-sans text-[clamp(1.25rem,1.6vw,1.5rem)] font-semibold leading-[1.4] tracking-[-0.02em]">We don’t start with AI. We start with your business.</h3>
             <div className="space-y-6 text-foreground/80">
               <P>Most AI programs start with generic training. Everyone watches the same demos, then goes home trying to work out what applies to their company. We do it the other way around, because the right strategy for a professional services firm can look nothing like the right one for a manufacturer or a growing consumer brand.</P>
               <P>Most consultants start by asking which agent you should build. We start by asking where your business is losing value. You wouldn’t build a house by buying materials and hoping they fit together. You’d start with the blueprint, and that’s what we build first.</P>
@@ -520,7 +520,7 @@ function CeoPage() {
                 ["AI implementation assessment.", "Your current technology, data, workflows, and real readiness to bring in AI and agents, including what needs fixing before anything gets built."],
               ].map(([t, b], i) => (
                 <div key={t} className="border-t-2 border-ink pt-5">
-                  <p className="font-display text-3xl font-bold text-lime-dark">0{i + 1}</p>
+                  <p className="font-display text-[18px] font-bold text-lime-dark">0{i + 1}</p>
                   <p className="type-h4-caps mt-3">{t}</p>
                   <p className="type-body-sm mt-3 text-ink/75">{b}</p>
                 </div>
@@ -531,7 +531,7 @@ function CeoPage() {
           <div className="mt-14 border-t border-ink/15">
             {STEPS.map(([t, b]) => (
               <div key={t} className="grid gap-3 border-b border-ink/15 py-7 md:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] md:gap-12">
-                <h3 className="type-h4-caps">{t}</h3>
+                <h3 className="type-h3-caps">{t}</h3>
                 <p className="type-body text-ink/80">{b}</p>
               </div>
             ))}
