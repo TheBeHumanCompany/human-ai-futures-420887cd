@@ -548,8 +548,13 @@ function CeoPage() {
               ].map(([t, b], i) => (
                 <div key={t} className="border-t-2 border-ink pt-5">
                   <p className="font-display text-[18px] font-bold text-lime-dark">0{i + 1}</p>
-                  <p className="type-h4-caps mt-3">{t}</p>
-                  <p className="type-body-sm mt-3 text-ink/75">{b}</p>
+                  <details className="group mt-3">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                      <span className="type-h4-caps">{t}</span>
+                      <span aria-hidden="true" className="shrink-0 text-[20px] font-light leading-none transition-transform group-open:rotate-45">+</span>
+                    </summary>
+                    <p className="type-body-sm mt-3 text-ink/75">{b}</p>
+                  </details>
                 </div>
               ))}
             </div>
