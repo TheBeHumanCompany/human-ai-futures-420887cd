@@ -812,17 +812,35 @@ function CeoPage() {
 
       {/* CLOSING */}
       <section className="relative isolate overflow-hidden bg-ink">
-        <img src={boardroom} alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-35" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
+        <img src={boardroom} alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-45" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/85 to-ink/35 lg:to-ink/20" />
         <div className={`${SHELL} py-24 lg:py-32`}>
-          <h2 className="type-h1-caps-light max-w-[20ch] text-cream">The next generation of companies is being built right now. Make sure yours is one of them</h2>
+          <h2 className="max-w-[24ch] font-display text-[clamp(2.75rem,4.8vw,4.25rem)] font-medium normal-case leading-[1.02] tracking-[0.005em] text-cream">
+            <span className="block">The next generation of companies is being built right now.</span>
+            <span className="mt-5 block font-semibold">Make sure yours is one of them</span>
+          </h2>
           <div className="mt-10 max-w-[64ch] space-y-6 text-cream/80">
             <P>The way companies run is changing, and the way CEOs lead is changing with it. You can continue experimenting with tools and hoping the pieces come together. Or you can start with a real diagnosis, a well-defined roadmap, and an operator beside you while you build what’s next.</P>
             <P>If you’re reading this, it’s because I chose you. I’ve looked at you and your business, and I’ve looked at the competitors in your field, some of whom I may know. I’m taking only one company per industry, so you get this before your competitors do, and no similar business will be in the room with you. If you want to cut waste, move faster, and build a company ready for what’s coming, let’s talk.</P>
             <P className="font-semibold text-cream">Enrollment closes Friday, December 11, or sooner when the eight seats fill. Your assessments start the day you join.</P>
           </div>
-          <p className="type-h3-caps-light mt-10 text-lime">Eight CEOs. Your own Chief AI Officer. 24 live sessions. $3,500</p>
-          <div className="mt-10"><Ctas /></div>
+          <dl className="mt-14 grid grid-cols-2 border-y border-cream/20 lg:mt-16 lg:grid-cols-4">
+            {[
+              ["8 CEOs", "One company per industry"],
+              ["8 Weeks", "Shane as your Chief AI Officer"],
+              ["24 Sessions", "Live executive training"],
+              ["$3,500", "Founding investment"],
+            ].map(([value, description], i) => (
+              <div
+                key={value}
+                className={`border-cream/15 p-4 sm:p-6 lg:px-8 lg:py-10 ${i % 2 === 1 ? "border-l" : ""} ${i >= 2 ? "border-t lg:border-t-0" : ""} ${i > 0 ? "lg:border-l" : ""}`}
+              >
+                <dt className="whitespace-nowrap font-display text-[clamp(1.75rem,3.4vw,3.5rem)] font-medium uppercase leading-none text-lime">{value}</dt>
+                <dd className="mt-3 font-sans text-[13px] leading-relaxed text-cream/75 sm:text-sm">{description}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-10 lg:mt-12"><Ctas /></div>
         </div>
       </section>
     </main>
