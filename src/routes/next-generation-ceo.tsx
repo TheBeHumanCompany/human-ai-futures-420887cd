@@ -662,8 +662,9 @@ function CeoPage() {
       {/* MARKETING */}
       <section className="section-ink grain">
         <div className={`${SHELL} py-20 lg:py-28`}>
-          <Label>Included: eight weeks of marketing and content</Label>
-          <h2 className="type-h2-caps-light mt-4 max-w-[24ch]">Your competitors are learning to produce more marketing at a fraction of the cost. Are you?</h2>
+          <p className="font-display text-[clamp(1.125rem,2vw,1.5rem)] font-bold uppercase leading-tight tracking-[0.04em] text-lime">Included: eight weeks of marketing and content</p>
+          <span aria-hidden="true" className="mt-3 block h-[2px] w-12 bg-lime" />
+          <h2 className="type-h2-caps-light mt-6 max-w-[24ch] !font-semibold"><span className="block">Your competitors are learning to produce more marketing at a fraction of the cost.</span><span className="mt-[18px] block">Are you?</span></h2>
           <div className="mt-10 grid gap-6 text-foreground/80 lg:grid-cols-2 lg:gap-16">
             <P>Marketing is usually where CEOs feel this shift first. The way customers find you, trust you, and buy from you is changing fast, and AI has rewritten content economics. A small team can now research, create, and distribute what used to take an agency, and the companies that figure it out first will take attention from everyone who doesn’t.</P>
             <P>The weekly marketing call takes what you’re learning in the CEO curriculum and applies it to the part of your business that brings customers in.</P>
