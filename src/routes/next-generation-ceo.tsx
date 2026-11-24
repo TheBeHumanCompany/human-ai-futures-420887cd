@@ -279,8 +279,8 @@ function CeoPage() {
               </div>
               <p className="type-body-sm mt-8 text-ink/50">McKinsey, 2025 State of AI</p>
               <div className="mt-7 space-y-1.5">
-                <p className="font-sans !text-[22px] lg:!text-[28px] font-normal leading-tight text-ink">Almost everyone is using AI.</p>
-                <p className="font-sans !text-[22px] lg:!text-[28px] !font-bold leading-tight text-ink">Few are actually getting ahead.</p>
+                <p className="font-sans !text-[22px] lg:!text-[26px] font-normal leading-tight text-ink">Almost everyone is using AI.</p>
+                <p className="font-sans !text-[22px] lg:!text-[26px] !font-bold leading-tight text-ink">Few are actually getting ahead.</p>
               </div>
             </div>
           </div>
