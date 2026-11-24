@@ -99,6 +99,37 @@ function B({ children }: { children: React.ReactNode }) {
   return <strong className="font-semibold">{children}</strong>;
 }
 
+function PersuasionStatement({
+  children,
+  emphasis,
+  tone = "dark",
+  className = "",
+}: {
+  children: React.ReactNode;
+  emphasis: React.ReactNode;
+  tone?: "dark" | "cream";
+  className?: string;
+}) {
+  return (
+    <div className={`w-full max-w-6xl border-l-2 border-lime pl-6 sm:pl-8 ${className}`}>
+      <p
+        className={`max-w-[52ch] font-sans text-[clamp(1.375rem,2.2vw,2rem)] font-medium leading-[1.3] tracking-[-0.025em] ${
+          tone === "dark" ? "text-foreground/85" : "text-ink/80"
+        }`}
+      >
+        {children}
+      </p>
+      <p
+        className={`mt-4 max-w-[38ch] font-sans text-[clamp(1.75rem,3.2vw,3rem)] font-bold leading-[1.12] tracking-[-0.035em] sm:mt-5 ${
+          tone === "dark" ? "text-lime" : "text-lime-dark"
+        }`}
+      >
+        {emphasis}
+      </p>
+    </div>
+  );
+}
+
 const FAMILIAR = [
   "You’re using AI every day, but you can’t point to what it has actually changed in the business.",
   "Everything still runs through you, and your week disappears into questions and decisions that land back on your desk.",
@@ -257,9 +288,9 @@ function CeoPage() {
           </div>
           <div>
             <Bullets items={FAMILIAR} />
-            <p className="type-h4-caps-light mt-10 border-l-2 border-lime pl-6 text-foreground">
-              If you nodded at even two of these, this program was built for you.
-            </p>
+            <PersuasionStatement className="mt-12" emphasis="this program was built for you.">
+              If you nodded at even two of these,
+            </PersuasionStatement>
           </div>
         </div>
       </section>
@@ -331,9 +362,12 @@ function CeoPage() {
             <P>And it’s still early. Most companies use AI one person and one tool at a time, with nothing connected to how the business actually runs. In most of them, the people are ready. The systems around them aren’t. The companies that fix that now get a head start that compounds. The ones that don’t may end up competing against someone with lower costs, quicker execution, and more capacity than their current model can match.</P>
             <P>And this is where the real advantage lives. Your competitors can buy the same AI tools you can. What they can’t copy overnight is a company that has organized its knowledge, redesigned its workflows, and learned how its people and agents work together. That takes strategy, the right sequence, and leadership from the top.</P>
           </div>
-          <p className="type-h3-caps-light mt-14 max-w-[30ch] border-l-2 border-lime pl-6">
-            When you and your company move faster and get better results, you win. And every hour you spend trying to figure this out alone is an hour your competitors get to use.
-          </p>
+          <PersuasionStatement
+            className="mt-16"
+            emphasis="And every hour you spend trying to figure this out alone is an hour your competitors get to use."
+          >
+            When you and your company move faster and get better results, you win.
+          </PersuasionStatement>
         </div>
       </section>
 
@@ -528,7 +562,13 @@ function CeoPage() {
             </figure>
             <p className="type-body mt-10 border-t border-cream/15 pt-8 text-cream/80">We walk you through both on your fourth call. Before January even starts, you’ll know exactly where your business stands and what comes next.</p>
           </div>
-          <p className="type-body-lg mt-10 max-w-[60ch] border-l-2 border-lime pl-6 text-ink">The sooner you join, the sooner we start. Your assessments begin the day you reserve your seat, so you’ll be further ahead when the group starts on January 4.</p>
+          <PersuasionStatement
+            tone="cream"
+            className="mt-12"
+            emphasis="Your assessments begin the day you reserve your seat, so you’ll be further ahead when the group starts on January 4."
+          >
+            The sooner you join, the sooner we start.
+          </PersuasionStatement>
         </div>
       </section>
 
@@ -627,7 +667,9 @@ function CeoPage() {
               </div>
             ))}
           </div>
-          <p className="type-h3-caps-light mt-16 border-l-2 border-lime pl-6">$3,500 against 10 to 20 hours of your week and the most expensive mistakes in this space. That’s the trade.</p>
+          <PersuasionStatement className="mt-16" emphasis="That’s the trade.">
+            $3,500 against 10 to 20 hours of your week and the most expensive mistakes in this space.
+          </PersuasionStatement>
         </div>
       </section>
 
@@ -681,7 +723,9 @@ function CeoPage() {
           <h2 className="type-h2-caps">Where this fits</h2>
           <div className="space-y-6">
             <P className="text-ink/80">This program gives you what should come before any big AI investment: a clear picture of your business, a strategy and roadmap built on your real opportunities, an operator beside you as you start, and the knowledge to lead it yourself. Larger custom builds and integrations come after, and when you’re ready, we can help with those too.</P>
-            <p className="type-h4-caps text-ink">The transformation starts with your business. The capability stays with you.</p>
+            <PersuasionStatement tone="cream" emphasis="The capability stays with you.">
+              The transformation starts with your business.
+            </PersuasionStatement>
           </div>
         </div>
       </section>
