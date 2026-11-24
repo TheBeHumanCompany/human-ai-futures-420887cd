@@ -38,27 +38,31 @@ const SHELL = "mx-auto max-w-[1400px] px-5 sm:px-8";
 /** Checkout link not supplied yet — seats route to the enrollment section. */
 const RESERVE_HREF = "#enroll";
 
-function Ctas({ tone = "ink" }: { tone?: "ink" | "cream" }) {
+function Ctas({ tone = "ink", reserveOnly = false }: { tone?: "ink" | "cream"; reserveOnly?: boolean }) {
   const outline =
     tone === "ink"
       ? "border-foreground text-foreground hover:bg-foreground hover:text-background"
       : "border-ink text-ink hover:bg-ink hover:text-cream";
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+    <div className={reserveOnly ? "" : "flex flex-col gap-3 sm:flex-row sm:gap-4"}>
       <a
         href={RESERVE_HREF}
-        className="inline-flex items-center justify-center rounded-[10px] bg-lime px-7 py-4 text-sm font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime/85"
+        className={`inline-flex items-center justify-center rounded-[10px] bg-lime px-7 py-4 text-sm font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime/85 ${
+          reserveOnly ? "w-full whitespace-nowrap" : ""
+        }`}
       >
         Reserve your seat
       </a>
-      <a
-        href={BOOKING_URL_15MIN}
-        target="_blank"
-        rel="noreferrer"
-        className={`inline-flex items-center justify-center rounded-[10px] border-2 px-7 py-4 text-sm font-bold uppercase tracking-[0.08em] transition-colors ${outline}`}
-      >
-        Talk to Shane first
-      </a>
+      {!reserveOnly && (
+        <a
+          href={BOOKING_URL_15MIN}
+          target="_blank"
+          rel="noreferrer"
+          className={`inline-flex items-center justify-center rounded-[10px] border-2 px-7 py-4 text-sm font-bold uppercase tracking-[0.08em] transition-colors ${outline}`}
+        >
+          Talk to Shane first
+        </a>
+      )}
     </div>
   );
 }
@@ -781,8 +785,8 @@ function CeoPage() {
               <p className="type-label-caps mt-8 text-lime">Your founding investment</p>
               <p className="font-display text-[clamp(4rem,8vw,6rem)] font-bold leading-none text-foreground">$3,500</p>
               <p className="type-body mt-3 text-foreground/80">paid in full, or two payments of $1,800. Eight seats.</p>
-              <p className="type-body-sm mt-6 text-foreground/70">Reserve your seat now, and we’ll get started with you right away. You can begin your assessments as soon as you join. I care a lot more about you winning than about waiting for a start date. If you’d rather talk it through first, book a short call with me.</p>
-              <div className="mt-8"><Ctas /></div>
+              <p className="type-body-sm mt-6 text-foreground/70">Reserve your seat now, and we’ll get started with you right away. You can begin your assessments as soon as you join. I care a lot more about you winning than about waiting for a start date.</p>
+              <div className="mt-8"><Ctas reserveOnly /></div>
             </div>
           </div>
         </div>
